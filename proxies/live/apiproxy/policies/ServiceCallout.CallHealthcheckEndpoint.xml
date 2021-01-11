@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="ServiceCallout.CallHealthcheckEndpoint">
+    <DisplayName>ServiceCallout.CallHealthcheckEndpoint</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="healthcheckRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>healthcheckResponse</Response>
+    <HTTPTargetConnection>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+        <LoadBalancer>
+            <Server name="ig3"/>
+        </LoadBalancer>
+        <Path>/healthcheck</Path>
+    </HTTPTargetConnection>
+    <Timeout>20000</Timeout>
+</ServiceCallout>

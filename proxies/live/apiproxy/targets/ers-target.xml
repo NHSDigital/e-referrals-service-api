@@ -1,0 +1,52 @@
+<TargetEndpoint name="e-referrals-service-api-target">
+  <FaultRules>
+    <FaultRule name="access_token_expired">
+      <Step>
+        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+      </Step>
+      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule>
+  </FaultRules>
+  <PreFlow>
+    <Request>
+      <Step>
+        <!-- This will return 404 because /_status doesn't exist for the backend. Either implement _status for your backend
+        or use a service-callout to call health-check endpoint -->
+        <Name>VerifyApiKey.XApiKey</Name>
+        <Condition>(proxy.pathsuffix MatchesPath "/_status") and (request.verb = "GET")</Condition>
+      </Step>
+      <Step>
+        <Name>AssignMessage.RenameQuotaVarsFromVerifyAPIKeyPolicyClientId</Name>
+      </Step>
+      <Step>
+        <Name>Quota</Name>
+      </Step>
+      <Step>
+        <Name>SpikeArrest</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+  <!--
+    To point to a named target server as this is how it SHOULD be implemented:
+    For example:
+    <HTTPTargetConnection>
+      <SSLInfo>
+        <Enabled>true</Enabled>
+      </SSLInfo>
+      <LoadBalancer>
+        <Server name="e-referrals-service-api-target" />
+      </LoadBalancer>
+    </HTTPTargetConnection>
+  -->
+  <HTTPTargetConnection>
+    <URL>http://mocktarget.apigee.net</URL>
+    <Properties>
+      <Property name="supports.http10">true</Property>
+      <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
+      <Property name="retain.queryparams">apikey</Property>
+    </Properties>
+  </HTTPTargetConnection>
+</TargetEndpoint>

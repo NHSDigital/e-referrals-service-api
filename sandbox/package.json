@@ -1,0 +1,20 @@
+{
+  "name": "e-referrals-service",
+  "version": "0.0.1",
+  "description": "A key aspect of the NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS).",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.0.2"
+  }
+}

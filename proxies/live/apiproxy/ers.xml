@@ -1,0 +1,4 @@
+<APIProxy name="ers">
+  <!-- This is the root of the application -->
+  <Description>Proxy to e-Referrals-Service endpoints.</Description>
+</APIProxy>

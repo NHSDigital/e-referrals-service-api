@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AssignMessage.RenameQuotaVarsFromVerifyAPIKeyPolicyClientId">
+  <AssignVariable>
+    <Name>apiproduct.developer.quota.limit</Name>
+    <Ref>verifyapikey.VerifyApiKey.XApiKey.apiproduct.developer.quota.limit</Ref>
+  </AssignVariable>
+  <AssignVariable>
+    <Name>apiproduct.developer.quota.interval</Name>
+    <Ref>verifyapikey.VerifyApiKey.XApiKey.apiproduct.developer.quota.interval</Ref>
+  </AssignVariable>
+  <AssignVariable>
+    <Name>apiproduct.developer.quota.timeunit</Name>
+    <Ref>verifyapikey.VerifyApiKey.XApiKey.apiproduct.developer.quota.timeunit</Ref>
+  </AssignVariable>
+  <AssignVariable>
+    <Name>apiproduct.ratelimit</Name>
+    <Ref>verifyapikey.VerifyApiKey.XApiKey.apiproduct.ratelimit</Ref>
+  </AssignVariable>
+</AssignMessage>

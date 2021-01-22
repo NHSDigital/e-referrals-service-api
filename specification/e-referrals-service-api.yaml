@@ -25,18 +25,20 @@ info:
   license:
     name: MIT
 servers:
-  - url: https://api.dev3.ers.ncrs.nhs.uk/
+  - url: https://api.dev3.ers.ncrs.nhs.uk
     description: Alpha
 paths:
-  /v1/ProfessionalSession:
+  /v1/ProfessionalSession/{token}:
     post:
+      tags:
+        - ProfessionalSession
+      operationId: post ProfessionalSession
       responses:
-        "201":
+        "201":               
           description: Request accepted
           content:
             application/json:
               schema:
-                $schema: http://json-schema.org/draft-04/schema#
                 type: object
                 properties:
                   typeInfo:
@@ -55,70 +57,22 @@ paths:
                       lastName:
                         type: string
                       middleName:
-                        type: "null"
+                        type: "string"
                       permissions:
                         type: array
                         items:
-                          - type: object
-                            properties:
+                          type: object
+                          properties:
                               businessFunction:
                                 type: string
                               orgIdentifier:
                                 type: string
                               orgName:
                                 type: string
-                            required:
-                              - businessFunction
-                              - orgIdentifier
-                              - orgName
-                          - type: object
-                            properties:
-                              businessFunction:
-                                type: string
-                              orgIdentifier:
-                                type: string
-                              orgName:
-                                type: string
-                            required:
-                              - businessFunction
-                              - orgIdentifier
-                              - orgName
-                          - type: object
-                            properties:
-                              businessFunction:
-                                type: string
-                              orgIdentifier:
-                                type: string
-                              orgName:
-                                type: string
-                            required:
-                              - businessFunction
-                              - orgIdentifier
-                              - orgName
-                          - type: object
-                            properties:
-                              businessFunction:
-                                type: string
-                              orgIdentifier:
-                                type: string
-                              orgName:
-                                type: string
-                            required:
-                              - businessFunction
-                              - orgIdentifier
-                              - orgName
-                          - type: object
-                            properties:
-                              businessFunction:
-                                type: string
-                              orgIdentifier:
-                                type: string
-                              orgName:
-                                type: string
-                            required:
-                              - businessFunction
-                              - orgIdentifier
-                              - orgName
+                          required:
+                            - businessFunction
+                            - orgIdentifier
+                            - orgName
                     required:
                       - identifier
                       - firstName
@@ -126,7 +80,7 @@ paths:
                       - middleName
                       - permissions
                   permission:
-                    type: "null"
+                    type: "string"
                 required:
                   - typeInfo
                   - id
@@ -138,10 +92,6 @@ paths:
         Professional Session in the Spine using my smartcard roles So that I can
         securely access e-RS functions through my integrated system
       parameters:
-        - in: header
-          name: XAPI_ASID
-          schema:
-            type: string
         - in: path
           name: token
           required: true
@@ -154,7 +104,6 @@ paths:
         content:
           application/json:
             schema:
-              $schema: http://json-schema.org/draft-04/schema#
               type: object
               properties:
                 typeInfo:

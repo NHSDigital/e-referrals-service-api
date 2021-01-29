@@ -1,0 +1,4 @@
+docker_containers:
+  - name: "ers-sandbox"
+    dockerfile: "sandbox/Dockerfile"
+    path: "sandbox"

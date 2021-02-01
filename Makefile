@@ -29,8 +29,7 @@ serve:
 
 check-licenses:
 	npm run check-licenses
-	echo skipping for now due to unresolved permission error.
-	#scripts/check_python_licenses.sh
+	scripts/check_python_licenses.sh
 
 format:
 	poetry run black **/*.py
@@ -44,6 +43,9 @@ build-proxy:
 release: clean publish build-proxy
 	mkdir -p dist
 	cp -r build/. dist
+	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-dev-sandbox.yml
+	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-qa-sandbox.yml
+	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
 
 test:
 	echo "TODO: add tests"

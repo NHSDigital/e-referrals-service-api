@@ -1,20 +1,20 @@
 {
-  "name": "e-referrals-service",
-  "version": "0.0.1",
-  "description": "A key aspect of the NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS).",
-  "main": "index.js",
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "hello-world-api-sandbox",
   "scripts": {
-    "prestart": "npm install",
-    "start": "node index.js"
+    "lint": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",
+    "start": "node src/app.js --use_strict"
   },
-  "keywords": [
-    "swagger"
-  ],
-  "license": "Unlicense",
-  "private": true,
+  "author": "NHS Digital",
+  "license": "(MIT OR OGL)",
+  "homepage": "https://github.com/NHSDigital/hello-world-api",
+  "main": "app.js",
   "dependencies": {
-    "connect": "^3.2.0",
-    "js-yaml": "^3.3.0",
-    "oas3-tools": "^2.0.2"
+    "@hapi/hapi": "18.4.1",
+    "inert": "^5.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
   }
 }

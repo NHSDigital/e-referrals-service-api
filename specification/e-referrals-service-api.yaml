@@ -28,6 +28,44 @@ servers:
   - url: https://api.dev3.ers.ncrs.nhs.uk
     description: Alpha
 paths:
+  /v1/STU3/ReferralRequest:
+    post:
+      description: As a Referring Clinician (/Administrator).
+        I want to create a referral for my patient with a shortlist of services.
+        So that I can progress the care of my patient while leaving them the freedom to choose the service that best suits them.
+      summary: A011 Create Referral
+      tags:
+        - Referral
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              properties:
+                resourceType:
+                  type: string
+                meta:
+                  $ref: '#/components/schemas/Meta'
+                parameter:
+                  type: array
+                  items:
+                    allOf:
+                      - $ref: '#/components/schemas/PatientParameter'
+                      - $ref: '#/components/schemas/ContentSensitiveParameter'
+                      - $ref: '#/components/schemas/ShortlistParameter'
+                      - $ref: '#/components/schemas/FirstReminderFollowUpDaysParameter'
+                      - $ref: '#/components/schemas/IntentionToAddReferralLetterParameter'
+                    anyOf:
+                      - $ref: '#/components/schemas/ReferringClinicianParameter'
+                      - $ref: '#/components/schemas/UnaccreditedCommentParameter'
+      responses:
+        '201':
+          description: Request accepted with a new referral within eRS being created with the supplied parameters
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/responses/ReferralRequest'
   /v1/ProfessionalSession/{token}:
     post:
       tags:
@@ -113,3 +151,415 @@ paths:
               required:
                 - typeInfo
                 - token
+components:
+  responses:
+    ReferralRequest:
+      description: A referral within ers
+      content:
+        application/fhir+json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              meta:
+                $ref: '#/components/schemas/Meta'
+              implicitRules:
+                type: string
+              language:
+                type: string
+              contained:
+                type: array
+                nullable: true
+                items:
+                  anyOf:
+                    - $ref: '#/components/schemas/DocumentReference'
+                    - $ref: '#/components/schemas/Appointment'
+                    - $ref: '#/components/schemas/Shortlist'
+                    - $ref: '#/components/schemas/SearchCriteria'
+              extensions:
+                type: array
+                nullable: true
+                items:
+                  anyOf:
+                    - $ref: '#/components/schemas/ReferralShortlistExtension'
+                    - $ref: '#/components/schemas/ReferralCommissioningOrganisationExtension'
+                    - $ref: '#/components/schemas/ReferralPriorityExtension'
+              status:
+                type: string
+                enum:
+                  - active
+              subject:
+                $ref: '#/components/schemas/Identifier'
+              supportingInfo:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reference'
+  schemas:
+    Coding:
+      title: A reference to a code defined by a terminology system Elements defined in Ancestors (http://hl7.org/fhir/stu3/datatypes.html#Coding)
+      type: object
+      properties:
+        system: 
+          type: string
+        version:
+          type: string
+          nullable: true
+        code:
+          type: string
+        display:
+          type: string
+          nullable: true
+        userSelected:
+          type: boolean
+          nullable: true
+    CodeableConcept:
+      title: Concept - reference to a terminology or just text Elements defined in Ancestors (http://hl7.org/fhir/stu3/datatypes.html#codeableconcept)
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+          nullable: true
+    Meta:
+      title: Metadata about a resource (http://hl7.org/fhir/stu3/resource.html#Meta)
+      type: object
+      properties:
+        versionId:
+          type: string
+          nullable: true
+        lastUpdated:
+          type: string
+          nullable: true
+          format: date-time
+        profile:
+          type: array
+          nullable: true
+          items:
+            type: string
+        security:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        tag:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+    Attachment:
+      title: Content in a format defined elsewhere 
+        + It the Attachment has data, it SHALL have a contentType (http://hl7.org/fhir/stu3/datatypes.html#Attachment)
+      properties:
+        contentType:
+          type: string
+        url:
+          type: string
+        size:
+          type: integer
+        title:
+          type: string
+        creation:
+          type: string
+          format: date
+    DocumentReference:
+      title: A reference to a document (http://hl7.org/fhir/stu3/documentreference.html)
+      type: object
+      properties:
+        type: 
+          required: true
+          $ref: '#/components/schemas/CodeableConcept'
+        status:
+          type: string
+          enum: 
+            - CURRENT
+            - SUPERSEDED
+            - ENTER_IN_ERROR
+        indexed:
+          type: string
+          format: date-time
+        description:
+          type: string
+          nullable: true
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          minItems: 0
+          maxItems: 1
+    Identifier:
+      title: An identifier intended for computation (http://hl7.org/fhir/STU3/datatypes.html#Identifier)
+      type: object
+      properties:
+        system:
+          type: string
+        value:
+          type: string
+    Reference:
+      title: A reference from one resource to another (http://hl7.org/fhir/STU3/references.html)
+      type: object
+      properties:
+        reference:
+          type: string
+          nullable: true
+        identifier: 
+          $ref: '#/components/schemas/Identifier'
+          nullable: true
+        display:
+          type: string
+          nullable: true
+      oneOf:
+        - required:
+          - reference
+        - required:
+          - identifier
+    Participant:
+      title: Participant involved in an encounter
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CodeableConcept'
+        actor:
+          $ref: '#/components/schemas/Reference'
+        status:
+          type: string
+          enum:
+            - ACCEPTED
+            - DECLINED
+            - TENTATIVE
+            - NEEDS_ACTION
+    ListEntry:
+      title: Singular entry within a list
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/Reference'
+          required: true
+    Appointment:
+      title: A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.
+        This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        status:
+          type: string
+          enum:
+            - PROPOSED
+            - PENDING
+            - BOOKED
+            - ARRIVED
+            - FULFILLED
+            - CANCELLED
+            - NOSHOW
+        reason:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        description:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        slot:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          minItems: 0
+          maxItems: 1
+        created:
+          type: string
+          format: date-time
+        comment:
+          type: string
+          nullable: true
+        incomingReferral:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Reference'
+          minItems: 0
+          maxItems: 1
+        participant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+          minItems: 2
+          maxItems: 3
+    Shortlist:
+      title: A list of services representing the services available to the patient to have treatment at
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        contained:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteria'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListEntry' 
+          minItems: 1
+          maxItems: 20
+    PrioritySearchCriteriaParameter:
+      title: Details the priority that was detailed in a search criteria
+      type: object
+      properties:
+        name:
+            type: string
+            description: Set to "priority"
+        valueCoding:
+            $ref: '#/components/schemas/Coding'
+    ClinicalTermSearchCriteriaParameter:
+      title: Details the clinical term that was detailed in a search criteria
+      type: object
+      properties:
+        name: 
+          type: string
+          description: Set to "clinicalTerm"
+        valueCoding:
+          $ref: '#/components/schemas/Coding'
+    NamedClinicianSearchCriteriaParameter:
+      title: Details the named clinician that was detailed in a search criteria
+      type: object
+      properties:
+        name:
+          type: string
+          description: Set to "namedClinician"
+        valueIdentifier:
+          $ref: '#/components/schemas/Identifier'
+    AgeAndGenderAppropriateSearchCriteriaParameter:
+      title: Details the age and gender appropriate flag detailed in a search criteria
+      type: object
+      properties:
+        name:
+          type: string
+          description: Set to "ageAndGenderAppropriate"
+        valueBoolean:
+          type: boolean
+    CommissioningProvisioningSearchCriteriaParameter:
+      title: Details the commissioning provisioning flag detailed in a search criteria
+      type: object
+      properties:
+        name:
+          type: string
+          description: Set to "commissioningProvisioning"
+        valueCoding:
+          $ref: '#/components/schemas/Coding'
+    SearchCriteria:
+      title: Wraps the criteria used to search for services for a related referral
+      type: object
+      properties:
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+          nullable: false
+        resourceType:
+          type: string
+        parameter:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/PrioritySearchCriteriaParameter'
+              - $ref: '#/components/schemas/ClinicalTermSearchCriteriaParameter'
+              - $ref: '#/components/schemas/NamedClinicianSearchCriteriaParameter'
+              - $ref: '#/components/schemas/AgeAndGenderAppropriateSearchCriteriaParameter'
+              - $ref: '#/components/schemas/CommissioningProvisioningSearchCriteriaParameter'
+    ReferralPriorityExtension:
+      title: Extension to supply the current priority of a ReferralRequest within eRS
+      type: object
+      properties:
+        url:
+          type: string
+          description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1"
+        valueCodeableConcept:
+          $ref: '#/components/schemas/CodeableConcept'
+    ReferralCommissioningOrganisationExtension:
+      title: Extension to supply the organisation any commissioning rules should utilise for a referral
+      type: object
+      properties:
+        url:
+          type: string
+          description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1"
+        valueIdentifier:
+          $ref: '#/components/schemas/Identifier'
+    ReferralShortlistExtension:
+      title: Extension to supply the current shortlist for a ReferralRequest
+      type: object
+      properties:
+        url:
+          type: string
+          description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1"
+        valueReference:
+          $ref: '#/components/schemas/Reference'
+    PatientParameter:
+      title: Parameter to supply a patient
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "patient"
+        valueIdentifier:
+          $ref: '#/components/schemas/Identifier'
+    ReferringClinicianParameter:
+      title: Parameter to supply a referring clinician
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "referringClinician"
+        valueIdentifier:
+          $ref: '#/components/schemas/Identifier'
+    ContentSensitiveParameter:
+      title: Parameter to supply a content sensitive flag
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "contentSensitive"
+        valueBoolean:
+          type: boolean
+    ShortlistParameter:
+      title: Parameter to supply a shortlist
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "shortlist"
+        reference:
+          $ref: '#/components/schemas/Shortlist'
+    UnaccreditedCommentParameter:
+      title: Parameter to supply a unaccredited comment
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "unaccreditedComment"
+        valueString:
+          type: string
+    FirstReminderFollowUpDaysParameter:
+      title: Parameter to supply the first reminder follow up days
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "firstReminderFollowUpDays"
+        valueUnsignedInt:
+          type: integer
+          minimum: 0
+          format: int32
+    IntentionToAddReferralLetterParameter:
+      title: Parameter to supply the intention to add referral letter flag
+      type: object
+      properties:
+        name:
+          type: string
+          description: Always "intentionToAddReferralLetter"
+        valueCoding:
+          $ref: '#/components/schemas/Coding'

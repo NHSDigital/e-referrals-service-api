@@ -28,7 +28,7 @@ servers:
   - url: https://api.dev3.ers.ncrs.nhs.uk
     description: Alpha
 paths:
-  /v1/STU3/ReferralRequest:
+  /v1/STU3/ReferralRequest/$ers.createReferral:
     post:
       description: As a Referring Clinician (/Administrator).
         I want to create a referral for my patient with a shortlist of services.
@@ -43,6 +43,10 @@ paths:
           application/fhir+json:
             schema:
               type: object
+              required:
+                - resourceType
+                - meta
+                - parameter
               properties:
                 resourceType:
                   type: string

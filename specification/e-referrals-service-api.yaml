@@ -36,6 +36,7 @@ paths:
       summary: A011 Create Referral
       tags:
         - Referral
+      operationId: create ReferralRequest
       requestBody:
         required: true
         content:
@@ -46,26 +47,28 @@ paths:
                 resourceType:
                   type: string
                 meta:
-                  $ref: '#/components/schemas/Meta'
+                  type: object
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
                 parameter:
                   type: array
                   items:
-                    allOf:
+                    anyOf:
                       - $ref: '#/components/schemas/PatientParameter'
                       - $ref: '#/components/schemas/ContentSensitiveParameter'
                       - $ref: '#/components/schemas/ShortlistParameter'
                       - $ref: '#/components/schemas/FirstReminderFollowUpDaysParameter'
                       - $ref: '#/components/schemas/IntentionToAddReferralLetterParameter'
-                    anyOf:
                       - $ref: '#/components/schemas/ReferringClinicianParameter'
                       - $ref: '#/components/schemas/UnaccreditedCommentParameter'
       responses:
         '201':
-          description: Request accepted with a new referral within eRS being created with the supplied parameters
-          content:
-            application/fhir+json:
-              schema:
-                $ref: '#/components/responses/ReferralRequest'
+          $ref: '#/components/responses/ReferralRequest'
   /v1/ProfessionalSession/{token}:
     post:
       tags:
@@ -152,6 +155,11 @@ paths:
                 - typeInfo
                 - token
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   responses:
     ReferralRequest:
       description: A referral within ers
@@ -163,11 +171,17 @@ components:
               id:
                 type: string
               meta:
-                $ref: '#/components/schemas/Meta'
-              implicitRules:
-                type: string
-              language:
-                type: string
+                type: object
+                properties:
+                  profile:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                        - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1
+                  versionId:
+                    type: integer
+                    minimum: 0
               contained:
                 type: array
                 nullable: true
@@ -190,64 +204,23 @@ components:
                 enum:
                   - active
               subject:
-                $ref: '#/components/schemas/Identifier'
+                type: object
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - http://fhir.nhs.net/Id/nhs-number
+                  value:
+                    type: string
               supportingInfo:
                 type: array
+                nullable: true
                 items:
-                  $ref: '#/components/schemas/Reference'
+                  type: object
+                  properties:
+                    reference:
+                      type: string
   schemas:
-    Coding:
-      title: A reference to a code defined by a terminology system Elements defined in Ancestors (http://hl7.org/fhir/stu3/datatypes.html#Coding)
-      type: object
-      properties:
-        system: 
-          type: string
-        version:
-          type: string
-          nullable: true
-        code:
-          type: string
-        display:
-          type: string
-          nullable: true
-        userSelected:
-          type: boolean
-          nullable: true
-    CodeableConcept:
-      title: Concept - reference to a terminology or just text Elements defined in Ancestors (http://hl7.org/fhir/stu3/datatypes.html#codeableconcept)
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
-          type: string
-          nullable: true
-    Meta:
-      title: Metadata about a resource (http://hl7.org/fhir/stu3/resource.html#Meta)
-      type: object
-      properties:
-        versionId:
-          type: string
-          nullable: true
-        lastUpdated:
-          type: string
-          nullable: true
-          format: date-time
-        profile:
-          type: array
-          nullable: true
-          items:
-            type: string
-        security:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        tag:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
     Attachment:
       title: Content in a format defined elsewhere 
         + It the Attachment has data, it SHALL have a contentType (http://hl7.org/fhir/stu3/datatypes.html#Attachment)
@@ -268,14 +241,38 @@ components:
       type: object
       properties:
         type: 
-          required: true
-          $ref: '#/components/schemas/CodeableConcept'
+          type: object
+          properties:
+            type:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                        enum:
+                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1
+                      code: 
+                        type: string
+                        enum: 
+                          - REFERRER
+                          - PROVIDER
+                          - ADVICE_REQUEST
+                          - GUIDANCE_RESPONSE
+                      display:
+                        type: string
+                        enum:
+                          - Referrer
+                          - Provider
+                          - Advice Request
+                          - Guidance Response
         status:
           type: string
           enum: 
             - CURRENT
-            - SUPERSEDED
-            - ENTER_IN_ERROR
         indexed:
           type: string
           format: date-time
@@ -288,61 +285,29 @@ components:
             $ref: '#/components/schemas/Attachment'
           minItems: 0
           maxItems: 1
-    Identifier:
-      title: An identifier intended for computation (http://hl7.org/fhir/STU3/datatypes.html#Identifier)
-      type: object
-      properties:
-        system:
-          type: string
-        value:
-          type: string
-    Reference:
-      title: A reference from one resource to another (http://hl7.org/fhir/STU3/references.html)
-      type: object
-      properties:
-        reference:
-          type: string
-          nullable: true
-        identifier: 
-          $ref: '#/components/schemas/Identifier'
-          nullable: true
-        display:
-          type: string
-          nullable: true
-      oneOf:
-        - required:
-          - reference
-        - required:
-          - identifier
-    Participant:
-      title: Participant involved in an encounter
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CodeableConcept'
-        actor:
-          $ref: '#/components/schemas/Reference'
-        status:
-          type: string
-          enum:
-            - ACCEPTED
-            - DECLINED
-            - TENTATIVE
-            - NEEDS_ACTION
     ListEntry:
       title: Singular entry within a list
       type: object
       properties:
         item:
-          $ref: '#/components/schemas/Reference'
-          required: true
+          type: object
+          properties:
+            reference:
+              type: string
     Appointment:
       title: A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time.
         This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)
       type: object
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+                enum:
+                  - https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1
         status:
           type: string
           enum:
@@ -352,11 +317,7 @@ components:
             - ARRIVED
             - FULFILLED
             - CANCELLED
-            - NOSHOW
-        reason:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeableConcept'
+            - NOSHOW 
         description:
           type: string
         start:
@@ -368,7 +329,10 @@ components:
         slot:
           type: array
           items:
-            $ref: '#/components/schemas/Reference'
+            type: object
+            properties:
+              reference:
+                type: string
           minItems: 0
           maxItems: 1
         created:
@@ -381,13 +345,27 @@ components:
           type: array
           nullable: true
           items:
-            $ref: '#/components/schemas/Reference'
+            type: array
+            items:
+              type: object
+              properties:
+                reference:
+                  type: string
           minItems: 0
           maxItems: 1
         participant:
           type: array
           items:
-            $ref: '#/components/schemas/Participant'
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - CON
+                nullable: true
+              actor:
+                type: string
+                format: url
           minItems: 2
           maxItems: 3
     Shortlist:
@@ -395,11 +373,22 @@ components:
       type: object
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+                enum:
+                  - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
         contained:
           type: array
           items:
             $ref: '#/components/schemas/SearchCriteria'
+        resourceType:
+          type: string
+          enum:
+            - List
         entry:
           type: array
           items:
@@ -412,33 +401,66 @@ components:
       properties:
         name:
             type: string
+            enum: 
+              - priority
             description: Set to "priority"
         valueCoding:
-            $ref: '#/components/schemas/Coding'
+            type: object
+            properties:
+              system: 
+                type: string
+                enum:
+                  -  https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1
+              code:
+                type: string
+                enum:
+                  - ROUTINE
+                  - URGENT
+                  - TWO_WEEK_WAIT
     ClinicalTermSearchCriteriaParameter:
       title: Details the clinical term that was detailed in a search criteria
       type: object
       properties:
         name: 
           type: string
+          enum:
+            - clinicalTerm
           description: Set to "clinicalTerm"
         valueCoding:
-          $ref: '#/components/schemas/Coding'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - http://snomed.info/sct
+            code:
+              type: string
     NamedClinicianSearchCriteriaParameter:
       title: Details the named clinician that was detailed in a search criteria
       type: object
       properties:
         name:
           type: string
+          enum:
+            - namedClinician
           description: Set to "namedClinician"
         valueIdentifier:
-          $ref: '#/components/schemas/Identifier'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - http://fhir.nhs.net/Id/sds-user-id
+            value:
+              type: string
     AgeAndGenderAppropriateSearchCriteriaParameter:
       title: Details the age and gender appropriate flag detailed in a search criteria
       type: object
       properties:
         name:
           type: string
+          enum:
+            - ageAndGenderAppropriate
           description: Set to "ageAndGenderAppropriate"
         valueBoolean:
           type: boolean
@@ -448,9 +470,23 @@ components:
       properties:
         name:
           type: string
+          enum:
+            - commissioningProvisioning
           description: Set to "commissioningProvisioning"
         valueCoding:
-          $ref: '#/components/schemas/Coding'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/ValueSet/eRS-CommissioningProvisioning-1
+            value:
+              type: string
+              enum:
+                - ALL_AVAILABLE_FOR_BOOKING
+                - ALL_SERVICES
+                - LOCALLY_COMMISSIONABLE
+                - NATIONALLY_AVAILABLE
     SearchCriteria:
       title: Wraps the criteria used to search for services for a related referral
       type: object
@@ -458,14 +494,20 @@ components:
         id:
           type: string
         meta:
-          $ref: '#/components/schemas/Meta'
-          nullable: false
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1
         resourceType:
           type: string
         parameter:
           type: array
           items:
-            anyOf:
+            allOf:
               - $ref: '#/components/schemas/PrioritySearchCriteriaParameter'
               - $ref: '#/components/schemas/ClinicalTermSearchCriteriaParameter'
               - $ref: '#/components/schemas/NamedClinicianSearchCriteriaParameter'
@@ -479,7 +521,23 @@ components:
           type: string
           description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1"
         valueCodeableConcept:
-          $ref: '#/components/schemas/CodeableConcept'
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1
+                  code:
+                    type: string
+                    enum:
+                      - ROUTINE
+                      - URGENT
+                      - TWO_WEEK_WAIT
     ReferralCommissioningOrganisationExtension:
       title: Extension to supply the organisation any commissioning rules should utilise for a referral
       type: object
@@ -488,7 +546,12 @@ components:
           type: string
           description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1"
         valueIdentifier:
-          $ref: '#/components/schemas/Identifier'
+          type: object
+          properties:
+            system:
+             type: string
+             enum:
+              - https://fhir.nhs.uk/Id/ods-organization-code
     ReferralShortlistExtension:
       title: Extension to supply the current shortlist for a ReferralRequest
       type: object
@@ -497,32 +560,52 @@ components:
           type: string
           description: Always "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1"
         valueReference:
-          $ref: '#/components/schemas/Reference'
+          type: object
+          properties:
+            reference:
+              type: string
     PatientParameter:
       title: Parameter to supply a patient
       type: object
       properties:
         name:
           type: string
-          description: Always "patient"
+          enum:
+            - patient
         valueIdentifier:
-          $ref: '#/components/schemas/Identifier'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - http://fhir.nhs.net/Id/nhs-number
+            value:
+              type: string
     ReferringClinicianParameter:
       title: Parameter to supply a referring clinician
       type: object
       properties:
         name:
           type: string
-          description: Always "referringClinician"
+          enum:
+            - referringClinician
         valueIdentifier:
-          $ref: '#/components/schemas/Identifier'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - http://fhir.nhs.net/Id/sds-user-id
+            value:
+              type: string
     ContentSensitiveParameter:
       title: Parameter to supply a content sensitive flag
       type: object
       properties:
         name:
           type: string
-          description: Always "contentSensitive"
+          enum:
+            - contentSensitive
         valueBoolean:
           type: boolean
     ShortlistParameter:
@@ -531,15 +614,21 @@ components:
       properties:
         name:
           type: string
-          description: Always "shortlist"
+          enum:
+            - shortlist
         reference:
-          $ref: '#/components/schemas/Shortlist'
+          type: object
+          properties:
+            reference:
+              type: string
     UnaccreditedCommentParameter:
       title: Parameter to supply a unaccredited comment
       type: object
       properties:
         name:
           type: string
+          enum:
+            - unaccreditedComment
           description: Always "unaccreditedComment"
         valueString:
           type: string
@@ -549,6 +638,8 @@ components:
       properties:
         name:
           type: string
+          enum:
+            - firstReminderFollowUpDays
           description: Always "firstReminderFollowUpDays"
         valueUnsignedInt:
           type: integer
@@ -560,6 +651,18 @@ components:
       properties:
         name:
           type: string
+          enum:
+            - intentionToAddReferralLetter
           description: Always "intentionToAddReferralLetter"
         valueCoding:
-          $ref: '#/components/schemas/Coding'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/ValueSet/eRS-ReferralLetterIntention 
+            code:
+              type: string
+              enum:
+                - NEED_TO_ADD_LATER
+                - NOT_INTENDING_TO_ADD

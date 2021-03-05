@@ -11,6 +11,7 @@
     <Response>
       <Step>
         <Name>AssignMessage.AddCors</Name>
+        <Name>AssignMessage.AddUserIdentityToken</Name>
       </Step>
     </Response>
   </PreFlow>

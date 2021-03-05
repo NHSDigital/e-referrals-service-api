@@ -1,0 +1,8 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddUserIdentityToken">
+<Add>
+    <Headers>
+        <Header name="x-user-identity-token">{jwt.DecodeJWT.FromJWTHeader}</Header>
+    </Headers>
+</Add>
+<AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -7,7 +7,6 @@ module.exports = [
         method: '*',
         path: '/v1/STU3/ReferralRequest/$ers.createReferral',
         handler: (request, h) => {
-            console.log(request.raw.req)
             if (request.raw.req.method !== 'POST') {
                 const responseMessage = {
                     error: `Request method must be POST, not ${request.raw.req.method}`

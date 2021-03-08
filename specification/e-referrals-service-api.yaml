@@ -30,6 +30,8 @@ servers:
 paths:
   /v1/STU3/ReferralRequest/$ers.createReferral:
     post:
+      security:
+        - bearerAuth: []
       description: As a Referring Clinician (/Administrator).
         I want to create a referral for my patient with a shortlist of services.
         So that I can progress the care of my patient while leaving them the freedom to choose the service that best suits them.

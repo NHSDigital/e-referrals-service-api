@@ -1,4 +1,4 @@
-<AssignMessage async="false" continueOnError="false" enabled="false" name="AssignMessage.AddUserIdHeader">
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddUserIdHeader">
   <Add>
       <Headers>
           <Header name="NHSD-Identity-UUID">{jwt.DecodeJWT.FromJWTHeader.claim.subject}</Header>

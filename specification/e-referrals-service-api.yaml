@@ -28,6 +28,23 @@ servers:
   - url: https://api.dev3.ers.ncrs.nhs.uk
     description: Alpha
 paths:
+  /echoHeaders:
+    get:
+      description: Test endpoint simply echoing headers provided
+      summary: Test endpoint
+      tags:
+        - Test
+      operationId: test endpoint
+      responses:
+        '200':
+          description: 'Request accepted'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  'header_name':
+                    type: string
   /v1/STU3/ReferralRequest/$ers.createReferral:
     post:
       security:

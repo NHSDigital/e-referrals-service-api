@@ -9,7 +9,7 @@
   <PreFlow name="PreFlow">
     <Request>
         <Step>
-          <Name>OAuthV2.VerifyAccessToken</Name>
+          <Name>OauthV2.VerifyAccessToken</Name>
           <Name>AssignMessage.AddUserIdHeader</Name>
         </Step>
     </Request>

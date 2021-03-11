@@ -10,6 +10,8 @@
     <Request>
         <Step>
           <Name>OauthV2.VerifyAccessToken</Name>
+        </Step>
+        <Step>
           <Name>AssignMessage.AddUserIdHeader</Name>
         </Step>
     </Request>

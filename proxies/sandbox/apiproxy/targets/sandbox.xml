@@ -7,11 +7,12 @@
     <Response/>
   </PostFlow>
   <PreFlow name="PreFlow">
-    <Request/>
+    <Request>
+        <Name>AssignMessage.AddUserIdHeader</Name>
+    </Request>
     <Response>
       <Step>
         <Name>AssignMessage.AddCors</Name>
-        <Name>AssignMessage.AddUserIdHeader</Name>
       </Step>
     </Response>
   </PreFlow>

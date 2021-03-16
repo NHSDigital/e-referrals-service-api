@@ -25,7 +25,7 @@
         <Name>AssignMessage.AddUserIdHeader</Name>
       </Step>
       <Step>
-        <Name>AssignMessage.AddOriginheader</Name>
+        <Name>AssignMessage.AddOriginHeader</Name>
       </Step>
       <Step>
         <Name>Quota</Name>

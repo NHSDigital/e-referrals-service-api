@@ -29,7 +29,6 @@
         <Condition>(proxy.pathsuffix MatchesPath "/_status") and (request.verb = "GET")</Condition>
       </Flow>
     </Flows>
-    <PreFlow/>
     <HTTPProxyConnection>
         <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
         <VirtualHost>secure</VirtualHost>

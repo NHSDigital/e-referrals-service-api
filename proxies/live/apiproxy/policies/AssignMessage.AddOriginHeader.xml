@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddOriginHeader">
     <Add>
         <Headers>
-            <Header name="origin">INTERNET</Header>
+            <Header name="x-ers-network-origin">INTERNET</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>

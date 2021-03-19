@@ -7,7 +7,7 @@
     <Response/>
   </PostFlow>
   <PreFlow name="PreFlow">
-    </Request>
+    <Request/>
     <Response>
       <Step>
         <Name>AssignMessage.AddCors</Name>

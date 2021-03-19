@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddAsidHeader">
     <Add>
         <Headers>
-            <Header name="NHSD-ASID">{private.apigee.NHSD-ASID}</Header>
+            <Header name="XAPI_ASID">{private.apigee.NHSD-ASID}</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>

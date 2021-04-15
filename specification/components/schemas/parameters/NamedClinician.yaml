@@ -1,0 +1,13 @@
+title: Details the named clinician that was specified in a search criteria
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - namedClinician
+    example: 'namedClinician'
+  valueIdentifier:
+    $ref: '../identifiers/UserId.yaml'

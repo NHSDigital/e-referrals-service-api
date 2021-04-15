@@ -1,0 +1,75 @@
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - contained
+  - extension
+  - status
+  - subject
+  - supportingInfo
+properties:
+  id:
+    type: string
+    example: '000000070000'
+  meta:
+    type: object
+    required:
+      - profile
+      - versionId
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+      versionId:
+        type: string
+        example: '3'
+  resourceType:
+    type: string
+    enum:
+      - ReferralRequest
+    example: 'ReferralRequest'
+  contained:
+    type: array
+    nullable: true
+    items:
+      anyOf:
+        - $ref: 'DocumentReference.yaml'
+        - $ref: 'Appointment.yaml'
+        - $ref: 'ShortlistList.yaml'
+        - $ref: 'SearchCriteriaParameters.yaml'
+  extension:
+    type: array
+    nullable: true
+    items:
+      anyOf:
+        - $ref: 'extensions/ReferralShortlistExtension.yaml'
+        - $ref: 'extensions/ReferralCommissioningOrganisationExtension.yaml'
+        - $ref: 'extensions/ReferralPriorityExtension.yaml'
+  status:
+    type: string
+    enum:
+      - active
+    example: 'active'
+  subject:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: 'identifiers/NhsNumber.yaml'
+  supportingInfo:
+    type: array
+    nullable: true
+    items:
+      type: object
+      required: 
+        - reference
+      properties:
+        reference:
+          type: string 
+          example: '#DocumentReference-70000'

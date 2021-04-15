@@ -1,0 +1,25 @@
+title: Details the clinical term that was specified in a search criteria
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - clinicalTerm
+    example: 'clinicalTerm'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - 'http://snomed.info/sct'
+        example: 'http://snomed.info/sct'
+      code:
+        type: string
+        example: '1003'

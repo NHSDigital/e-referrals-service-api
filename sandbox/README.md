@@ -19,6 +19,4 @@ Redeploy the API Proxy. See the main [README.md](../README.md).
 
 ## Endpoints
 
-- [x] GET    `/hello/world`
-- [x] GET    `/hello/application`
-- [x] GET    `/hello/user`
+- [ ] POST    `/STU3/v1/ReferralRequest/$ers.createReferral`

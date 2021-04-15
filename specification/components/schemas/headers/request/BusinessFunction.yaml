@@ -1,0 +1,23 @@
+in: header
+name: nhsd-ers-business-function
+description: | 
+  The e-RS Business Function of the caller
+required: true
+schema:
+  type: string
+  enum:
+    - 'REFERRING_CLINICIAN'
+    - 'REFERRING_CLINICIAN_ADMIN'
+    - 'REFERRING_ADMIN'
+    - 'BMS_HCP_PROXY'
+    - 'BMS_ADMIN'
+    - 'COMMISSIONER'
+    - 'SERVICE_DEFINER'
+    - 'ERS_ADMIN'
+    - 'SERVICE_PROVIDER_CLINICIAN'
+    - 'SERVICE_PROVIDER_ADMIN'
+    - 'INFORMATION_ANALYST'
+    - 'BOOKING_MANAGER'
+    - 'ADDITIONAL_REQUIREMENTS_MANAGER'
+    - 'REFERRER_RIGHTS_MANAGER'
+  example: 'REFERRING_CLINICIAN'

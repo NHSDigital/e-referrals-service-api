@@ -1,0 +1,13 @@
+title: Parameter to supply a shortlist
+type: object
+required:
+  - name
+  - resource
+properties:
+  name:
+    type: string
+    enum:
+      - shortlist
+    example: 'shortlist'
+  resource:
+    $ref: '../ShortlistList.yaml'

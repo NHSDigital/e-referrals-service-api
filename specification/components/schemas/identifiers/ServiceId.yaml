@@ -1,0 +1,13 @@
+type: object
+required:
+  - system
+  - value
+properties:
+  system:
+    type: string
+    enum:
+      - 'http://fhir.nhs.net/Id/ers-service'
+    example: 'http://fhir.nhs.net/Id/ers-service'
+  value:
+    type: string
+    example: '11002'

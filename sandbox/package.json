@@ -1,7 +1,7 @@
 {
-  "name": "mock",
+  "name": "e-referrals-service-api-sandbox",
   "version": "1.0.0",
-  "description": "hello-world-api-sandbox",
+  "description": "e-Referrals Service API Sandbox Server",
   "scripts": {
     "lint": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",
     "start": "node src/app.js --use_strict"

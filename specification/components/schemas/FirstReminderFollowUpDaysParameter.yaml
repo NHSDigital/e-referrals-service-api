@@ -1,0 +1,12 @@
+title: Parameter to supply the first reminder follow up days
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - firstReminderLetterFollowUpDays
+    description: Always "firstReminderLetterFollowUpDays"
+  valueUnsignedInt:
+    type: integer
+    minimum: 0
+    format: int32

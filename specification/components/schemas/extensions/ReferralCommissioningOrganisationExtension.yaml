@@ -1,0 +1,14 @@
+title: Extension to supply the organisation any commissioning rules should utilise for a referral
+type: object
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1'
+  valueIdentifier:
+    type: object
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/Id/ods-organization-code'

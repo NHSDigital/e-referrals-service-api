@@ -1,0 +1,17 @@
+title: Details the clinical term that was detailed in a search criteria
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - clinicalTerm
+    description: Set to "clinicalTerm"
+  valueCoding:
+    type: object
+    properties:
+      system:
+        type: string
+        enum:
+          - 'http://snomed.info/sct'
+      code:
+        type: string

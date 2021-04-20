@@ -1,0 +1,72 @@
+title: 'A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)'
+type: object
+properties:
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1'
+  status:
+    type: string
+    enum:
+      - PROPOSED
+      - PENDING
+      - BOOKED
+      - ARRIVED
+      - FULFILLED
+      - CANCELLED
+      - NOSHOW
+  description:
+    type: string
+  start:
+    type: string
+    format: date-time
+  end:
+    type: string
+    format: date-time
+  slot:
+    type: array
+    items:
+      type: object
+      properties:
+        reference:
+          type: string
+    minItems: 0
+    maxItems: 1
+  created:
+    type: string
+    format: date-time
+  comment:
+    type: string
+    nullable: true
+  incomingReferral:
+    type: array
+    nullable: true
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          reference:
+            type: string
+    minItems: 0
+    maxItems: 1
+  participant:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - CON
+          nullable: true
+        actor:
+          type: string
+          format: url
+    minItems: 2
+    maxItems: 3

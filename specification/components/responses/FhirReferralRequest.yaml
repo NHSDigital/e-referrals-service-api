@@ -1,0 +1,5 @@
+description: A referral within ers
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../schemas/ReferralRequest.yaml'

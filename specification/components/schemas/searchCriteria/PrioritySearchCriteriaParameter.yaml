@@ -1,0 +1,21 @@
+title: Details the priority that was detailed in a search criteria
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - priority
+    description: Set to "priority"
+  valueCoding:
+    type: object
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1'
+      code:
+        type: string
+        enum:
+          - ROUTINE
+          - URGENT
+          - TWO_WEEK_WAIT

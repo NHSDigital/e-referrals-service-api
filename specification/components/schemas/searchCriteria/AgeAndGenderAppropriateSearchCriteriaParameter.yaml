@@ -1,0 +1,10 @@
+title: Details the age and gender appropriate flag detailed in a search criteria
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - ageAndGenderAppropriate
+    description: Set to "ageAndGenderAppropriate"
+  valueBoolean:
+    type: boolean

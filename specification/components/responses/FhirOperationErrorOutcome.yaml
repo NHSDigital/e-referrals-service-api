@@ -1,0 +1,5 @@
+description: An outcome of unsuccessful operation
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../schemas/OperationErrorOutcome.yaml'

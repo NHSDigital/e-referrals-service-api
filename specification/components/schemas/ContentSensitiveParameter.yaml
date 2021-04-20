@@ -1,0 +1,9 @@
+title: Parameter to supply a content sensitive flag
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - contentSensitive
+  valueBoolean:
+    type: boolean

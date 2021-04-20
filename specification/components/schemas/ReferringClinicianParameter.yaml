@@ -1,0 +1,9 @@
+title: Parameter to supply a referring clinician
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - referringClinician
+  valueIdentifier:
+    $ref: 'SystemUserId.yaml'

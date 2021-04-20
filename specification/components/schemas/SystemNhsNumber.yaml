@@ -1,0 +1,8 @@
+type: object
+properties:
+  system:
+    type: string
+    enum:
+      - 'http://fhir.nhs.net/Id/nhs-number'
+  value:
+    type: string

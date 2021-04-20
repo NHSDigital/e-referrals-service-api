@@ -1,0 +1,59 @@
+type: object
+required:
+  - resourceType
+  - meta
+  - issue
+properties:
+  resourceType:
+    type: string
+    enum:
+      - OperationOutcome
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1'
+        minItems: 1
+        maxItems: 1
+  issue:
+    type: array
+    items:
+      type: object
+      required:
+        - severity
+        - code
+        - diagnostics
+        - details
+      properties:
+        severity:
+          type: string
+        code:
+          type: string
+        diagnostics:
+          type: string
+        details:
+          type: object
+          required:
+            - coding
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1'
+                  code:
+                    type: string
+                  display:
+                    type: string

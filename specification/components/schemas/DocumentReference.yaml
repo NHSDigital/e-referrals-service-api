@@ -1,0 +1,48 @@
+title: 'A reference to a document (http://hl7.org/fhir/stu3/documentreference.html)'
+type: object
+properties:
+  type:
+    type: object
+    properties:
+      type:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                code:
+                  type: string
+                  enum:
+                    - REFERRER
+                    - PROVIDER
+                    - ADVICE_REQUEST
+                    - GUIDANCE_RESPONSE
+                display:
+                  type: string
+                  enum:
+                    - Referrer
+                    - Provider
+                    - Advice Request
+                    - Guidance Response
+  status:
+    type: string
+    enum:
+      - CURRENT
+  indexed:
+    type: string
+    format: date-time
+  description:
+    type: string
+    nullable: true
+  content:
+    type: array
+    items:
+      $ref: 'Attachment.yaml'
+    minItems: 0
+    maxItems: 1

@@ -1,0 +1,26 @@
+title: A list of services representing the services available to the patient to have treatment at
+type: object
+properties:
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1'
+  contained:
+    type: array
+    items:
+      $ref: 'searchCriteria/SearchCriteria.yaml'
+  resourceType:
+    type: string
+    enum:
+      - List
+  entry:
+    type: array
+    items:
+      $ref: 'ListEntry.yaml'
+    minItems: 1
+    maxItems: 20

@@ -1,0 +1,12 @@
+title: Parameter to supply a shortlist
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - shortlist
+  reference:
+    type: object
+    properties:
+      reference:
+        type: string

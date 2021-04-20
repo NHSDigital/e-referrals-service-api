@@ -1,0 +1,13 @@
+title: 'Content in a format defined elsewhere + It the Attachment has data, it SHALL have a contentType (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+properties:
+  contentType:
+    type: string
+  url:
+    type: string
+  size:
+    type: integer
+  title:
+    type: string
+  creation:
+    type: string
+    format: date

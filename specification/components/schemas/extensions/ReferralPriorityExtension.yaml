@@ -1,0 +1,26 @@
+title: Extension to supply the current priority of a ReferralRequest within eRS
+type: object
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1'
+  valueCodeableConcept:
+    type: object
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1'
+            code:
+              type: string
+              enum:
+                - ROUTINE
+                - URGENT
+                - TWO_WEEK_WAIT
+

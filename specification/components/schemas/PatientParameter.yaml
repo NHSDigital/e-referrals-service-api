@@ -1,0 +1,9 @@
+title: Parameter to supply a patient
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - patient
+  valueIdentifier:
+    $ref: 'SystemNhsNumber.yaml'

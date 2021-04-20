@@ -1,0 +1,8 @@
+title: Singular entry within a list
+type: object
+properties:
+  item:
+    type: object
+    properties:
+      reference:
+        type: string

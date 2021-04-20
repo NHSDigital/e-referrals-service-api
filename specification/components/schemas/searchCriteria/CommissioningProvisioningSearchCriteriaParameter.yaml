@@ -1,0 +1,22 @@
+title: Details the commissioning provisioning flag detailed in a search criteria
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - commissioningProvisioning
+    description: Set to "commissioningProvisioning"
+  valueCoding:
+    type: object
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/ValueSet/eRS-CommissioningProvisioning-1'
+      value:
+        type: string
+        enum:
+          - ALL_AVAILABLE_FOR_BOOKING
+          - ALL_SERVICES
+          - LOCALLY_COMMISSIONABLE
+          - NATIONALLY_AVAILABLE

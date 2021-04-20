@@ -1,0 +1,25 @@
+title: Wraps the criteria used to search for services for a related referral
+type: object
+properties:
+  id:
+    type: string
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1'
+  resourceType:
+    type: string
+  parameter:
+    type: array
+    items:
+      oneOf:
+        - $ref: 'PrioritySearchCriteriaParameter.yaml'
+        - $ref: 'ClinicalTermSearchCriteriaParameter.yaml'
+        - $ref: 'NamedClinicianSearchCriteriaParameter.yaml'
+        - $ref: 'AgeAndGenderAppropriateSearchCriteriaParameter.yaml'
+        - $ref: 'CommissioningProvisioningSearchCriteriaParameter.yaml'

@@ -1,0 +1,53 @@
+type: object
+properties:
+  id:
+    type: string
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+      versionId:
+        type: string
+  contained:
+    type: array
+    nullable: true
+    items:
+      oneOf:
+        - $ref: 'DocumentReference.yaml'
+        - $ref: 'Appointment.yaml'
+        - $ref: 'Shortlist.yaml'
+        - $ref: 'searchCriteria/SearchCriteria.yaml'
+  extensions:
+    type: array
+    nullable: true
+    items:
+      oneOf:
+        - $ref: 'extensions/ReferralShortlistExtension.yaml'
+        - $ref: 'extensions/ReferralCommissioningOrganisationExtension.yaml'
+        - $ref: 'extensions/ReferralPriorityExtension.yaml'
+  status:
+    type: string
+    enum:
+      - active
+  subject:
+    type: object
+    properties:
+      system:
+        type: string
+        enum:
+          - 'http://fhir.nhs.net/Id/nhs-number'
+      value:
+        type: string
+  supportingInfo:
+    type: array
+    nullable: true
+    items:
+      type: object
+      properties:
+        reference:
+          type: string 

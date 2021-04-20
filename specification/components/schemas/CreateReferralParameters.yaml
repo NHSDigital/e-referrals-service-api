@@ -1,0 +1,30 @@
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    items:
+      oneOf:
+        - $ref: 'PatientParameter.yaml'
+        - $ref: 'ContentSensitiveParameter.yaml'
+        - $ref: 'ShortlistParameter.yaml'
+        - $ref: 'FirstReminderFollowUpDaysParameter.yaml'
+        - $ref: 'IntentionToAddReferralLetterParameter.yaml'
+        - $ref: 'ReferringClinicianParameter.yaml'
+        - $ref: 'UnaccreditedCommentParameter.yaml'

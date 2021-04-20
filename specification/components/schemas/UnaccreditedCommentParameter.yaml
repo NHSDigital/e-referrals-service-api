@@ -1,0 +1,10 @@
+title: Parameter to supply a unaccredited comment
+type: object
+properties:
+  name:
+    type: string
+    enum:
+      - unaccreditedComment
+    description: Always "unaccreditedComment"
+  valueString:
+    type: string

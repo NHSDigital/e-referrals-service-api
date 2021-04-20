@@ -3,3 +3,5 @@ content:
   application/fhir+json:
     schema:
       $ref: '../schemas/OperationErrorOutcome.yaml'
+    example:
+      $ref: '../examples/OperationErrorOutcome.json'

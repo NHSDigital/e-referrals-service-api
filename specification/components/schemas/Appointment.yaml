@@ -1,8 +1,15 @@
 title: 'A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)'
 type: object
+required:
+  - meta
+  - status
+  - slot
+  - participant
 properties:
   meta:
     type: object
+    required:
+      - profile
     properties:
       profile:
         type: array

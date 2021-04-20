@@ -127,31 +127,35 @@ paths:
       security:
         - bearerAuth: []
       description: |
-        ## Overview
-        As a Referring Clinician (/Administrator). I want to create a referral for my patient with a shortlist of services. 
-        So that I can progress the care of my patient while leaving them the freedom to choose the service that best suits them.
+        ## Use case
+        As a Referring Clinician or Referring Clinician Administrator,
+        Having identified suitable Services for my patient, I want to create a referral for my patient and associate the Referral with a list of appropriate services
+        So I can initiate my Patients referral pathway; allowing the Patient to book from one of the clinically appropriate services shortlisted.
         
-        ### Response: Failure
-        If an error occurs, the relating HTTP status code will be returned in the header. 
-        Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below.
+        ## You can use this endpoint to
+        - Create a new Referral in eRS for a single Patient if you are a Referring Clinician or Referring Clinician Admin user.
+        - Associate the Referral with a list of Services that are suitable to the patient's current care needs. This is called a "Shortlist" of Services.
+        - Set a "priority" for the Referral indicating how quickly the Referral needs to be dealt with.
+        - Detail the criteria used to identify suitable Services.
+        - Indicate who the Referring Clinician is.
+        – If you are authenticated as Referring Clinician Admin when using this endpoint, you must indicate who you the Referral is being created on behalf of. This is known as the "Referring Clinician".
+        - Provide an indication as to whether or not you will add a Referrer Letter to the Referral for a Service to review
+        – This may be dependent on which services are are on your Shortlist.
+        – The action of associating a Referral Letter to a Referral is completed via another endpoint.
+        - Indicate if you want a reminder letter to be sent to the Patient if they don't book/defer appointment within "x" days. The reminder letter sent prompts the Patient to book their appointment.
+        – "0" = no reminder letter
+        – A value of 1 to 180 can be used to set the number of days between creating the Referral and a letter being sent to the Patient.
         
-        | issue.details.code                 | Description                                                                                                             |
-        | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-        | FIELD_NOT_PERMITTED                | A referring clinician is provided when the logged in user is not an RCA; or: one of the following occurs: the distance limit is specified when the postcode is not provided, the IWT limit is specified when the priority is TWO_WEEK_WAIT or the clinic type is specified when the specialty is not provided.|
-        | INAPPROPRIATE_VALUE                | The value of commissioning provisioning is ALL_SERVICES (this value is not supported), or: the intention to add a referral letter is set to NOT_INTENDING_TO_ADD when one or more of the shortlisted services has the referral letter required set to true, or the proposed shortlist contains one or more services that do not support the ‘appointment request flow’ |
-        | INVALID VALUE                      | The input provided does not conform with the expected data types and format specifically documented on the FHIR OperationDefinition or on the related FHIR profiles |
-        | MISSING_VALUE                      | One of the parameters described as mandatory on the FHIR OperationDefinition or on the related FHIR profiles has not been supplied |
-        | NO_REG_GP_PRACTICE                 | The patient provided was found not to have a registered GP practice. The patient is not eligible to be referred via e-RS while this problem persists |
-        | ORGANISATION_IS_CLOSED             | The organisation identifier supplied corresponds to an organisation that is closed |
-        | ORGANISATION_NOT_APPROPRIATE       | The organisation identifier supplied corresponds to an organisation of a type other than ‘Service location’ and ‘Service providing organisation’ |
-        | PATIENT_ERROR                      | There was a problem with the patient’s record in PDS. The patient is not eligible to be referred via e-RS while this problem persists |
-        | REFERENCE_NOT_FOUND                | An entity referenced (e.g. the patient, the postcode, the organisation or a clinician) is not found |
-        | REFERENCED_USER_IS_NOT_ACTIVE      | The SDS user provided as the referring clinician or the named clinician is found to be not active in SDS |
-        | REFERENCED_USER_IS_NOT_RC          | The SDS user provided as the referring clinician does not actually have the Referring Clinician business function in e-RS |
-        | REFERENCED_USER_IS_NOT_SPC         | The SDS user provided as the named clinician does not actually have the Service Provider Clinician business function in e-RS |
-        | REFERENCED_USER_NOT_IN_ORG         | The referring clinician provided does not belong to the same organisation as the logged in user |
-        | SHORTLISTED_SERVICE_NOT_IN_RESULTS | The service selected for the shortlist submitted does not satisfy the search criteria provided |
-        | VALUE_IS_REQUIRED                  | A referring clinician is not provided when the logged in user is an RCA; or: one of the following three is not provided: the pair specialty + clinic type, the clinical term¬ or the named clinician. |
+        ## After successful creation of the Referral
+        - The Referral can be accessed in the eRS Professional Application or, from another endpoint.
+        - Other endpoints can be used to progress or amend your Referral.
+        
+        ## Related endpoints
+        - [A010: Patient Service Search](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a010.html) - This endpoint is used to search list of Services for the Patient.
+        - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
+        - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter
+        - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
+
       summary: A011 Create Referral
       tags:
         - CreateReferral

@@ -126,7 +126,32 @@ paths:
     post:
       security:
         - bearerAuth: []
-      description: As a Referring Clinician (/Administrator). I want to create a referral for my patient with a shortlist of services. So that I can progress the care of my patient while leaving them the freedom to choose the service that best suits them.
+      description: |
+        ## Overview
+        As a Referring Clinician (/Administrator). I want to create a referral for my patient with a shortlist of services. 
+        So that I can progress the care of my patient while leaving them the freedom to choose the service that best suits them.
+        
+        ### Response: Failure
+        If an error occurs, the relating HTTP status code will be returned in the header. 
+        Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below.
+        
+        | issue.details.code                 | Description                                                                                                             |
+        | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+        | FIELD_NOT_PERMITTED                | A referring clinician is provided when the logged in user is not an RCA; or: one of the following occurs: the distance limit is specified when the postcode is not provided, the IWT limit is specified when the priority is TWO_WEEK_WAIT or the clinic type is specified when the specialty is not provided.|
+        | INAPPROPRIATE_VALUE                | The value of commissioning provisioning is ALL_SERVICES (this value is not supported), or: the intention to add a referral letter is set to NOT_INTENDING_TO_ADD when one or more of the shortlisted services has the referral letter required set to true, or the proposed shortlist contains one or more services that do not support the ‘appointment request flow’ |
+        | INVALID VALUE                      | The input provided does not conform with the expected data types and format specifically documented on the FHIR OperationDefinition or on the related FHIR profiles |
+        | MISSING_VALUE                      | One of the parameters described as mandatory on the FHIR OperationDefinition or on the related FHIR profiles has not been supplied |
+        | NO_REG_GP_PRACTICE                 | The patient provided was found not to have a registered GP practice. The patient is not eligible to be referred via e-RS while this problem persists |
+        | ORGANISATION_IS_CLOSED             | The organisation identifier supplied corresponds to an organisation that is closed |
+        | ORGANISATION_NOT_APPROPRIATE       | The organisation identifier supplied corresponds to an organisation of a type other than ‘Service location’ and ‘Service providing organisation’ |
+        | PATIENT_ERROR                      | There was a problem with the patient’s record in PDS. The patient is not eligible to be referred via e-RS while this problem persists |
+        | REFERENCE_NOT_FOUND                | An entity referenced (e.g. the patient, the postcode, the organisation or a clinician) is not found |
+        | REFERENCED_USER_IS_NOT_ACTIVE      | The SDS user provided as the referring clinician or the named clinician is found to be not active in SDS |
+        | REFERENCED_USER_IS_NOT_RC          | The SDS user provided as the referring clinician does not actually have the Referring Clinician business function in e-RS |
+        | REFERENCED_USER_IS_NOT_SPC         | The SDS user provided as the named clinician does not actually have the Service Provider Clinician business function in e-RS |
+        | REFERENCED_USER_NOT_IN_ORG         | The referring clinician provided does not belong to the same organisation as the logged in user |
+        | SHORTLISTED_SERVICE_NOT_IN_RESULTS | The service selected for the shortlist submitted does not satisfy the search criteria provided |
+        | VALUE_IS_REQUIRED                  | A referring clinician is not provided when the logged in user is an RCA; or: one of the following three is not provided: the pair specialty + clinic type, the clinical term¬ or the named clinician. |
       summary: A011 Create Referral
       tags:
         - CreateReferral

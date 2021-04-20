@@ -181,17 +181,15 @@ paths:
         '201':
           $ref: 'components/responses/FhirReferralRequest.yaml'
         '400':
-          description: Bad Request
-          content:
-            application/fhir+json:
-              schema:
-                type: string
+          $ref: 'components/responses/BadRequest.yaml'
         '401':
-          description: Unauthorized
+          $ref: 'components/responses/Unauthorized.yaml'
         '403':
-          description: Forbidden
+          $ref: 'components/responses/Forbidden.yaml'
         '422':
           $ref: 'components/responses/FhirOperationErrorOutcome.yaml'
+        '500':
+          $ref: 'components/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

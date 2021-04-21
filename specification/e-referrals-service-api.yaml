@@ -175,8 +175,15 @@ paths:
           application/fhir+json:
             schema:
               $ref: 'components/schemas/CreateReferralParameters.yaml'
-            example:
-              $ref: 'components/examples/CreateReferralParameters.json'
+            examples:
+              create-referral-parameters-single-service:
+                summary: Example with single service
+                value:
+                  $ref: 'components/examples/CreateReferralParameters.json'
+              create-referral-parameters-twenty-services:
+                summary: Example with twenty services
+                value:
+                  $ref: 'components/examples/CreateReferralParametersTwentyServices.json'
       responses:
         '201':
           $ref: 'components/responses/FhirReferralRequest.yaml'

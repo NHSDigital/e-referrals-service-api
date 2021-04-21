@@ -1,5 +1,4 @@
-const requestValidator = require('../validators/request-validator')
-const Boom = require('boom')
+const mockResponseProvider = require('../services/mockResponseProvider')
 
 module.exports = [
   /**
@@ -16,19 +15,13 @@ module.exports = [
         return h.response(responseMessage).code(405)
       }
 
-      if(!requestValidator.verifyContentTypeHeader(request, "application/fhir+json")){
-	  	  const path = 'OperationErrorOutcome.json'
-        return h.file(path).code(422)
-      }
-	  
-      const requiredProperties = ["resourceType", "meta", "parameter"];
-	    if(!requestValidator.verifyRequestHasProperties(request, requiredProperties)){
-	  	  const path = 'OperationErrorOutcome.json'
-        return h.file(path).code(422)
+      var responsePath = mockResponseProvider.getExampleResponseForCreateReferral(request);
+      if(responsePath != null){
+        return h.file(responsePath)
+      }else{
+        return h.file('GenericOperationErrorOutcome.json').code(422);
       }
 
-      const path = 'ReferralRequest.json'
-      return h.file(path)
     }
   }
 ]

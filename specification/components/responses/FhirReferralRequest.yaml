@@ -3,5 +3,12 @@ content:
   application/fhir+json:
     schema:
       $ref: '../schemas/ReferralRequest.yaml'
-    example:
-      $ref: '../examples/ReferralRequest.json'
+    examples:
+      referral-request-single-service:
+        summary: Example with single service
+        value:
+          $ref: '../examples/ReferralRequest.json'
+      referral-request-twenty-services:
+        summary: Example with twenty services
+        value:
+          $ref: '../examples/ReferralRequestTwentyServices.json'

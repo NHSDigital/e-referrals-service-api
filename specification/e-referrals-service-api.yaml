@@ -156,6 +156,35 @@ paths:
         - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter
         - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
 
+        ### Response: Failure
+        If an error occurs, the relating HTTP status code will be returned in the header. 
+        Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below.
+        
+        | issue.details.code                 | Description                                                                                                             |
+        | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+        | REFERENCE_NOT_FOUND                | An entity referenced (e.g. the patient, the postcode, the organisation or a clinician) is not found |
+        | REFERENCED_USER_IS_NOT_SPC         | The SDS user provided as the named clinician does not actually have the Service Provider Clinician business function in e-RS |
+        | ORGANISATION_IS_CLOSED             | The organisation identifier supplied corresponds to an organisation that is closed |
+        | ORGANISATION_NOT_APPROPRIATE       | The organisation identifier supplied corresponds to an organisation of a type other than ‘Service location’ and ‘Service providing organisation’ |
+        | INAPPROPRIATE_VALUE                | The value of commissioning provisioning is ALL_SERVICES (this value is not supported), or: the intention to add a referral letter is set to NOT_INTENDING_TO_ADD when one or more of the shortlisted services has the referral letter required set to true, or the proposed shortlist contains one or more services that do not support the ‘appointment request flow’ |
+        | DUPLICATE_SERVICE                  | The proposed Shortlist contains a duplication of a specific Service |
+        | TOO_MANY_ITEMS                     | In a list where a maximum number of items is specified (e.g. a Shortlist), too many entries are supplied |
+        | SHORTLISTED_SERVICE_NOT_IN_RESULTS | The service selected for the shortlist submitted does not satisfy the search criteria provided |
+        | MISSING_VALUE                      | One of the parameters described as mandatory on the FHIR OperationDefinition or on the related FHIR profiles has not been supplied |
+        | VALUE_IS_REQUIRED                  | A referring clinician is not provided when the logged in user is an RCA; or: one of the following three is not provided: the pair specialty + clinic type, the clinical term¬ or the named clinician. |
+        | FIELD_NOT_PERMITTED                | Used when a field is expected as optional on the FHIR profile, but in the specific context of the call data is not expected to be supplied, for example because of the value of other parameters or of the status of the Request |
+        | REFERENCED_USER_IS_NOT_ACTIVE      | The SDS user provided as the referring clinician or the named clinician is found to be not active in SDS |
+        | REFERENCED_USER_NOT_IN_ORG         | The referring clinician provided does not belong to the same organisation as the logged in user |
+        | PATIENT_ERROR                      | There was a problem with the patient’s record in PDS. The patient is not eligible to be referred via e-RS while this problem persists |
+        | NO_REG_GP_PRACTICE                 | The patient provided was found not to have a registered GP practice. The patient is not eligible to be referred via e-RS while this problem persists |
+        | REFERENCED_USER_IS_NOT_RC          | The SDS user provided as the referring clinician does not actually have the Referring Clinician business function in e-RS |
+        | INVALID_VALUE                      | The input provided does not conform with the expected data types and format specifically documented on the FHIR OperationDefinition or on the related FHIR profiles |
+        | INVALID_CODE                       | Part of early validation that checks that the input conforms with the specifications of the FHIR profiles. It applies to fields of type Code, Coding and CodeableConcept. It is triggered when the value provided is not one of the legal values defined in the system for that FHIR field |
+        | SNOMED_NOT_FOUND                   | A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS copy of the dictionary (as this is known to be out of date) |
+        | UNEXPECTED_FIELD                   | Part of early validation that checks that the input conforms with the specifications of the FHIR profiles. A field is provided that is not defined on the FHIR profile. E.g. a field is mis-spelt, was defined on a previous FHIR version but has subsequently been removed or is totally random |
+        | INVALID_FHIR_STRUCTURE             | A technical error usually triggered by the Spring Framework before the API call reaches the logical layer |
+
+
       summary: A011 Create Referral
       tags:
         - CreateReferral

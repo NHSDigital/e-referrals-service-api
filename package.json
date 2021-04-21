@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "node_modules/.bin/speccy lint specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",
     "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/e-referrals-service-api.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/e-referrals-service-api.json",
+	"publish-hr": "speccy resolve specification/e-referrals-service-api.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/e-referrals-service-api.json",
     "serve": "node_modules/.bin/speccy serve build/e-referrals-service-api.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
   },

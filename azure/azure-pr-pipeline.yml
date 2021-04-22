@@ -11,14 +11,14 @@ resources:
       ref: refs/heads/edge
       endpoint: NHSDigital
   pipelines:
-  - pipeline: build_pipeline
-    source: "E-Referrals-Service-Build"
-    trigger:
-      branches:
-        exclude:
-          - master
-          - refs/heads/master
-          - refs/tags/v*
+    - pipeline: build_pipeline
+      source: "E-Referrals-Service-API-Build"
+      trigger:
+        branches:
+          exclude:
+            - master
+            - refs/heads/master
+            - refs/tags/v*
 
 pool:
   name: 'AWS-ECS'

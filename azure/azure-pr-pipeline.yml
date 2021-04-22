@@ -35,4 +35,8 @@ extends:
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
-    deploy_review_sandbox: true
+    apigee_deployments:
+      - environment: internal-dev
+        make_spec_visible: true
+      - environment: internal-dev-sandbox
+        proxy_path: sandbox

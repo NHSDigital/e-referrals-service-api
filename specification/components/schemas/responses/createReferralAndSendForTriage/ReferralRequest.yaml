@@ -1,0 +1,19 @@
+description: A referral within e-RS
+headers:
+  X-Correlation-Id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../ReferralRequest.yaml'
+    examples:
+      referral-request-with-appointment:
+        summary: Basic example
+        value:
+          $ref: '../../../examples/createReferralAndSendForTriage/responses/ReferralRequest.json'
+      referral-request-with-named-clinician:
+        summary: Example with named clinician in search criteria
+        value:
+          $ref: '../../../examples/createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json'

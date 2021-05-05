@@ -37,6 +37,17 @@ module.exports = {
 
         return mapExampleResponse(request, exampleResponseMap);
 
+    },
+
+    getExampleResponseForCreateReferralAndSendForTriage: function (request) {
+
+        var exampleResponseMap = {
+            'src/mocks/createReferralAndSendForTriage/requests/Parameters.json': 'createReferralAndSendForTriage/responses/ReferralRequest.json',
+            'src/mocks/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json': 'createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json',
+        };
+
+        return mapExampleResponse(request, exampleResponseMap);
+
     }
 
 

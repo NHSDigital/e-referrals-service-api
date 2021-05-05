@@ -19,8 +19,8 @@ properties:
         items:
           type: string
           enum:
-            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
-          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferralAndSendForTriage-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferralAndSendForTriage-Parameters-1"
         minItems: 1
         maxItems: 1
   parameter:
@@ -28,7 +28,10 @@ properties:
     items:
       anyOf:
         - $ref: 'parameters/Patient.yaml'
-        - title: Parameter to supply a shortlist
+        - $ref: 'parameters/ReferringClinician.yaml'
+        - title: |
+            Parameter to supply a shortlist. When sending for triage, 
+            the shortlist must contain exactly one service, and this must support the ‘triage request flow’.
           type: object
           required:
             - name
@@ -41,8 +44,9 @@ properties:
               example: 'shortlist'
             resource:
               $ref: 'ShortlistList.yaml'
-        - $ref: 'parameters/ReferringClinician.yaml'
-        - title: Parameter to supply the intention to add referral letter flag
+        - title: | 
+            Parameter to supply the intention to add referral letter flag.
+            When sending for triage, a referral letter is always required; therefore the only acceptable value is NEED_TO_ADD_LATER.
           type: object
           required:
             - name
@@ -68,9 +72,11 @@ properties:
                   type: string
                   enum:
                     - NEED_TO_ADD_LATER
-                    - NOT_INTENDING_TO_ADD
                   example: 'NEED_TO_ADD_LATER'
-        - title: Parameter to supply the first reminder follow up days. 
+        - title: |
+            Parameter to supply the first reminder follow up days. When sending for triage, 
+            the only acceptable value is 0, which means no follow up letter will be sent, 
+            as the patient does not need to book an appointment.
           type: object
           required:
             - name

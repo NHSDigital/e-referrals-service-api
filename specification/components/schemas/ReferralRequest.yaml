@@ -50,6 +50,7 @@ properties:
         - $ref: 'extensions/ReferralShortlistExtension.yaml'
         - $ref: 'extensions/ReferralCommissioningOrganisationExtension.yaml'
         - $ref: 'extensions/ReferralPriorityExtension.yaml'
+        - $ref: 'extensions/ReferralAppointmentExtension.yaml'
   status:
     type: string
     enum:

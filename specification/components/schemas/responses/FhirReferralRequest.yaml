@@ -17,3 +17,7 @@ content:
         summary: Example with twenty services
         value:
           $ref: '../../examples/createReferral/responses/ReferralRequestTwentyServices.json'
+      referral-request-with-appointment:
+        summary: Example with appointment
+        value:
+          $ref: '../../examples/createReferralAndSendForTriage/responses/ReferralRequest.json'

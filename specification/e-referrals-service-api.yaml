@@ -110,7 +110,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-9'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-11'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -181,7 +181,52 @@ paths:
                   $ref: 'components/examples/createReferral/requests/CreateReferralParametersTwentyServices.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/FhirReferralRequest.yaml'
+          $ref: 'components/schemas/responses/createReferral/ReferralRequest.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/ReferralRequest/$ers.createReferralAndSendForTriage:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Use case
+
+        ## You can use this endpoint to
+
+        ## Related endpoints
+      summary: A021 Create Referral And Send For Triage
+      operationId: a021-create-referral-request-and-send-for-triage
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/CreateReferralAndSendForTriageParameters.yaml'
+            examples:
+              parameters:
+                summary: Basic example
+                value:
+                  $ref: 'components/examples/createReferralAndSendForTriage/requests/Parameters.json'
+              parameters-with-named-clinician:
+                summary: Example with named clinician in search criteria
+                value:
+                  $ref: 'components/examples/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/createReferralAndSendForTriage/ReferralRequest.yaml'
         '400':
           $ref: 'components/schemas/responses/BadRequest.yaml'
         '401':
@@ -201,6 +246,8 @@ components:
   schemas:
     CreateReferralParameters:
       $ref: 'components/schemas/CreateReferralParameters.yaml'
+    CreateReferralAndSendForTriageParameters:
+      $ref: 'components/schemas/CreateReferralAndSendForTriageParameters.yaml'
     ReferralRequest:
       $ref: 'components/schemas/ReferralRequest.yaml'
     OperationOutcome:

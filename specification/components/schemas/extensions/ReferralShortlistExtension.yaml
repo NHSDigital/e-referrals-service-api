@@ -1,0 +1,19 @@
+title: Extension to supply the current shortlist for a ReferralRequest
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1'
+  valueReference:
+    type: object
+    required: 
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#shortlist'

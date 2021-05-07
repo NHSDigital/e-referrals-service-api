@@ -1,0 +1,101 @@
+title: 'A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)'
+type: object
+required:
+  - meta
+  - resourceType
+  - status
+  - description
+  - start
+  - end
+  - slot
+  - created
+  - incomingReferral
+  - participant
+properties:
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1'
+          example: 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1'
+  resourceType:
+    type: string
+    enum:
+      - Appointment
+    example: 'Appointment'
+  status:
+    type: string
+    enum:
+      - PROPOSED
+      - PENDING
+      - BOOKED
+      - ARRIVED
+      - FULFILLED
+      - CANCELLED
+      - NOSHOW
+    example: PROPOSED
+  description:
+    type: string
+  start:
+    type: string
+    format: date-time
+    example: '2021-04-22T08:30:00.000Z'
+  end:
+    type: string
+    format: date-time
+    example: '2021-04-22T10:00:00.000Z'
+  slot:
+    type: array
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'Slot/11002001'
+    minItems: 0
+    maxItems: 1
+  created:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'
+  comment:
+    type: string
+    nullable: true
+  incomingReferral:
+    type: array
+    nullable: true
+    items:
+      type: array
+      items:
+        type: object
+        required:
+          - reference
+        properties:
+          reference:
+            type: string
+            example: 'ReferralRequest/000000070000/_history/14'
+    minItems: 0
+    maxItems: 1
+  participant:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - CON
+          nullable: true
+        actor:
+          type: string
+          format: url
+    minItems: 2
+    maxItems: 3

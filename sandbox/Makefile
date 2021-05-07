@@ -7,8 +7,8 @@ lint:
 	npm run lint
 
 build:
-	docker build -t ambulance-analytics-sandbox .
+	docker build -t e-referrals-service-api-sandbox .
 
 run:
-	docker run -p 9000:9000 ambulance-analytics-sandbox:latest
+	docker run -p 9000:9000 e-referrals-service-api-sandbox:latest
 

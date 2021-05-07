@@ -1,0 +1,19 @@
+description: A referral within e-RS
+headers:
+  X-Correlation-Id:
+    $ref: ../headers/response/CorrelationID.yaml
+  ETag:
+    $ref: ../headers/response/ETag.yaml
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../ReferralRequest.yaml'
+    examples:
+      referral-request-single-service:
+        summary: Example with single service
+        value:
+          $ref: '../../examples/createReferral/responses/ReferralRequest.json'
+      referral-request-twenty-services:
+        summary: Example with twenty services
+        value:
+          $ref: '../../examples/createReferral/responses/ReferralRequestTwentyServices.json'

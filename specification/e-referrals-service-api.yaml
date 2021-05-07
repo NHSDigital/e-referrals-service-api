@@ -1,3 +1,6 @@
+# This is an OpenAPI Specification (https://swagger.io/specification/)
+# for the e-Referral Service API
+# owned by NHS Digital (https://digital.nhs.uk/)
 openapi: 3.0.0
 x-nhsd-api-platform:
   meta:
@@ -5,111 +8,200 @@ x-nhsd-api-platform:
     short_service_name: ers
     service_base_path: referrals
     product_display_name: e-Referrals-Service
-    product_description: The NHS e-RS vision is to enable local innovation and adoption of
-      paperless referrals. To support this vision NHS Digital have created a set
-      of APIs which provide a well-defined, simple to use data interface to the
-      NHS e-Referral Service (e-RS). See
-      https://developer.nhs.uk/apis/e-Referrals/index.html
+    product_description: 'The NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS). See https://developer.nhs.uk/apis/e-Referrals/index.html'
     pipeline_name_prefix: E-Referrals-Service
-tags:
-  - name: api
 info:
   version: 0.0.1
   title: e-Referrals Service
-  description: A key aspect of the NHS e-RS vision is to enable local innovation and
-    adoption of paperless referrals. To support this vision NHS Digital have
-    created a set of APIs which provide a well-defined, simple to use data
-    interface to the NHS e-Referral Service (e-RS).
+  description: |
+    ## Overview
+    A key aspect of the NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS).
+
+    You can:
+
+    You cannot currently use this API to:
+
+    You can read and update the following data:
+
+    ### Access modes
+
+
+
+    ## Who can use this API
+
+
+
+    ## Related APIs
+
+
+
+    ## API status and roadmap
+
+    ### Healthcare worker access
+
+    ### Citizen access
+
+    ### Roadmap
+
+
+    ## Technology
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest).
+
+    It also conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange.
+    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4.
+
+    You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules.
+
+    ## Network access
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+
+    To use this API with NHS smartcards you do need an HSCN connection, although internet-facing alternatives are available.
+
+    For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
+
+    ## Security and authorisation
+
+    ### Healthcare worker access
+    This access mode is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis),
+    meaning an end user must be present, authenticated and authorised.
+
+    The end user must be:
+    - a healthcare worker
+    - strongly authenticated, using either an NHS smartcard or a modern alternative
+    - authorised, using [national role-based access control (RBAC)](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/national-rbac-for-developers)
+
+    To use this access mode, use one of the following security patterns:
+    * [user-restricted RESTful API - using NHS Identity - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-identity-combined-authentication-and-authorisation)
+    * [user-restricted RESTful API - using NHS Identity - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-identity-separate-authentication-and-authorisation)
+
+    ### Citizen access
+    This access mode is not available yet. 
+
+    ## Environments and testing
+
+    | Environment       | Base URL                                                               |
+    | ----------------- | ---------------------------------------------------------------------- |
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals` |
+    | Integration test  | `https://int.api.service.nhs.uk/referrals` |
+    | Production        | `https://api.service.nhs.uk/referrals` |
+
+    ### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+    * is for early developer testing
+    * only covers a limited set of scenarios
+    * is stateless, so does not actually persist any updates
+    * is open access, so does not allow you to test authorisation
+
+    Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint. Sandbox will only respond to 
+    input matching one of the examples specified for each endpoint.
+
+    ### Integration testing
+
+    ### Production smoke testing
+
+    ## Onboarding
+    You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+
+
   contact:
-    email: sd.asd@nhs.uk
+    url: 'https://digital.nhs.uk/developer/help-and-support'
+    email: api.management@nhs.net
   license:
     name: MIT
 servers:
-  - url: https://api.dev3.ers.ncrs.nhs.uk
-    description: Alpha
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-9'
+    description: Pr Sandbox environment.
+  - url: 'https://sandbox.api.service.nhs.uk/referrals'
+    description: Sandbox environment.
+  - url: 'https://int.api.service.nhs.uk/referrals'
+    description: Integration test environment.
+  - url: 'https://api.service.nhs.uk/referrals'
+    description: 'Production environment.'
 paths:
-  /v1/ProfessionalSession/{token}:
+  /STU3/v1/ReferralRequest/$ers.createReferral:
     post:
-      tags:
-        - ProfessionalSession
-      operationId: post ProfessionalSession
-      responses:
-        "201":               
-          description: Request accepted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  typeInfo:
-                    type: string
-                  id:
-                    type: string
-                  token:
-                    type: string
-                  user:
-                    type: object
-                    properties:
-                      identifier:
-                        type: string
-                      firstName:
-                        type: string
-                      lastName:
-                        type: string
-                      middleName:
-                        type: "string"
-                      permissions:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                              businessFunction:
-                                type: string
-                              orgIdentifier:
-                                type: string
-                              orgName:
-                                type: string
-                          required:
-                            - businessFunction
-                            - orgIdentifier
-                            - orgName
-                    required:
-                      - identifier
-                      - firstName
-                      - lastName
-                      - middleName
-                      - permissions
-                  permission:
-                    type: "string"
-                required:
-                  - typeInfo
-                  - id
-                  - token
-                  - user
-                  - permission
-      summary: A001 Create Professional Session
-      description: As an e-RS user working in an integrated system I want to create a
-        Professional Session in the Spine using my smartcard roles So that I can
-        securely access e-RS functions through my integrated system
+      security:
+        - bearerAuth: []
+      description: |
+        ## Use case
+        As a Referring Clinician or Referring Clinician Administrator,
+        Having identified suitable Services for my patient, I want to create a referral for my patient and associate the Referral with a list of appropriate services
+        so I can initiate my Patient's referral pathway; allowing the Patient to book from one of the clinically appropriate services shortlisted.
+        
+        ## You can use this endpoint to
+        - Create a new Referral in e-RS for a single Patient if you are a Referring Clinician or Referring Clinician Admin user.
+        - Associate the Referral with a list of Services that are suitable to the patient's current care needs. This is called a "Shortlist" of Services.
+        - Set a "priority" for the Referral indicating how quickly the Referral needs to be dealt with.
+        - Detail the criteria used to identify suitable Services.
+        - Indicate who the Referring Clinician is.
+        - If you are authenticated as Referring Clinician Admin when using this endpoint, you must indicate who you the Referral is being created on behalf of. This is known as the "Referring Clinician".
+        - Provide an indication as to whether or not you will add a Referrer Letter to the Referral for a Service to review.
+        - This may be dependent on which services are are on your Shortlist.
+        - The action of associating a Referral Letter to a Referral is completed via another endpoint.
+        - Indicate if you want a reminder letter to be sent to the Patient if they don't book/defer appointment within "x" days. The reminder letter sent prompts the Patient to book their appointment.
+        - "0" = no reminder letter.
+        - A value of 1 to 180 can be used to set the number of days between creating the Referral and a letter being sent to the Patient.
+        
+        ## After successful creation of the Referral
+        - The Referral can be accessed in the e-RS Professional Application or, from another endpoint.
+        - Other endpoints can be used to progress or amend your Referral.
+        
+        ## Related endpoints
+        - [A010: Patient Service Search](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a010.html) - This endpoint is used to search list of Services for the Patient.
+        - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
+        - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter.
+        - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
+
+      summary: A011 Create Referral
+      operationId: a011-create-referral
       parameters:
-        - in: path
-          name: token
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: The user ID
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
-          application/json:
+          application/fhir+json:
             schema:
-              type: object
-              properties:
-                typeInfo:
-                  type: string
-                token:
-                  type: string
-              required:
-                - typeInfo
-                - token
+              $ref: 'components/schemas/CreateReferralParameters.yaml'
+            examples:
+              create-referral-parameters-single-service:
+                summary: Example with single service
+                value:
+                  $ref: 'components/examples/createReferral/requests/CreateReferralParameters.json'
+              create-referral-parameters-full-search-criteria:
+                summary: Example with single service and fully populated search criteria
+                value:
+                  $ref: 'components/examples/createReferral/requests/CreateReferralParametersFull.json'
+              create-referral-parameters-twenty-services:
+                summary: Example with twenty services
+                value:
+                  $ref: 'components/examples/createReferral/requests/CreateReferralParametersTwentyServices.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/FhirReferralRequest.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    CreateReferralParameters:
+      $ref: 'components/schemas/CreateReferralParameters.yaml'
+    ReferralRequest:
+      $ref: 'components/schemas/ReferralRequest.yaml'
+    OperationOutcome:
+      $ref: 'components/schemas/OperationOutcome.yaml'

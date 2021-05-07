@@ -1,0 +1,34 @@
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required: 
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    items:
+      anyOf:
+        - $ref: 'parameters/Patient.yaml'
+        - $ref: 'parameters/Shortlist.yaml'
+        - $ref: 'parameters/FirstReminderFollowUpDays.yaml'
+        - $ref: 'parameters/IntentionToAddReferralLetter.yaml'
+        - $ref: 'parameters/ReferringClinician.yaml'

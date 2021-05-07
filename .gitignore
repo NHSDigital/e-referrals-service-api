@@ -5,6 +5,7 @@ build/
 public/
 newman/
 build/
+specification/components/examples/
 tests/functional/test_env/
 .idea
 .DS_Store

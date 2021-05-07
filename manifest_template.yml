@@ -11,6 +11,9 @@ APIGEE_ENVIRONMENTS:
   name: internal-dev
 - display_name: Internal Development Sandbox
   name: internal-dev-sandbox
+- display_name:  Integration Testing 
+  make_spec_visible: true
+  name: int
 - display_name: Internal QA
   make_spec_visible: true
   name: internal-qa

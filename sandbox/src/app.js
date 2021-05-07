@@ -4,6 +4,19 @@ const Inert = require('inert')
 const process = require('process')
 const routes = require('./routes')
 
+const mirrorCorrelationIDs = function (request, response) {
+
+  if (request.headers["x-correlation-id"]) {
+      response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
+  }
+}
+
+const preResponse = function (request, h) {
+
+  mirrorCorrelationIDs(request, request.response)
+  return h.continue
+}
+
 const init = async () => {
   const server = Hapi.server({
     port: 9000,
@@ -15,6 +28,8 @@ const init = async () => {
       },
     },
   });
+
+  server.ext('onPreResponse', preResponse);
 
   server.route({
     method: '*',

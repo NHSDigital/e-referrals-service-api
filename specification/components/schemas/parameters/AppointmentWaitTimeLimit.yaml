@@ -1,0 +1,16 @@
+title: Details the indicative appointment wait time limit value specified in a search criteria
+type: object
+required:
+  - name
+  - valueUnsignedInt
+properties:
+  name:
+    type: string
+    enum:
+      - indicativeAppointmentWaitTimeLimit
+    example: 'indicativeAppointmentWaitTimeLimit'
+  valueUnsignedInt:
+    type: integer
+    minimum: 0
+    format: int32
+    example: 50

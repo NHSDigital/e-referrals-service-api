@@ -1,0 +1,96 @@
+title: 'A reference to a document (http://hl7.org/fhir/stu3/documentreference.html)'
+type: object
+required:
+  - resourceType
+  - type
+  - status
+  - indexed
+  - description
+  - content
+properties:
+  resourceType:
+    type: string
+    enum:
+      - DocumentReference
+    example: 'DocumentReference'
+  type:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              required:
+                - system
+                - code
+                - display
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                  example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                code:
+                  type: string
+                  enum:
+                    - REFERRER
+                    - PROVIDER
+                    - ADVICE_REQUEST
+                    - GUIDANCE_RESPONSE
+                  example: REFERRER
+                display:
+                  type: string
+                  enum:
+                    - Referrer
+                    - Provider
+                    - Advice Request
+                    - Guidance Response
+                  example: Referrer
+  status:
+    type: string
+    enum:
+      - CURRENT
+    example: CURRENT
+  indexed:
+    type: string
+    format: date-time
+    example: '2021-04-22T10:00:00.000Z'
+  description:
+    type: string
+    nullable: true
+    example: 'upload png'
+  content:
+    type: array
+    minItems: 0
+    maxItems: 1
+    items:
+      title: 'A reference to an already created Attachment (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+      type: object
+      required:
+        - contentType
+        - url
+        - size
+        - title
+        - creation
+      properties:
+        contentType:
+          type: string
+          example: 'image/png'
+        url:
+          type: string
+          example: 'Binary/att-70000-70000'
+        size:
+          type: integer
+          example: 6
+        title:
+          type: string
+          example: 'upload.png'
+        creation:
+          type: string
+          format: date
+          example: '2021-04-22'

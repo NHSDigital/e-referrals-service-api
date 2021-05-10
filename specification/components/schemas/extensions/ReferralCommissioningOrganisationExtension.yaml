@@ -11,11 +11,17 @@ properties:
     example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1'
   valueIdentifier:
     type: object
+    additionalProperties: false
     required:
       - system
+      - value
     properties:
       system:
         type: string
         enum:
           - 'https://fhir.nhs.uk/Id/ods-organization-code'
         example: 'https://fhir.nhs.uk/Id/ods-organization-code'
+      value:
+        type: string
+        example: R69
+      

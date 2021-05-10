@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-14'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -178,20 +178,20 @@ paths:
         - Set a "priority" for the Referral indicating how quickly the Referral needs to be dealt with.
         - Detail the criteria used to identify suitable Services.
         - Indicate who the Referring Clinician is.
-        - If you are authenticated as Referring Clinician Admin when using this endpoint, you must indicate who you the Referral is being created on behalf of. This is known as the "Referring Clinician".
+          - If you are authenticated as Referring Clinician Admin when using this endpoint, you must indicate who you the Referral is being created on behalf of. This is known as the "Referring Clinician".
         - Provide an indication as to whether or not you will add a Referrer Letter to the Referral for a Service to review.
-        - This may be dependent on which services are are on your Shortlist.
-        - The action of associating a Referral Letter to a Referral is completed via another endpoint.
+          - This may be dependent on which services are are on your Shortlist.
+          - The action of associating a Referral Letter to a Referral is completed via another endpoint.
         - Indicate if you want a reminder letter to be sent to the Patient if they don't book/defer appointment within "x" days. The reminder letter sent prompts the Patient to book their appointment.
-        - "0" = no reminder letter.
-        - A value of 1 to 180 can be used to set the number of days between creating the Referral and a letter being sent to the Patient.
+          - "0" = no reminder letter.
+          - A value of 1 to 180 can be used to set the number of days between creating the Referral and a letter being sent to the Patient.
         
         ## After successful creation of the Referral
         - The Referral can be accessed in the e-RS Professional Application or, from another endpoint.
         - Other endpoints can be used to progress or amend your Referral.
         
         ## Related endpoints
-        - [A010: Patient Service Search](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a010.html) - This endpoint is used to search list of Services for the Patient.
+        - [A010: Patient Service Search](#api-Default-a010PatientServiceSearch) - This endpoint is used to search list of Services for the Patient.
         - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
         - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter.
         - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
@@ -224,7 +224,7 @@ paths:
                   $ref: 'components/examples/createReferral/requests/CreateReferralParametersTwentyServices.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/createReferral/ReferralRequest.yaml'
+          $ref: 'components/schemas/responses/createReferral/201Response.yaml'
         '400':
           $ref: 'components/schemas/responses/BadRequest.yaml'
         '401':
@@ -269,7 +269,7 @@ paths:
                   $ref: 'components/examples/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/createReferralAndSendForTriage/ReferralRequest.yaml'
+          $ref: 'components/schemas/responses/createReferralAndSendForTriage/201Response.yaml'
         '400':
           $ref: 'components/schemas/responses/BadRequest.yaml'
         '401':
@@ -280,18 +280,58 @@ paths:
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/HealthcareService/$ers.searchHealthcareServicesForPatient:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Use case
+
+        ## You can use this endpoint to
+
+        ## Related endpoints
+      summary: A010 Patient Service Search
+      operationId: a010-patient-service-search
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/PatientServiceSearchParameters.yaml'
+            examples:
+              parameters:
+                summary: Request returning single service
+                value:
+                  $ref: 'components/examples/patientServiceSearch/requests/ParametersReturningSingleService.json'
+              parameters-with-multiple-services-returned:
+                summary: Request returning multiple services
+                value:
+                  $ref: 'components/examples/patientServiceSearch/requests/ParametersReturningMultipleServices.json'
+              parameters-fully-populated:
+                summary: Fully populated request
+                value:
+                  $ref: 'components/examples/patientServiceSearch/requests/ParametersFullyPopulated.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/patientServiceSearch/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-  schemas:
-    CreateReferralParameters:
-      $ref: 'components/schemas/CreateReferralParameters.yaml'
-    CreateReferralAndSendForTriageParameters:
-      $ref: 'components/schemas/CreateReferralAndSendForTriageParameters.yaml'
-    ReferralRequest:
-      $ref: 'components/schemas/ReferralRequest.yaml'
-    OperationOutcome:
-      $ref: 'components/schemas/OperationOutcome.yaml'

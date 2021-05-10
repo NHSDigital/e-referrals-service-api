@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "NOT_APPLICABLE"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "Service Name"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "Specialty Name"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": true
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "display": "Organisation Name",
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "NacCode"
+                  }
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=42"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "TRIAGE_REQUEST"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "42"
+        }
+      }
+    }
+  ]
+}

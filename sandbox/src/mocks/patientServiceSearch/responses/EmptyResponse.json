@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [],
+  "emptyReason": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/ValueSet/list-empty-reason",
+        "code": "nilknown",
+        "display": "no results"
+      }
+    ]
+  }
+}

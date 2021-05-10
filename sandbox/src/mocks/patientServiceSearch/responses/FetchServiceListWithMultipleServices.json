@@ -1,0 +1,720 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "A LOCALLY_COMMISSIONABLE Service"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": false
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11030"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11030"
+        }
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "Cardiology Business Service - Requires Referral Letter, No Slots for slots polling tests"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": true
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11021"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11021"
+        }
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "Excellent Cardiology Business Service"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": false
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11010"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11010"
+        }
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "Exceptional Cardiology Business Service"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": true
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11007"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11007"
+        }
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "FIRST Cardiology Business Service"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": false
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11008"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11008"
+        }
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "displayProminently",
+              "valueBoolean": false
+            },
+            {
+              "url": "distance",
+              "valueUnsignedInt": 0
+            },
+            {
+              "url": "indicativeAppointmentWaitTime",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1",
+                    "code": "LIMITED_AVAILABILITY"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1"
+        }
+      ],
+      "item": {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "serviceName",
+                "valueString": "Good Cardiology Business Service"
+              },
+              {
+                "url": "specialty",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                      "code": "CARDIOLOGY"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "genderTreated",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GenderTreated-1",
+                      "code": "MALE_AND_FEMALE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "bookableType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookableType-1",
+                      "code": "DIRECTLY_BOOKABLE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "supportedAppointmentType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentType-1",
+                      "code": "DIAGNOSTIC"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralLetterRequired",
+                "valueBoolean": true
+              },
+              {
+                "url": "location",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+                    "value": "R69"
+                  },
+                  "display": "Cicero-Clinic"
+                }
+              },
+              {
+                "url": "linkToNHSWebsite",
+                "valueString": "https://www.nhs.uk/service-search/other-services/chooseandbook?serviceId=11002"
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "APPOINTMENT_REQUEST"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"
+          }
+        ],
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11002"
+        }
+      }
+    }
+  ]
+}

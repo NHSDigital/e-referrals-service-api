@@ -1,0 +1,31 @@
+title: |
+  The type of request in e-RS which this service search is aimed at creating or updating. 
+  The options are appointment request (i.e. referral) or advice and guidance request. 
+  Services may support one or the other or both and will be filtered accordingly.
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - requestType
+    example: 'requestType'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestType-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestType-1'
+      code:
+        type: string
+        enum:
+          - APPOINTMENT_REQUEST
+          - ADVICE_AND_GUIDANCE
+        example: 'APPOINTMENT_REQUEST'

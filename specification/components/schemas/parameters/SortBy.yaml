@@ -1,0 +1,33 @@
+title: |
+  The service search returns the top results according to the sorting requested. 
+  Therefore, the sorting requested affects the selection of services that are included in the response.
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - sortBy
+    example: 'sortBy'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-SortBy-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-SortBy-1'
+      code:
+        type: string
+        enum:
+          - DISTANCE
+          - IWT
+        example: 'IWT'
+      display:
+        type: string
+        example: 'Indicative Appointment Wait Time'

@@ -84,6 +84,5 @@ properties:
             valueUnsignedInt:
               type: integer
               minimum: 0
-              maximum: 0
               format: int32
               example: 0

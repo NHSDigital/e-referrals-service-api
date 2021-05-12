@@ -1,0 +1,104 @@
+{
+    "id": "CLINIC-TYPE",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "https://ers-api:445/STU3/v1/CodeSystem/CLINIC-TYPE",
+    "name": "e-RS Clinic Type",
+    "status": "active",
+    "date": "2021-05-11T09:26:57.455Z",
+    "publisher": "e-Referral Service",
+    "description": "e-RS Clinic Type",
+    "copyright": "Copyright © 2016 HL7 UK",
+    "content": "complete",
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        },
+        {
+            "code": "specialty",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#specialty",
+            "type": "Coding"
+        }
+    ],
+    "concept": [
+        {
+            "code": "2WW_UPPER_GI",
+            "display": "2WW Upper GI",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "2WW"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "2WW_BONE",
+            "display": "2WW Bone",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "2WW"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "2WW_BRAIN",
+            "display": "2WW Brain",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "2WW"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "2WW_BREAST",
+            "display": "2WW Breast",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "2WW"
+                    }
+                }
+            ]
+        }
+    ]
+}

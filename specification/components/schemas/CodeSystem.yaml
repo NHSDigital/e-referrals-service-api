@@ -1,0 +1,77 @@
+type: object
+required:
+   - id
+   - meta
+   - resourceType
+   - url
+   - name
+   - status
+   - description
+   - content
+   - property
+   - concept
+properties:
+   id:
+      type: string
+      enum:
+         - SPECIALTY
+         - APPOINTMENT-CANCELLATION-REASON
+         - CLINIC-TYPE
+      example: 'SPECIALTY'
+   meta:
+      type: object
+      required:
+         - profile
+      properties:
+         profile:
+            type: array
+            items:
+               type: string
+               enum:
+                  - 'http://hl7.org/fhir/StructureDefinition/shareablecodesystem'
+                  - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Specialty-CodeSystem-1'
+               example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Specialty-CodeSystem-1'
+   resourceType:
+      type: string
+      enum:
+         - CodeSystem
+      example: 'CodeSystem'
+   url:
+      type: string
+      example: '_baseUrl_/STU3/v1/CodeSystem/SPECIALTY'
+   name:
+      type: string
+      enum:
+         - 'e-RS Appointment Cancellation Reason'
+         - 'e-RS Specialty'
+         - 'e-RS Clinic Type'
+      example: 'e-RS Specialty'
+   status:
+      type: string
+      enum:
+         - active
+      example: 'active'
+   publisher:
+      type: string
+      enum:
+         - 'e-Referral Service'
+      example: 'e-Referral Service'
+   description:
+      type: string
+      example: 'e-RS Specialty'
+   copyright:
+      type: string
+      example: 'Copyright © 2016 HL7 UK'
+   content:
+      type: string
+      enum:
+         - complete
+      example: 'complete'
+   property:
+      type: array
+      items:
+         $ref: 'CodeSystemProperty.yaml'
+   concept:
+      type: array
+      items:
+         $ref: 'CodeSystemConcept.yaml'

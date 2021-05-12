@@ -1,0 +1,21 @@
+title: Details of code system concepts
+type: object
+required:
+   - code
+   - display
+   - property
+properties:
+   code:
+      type: string
+   display:
+      type: string
+   property:
+      type: array
+      items:
+         anyOf:
+            - $ref: 'codings/CommentIsMandatory.yaml'
+            - $ref: 'codings/WillCancelWholeRequest.yaml'
+            - $ref: 'codings/EffectiveFrom.yaml'
+            - $ref: 'codings/EffectiveTo.yaml'
+            - $ref: 'codings/Specialty.yaml'
+            - $ref: 'codings/AppointmentBookingCancellationReasonType.yaml'

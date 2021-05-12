@@ -1,0 +1,11 @@
+type: object
+required:
+   - code
+   - valueBoolean
+properties:
+   code:
+      type: string
+      enum:
+         - commentIsMandatory
+   valueBoolean:
+      type: boolean

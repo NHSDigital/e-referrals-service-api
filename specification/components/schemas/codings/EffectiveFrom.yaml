@@ -1,0 +1,13 @@
+type: object
+required:
+   - code
+   - valueDateTime
+properties:
+   code:
+      type: string
+      enum:
+         - effectiveFrom
+   valueDateTime:
+      type: string
+      format: date-time
+   

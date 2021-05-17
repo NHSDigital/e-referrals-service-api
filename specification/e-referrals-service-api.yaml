@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-16'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-17'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -167,40 +167,33 @@ paths:
       security:
         - bearerAuth: []
       description: |
+        ## Overview
+        Use this endpoint to create a referral by choosing a shortlist of bookable services.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        
+        You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
+
+        You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
+
         ## Use case
-        As a Referring Clinician or Referring Clinician Administrator,
-        Having identified suitable Services for my patient, I want to create a referral for my patient and associate the Referral with a list of appropriate services
-        so I can initiate my Patient's referral pathway; allowing the Patient to book from one of the clinically appropriate services shortlisted.
-        
-        ## You can use this endpoint to
-        - Create a new Referral in e-RS for a single Patient if you are a Referring Clinician or Referring Clinician Admin user.
-        - Associate the Referral with a list of Services that are suitable to the patient's current care needs. This is called a "Shortlist" of Services.
-        - Set a "priority" for the Referral indicating how quickly the Referral needs to be dealt with.
-        - Detail the criteria used to identify suitable Services.
-        - Indicate who the Referring Clinician is.
-          - If you are authenticated as Referring Clinician Admin when using this endpoint, you must indicate who you the Referral is being created on behalf of. This is known as the "Referring Clinician".
-        - Provide an indication as to whether or not you will add a Referrer Letter to the Referral for a Service to review.
-          - This may be dependent on which services are are on your Shortlist.
-          - The action of associating a Referral Letter to a Referral is completed via another endpoint.
-        - Indicate if you want a reminder letter to be sent to the Patient if they don't book/defer appointment within "x" days. The reminder letter sent prompts the Patient to book their appointment.
-          - "0" = no reminder letter.
-          - A value of 1 to 180 can be used to set the number of days between creating the Referral and a letter being sent to the Patient.
-        
-        ## After successful creation of the Referral
-        - The Referral can be accessed in the e-RS Professional Application or, from another endpoint.
-        - Other endpoints can be used to progress or amend your Referral.
-        
+        As an authenticated user
+
+        I need to create a shortlist of bookable services
+
+        So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
+
         ## Related endpoints
-        - [A010: Patient Service Search](#api-Default-a010PatientServiceSearch) - This endpoint is used to search list of Services for the Patient.
-        - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
-        - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter.
-        - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
+        You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
-        ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
-        - Referring Clinician (RC)
-        - Referring Clinician Admin (RCA)
+        For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
 
-      summary: A011 Create Referral
+        You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+      summary: A011 - Create referral
       operationId: a011-create-referral
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -244,12 +237,34 @@ paths:
       security:
         - bearerAuth: []
       description: |
-        ## Use case
+        ## Overview
+        Use this endpoint to refer the patient directly to a triage service.
 
-        ## You can use this endpoint to
+        Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services please use [[HYPERLINK_A011]].
+        
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+
+        You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
+
+        You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
+
+        ## Use case
+        As an authenticated e-RS user
+
+        I need to send the patient's referral to a triage service for assessment
+
+        So that I can put the patient on the appropriate clinical pathway for the chosen service provider.
 
         ## Related endpoints
-      summary: A021 Create Referral And Send For Triage
+
+        For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
+
+        You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+      summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -264,11 +279,11 @@ paths:
               $ref: 'components/schemas/CreateReferralAndSendForTriageParameters.yaml'
             examples:
               parameters:
-                summary: Basic example
+                summary: Referring Clinician creates referral to a Triage service
                 value:
                   $ref: 'components/examples/createReferralAndSendForTriage/requests/Parameters.json'
               parameters-with-named-clinician:
-                summary: Example with named clinician in search criteria
+                summary: Referring Clinician Admin minimum call
                 value:
                   $ref: 'components/examples/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json'
       responses:
@@ -289,12 +304,28 @@ paths:
       security:
         - bearerAuth: []
       description: |
-        ## Use case
+        ## Overview
+        Use this endpoint to find services that meet the referral needs of a patient.
 
-        ## You can use this endpoint to
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        
+        You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
+
+        ## Use case
+        As an authenticated user
+
+        I need to find services I can refer the patient to
+
+        So that I can offer the patient appropriate services that meet their referral needs
 
         ## Related endpoints
-      summary: A010 Patient Service Search
+        Once you have identified appropriate services for the patient you can either:
+          - create a referral by choosing a shortlist of bookable services using [[HYPERLINK_A011]], or
+          - refer the patient directly to a triage service using [[HYPERLINK_A021]]
+      summary: A010 - Patient service search
       operationId: a010-patient-service-search
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -353,10 +384,10 @@ paths:
         
         ## Related endpoints
         Reference data may be needed for other endpoints, for example when including Specialty and Clinic Type reference data to:
-        - find services that meet the referral needs of a patient using [A010 - Patient Service Search](#api-Default-a010PatientServiceSearch), and
-        - create a referral using [A011 - Create Referral](#api-Default-a011CreateReferral) or [A021 - Create Referral And Send For Triage](#api-Default-a021CreateReferralRequestAndSendForTriage)
+        - find services that meet the referral needs of a patient using [[HYPERLINK_A010]], and
+        - create a referral using [[HYPERLINK_A011]] or [[HYPERLINK_A021]]
         
-        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [A005 - Retrieve Referral Request](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a011.html)
+        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]]
         
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
@@ -391,6 +422,81 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/Slot:
+    get:
+      description: |
+        ## Overview
+        Use this endpoint to retrieve available appointment slots for a service.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+
+        You need to have identified a directly bookable `service` that is on the current referral shortlist. You can do this by using [[HYPERLINK_A005]].
+
+        ## Use case
+
+        As an authenticated e-RS user
+
+        I want to retrieve a list of available appointment slots for a service
+
+        So that I can offer them to the patient for booking.
+
+        ## Additional notes
+        For services on the primary care menu, to get accurate indication of available appointment slots, the `commissioning rule organisation` that is returned in the response when retrieving a referral should be passed in the `X-ERS-XAPI-COMM-RULE-ORG` header field.
+        
+        ## Related endpoints
+
+        You can book an appointment to an available slot using [[HYPERLINK_A016]].
+
+        You can defer booking to a directly bookable service using [[HYPERLINK_A016]] but only in the following circumstances:
+          - when the service has no available slots
+          - when trying to book an appointment into a service, the slot advertised is no longer available
+          - when trying to book an appointment into a service, no response is received within message timeout period (currently 2 minutes)
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment:
+
+        | Scenario                                                                           | Request Query Parameters                                                                                            | Response                                                                  |
+        | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+        | Perform a valid request and get result with no slots                               | `schedule.actor:HealthcareService`=`10000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`1` | HTTP Status 200 with empty slot search results                            |
+        | Perform a valid request and get paged result (1/2)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`1` | HTTP Status 200 with slot search results (page 1)                         |
+        | Perform a valid request and get paged result (2/2)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`2` | HTTP Status 200 with slot search results (page 2)                         |
+        | Perform a valid request and get paged result (1/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | HTTP Status 200 with slot search results (page 1)                         |
+        | Perform a valid request and get paged result (2/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`2`  | HTTP Status 200 with slot search results (page 2)                         |
+        | Perform a valid request and get paged result (3/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`3`  | HTTP Status 200 with slot search results (page 3)                         |
+        | Perform a valid request and get paged result (4/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`4`  | HTTP Status 200 with slot search results (page 4)                         |
+        | Perform an invalid request and get error on page that does not exist (5/4)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`5`  | HTTP Status 400 with slot search error indicating page 5 does not exist   |
+
+      summary: A015 - Retrieve appointment slots
+      operationId: a015-retrieve-appointment-slots
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/ErsXapiCommRuleOrg.yaml'
+        - $ref: 'components/schemas/queryParameters/ServiceId.yaml'
+        - $ref: 'components/schemas/queryParameters/Priority.yaml'
+        - $ref: 'components/schemas/queryParameters/Status.yaml'
+        - $ref: 'components/schemas/queryParameters/PageSize.yaml'
+        - $ref: 'components/schemas/queryParameters/PageNumber.yaml'
+        - $ref: 'components/schemas/queryParameters/NamedClinician.yaml'
+        - $ref: 'components/schemas/queryParameters/Include.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAppointmentSlots/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveAppointmentSlots/ErrorOutcome.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+
 components:
   securitySchemes:
     bearerAuth:

@@ -78,6 +78,7 @@ properties:
        - extension
       properties:
         extension:
+          title: Extension to supply search specific details for a service
           type: array
           items:
             type: object
@@ -118,7 +119,7 @@ properties:
                           type: integer
                           format: int32
                           example: 10
-                    - title: Extension to supply indicative wait time
+                    - title: Extension to supply indicative wait time, only one extension with url value 'indicativeAppointmentWaitTime' will be returned at once
                       type: object
                       required:
                         - url
@@ -133,7 +134,7 @@ properties:
                           type: integer
                           format: int32
                           example: 7
-                    - title: Extension to supply indicative wait time
+                    - title: Extension to supply indicative wait time, only one extension with url value 'indicativeAppointmentWaitTime' will be returned at once
                       type: object
                       required:
                         - url

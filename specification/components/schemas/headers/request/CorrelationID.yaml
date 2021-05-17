@@ -2,7 +2,9 @@ in: header
 name: X-Correlation-Id
 description: | 
   Arbitrary string value provided by API Consumer
-  Tends to be unique, but doesn't have to be
+
+  Tends to be unique, but does not have to be
+
   Returned, unchanged, in the response
 required: false
 schema:

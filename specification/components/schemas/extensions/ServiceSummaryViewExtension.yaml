@@ -223,6 +223,17 @@ properties:
               enum:
                 - location
               example: 'location'
+            valueReference:
+              type: object
+              required:
+                - identifier 
+                - display
+              properties:
+                identifier:
+                  $ref: '../identifiers/Organisation.yaml'
+                display:
+                  type: string
+                  example: 'Cicero-Clinic'
         - title: Referrer Alert
           type: object
           required:

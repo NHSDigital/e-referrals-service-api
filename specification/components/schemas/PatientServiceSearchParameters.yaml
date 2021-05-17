@@ -1,0 +1,44 @@
+title: The parameters used in patient services search
+type: object
+required:
+  - meta
+  - resourceType
+  - parameter
+properties:
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-PatientServiceSearch-Parameters-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-PatientServiceSearch-Parameters-1'
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  parameter:
+    type: array
+    items:
+      anyOf:
+        - $ref: 'parameters/RequestType.yaml'
+        - $ref: 'parameters/SortBy.yaml'
+        - $ref: 'parameters/Patient.yaml'
+        - $ref: 'parameters/ReferringClinician.yaml'
+        - type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - searchCriteria
+              example: 'searchCriteria'
+            resource:
+              $ref: 'SearchCriteriaParameters.yaml'

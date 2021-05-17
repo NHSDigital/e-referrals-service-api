@@ -1,0 +1,194 @@
+title: Service search response
+type: object
+required:
+  - meta
+  - resourceType
+  - status
+  - mode
+  - entry
+properties:
+  meta:
+    type: object
+    required: 
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1'
+  resourceType:
+    type: string
+    enum:
+      - List
+    example: 'List'
+  status:
+    type: string
+    enum:
+      - current
+    example: 'current'
+  mode:
+    type: string
+    enum:
+      - snapshot
+    example: 'snapshot'
+  emptyReason:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+            - display
+          properties:
+            system:
+              type: string
+              enum:
+                - http://hl7.org/fhir/ValueSet/list-empty-reason
+              example: 'http://hl7.org/fhir/ValueSet/list-empty-reason'
+            code:
+              type: string
+              enum:
+                - nilknown
+                - notasked
+                - withheld
+                - unavailable
+                - notstarted
+                - closed
+              example: 'nilknown'
+            display:
+              type: string
+              example: 'no results'
+  entry:
+    type: array
+    items:
+      title: Singular entry with service details
+      type: object
+      required:
+       - item
+       - extension
+      properties:
+        extension:
+          title: Extension to supply search specific details for a service
+          type: array
+          items:
+            type: object
+            required:
+              - extension
+              - url
+            properties:
+              extension:
+                type: array
+                items:
+                  anyOf:
+                    - title: Extension to supply display prominently indicator
+                      type: object
+                      required:
+                        - url
+                        - valueBoolean
+                      properties:
+                        url:
+                          type: string
+                          enum:
+                            - displayProminently
+                          example: 'displayProminently'
+                        valueBoolean:
+                          type: boolean
+                          example: false
+                    - title: Extension to supply distance value
+                      type: object
+                      required:
+                        - url
+                        - valueUnsignedInt
+                      properties:
+                        url:
+                          type: string
+                          enum:
+                            - distance
+                          example: 'distance'
+                        valueUnsignedInt:
+                          type: integer
+                          format: int32
+                          example: 10
+                    - title: Extension to supply indicative wait time, only one extension with url value 'indicativeAppointmentWaitTime' will be returned at once
+                      type: object
+                      required:
+                        - url
+                        - valueUnsignedInt
+                      properties:
+                        url:
+                          type: string
+                          enum:
+                            - indicativeAppointmentWaitTime
+                          example: 'indicativeAppointmentWaitTime'
+                        valueUnsignedInt:
+                          type: integer
+                          format: int32
+                          example: 7
+                    - title: Extension to supply indicative wait time, only one extension with url value 'indicativeAppointmentWaitTime' will be returned at once
+                      type: object
+                      required:
+                        - url
+                        - valueCodeableConcept
+                      properties:
+                        url:
+                          type: string
+                          enum:
+                            - indicativeAppointmentWaitTime
+                          example: 'indicativeAppointmentWaitTime'
+                        valueCodeableConcept:
+                          type: object
+                          required:
+                            - coding
+                          properties:
+                            coding:
+                              type: array
+                              minItems: 1
+                              maxItems: 1
+                              items:
+                                type: object
+                                required:
+                                 - system
+                                 - code 
+                                properties:
+                                  system:
+                                    type: string
+                                    enum:
+                                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1
+                                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-IWT-1'
+                                  code:
+                                    type: string
+                                    enum:
+                                      - LIMITED_AVAILABILITY
+                                      - NOT_APPLICABLE
+                                    example: 'LIMITED_AVAILABILITY'
+                minItems: 2
+                maxItems: 3
+              url:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1
+                example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1'
+        item:
+          type: object
+          required:
+            - extension
+            - identifier
+          properties:
+            extension:
+              type: array
+              items:
+                $ref: 'extensions/ServiceSummaryViewExtension.yaml'
+            identifier:
+              $ref: 'identifiers/ServiceId.yaml'
+
+

@@ -1,0 +1,12 @@
+in: query
+name: _count
+description: |
+  The pageSize is the maximum number of results (i.e. slots) that should be returned by this call. This value must be in the range of 1-100. 100 is the maximum slots available per API call.
+  **Note:** Page contents cannot be guaranteed to be contiguous with no gaps or duplicates since the availability of slots may change between calls to the API.
+required: true
+schema:
+  type: integer
+  minimum: 1
+  maximum: 100
+  format: int32
+  example: 5

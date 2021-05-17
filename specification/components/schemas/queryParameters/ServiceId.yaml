@@ -1,0 +1,8 @@
+in: query
+name: schedule.actor:HealthcareService
+description: |
+  A single service ID is required to indicate the service for which appointment slots are required.
+required: true
+schema:
+  type: string
+  example: '11000'

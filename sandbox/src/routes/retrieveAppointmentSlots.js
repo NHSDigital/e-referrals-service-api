@@ -3,11 +3,11 @@ const businessFunctionValidator = require('../services/businessFunctionValidator
 
 module.exports = [
   /**
-   * Sandbox implementation for createReferralAndSendForTriage endpoint
+   * Sandbox implementation for retrieveAppointmentSlots endpoint
    */
   {
-    method: 'POST',
-    path: '/STU3/v1/ReferralRequest/$ers.createReferralAndSendForTriage',
+    method: 'GET',
+    path: '/STU3/v1/Slot',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
@@ -16,12 +16,15 @@ module.exports = [
         return h.response('SANDBOX_ERROR: This endpoint cannot be accessed using the e-RS Business Function provided. Allowed values: ' + allowedBusinessFunctions).code(403);
       }
 
-      var responsePath = mockResponseProvider.getExampleResponseForCreateReferralAndSendForTriage(request);
-      if (responsePath != null) {
-        return h.file(responsePath, { etagMethod: false }).code(201).type("application/fhir+json").etag("1", { weak: true })
-      } else {
-        return h.file('SandboxErrorOutcome.json').code(422);
+      const { responsePath, responseCode } = mockResponseProvider.getExampleResponseForRetrieveAppointmentSlots(request);
+      if (responsePath !== undefined && responseCode !== undefined) {
+        return h.file(responsePath).code(responseCode).type("application/fhir+json");
+
       }
+
+
+      return h.file('SandboxErrorOutcome.json').code(400);
+
 
     }
   }

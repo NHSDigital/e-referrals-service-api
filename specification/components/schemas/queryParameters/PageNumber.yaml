@@ -1,0 +1,10 @@
+in: query
+name: page
+description: |
+  The number of the page required to be returned, starting at 1.
+required: true
+schema:
+  type: integer
+  minimum: 1
+  format: int32
+  example: 1

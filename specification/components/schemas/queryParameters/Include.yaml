@@ -1,0 +1,8 @@
+in: query
+name: _include
+description: |
+  An optional URL parameter to cause service/clinician information to be returned ('_include=Slot:schedule') is recognised (i.e. causes no error and is understood by e-RS) but e-RS will return a Schedule for each Slot whether this parameter is present or not.
+required: false
+schema:
+  type: string
+  example: 'Slot:schedule'

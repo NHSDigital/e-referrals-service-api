@@ -18,7 +18,7 @@ module.exports = [
 
       var responsePath = mockResponseProvider.getExampleResponseForCreateReferral(request);
       if (responsePath != null) {
-        return h.file(responsePath).code(201)
+        return h.file(responsePath, { etagMethod: false }).code(201).type("application/fhir+json").etag("1", { weak: true })
       }
 
 

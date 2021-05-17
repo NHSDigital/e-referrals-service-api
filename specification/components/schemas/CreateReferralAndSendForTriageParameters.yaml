@@ -46,7 +46,7 @@ properties:
               $ref: 'ShortlistList.yaml'
         - title: | 
             Parameter to supply the intention to add referral letter flag.
-            When sending for triage, a referral letter is always required; therefore the only acceptable value is NEED_TO_ADD_LATER.
+            When sending for triage, a referral letter is always required, therefore the only acceptable value is NEED_TO_ADD_LATER.
           type: object
           required:
             - name

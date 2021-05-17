@@ -70,7 +70,7 @@ properties:
                     - NEED_TO_ADD_LATER
                     - NOT_INTENDING_TO_ADD
                   example: 'NEED_TO_ADD_LATER'
-        - title: Parameter to supply the first reminder follow up days. 
+        - title: Parameter to supply the first reminder follow up days
           type: object
           required:
             - name

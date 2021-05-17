@@ -1,0 +1,9 @@
+in: query
+name: status
+description: |
+  The status of the appointment slots required must be supplied. This must indicate that “free” slots are required.
+required: true
+schema:
+  type: string
+  enum:
+    - free

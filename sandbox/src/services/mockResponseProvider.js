@@ -24,9 +24,9 @@ function mapExampleResponse(request, exampleResponseMap) {
   return null;
 }
 
-function mapExampleGetResponse(parameterValue, exampleResponseMap){
+function mapExampleGetResponse(parameterValue, exampleResponseMap) {
   for (const [requestParameter, responseBodyPath] of Object.entries(exampleResponseMap)) {
-    if (parameterValue === requestParameter){
+    if (parameterValue === requestParameter) {
       return responseBodyPath;
     }
   }
@@ -54,12 +54,17 @@ module.exports = {
 
   getExampleResponseForCreateReferralAndSendForTriage: function (request) {
 
-    var exampleResponseMap = {
-      'src/mocks/createReferralAndSendForTriage/requests/Parameters.json': 'createReferralAndSendForTriage/responses/ReferralRequest.json',
+    var responseMapForRC = {
+      'src/mocks/createReferralAndSendForTriage/requests/Parameters.json': 'createReferralAndSendForTriage/responses/ReferralRequest.json'
+    };
+
+    var responseMapForRCA = {
       'src/mocks/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json': 'createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json',
     };
 
-    return mapExampleResponse(request, exampleResponseMap);
+    const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
+
+    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 
@@ -86,8 +91,44 @@ module.exports = {
 
     return mapExampleGetResponse(request, exampleResponseMap);
 
+  },
+
+  getExampleResponseForRetrieveAppointmentSlots: function (request) {
+
+    const serviceId = request.query['schedule.actor:HealthcareService']
+    const page = request.query['page']
+    const pageSize = request.query['_count']
+    const priority = request.query['appointmentType']
+    const status = request.query['status']
+
+    // paged result mocking
+    if (serviceId === '11000' && priority === 'ROUTINE' && status === 'free') {
+      if (pageSize === '5') {
+        switch (page) {
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+            return { responsePath: 'retrieveAppointmentSlots/responses/Page' + page + 'PageSize5.json', responseCode: 200 }
+          case '5':
+            return { responsePath: 'retrieveAppointmentSlots/responses/ErrorPage5.json', responseCode: 400 }
+        }
+      } else if (pageSize === '10') {
+        switch (page) {
+          case '1':
+          case '2':
+            return { responsePath: 'retrieveAppointmentSlots/responses/Page' + page + 'PageSize10.json', responseCode: 200 }
+        }
+      }
+
+    }
+
+    // empty result mocking
+    if (serviceId === '10000' && page === '1' && pageSize === '10' && priority === 'ROUTINE' && status === 'free') {
+      return { responsePath: 'retrieveAppointmentSlots/responses/NoSlots.json', responseCode: 200 }
+    }
+    return {}
+
+
   }
-
-
-
 }

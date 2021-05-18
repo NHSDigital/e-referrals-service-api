@@ -13,7 +13,7 @@ module.exports = [
       if (responsePath != null) {
         return h.file(responsePath).code(200)
       } else {
-        return h.file('GenericOperationOutcome.json').code(422);
+        return h.file('SandboxErrorOutcome.json').code(422);
       }
 
     }

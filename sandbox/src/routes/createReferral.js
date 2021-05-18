@@ -1,4 +1,5 @@
 const mockResponseProvider = require('../services/mockResponseProvider')
+const businessFunctionValidator = require('../services/businessFunctionValidator')
 
 module.exports = [
   /**
@@ -9,12 +10,20 @@ module.exports = [
     path: '/STU3/v1/ReferralRequest/$ers.createReferral',
     handler: (request, h) => {
 
-      var responsePath = mockResponseProvider.getExampleResponseForCreateReferral(request);
-      if(responsePath != null){
-        return h.file(responsePath).code(201)
-      }else{
-        return h.file('GenericOperationOutcome.json').code(422);
+      const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
+
+      if (!businessFunctionValidator.hasValidBusinessFunction(request, allowedBusinessFunctions)) {
+        return h.response('SANDBOX_ERROR: This endpoint cannot be accessed using the e-RS Business Function provided. Allowed values: ' + allowedBusinessFunctions).code(403);
       }
+
+      var responsePath = mockResponseProvider.getExampleResponseForCreateReferral(request);
+      if (responsePath != null) {
+        return h.file(responsePath).code(201)
+      }
+
+
+      return h.file('SandboxErrorOutcome.json').code(422);
+
 
     }
   }

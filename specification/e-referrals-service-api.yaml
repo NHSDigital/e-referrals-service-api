@@ -196,6 +196,10 @@ paths:
         - [A020: Upload file to the e-RS document store](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a020.html) - This endpoint is used to upload a Referral Letter.
         - [A012: Maintain Referral Letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html) - This endpoint is used to associate a previously uploaded document (such as a Referral Letter) to a specific Referral.
 
+        ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
+        - Referring Clinician (RC)
+        - Referring Clinician Admin (RCA)
+
       summary: A011 Create Referral
       operationId: a011-create-referral
       parameters:
@@ -210,18 +214,18 @@ paths:
             schema:
               $ref: 'components/schemas/CreateReferralParameters.yaml'
             examples:
-              create-referral-parameters-single-service:
-                summary: Example with single service
+              rc-minimum-request-body:
+                summary: Referring Clinician - minimum request body
                 value:
-                  $ref: 'components/examples/createReferral/requests/CreateReferralParameters.json'
-              create-referral-parameters-full-search-criteria:
-                summary: Example with single service and fully populated search criteria
+                  $ref: 'components/examples/createReferral/requests/MinimalRequest.json'
+              rc-request-body-multi-service-shortlist:
+                summary: Referring Clinician - request body using multi-service shortlist
                 value:
-                  $ref: 'components/examples/createReferral/requests/CreateReferralParametersFull.json'
+                  $ref: 'components/examples/createReferral/requests/RequestTwentyServices.json'
               create-referral-parameters-twenty-services:
-                summary: Example with twenty services
+                summary: Referring Clinician Admin - minimum request body
                 value:
-                  $ref: 'components/examples/createReferral/requests/CreateReferralParametersTwentyServices.json'
+                  $ref: 'components/examples/createReferral/requests/MinimalRequestWithReferringClinician.json'
       responses:
         '201':
           $ref: 'components/schemas/responses/createReferral/201Response.yaml'

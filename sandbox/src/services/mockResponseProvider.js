@@ -29,13 +29,18 @@ module.exports = {
 
   getExampleResponseForCreateReferral: function (request) {
 
-    var exampleResponseMap = {
-      'src/mocks/createReferral/requests/CreateReferralParameters.json': 'createReferral/responses/ReferralRequest.json',
-      'src/mocks/createReferral/requests/CreateReferralParametersFull.json': 'createReferral/responses/ReferralRequest.json',
-      'src/mocks/createReferral/requests/CreateReferralParametersTwentyServices.json': 'createReferral/responses/ReferralRequestTwentyServices.json'
+    var responseMapForRC = {
+      'src/mocks/createReferral/requests/MinimalRequest.json': 'createReferral/responses/ReferralRequest.json',
+      'src/mocks/createReferral/requests/RequestTwentyServices.json': 'createReferral/responses/ReferralRequestTwentyServices.json'
     };
 
-    return mapExampleResponse(request, exampleResponseMap);
+    var responseMapForRCA = {
+      'src/mocks/createReferral/requests/MinimalRequestWithReferringClinician.json': 'createReferral/responses/ReferralRequest.json'
+    };
+
+    const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
+
+    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 

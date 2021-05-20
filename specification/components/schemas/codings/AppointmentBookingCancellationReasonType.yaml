@@ -1,24 +1,25 @@
-title: Details the specialty concept coding
+title: Appointment cancellation reason type
+description: This will only be returned for appointment cancellation reason
 type: object
 required:
-- code
-- valueCoding
+  - code
+  - valueCoding
 properties:
-   code:
-      type: string
-      enum:
-         - appointmentBookingCancellationReasonType
-   valueCoding:
-      type: object
-      required:
-         - system
-         - code
-      properties:
-         system:
-            type: string
-            enum:
-               - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1'
-            example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1'
-         code:
-            type: string
-            example: 'PROVIDER_REJECT'
+  code:
+    type: string
+    enum:
+      - appointmentBookingCancellationReasonType
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1'
+      code:
+        type: string
+        example: 'PROVIDER_REJECT'

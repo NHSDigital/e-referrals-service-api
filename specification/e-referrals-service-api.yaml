@@ -344,15 +344,28 @@ paths:
         As a Professional User (having authenticated with e-RS),
         I want to retrieve e-RS Reference Data
         So that I can use the Reference with other endpoints or display Reference Data.
+        
         ## You can use this endpoint to
         - Retrieve a list of Reference Data codes along with their user friendly display values.
+       
         ## After successful retrieval of reference data
         - Codes can be passed to other endpoints (e.g. Specialty/Clinic Type codes can be used to perform service searching and create a referral).
         - Received codes can be displayed in a more descriptive form.
+        
         ## Related endpoints
         - [A010: Patient Service Search](#api-Default-a010PatientServiceSearch) - This endpoint is used to search list of Services for the Patient.
         - [A011: Create Referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a011.html) - This endpoint can be used to create a Referral with a shortlist of bookable services awaiting to be booked by the patient/professional user
         - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
+        
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                | Request                                            | Response                        |
+        | ------------------------------------------------------- | -------------------------------------------------- | ------------------------------- |
+        | Retrieve speciality reference data                      | `codeSystemType`=`SPECIALTY`                       | Specialty details               |
+        | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details             |
+        | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
+        
         ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
         - Referring Clinician (RC)
         - Referring Clinician Admin (RCA)

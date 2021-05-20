@@ -6,10 +6,10 @@
         ]
     },
     "resourceType": "CodeSystem",
-    "url": "https://ers-api:445/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+    "url": "https://api.dev3.ers.ncrs.nhs.uk/ers-api/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
     "name": "e-RS Appointment Cancellation Reason",
     "status": "active",
-    "date": "2021-05-11T07:55:06.506Z",
+    "date": "2020-05-18T12:01:52.919Z",
     "publisher": "e-Referral Service",
     "description": "e-RS Appointment Cancellation Reason",
     "copyright": "Copyright © 2016 HL7 UK",

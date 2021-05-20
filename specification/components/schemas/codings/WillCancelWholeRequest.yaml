@@ -1,3 +1,5 @@
+title: Will cancel whole request value
+description: This will only be returned for appointment cancellation reason
 type: object
 required:
    - code

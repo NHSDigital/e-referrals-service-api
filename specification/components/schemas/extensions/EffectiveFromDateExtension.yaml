@@ -1,0 +1,15 @@
+title: Extension to supply the effective From Date
+description: This will only be returned for specialty
+type: object
+required:
+  - url
+  - valueDate
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1'
+  valueDate:
+    type: string
+    format: date

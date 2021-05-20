@@ -1,4 +1,5 @@
-title: Details the specialty concept coding
+title: Specialty value
+description: This will only be returned for clinic type
 type: object
 required:
 - code

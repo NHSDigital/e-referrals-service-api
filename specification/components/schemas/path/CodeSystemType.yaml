@@ -1,0 +1,12 @@
+name: codeSystemType
+in: path
+description: |
+   The requested code system
+required: true
+schema:
+   type: string
+   enum:
+      - 'SPECIALTY'
+      - 'APPOINTMENT-CANCELLATION-REASON'
+      - 'CLINIC-TYPE'
+   example: 'SPECIALTY'

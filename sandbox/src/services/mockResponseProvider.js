@@ -24,6 +24,14 @@ function mapExampleResponse(request, exampleResponseMap) {
   return null;
 }
 
+function mapExampleGetResponse(parameterValue, exampleResponseMap){
+  for (const [requestParameter, responseBodyPath] of Object.entries(exampleResponseMap)) {
+    if (parameterValue === requestParameter){
+      return responseBodyPath;
+    }
+  }
+}
+
 module.exports = {
 
 
@@ -67,6 +75,18 @@ module.exports = {
     return mapExampleResponse(request, exampleResponseMap);
 
   },
+
+  getExampleResponseForGetCodeSystem: function (request) {
+
+    var exampleResponseMap = {
+      'SPECIALTY': 'getCodeSystem/responses/SpecialtyCodeSystem.json',
+      'CLINIC-TYPE': 'getCodeSystem/responses/ClinicTypeCodeSystem.json',
+      'APPOINTMENT-CANCELLATION-REASON': 'getCodeSystem/responses/AppointmentCancellationReasonCodeSystem.json',
+    };
+
+    return mapExampleGetResponse(request, exampleResponseMap);
+
+  }
 
 
 

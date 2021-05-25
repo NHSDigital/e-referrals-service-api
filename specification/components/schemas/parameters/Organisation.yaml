@@ -22,4 +22,4 @@ properties:
         example: 'https://directory.spineservices.nhs.uk/STU3/Organization'
       value:
         type: string
-        example: 'G7H8J'
+        example: 'R69'

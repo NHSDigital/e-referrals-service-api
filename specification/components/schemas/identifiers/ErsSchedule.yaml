@@ -1,0 +1,13 @@
+type: object
+required:
+  - system
+  - value
+properties:
+  system:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/Id/ers-schedule'
+    example: 'https://fhir.nhs.uk/Id/ers-schedule'
+  value:
+    type: string
+    example: '11000-921600556514'

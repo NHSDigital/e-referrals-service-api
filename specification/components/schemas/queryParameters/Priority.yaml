@@ -1,0 +1,12 @@
+in: query
+name: appointmentType
+description: |
+  The priority of the appointment slots.
+required: true
+schema:
+  type: string
+  enum:
+    - ROUTINE
+    - URGENT
+    - TWO_WEEK_WAIT
+  example: ROUTINE

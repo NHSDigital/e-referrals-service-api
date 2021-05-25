@@ -1,4 +1,4 @@
-description: A referral within e-RS
+description: A referral created within e-RS.
 headers:
   X-Correlation-Id:
     $ref: '../../headers/response/CorrelationID.yaml'

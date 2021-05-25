@@ -1,0 +1,23 @@
+title: Specialty
+description: This will only be returned for clinic types
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - specialty
+    example: 'specialty'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#specialty'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#specialty'
+  type:
+    type: string
+    enum: 
+      - Coding
+    example: 'Coding'

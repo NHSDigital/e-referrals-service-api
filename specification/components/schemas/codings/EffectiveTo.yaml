@@ -1,0 +1,14 @@
+title: Effective to date
+type: object
+required:
+   - code
+   - valueDateTime
+properties:
+   code:
+      type: string
+      enum:
+         - effectiveTo
+   valueDateTime:
+      type: string
+      format: date-time
+   

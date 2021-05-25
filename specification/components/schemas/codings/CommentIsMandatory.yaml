@@ -1,0 +1,13 @@
+title: Comment is mandatory value
+description: This will only be returned for appointment cancellation reason
+type: object
+required:
+   - code
+   - valueBoolean
+properties:
+   code:
+      type: string
+      enum:
+         - commentIsMandatory
+   valueBoolean:
+      type: boolean

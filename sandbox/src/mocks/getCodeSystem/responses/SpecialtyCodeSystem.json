@@ -1,0 +1,65 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "SPECIALTY",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Specialty-CodeSystem-1"
+    ]
+  },
+  "url": "https://api.dev3.ers.ncrs.nhs.uk/ers-api/STU3/v1/CodeSystem/SPECIALTY",
+  "name": "eRS Specialty",
+  "status": "active",
+  "description": "eRS Specialty",
+  "content": "complete",
+  "concept": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+          "valueDate": "2004-06-01"
+        }
+      ],
+      "code": "SURGERY_NOT_OTHERWISE_SPECIFIED",
+      "display": "Surgery - Not Otherwise Specified",
+      "designation": [
+        {
+          "value": "100"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+          "valueDate": "2004-06-01"
+        }
+      ],
+      "code": "UROLOGY",
+      "display": "Urology",
+      "designation": [
+        {
+          "value": "101"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+          "valueDate": "2004-06-01"
+        },
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1",
+          "valueDate": "2008-05-09"
+        }
+      ],
+      "code": "TRANSPLANTATION_SURGERY",
+      "display": "Transplantation Surgery",
+      "designation": [
+        {
+          "value": "102"
+        }
+      ]
+    }
+  ]
+}

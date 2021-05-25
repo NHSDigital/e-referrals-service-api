@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-16'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -331,6 +331,64 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/CodeSystem/{codeSystemType}:
+    parameters:
+      - $ref: 'components/schemas/path/CodeSystemType.yaml'
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
+        
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user.
+        
+        ## Use case
+        As an authenticated e-RS user
+        I need to retrieve e-RS reference data
+        So I can use it with other endpoints or display the reference data in a user-friendly format to my users.
+        
+        ## Related endpoints
+        Reference data may be needed for other endpoints, for example when including Specialty and Clinic Type reference data to:
+        - find services that meet the referral needs of a patient using [A010 - Patient Service Search](#api-Default-a010PatientServiceSearch), and
+        - create a referral using [A011 - Create Referral](#api-Default-a011CreateReferral) or [A021 - Create Referral And Send For Triage](#api-Default-a021CreateReferralRequestAndSendForTriage)
+        
+        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [A005 - Retrieve Referral Request](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a011.html)
+        
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                | Request                                            | Response                        |
+        | ------------------------------------------------------- | -------------------------------------------------- | ------------------------------- |
+        | Retrieve speciality reference data                      | `codeSystemType`=`SPECIALTY`                       | Specialty details               |
+        | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details             |
+        | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
+        
+        ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
+        - REFERRING_CLINICIAN
+        - REFERRING_CLINICIAN_ADMIN
+        - SERVICE_PROVIDER_CLINICIAN
+      summary: A004 - Retrieve reference data
+      operationId: a004-retrieve-reference-data
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/getCodeSystem/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:

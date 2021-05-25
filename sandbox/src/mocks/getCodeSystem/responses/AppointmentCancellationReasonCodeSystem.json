@@ -1,0 +1,171 @@
+{
+    "id": "APPOINTMENT-CANCELLATION-REASON",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "https://api.dev3.ers.ncrs.nhs.uk/ers-api/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+    "name": "e-RS Appointment Cancellation Reason",
+    "status": "active",
+    "date": "2020-05-18T12:01:52.919Z",
+    "publisher": "e-Referral Service",
+    "description": "e-RS Appointment Cancellation Reason",
+    "copyright": "Copyright © 2016 HL7 UK",
+    "content": "complete",
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        },
+        {
+            "code": "appointmentBookingCancellationReasonType",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#appointmentBookingCancellationReasonType",
+            "type": "Coding"
+        },
+        {
+            "code": "willCancelWholeRequest",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#willCancelWholeRequest",
+            "type": "boolean"
+        },
+        {
+            "code": "commentIsMandatory",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory",
+            "type": "boolean"
+        }
+    ],
+    "concept": [
+        {
+            "code": "FURTHER_INFORMATION_REQUIRED",
+            "display": "Further Information Required",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "appointmentBookingCancellationReasonType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+                        "code": "PROVIDER_REJECT"
+                    }
+                },
+                {
+                    "code": "willCancelWholeRequest",
+                    "valueBoolean": false
+                },
+                {
+                    "code": "commentIsMandatory",
+                    "valueBoolean": false
+                }
+            ]
+        },
+        {
+            "code": "OTHER",
+            "display": "Other reason",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "appointmentBookingCancellationReasonType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+                        "code": "PROVIDER_REJECT"
+                    }
+                },
+                {
+                    "code": "willCancelWholeRequest",
+                    "valueBoolean": false
+                },
+                {
+                    "code": "commentIsMandatory",
+                    "valueBoolean": false
+                }
+            ]
+        },
+        {
+            "code": "OUTPATIENT_APPT_NOT_REQUIRED",
+            "display": "Outpatient appointment not required",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "appointmentBookingCancellationReasonType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+                        "code": "PROVIDER_REJECT"
+                    }
+                },
+                {
+                    "code": "willCancelWholeRequest",
+                    "valueBoolean": false
+                },
+                {
+                    "code": "commentIsMandatory",
+                    "valueBoolean": false
+                }
+            ]
+        },
+        {
+            "code": "SERVICE_INAPPROPRIATE",
+            "display": "Inappropriate service",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "appointmentBookingCancellationReasonType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+                        "code": "PROVIDER_REJECT"
+                    }
+                },
+                {
+                    "code": "willCancelWholeRequest",
+                    "valueBoolean": false
+                },
+                {
+                    "code": "commentIsMandatory",
+                    "valueBoolean": false
+                }
+            ]
+        },
+        {
+            "code": "SERVICE_PREREQUISITES_NOT_COMPLETE",
+            "display": "Pre-requisites for service not complete",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "appointmentBookingCancellationReasonType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+                        "code": "PROVIDER_REJECT"
+                    }
+                },
+                {
+                    "code": "willCancelWholeRequest",
+                    "valueBoolean": false
+                },
+                {
+                    "code": "commentIsMandatory",
+                    "valueBoolean": false
+                }
+            ]
+        }
+    ]
+}

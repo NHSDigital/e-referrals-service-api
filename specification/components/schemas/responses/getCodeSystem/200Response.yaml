@@ -1,0 +1,26 @@
+description: e-RS Reference Data
+headers:
+   X-Correlation-Id:
+     $ref: '../../headers/response/CorrelationID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../CodeSystem.yaml'
+    examples:
+      specialty:
+        summary: Specialty Reference Data
+        description: This is example data only and should not be taken as the real reference data. 
+          Specialty data may have 'effectiveTo' dates in the past
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/SpecialtyCodeSystem.json'
+      clinic-type:
+        summary: Clinic Type Reference Data
+        description: This is example data only and should not be taken as the real reference data. 
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/ClinicTypeCodeSystem.json'
+      appointment-cancellation-reason-code:
+        summary: Appointment  Reference Data
+        description: This is example data only and should not be taken as the real reference data. 
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/AppointmentCancellationReasonCodeSystem.json'
+          

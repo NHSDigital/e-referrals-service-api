@@ -18,7 +18,7 @@ module.exports = [
 
       var responsePath = mockResponseProvider.getExampleResponseForGetCodeSystem(request.params.codeSystemType);
       if (responsePath != null) {
-        return h.file(responsePath).code(200);
+        return h.file(responsePath).code(200).type("application/fhir+json");
       } 
         
       return h.response().code(404);

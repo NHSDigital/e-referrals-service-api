@@ -340,22 +340,23 @@ paths:
       security:
         - bearerAuth: []
       description: |
-        ## Use case
-        As a Professional User (having authenticated with e-RS),
-        I want to retrieve e-RS Reference Data
-        So that I can use the Reference with other endpoints or display Reference Data.
+        ## Overview
+        Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
         
-        ## You can use this endpoint to
-        - Retrieve a list of Reference Data codes along with their user friendly display values.
-       
-        ## After successful retrieval of reference data
-        - Codes can be passed to other endpoints (e.g. Specialty/Clinic Type codes can be used to perform service searching and create a referral).
-        - Received codes can be displayed in a more descriptive form.
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user.
+        
+        ## Use case
+        As an authenticated e-RS user
+        I need to retrieve e-RS reference data
+        So I can use it with other endpoints or display the reference data in a user-friendly format to my users.
         
         ## Related endpoints
-        - [A010: Patient Service Search](#api-Default-a010PatientServiceSearch) - This endpoint is used to search list of Services for the Patient.
-        - [A011: Create Referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a011.html) - This endpoint can be used to create a Referral with a shortlist of bookable services awaiting to be booked by the patient/professional user
-        - [A021: Create Referral And Send For Triage](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a021.html) - This endpoint can be used to create a Referral and sent it to a single Referral Assessment Service to asses the Referral.
+        Reference data may be needed for other endpoints, for example when including Specialty and Clinic Type reference data to:
+        - find services that meet the referral needs of a patient using [A010 - Patient Service Search](#api-Default-a010PatientServiceSearch), and
+        - create a referral using [A011 - Create Referral](#api-Default-a011CreateReferral) or [A021 - Create Referral And Send For Triage](#api-Default-a021CreateReferralRequestAndSendForTriage)
+        
+        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [A005 - Retrieve Referral Request](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a011.html)
         
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
@@ -367,10 +368,10 @@ paths:
         | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
         
         ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
-        - Referring Clinician (RC)
-        - Referring Clinician Admin (RCA)
-        - Service Provider Clinician (SPC)
-      summary: A004 Retrieve Reference Data
+        - REFERRING_CLINICIAN
+        - REFERRING_CLINICIAN_ADMIN
+        - SERVICE_PROVIDER_CLINICIAN
+      summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'

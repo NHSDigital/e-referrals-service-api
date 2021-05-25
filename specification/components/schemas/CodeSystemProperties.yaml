@@ -1,0 +1,11 @@
+title: Code System Properties
+type: array
+items:
+  anyOf:
+    - $ref: 'properties/EffectiveFrom.yaml'
+    - $ref: 'properties/EffectiveTo.yaml'
+    - $ref: 'properties/Specialty.yaml'
+    - $ref: 'properties/AppointmentBookingCancellationReasonType.yaml'
+    - $ref: 'properties/WillCancelWholeRequest.yaml'
+    - $ref: 'properties/CommentIsMandatory.yaml'
+    

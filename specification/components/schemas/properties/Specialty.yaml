@@ -1,5 +1,5 @@
 title: Specialty
-description: This will only be returned for clinic types
+description: This will only be returned when codeSystemType = 'CLINIC_TYPE'
 type: object
 required:
   - code

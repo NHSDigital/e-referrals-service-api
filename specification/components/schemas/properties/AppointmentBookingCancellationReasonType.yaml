@@ -1,5 +1,5 @@
 title: Appointment Booking Cancellation Reason Type
-description: This will only be returned for appointment cancellation reasons
+description: This will only be returned when codeSystemType = 'APPOINTMENT_CANCELATION_REASON'
 type: object
 required:
   - code

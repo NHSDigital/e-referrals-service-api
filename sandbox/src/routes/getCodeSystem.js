@@ -13,7 +13,7 @@ module.exports = [
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN"];
       
       if (!businessFunctionValidator.hasValidBusinessFunction(request, allowedBusinessFunctions)) {
-        return h.response('This endpoint cannot be accessed using business role provided').code(403);
+          return h.response('SANDBOX_ERROR: This endpoint cannot be accessed using the e-RS Business Function provided. Allowed values: ' + allowedBusinessFunctions).code(403);
       }
 
       var responsePath = mockResponseProvider.getExampleResponseForGetCodeSystem(request.params.codeSystemType);

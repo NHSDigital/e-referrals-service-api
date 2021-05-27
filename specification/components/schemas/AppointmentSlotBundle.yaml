@@ -211,7 +211,7 @@ properties:
                       identifier:
                         anyOf:
                           - $ref: identifiers/ServiceId.yaml
-                          - $ref: identifiers/UserId.yaml
+                          - $ref: identifiers/STU3_UserId.yaml
             search:
               type: object
               required:

@@ -7,6 +7,7 @@ const createReferralAndSendForTriage = require('./createReferralAndSendForTriage
 const patientServiceSearch = require('./patientServiceSearch')
 const getCodeSystem = require('./getCodeSystem')
 const retrieveAppointmentSlots = require('./retrieveAppointmentSlots')
+const retrieveBusinessFunctions = require('./retrieveBusinessFunctions')
 
 const routes = [].concat(
   postCreateProfessionalSession,
@@ -17,7 +18,8 @@ const routes = [].concat(
   createReferralAndSendForTriage,
   patientServiceSearch,
   getCodeSystem,
-  retrieveAppointmentSlots
+  retrieveAppointmentSlots,
+  retrieveBusinessFunctions
 )
 
 module.exports = routes

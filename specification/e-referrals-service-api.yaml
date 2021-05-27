@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-20'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -398,7 +398,7 @@ paths:
         | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details             |
         | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
         
-        ## This endpoint can be accessed using the following [e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)
+        ## This endpoint can be accessed using the following [[HYPERLINK_ERS_BUS_FUNCTIONS]]
         - REFERRING_CLINICIAN
         - REFERRING_CLINICIAN_ADMIN
         - SERVICE_PROVIDER_CLINICIAN
@@ -496,7 +496,44 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/v1/PractitionerRole:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a list of available e-RS roles (i.e. business functions) at each organisation where the user works.
 
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated user
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve a list of authorised e-RS roles for organisations I work for
+
+        So I can choose the appropriate role and organisation to work under when performing tasks.
+
+        ## Related endpoints
+
+        You can then use the e-RS roles to perform specific tasks using other e-RS endpoints.
+
+      summary: A028 - Retrieve e-RS business functions
+      operationId: a028-retrieve-business-functions
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveBusinessFunctions/200Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

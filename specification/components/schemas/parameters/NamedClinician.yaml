@@ -10,4 +10,4 @@ properties:
       - namedClinician
     example: 'namedClinician'
   valueIdentifier:
-    $ref: '../identifiers/UserId.yaml'
+    $ref: '../identifiers/STU3_UserId.yaml'

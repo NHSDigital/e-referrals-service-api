@@ -21,10 +21,7 @@ properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+          $ref: 'fhir/structures/eRS-ReferralRequest-1.yaml'
       versionId:
         type: string
         example: '3'
@@ -68,9 +65,9 @@ properties:
     nullable: true
     items:
       type: object
-      required: 
+      required:
         - reference
       properties:
         reference:
-          type: string 
+          type: string
           example: '#DocumentReference-70000'

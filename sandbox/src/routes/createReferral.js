@@ -12,8 +12,9 @@ module.exports = [
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
 
-      if (!businessFunctionValidator.hasValidBusinessFunction(request, allowedBusinessFunctions)) {
-        return h.response('SANDBOX_ERROR: This endpoint cannot be accessed using the e-RS Business Function provided. Allowed values: ' + allowedBusinessFunctions).code(403);
+      const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+      if (validationResult) {
+        return validationResult
       }
 
       var responsePath = mockResponseProvider.getExampleResponseForCreateReferral(request);

@@ -1,0 +1,4 @@
+type: string
+enum:
+  - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
+example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'

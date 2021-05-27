@@ -13,10 +13,7 @@ properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-PatientServiceSearch-Parameters-1'
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-PatientServiceSearch-Parameters-1'
+          $ref: 'fhir/structures/eRS-PatientServiceSearch-Parameters-1.yaml'
   resourceType:
     type: string
     enum:

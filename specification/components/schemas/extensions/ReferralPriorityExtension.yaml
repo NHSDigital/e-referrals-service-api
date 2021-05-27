@@ -5,10 +5,7 @@ required:
   - valueCodeableConcept
 properties:
   url:
-    type: string
-    enum:
-      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1'
-    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1'
+    $ref: '../fhir/structures/Extension-eRS-ReferralPriority-1.yaml'
   valueCodeableConcept:
     type: object
     required:
@@ -18,7 +15,7 @@ properties:
         type: array
         items:
           type: object
-          required: 
+          required:
             - system
             - code
           properties:

@@ -5,13 +5,10 @@ required:
   - valueReference
 properties:
   url:
-    type: string
-    enum:
-      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1'
-    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1'
+    $ref: '../fhir/structures/Extension-eRS-ReferralShortlist-1.yaml'
   valueReference:
     type: object
-    required: 
+    required:
       - reference
     properties:
       reference:

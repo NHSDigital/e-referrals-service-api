@@ -11,16 +11,13 @@ properties:
     example: 'Parameters'
   meta:
     type: object
-    required: 
+    required:
       - profile
     properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferralAndSendForTriage-Parameters-1"
-          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferralAndSendForTriage-Parameters-1"
+          $ref: 'fhir/structures/eRS-CreateReferralAndSendForTriage-Parameters-1.yaml'
         minItems: 1
         maxItems: 1
   parameter:
@@ -44,7 +41,7 @@ properties:
               example: 'shortlist'
             resource:
               $ref: 'ShortlistList.yaml'
-        - title: | 
+        - title: |
             Parameter to supply the intention to add referral letter flag.
             When sending for triage, a referral letter is always required, therefore the only acceptable value is NEED_TO_ADD_LATER.
           type: object

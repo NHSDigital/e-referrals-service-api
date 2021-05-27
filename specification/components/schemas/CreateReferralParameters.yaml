@@ -11,16 +11,13 @@ properties:
     example: 'Parameters'
   meta:
     type: object
-    required: 
+    required:
       - profile
     properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
-          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateReferral-Parameters-1"
+          $ref: 'fhir/structures/eRS-CreateReferral-Parameters-1.yaml'
         minItems: 1
         maxItems: 1
   parameter:

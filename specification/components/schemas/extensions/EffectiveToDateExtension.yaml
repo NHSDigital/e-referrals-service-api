@@ -6,10 +6,7 @@ required:
   - valueDate
 properties:
   url:
-    type: string
-    enum:
-      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1'
-    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1'
+    $ref: '../fhir/structures/Extension-eRS-EffectivetoDate-1.yaml'
   valueDate:
     type: string
     format: date

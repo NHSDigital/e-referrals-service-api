@@ -7,16 +7,13 @@ required:
 properties:
   meta:
     type: object
-    required: 
+    required:
       - profile
     properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1'
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1'
+          $ref: 'fhir/structures/eRS-Shortlist-List-1.yaml'
   contained:
     type: array
     items:
@@ -32,7 +29,7 @@ properties:
       title: Singular entry with service details
       type: object
       required:
-       - item
+        - item
       properties:
         item:
           type: object

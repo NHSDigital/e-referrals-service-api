@@ -1,5 +1,5 @@
 title: Will Cancel Whole Request
-description: This will only be returned for appointment cancellation reasons
+description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
 type: object
 required:
   - code

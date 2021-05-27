@@ -9,16 +9,13 @@ required:
 properties:
   meta:
     type: object
-    required: 
+    required:
       - profile
     properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1'
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1'
+          $ref: 'fhir/structures/eRS-FetchServices-List-1.yaml'
   resourceType:
     type: string
     enum:
@@ -74,8 +71,8 @@ properties:
       title: Singular entry with service details
       type: object
       required:
-       - item
-       - extension
+        - item
+        - extension
       properties:
         extension:
           title: Extension to supply search specific details for a service
@@ -157,8 +154,8 @@ properties:
                               items:
                                 type: object
                                 required:
-                                 - system
-                                 - code 
+                                  - system
+                                  - code
                                 properties:
                                   system:
                                     type: string
@@ -174,10 +171,7 @@ properties:
                 minItems: 2
                 maxItems: 3
               url:
-                type: string
-                enum:
-                  - https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1
-                example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-ListItem-1'
+                $ref: 'fhir/structures/Extension-eRS-ServiceSearch-ListItem-1.yaml'
         item:
           type: object
           required:

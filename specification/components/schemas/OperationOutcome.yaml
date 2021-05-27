@@ -15,10 +15,7 @@ properties:
       profile:
         type: array
         items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1'
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1'
+          $ref: 'fhir/structures/eRS-OperationOutcome-1.yaml'
         minItems: 1
         maxItems: 1
   issue:

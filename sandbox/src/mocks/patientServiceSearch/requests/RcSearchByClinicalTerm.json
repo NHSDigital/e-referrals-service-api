@@ -53,20 +53,6 @@
             }
           },
           {
-            "name": "specialty",
-            "valueCoding": {
-              "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
-              "code": "CARDIOLOGY"
-            }
-          },
-          {
-            "name": "clinicType",
-            "valueCoding": {
-              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
-              "code": "LIPID_MANAGEMENT"
-            }
-          },
-          {
             "name": "indicativeAppointmentWaitTimeLimit",
             "valueUnsignedInt": 15
           },
@@ -83,13 +69,6 @@
             "valueCoding": {
               "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
               "code": "ALL_AVAILABLE_FOR_BOOKING"
-            }
-          },
-          {
-            "name": "namedClinician",
-            "valueIdentifier": {
-              "system": "http://fhir.nhs.net/Id/sds-user-id",
-              "value": "021600556514"
             }
           },
           {

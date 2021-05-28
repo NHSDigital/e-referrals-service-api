@@ -11,24 +11,28 @@ content:
     schema:
       $ref: '../../AppointmentSlotBundle.yaml'
     examples:
-      empty-result:
-        summary: Response body with no slots
+      minimum:
+        summary: Minimum slot search
+        value:
+          $ref: '../../../examples/retrieveAppointmentSlots/responses/Minimum.json'
+      empty:
+        summary: Empty slot search response
         value:
           $ref: '../../../examples/retrieveAppointmentSlots/responses/NoSlots.json'
-      complet-example:
-        summary: Complete response body inluding slots and schedule
-        value:
-          $ref: '../../../examples/retrieveAppointmentSlots/responses/Page1PageSize10.json'
-      page1of4:
-        summary: Response body page 1 of 4
+      page1of2:
+        summary: Multipage slot search (page 1)
         value:
           $ref: '../../../examples/retrieveAppointmentSlots/responses/Page1PageSize5.json'
-      page2of4:
-        summary: Response body page 2 of 4
+      page2of2:
+        summary: Multipage slot search (page 2)
         value:
           $ref: '../../../examples/retrieveAppointmentSlots/responses/Page2PageSize5.json'
-      page4of4:
-        summary: Response body page 4 of 4
+      multi-schedule:
+        summary: Multi schedule response
         value:
-          $ref: '../../../examples/retrieveAppointmentSlots/responses/Page4PageSize5.json'
+          $ref: '../../../examples/retrieveAppointmentSlots/responses/Page1With2Schedules.json'
+      slot-clinician-search:
+        summary: Slot clinician search
+        value:
+          $ref: '../../../examples/retrieveAppointmentSlots/responses/SlotClinicianSearch.json'
 

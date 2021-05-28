@@ -8,7 +8,7 @@
   },
   "resourceType": "Bundle",
   "type": "searchset",
-  "total": 20,
+  "total": 12,
   "link": [
     {
       "relation": "self",
@@ -25,9 +25,9 @@
   ],
   "entry": [
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000007",
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000006",
       "resource": {
-        "id": "11000007",
+        "id": "11000006",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
@@ -52,9 +52,9 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000008",
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000007",
       "resource": {
-        "id": "11000008",
+        "id": "11000007",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
@@ -79,9 +79,9 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000009",
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000008",
       "resource": {
-        "id": "11000009",
+        "id": "11000008",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
@@ -106,9 +106,9 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000010",
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000009",
       "resource": {
-        "id": "11000010",
+        "id": "11000009",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
@@ -133,9 +133,9 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000011",
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000010",
       "resource": {
-        "id": "11000011",
+        "id": "11000010",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
@@ -180,12 +180,6 @@
             "identifier": {
               "system": "http://fhir.nhs.net/Id/ers-service",
               "value": "11000"
-            }
-          },
-          {
-            "identifier": {
-              "system": "http://fhir.nhs.net/Id/sds-user-id",
-              "value": "921600556514"
             }
           }
         ]

@@ -1,0 +1,4 @@
+type: string
+enum:
+  - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1'
+example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1'

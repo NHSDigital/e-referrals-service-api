@@ -71,13 +71,19 @@ module.exports = {
 
   getExampleResponseForPatientServiceSearch: function (request) {
 
-    var exampleResponseMap = {
-      'src/mocks/patientServiceSearch/requests/ParametersReturningSingleService.json': 'patientServiceSearch/responses/FetchServiceListWithSingleService.json',
-      'src/mocks/patientServiceSearch/requests/ParametersReturningMultipleServices.json': 'patientServiceSearch/responses/FetchServiceListWithMultipleServices.json',
-      'src/mocks/patientServiceSearch/requests/ParametersFullyPopulated.json': 'patientServiceSearch/responses/EmptyResponse.json'
+    var responseMapForRC = {
+      'src/mocks/patientServiceSearch/requests/RcMinimal.json': 'patientServiceSearch/responses/FetchServiceListWithMultipleServices.json',
+      'src/mocks/patientServiceSearch/requests/RcSearchByClinicalTerm.json': 'patientServiceSearch/responses/EmptyResponse.json',
+      'src/mocks/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'patientServiceSearch/responses/FetchServiceListWithSingleService.json'
     };
 
-    return mapExampleResponse(request, exampleResponseMap);
+    var responseMapForRCA = {
+      'src/mocks/patientServiceSearch/requests/RcaWithIWT.json': 'patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+    };
+
+    const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
+
+    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 
@@ -96,37 +102,49 @@ module.exports = {
   getExampleResponseForRetrieveAppointmentSlots: function (request) {
 
     const serviceId = request.query['schedule.actor:HealthcareService']
+    const clinicianId = request.query['schedule.actor:Practitioner']
     const page = request.query['page']
     const pageSize = request.query['_count']
     const priority = request.query['appointmentType']
     const status = request.query['status']
 
-    // paged result mocking
+    // Scenario 1 Minimum slot search
+    if (serviceId === '12000' && priority === 'ROUTINE' && status === 'free' && pageSize === '20' && page == 1) {
+
+      return { responsePath: 'retrieveAppointmentSlots/responses/Minimum.json', responseCode: 200 }
+    }
+
+    // Scenario 2 Empty slot search response
+    if (serviceId === '10000' && priority === 'ROUTINE' && status === 'free' && pageSize === '20' && page == 1) {
+
+      return { responsePath: 'retrieveAppointmentSlots/responses/NoSlots.json', responseCode: 200 }
+    }
+    // Scenario 3, 4
+    // Multipage slot search (page 1)
+    // Multipage slot search (page 2)
     if (serviceId === '11000' && priority === 'ROUTINE' && status === 'free') {
       if (pageSize === '5') {
         switch (page) {
           case '1':
           case '2':
-          case '3':
-          case '4':
             return { responsePath: 'retrieveAppointmentSlots/responses/Page' + page + 'PageSize5.json', responseCode: 200 }
           case '5':
             return { responsePath: 'retrieveAppointmentSlots/responses/ErrorPage5.json', responseCode: 400 }
-        }
-      } else if (pageSize === '10') {
-        switch (page) {
-          case '1':
-          case '2':
-            return { responsePath: 'retrieveAppointmentSlots/responses/Page' + page + 'PageSize10.json', responseCode: 200 }
         }
       }
 
     }
 
-    // empty result mocking
-    if (serviceId === '10000' && page === '1' && pageSize === '10' && priority === 'ROUTINE' && status === 'free') {
-      return { responsePath: 'retrieveAppointmentSlots/responses/NoSlots.json', responseCode: 200 }
+    // Scenario 5 Multi schedule response
+    if (serviceId === '13000' && priority === 'ROUTINE' && status === 'free' && pageSize === '5' && page == 1) {
+      return { responsePath: 'retrieveAppointmentSlots/responses/Page1With2Schedules.json', responseCode: 200 }
     }
+
+    // Scenario 6 Slot clinician search
+    if (clinicianId === '921600556514' && serviceId === '14000' && priority === 'ROUTINE' && status === 'free' && pageSize === '5' && page == 1) {
+      return { responsePath: 'retrieveAppointmentSlots/responses/SlotClinicianSearch.json', responseCode: 200 }
+    }
+
     return {}
 
 

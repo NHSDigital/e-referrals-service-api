@@ -6,8 +6,8 @@ const routes = require('./routes')
 
 const mirrorCorrelationIDs = function (request, response) {
 
-  if (request.headers["x-correlation-id"]) {
-      response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
+  if (request.headers["x-correlation-id"] && response.headers !== undefined) {
+    response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
   }
 }
 
@@ -35,10 +35,10 @@ const init = async () => {
     method: '*',
     path: '/{any*}',
     handler: function (request, h) {
-        const errorResponse = {
-          error: 'File not found'
-        }
-        return h.response(errorResponse).code(404);
+      const errorResponse = {
+        error: 'File not found'
+      }
+      return h.response(errorResponse).code(404);
     }
   });
 

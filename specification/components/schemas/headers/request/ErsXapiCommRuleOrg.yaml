@@ -2,7 +2,7 @@ in: header
 name: X-ERS-XAPI-COMM-RULE-ORG
 description: | 
   To retrieve accurate slot information for a specific ReferralRequest the code from the ReferralRequest's 'Extension-eRS-Commissioning-Rule-Org-1' field should be passed to the slot search in this field otherwise slots which are, in fact, unbookable for that ReferralRequest may be returned
-required: false
+required: true
 schema:
   type: string
   example: 'R68'

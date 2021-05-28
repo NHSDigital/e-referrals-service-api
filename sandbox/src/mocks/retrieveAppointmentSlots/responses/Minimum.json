@@ -1,0 +1,130 @@
+{
+  "id": "1773b120-6aa5-407d-a8a9-92ff13f4e6d4",
+  "meta": {
+    "lastUpdated": "2021-05-20T08:25:35.407Z",
+    "profile": [
+      "http://hl7.org/fhir/STU3/StructureDefinition/Bundle"
+    ]
+  },
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 3,
+  "link": [
+    {
+      "relation": "self",
+      "url": "_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=12000&appointmentType=ROUTINE&_count=20&status=free&_include=Slot%3Aschedule&page=1"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/12000001",
+      "resource": {
+        "id": "12000001",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
+          ]
+        },
+        "resourceType": "Slot",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/alternative-slot",
+            "value": "USRN-12000001"
+          }
+        ],
+        "schedule": {
+          "reference": "Schedule/12000-921600556514"
+        },
+        "status": "free",
+        "start": "2021-05-22T08:25:32.562Z",
+        "end": "2021-05-22T09:25:32.562Z"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/12000003",
+      "resource": {
+        "id": "12000003",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
+          ]
+        },
+        "resourceType": "Slot",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/alternative-slot",
+            "value": "USRN-12000003"
+          }
+        ],
+        "schedule": {
+          "reference": "Schedule/12000-921600556514"
+        },
+        "status": "free",
+        "start": "2021-05-22T10:25:32.562Z",
+        "end": "2021-05-22T11:25:32.562Z"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "_baseUrl_/STU3/v1/Slot/12000004",
+      "resource": {
+        "id": "12000004",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"
+          ]
+        },
+        "resourceType": "Slot",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/alternative-slot",
+            "value": "USRN-12000004"
+          }
+        ],
+        "schedule": {
+          "reference": "Schedule/12000-921600556514"
+        },
+        "status": "free",
+        "start": "2021-05-22T11:25:32.562Z",
+        "end": "2021-05-22T12:25:32.562Z"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "_baseUrl_/STU3/v1/Schedule/12000-921600556514",
+      "resource": {
+        "id": "12000-921600556514",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Schedule-1"
+          ]
+        },
+        "resourceType": "Schedule",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/ers-schedule",
+            "value": "12000-921600556514"
+          }
+        ],
+        "actor": [
+          {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12000"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

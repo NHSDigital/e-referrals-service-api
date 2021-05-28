@@ -6,3 +6,9 @@ content:
   application/fhir+json:
     schema:
       $ref: '../../ReferralRequest.yaml'
+    examples:
+      unbooked:
+        summary: Unbooked Referral Request
+        description: A minimal response
+        value:
+          $ref: '../../../examples/getReferralRequest/responses/Unbooked.json'

@@ -1,0 +1,80 @@
+{
+  "id": "000000070000",
+  "meta": {
+    "versionId": "3",
+    "profile": [
+      "http://fhir.nhs.uk/StructureDefinition/ers-referralrequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "contained": [
+    {
+      "id": "Patient-9912003888",
+      "meta": {
+        "profile": [
+          "http://fhir.nhs.uk/StructureDefinition/ers-patient-1"
+        ]
+      },
+      "resourceType": "Patient",
+      "identifier": [
+        {
+          "system": "http://fhir.nhs.uk/Id/nhs-number",
+          "value": "9912003888"
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-70002",
+      "meta": {
+        "profile": [
+          "http://fhir.nhs.uk/StructureDefinition/ers-documentreference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "http://fhir.nhs.uk/ValueSet/ers-attachmenttype-1",
+            "code": "REFERRER"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "ignoreDate",
+      "description": "",
+      "content": [
+        {
+          "attachment": {
+            "id": "70002",
+            "extension": [
+              {
+                "url": "http://fhir.nhs.uk/StructureDefinition/extension-ers-attachedby-1",
+                "valueReference": {
+                  "reference": "#Practitioner-021600556514"
+                }
+              }
+            ],
+            "contentType": "text/plain",
+            "url": "Binary/att-70000-70002",
+            "size": 4,
+            "title": "referral_letter.txt",
+            "creation": "ignoreDate"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "priority": {
+    "coding": [
+      {
+        "system": "http://fhir.nhs.uk/ValueSet/ers-priority-1",
+        "code": "ROUTINE"
+      }
+    ]
+  },
+  "patient": {
+    "reference": "#Patient-9912003888"
+  },
+  "supportingInformation": []
+}

@@ -1,0 +1,8 @@
+description: e-RS Referral Request
+headers:
+  X-Correlation-Id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../ReferralRequest.yaml'

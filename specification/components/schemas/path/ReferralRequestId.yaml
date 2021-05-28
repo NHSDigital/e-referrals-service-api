@@ -1,0 +1,8 @@
+name: referralRequestId
+in: path
+description: |
+  Identifies the referral request whose details are to be retrieved
+required: true
+schema:
+  type: string
+  example: '000234620023'

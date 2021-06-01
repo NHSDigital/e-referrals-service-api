@@ -130,5 +130,11 @@ module.exports = {
     return {}
 
 
+  },
+
+  getExampleResponseForRetrieveBusinessFunctions: function () {
+
+    return { responsePath: 'retrieveBusinessFunctions/responses/PractitionerRoleBundle.json', responseCode: 200 }
   }
+
 }

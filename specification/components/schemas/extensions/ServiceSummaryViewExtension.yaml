@@ -227,7 +227,7 @@ properties:
                 - display
               properties:
                 identifier:
-                  $ref: '../identifiers/Organisation.yaml'
+                  $ref: '../identifiers/STU3_Organisation.yaml'
                 display:
                   type: string
                   example: 'Cicero-Clinic'

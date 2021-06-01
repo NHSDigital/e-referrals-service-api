@@ -53,6 +53,20 @@
             }
           },
           {
+            "name": "specialty",
+            "valueCoding": {
+              "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+              "code": "CARDIOLOGY"
+            }
+          },
+          {
+            "name": "clinicType",
+            "valueCoding": {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+              "code": "LIPID_MANAGEMENT"
+            }
+          },
+          {
             "name": "commissioningProvisioning",
             "valueCoding": {
               "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
@@ -60,18 +74,8 @@
             }
           },
           {
-            "name": "clinicalTerm",
-            "valueCoding": {
-              "system": "http://snomed.info/sct",
-              "code": "1003"
-            }
-          },
-          {
-            "name": "organisation",
-            "valueIdentifier": {
-              "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
-              "value": "R69"
-            }
+            "name": "indicativeAppointmentWaitTimeLimit",
+            "valueUnsignedInt": 15
           },
           {
             "name": "ageAndGenderAppropriate",

@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-20'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -339,18 +339,22 @@ paths:
             schema:
               $ref: 'components/schemas/PatientServiceSearchParameters.yaml'
             examples:
-              parameters:
-                summary: Request returning single service
+              rc-minimal:
+                summary: Referring Clinician minimal search
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/ParametersReturningSingleService.json'
-              parameters-with-multiple-services-returned:
-                summary: Request returning multiple services
+                  $ref: 'components/examples/patientServiceSearch/requests/RcMinimal.json'
+              rc-search-by-clinical-term:
+                summary: Referring Clinician search by clinical term
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/ParametersReturningMultipleServices.json'
-              parameters-fully-populated:
-                summary: Fully populated request
+                  $ref: 'components/examples/patientServiceSearch/requests/RcSearchByClinicalTerm.json'
+              rc-search-by-named-clinician:
+                summary: Referring Clinician search by named clinician
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/ParametersFullyPopulated.json'
+                  $ref: 'components/examples/patientServiceSearch/requests/RcSearchByNamedClinician.json'
+              rca-with-iwt:
+                summary: Referring Clinician Admin search
+                value:
+                  $ref: 'components/examples/patientServiceSearch/requests/RcaWithIWT.json'
       responses:
         '200':
           $ref: 'components/schemas/responses/patientServiceSearch/200Response.yaml'
@@ -439,12 +443,12 @@ paths:
 
         As an authenticated e-RS user
 
-        I want to retrieve a list of available appointment slots for a service
+        I need to retrieve a list of available appointment slots for a service
 
         So that I can offer them to the patient for booking.
 
-        ## Additional notes
-        For services on the primary care menu, to get accurate indication of available appointment slots, the `commissioning rule organisation` that is returned in the response when retrieving a referral should be passed in the `X-ERS-XAPI-COMM-RULE-ORG` header field.
+        ## Important note
+        You need to provide the 'commissioning rule organisation' when calling A015 - Retrieve appointment slots to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
         
         ## Related endpoints
 
@@ -459,16 +463,15 @@ paths:
 
         You can test the following scenarios in our sandbox environment:
 
-        | Scenario                                                                           | Request Query Parameters                                                                                            | Response                                                                  |
-        | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-        | Perform a valid request and get result with no slots                               | `schedule.actor:HealthcareService`=`10000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`1` | HTTP Status 200 with empty slot search results                            |
-        | Perform a valid request and get paged result (1/2)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`1` | HTTP Status 200 with slot search results (page 1)                         |
-        | Perform a valid request and get paged result (2/2)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`10`, `status`=`free`, `page`=`2` | HTTP Status 200 with slot search results (page 2)                         |
-        | Perform a valid request and get paged result (1/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | HTTP Status 200 with slot search results (page 1)                         |
-        | Perform a valid request and get paged result (2/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`2`  | HTTP Status 200 with slot search results (page 2)                         |
-        | Perform a valid request and get paged result (3/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`3`  | HTTP Status 200 with slot search results (page 3)                         |
-        | Perform a valid request and get paged result (4/4)                                 | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`4`  | HTTP Status 200 with slot search results (page 4)                         |
-        | Perform an invalid request and get error on page that does not exist (5/4)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`5`  | HTTP Status 400 with slot search error indicating page 5 does not exist   |
+        | Scenario                               | Request Query Parameters                                                                                                                                          | Response                                                                |
+        | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+        | Minimum slot search                    | `schedule.actor:HealthcareService`=`12000`, `appointmentType`=`ROUTINE`, `_count`=`20`, `status`=`free`, `page`=`1`                                               | Illustrates minimum usage/parameters with concise, minimal response.    |
+        | Empty slot search response             | `schedule.actor:HealthcareService`=`10000`, `appointmentType`=`ROUTINE`, `_count`=`20`, `status`=`free`, `page`=`1`                                               | Illustrates how a 'no slots' response appears.                          |
+        | Multipage slot search (page 1)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates first page of multi-page response.                          |
+        | Multipage slot search (page 2)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`2`                                                | Illustrates second page of multi-page response.                         |
+        | Multipage slot search (invalid page 5) | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`5`                                                | Illustrates error when page is outside of valid range.                  |
+        | Multi schedule response                | `schedule.actor:HealthcareService`=`13000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates response when there is >1 Schedule: one Schedule is for slots with no associated clinician and the other does have an associated clinician. |
+        | Slot clinician search                  | `schedule.actor:HealthcareService`=`14000`, `schedule.actor:Practitioner`=`921600556514`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | Illustrates search for clinician-specific slots                         |
 
       summary: A015 - Retrieve appointment slots
       operationId: a015-retrieve-appointment-slots

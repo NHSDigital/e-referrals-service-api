@@ -315,7 +315,6 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         ## Use case
 

@@ -1,0 +1,6 @@
+description: | 
+  The e-RS file location of the just uploaded file
+required: true
+schema:
+  type: string
+  example: 'Binary/att-70000-70000'

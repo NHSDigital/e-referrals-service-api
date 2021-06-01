@@ -1,0 +1,8 @@
+in: header
+name: X-ERS-XAPI-META-INTENDED_UBRN
+description: | 
+  The UBRN for the referral which the documents are intended for
+required: true
+schema:
+  type: string
+  example: '000000070000'

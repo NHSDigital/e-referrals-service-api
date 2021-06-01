@@ -12,7 +12,6 @@ const mirrorCorrelationIDs = function (request, response) {
 }
 
 const preResponse = function (request, h) {
-
   mirrorCorrelationIDs(request, request.response)
   return h.continue
 }

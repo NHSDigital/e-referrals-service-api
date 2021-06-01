@@ -537,9 +537,133 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/Binary:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        
+        Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
+
+        | File type          | File extension(s)           |
+        | ------------------ | --------------------------- |
+        | Plain Text         | `.txt`                      |
+        | HTML Text          | `.html,` `.htm`             |
+        | PDF                | `.pdf`                      |
+        | XML Text           | `.xml`                      |
+        | RTF Text           | `.rtf`, `.rtx`              |
+        | Basic Audio        | `.au`                       |
+        | MPEG audio layer 3 | `.mp3`                      |
+        | PNG Image          | `.png`                      | 
+        | GIF Image          | `.gif`                      |
+        | JPEG Image         | `.jpg,` `.jpe`, `.jpeg`     |
+        | TIFF Image         | `.tif`, `.tiff`             |
+        | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     |
+        | MSWORD             | `.doc`, `.docx`             |
+
+        Currently, the maximum file size supported by e-RS is 5MB.
+
+        ## Use case
+
+        As an authenticated e-RS user
+
+        I need to upload a referral letter or other clinical information file to e-RS
+
+        So that I can associate the file with an existing referral.
+
+        ## Important notes:
+
+        This endpoint **only** performs the file upload. The uploaded file is **not** associated with a referral until the file has been associated with a referral, for example using [[HYPERLINK_A012]].
+        
+        The resulting URL within e-RS for the uploaded file is returned in the 'Location' header of the response.
+
+        ## Related endpoints
+
+        You can associate the uploaded file with a specific referral using [[HYPERLINK_A012]].
+
+      summary: A020 - Upload file to document store
+      operationId: a020-Upload-file-to-document-store
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/ErsXapiMetaFilename.yaml'
+        - $ref: 'components/schemas/headers/request/ErsXapiMetaIntendedUbrn.yaml'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+            example: 'This is some example text.'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          application/pdf:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          text/rtf:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          audio/basic:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          audio/mpeg:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          image/png:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          image/gif:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          image/jpeg:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          image/tiff:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          video/mpeg:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          application/msword:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+          application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+            schema:
+              $ref: '#/components/schemas/StringBinarySchema'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/uploadFileToDocumentStore/201Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    StringBinarySchema:
+      type: string
+      format: binary
+     

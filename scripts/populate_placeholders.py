@@ -11,7 +11,7 @@ import sys
 def main():
     """Main entrypoint"""
     substitutes_dict = {
-      "[[HYPERLINK_A005]]": "[A005 - Retrieve referral request](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a005.html)",
+      "[[HYPERLINK_A005]]": "[A005 - Retrieve referral request](#api-Default-a005-retrieve-referral-request)",
       "[[HYPERLINK_A006]]": "[A006 - Retrieve attachment](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a006.html)",
       "[[HYPERLINK_A007]]": "[A007 - Retrieve clinical information](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a007.html)",
       "[[HYPERLINK_A010]]": "[A010 - Patient service search](#api-Default-a010-patient-service-search)",

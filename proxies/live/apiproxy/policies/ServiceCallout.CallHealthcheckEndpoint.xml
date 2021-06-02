@@ -7,9 +7,6 @@
     </Request>
     <Response>healthcheckResponse</Response>
     <HTTPTargetConnection>
-        <SSLInfo>
-            <Enabled>true</Enabled>
-        </SSLInfo>
         <URL>http://mocktarget.apigee.net</URL>
     </HTTPTargetConnection>
     <Timeout>20000</Timeout>

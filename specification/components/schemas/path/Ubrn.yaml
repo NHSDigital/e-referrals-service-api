@@ -1,0 +1,8 @@
+name: ubrn
+in: path
+description: |
+   The unique booking reference number of the referral request
+required: true
+schema:
+   type: string
+   example: '000000070000'

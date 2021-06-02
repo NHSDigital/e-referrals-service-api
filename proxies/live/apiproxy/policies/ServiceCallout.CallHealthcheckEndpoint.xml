@@ -7,13 +7,7 @@
     </Request>
     <Response>healthcheckResponse</Response>
     <HTTPTargetConnection>
-        <SSLInfo>
-            <Enabled>true</Enabled>
-        </SSLInfo>
-        <LoadBalancer>
-            <Server name="ig3"/>
-        </LoadBalancer>
-        <Path>/healthcheck</Path>
+        <URL>http://mocktarget.apigee.net</URL>
     </HTTPTargetConnection>
     <Timeout>20000</Timeout>
 </ServiceCallout>

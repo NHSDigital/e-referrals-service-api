@@ -36,7 +36,22 @@ extends:
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
-      - environment: internal-dev
-        make_spec_visible: true
-      - environment: internal-dev-sandbox
-        proxy_path: sandbox
+      - stage_name: ers_alpha
+        environment: internal-dev
+        service_name: ${{ variables.service_name }}-alpha
+        short_service_name: ${{ variables.short_service_name }}-alpha
+        service_base_path: ${{ variables.service_base_path }}-alpha
+      - stage_name: ers_rc
+        environment: internal-dev
+        service_name: ${{ variables.service_name }}-rc
+        short_service_name: ${{ variables.short_service_name }}-rc
+        service_base_path: ${{ variables.service_base_path }}-rc
+        depends_on:
+        - ers_alpha
+      - stage_name: ers_sa
+        environment: internal-qa
+        service_name: ${{ variables.service_name }}-sa
+        short_service_name: ${{ variables.short_service_name }}-sa
+        service_base_path: ${{ variables.service_base_path }}-sa
+        depends_on:
+        - ers_rc

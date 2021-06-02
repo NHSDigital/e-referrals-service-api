@@ -153,6 +153,12 @@ module.exports = {
   getExampleResponseForRetrieveBusinessFunctions: function () {
 
     return { responsePath: 'retrieveBusinessFunctions/responses/PractitionerRoleBundle.json', responseCode: 200 }
+  },
+
+
+  getExampleResponseForGeneratePatientLetter: function () {
+
+    return { responsePath: 'generatePatientLetter/responses/000000070000_Appointment_Confirmation_Summary_20210603121353.pdf', filename: '000000070000_Appointment_Confirmation_Summary_20210603121353.pdf', responseCode: 200 }
   }
 
 }

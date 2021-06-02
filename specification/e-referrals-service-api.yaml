@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-32'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -654,6 +654,51 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        
+        Use this endpoint to download a PDF format letter for the patient summarising the current state of their referral and any steps the patient may need to follow.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
+
+        ## Use case
+
+        As an authenticated e-RS user
+
+        I need to generate the patient letter including up-to-date details about their referral and any steps the patient may need to follow
+
+        So that I can pass it to the patient.
+
+      summary: A019 - Generate patient letter
+      operationId: a019-Generate-patient-letter
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/generatePatientLetter/200Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/generatePatientLetter/422Response.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:

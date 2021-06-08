@@ -159,6 +159,14 @@ module.exports = {
   getExampleResponseForGeneratePatientLetter: function () {
 
     return { responsePath: 'generatePatientLetter/responses/000000070000_Appointment_Confirmation_Summary_20210603121353.pdf', filename: '000000070000_Appointment_Confirmation_Summary_20210603121353.pdf', responseCode: 200 }
+  },
+
+  getExampleResponseForRetrieveAttachment: function (request) {
+
+    if (request.params.attachmentLogicalID && request.params.attachmentLogicalID.startsWith('att-')) {
+      return { responsePath: 'retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+    }
+
   }
 
 }

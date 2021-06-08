@@ -1,0 +1,9 @@
+in: path
+name: attachmentLogicalID
+description: | 
+  Reference to attachment as provided in the output from [[HYPERLINK_A005]]
+
+required: true
+schema:
+  type: string
+  example: 'att-70000-70001'

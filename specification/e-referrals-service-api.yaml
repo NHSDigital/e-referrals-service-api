@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-32'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-33'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -169,6 +169,8 @@ paths:
       description: |
         ## Overview
         Use this endpoint to create a referral by choosing a shortlist of bookable services.
+
+        Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A021]].
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -602,49 +604,7 @@ paths:
       requestBody:
         required: true
         content:
-          text/plain:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-            example: 'This is some example text.'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          application/pdf:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          text/rtf:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          audio/basic:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          audio/mpeg:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          image/png:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          image/gif:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          image/jpeg:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          image/tiff:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          video/mpeg:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          application/msword:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
-          application/vnd.openxmlformats-officedocument.wordprocessingml.document:
-            schema:
-              $ref: '#/components/schemas/StringBinarySchema'
+          $ref: 'components/schemas/file/FileContentTypeSchema.yaml'
       responses:
         '201':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/201Response.yaml'
@@ -701,14 +661,77 @@ paths:
           $ref: 'components/schemas/responses/generatePatientLetter/422Response.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/Binary/{attachmentLogicalID}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a file that is attached to a referral or advice request.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to have retrieved the referral via [[HYPERLINK_A005]] to obtain the URLs for its attachments.
+
+        ## Important note
+
+        A referral pathway in e-RS can be made up of more than one UBRN. 
+        For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
+        and the service decides to onward refer to a more specialist knee miniscus service (UBRN #2). 
+        This would result in two UBRNs for the referral pathway in this example (but there could be more related UBRNs if onward referred multiple times).
+
+        As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. 
+        You can do this using the following endpoints:
+
+          - [[HYPERLINK_A007]]
+          - A006 - Retrieve Attachment
+
+        Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
+        
+        ## Use case
+
+        As an authenticated e-RS user
+
+        I need to retrieve a clinical attachment associated with a referral
+
+        So that I can assess its content and decide what further action may be needed.
+
+        ## Related endpoints
+        
+        You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
+
+      summary: A006 - Retrieve attachment
+      operationId: a006-retrieve-attachment
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/AttachmentLogicalID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAttachment/200Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAttachment/422Response.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-  schemas:
-    StringBinarySchema:
-      type: string
-      format: binary
      

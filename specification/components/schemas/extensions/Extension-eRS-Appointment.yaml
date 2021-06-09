@@ -1,0 +1,20 @@
+title: Extension-eRS-Appointment
+description: Extension to supply the appointment for a ReferralRequest within e-RS
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1'
+  valueReference:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#appointment'

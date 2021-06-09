@@ -1,4 +1,5 @@
-title: |
+title: RequestType
+description: |
   The type of request in e-RS which this service search is aimed at creating or updating. 
   The options are appointment request (i.e. referral) or advice and guidance request. 
   Services may support one or the other or both and will be filtered accordingly.

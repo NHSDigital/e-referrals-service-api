@@ -1,4 +1,5 @@
-title: Parameter to supply a referring clinician
+title: ReferringClinician
+description: Parameter to supply a referring clinician
 type: object
 required:
   - name

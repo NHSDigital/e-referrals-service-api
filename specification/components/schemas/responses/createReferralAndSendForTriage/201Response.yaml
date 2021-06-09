@@ -7,7 +7,7 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../../ReferralRequest.yaml'
+      $ref: '../../eRS-ReferralRequest.yaml'
     examples:
       referral-request-with-appointment:
         summary: Basic example

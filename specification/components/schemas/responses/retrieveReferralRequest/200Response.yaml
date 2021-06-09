@@ -1,0 +1,35 @@
+description: e-RS Referral Request
+headers:
+  X-Correlation-Id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-ReferralRequest.yaml'
+    examples:
+      unbooked:
+        summary: Unbooked `ReferralRequest`
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/Unbooked.json'
+      booked-dbs:
+        summary: `ReferralRequest` booked to directly-bookable service
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/BookedDBS.json'
+      booked-ibs:
+        summary: `ReferralRequest` booked to indirectly-bookable service
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/BookedIBS.json'
+      deferred-to-provider:
+        summary: `ReferralRequest` deferred to service provider for booking
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/DeferredToProvider.json'
+      converted-from-advice-and-guidance:
+        summary: `ReferralRequest` that was converted from an Advice and Guidance Request
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/ConvertedFromAdviceAndGuidance.json'
+      with-related-referral:
+        summary: `ReferralRequest` with related ReferralRequest
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/WithRelatedReferral.json'

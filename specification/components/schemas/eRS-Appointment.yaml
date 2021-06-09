@@ -1,0 +1,179 @@
+title: eRS-Appointment
+description: 'A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s) (https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1)'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - status
+  - description
+  - created
+  - incomingReferral
+  - participant
+properties:
+  id:
+    type: string
+    example: 'appointment'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1'
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1'
+  language:
+    type: string
+    example: 'en'
+  resourceType:
+    type: string
+    enum:
+      - Appointment
+    example: 'Appointment'
+  status:
+    type: string
+    enum:
+      - proposed
+      - pending
+      - booked
+      - arrived
+      - fulfilled
+      - cancelled
+      - noshow
+    example: proposed
+  description:
+    type: string
+  start:
+    type: string
+    format: date-time
+    example: '2021-04-22T08:30:00.000Z'
+  end:
+    type: string
+    format: date-time
+    example: '2021-04-22T10:00:00.000Z'
+  slot:
+    type: array
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'Slot/11002001'
+    minItems: 0
+    maxItems: 1
+  created:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'
+  comment:
+    type: string
+    nullable: true
+  incomingReferral:
+    type: array
+    nullable: true
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'ReferralRequest/000000070000/_history/14'
+    minItems: 0
+    maxItems: 1
+  participant:
+    type: array
+    description: |
+      | Field                  | Cardinality | Notes                                      |
+      | ---------------------- | ----------- | ------------------------------------------ |
+      | `Patient`              | `1..1`      |                                            |
+      | `Service`              | `1..1`      |                                            |
+      | `AllocatedClinician`   | `0..1`      |                                            |
+    items:
+      anyOf:
+        - type: object
+          title: Patient
+          properties:
+            actor:
+              type: object
+              required:
+                - identifier
+              properties:
+                identifier:
+                  $ref: 'identifiers/NhsNumber.yaml'
+            status:
+              type: string
+              enum: 
+                - accepted
+              example: 'accepted'
+        - type: object
+          title: Service
+          properties:
+            actor:
+              type: object
+              required:
+                - identifier
+              properties:
+                identifier:
+                  $ref: 'identifiers/ServiceId.yaml'
+                display: 
+                  type: string
+                  example: 'Cardiology Triage Business Service'
+            status:
+              type: string
+              enum: 
+                - accepted
+              example: 'accepted'
+        - type: object
+          title: AllocatedClinician
+          required:
+            - type
+            - actor
+            - status
+          properties:
+            type:
+              type: object
+              required:
+                - coding
+              properties:
+                coding:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: object
+                    required:
+                      - system
+                      - code
+                    properties:
+                      system:
+                        type: string
+                        enum:
+                          - http://hl7.org/fhir/ValueSet/encounter-participant-type
+                        example: 'http://hl7.org/fhir/ValueSet/encounter-participant-type'
+                      code:
+                        type: string
+                        enum:
+                          - CON
+                        example: 'CON'
+            actor:
+              type: object
+              required:
+                - identifier
+              properties:
+                identifier:
+                  $ref: 'identifiers/STU3_UserId.yaml'
+            status:
+              type: string
+              enum: 
+                - accepted
+              example: 'accepted'
+    minItems: 2
+    maxItems: 3

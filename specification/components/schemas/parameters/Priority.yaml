@@ -1,4 +1,5 @@
-title: Details the priority parameter
+title: Priority
+description: Details the priority parameter
 type: object
 required:
   - name

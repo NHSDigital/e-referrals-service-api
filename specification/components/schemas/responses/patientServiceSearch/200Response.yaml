@@ -5,7 +5,7 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../../FetchServicesList.yaml'
+      $ref: '../../eRS-FetchServices-List.yaml'
     examples:
       fetch-service-list-single-service:
         summary: With single service

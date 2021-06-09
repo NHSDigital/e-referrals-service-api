@@ -10,8 +10,8 @@ properties:
     nullable: true
     items:
       anyOf:
-        - $ref: 'extensions/EffectiveFromDateExtension.yaml'
-        - $ref: 'extensions/EffectiveToDateExtension.yaml'
+        - $ref: 'extensions/Extension-eRS-EffectivefromDate.yaml'
+        - $ref: 'extensions/Extension-eRS-EffectivetoDate.yaml'
   code:
     title: Value of the code system
     description: |

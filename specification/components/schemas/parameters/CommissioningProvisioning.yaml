@@ -1,4 +1,5 @@
-title: Details the commissioning provisioning flag detailed in a search criteria
+title: CommissioningProvisioning
+description: Details the commissioning provisioning flag detailed in a search criteria
 type: object
 required:
   - name

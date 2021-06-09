@@ -1,5 +1,1 @@
 description: Bad Request
-content:
-  application/fhir+json:
-    schema:
-      type: string

@@ -1,4 +1,5 @@
-title: Details the named clinician that was specified in a search criteria
+title: NamedClinician
+description: Details the named clinician that was specified in a search criteria
 type: object
 required:
   - name

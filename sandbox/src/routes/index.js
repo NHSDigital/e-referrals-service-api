@@ -11,6 +11,7 @@ const retrieveBusinessFunctions = require('./retrieveBusinessFunctions')
 const uploadFileToDocumentStore = require('./uploadFileToDocumentStore')
 const generatePatientLetter = require('./generatePatientLetter')
 const retrieveAttachment = require('./retrieveAttachment')
+const retrieveReferralRequest = require('./retrieveReferralRequest')
 
 const routes = [].concat(
   postCreateProfessionalSession,
@@ -25,7 +26,8 @@ const routes = [].concat(
   retrieveBusinessFunctions,
   uploadFileToDocumentStore,
   generatePatientLetter,
-  retrieveAttachment
+  retrieveAttachment,
+  retrieveReferralRequest
 )
 
 module.exports = routes

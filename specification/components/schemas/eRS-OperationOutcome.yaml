@@ -1,0 +1,68 @@
+title: eRS-OperationOutcome
+type: object
+required:
+  - resourceType
+  - meta
+  - issue
+properties:
+  resourceType:
+    type: string
+    enum:
+      - OperationOutcome
+    example: 'OperationOutcome'
+  meta:
+    type: object
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1'
+        minItems: 1
+        maxItems: 1
+  issue:
+    type: array
+    items:
+      type: object
+      required:
+        - severity
+        - code
+        - diagnostics
+        - details
+      properties:
+        severity:
+          type: string
+          example: 'error'
+        code:
+          type: string
+          example: 'business-rule'
+        diagnostics:
+          type: string
+          example: "'Shortlist/Service Id' (11002) cannot be added to a shortlist more than once."
+        details:
+          type: object
+          required:
+            - coding
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1'
+                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1'
+                  code:
+                    type: string
+                    example: 'DUPLICATE_SERVICE'
+                  display:
+                    type: string
+                    example: 'Duplicate service found in shortlist'

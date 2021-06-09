@@ -153,7 +153,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-33'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-35'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.
@@ -207,7 +207,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/CreateReferralParameters.yaml'
+              $ref: 'components/schemas/eRS-CreateReferral-Parameters.yaml'
             examples:
               rc-minimum-request-body:
                 summary: Referring Clinician - minimum request body
@@ -278,7 +278,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/CreateReferralAndSendForTriageParameters.yaml'
+              $ref: 'components/schemas/eRS-CreateReferralAndSendForTriage-Parameters.yaml'
             examples:
               parameters:
                 summary: Referring Clinician creates referral to a Triage service
@@ -339,7 +339,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/PatientServiceSearchParameters.yaml'
+              $ref: 'components/schemas/eRS-PatientServiceSearch-Parameters.yaml'
             examples:
               rc-minimal:
                 summary: Referring Clinician minimal search
@@ -381,11 +381,16 @@ paths:
         Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
         
         ## Pre-requisites
-        In order to use this endpoint you must be an authenticated e-RS user.
-        
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
         ## Use case
         As an authenticated e-RS user
+
         I need to retrieve e-RS reference data
+
         So I can use it with other endpoints or display the reference data in a user-friendly format to my users.
         
         ## Related endpoints
@@ -404,10 +409,6 @@ paths:
         | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details             |
         | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
         
-        ## This endpoint can be accessed using the following [[HYPERLINK_ERS_BUS_FUNCTIONS]]
-        - REFERRING_CLINICIAN
-        - REFERRING_CLINICIAN_ADMIN
-        - SERVICE_PROVIDER_CLINICIAN
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
       parameters:
@@ -593,7 +594,7 @@ paths:
         You can associate the uploaded file with a specific referral using [[HYPERLINK_A012]].
 
       summary: A020 - Upload file to document store
-      operationId: a020-Upload-file-to-document-store
+      operationId: a020-upload-file-to-document-store
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
@@ -641,7 +642,7 @@ paths:
         So that I can pass it to the patient.
 
       summary: A019 - Generate patient letter
-      operationId: a019-Generate-patient-letter
+      operationId: a019-generate-patient-letter
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
@@ -726,6 +727,138 @@ paths:
           $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAttachment/422Response.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/ReferralRequest/{ubrn}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to retrieve details of a referral.
+
+        ## Use case
+
+        As an authenticated e-RS user
+
+        I want to read details of a referral
+
+        So that I can decide what further action may be needed.
+
+        ## Related endpoints
+
+        You can retrieve attachments that are associated with the referral using [[HYPERLINK_A006]]
+
+        You can retrieve a clinical information summary for the referral using [[HYPERLINK_A007]]
+
+        You can search for services appropriate to a referral to form a shortlist using [[HYPERLINK_A010]]
+
+        If bookable services are on the shortlist of the referral, you can retrieve appointment slots for a service on the shortlist for a referral using [[HYPERLINK_A015]]
+
+        You can retrieve the patient letter appropriate to the referral using [[HYPERLINK_A019]]
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                 |
+        | ------------------------------------------------------------------------ | ----------------------- |
+        | Unbooked `ReferralRequest`                                               | `ubrn`=`000000070000`   |
+        | `ReferralRequest` booked to directly-bookable service                    | `ubrn`=`000000070001`   |
+        | `ReferralRequest` booked to indirectly-bookable service                  | `ubrn`=`000000070002`   |
+        | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`   |
+        | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
+        | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
+
+      summary: A005 Retrieve Referral Request
+      operationId: a005-retrieve-referral-request
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveReferralRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/ReferralRequest/{ubrn}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a specific version of `ReferralRequest`.
+
+        ## Pre-requisites
+
+        The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A005]].
+
+        Note: e-RS only supports the retrieval of the most recent version of `ReferralRequest`. You cannot retrieve earlier versions.
+
+        ## Use case
+
+        See [[HYPERLINK_A005]].
+
+        ## Related endpoints
+
+        See [[HYPERLINK_A005]].
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                               |
+        | ------------------------------------------------------------------------ | ------------------------------------- |
+        | Unbooked `ReferralRequest`                                               | `ubrn`=`000000070000`, `version`=`5`  |
+        | `ReferralRequest` booked to directly-bookable service                    | `ubrn`=`000000070001`, `version`=`5`  |
+        | `ReferralRequest` booked to indirectly-bookable service                  | `ubrn`=`000000070002`, `version`=`5`  |
+        | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`, `version`=`5`  |
+        | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
+        | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
+
+      summary: A005 Retrieve Referral Request (Versioned)
+      operationId: a005-retrieve-referral-request-versioned
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveReferralRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:

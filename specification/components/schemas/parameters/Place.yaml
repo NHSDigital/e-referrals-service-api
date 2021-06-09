@@ -1,0 +1,15 @@
+title: Place
+description: Details the place that was specified in a search criteria
+type: object
+required:
+  - name
+  - valueString
+properties:
+  name:
+    type: string
+    enum:
+      - place
+    example: 'place'
+  valueString:
+    type: string
+    example: 'Leeds'

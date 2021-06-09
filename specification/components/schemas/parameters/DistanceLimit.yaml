@@ -1,4 +1,5 @@
-title: Details the distance limit value specified in a search criteria
+title: DistanceLimit
+description: Details the distance limit value specified in a search criteria
 type: object
 required:
   - name

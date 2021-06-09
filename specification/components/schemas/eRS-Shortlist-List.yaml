@@ -1,0 +1,49 @@
+title: eRS-Shortlist-List
+description: A list of services representing the services available to the patient to have treatment at
+type: object
+required:
+  - meta
+  - resourceType
+  - entry
+properties:
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1'
+  contained:
+    type: array
+    items:
+      $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+  resourceType:
+    type: string
+    enum:
+      - List
+    example: 'List'
+  entry:
+    type: array
+    items:
+      title: Singular entry with service details
+      type: object
+      required:
+        - item
+      properties:
+        item:
+          type: object
+          required:
+            - identifier
+          properties:
+            identifier:
+              $ref: 'identifiers/ServiceId.yaml'
+            display:
+              type: string
+              example: 'Good Cardiology Business Service'
+    minItems: 1
+    maxItems: 20

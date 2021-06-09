@@ -66,9 +66,15 @@ properties:
           example: '_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=11010&appointmentType=ROUTINE&_count=10&status=free&_include=Slot%3Aschedule&page=1'
   entry:
     type: array
+    description: |
+      | Field                  | Cardinality | Notes                                      |
+      | ---------------------- | ----------- | ------------------------------------------ |
+      | `Slot`                 | `1..*`      |                                            |
+      | `Schedule`             | `1..*`      |                                            |
     items:
       anyOf:
-        - title: |
+        - title: Slot
+          description: |
             Slot resource includes the ‘Reference’ to the slot and the slot’s ‘start’ and ‘end’ times.
           type: object
           required:
@@ -150,7 +156,8 @@ properties:
                   enum:
                     - match
                   example: 'match'
-        - title: | 
+        - title: Schedule
+          description: | 
             Schedule resource is used to indicate which allocated clinician a Slot is associated with (if any). 
             The ‘Schedule’ also indicates the Service Id that will be the same Service for which the Slot search was performed
           type: object

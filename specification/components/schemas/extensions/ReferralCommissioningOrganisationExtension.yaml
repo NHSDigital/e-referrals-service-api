@@ -7,4 +7,4 @@ properties:
   url:
     $ref: '../fhir/structures/Extension-eRS-Commissioning-Rule-Org-1.yaml'
   valueIdentifier:
-    $ref: '../identifiers/STU3_Organisation.yaml'
+    $ref: '../identifiers/R4_Organisation.yaml'

@@ -1,4 +1,5 @@
-title: Details the organisation that was specified in a search criteria
+title: Organisation
+description: Details the organisation that was specified in a search criteria
 type: object
 required:
   - name

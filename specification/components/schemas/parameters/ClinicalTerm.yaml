@@ -1,4 +1,5 @@
-title: Details the clinical term that was specified in a search criteria
+title: ClinicalTerm
+description: Details the clinical term that was specified in a search criteria
 type: object
 required:
   - name

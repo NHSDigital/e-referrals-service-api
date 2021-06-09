@@ -1,0 +1,16 @@
+title: Extension-eRS-ClinicalInfoLastUpdated
+description: Date and time the clinical information was last updated
+type: object
+required:
+  - url
+  - valueDateTime
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoLastUpdated-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoLastUpdated-1'
+  valueDateTime:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'

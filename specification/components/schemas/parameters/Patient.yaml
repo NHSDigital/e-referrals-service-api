@@ -1,4 +1,5 @@
-title: Parameter to supply a patient
+title: Patient
+description: Parameter to supply a patient
 type: object
 required:
   - name

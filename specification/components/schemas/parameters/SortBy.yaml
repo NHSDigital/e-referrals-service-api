@@ -1,4 +1,5 @@
-title: |
+title: SortBy
+description: |
   The service search returns the top results according to the sorting requested. 
   Therefore, the sorting requested affects the selection of services that are included in the response.
 type: object

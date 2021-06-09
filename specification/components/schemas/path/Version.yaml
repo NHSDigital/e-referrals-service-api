@@ -1,0 +1,9 @@
+name: version
+in: path
+description: |
+   The version of the resource to be retrieved. It must be the latest version of the resource otherwise
+   `HISTORY_NOT_SUPPORTED` error will be returned (HTTP 404 Not Found).
+required: true
+schema:
+   type: string
+   example: '5'

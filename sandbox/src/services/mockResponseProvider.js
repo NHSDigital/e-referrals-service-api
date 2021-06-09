@@ -167,6 +167,43 @@ module.exports = {
       return { responsePath: 'retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
     }
 
+  },
+
+  getExampleResponseForRetrieveReferralRequest: function (request) {
+    const ubrn = request.params.ubrn;
+    const version = request.params.version
+
+    // Scenario 1 - Unbooked ReferralRequest
+    if (ubrn === '000000070000' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/Unbooked.json', responseCode: 200 }
+    }
+
+    // Scenario 2 - ReferralRequest booked to directly-bookable service
+    if (ubrn === '000000070001' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/BookedDBS.json', responseCode: 200 }
+    }
+
+    // Scenario 3 - ReferralRequest booked to indirectly-bookable service
+    if (ubrn === '000000070002' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/BookedIBS.json', responseCode: 200 }
+    }
+
+    // Scenario 4 -	ReferralRequest deferred to service provider for booking
+    if (ubrn === '000000070003' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/DeferredToProvider.json', responseCode: 200 }
+    }
+
+    // Scenario 5 -	ReferralRequest that was converted from an Advice and Guidance Request
+    if (ubrn === '000000070004' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/ConvertedFromAdviceAndGuidance.json', responseCode: 200 }
+    }
+
+    // Scenario 6 -	ReferralRequest with related ReferralRequest
+    if (ubrn === '000000070005' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/WithRelatedReferral.json', responseCode: 200 }
+    }
+
+    return {}
   }
 
 }

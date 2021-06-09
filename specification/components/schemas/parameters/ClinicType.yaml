@@ -1,4 +1,5 @@
-title: Details the clinic type that was specified in a search criteria
+title: ClinicType
+description: Details the clinic type that was specified in a search criteria
 type: object
 required:
   - name

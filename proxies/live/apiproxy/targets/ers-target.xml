@@ -27,6 +27,7 @@
     <LoadBalancer>
       <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
     </LoadBalancer>
+    <Path>/ers-api</Path>
     <Properties>
       <Property name="supports.http10">true</Property>
       <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>

@@ -573,10 +573,11 @@ paths:
 
         You can then use the e-RS roles to perform specific tasks using other e-RS endpoints.
 
-      summary: A028 - Retrieve e-RS business functions
-      operationId: a028-retrieve-business-functions
+      summary: A030 - Retrieve e-RS business functions
+      operationId: a030-retrieve-business-functions
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
           $ref: 'components/schemas/responses/retrieveBusinessFunctions/200Response.yaml'

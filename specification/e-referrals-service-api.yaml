@@ -199,7 +199,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-35'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-13'
     description: Pr Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals'
     description: Sandbox environment.

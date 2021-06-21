@@ -4,8 +4,10 @@ description: |
   The Response Bundle also contains one or more ‘Schedule’ resources each of which is used to indicate which allocated clinician a Slot is associated with (if any). 
   The ‘Schedule’ also indicates the Service Id that will be the same Service for which the Slot search was performed.
 headers:
-  X-Correlation-Id:
+  x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
 content:
   application/fhir+json:
     schema:

@@ -1,7 +1,9 @@
 description: e-RS Referral Request
 headers:
-  X-Correlation-Id:
+  x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
   ETag:
     $ref: '../../headers/response/ETag.yaml'
 content:

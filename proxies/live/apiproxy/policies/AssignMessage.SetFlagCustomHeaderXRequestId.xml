@@ -1,0 +1,6 @@
+<AssignMessage name="AssignMessage.SetFlagCustomHeaderXRequestId">
+  <AssignVariable>
+    <Name>flag.custom-header-x-request-id</Name>
+    <Value>true</Value>
+  </AssignVariable>
+</AssignMessage>

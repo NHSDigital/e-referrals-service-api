@@ -1,4 +1,3 @@
-const postCreateProfessionalSession = require('./postCreateProfessionalSession')
 const getStatus = require('./getStatus')
 const getHealth = require('./getHealth')
 const getPing = require('./getPing')
@@ -12,9 +11,9 @@ const uploadFileToDocumentStore = require('./uploadFileToDocumentStore')
 const generatePatientLetter = require('./generatePatientLetter')
 const retrieveAttachment = require('./retrieveAttachment')
 const retrieveReferralRequest = require('./retrieveReferralRequest')
+const maintainReferralLetter = require('./maintainReferralLetter')
 
 const routes = [].concat(
-  postCreateProfessionalSession,
   getStatus,
   getHealth,
   getPing,
@@ -27,7 +26,8 @@ const routes = [].concat(
   uploadFileToDocumentStore,
   generatePatientLetter,
   retrieveAttachment,
-  retrieveReferralRequest
+  retrieveReferralRequest,
+  maintainReferralLetter
 )
 
 module.exports = routes

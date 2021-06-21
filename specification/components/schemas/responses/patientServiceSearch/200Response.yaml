@@ -1,7 +1,9 @@
 description: The response body contains the list of services (if any) that match the search criteria provided 
 headers:
-  X-Correlation-Id:
+  x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
 content:
   application/fhir+json:
     schema:

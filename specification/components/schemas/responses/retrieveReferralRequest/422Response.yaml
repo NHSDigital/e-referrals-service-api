@@ -8,8 +8,10 @@ description: |
   | INVALID_REQUEST_TYPE               | The `UBRN` provided exists in e-RS but does not correspond to an active request.                                             |
   | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
 headers:
-  X-Correlation-Id:
-    $ref: ../../headers/response/CorrelationID.yaml
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
 content:
   application/fhir+json:
     schema:

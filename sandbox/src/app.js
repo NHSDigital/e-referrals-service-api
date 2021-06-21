@@ -4,15 +4,17 @@ const Inert = require('inert')
 const process = require('process')
 const routes = require('./routes')
 
-const mirrorCorrelationIDs = function (request, response) {
-
-  if (request.headers["x-correlation-id"] && response.headers !== undefined) {
-    response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
+const addCommonHeaders = function (request, response) {
+  if (response.headers !== undefined) {
+    if (request.headers["x-correlation-id"]) {
+      response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
+    }
+    response.headers["x-request-id"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1';
   }
 }
 
 const preResponse = function (request, h) {
-  mirrorCorrelationIDs(request, request.response)
+  addCommonHeaders(request, request.response)
   return h.continue
 }
 

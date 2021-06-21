@@ -278,6 +278,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/ReferralRequest/$ers.createReferralAndSendForTriage:
@@ -345,6 +347,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/HealthcareService/$ers.searchHealthcareServicesForPatient:
@@ -414,6 +418,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/CodeSystem/{codeSystemType}:
@@ -444,7 +450,7 @@ paths:
         - find services that meet the referral needs of a patient using [[HYPERLINK_A010]], and
         - create a referral using [[HYPERLINK_A011]] or [[HYPERLINK_A021]]
         
-        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]]
+        You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]].
         
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
@@ -473,6 +479,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/Slot:
@@ -546,6 +554,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /R4/v1/PractitionerRole:
@@ -585,6 +595,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/Binary:
@@ -662,6 +674,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
@@ -707,6 +721,8 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '422':
           $ref: 'components/schemas/responses/generatePatientLetter/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/Binary/{attachmentLogicalID}:
@@ -774,6 +790,8 @@ paths:
           $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAttachment/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/ReferralRequest/{ubrn}:
@@ -847,6 +865,8 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/v1/ReferralRequest/{ubrn}/_history/{version}:
@@ -906,6 +926,136 @@ paths:
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        
+        All new files to be associated with a referral must be uploaded first using [[HYPERLINK_A020]] and then linked to the referral using this endpoint.
+
+        ## Important information about using this endpoint
+        
+        This endpoint can be used to associate attachments to a referral that has no existing referral letter attachments. 
+        In this case you must upload the file first using [[HYPERLINK_A020]] and then associate it to the referral using this endpoint.
+
+        You can also use this endpoint to modify the *set* of referral letter attachments already associated with a referral. 
+        In this case, you must post all referral letter attachments you wish to be (finally) associated to the referral, 
+        including any that were already associated. In other words, this endpoint replaces the set of referral letter 
+        attachments previously associated - with those specified in your latest request. 
+        As such, it is imperative that this call references all the attachments the user wishes to keep, every time it is called.
+
+        Below are three example scenarios which clarify the behaviour of the endpoint when referral attachments are already present on the referral:
+
+        1. Let us consider a referral that has two referral letter attachments associated (say "A.pdf" and "B.pdf"). If 
+        you wish to add an additional attachment (say "C.pdf"), you must upload the additional attachment 
+        "C.pdf" using [[HYPERLINK_A020]], and then associate attachments "A.pdf", "B.pdf" and "C.pdf" 
+        via this endpoint in a single request. That is, all three attachments "A.pdf", "B.pdf" and "C.pdf" 
+        must be included in the request to A012 - Maintain referral letter.
+        2. Let us consider a different referral that has two referral letter attachments (say "D.jpg" and "E.jpg") 
+        already associated, and you wish to remove one of them. Lets consider that you wish to remove "D.jpg". 
+        To do this, you would call A012 - Maintain referral letter specifying only "E.jpg" in your request. By omitting 
+        "D.jpg" from your request, e-RS will dis-associate attachment "D.jpg" from the referral and only attachment "E.jpg" 
+        will remain associated.
+        3. Let us now consider a referral that has four referral letter attachments associated (say "L.doc", "M.doc", "N.doc" 
+        and "O.doc"), and you wish to add some more files (say "P.doc" and "Q.doc") and remove some files (say "N.doc" 
+        and "O.doc"). To do this you must upload the additional attachment(s) ("N.doc" and "O.doc") 
+        using [[HYPERLINK_A020]]. Following that successful upload, you must then associate only all 
+        referral letter attachments the user wishes to keep (namely "L.doc", "M.doc", "P.doc" and "Q.doc") 
+        in a single request to A012 - Maintain referral letter. Attachments not included in the request 
+        (namely "N.doc" and "O.doc") will be dis-associated from the referral as a result.
+
+        As a developer or software supplier, please ensure your users are made aware or protected from this behaviour. 
+        For example, when a referring user wants to update the attachments on a referral, the user should be presented 
+        with the currently associated attachments so they can add and/or remove attachments as required.
+
+        Note: It is not permissible to remove *all* referral letter attachments leaving zero attachments associated. 
+        There must be at least one referral letter attachment associated.
+
+        ## Use case
+        As an authenticated user
+
+        I need to be able to manage referral letter attachments associated with a referral
+
+        So I can ensure the service provider has enough information to review/process the referral.
+
+
+        ## Related endpoints
+        Documents must be uploaded into the e-RS document store using [[HYPERLINK_A020]] before they can be associated 
+        with a referral.
+        
+        You can check to see what referral letter information has been added to a referral by using [[HYPERLINK_A005]], 
+        [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment:
+
+        | Scenario                                               | Request                                                 |
+        | ------------------------------------------------------ | ------------------------------------------------------- |
+        | Add clinical information for first time (single file)  | `ubrn`=`000000070000`, `body` as defined in example 1   |
+        | Add clinical information for first time (two files)    | `ubrn`=`000000070001`, `body` as defined in example 2   |
+        | Update clinical information                            | `ubrn`=`000000070001`, `body` as defined in example 3   |
+
+      summary: A012 - Maintain referral letter
+      operationId: a012-maintain-referral-letter
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-MaintainReferralLetter-Parameters.yaml'
+            examples:
+              single-file:
+                summary: 1 - Add clinical information (single file)
+                value:
+                  $ref: 'components/examples/maintainReferralLetter/requests/SingleDocumentReference.json'
+              two-files:
+                summary: 2 - Add clinical information (two files)
+                value:
+                  $ref: 'components/examples/maintainReferralLetter/requests/MultipleDocumentReferences.json'
+              update-files:
+                summary: 3 - Update clinical information (removing one file from example above)
+                value:
+                  $ref: 'components/examples/maintainReferralLetter/requests/UpdateClinicalInfo.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/maintainReferralLetter/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '422':
+          $ref: 'components/schemas/responses/maintainReferralLetter/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:

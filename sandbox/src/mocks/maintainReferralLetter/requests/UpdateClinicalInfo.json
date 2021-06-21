@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-MaintainReferralLetter-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "referralLetterFile",
+      "resource": {
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "REFERRER"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-06-24T13:22:13.465000+00:00",
+        "description": "Second blood test results showing an anomaly in the values of xxxx",
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/att-70001-70006"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

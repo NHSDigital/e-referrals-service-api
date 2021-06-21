@@ -204,6 +204,28 @@ module.exports = {
     }
 
     return {}
+  },
+
+  getExampleResponseForMaintainReferralLetter: function (request) {
+    const ubrn = request.params.ubrn;
+    // Scenario 1 - Add clinical information for first time (single file)
+    if (ubrn === '000000070000') {
+      return mapExampleResponse(request, { 'src/mocks/maintainReferralLetter/requests/SingleDocumentReference.json': 'maintainReferralLetter/responses/ReferralRequestWithSingleDocumentReference.json' })
+    }
+
+    // Scenario 2 - Add clinical information for first time (two files)
+    // Scenario 3 - Update clinical information
+    if (ubrn === '000000070001') {
+      var responseMap = {
+        'src/mocks/maintainReferralLetter/requests/MultipleDocumentReferences.json': 'maintainReferralLetter/responses/ReferralRequestWithMultipleDocumentReferences.json',
+        'src/mocks/maintainReferralLetter/requests/UpdateClinicalInfo.json': 'maintainReferralLetter/responses/ReferralRequestWithUpdatedDocumentReferences.json'
+      };
+
+      return mapExampleResponse(request, responseMap)
+    }
+
+    return {}
+
   }
 
 }

@@ -1,0 +1,232 @@
+{
+  "id": "000000070001",
+  "meta": {
+    "versionId": "5",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
+      "valueDateTime": "2021-06-24T13:21:41.238Z"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoLastUpdated-1",
+      "valueDateTime": "2021-06-24T13:22:14.437Z"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE",
+            "display": "Routine"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE"
+          }
+        },
+        {
+          "name": "specialty",
+          "valueCoding": {
+            "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+            "code": "CARDIOLOGY"
+          }
+        },
+        {
+          "name": "clinicType",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code": "HEART_FAILURE"
+          }
+        },
+        {
+          "name": "organisation",
+          "valueIdentifier": {
+            "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+            "value": "TEST-ORG-GP1"
+          }
+        },
+        {
+          "name": "postcode",
+          "valueString": "LS1 2TW"
+        },
+        {
+          "name": "distanceLimit",
+          "valueUnsignedInt": 123
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11002"
+            },
+            "display": "Good Cardiology Business Service"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-70005",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-06-24T13:22:14.566Z",
+      "description": "First blood test results showing an anomaly in the values of xxxx",
+      "content": [
+        {
+          "attachment": {
+            "id": "70005",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              }
+            ],
+            "contentType": "application/pdf",
+            "url": "Binary/att-70001-70005",
+            "size": 6,
+            "title": "testResult1.png",
+            "creation": "2021-06-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-70006",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-06-24T13:22:14.566Z",
+      "description": "Second blood test results showing an anomaly in the values of xxxx",
+      "content": [
+        {
+          "attachment": {
+            "id": "70006",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              }
+            ],
+            "contentType": "application/pdf",
+            "url": "Binary/att-70001-70006",
+            "size": 17,
+            "title": "testResult2.pdf",
+            "creation": "2021-06-24"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "99120038881"
+    }
+  },
+  "supportingInfo": [
+    {
+      "reference": "#DocumentReference-70005"
+    },
+    {
+      "reference": "#DocumentReference-70006"
+    }
+  ],
+  "intent": "plan"
+}

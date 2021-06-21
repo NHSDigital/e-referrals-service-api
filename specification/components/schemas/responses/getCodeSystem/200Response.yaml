@@ -1,7 +1,9 @@
 description: e-RS Reference Data
 headers:
-   X-Correlation-Id:
-     $ref: '../../headers/response/CorrelationID.yaml'
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
 content:
   application/fhir+json:
     schema:

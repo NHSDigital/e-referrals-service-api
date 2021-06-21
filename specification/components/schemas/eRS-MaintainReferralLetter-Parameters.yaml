@@ -1,0 +1,46 @@
+title: eRS-MaintainReferralLetter-Parameters
+description: The parameters object used in maintain referral letter endpoint
+type: object
+required:
+  - meta
+  - resourceType
+  - parameter
+properties:
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-MaintainReferralLetter-Parameters-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-MaintainReferralLetter-Parameters-1'
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  parameter:
+    type: array
+    description: |
+      | Field                  | Cardinality | Notes                                      |
+      | ---------------------- | ----------- | ------------------------------------------ |
+      | `referralLetterFile`   | `1..*`      |                                            |
+
+    items:
+      title: referralLetterFile
+      type: object
+      required:
+        - name
+        - resource
+      properties:
+        name:
+          type: string
+          enum: 
+            - 'referralLetterFile'
+          example: 'referralLetterFile'
+        resource:
+          $ref: 'DocumentReferenceReferrerOnly.yaml'

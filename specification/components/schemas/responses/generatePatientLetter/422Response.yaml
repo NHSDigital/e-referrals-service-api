@@ -9,8 +9,10 @@ description: |
   | INVALID_REQUEST_STATE              | The Request/Appointment Request, while otherwise valid, is not in the correct state for the specific action being performed. |
   | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                          |
 headers:
-  X-Correlation-Id:
-    $ref: ../../headers/response/CorrelationID.yaml
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
 content:
   application/fhir+json:
     schema:

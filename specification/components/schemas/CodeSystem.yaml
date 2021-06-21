@@ -6,6 +6,7 @@ required:
   - url
   - name
   - status
+  - date
   - description
   - content
   - property
@@ -53,6 +54,9 @@ properties:
     enum:
       - active
     example: 'active'
+  date:
+    type: string
+    format: date-time
   publisher:
     type: string
     enum:

@@ -1,0 +1,9 @@
+in: header
+name: If-Match
+description: | 
+  The version of the resource to be updated
+required: true
+schema:
+  type: string
+  pattern: "^W\/\"[0-9]+\"$"
+  example: W/"4"

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-ods-code">
-    <Set>
-        <Headers>
-            <Header name="x-ers-ods-code">{message.header.nhsd-ers-ods-code}</Header>
-        </Headers>
-    </Set>
-    <Remove>
-        <Headers>
-            <Header name="nhsd-ers-ods-code"/>
-        </Headers>
-    </Remove>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+  <Set>
+    <Headers>
+      <Header name="x-ers-ods-code">{message.header.nhsd-ers-ods-code}</Header>
+    </Headers>
+  </Set>
+  <Remove>
+    <Headers>
+      <Header name="nhsd-ers-ods-code"/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

@@ -18,7 +18,7 @@ def main():
       "[[HYPERLINK_A011]]": "[A011 - Create referral](#api-Default-a011-create-referral)",
       "[[HYPERLINK_A012]]": "[A012 - Maintain referral letter](#api-Default-a012-maintain-referral-letter)",
       "[[HYPERLINK_A015]]": "[A015 - Retrieve appointment slots](#api-Default-a015-retrieve-appointment-slots)",
-      "[[HYPERLINK_A016]]": "[A016 - Book or defer appointment](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a016.html)",
+      "[[HYPERLINK_A016]]": "[A016 - Book or defer appointment](#api-Default-a016-book-or-defer-appointment)",
       "[[HYPERLINK_A019]]": "[A019 - Generate patient letter](#api-Default-a019-generate-patient-letter)",
       "[[HYPERLINK_A020]]": "[A020 - Upload file to document store](#api-Default-a020-upload-file-to-document-store)",
       "[[HYPERLINK_A021]]": "[A021 - Create referral and send for triage](#api-Default-a021-create-referral-request-and-send-for-triage)",

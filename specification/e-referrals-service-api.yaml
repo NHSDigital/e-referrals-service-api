@@ -302,7 +302,7 @@ paths:
         You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
 
         ## Use case
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to send the patient's referral to a triage service for assessment
 
@@ -439,7 +439,7 @@ paths:
           - `SERVICE_PROVIDER_CLINICIAN`
 
         ## Use case
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to retrieve e-RS reference data
 
@@ -498,7 +498,7 @@ paths:
 
         ## Use case
 
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to retrieve a list of available appointment slots for a service
 
@@ -636,7 +636,7 @@ paths:
 
         ## Use case
 
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to upload a referral letter or other clinical information file to e-RS
 
@@ -696,7 +696,7 @@ paths:
 
         ## Use case
 
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to generate the patient letter including up-to-date details about their referral and any steps the patient may need to follow
 
@@ -759,7 +759,7 @@ paths:
         
         ## Use case
 
-        As an authenticated e-RS user
+        As an authenticated user
 
         I need to retrieve a clinical attachment associated with a referral
 
@@ -813,7 +813,7 @@ paths:
 
         ## Use case
 
-        As an authenticated e-RS user
+        As an authenticated user
 
         I want to read details of a referral
 
@@ -1058,6 +1058,97 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/v1/Appointment:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        
+        You need to retrieve available appointment slots for a service using [[HYPERLINK_A015]].
+
+        You need to use the 'Unique Booking Reference Number' (UBRN) of a referral request in order to use this endpoint.
+
+        ## Important note when deferring to provider
+        
+        You should only defer booking to a directly bookable service in the following circumstances:
+          - when the service has no available slots *or*
+          - when trying to book an appointment into a service, the slot advertised is no longer available *or*
+          - when trying to book an appointment into a service, no response is received within the message timeout period (currently 2 minutes)
+
+        ## Use case
+        As an authenticated user
+
+        I need to either:
+          - book an appointment to an available appointment slot for a service *or*
+          - defer booking responsibility for the service to the service provider if a booking is not possible
+
+        So I can progress my patient's care at that service.
+
+        ## Related endpoints
+        You can generate a letter for the patient, summarising the current state of their referral and any steps 
+        the patient may need to follow using [[HYPERLINK_A019]].
+
+      summary: A016 - Book or defer appointment
+      operationId: a016-book-or-defer-appointment
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-Appointment.yaml'
+            examples:
+              minimal-booking:
+                summary: Minimum booking
+                value:
+                  $ref: 'components/examples/bookOrDeferAppointment/requests/MinimalBooking.json'
+              minimal-deferral:
+                summary: Minimum deferral
+                value:
+                  $ref: 'components/examples/bookOrDeferAppointment/requests/MinimalDeferral.json'
+              booking-with-named-clinician:
+                summary: Booking with named clinician
+                value:
+                  $ref: 'components/examples/bookOrDeferAppointment/requests/BookingWithNamedClinician.json'
+              deferral-with-slot-reference:
+                summary: Deferral with slot reference
+                value:
+                  $ref: 'components/examples/bookOrDeferAppointment/requests/DeferralWithSlotReference.json'
+              deferral-booking-attempt-problem:
+                summary: Deferral booking attempt problem
+                value:
+                  $ref: 'components/examples/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/bookOrDeferAppointment/201Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '422':
+          $ref: 'components/schemas/responses/bookOrDeferAppointment/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+        '502':
+          $ref: 'components/schemas/responses/bookOrDeferAppointment/502Response.yaml'      
+        '504':
+          $ref: 'components/schemas/responses/bookOrDeferAppointment/504Response.yaml'             
 components:
   securitySchemes:
     bearerAuth:

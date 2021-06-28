@@ -226,6 +226,20 @@ module.exports = {
 
     return {}
 
+  },
+
+  getExampleResponseForBookOrDeferAppointment: function (request) {
+    var responseMap = {
+      'src/mocks/bookOrDeferAppointment/requests/MinimalBooking.json': 'bookOrDeferAppointment/responses/MinimalBooking.json',
+      'src/mocks/bookOrDeferAppointment/requests/MinimalDeferral.json': 'bookOrDeferAppointment/responses/MinimalDeferral.json',
+      'src/mocks/bookOrDeferAppointment/requests/BookingWithNamedClinician.json': 'bookOrDeferAppointment/responses/BookingWithNamedClinician.json',
+      'src/mocks/bookOrDeferAppointment/requests/DeferralWithSlotReference.json': 'bookOrDeferAppointment/responses/DeferralWithSlotReference.json',
+      'src/mocks/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json': 'bookOrDeferAppointment/responses/DeferralBookingAttemptProblem.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
   }
 
 }

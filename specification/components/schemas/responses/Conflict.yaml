@@ -1,1 +1,1 @@
-description: Conflict - Version supplied in `If-Match` header does not match current version of the referral request
+description: Conflict - Version supplied as part of the request does not match current version of the referral request

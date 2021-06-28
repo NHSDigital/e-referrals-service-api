@@ -1,0 +1,20 @@
+description: |
+  Where status code 502 (Bad Gateway) is returned then an eRS-OperationOutcome-1 will be included in the body. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | PAS_RESPONDED_WITH_ERROR           | Error received from PAS.                                                                                                     |
+  
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/PasRespondedWithErrorOperationOutcome.json'
+

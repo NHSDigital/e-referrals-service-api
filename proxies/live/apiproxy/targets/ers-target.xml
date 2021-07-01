@@ -48,6 +48,8 @@
       </Step>
     </Request>
     <Response>
+      <!-- Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
+           to response on non success status code e.g. 200/201, Take care when updating these steps-->
       <Step>
         <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
       </Step>

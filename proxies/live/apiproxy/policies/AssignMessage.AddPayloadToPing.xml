@@ -9,6 +9,6 @@
     </Headers>
     <Version>1.1</Version>
   </Set>
-  <AssignTo createNew="false" transport="http" type="request"/>
+  <AssignTo createNew="false"/>
   <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 </AssignMessage>

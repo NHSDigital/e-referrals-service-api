@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.TransactionID">
+  <Set>
+    <Headers>
+      <Header name="X-Request-ID">{message.header.X_ERS_TRANSACTION_ID}</Header>
+    </Headers>
+  </Set>
+  <Remove>
+    <Headers>
+      <Header name="X_ERS_TRANSACTION_ID"/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

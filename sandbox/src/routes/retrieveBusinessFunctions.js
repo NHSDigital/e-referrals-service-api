@@ -10,7 +10,7 @@ module.exports = [
     handler: (request, h) => {
 
       const { responsePath, responseCode } = mockResponseProvider.getExampleResponseForRetrieveBusinessFunctions();
-      if (responsePath !== undefined && responseCode !== undefined) {
+      if (responsePath && responseCode) {
         return h.file(responsePath).code(responseCode).type("application/fhir+json");
 
       }

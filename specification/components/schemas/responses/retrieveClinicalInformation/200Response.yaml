@@ -1,0 +1,17 @@
+description: Response contains the binary stream of the clinical information summary (PDF).
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Disposition:
+    $ref: '../../headers/response/ContentDispositionAttachment.yaml'
+  Content-Length:
+    $ref: '../../headers/response/ContentLength.yaml'
+content:
+  application/pdf:
+    schema:
+      type: string
+      format: binary
+
+          

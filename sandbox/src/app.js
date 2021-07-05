@@ -5,7 +5,7 @@ const process = require('process')
 const routes = require('./routes')
 
 const addCommonHeaders = function (request, response) {
-  if (response.headers !== undefined) {
+  if (response.headers) {
     if (request.headers["x-correlation-id"]) {
       response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
     }

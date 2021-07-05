@@ -1014,6 +1014,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/headers/request/IfMatch.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
       requestBody:
@@ -1101,6 +1102,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
@@ -1148,7 +1150,70 @@ paths:
         '502':
           $ref: 'components/schemas/responses/bookOrDeferAppointment/502Response.yaml'      
         '504':
-          $ref: 'components/schemas/responses/bookOrDeferAppointment/504Response.yaml'             
+          $ref: 'components/schemas/responses/bookOrDeferAppointment/504Response.yaml'
+  /STU3/v1/ReferralRequest/{ubrn}/$ers.generateCRI:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        
+        Use this endpoint to generate a PDF file that summarises clinical information for a referral.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
+
+        ## Important note
+        A referral pathway in e-RS can be made up of more than one UBRN. For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
+        and the service decides to onward refer to a more specialist knee miniscus service (UBRN #2). This would result in two UBRNs for the referral pathway 
+        in this example (but there could be more related UBRNs if onward referred multiple times).
+
+        As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. 
+        You can do this using the following endpoints:
+          - A007 - Retrieve Clinical Information
+          - [[HYPERLINK_A006]]
+
+        Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve a clinical information summary (in PDF format) associated with the referral
+
+        So that I can assess its content and decide what further action may be needed.
+
+        ## Related endpoints
+        You can retrieve clinical attachments that are associated with a referral using [[HYPERLINK_A006]].
+
+      summary: A007 - Retrieve clinical information
+      operationId: a007-retrieve-clinical-information
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveClinicalInformation/200Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveClinicalInformation/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'           
 components:
   securitySchemes:
     bearerAuth:

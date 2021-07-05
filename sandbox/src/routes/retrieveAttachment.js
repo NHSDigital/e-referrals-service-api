@@ -18,7 +18,7 @@ module.exports = [
       }
 
       const { responsePath, responseCode, filename } = mockResponseProvider.getExampleResponseForRetrieveAttachment(request);
-      if (responsePath !== undefined && responseCode !== undefined) {
+      if (responsePath && responseCode) {
         return h.file(responsePath, {
           mode: 'attachment',
           filename: filename

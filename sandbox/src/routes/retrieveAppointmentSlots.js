@@ -18,7 +18,7 @@ module.exports = [
       }
 
       const { responsePath, responseCode } = mockResponseProvider.getExampleResponseForRetrieveAppointmentSlots(request);
-      if (responsePath !== undefined && responseCode !== undefined) {
+      if (responsePath && responseCode) {
         return h.file(responsePath).code(responseCode).type("application/fhir+json");
 
       }

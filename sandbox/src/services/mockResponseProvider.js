@@ -240,6 +240,10 @@ module.exports = {
     return mapExampleResponse(request, responseMap)
 
 
-  }
+  },
+
+  getExampleResponseForRetrieveClinicalInformation: function () {
+    return { responsePath: 'retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf', filename: '000000070000_Clinical_Information_Summary_20210706114852.pdf', responseCode: 200 }
+  },
 
 }

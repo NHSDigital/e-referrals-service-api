@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+    ]
+  },
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "timeout",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
+            "code": "PAS_NOT_RESPONDING",
+            "display": "No response from PAS"
+          }
+        ]
+      },
+      "diagnostics": "PAS unable to create booking into slot '11002026' for UBRN: 000000070000. PAS Request Status: TIMED_OUT"
+    }
+  ]
+}

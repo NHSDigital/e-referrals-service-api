@@ -7,7 +7,6 @@ required:
   - resourceType
   - status
   - description
-  - created
   - incomingReferral
   - participant
 properties:
@@ -46,18 +45,81 @@ properties:
       - cancelled
       - noshow
     example: proposed
+  reason:
+    nullable: true
+    type: array
+    minItems: 1
+    maxItems: 1
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            anyOf:
+              - type: object
+                title: eRS-ReviewReason
+                required:
+                  - system
+                  - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1
+                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1'
+                  code:
+                    type: string
+                    enum:
+                      - NO_SLOTS_AT_SERVICE
+                      - SLOT_NOT_AVAILABLE
+                      - BOOKING_ATTEMPT_PROBLEM
+                    example: 'NO_SLOTS_AT_SERVICE'
+              - type: object
+                title: eRS-ReviewOutcome
+                required:
+                  - system
+                  - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1
+                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1'
+                  code:
+                    type: string
+                    enum:
+                      - PROVIDER_CONVERTED_ADVICE_AND_GUIDANCE_ADMIN_TO_REFER
+                      - CANCEL_APPOINTMENT_ACTION_LATER
+                      - RETURN_TO_REFERRER_WITH_ADVICE
+                      - ACCEPT_REFER_BOOK_LATER
+                    example: 'PROVIDER_CONVERTED_ADVICE_AND_GUIDANCE_ADMIN_TO_REFER'
+                  display: 
+                    type: string
+                    nullable: true
+                    example: 'Provider Converted Advice and Guidance, Admin to Refer'
   description:
     type: string
+    enum:
+        - 'e-Referral Appointment'
+    example: 'e-Referral Appointment'
   start:
     type: string
+    nullable: true
     format: date-time
     example: '2021-04-22T08:30:00.000Z'
   end:
     type: string
+    nullable: true
     format: date-time
     example: '2021-04-22T10:00:00.000Z'
   slot:
     type: array
+    nullable: true
     items:
       type: object
       required:
@@ -70,6 +132,7 @@ properties:
     maxItems: 1
   created:
     type: string
+    nullable: true
     format: date-time
     example: '2021-04-20T12:17:35.128Z'
   comment:
@@ -125,6 +188,7 @@ properties:
                   $ref: 'identifiers/ServiceId.yaml'
                 display: 
                   type: string
+                  nullable: true
                   example: 'Cardiology Triage Business Service'
             status:
               type: string

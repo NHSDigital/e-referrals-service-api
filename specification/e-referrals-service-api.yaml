@@ -34,8 +34,8 @@ info:
       -	retrieve attachments which are linked to a referral or triage (RAS) request
       -	retrieve clinical information which has been provided by a referrer
       -	accept or reject a referral request
-      -	retrieve ‘Advice & Guidance’ (A&G) conversations and send responses
-      -	convert ‘Advice & Guidance’ (A&G) conversations into a referral
+      -	retrieve Advice & Guidance (A&G) conversations and send responses
+      -	convert Advice & Guidance (A&G) conversations into a referral
 
     You cannot currently use this API to:
 
@@ -46,41 +46,44 @@ info:
       -	referral attachments
       -	referral letters
       -	appointment slots
-      -	worklists for ‘Referral Requests’
-      -	worklists for triage requests (also known as ‘Referral Assessment Service’ (RAS) requests)
-      -	worklists for ‘Advice and Guidance’ (A&G) requests
-      -	conversation histories for ‘Advice and Guidance’ (A&G) requests
+      -	worklists for referral requests
+      -	worklists for triage (RAS) requests
+      -	worklists for Advice and Guidance (A&G) requests
+      -	conversation histories for Advice and Guidance (A&G) requests
 
 
     ### Access modes
     
-    For users *within* the Health and Social Care Network (HSCN) who have smartcards: 
-    this access mode is in production and [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status). 
-    This access mechanism is documented on the older ['API Hub' documentation portal](https://developer.nhs.uk/apis/e-Referrals/getstarted_get_connected.html). 
-    Using this authentication mechanism allows full use of all e-RS APIs - including those for 
-    [referrers](https://developer.nhs.uk/apis/e-Referrals/creating_referrals.html) and 
-    [providers](https://developer.nhs.uk/apis/e-Referrals/receiving_referrals.html).
+    ##### Users within the Health and Social Care Network (HSCN) who have smartcards
 
-    For users *without* access to the Health and Social Care Network (HSCN), or who have do not have access to smartcards: 
-    early access to our new non-smartcard, non-HSCN authentication mechanism is also now possible via 
-    [NHS API management platform](https://digital.nhs.uk/developer/guides-and-documentation/api-management-vision) over the Internet. 
-    Please note that this is currently in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), 
-    meaning we might make breaking changes, but only if we cannot avoid it. The documentation you are currently reading is being updated 
-    regularly, as additional endpoints become accessible under this new mechanism. Currently this authentication only allows use of 
-    the [Referrer APIs](https://developer.nhs.uk/apis/e-Referrals/creating_referrals.html).
+    This access mode is in production and [[HYPERLINK_STABLE]]. 
+    This access mechanism is documented on the older ['API Hub' documentation portal](https://developer.nhs.uk/apis/e-Referrals/getstarted_get_connected.html). 
+    Using this authentication mechanism allows full use of all e-RS endpoints. 
+    This access mode requires the creation of a professional session and selection of a role in order to authenticate.
+    
+    ##### Users without access to the Health and Social Care Network (HSCN), or without access to smartcards
+
+    e-RS has recently released a new solution which allows authentication over the internet, 
+    using [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/developer/api-catalogue/nhs-cis2). 
+    The documentation you are currently reading must be used when you wish to authenticate over the internet. 
+    Not every endpoint is available yet: we have only released the endpoints you see listed below in the Endpoints section below. 
+    This access mode requires the use of [[HYPERLINK_A030]] endpoint to authenticate. 
+    Please note that this is currently in [[HYPERLINK_BETA]], 
+    meaning we might make breaking changes, but only if we cannot avoid it.
 
     ## Who can use this API
 
-    You can use this API if you are a software supplier or independent entities 
-    (such as a group of GP practices) wishing to interact with the e-referrals service (e-RS) data. Note:
+    You can use this API if you are a software developer wishing to interact with the e-referrals service (e-RS) data. 
+
+    To use this API:
 
       -	you must have justification for doing so
-      -	as an e-RS Partner, we offer you guidance and support for onboarding via the "e-RS Partners Service" which can be contacted via emailing [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
       -	you must register with the [e-RS Partners Service](https://developer-test.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html)
+      -	as an e-RS Partner, we offer you guidance and support for onboarding via the e-RS Partners Service which can be contacted via emailing [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
       -	you must [assure](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html) your solution before we grant access to live data
-      -	clinical safety remains your responsibility (and the responsibility if your end user organisations), as laid out in the NHS e-RS Integration API [compliance approach](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html)
+      -	clinical safety remains your responsibility (and the responsibility of your end user organisations), as laid out in the NHS e-RS Integration API [compliance approach](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html)
 
-    Also see the on-boarding section below for more information.
+    See the [[HYPERLINK_ONBOARDING]] section below for more information.
 
 
     ## Related APIs
@@ -92,10 +95,11 @@ info:
 
     ## API status and roadmap
 
-    The e-RS FHIR STU3 API is [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), when accessed via HSCN network with a smartcard. 
+    The e-RS FHIR STU3 API is [[HYPERLINK_STABLE]], when accessed via HSCN network with a smartcard. 
 
-    The e-RS FHIR STU3 API is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) when accessed via the internet. Note: there is 
-    also one e-RS FHIR R4 endpoint, for Retrieve Practitioner Roles, as part of our beta. We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
+    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed via the internet 
+    using [[HYPERLINK_CIS2]]. There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
+    We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
     our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
 
     For the current e-RS roadmap see [the future of the NHS e-referral service](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap).
@@ -139,7 +143,7 @@ info:
     | ----------------- | ---------------------------------------------------------------------- |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals` |
     | Integration test  | `https://int.api.service.nhs.uk/referrals` |
-    | Production        | `https://api.service.nhs.uk/referrals` |
+    | Production        | Not yet available |
 
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
@@ -148,20 +152,17 @@ info:
       -	is stateless, so does not actually persist any updates
       -	is open access, so does not allow you to test authorisation
 
-    Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint. 
-    Note: the sandbox will only respond to an input which exactly matches one of the examples provided, it is otherwise stateless.
+    Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
+    The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
 
     ### Integration testing
 
     Our integration test environment:
 
       -	is for formal integration testing
-      -	is stateful, so persists updates
-
-
-    ### Production smoke testing
-
-    You must not use real patient data for smoke testing in the production environment. 
+      - is where we will conduct witness testing for your application
+      -	is stateful, so data will be persisted
 
     ## Onboarding
 

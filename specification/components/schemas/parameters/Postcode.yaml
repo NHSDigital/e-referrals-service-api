@@ -1,0 +1,15 @@
+title: Postcode
+description: Details the postcode value specified in a search criteria
+type: object
+required:
+  - name
+  - valueString
+properties:
+  name:
+    type: string
+    enum:
+      - postcode
+    example: 'postcode'
+  valueString:
+    type: string
+    example: 'LS1 2UT'

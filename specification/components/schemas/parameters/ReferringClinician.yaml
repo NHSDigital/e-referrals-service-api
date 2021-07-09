@@ -1,0 +1,14 @@
+title: ReferringClinician
+description: Parameter to supply a referring clinician
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - referringClinician
+    example: 'referringClinician'
+  valueIdentifier:
+    $ref: '../identifiers/STU3_UserId.yaml'

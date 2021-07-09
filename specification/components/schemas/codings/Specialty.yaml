@@ -1,0 +1,23 @@
+title: Specialty value
+description: This will only be returned when codeSystemType is CLINIC-TYPE
+type: object
+required:
+- code
+- valueCoding
+properties:
+   code:
+      type: string
+      enum:
+         - specialty
+   valueCoding:
+      type: object
+      required:
+         - system
+         - code
+      properties:
+         system:
+            type: string
+            example: '_baseUrl_/STU3/v1/CodeSystem/SPECIALTY'
+         code:
+            type: string
+            example: 'CARDIOLOGY'

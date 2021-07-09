@@ -4,6 +4,20 @@ const Inert = require('inert')
 const process = require('process')
 const routes = require('./routes')
 
+const addCommonHeaders = function (request, response) {
+  if (response.headers) {
+    if (request.headers["x-correlation-id"]) {
+      response.headers["x-correlation-id"] = request.headers["x-correlation-id"];
+    }
+    response.headers["x-request-id"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1';
+  }
+}
+
+const preResponse = function (request, h) {
+  addCommonHeaders(request, request.response)
+  return h.continue
+}
+
 const init = async () => {
   const server = Hapi.server({
     port: 9000,
@@ -16,14 +30,16 @@ const init = async () => {
     },
   });
 
+  server.ext('onPreResponse', preResponse);
+
   server.route({
     method: '*',
     path: '/{any*}',
     handler: function (request, h) {
-        const errorResponse = {
-          error: 'File not found'
-        }
-        return h.response(errorResponse).code(404);
+      const errorResponse = {
+        error: 'File not found'
+      }
+      return h.response(errorResponse).code(404);
     }
   });
 

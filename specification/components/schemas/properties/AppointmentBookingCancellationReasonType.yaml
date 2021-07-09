@@ -1,0 +1,23 @@
+title: Appointment Booking Cancellation Reason Type
+description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - appointmentBookingCancellationReasonType
+    example: 'appointmentBookingCancellationReasonType'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#appointmentBookingCancellationReasonType'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#appointmentBookingCancellationReasonType'
+  type:
+    type: string
+    enum: 
+      - Coding
+    example: 'Coding'

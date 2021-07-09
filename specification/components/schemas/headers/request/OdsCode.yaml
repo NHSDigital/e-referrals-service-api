@@ -1,0 +1,8 @@
+in: header
+name: nhsd-ers-ods-code
+description: | 
+  The ODS code of the caller's Organisation
+required: true
+schema:
+  type: string
+  example: 'R69'

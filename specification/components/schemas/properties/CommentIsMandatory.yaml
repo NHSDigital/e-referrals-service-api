@@ -1,0 +1,23 @@
+title: Comment Is Mandatory
+description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - commentIsMandatory
+    example: 'commentIsMandatory'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory'
+  type:
+    type: string
+    enum: 
+      - boolean
+    example: 'boolean'

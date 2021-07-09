@@ -1,0 +1,26 @@
+title: Organisation
+description: Details the organisation that was specified in a search criteria
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - organisation
+    example: 'organisation'
+  valueIdentifier:
+    type: object
+    required:
+      - system
+      - value
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://directory.spineservices.nhs.uk/STU3/Organization'
+        example: 'https://directory.spineservices.nhs.uk/STU3/Organization'
+      value:
+        type: string
+        example: 'R69'

@@ -1,0 +1,179 @@
+{
+    "id": "CLINIC-TYPE",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "_baseUrl_/STU3/v1/CodeSystem/CLINIC-TYPE",
+    "name": "e-RS Clinic Type",
+    "status": "active",
+    "date": "2021-05-26T13:49:36.514Z",
+    "publisher": "e-Referral Service",
+    "description": "e-RS Clinic Type",
+    "copyright": "Copyright © 2016 HL7 UK",
+    "content": "complete",
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        },
+        {
+            "code": "specialty",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#specialty",
+            "type": "Coding"
+        }
+    ],
+    "concept": [
+        {
+            "code": "GENERAL_ADULT_MENTAL_ILLNESS",
+            "display": "General Adult Mental Illness",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "ADULT_MENTAL_ILLNESS"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "ALLERGY_1",
+            "display": "Allergy",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "ALLERGY"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "FOOD_AND_DRUG_ALLERGY",
+            "display": "Food and Drug Allergy",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2009-03-14T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "ALLERGY"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "GENERAL_PAEDIATRIC_AUDIOLOGICAL_MEDICINE",
+            "display": "General Paediatric Audiological Medicine",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2007-11-16T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "AUDIOLOGICAL_MEDICINE"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "GENERAL_ADULT_AUDIOLOGICAL_MEDICINE",
+            "display": "General Adult Audiological Medicine",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "AUDIOLOGICAL_MEDICINE"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "GENERAL_AUDIOLOGICAL_MEDICINE",
+            "display": "General Audiological Medicine",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "AUDIOLOGICAL_MEDICINE"
+                    }
+                }
+            ]
+        },
+        {
+            "code": "GENERAL_BONE_AND_MARROW_TRANSPLANTATION",
+            "display": "General Bone and Marrow Transplantation",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                },
+                {
+                    "code": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "BONE_AND_MARROW_TRANSPLANTATION"
+                    }
+                }
+            ]
+        }
+    ]
+}

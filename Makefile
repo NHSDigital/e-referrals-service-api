@@ -12,17 +12,21 @@ install-node:
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
 
-lint:
+lint: copy-examples
 	npm run lint
 	poetry run flake8 **/*.py
 
 clean:
 	rm -rf build
 	rm -rf dist
+	rm -rf specification/components/examples
 
-publish: clean
+publish: clean copy-examples
 	mkdir -p build
 	npm run publish 2> /dev/null
+
+copy-examples:
+	scripts/copy_examples_from_sandbox.sh
 
 serve:
 	npm run serve

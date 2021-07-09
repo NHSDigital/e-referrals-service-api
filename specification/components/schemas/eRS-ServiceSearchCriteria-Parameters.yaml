@@ -1,0 +1,60 @@
+title: eRS-ServiceSearchCriteria-Parameters
+description: The criteria used to search for services
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - parameter
+properties:
+  id:
+    type: string
+    example: 'ServiceSearchCriteria-1'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1'
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  parameter:
+    type: array
+    description: |
+      | Field                                   | Cardinality | Notes                                                                     |
+      | --------------------------------------- | ----------- | ------------------------------------------------------------------------- |
+      | `Priority`                              | `1..1`      |                                                                           |
+      | `Specialty`                             | `0..1`      |                                                                           |
+      | `ClinicType`                            | `0..1`      |                                                                           |
+      | `IndicativeAppointmentWaitTimeLimit`    | `0..1`      |                                                                           |
+      | `Postcode`                              | `0..1`      |                                                                           |
+      | `DistanceLimit`                         | `0..1`      |                                                                           |
+      | `ClinicalTerm`                          | `0..1`      |                                                                           |
+      | `NamedClinician`                        | `0..1`      |                                                                           |
+      | `AgeAndGenderAppropriate`               | `1..1`      |                                                                           |
+      | `CommissioningProvisioning`             | `1..1`      |                                                                           |
+      | `Organisation`                          | `0..1`      |                                                                           |
+      | `Place`                                 | `0..1`      | Only supported in read mode, search by `place` is not possible currently. |
+    items:
+      anyOf:
+        - $ref: 'parameters/Priority.yaml'
+        - $ref: 'parameters/Specialty.yaml'
+        - $ref: 'parameters/ClinicType.yaml'
+        - $ref: 'parameters/IndicativeAppointmentWaitTimeLimit.yaml'
+        - $ref: 'parameters/Postcode.yaml'
+        - $ref: 'parameters/DistanceLimit.yaml'
+        - $ref: 'parameters/ClinicalTerm.yaml'
+        - $ref: 'parameters/NamedClinician.yaml'
+        - $ref: 'parameters/AgeAndGenderAppropriate.yaml'
+        - $ref: 'parameters/CommissioningProvisioning.yaml'
+        - $ref: 'parameters/Organisation.yaml'
+        - $ref: 'parameters/Place.yaml'

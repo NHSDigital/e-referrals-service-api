@@ -1,0 +1,325 @@
+{
+  "id": "000000070000",
+  "meta": {
+    "versionId": "3",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE",
+            "display": "Routine"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE"
+          }
+        },
+        {
+          "name": "specialty",
+          "valueCoding": {
+            "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+            "code": "CARDIOLOGY"
+          }
+        },
+        {
+          "name": "clinicType",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code": "HEART_FAILURE"
+          }
+        },
+        {
+          "name": "indicativeAppointmentWaitTimeLimit",
+          "valueUnsignedInt": 50
+        },
+        {
+          "name": "postcode",
+          "valueString": "LS1 2UT"
+        },
+        {
+          "name": "distanceLimit",
+          "valueUnsignedInt": 123
+        },
+        {
+          "name": "clinicalTerm",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "1003"
+          }
+        },
+        {
+          "name": "namedClinician",
+          "valueIdentifier": {
+            "system": "http://fhir.nhs.net/Id/sds-user-id",
+            "value": "021600556514"
+          }
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": true
+        },
+        {
+          "name": "commissioningProvisioning",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code": "ALL_AVAILABLE_FOR_BOOKING"
+          }
+        },
+        {
+          "name": "organisation",
+          "valueIdentifier": {
+            "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+            "value": "Cicero-Clinic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12000"
+            },
+            "display": "Good Cardiology Business Service 1"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12001"
+            },
+            "display": "Good Cardiology Business Service 2"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12002"
+            },
+            "display": "Good Cardiology Business Service 3"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12003"
+            },
+            "display": "Good Cardiology Business Service 4"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12004"
+            },
+            "display": "Good Cardiology Business Service 5"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12005"
+            },
+            "display": "Good Cardiology Business Service 6"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12006"
+            },
+            "display": "Good Cardiology Business Service 7"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12007"
+            },
+            "display": "Good Cardiology Business Service 8"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12008"
+            },
+            "display": "Good Cardiology Business Service 9"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12009"
+            },
+            "display": "Good Cardiology Business Service 10"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12010"
+            },
+            "display": "Good Cardiology Business Service 11"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12011"
+            },
+            "display": "Good Cardiology Business Service 12"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12012"
+            },
+            "display": "Good Cardiology Business Service 13"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12013"
+            },
+            "display": "Good Cardiology Business Service 14"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12014"
+            },
+            "display": "Good Cardiology Business Service 15"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12015"
+            },
+            "display": "Good Cardiology Business Service 16"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12016"
+            },
+            "display": "Good Cardiology Business Service 17"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12017"
+            },
+            "display": "Good Cardiology Business Service 18"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12018"
+            },
+            "display": "Good Cardiology Business Service 19"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "12019"
+            },
+            "display": "Good Cardiology Business Service 20"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "supportingInfo": [],
+  "intent": "plan"
+}

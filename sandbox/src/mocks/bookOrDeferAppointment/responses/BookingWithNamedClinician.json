@@ -1,0 +1,65 @@
+{
+  "id": "70000",
+  "meta": {
+    "versionId": "0",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "booked",
+  "description": "e-Referral Appointment",
+  "start": "2022-07-11T13:15:00+00:00",
+  "end": "2022-07-11T14:15:00+00:00",
+  "slot": [
+    {
+      "reference": "Slot/11008006"
+    }
+  ],
+  "created": "2021-06-30T13:15:18.759+00:00",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070000/_history/8"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "11008"
+        },
+        "display": "FIRST Cardiology Business Service"
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "9912003888"
+        }
+      },
+      "status": "accepted"
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/ValueSet/encounter-participant-type",
+            "code": "CON"
+          }
+        ]
+      },
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/sds-user-id",
+          "value": "021600556514"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

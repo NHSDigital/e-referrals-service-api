@@ -1,0 +1,23 @@
+title: Will Cancel Whole Request
+description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - willCancelWholeRequest
+    example: 'willCancelWholeRequest'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#willCancelWholeRequest'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#willCancelWholeRequest'
+  type:
+    type: string
+    enum: 
+      - boolean
+    example: 'boolean'

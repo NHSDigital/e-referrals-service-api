@@ -1,0 +1,14 @@
+title: Patient
+description: Parameter to supply a patient
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - patient
+    example: 'patient'
+  valueIdentifier:
+    $ref: '../identifiers/NhsNumber.yaml'

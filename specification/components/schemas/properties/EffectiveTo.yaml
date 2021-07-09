@@ -1,0 +1,22 @@
+title: Effective to date
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - effectiveTo
+    example: 'effectiveTo'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo'
+  type:
+    type: string
+    enum: 
+      - dateTime
+    example: 'dateTime'

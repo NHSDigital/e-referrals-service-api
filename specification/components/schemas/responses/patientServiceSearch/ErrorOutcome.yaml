@@ -1,0 +1,36 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+  
+  | Error code                         | Description                                                                                                             |
+  | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+  | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation). |
+  | INAPPROPRIATE_VALUE                | A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided. |
+  | MISSING_VALUE                      | A field defined as mandatory for an endpoint has not been provided. |
+  | VALUE_IS_REQUIRED                  | A business rule defines a value as mandatory but it has not been provided. |
+  | FIELD_NOT_PERMITTED                | A business rule defines a field as not permitted but it has been provided. |
+  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again. |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format. |
+  | INVALID_CODE                       | The input provided for a field is not one of the defined legal values. |
+  | UNEXPECTED_FIELD                   | A field is provided that is not expected as part of the request. E.g. a field is mis-spelt, was defined on a previous version of the endpoint but has subsequently been removed. |
+  | INVALID_FHIR_STRUCTURE             | The FHIR data structure in the message body does not match the expected structure (e.g. an array is present for a value when no array is expected). |
+  | REFERENCED_USER_IS_NOT_SPC         | The user provided does not have the Service Provider Clinician authorisation in the e-RS. |
+  | ORGANISATION_IS_CLOSED             | The organisation supplied corresponds to an organisation that is closed. |
+  | ORGANISATION_NOT_APPROPRIATE       | The organisation supplied corresponds to an organisation that is not valid for the given request. |
+  | REFERENCED_USER_IS_NOT_ACTIVE      | The user identified is not active. |
+  | REFERENCED_USER_NOT_IN_ORG         | The referenced user does not belong to organisation specified. |
+  | NO_REG_GP_PRACTICE                 | The patient provided was found not to have a registered GP practice in the e-RS. |
+  | REFERENCED_USER_IS_NOT_RC          | The user provided does not have the Referring Clinician authorisation in the e-RS. |
+  | REFERENCED_USER_IS_NOT_RC_AT_ORG   | The user provided does not have the Referring Clinician authorisation at the organisation specified. |
+  | SNOMED_NOT_FOUND                   | A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS dictionary. |
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/GenericOperationOutcome.json'

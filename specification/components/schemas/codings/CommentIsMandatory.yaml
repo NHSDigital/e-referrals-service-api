@@ -1,0 +1,13 @@
+title: Comment is mandatory value
+description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
+type: object
+required:
+   - code
+   - valueBoolean
+properties:
+   code:
+      type: string
+      enum:
+         - commentIsMandatory
+   valueBoolean:
+      type: boolean

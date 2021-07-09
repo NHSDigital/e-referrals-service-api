@@ -1,0 +1,119 @@
+{
+    "id": "SPECIALTY",
+    "meta": {
+        "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Specialty-CodeSystem-1"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+    "name": "e-RS Specialty",
+    "status": "active",
+    "date": "2021-05-26T13:47:38.185Z",
+    "publisher": "e-Referral Service",
+    "description": "e-RS Specialty",
+    "copyright": "Copyright © 2016 HL7 UK",
+    "content": "complete",
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        }
+    ],
+    "concept": [
+        {
+            "extension": [
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+                    "valueDate": "2004-06-01"
+                },
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1",
+                    "valueDate": "2008-05-09"
+                }
+            ],
+            "code": "ADULT_MENTAL_ILLNESS",
+            "display": "Adult Mental Illness",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+                    "valueDate": "2004-06-01"
+                }
+            ],
+            "code": "ALLERGY",
+            "display": "Allergy",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+                    "valueDate": "2004-06-01"
+                },
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1",
+                    "valueDate": "2008-05-09"
+                }
+            ],
+            "code": "AUDIOLOGICAL_MEDICINE",
+            "display": "Audiological Medicine",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivefromDate-1",
+                    "valueDate": "2004-06-01"
+                },
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-EffectivetoDate-1",
+                    "valueDate": "2008-05-09"
+                }
+            ],
+            "code": "BONE_AND_MARROW_TRANSPLANTATION",
+            "display": "Bone and Marrow Transplantation",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2008-05-09T00:00:00.000Z"
+                }
+            ]
+        }
+    ]
+}

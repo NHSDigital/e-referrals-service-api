@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+    ]
+  },
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
+            "code": "SANDBOX_ERROR",
+            "display": "Sandbox error"
+          }
+        ]
+      },
+      "diagnostics": "This is a dummy error produced by sandbox environment. Please use example requests to get success responses and make sure the e-RS Business Function provided in the header matches business role specified in the example title"
+    }
+  ]
+}

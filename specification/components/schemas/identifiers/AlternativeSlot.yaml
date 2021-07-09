@@ -1,0 +1,13 @@
+type: object
+required:
+  - system
+  - value
+properties:
+  system:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/Id/alternative-slot'
+    example: 'https://fhir.nhs.uk/Id/alternative-slot'
+  value:
+    type: string
+    example: 'USRN-11000009'

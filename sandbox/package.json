@@ -1,10 +1,11 @@
 {
-  "name": "mock",
+  "name": "e-referrals-service-api-sandbox",
   "version": "1.0.0",
-  "description": "hello-world-api-sandbox",
+  "description": "e-Referrals Service API Sandbox Server",
   "scripts": {
     "lint": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",
-    "start": "node src/app.js --use_strict"
+    "start": "node src/app.js --use_strict",
+    "debug": "DEBUG=pd* nodemon --inspect-brk --harmony --nolazy server.js"
   },
   "author": "NHS Digital",
   "license": "(MIT OR OGL)",
@@ -12,7 +13,8 @@
   "main": "app.js",
   "dependencies": {
     "@hapi/hapi": "18.4.1",
-    "inert": "^5.1.3"
+    "inert": "^5.1.3",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "eslint": "^6.8.0"

@@ -1,0 +1,96 @@
+title: eRS-ReferralRequest
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - contained
+  - extension
+  - status
+  - subject
+  - supportingInfo
+properties:
+  id:
+    type: string
+    example: '000000070000'
+  meta:
+    type: object
+    required:
+      - profile
+      - versionId
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1'
+      versionId:
+        type: string
+        example: '3'
+  resourceType:
+    type: string
+    enum:
+      - ReferralRequest
+    example: 'ReferralRequest'
+  contained:
+    type: array
+    nullable: true
+    description: |
+      | Field                                   | Cardinality | Notes                                      |
+      | --------------------------------------- | ----------- | ------------------------------------------ |
+      | `eRS-Shortlist-List`                    | `1..1`      |                                            |
+      | `eRS-ServiceSearchCriteria-Parameters`  | `1..1`      |                                            |
+      | `eRS-Appointment`                       | `0..1`      |                                            |
+      | `DocumentReference`                     | `0..*`      |                                            |
+    items:
+      anyOf:
+        - $ref: 'eRS-Shortlist-List.yaml'
+        - $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+        - $ref: 'eRS-Appointment.yaml'
+        - $ref: 'DocumentReference.yaml'
+  extension:
+    type: array
+    nullable: true
+    description: |
+      | Field                                      | Cardinality | Notes                                      |
+      | ------------------------------------------ | ----------- | ------------------------------------------ |
+      | `Extension-eRS-ReferralShortlist`          | `1..1`      |                                            |
+      | `Extension-eRS-Commissioning-Rule-Org`     | `1..1`      |                                            |
+      | `Extension-eRS-ReferralPriority`           | `1..1`      |                                            |
+      | `Extension-eRS-Appointment`                | `0..1`      |                                            |
+      | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                            |
+      | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                            |
+    items:
+      anyOf:
+        - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
+        - $ref: 'extensions/Extension-eRS-Commissioning-Rule-Org.yaml'
+        - $ref: 'extensions/Extension-eRS-ReferralPriority.yaml'
+        - $ref: 'extensions/Extension-eRS-Appointment.yaml'
+        - $ref: 'extensions/Extension-eRS-ClinicalInfoFirstSubmitted.yaml'
+        - $ref: 'extensions/Extension-eRS-ClinicalInfoLastUpdated.yaml'
+  status:
+    type: string
+    enum:
+      - active
+      - completed
+    example: 'active'
+  subject:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: 'identifiers/NhsNumber.yaml'
+  supportingInfo:
+    type: array
+    nullable: true
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: '#DocumentReference-70000'

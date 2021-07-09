@@ -1,0 +1,8 @@
+in: header
+name: X-ERS-XAPI-META-FILE_NAME
+description: | 
+  The name of file being uploaded, including the extension
+required: true
+schema:
+  type: string
+  example: 'test.txt'

@@ -1,0 +1,60 @@
+type: object
+required:
+  - code
+  - display
+  - property
+properties:
+  extension:
+    title: Effective Date Range Extensions
+    type: array
+    nullable: true
+    items:
+      anyOf:
+        - $ref: 'extensions/Extension-eRS-EffectivefromDate.yaml'
+        - $ref: 'extensions/Extension-eRS-EffectivetoDate.yaml'
+  code:
+    title: Value of the code system
+    description: |
+      
+      | Code System                     | Example Value                 |
+      | ------------------------------- | ----------------------------- |
+      | Specialty                       | UROLOGY                       |
+      | Clinic Type                     | GENERAL_UROLOGY               |
+      | Appointment Cancellation Reason | SERVICE_INAPPROPRIATE         |
+      
+    type: string
+  display:
+    title: Display value of the code system
+    description: |
+      
+      | Code System                     | Example Display Value         |
+      | ------------------------------- | ----------------------------- |
+      | Specialty                       | Urology                       |
+      | Clinic Type                     | General Urology               |
+      | Appointment Cancellation Reason | Inappropriate service         |
+      
+    type: string
+  property:
+    description: |
+
+      Some properties are only returned for certain code systems
+      
+      | Property                                 | Code System                     |
+      | -----------------------------------------| ------------------------------- |
+      | EffectiveFrom                            | All Code Systems                |
+      | EffectiveTo                              | All Code Systems                |
+      | Specialty                                | CLINIC-TYPE                     |
+      | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON |
+      | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON |
+      | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON |
+      
+    type: array
+    nullable: true
+    items:
+      anyOf:
+        - $ref: 'codings/CommentIsMandatory.yaml'
+        - $ref: 'codings/WillCancelWholeRequest.yaml'
+        - $ref: 'codings/EffectiveFrom.yaml'
+        - $ref: 'codings/EffectiveTo.yaml'
+        - $ref: 'codings/Specialty.yaml'
+        - $ref: 'codings/AppointmentBookingCancellationReasonType.yaml'

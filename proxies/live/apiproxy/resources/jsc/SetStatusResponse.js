@@ -45,7 +45,7 @@ var response = {
     "revision" : apiproxy_revision, 
     "releaseId" : "{{ RELEASE_RELEASEID }}", 
     "commitId": "{{ SOURCE_COMMIT_ID }}",
-    "checks" : spine_service
+    "checks" : healthcheck_service
 };
 
 context.setVariable("status.response", JSON.stringify(response));

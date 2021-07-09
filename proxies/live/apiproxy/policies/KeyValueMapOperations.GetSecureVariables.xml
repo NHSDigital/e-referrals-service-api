@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Get any eRS specific Key Value Map parameters -->
 <KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KeyValueMapOperations.GetSecureVariables" mapIdentifier="ers-variables-encrypted">
-    <Get assignTo="private.apigee.status-endpoint-api-key" index="1">
-        <Key>
-            <Parameter>status-endpoint-api-key</Parameter>
-        </Key>
-    </Get>
 </KeyValueMapOperations>

@@ -28,6 +28,8 @@ docopt = "^0.6.2"
 jsonpath-rw = "^1.4.0"
 semver = "^2.9.0"
 gitpython = "^3.0.5"
+pytest-check = "^1.0.1"
+requests = "^2.25.1"
 
 
 [tool.poetry.dev-dependencies]
@@ -38,3 +40,6 @@ jinja2 = "^2.11.1"
 
 
 [tool.poetry.scripts]
+
+[tool.pytest.ini_options]
+markers = ["smoke_test"]

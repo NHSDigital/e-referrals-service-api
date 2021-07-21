@@ -71,3 +71,10 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-sa"
     - environment: internal-qa-sandbox
       proxy_path: sandbox
+    - environment: manual-approval
+      stage_name: manual_approval_int
+    - environment: int
+      stage_name: ers_int_release
+      make_spec_visible: true
+      depends_on:
+      - manual_approval_int

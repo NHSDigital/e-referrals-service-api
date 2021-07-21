@@ -78,3 +78,5 @@ extends:
       make_spec_visible: true
       depends_on:
       - manual_approval_int
+    - environment: sandbox
+      proxy_path: sandbox

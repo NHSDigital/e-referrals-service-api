@@ -35,8 +35,10 @@ extends:
     enable_status_monitoring: false
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
+    - environment: manual-approval
+      stage_name: manual_approval_alpha
     - environment: internal-dev
-      stage_name: ers_alpha_live
+      stage_name: ers_alpha_release
       make_spec_visible: true
       service_name: "${{ variables.service_name }}-alpha"
       short_service_name: "${{ variables.short_service_name }}-alpha"
@@ -44,8 +46,12 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-alpha"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--alpha
+      depends_on:
+      - manual_approval_alpha
+    - environment: manual-approval
+      stage_name: manual_approval_rc
     - environment: internal-dev
-      stage_name: ers_rc_live
+      stage_name: ers_rc_release
       make_spec_visible: true
       service_name: "${{ variables.service_name }}-rc"
       short_service_name: "${{ variables.short_service_name }}-rc"
@@ -53,8 +59,12 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-rc"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--rc
+      depends_on:
+      - manual_approval_rc
+    - environment: manual-approval
+      stage_name: manual_approval_fix
     - environment: internal-dev
-      stage_name: ers_fix_live
+      stage_name: ers_fix_release
       make_spec_visible: true
       service_name: "${{ variables.service_name }}-fix"
       short_service_name: "${{ variables.short_service_name }}-fix"
@@ -62,12 +72,27 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-fix"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
+      depends_on:
+      - manual_approval_fix
+    - environment: manual-approval
+      stage_name: manual_approval_sa
     - environment: internal-qa
-      stage_name: ers_sa_live
+      stage_name: ers_sa_release
       make_spec_visible: true
-      service_name: "${{ variables.service_name }}-sa"
-      short_service_name: "${{ variables.short_service_name }}-sa"
-      product_display_name: "${{ variables.product_display_name }} (ERSSA)"
-      service_base_path: "${{ variables.service_base_path }}-sa"
+      depends_on:
+      - manual_approval_sa
+    - environment: manual-approval
+      stage_name: manual_approval_int
+    - environment: int
+      stage_name: ers_int_release
+      make_spec_visible: true
+      depends_on:
+      - manual_approval_int
     - environment: internal-qa-sandbox
       proxy_path: sandbox
+      depends_on:
+      - manual_approval_sa
+    - environment: sandbox
+      proxy_path: sandbox
+      depends_on:
+      - manual_approval_int

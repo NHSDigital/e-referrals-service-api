@@ -55,7 +55,6 @@ apigee:
           - identity-service-int-no-smartcard
 {% endif %}
         scopes:
-          - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
           - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
         quota: '300'
         quotaInterval: '1'

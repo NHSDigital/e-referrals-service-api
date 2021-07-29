@@ -40,7 +40,7 @@ properties:
     example: 'CodeSystem'
   url:
     type: string
-    example: '_baseUrl_/STU3/v1/CodeSystem/SPECIALTY'
+    example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
   name:
     title: Description of the code system
     type: string

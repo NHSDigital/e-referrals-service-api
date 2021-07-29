@@ -13,12 +13,12 @@
   "link": [
     {
       "relation": "self",
-      "url": "_baseUrl_/R4/v1/PractitionerRole"
+      "url": "_baseUrl_/R4/PractitionerRole"
     }
   ],
   "entry": [
     {
-      "fullUrl": "_baseUrl_/R4/v1/PractitionerRole/PractitionerRole-R69-000000000101",
+      "fullUrl": "_baseUrl_/R4/PractitionerRole/PractitionerRole-R69-000000000101",
       "resource": {
         "id": "PractitionerRole-R69-000000000101",
         "meta": {
@@ -72,7 +72,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/R4/v1/PractitionerRole/PractitionerRole-R68-000000000101",
+      "fullUrl": "_baseUrl_/R4/PractitionerRole/PractitionerRole-R68-000000000101",
       "resource": {
         "id": "PractitionerRole-R68-000000000101",
         "meta": {

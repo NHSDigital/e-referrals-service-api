@@ -23,14 +23,14 @@ module.exports = [
    */
   {
     method: 'GET',
-    path: '/STU3/v1/ReferralRequest/{ubrn}',
+    path: '/FHIR/STU3/ReferralRequest/{ubrn}',
     handler: (request, h) => {
       return retrieveReferralRequest(request, h);
     }
   },
   {
     method: 'GET',
-    path: '/STU3/v1/ReferralRequest/{ubrn}/_history/{version}',
+    path: '/FHIR/STU3/ReferralRequest/{ubrn}/_history/{version}',
     handler: (request, h) => {
       return retrieveReferralRequest(request, h);
     }

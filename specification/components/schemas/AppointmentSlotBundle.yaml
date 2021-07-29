@@ -63,7 +63,7 @@ properties:
           example: 'self'
         url:
           type: string
-          example: '_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=11010&appointmentType=ROUTINE&_count=10&status=free&_include=Slot%3Aschedule&page=1'
+          example: '_baseUrl_/STU3/Slot?schedule.actor%3AHealthcareService=11010&appointmentType=ROUTINE&_count=10&status=free&_include=Slot%3Aschedule&page=1'
   entry:
     type: array
     description: |
@@ -84,7 +84,7 @@ properties:
           properties:
             fullUrl:
               type: string
-              example: '_baseUrl_/STU3/v1/Slot/11000010'
+              example: '_baseUrl_/STU3/Slot/11000010'
             resource:
               type: object
               required:
@@ -168,7 +168,7 @@ properties:
           properties:
             fullUrl:
               type: string
-              example: '_baseUrl_/STU3/v1/Schedule/11000-921600556514'
+              example: '_baseUrl_/STU3/Schedule/11000-921600556514'
             resource:
               type: object
               required:

@@ -12,7 +12,7 @@
   "link": [
     {
       "relation": "self",
-      "url": "_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=10000&appointmentType=ROUTINE&_count=20&status=free&_include=Slot%3Aschedule&page=1"
+      "url": "_baseUrl_/STU3/Slot?schedule.actor%3AHealthcareService=10000&appointmentType=ROUTINE&_count=20&status=free&_include=Slot%3Aschedule&page=1"
     }
   ],
   "entry": []

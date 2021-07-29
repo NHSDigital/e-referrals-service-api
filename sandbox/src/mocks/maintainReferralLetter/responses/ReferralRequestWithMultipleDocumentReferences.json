@@ -62,7 +62,7 @@
         {
           "name": "specialty",
           "valueCoding": {
-            "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+            "system": "https://ers-api:445/STU3/CodeSystem/SPECIALTY",
             "code": "CARDIOLOGY"
           }
         },

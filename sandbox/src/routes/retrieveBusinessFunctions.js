@@ -6,7 +6,7 @@ module.exports = [
    */
   {
     method: 'GET',
-    path: '/R4/v1/PractitionerRole',
+    path: '/FHIR/R4/PractitionerRole',
     handler: (request, h) => {
 
       const { responsePath, responseCode } = mockResponseProvider.getExampleResponseForRetrieveBusinessFunctions();

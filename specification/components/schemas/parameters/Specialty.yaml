@@ -18,7 +18,7 @@ properties:
     properties:
       system:
         type: string
-        example: '_baseUrl_/STU3/v1/CodeSystem/SPECIALTY'
+        example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
       code:
         type: string
         example: 'CARDIOLOGY'

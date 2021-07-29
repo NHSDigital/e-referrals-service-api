@@ -7,7 +7,7 @@ module.exports = [
      */
   {
     method: 'GET',
-    path: '/STU3/v1/CodeSystem/{codeSystemType}',
+    path: '/FHIR/STU3/CodeSystem/{codeSystemType}',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN"];

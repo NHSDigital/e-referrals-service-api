@@ -245,6 +245,8 @@ paths:
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
 
+        You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
+
       summary: A011 - Create referral
       operationId: a011-create-referral
       parameters:
@@ -2223,6 +2225,85 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml' 
+   /FHIR/R4/HealthcareService/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added....
+
+      summary: Axxx - Retrieve HealthcareService
+      operationId: axxx-retrieve-healthcare-service
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/path/ServiceId.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
+        
+  /FHIR/R4/HealthcareService/{id}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        To be added....
+      summary: Axxx - Retrieve HealthcareService (versioned)
+      operationId: axxx-retrieve-healthcare-service-versioned
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/path/ServiceId.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
+  /FHIR/R4/HealthcareService:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added.....
+      
+      summary: Axxx - Search for HealthcareService
+      operationId: Axxx - Search for HealthcareService
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - in: query
+          name: _id
+          description: |
+            One or many service ID(s) to include as part of the search. Must be supplied, otherwise a 400 response will be returned.
+          required: true
+          schema:
+            type: string
+            example: '1,2'
+        - in: query
+          name: active
+          description: |
+            Indicates what "active" status should be included as part of the search.
+          required: true
+          schema:
+            type: boolean
+            example: true
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/searchForService/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+
 components:
   securitySchemes:
     bearerAuth:

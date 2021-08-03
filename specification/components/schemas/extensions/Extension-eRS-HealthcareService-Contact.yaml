@@ -1,0 +1,75 @@
+title: Extension-eRS-HealthcareService-Contact
+description: Extension detailing the contact details for a HealthcareService
+type: object
+required:
+  - url
+  - extension
+properties:
+    url:
+      type: string
+      # Need to confirm extension URL
+      enum:
+        - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact'
+      example: 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact'
+    extension:
+      type: array
+      description: |
+        | Field                                      | Cardinality | Notes                                                                                   |
+        | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
+        | purpose                                    | 1..1        | Details who should be using the current contact method                                  |
+        | telecom                                    | 1..1        | Outlines the contact details to be used                                                 |
+      items:
+        anyOf:
+          - type: object
+            title: purpose
+            required:
+              - url
+              - valueCodeableConcept
+            properties:
+              url:
+                type: string
+                enum:
+                  - 'purpose'
+                example: 'purpose'
+              valueCodeableConcept:
+                type: object
+                required:
+                  - coding
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - system
+                        - code
+                        - display
+                      properties:
+                        system:
+                          enum:
+                            - http://terminology.hl7.org/CodeSystem/contactentity-type
+                            - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose'
+                          example: 'http://terminology.hl7.org/CodeSystem/contactentity-type'
+                        code:
+                            type: string
+                            enum:
+                              - BILL
+                              - ADMIN
+                              - HR
+                              - PAYOR
+                              - PATINF
+                              - PRESS
+                              - HEALTHCARE_PROFESSIONAL
+                            example: PATINF
+                        display:
+                          type: string
+                          enum:
+                            - Billing
+                            - Administrative
+                            - Human Resource
+                            - Payor
+                            - Patient
+                            - Press
+                            - Professional
+                          example: Patient
+                

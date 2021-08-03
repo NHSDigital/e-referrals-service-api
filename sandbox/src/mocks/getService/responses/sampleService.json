@@ -1,0 +1,99 @@
+{
+    "id": "1",
+    "meta": {
+        "versionId": "1",
+        "profile": [
+            "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
+        ]
+    },
+    "language": "en",
+    "resourceType": "HealthcareService",
+    "extension": [
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation",
+            "valueString": "9-5 Mon-Fri"
+        },
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions",
+            "valueString": "Instructions"
+        },
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
+            "extension": [
+                {
+                    "url": "purpose",
+                    "valueCodeableConcept": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/contactentity-type",
+                                "code": "PATINF",
+                                "display": "Patient"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "url": "telecom",
+                    "valueContactPoint": {
+                        "system": "phone",
+                        "value": "01234567890"
+                    }
+                }
+            ]
+        },
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-HealthcareService-Contact",
+            "extension": [
+                {
+                    "url": "purpose",
+                    "valueCodeableConcept": {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose",
+                                "code": "HEALTHCARE_PROFESSIONALS",
+                                "display": "Healthcare Professionals"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "url": "telecom",
+                    "valueContactPoint": {
+                        "system": "email",
+                        "value": "service@email.com"
+                    }
+                }
+            ]
+        }
+    ],
+    "active": true,
+    "location": [
+        {
+            "identifier": {
+                "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                "value": "R6901"
+            }
+        }
+    ],
+    "name": "Direct SVC 1",
+    "type": {
+        "coding": [
+            {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+                "code": "DAY_CASE",
+                "display": "Day Case"
+            }
+        ]
+    },
+    "characteristic": [
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+                    "code": "APPOINTMENT_REQUEST",
+                    "display": "Appointment Request"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+title: Extension-eRS-ServiceInstructions
+description: Extension to detail any service instructions for a HealthcareService.
+type: object
+required:
+  - url
+  - valueString
+properties:
+  url:
+    type: string
+    # Need to confirm profile URLs.
+    enum:
+      - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions'
+    example: https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions'
+  valueString:
+    type: string

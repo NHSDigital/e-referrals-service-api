@@ -407,4 +407,26 @@ module.exports = {
 
 
   },
+ 
+ getExampleResponseForGetHealthcareService: function (request) {
+    const version = request.params.version
+    const serviceId = request.params.serviceId
+
+    if (serviceId == 1 && (!version || version == 1)) {
+      return 'getService/responses/sampleService.json'
+    }
+
+    return null
+  },
+
+  getExampleResponseForSearchForHealthcareServices: function(request) {
+    const ids = request.query['_id']
+    const active = request.query['active']
+
+    if (ids == ['1', '2'] && active == 'true') {
+      return 'searchForServices/responses/multipleResults.json'
+    }
+
+    return null
+  }
 }

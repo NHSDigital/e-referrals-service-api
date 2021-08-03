@@ -1,0 +1,18 @@
+description: |
+  Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code               | Description                                                         |
+  | ------------------------ | ------------------------------------------------------------------- |
+  | MISSING_VALUE            | A field defined as mandatory for an endpoint has not been provided. |
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-OperationOutcome.yaml'
+    example:
+       $ref: '../../../examples/GenericOperationOutcome.json'

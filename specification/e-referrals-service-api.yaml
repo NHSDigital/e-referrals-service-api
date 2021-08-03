@@ -843,7 +843,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
 
-      summary: A005 - Retrieve referral request
+      summary: A005 Retrieve Referral Request
       operationId: a005-retrieve-referral-request
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -903,7 +903,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
 
-      summary: A005 - Retrieve referral request (versioned)
+      summary: A005 Retrieve Referral Request (Versioned)
       operationId: a005-retrieve-referral-request-versioned
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -1399,13 +1399,14 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
-        
-  /R4/HealthcareService/{id}/_history/{version}:
+  /FHIR/R4/HealthcareService/{id}/_history/{version}:
     get:
       security:
         - bearerAuth: []
       description: |
+        ## Overview
         To be added....
+      
       summary: Axxx - Retrieve HealthcareService (versioned)
       operationId: axxx-retrieve-healthcare-service-versioned
       parameters:
@@ -1420,8 +1421,7 @@ paths:
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
-
-  /R4/HealthcareService:
+  /FHIR/R4/HealthcareService:
     get:
       security:
         - bearerAuth: []

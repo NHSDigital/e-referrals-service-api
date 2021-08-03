@@ -2361,13 +2361,13 @@ paths:
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
         '200':
-          $ref: 'components/schemas/responses/getService/200Response.yaml'
-        
+          $ref: 'components/schemas/responses/getService/200Response.yaml'        
   /R4/HealthcareService/{id}/_history/{version}:
     get:
       security:
         - bearerAuth: []
       description: |
+        ## Overview
         To be added....
       summary: Axxx - Retrieve HealthcareService (versioned)
       operationId: axxx-retrieve-healthcare-service-versioned

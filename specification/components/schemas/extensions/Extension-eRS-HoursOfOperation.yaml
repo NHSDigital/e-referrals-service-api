@@ -1,0 +1,16 @@
+title: Extension-eRS-HoursOfOperation
+description: Extension to detail the hours of operation outlined for a HealthcareService.
+type: object
+required:
+  - url
+  - valueString
+properties:
+  url:
+    type: string
+    # Need to confirm profile URLs
+    enum:
+      - https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1'
+    example: https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1'
+  valueString:
+    type: string
+    example: '9-5 Monday to Friday'

@@ -1212,7 +1212,25 @@ paths:
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'           
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /FHIR/R4/HealthcareService/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added....
+
+      summary: Axxx - Retrieve Healthcare Service
+      operationId: axxx-retrieve-healthcare-service
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/path/ServiceId.yaml'
+      responses:
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
 components:
   securitySchemes:
     bearerAuth:

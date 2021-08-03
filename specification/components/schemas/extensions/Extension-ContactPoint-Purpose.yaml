@@ -1,0 +1,49 @@
+# Need to confirm extension name
+title: Extension-ContactPoint-Purpose
+description: Extension to supply contact details for a HealthcareService.
+type: object
+required:
+ - url
+ - extension
+properties:
+  url:
+    type: string
+    enum:
+    # Need to confirm profile URL
+      - 'https://fhir.nhs.uk/R4/StructureDefinition/Extension-Contact-Purpose-1'
+    example: 'https://fhir.nhs.uk/R4/StructureDefinition/Extension-Contact-Purpose-1'
+  valueCodeableConcept:
+    type: object
+    required:
+        - coding
+    properties:
+      coding:
+        type: object
+        required:
+          - system
+          - code
+          - display
+        properties:
+          system:
+            type: string
+            enum:
+              # Need to check system URL
+              - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+            example: 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+          code:
+            type: string
+            # Need to confirm this list
+            enum:
+              - PATINF
+              - PROF
+            example: PATINF
+          display:
+            type: string
+            enum:
+              - Patient
+              - Professional
+            example: Patient
+
+
+    
+

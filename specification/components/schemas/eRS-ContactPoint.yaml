@@ -1,0 +1,33 @@
+title: eRS-ContactPoint # Should this be referencing a CareConnect/UKCore profile?
+description: Details technology related contact-points for a person or organisation.
+type: object
+required:
+  - system
+  - value
+  - use
+  - extension
+properties:
+  system:
+    type: string
+    enum:
+      - phone
+      - fax
+      - email
+      - pager
+      - url
+      - sms
+      - other
+    example: phone
+  value:
+    type: string
+    example: '01234567890'
+  extension:
+    type: array
+    description: | # Need to check cardinality
+      | Field                                      | Cardinality | Notes                                                  |
+      | ------------------------------------------ | ----------- | ------------------------------------------------------ |
+      | Extension-ContactPoint-Purpose             | 0..1        | Outlines who should be using the current Contact Point |
+    items:
+      anyOf:
+        - $ref: extensions/Extension-ContactPoint-Purpose.yaml
+  

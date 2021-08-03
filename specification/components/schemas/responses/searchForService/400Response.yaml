@@ -1,0 +1,7 @@
+description: |
+  Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code               | Description                                                         |
+  | ------------------------ | ------------------------------------------------------------------- |
+  | MISSING_VALUE            | A field defined as mandatory for an endpoint has not been provided. |

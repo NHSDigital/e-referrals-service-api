@@ -1,0 +1,17 @@
+description: Response contains the Healthcare Service requested.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Etag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-HealthcareService.yaml'
+    examples:
+      directly-bookable-service:
+        summary: Directly bookable `HealthcareService`
+        value:
+          $ref: '../../../examples/getService/responses/DBS.json'

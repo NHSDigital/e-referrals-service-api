@@ -42,10 +42,12 @@ properties:
       | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
       | Extension-eRS-HoursOfOperation             | 0..1        | Details the hours the current HealthcareService is operational                          |
       | Extension-eRS-ServiceInstructions          | 0..1        | Outlines any specific instructions that should be followed around the HealthcareService |
+      | Extension-HealthcareService-Contact        | 0..*        | Details any contact information for the HealthcareService                               |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-HoursOfOperation.yaml'
         - $ref: 'extensions/Extension-eRS-ServiceInstructions.yaml'
+        - $ref: 'extensions/Extension-HealthcareService-Contact.yaml'
   location:
     type: object
     properties:
@@ -56,18 +58,15 @@ properties:
           system:
             type: string
             enum:
-              - 'to confirm'
-            example: 'to confirm'
+              - 'https://fhir.nhs.uk/Id/ods-site-code'
+            example: 'https://fhir.nhs.uk/Id/ods-site-code'
           value:
             type: string
             example: 'R69'
   name:
     type: string
+    example: 'Direct SVC 1'
     description: Name of the current HealthcareService within eRS
-  telecom:
-    type: array
-    items:
-      $ref: 'eRS-ContactPoint.yaml'
   type:
     type: object
     required:

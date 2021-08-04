@@ -1,0 +1,66 @@
+title: Extension-HealthcareService-Contact
+description: Extension detailing the contact details for a HealthcareService
+type: object
+required:
+  - url
+  - extension
+properties:
+    url:
+      type: string
+      # Need to confirm extension URL
+      enum:
+        - 'https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Purpose-1'
+      example: 'https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Purpose-1'
+    extension:
+      type: array
+      description: |
+        | Field                                      | Cardinality | Notes                                                                                   |
+        | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
+        | purpose                                    | 1..1        | Details who should be using the current contact method                                  |
+        | telecom                                    | 1..1        | Outlines the contact details to be used                                                 |
+      items:
+        anyOf:
+          - type: object
+            title: purpose
+            required:
+              - url
+              - valueCodeableConcept
+            properties:
+              url:
+                type: string
+                enum:
+                  - 'purpose'
+                example: 'purpose'
+              valueCodeableConcept:
+                type: object
+                required:
+                  - coding
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - system
+                        - code
+                        - display
+                      properties:
+                        system:
+                          enum:
+                            # Need to check system URL
+                            - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+                          example: 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+                        code:
+                            type: string
+                            # Need to confirm this list
+                            enum:
+                              - PATINF
+                              - PROF
+                            example: PATINF
+                        display:
+                          type: string
+                          enum:
+                            - Patient
+                            - Professional
+                          example: Patient
+                

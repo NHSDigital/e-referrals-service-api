@@ -15,20 +15,12 @@
         {
             "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-ServiceInstructions-1",
             "valueString": "Instructions"
-        }
-    ],
-    "location": {
-        "identifier": {
-            "system": "to confirm",
-            "value": "R69"
-        }
-    },
-    "name": "Direct SVC 1",
-    "telecom": [
+        },
         {
-            "extension": [
+            "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+            "extension:": [
                 {
-                    "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-Contact-Purpose-1",
+                    "url": "purpose",
                     "valueCodeableConcept": {
                         "coding": [
                             {
@@ -36,17 +28,23 @@
                                 "code": "PATINF",
                                 "display": "Patient"
                             }
-                        ]
+                        ] 
+                    }
+                },
+                {
+                    "url": "telecom",
+                    "valueContactPoint": {
+                        "system": "phone",
+                        "value": "01234567890"
                     }
                 }
-            ],
-            "system": "phone",
-            "value": "01234567890"
+            ]
         },
         {
-            "extension": [
+            "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+            "extension:": [
                 {
-                    "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-Contact-Purpose-1",
+                    "url": "purpose",
                     "valueCodeableConcept": {
                         "coding": [
                             {
@@ -54,14 +52,26 @@
                                 "code": "PROF",
                                 "display": "Professional"
                             }
-                        ]
+                        ] 
+                    }
+                },
+                {
+                    "url": "telecom",
+                    "valueContactPoint": {
+                        "system": "email",
+                        "value": "service@email.com"
                     }
                 }
-            ],
-            "system": "email",
-            "value": "service@email.com"
+            ]
         }
     ],
+    "location": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/ods-site-code",
+            "value": "R69"
+        }
+    },
+    "name": "Direct SVC 1",
     "type": {
         "coding": [
             {

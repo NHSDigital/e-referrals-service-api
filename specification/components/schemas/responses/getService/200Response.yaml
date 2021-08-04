@@ -11,7 +11,7 @@ content:
     schema:
       $ref: '../../eRS-HealthcareService.yaml'
     examples:
-      directly-bookable-service:
-        summary: Directly bookable `HealthcareService`
+      sample-service:
+        summary: Sample `HealthcareService`
         value:
-          $ref: '../../../examples/getService/responses/DBS.json'
+          $ref: '../../../examples/getService/responses/sampleService.json'

@@ -1,0 +1,31 @@
+const mockResponseProvider = require('../services/mockResponseProvider')
+const businessFunctionValidator = require('../services/businessFunctionValidator')
+
+function retrieveHealthcareService(request, h) {
+    const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
+
+    const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+    if (validationResult) {
+        return validationResult
+    }
+
+    var responsePath = mockResponseProvider.getExampleResponseForGetHealthcareService(request)
+    if (responsePath) {
+        return h.file(responsePath, { etagMethod: false }).code(200).type('application/fhir+json').etag('1', { weak: true })
+    }
+
+    return h.file('SandboxErrorOutcome.json').code(422)
+}
+
+module.exports = [
+    {
+        method: 'GET',
+        path: '/FHIR/R4/HealthcareService/{serviceId}',
+        handler: retrieveHealthcareService
+    },
+    {
+        method: 'GET',
+        path: '/FHIR/R4/HealthcareService/{serviceId}/_history/{version}',
+        handler: retrieveHealthcareService
+    }
+]

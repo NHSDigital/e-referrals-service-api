@@ -246,4 +246,14 @@ module.exports = {
     return { responsePath: 'retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf', filename: '000000070000_Clinical_Information_Summary_20210706114852.pdf', responseCode: 200 }
   },
 
+  getExampleResponseForGetHealthcareService: function (request) {
+    const version = request.params.version
+    const serviceId = request.params.serviceId
+
+    if (serviceId == 1 && (!version || version == 1)) {
+      return 'getService/responses/sampleService.json'
+    }
+
+    return null
+  }
 }

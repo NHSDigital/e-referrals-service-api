@@ -1221,7 +1221,7 @@ paths:
         ## Overview
         To be added....
 
-      summary: Axxx - Retrieve Healthcare Service
+      summary: Axxx - Retrieve HealthcareService
       operationId: axxx-retrieve-healthcare-service
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -1232,6 +1232,28 @@ paths:
       responses:
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
+  /FHIR/R4/HealthcareService/{id}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added....
+      
+      summary: Axxx - Retrieve HealthcareService (versioned)
+      operationId: axxx-retrieve-healthcare-service-versioned
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/path/ServiceId.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
   /FHIR/R4/HealthcareService:

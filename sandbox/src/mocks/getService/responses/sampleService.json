@@ -18,7 +18,7 @@
         },
         {
             "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
-            "extension:": [
+            "extension": [
                 {
                     "url": "purpose",
                     "valueCodeableConcept": {
@@ -28,7 +28,7 @@
                                 "code": "PATINF",
                                 "display": "Patient"
                             }
-                        ] 
+                        ]
                     }
                 },
                 {
@@ -42,7 +42,7 @@
         },
         {
             "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
-            "extension:": [
+            "extension": [
                 {
                     "url": "purpose",
                     "valueCodeableConcept": {
@@ -52,7 +52,7 @@
                                 "code": "PROF",
                                 "display": "Professional"
                             }
-                        ] 
+                        ]
                     }
                 },
                 {
@@ -81,13 +81,15 @@
             }
         ]
     },
-    "characteristic": {
-        "coding": [
-            {
-                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
-                "code": "APPOINTMENT_REQUEST",
-                "display": "Appointment Request"
-            }
-        ]
-    }
+    "characteristic": [
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                    "code": "APPOINTMENT_REQUEST",
+                    "display": "Appointment Request"
+                }
+            ]
+        }
+    ]
 }

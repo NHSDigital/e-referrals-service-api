@@ -255,5 +255,16 @@ module.exports = {
     }
 
     return null
+  },
+
+  getExampleResponseForSearchForHealthcareServices: function(request) {
+    const ids = request.query['id']
+    const active = request.query['active']
+
+    if (ids == ['1', '2'] && active == 'true') {
+      return 'searchForServices/responses/multipleResults.json'
+    }
+
+    return null
   }
 }

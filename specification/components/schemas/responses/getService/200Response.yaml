@@ -12,6 +12,6 @@ content:
       $ref: '../../eRS-HealthcareService.yaml'
     examples:
       sample-service:
-        summary: Sample `HealthcareService`
+        summary: Sample `HealthcareService`.
         value:
           $ref: '../../../examples/getService/responses/sampleService.json'

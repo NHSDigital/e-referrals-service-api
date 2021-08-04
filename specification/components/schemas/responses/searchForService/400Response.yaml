@@ -5,3 +5,16 @@ description: |
   | Error code               | Description                                                         |
   | ------------------------ | ------------------------------------------------------------------- |
   | MISSING_VALUE            | A field defined as mandatory for an endpoint has not been provided. |
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Etag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-OperationOutcome.yaml'
+    example:
+       $ref: '../../../examples/GenericOperationOutcome.json'

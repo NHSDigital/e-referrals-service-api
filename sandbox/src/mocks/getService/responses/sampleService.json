@@ -65,6 +65,7 @@
             ]
         }
     ],
+    "active": true,
     "location": {
         "identifier": {
             "system": "https://fhir.nhs.uk/Id/ods-site-code",

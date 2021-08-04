@@ -1,0 +1,175 @@
+{
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
+        ]
+    },
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "timestamp": "2021-08-04T14:35:00.00Z",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "_baseUrl_/FHIR/R4/HealthcareService?id=1,2&active=true"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/1",
+            "resource": {
+                "id": 1,
+                "meta": {
+                    "profile": [
+                        "https://fhir.nhs.uk/R4/StructureDefinition/eRS-HealthcareService-1"
+                    ]
+                },
+                "language": "en",
+                "resourceType": "HealthcareService",
+                "extension": [
+                    {
+                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1",
+                        "valueString": "9-5 Mon-Fri"
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-ServiceInstructions-1",
+                        "valueString": "Instructions"
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+                        "extension": [
+                            {
+                                "url": "purpose",
+                                "valueCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
+                                            "code": "PATINF",
+                                            "display": "Patient"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "url": "telecom",
+                                "valueContactPoint": {
+                                    "system": "phone",
+                                    "value": "01234567890"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+                        "extension": [
+                            {
+                                "url": "purpose",
+                                "valueCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
+                                            "code": "PROF",
+                                            "display": "Professional"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "url": "telecom",
+                                "valueContactPoint": {
+                                    "system": "email",
+                                    "value": "service@email.com"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "active": true,
+                "location": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                        "value": "R69"
+                    }
+                },
+                "name": "Direct SVC 1",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType-1",
+                            "code": "DAY_CASE",
+                            "display": "Day Case"
+                        }
+                    ]
+                },
+                "characteristic": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "code": "APPOINTMENT_REQUEST",
+                                "display": "Appointment Request"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/2",
+            "resource": {
+                "id": 2,
+                "meta": {
+                    "profile": [
+                        "https://fhir.nhs.uk/R4/StructureDefinition/eRS-HealthcareService-1"
+                    ]
+                },
+                "language": "en",
+                "resourceType": "HealthcareService",
+                "active": true,
+                "location": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                        "value": "R69"
+                    }
+                },
+                "name": "Direct SVC 2",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType-1",
+                            "code": "DAY_CASE",
+                            "display": "Day Case"
+                        }
+                    ]
+                },
+                "characteristic": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "code": "APPOINTMENT_REQUEST",
+                                "display": "Appointment Request"
+                            }
+                        ]
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "code": "TRIAGE_REQUEST",
+                                "display": "Triage Request"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

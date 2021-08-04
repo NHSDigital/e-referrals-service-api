@@ -1226,11 +1226,51 @@ paths:
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
+  /FHIR/R4/HealthcareService:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added.....
+      
+      summary: Axxx - Search for HealthcareService
+      operationId: Axxx - Search for HealthcareService
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - in: query
+          name: id
+          description: |
+            One or many service ID(s) to include as part of the search. Must be supplied, otherwise a 400 response will be returned.
+          required: true
+          schema:
+            type: string
+            example: '1'
+        - in: query
+          name: active
+          description: |
+            Indicates what "active" status should be included as part of the search.
+          required: true
+          schema:
+            type: boolean
+            example: true
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/searchForService/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+
 components:
   securitySchemes:
     bearerAuth:

@@ -6,6 +6,7 @@ required:
   - meta
   - resourceType
   - extension
+  - active
   - location
   - name
   - type
@@ -48,6 +49,9 @@ properties:
         - $ref: 'extensions/Extension-eRS-HoursOfOperation.yaml'
         - $ref: 'extensions/Extension-eRS-ServiceInstructions.yaml'
         - $ref: 'extensions/Extension-HealthcareService-Contact.yaml'
+  active:
+    type: boolean
+    nullable: false
   location:
     type: object
     properties:

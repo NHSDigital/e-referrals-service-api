@@ -258,7 +258,7 @@ module.exports = {
   },
 
   getExampleResponseForSearchForHealthcareServices: function(request) {
-    const ids = request.query['id']
+    const ids = request.query['_id']
     const active = request.query['active']
 
     if (ids == ['1', '2'] && active == 'true') {

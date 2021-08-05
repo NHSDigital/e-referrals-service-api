@@ -47,20 +47,29 @@ properties:
                       properties:
                         system:
                           enum:
-                            # Need to check system URL
+                            - http://terminology.hl7.org/CodeSystem/contactentity-type
                             - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
-                          example: 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+                          example: 'http://terminology.hl7.org/CodeSystem/contactentity-type'
                         code:
                             type: string
-                            # Need to confirm this list
                             enum:
+                              - BILL
+                              - ADMIN
+                              - HR
+                              - PAYOR
                               - PATINF
-                              - PROF
+                              - PRESS
+                              - HEALTHCARE_PROFESSIONAL
                             example: PATINF
                         display:
                           type: string
                           enum:
+                            - Billing
+                            - Administrative
+                            - Human Resource
+                            - Payor
                             - Patient
+                            - Press
                             - Professional
                           example: Patient
                 

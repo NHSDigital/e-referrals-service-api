@@ -53,20 +53,22 @@ properties:
     type: boolean
     nullable: false
   location:
-    type: object
-    properties:
-      identifier:
-        description: 'Reference detailing the location a service is based within.'
-        type: object
-        properties:
-          system:
-            type: string
-            enum:
-              - 'https://fhir.nhs.uk/Id/ods-site-code'
-            example: 'https://fhir.nhs.uk/Id/ods-site-code'
-          value:
-            type: string
-            example: 'R69'
+    type: array
+    items:
+      type: object
+      properties:
+        identifier:
+          description: 'Reference detailing the location a service is based within.'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/Id/ods-site-code'
+              example: 'https://fhir.nhs.uk/Id/ods-site-code'
+            value:
+              type: string
+              example: 'R6901'
   name:
     type: string
     example: 'Direct SVC 1'
@@ -135,10 +137,10 @@ properties:
             type: string
             # Might need to think about these codings given Appointment/Advice and Guidance/Triage requests aren't mentioned in the xAPI
             enum:
-              - APPOINTMENT_REQUEST
-              - TRIAGE_REQUEST
-              - ADVICE_AND_GUIDANCE_REQUEST
-            example: APPOINTMENT_REQUEST
+              - BOOKABLE
+              - TRIAGE
+              - ADVICE_AND_GUIDANCE
+            example: BOOKABLE
           display:
             enum:
               - Appointment Request

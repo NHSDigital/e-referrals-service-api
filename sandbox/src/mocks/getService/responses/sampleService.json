@@ -1,6 +1,7 @@
 {
     "id": 1,
     "meta": {
+        "versionId": "1",
         "profile": [
             "https://fhir.nhs.uk/R4/StructureDefinition/eRS-HealthcareService-1"
         ]
@@ -24,7 +25,7 @@
                     "valueCodeableConcept": {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
+                                "system": "http://terminology.hl7.org/CodeSystem/contactentity-type",
                                 "code": "PATINF",
                                 "display": "Patient"
                             }
@@ -49,8 +50,8 @@
                         "coding": [
                             {
                                 "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
-                                "code": "PROF",
-                                "display": "Professional"
+                                "code": "HEALTHCARE_PROFESSIONALS",
+                                "display": "Healthcare Professionals"
                             }
                         ]
                     }
@@ -66,12 +67,14 @@
         }
     ],
     "active": true,
-    "location": {
-        "identifier": {
-            "system": "https://fhir.nhs.uk/Id/ods-site-code",
-            "value": "R69"
+    "location": [
+        {
+            "identifier": {
+                "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                "value": "R6901"
+            }
         }
-    },
+    ],
     "name": "Direct SVC 1",
     "type": {
         "coding": [

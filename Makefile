@@ -11,6 +11,7 @@ install-node:
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
+	chmod u+x .git/hooks/pre-commit
 
 lint: copy-examples
 	npm run lint

@@ -78,6 +78,7 @@ properties:
                       - NO_SLOTS_AT_SERVICE
                       - SLOT_NOT_AVAILABLE
                       - BOOKING_ATTEMPT_PROBLEM
+                      - TRIAGE
                     example: 'NO_SLOTS_AT_SERVICE'
               - type: object
                 title: eRS-ReviewOutcome

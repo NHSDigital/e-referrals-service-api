@@ -1,177 +1,187 @@
 {
-    "id": "000000070000",
-    "meta": {
-        "versionId": "3",
-        "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
-        ]
+  "id": "000000070000",
+  "meta": {
+    "versionId": "3",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
+      "valueReference": {
+        "reference": "#appointment"
+      }
     },
-    "resourceType": "ReferralRequest",
-    "extension": [
-        {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
-            "valueReference": {
-                "reference": "#appointment"
-            }
-        },
-        {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
-            "valueCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
-                        "code": "ROUTINE",
-                        "display": "Routine"
-                    }
-                ]
-            }
-        },
-        {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
-            "valueReference": {
-                "reference": "#shortlist"
-            }
-        },
-        {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
-            "valueIdentifier": {
-                "system": "https://fhir.nhs.uk/Id/ods-organization-code",
-                "value": "R69"
-            }
-        }
-    ],
-    "contained": [
-        {
-            "id": "serviceSearchCriteria",
-            "meta": {
-                "profile": [
-                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
-                ]
-            },
-            "resourceType": "Parameters",
-            "parameter": [
-                {
-                    "name": "priority",
-                    "valueCoding": {
-                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
-                        "code": "ROUTINE"
-                    }
-                },
-                {
-                    "name": "clinicalTerm",
-                    "valueCoding": {
-                        "system": "http://snomed.info/sct",
-                        "code": "1003"
-                    }
-                },
-                {
-                    "name": "namedClinician",
-                    "valueIdentifier": {
-                        "system": "http://fhir.nhs.net/Id/sds-user-id",
-                        "value": "021600556514"
-                    }
-                },
-                {
-                    "name": "ageAndGenderAppropriate",
-                    "valueBoolean": true
-                },
-                {
-                    "name": "commissioningProvisioning",
-                    "valueCoding": {
-                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
-                        "code": "ALL_AVAILABLE_FOR_BOOKING"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "shortlist",
-            "meta": {
-                "profile": [
-                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
-                ]
-            },
-            "resourceType": "List",
-            "extension": [
-                {
-                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
-                    "valueReference": {
-                        "reference": "#serviceSearchCriteria"
-                    }
-                }
-            ],
-            "status": "current",
-            "mode": "snapshot",
-            "entry": [
-                {
-                    "item": {
-                        "identifier": {
-                            "system": "http://fhir.nhs.net/Id/ers-service",
-                            "value": "11004"
-                        },
-                        "display": "Cardiology Triage Business Service"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "appointment",
-            "meta": {
-                "versionId": "1",
-                "profile": [
-                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
-                    "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
-                ]
-            },
-            "language": "en",
-            "resourceType": "Appointment",
-            "status": "proposed",
-            "description": "e-Referral Appointment",
-            "created": "2021-05-06T11:11:25.890Z",
-            "incomingReferral": [
-                {
-                    "reference": "ReferralRequest/000000070000/_history/3"
-                }
-            ],
-            "participant": [
-                {
-                    "actor": {
-                        "identifier": {
-                            "system": "http://fhir.nhs.net/Id/ers-service",
-                            "value": "11004"
-                        },
-                        "display": "Cardiology Triage Business Service"
-                    },
-                    "status": "accepted"
-                },
-                {
-                    "actor": {
-                        "identifier": {
-                            "system": "http://fhir.nhs.net/Id/nhs-number",
-                            "value": "9912003888"
-                        }
-                    },
-                    "status": "accepted"
-                }
-            ]
-        }
-    ],
-    "status": "active",
-    "specialty": {
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
         "coding": [
-            {
-                "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
-                "code": "CARDIOLOGY",
-                "display": "Cardiology"
-            }
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE",
+            "display": "Routine"
+          }
         ]
+      }
     },
-    "subject": {
-        "identifier": {
-            "system": "http://fhir.nhs.net/Id/nhs-number",
-            "value": "9912003888"
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE"
+          }
+        },
+        {
+          "name": "clinicalTerm",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "1003"
+          }
+        },
+        {
+          "name": "namedClinician",
+          "valueIdentifier": {
+            "system": "http://fhir.nhs.net/Id/sds-user-id",
+            "value": "021600556514"
+          }
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": true
+        },
+        {
+          "name": "commissioningProvisioning",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code": "ALL_AVAILABLE_FOR_BOOKING"
+          }
         }
+      ]
     },
-    "supportingInfo": [],
-    "intent": "plan"
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11004"
+            },
+            "display": "Cardiology Triage Business Service"
+          }
+        }
+      ]
+    },
+    {
+      "id": "appointment",
+      "meta": {
+        "versionId": "1",
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+          "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+        ]
+      },
+      "language": "en",
+      "resourceType": "Appointment",
+      "status": "proposed",
+      "description": "e-Referral Appointment",
+      "created": "2021-05-06T11:11:25.890Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+              "code": "TRIAGE"
+            }
+          ]
+        }
+      ],
+      "incomingReferral": [
+        {
+          "reference": "ReferralRequest/000000070000/_history/3"
+        }
+      ],
+      "participant": [
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11004"
+            },
+            "display": "Cardiology Triage Business Service"
+          },
+          "status": "accepted"
+        },
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/nhs-number",
+              "value": "9912003888"
+            }
+          },
+          "status": "accepted"
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "specialty": {
+    "coding": [
+      {
+        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+        "code": "CARDIOLOGY",
+        "display": "Cardiology"
+      }
+    ]
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "supportingInfo": [],
+  "intent": "plan"
 }

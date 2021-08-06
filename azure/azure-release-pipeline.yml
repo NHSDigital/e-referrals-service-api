@@ -33,6 +33,7 @@ extends:
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
     enable_status_monitoring: false
+    manual_approval_env: manual-approval-ptl
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
     - environment: manual-approval

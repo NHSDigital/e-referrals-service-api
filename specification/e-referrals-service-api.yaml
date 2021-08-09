@@ -1272,7 +1272,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - in: query
-          name: id
+          name: _id
           description: |
             One or many service ID(s) to include as part of the search. Must be supplied, otherwise a 400 response will be returned.
           required: true

@@ -1278,7 +1278,7 @@ paths:
           required: true
           schema:
             type: string
-            example: '1'
+            example: '1,2'
         - in: query
           name: active
           description: |

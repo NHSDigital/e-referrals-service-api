@@ -58,7 +58,7 @@ content:
               example: 'self'
             url:
               type: string
-              example: "_baseUrl_/FHIR/R4/HealthcareService?id=1,2&active=true"
+              example: "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2&active=true"
         entry:
           type: array
           items:

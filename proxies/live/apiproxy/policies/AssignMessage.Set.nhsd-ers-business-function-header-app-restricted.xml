@@ -1,0 +1,9 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Set.nhsd-ers-business-function-header-app-restricted">
+  <Set>
+    <Headers>
+      <Header name="nhsd-ers-business-function">AUTHORISED_APPLICATION</Header>
+    </Headers>
+  </Set>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

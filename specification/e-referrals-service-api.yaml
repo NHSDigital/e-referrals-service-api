@@ -924,6 +924,7 @@ paths:
         | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`   |
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
+        | `ReferralRequest` with cancelled `Appointment`                           | `ubrn`=`000000070010`   |
 
       summary: A005 - Retrieve referral request
       operationId: a005-retrieve-referral-request

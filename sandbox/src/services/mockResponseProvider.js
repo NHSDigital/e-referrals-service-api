@@ -203,6 +203,10 @@ module.exports = {
       return { responsePath: 'retrieveReferralRequest/responses/WithRelatedReferral.json', responseCode: 200 }
     }
 
+    if (ubrn === '000000070010' && (!version || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/Cancelled.json', responseCode: 200 }
+    }
+
     return {}
   },
 

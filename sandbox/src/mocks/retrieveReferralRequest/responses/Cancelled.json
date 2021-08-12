@@ -1,0 +1,286 @@
+{
+  "id": "000000070010",
+  "meta": {
+    "versionId": "5",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
+      "valueReference": {
+        "reference": "#appointment"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
+      "valueDateTime": "2021-06-11T12:33:23.167Z"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE",
+            "display": "Routine"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+            "code": "APPOINTMENT_CANCELLED_BY_PATIENT",
+            "display": "Appointment Cancelled By Patient"
+          }
+        },
+        {
+          "url": "reason",
+          "valueCoding": {
+            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+            "code": "PATIENT_ILL",
+            "display": "Patient Ill"
+          }
+        },
+        {
+          "url": "comments",
+          "valueString": "Patient could not attend appointment due to them being ill."
+        }
+      ]
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE"
+          }
+        },
+        {
+          "name": "specialty",
+          "valueCoding": {
+            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+            "code": "CARDIOLOGY"
+          }
+        },
+        {
+          "name": "clinicType",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code": "HEART_FAILURE"
+          }
+        },
+        {
+          "name": "postcode",
+          "valueString": "LS1 2TW"
+        },
+        {
+          "name": "distanceLimit",
+          "valueUnsignedInt": 123
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11002"
+            },
+            "display": "Good Cardiology Business Service"
+          }
+        }
+      ]
+    },
+    {
+      "id": "appointment",
+      "meta": {
+        "versionId": "0",
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+          "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+        ]
+      },
+      "language": "en",
+      "resourceType": "Appointment",
+      "status": "cancelled",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+              "code": "PATIENT_ILL",
+              "display": "Patient Ill"
+            }
+          ]
+        }
+      ],
+      "description": "e-Referral Appointment",
+      "start": "2021-06-13T12:30:00.000Z",
+      "end": "2021-06-13T12:45:00.000Z",
+      "created": "2021-06-11T12:33:25.664Z",
+      "comment": "Patient could not attend appointment due to them being ill.",
+      "incomingReferral": [
+        {
+          "reference": "ReferralRequest/000000070010/_history/5"
+        }
+      ],
+      "participant": [
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11002"
+            },
+            "display": "Good Cardiology Business Service"
+          },
+          "status": "accepted"
+        },
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/nhs-number",
+              "value": "9912003888"
+            }
+          },
+          "status": "accepted"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/encounter-participant-type",
+                "code": "CON"
+              }
+            ]
+          },
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/sds-user-id",
+              "value": "021600556514"
+            }
+          },
+          "status": "accepted"
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-80000",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-06-11T12:09:09.459Z",
+      "description": "referralletter pdf",
+      "content": [
+        {
+          "attachment": {
+            "id": "80000",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              }
+            ],
+            "contentType": "application/pdf",
+            "url": "Binary/att-70001-80000",
+            "size": 6,
+            "title": "referralletter.pdf",
+            "creation": "2021-06-11"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "specialty": {
+    "coding": [
+      {
+        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+        "code": "CARDIOLOGY",
+        "display": "Cardiology"
+      }
+    ]
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "supportingInfo": [
+    {
+      "reference": "#DocumentReference-80000"
+    }
+  ],
+  "intent": "plan"
+}

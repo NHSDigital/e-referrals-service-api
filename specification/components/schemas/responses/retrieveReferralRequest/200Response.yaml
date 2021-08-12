@@ -35,3 +35,7 @@ content:
         summary: `ReferralRequest` with related ReferralRequest
         value:
           $ref: '../../../examples/retrieveReferralRequest/responses/WithRelatedReferral.json'
+      with-cancelled-appointment:
+        summary: `ReferralRequest` with cancelled `Appointment`
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/Cancelled.json'

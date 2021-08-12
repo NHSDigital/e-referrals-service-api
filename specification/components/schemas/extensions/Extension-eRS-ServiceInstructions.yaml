@@ -9,7 +9,7 @@ properties:
     type: string
     # Need to confirm profile URLs.
     enum:
-      - 'https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-ServiceInstructions-1'
-    example: https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-ServiceInstructions-1'
+      - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions'
+    example: https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions'
   valueString:
     type: string

@@ -23,22 +23,22 @@
                 "meta": {
                     "versionId": "1",
                     "profile": [
-                        "https://fhir.nhs.uk/R4/StructureDefinition/eRS-HealthcareService-1"
+                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
                     ]
                 },
                 "language": "en",
                 "resourceType": "HealthcareService",
                 "extension": [
                     {
-                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1",
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation",
                         "valueString": "9-5 Mon-Fri"
                     },
                     {
-                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-ServiceInstructions-1",
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions",
                         "valueString": "Instructions"
                     },
                     {
-                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-HealthcareService-Contact",
                         "extension": [
                             {
                                 "url": "purpose",
@@ -62,14 +62,14 @@
                         ]
                     },
                     {
-                        "url": "https://fhir.nhs.uk/R4/StructureDefinition/Extension-HealthcareService-Contact-1",
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
                         "extension": [
                             {
                                 "url": "purpose",
                                 "valueCodeableConcept": {
                                     "coding": [
                                         {
-                                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
+                                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose",
                                             "code": "HEALTHCARE_PROFESSIONALS",
                                             "display": "Healthcare Professionals"
                                         }
@@ -99,7 +99,7 @@
                 "type": {
                     "coding": [
                         {
-                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType-1",
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
                             "code": "DAY_CASE",
                             "display": "Day Case"
                         }
@@ -109,7 +109,7 @@
                     {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
                                 "code": "BOOKABLE",
                                 "display": "Bookable"
                             }
@@ -128,7 +128,7 @@
                 "meta": {
                     "versionId": "1",
                     "profile": [
-                        "https://fhir.nhs.uk/R4/StructureDefinition/eRS-HealthcareService-1"
+                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
                     ]
                 },
                 "language": "en",
@@ -144,7 +144,7 @@
                 "type": {
                     "coding": [
                         {
-                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType-1",
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
                             "code": "DAY_CASE",
                             "display": "Day Case"
                         }
@@ -154,7 +154,7 @@
                     {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
                                 "code": "BOOKABLE",
                                 "display": "Bookable"
                             }
@@ -163,7 +163,7 @@
                     {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType-1",
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
                                 "code": "TRIAGE",
                                 "display": "Triage"
                             }

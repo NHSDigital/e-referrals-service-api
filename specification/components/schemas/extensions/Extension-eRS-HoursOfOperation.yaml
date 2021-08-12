@@ -9,8 +9,8 @@ properties:
     type: string
     # Need to confirm profile URLs
     enum:
-      - https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1'
-    example: https://fhir.nhs.uk/R4/StructureDefinition/Extension-eRS-HoursOfOperation-1'
+      - https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation'
+    example: https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation'
   valueString:
     type: string
     example: '9-5 Monday to Friday'

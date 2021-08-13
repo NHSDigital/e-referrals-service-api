@@ -49,7 +49,7 @@
                     "valueCodeableConcept": {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1",
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-Purpose",
                                 "code": "HEALTHCARE_PROFESSIONALS",
                                 "display": "Healthcare Professionals"
                             }

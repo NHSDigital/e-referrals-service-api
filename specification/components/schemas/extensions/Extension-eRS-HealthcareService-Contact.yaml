@@ -48,7 +48,7 @@ properties:
                         system:
                           enum:
                             - http://terminology.hl7.org/CodeSystem/contactentity-type
-                            - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose-1'
+                            - 'https://fhir.nhs.uk/CodeSystem/eRS-Purpose'
                           example: 'http://terminology.hl7.org/CodeSystem/contactentity-type'
                         code:
                             type: string

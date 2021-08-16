@@ -31,6 +31,9 @@
         <Name>AssignMessage.AddUserIdHeader</Name>
       </Step>
       <Step>
+        <Name>AssignMessage.AddBaseUrlHeader</Name>
+      </Step>
+      <Step>
         <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
         <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>
       </Step>

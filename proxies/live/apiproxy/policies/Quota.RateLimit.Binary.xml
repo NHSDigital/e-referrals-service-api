@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota name="Quota.RateLimit.Binary" enabled="true" type="flexi">
+    <DisplayName>Quota.RateLimit.Binary</DisplayName>
+    <Identifier ref="verifyapikey.verify-api-key.asid"/>
+    <Allow count="120" countRef="verifyapikey.verify-api-key.limit"/>
+    <Interval ref="verifyapikey.verify-api-key.interval">1</Interval>
+    <TimeUnit ref="verifyapikey.verify-api-key.timeunit">minute</TimeUnit>
+    <Distributed>true</Distributed>
+    <Synchronous>false</Synchronous>
+</Quota>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest name="SpikeArrest.Limit.Binary">
+  <DisplayName>SpikeArrest.Limit.Binary</DisplayName>
+  <Identifier ref="verifyapikey.verify-api-key.asid"/>
+  <Rate ref="verifyapikey.verify-api-key.ratelimit">2ps</Rate>
+  <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>
+

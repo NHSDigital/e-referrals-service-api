@@ -9,17 +9,52 @@
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
+    <FaultRule name="ers-api-quota-violation">
+          <Step>
+            <!-- Should use Java Regex for non binary request -->
+            <Condition>(proxy.pathsuffix equals "/STU3/v1/CodeSystem/SPECIALTY")</Condition>
+            <Name>AssignMessage.AddRateLimitHeader</Name>
+          </Step>
+          <Step>
+            <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/att-*")</Condition>
+            <Name>AssignMessage.AddRateLimitHeader.Binary</Name>
+          </Step>
+          <Condition>(fault.name = "QuotaViolation")</Condition>
+      </FaultRule>
+      <!-- FaultRule name="ers-api-spikearrest-violation">
+          <Step>
+              <Condition>(proxy.pathsuffix notequals "/Binary")</Condition>
+              <Name>AssignMessage.AddRateLimitHeader.NonBinary</Name>
+          </Step>
+          <Step>
+              <Condition>(proxy.pathsuffix equals "/Binary")</Condition>
+              <Name>AssignMessage.AddRateLimitHeader.Binary</Name>
+          </Step>
+          <Condition>(fault.name = "SpikeArrestViolation")</Condition> 
+      </FaultRule -->
   </FaultRules>
   <PreFlow>
     <Request>
       <Step>
-        <Name>Quota</Name>
-      </Step>
-      <Step>
-        <Name>SpikeArrest</Name>
-      </Step>
-      <Step>
         <Name>OauthV2.VerifyAccessToken</Name>
+      </Step>
+      <Step>
+        <!-- Should use Java Regex for non binary request -->
+        <Condition>(proxy.pathsuffix equals "/STU3/v1/CodeSystem/SPECIALTY")</Condition>
+        <Name>Quota.RateLimit</Name>
+      </Step>
+      <Step>
+        <!-- Should use Java Regex for non binary request -->
+        <Condition>(proxy.pathsuffix equals "/STU3/v1/CodeSystem/SPECIALTY")</Condition>
+        <Name>SpikeArrest.Limit</Name>
+      </Step>
+      <Step>
+       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/att-*" and request.verb = "GET")</Condition>
+        <Name>Quota.RateLimit.Binary</Name>
+      </Step>
+       <Step>
+       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/att-*" and request.verb = "GET")</Condition>
+        <Name>SpikeArrest.Limit.Binary</Name>
       </Step>
       <Step>
         <Name>AssignMessage.PopulateAsidFromApp</Name>

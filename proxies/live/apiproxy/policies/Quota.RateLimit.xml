@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota name="Quota.RateLimit" enabled="true" type="flexi">
+    <DisplayName>Quota.RateLimit</DisplayName>
+    <Identifier ref="verifyapikey.verify-api-key.asid"/>
+    <Allow count="600"/>
+    <Interval>1</Interval>
+    <TimeUnit>minute</TimeUnit>
+    <Distributed>true</Distributed>
+    <Synchronous>false</Synchronous>
+</Quota>

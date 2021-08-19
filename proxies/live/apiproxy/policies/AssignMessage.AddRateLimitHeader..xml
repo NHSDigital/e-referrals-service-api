@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddRateLimitHeader">
+    <AssignTo createNew="false" type="response"/>
+    <Set>
+        <Headers>
+            <Header name="Retry-After">{ratelimit.Quota.RateLimit.expiry.time}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

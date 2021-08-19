@@ -1,0 +1,7 @@
+<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.SpikeArrestErrorResponse">
+ <DisplayName>AssignMessage.SpikeArrestErrorResponse</DisplayName>
+  <Remove>
+    <Payload>true</Payload>
+  </Remove>
+  <AssignTo createNew="false" type="response"/>
+</AssignMessage>

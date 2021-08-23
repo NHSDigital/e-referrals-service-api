@@ -4,10 +4,19 @@
     <Properties/>
     <Request clearPayload="true" variable="healthcheckRequest">
         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>HEAD</Verb>
+        </Set>
     </Request>
     <Response>healthcheckResponse</Response>
     <HTTPTargetConnection>
-        <URL>http://mocktarget.apigee.net</URL>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+        <LoadBalancer>
+            <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
+        </LoadBalancer>
+        <Path>/ers-api/_ping</Path>
     </HTTPTargetConnection>
     <Timeout>20000</Timeout>
 </ServiceCallout>

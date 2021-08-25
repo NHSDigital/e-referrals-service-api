@@ -1,0 +1,14 @@
+title: Shortlist
+description: Parameter to supply a shortlist
+type: object
+required:
+  - name
+  - resource
+properties:
+  name:
+    type: string
+    enum:
+      - shortlist
+    example: 'shortlist'
+  resource:
+    $ref: '../eRS-Shortlist-List.yaml'

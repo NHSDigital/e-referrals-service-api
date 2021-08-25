@@ -16,6 +16,7 @@ const bookOrDeferAppointment = require('./bookOrDeferAppointment')
 const retrieveClinicalInformation = require('./retrieveClinicalInformation')
 const retrieveHealthcareService = require('./retrieveHealthcareService')
 const searchForHealthcareServices = require('./searchForHealthcareServices')
+const changeShortlist = require('./changeShortlist')
 
 const routes = [].concat(
   getStatus,
@@ -35,7 +36,8 @@ const routes = [].concat(
   bookOrDeferAppointment,
   retrieveClinicalInformation,
   retrieveHealthcareService,
-  searchForHealthcareServices
+  searchForHealthcareServices,
+  changeShortlist
 )
 
 module.exports = routes

@@ -22,6 +22,16 @@ properties:
     type: array
     items:
       $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+  extension:
+    type: array
+    nullable: true
+    description: |
+      | Field                                      | Cardinality | Notes                                                                          |
+      | ------------------------------------------ | ----------- | ------------------------------------------------------------------------------ |
+      | `Extension-eRS-Shortlist-SearchCriteria`   | `1..1`      | The `SearchCriteria` used to retrieve the services included in the `Shortlist` |
+    items:
+      anyOf:
+        - $ref: 'extensions/Extension-eRS-Shortlist-SearchCriteria.yaml'
   resourceType:
     type: string
     enum:

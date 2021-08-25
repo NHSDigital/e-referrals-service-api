@@ -27,7 +27,7 @@ const acceptReferral = require('./acceptReferral')
 const rejectReferral = require('./rejectReferral')
 const availableActionsForUserList = require('./availableActionsForUserList')
 const cancelAppointmentActionLater = require('./cancelAppointmentActionLater')
-
+const changeShortlist = require('./changeShortlist')
 
 const routes = [].concat(
   getStatus,
@@ -58,7 +58,8 @@ const routes = [].concat(
   availableActionsForUserList,
   cancelAppointmentActionLater,
   retrieveHealthcareService,
-  searchForHealthcareServices
+  searchForHealthcareServices,
+  changeShortlist
 )
 
 module.exports = routes

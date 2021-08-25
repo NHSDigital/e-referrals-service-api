@@ -1,0 +1,20 @@
+title: Extension-eRS-Shortlist-SearchCriteria
+description: Extension to detail the `SearchCriteria` associated with a `Shortlist`
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1'
+  valueReference:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#searchCriteria'

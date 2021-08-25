@@ -4,21 +4,24 @@ const lodash = require('lodash')
 
 function mapExampleResponse(request, exampleResponseMap) {
 
-  if (request != null && request.payload != null) {
-
+  if (request && request.payload) {
     for (const [requestBodyPath, responseBodyPath] of Object.entries(exampleResponseMap)) {
+      try {
+        const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
+        var requestBody = request.payload;
 
-      const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
+        if ('object' != (typeof requestBody)) {
+          requestBody = JSON.parse(request.payload)
+        }
 
-      var requestBody = request.payload;
-      if ('object' != (typeof requestBody)) {
-        requestBody = JSON.parse(request.payload)
-      }
-      if (lodash.isEqual(requestBody, exampleRequestBody)) {
-        return responseBodyPath;
+        if (lodash.isEqual(requestBody, exampleRequestBody)) {
+          return responseBodyPath;
+        }
+      } catch (err) {
+        console.error(err)
+        throw err
       }
     }
-
   }
 
   return null;
@@ -280,7 +283,7 @@ module.exports = {
     return null
   },
 
-  getExampleResponseForSearchForHealthcareServices: function(request) {
+  getExampleResponseForSearchForHealthcareServices: function (request) {
     const ids = request.query['_id']
     const active = request.query['active']
 
@@ -289,5 +292,13 @@ module.exports = {
     }
 
     return null
+  },
+
+  getExampleResponseForChangeShortlist: function (request) {
+    var responseMap = {
+      'src/mocks/changeShortlist/requests/UnbookedReferral.json': 'changeShortlist/responses/UnbookedReferral.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
   }
 }

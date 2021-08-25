@@ -2424,6 +2424,53 @@ paths:
           $ref: 'components/schemas/responses/searchForService/200Response.yaml'
         '400':
           $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+  /FHIR/STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added.....
+      
+      summary: Axxx - Change Shortlist
+      operationId: Axxx - Change Shortlist
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-ChangeShortlist-Parameters.yaml'
+            examples:
+              unbookedReferralRequest:
+                summary: Unbooked ReferralRequest
+                description: Changing the service list of an unbooked `ReferralRequest`
+                value:
+                  $ref: 'components/examples/changeShortlist/requests/UnbookedReferral.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/changeShortlist/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/changeShortlist/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+
 
 components:
   securitySchemes:

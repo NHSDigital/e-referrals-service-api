@@ -1,0 +1,134 @@
+{
+    "id": "000000070000",
+    "meta": {
+        "versionId": "3",
+        "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+        ]
+    },
+    "resourceType": "ReferralRequest",
+    "extension": [
+        {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                        "code": "URGENT",
+                        "display": "Urgent"
+                    }
+                ]
+            }
+        },
+        {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+            "valueReference": {
+                "reference": "#shortlist"
+            }
+        },
+        {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+            "valueIdentifier": {
+                "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                "value": "R69"
+            }
+        },
+        {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+            "extension": [
+                {
+                    "url": "state",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+                        "code": "NOT_BOOKED",
+                        "display": "Not Booked"
+                    }
+                }
+            ]
+        }
+    ],
+    "contained": [
+        {
+            "id": "serviceSearchCriteria",
+            "meta": {
+                "profile": [
+                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+                ]
+            },
+            "resourceType": "Parameters",
+            "parameter": [
+                {
+                    "name": "priority",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                        "code": "URGENT"
+                    }
+                },
+                {
+                    "name": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "code": "CARDIOLOGY"
+                    }
+                },
+                {
+                    "name": "clinicType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+                        "code": "HEART_FAILURE"
+                    }
+                },
+                {
+                    "name": "ageAndGenderAppropriate",
+                    "valueBoolean": false
+                },
+                {
+                    "name": "commissioningProvisioning",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+                        "code": "ALL_AVAILABLE_FOR_BOOKING"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "shortlist",
+            "meta": {
+                "profile": [
+                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+                ]
+            },
+            "resourceType": "List",
+            "extension": [
+                {
+                    "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+                    "valueReference": {
+                        "reference": "#serviceSearchCriteria"
+                    }
+                }
+            ],
+            "status": "current",
+            "mode": "snapshot",
+            "entry": [
+                {
+                    "item": {
+                        "identifier": {
+                            "system": "http://fhir.nhs.net/Id/ers-service",
+                            "value": "11002"
+                        },
+                        "display": "Good Cardiology Business Service"
+                    }
+                }
+            ]
+        }
+    ],
+    "status": "active",
+    "subject": {
+        "identifier": {
+            "system": "http://fhir.nhs.net/Id/nhs-number",
+            "value": "9912003888"
+        }
+    },
+    "supportingInfo": [],
+    "intent": "plan"
+}

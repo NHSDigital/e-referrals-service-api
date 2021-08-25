@@ -1,0 +1,29 @@
+title: IntentionToAddReferralLetter
+description: Parameter to supply the intention to add referral letter flag
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - intentionToAddReferralLetter
+    example: 'intentionToAddReferralLetter'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1'
+      code:
+        type: string
+        enum:
+          - NEED_TO_ADD_LATER
+          - NOT_INTENDING_TO_ADD
+        example: 'NEED_TO_ADD_LATER'

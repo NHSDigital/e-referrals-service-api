@@ -1,8 +1,8 @@
 SHELL=/bin/bash -euo pipefail
 
-install: install-node install-python install-hooks
+install: install-node install-poetry install-hooks
 
-install-python:
+install-poetry:
 	poetry install
 
 install-node:
@@ -13,8 +13,11 @@ install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
 
 lint: copy-examples
-	npm run lint
+	npm run lint-oas
+	cd sandbox && make lint
+	poetry run python scripts/xml_validator.py
 	poetry run flake8 **/*.py
+	@printf "\nLinting passed.\n\n"
 
 clean:
 	rm -rf build
@@ -35,9 +38,6 @@ check-licenses:
 	npm run check-licenses
 	scripts/check_python_licenses.sh
 
-format:
-	poetry run black **/*.py
-
 sandbox: update-examples
 	cd sandbox && npm run start
 
@@ -53,3 +53,23 @@ release: clean publish build-proxy
 
 test:
 	echo "TODO: add tests"
+
+setup-environment:
+	@if [ -e /usr/bin/yum ]; then \
+		scripts/rhel_setup_environment.sh; \
+	elif [ -e /usr/local/bin/brew ]; then \
+		echo "TODO is Mac"; \
+	else \
+		echo "Environment not Mac or RHEL"; \
+	fi
+
+clean-environment:
+	@if [ -e /usr/bin/yum ]; then \
+		scripts/rhel_clean_environment.sh; \
+	elif [ -e /usr/local/bin/brew ]; then \
+		echo "TODO is Mac"; \
+	else \
+		echo "Environment not Mac or RHEL"; \
+	fi
+
+.PHONY: setup-environment clean-environment

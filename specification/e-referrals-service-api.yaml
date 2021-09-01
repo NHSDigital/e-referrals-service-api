@@ -167,7 +167,7 @@ info:
     ## Onboarding
 
     You need to get your software approved by us before it can go live with this API. We call this onboarding. 
-    The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+    The onboarding process can sometimes be quite long, so it's worth planning well ahead.
 
     To onboard for this API, follow 
     the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process).
@@ -1212,7 +1212,102 @@ paths:
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'           
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/ReferralRequest/$ers.fetchworklist:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
+        advice and guidance requests. 
+
+        Worklists provide lists of referral/advice requests that meet certain criteria, 
+        typically where a user needs to be aware of something important, or to undertake an action, in order to avoid delays to patient care.
+
+        Service provider organisations can currently access the following referral related worklists:
+          - The 'Referrals for Review' worklist contains booked and RAS (triage) referrals that require review by the service provider organisation
+          - The 'Appointment Slot Issues' worklist contains referrals which have been 'deferred to provider' because of a lack of appointment availability (e.g. no appointment slots). 
+          The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
+        
+        There are currently no referral related worklists available for referring organisations.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_ADMIN`
+        
+        ## Use case
+        As an authenticated user
+
+        I need to retrieve a referral worklist
+
+        So that I can determine which referrals I need to take further action on
+
+        ## Related endpoints
+
+        To retrieve pertinent details relating to a referral:
+          - Use [[HYPERLINK_A005]] to retrieve the details of the referral
+          - Use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral
+          - Use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral
+
+        For reviewing booked referrals on the 'Referrals for review' worklist:
+          - Use [[HYPERLINK_A013]] to accept a referral into a bookable service
+          - Use [[HYPERLINK_A014]] to reject a referral from a bookable service
+          - Use [[HYPERLINK_A022]] to request an admin team to rebook or redirect a referral
+
+        For reviewing triage (RAS) referrals on the 'Referrals for review' worklist:
+          - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
+
+        For reviewing referrals that have been deferred to provider on the 'Appointment slot issues' worklist:
+          - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
+
+      summary: A008 - Retrieve Referral Worklist
+      operationId: a008-retrieve-worklist
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-FetchWorklist-Parameters.yaml'
+            examples:
+              referrals-for-review:
+                summary: Referrals for review
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalReferralsForReview.json'
+              appointment-slot-issues:
+                summary: Appointment slot issues
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json'
+              filtered-by-specialty:
+                summary: Filter by specialty
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/FilteringBySpecialty.json'
+              filtered-by-clinician:
+                summary: Filter by clinician
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/FilteringByClinician.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveWorklist/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'      
 components:
   securitySchemes:
     bearerAuth:

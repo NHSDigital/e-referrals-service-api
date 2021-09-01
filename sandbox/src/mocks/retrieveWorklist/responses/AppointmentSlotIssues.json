@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "ROUTINE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/nhs-number",
+                  "value": "1000000001"
+                }
+              }
+            },
+            {
+              "url": "eReferralPathwayStart",
+              "valueDateTime": "2021-09-03T14:16:53.119Z"
+            },
+            {
+              "url": "clinicalInfoPrinted",
+              "valueBoolean": false
+            },
+            {
+              "url": "ubrnReceived",
+              "valueDateTime": "2021-09-03T14:16:53.119Z"
+            },
+            {
+              "url": "patientContactExpected",
+              "valueDate": "2021-09-07"
+            },
+            {
+              "url": "clinicalInformationStatus",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1",
+                    "code": "PRESENT"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "reason",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+                    "code": "NO_SLOTS_AT_SERVICE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "service",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/ers-service",
+                  "value": "11013"
+                },
+                "display": "Excellent Cardiology Business Service 13"
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "ReferralRequest/000000070001"
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "ROUTINE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/nhs-number",
+                  "value": "1000000001"
+                }
+              }
+            },
+            {
+              "url": "eReferralPathwayStart",
+              "valueDateTime": "2021-09-03T14:16:51.648Z"
+            },
+            {
+              "url": "clinicalInfoPrinted",
+              "valueBoolean": false
+            },
+            {
+              "url": "ubrnReceived",
+              "valueDateTime": "2021-09-03T14:16:51.648Z"
+            },
+            {
+              "url": "patientContactExpected",
+              "valueDate": "2021-09-13"
+            },
+            {
+              "url": "clinicalInformationStatus",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1",
+                    "code": "PRESENT"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "reason",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+                    "code": "NO_SLOTS_AT_SERVICE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "service",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/ers-service",
+                  "value": "11010"
+                },
+                "display": "Excellent Cardiology Business Service 10"
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "ReferralRequest/000000070000"
+      }
+    }
+  ]
+}

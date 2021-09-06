@@ -7,7 +7,7 @@ module.exports = [
    */
   {
     method: 'POST',
-    path: '/STU3/v1/ReferralRequest/$ers.createReferralAndSendForTriage',
+    path: '/FHIR/STU3/ReferralRequest/$ers.createReferralAndSendForTriage',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]

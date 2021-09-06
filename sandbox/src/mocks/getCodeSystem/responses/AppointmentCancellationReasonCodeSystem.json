@@ -6,7 +6,7 @@
         ]
     },
     "resourceType": "CodeSystem",
-    "url": "_baseUrl_/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+    "url": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
     "name": "e-RS Appointment Cancellation Reason",
     "status": "active",
     "date": "2021-05-26T13:47:15.123Z",

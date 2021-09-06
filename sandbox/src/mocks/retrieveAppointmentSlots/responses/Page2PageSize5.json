@@ -12,20 +12,20 @@
   "link": [
     {
       "relation": "self",
-      "url": "_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=2"
+      "url": "_baseUrl_/STU3/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=2"
     },
     {
       "relation": "previous",
-      "url": "_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=1"
+      "url": "_baseUrl_/STU3/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=1"
     },
     {
       "relation": "next",
-      "url": "_baseUrl_/STU3/v1/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=3"
+      "url": "_baseUrl_/STU3/Slot?schedule.actor%3AHealthcareService=11000&appointmentType=ROUTINE&_count=5&status=free&_include=Slot%3Aschedule&page=3"
     }
   ],
   "entry": [
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000006",
+      "fullUrl": "_baseUrl_/STU3/Slot/11000006",
       "resource": {
         "id": "11000006",
         "meta": {
@@ -52,7 +52,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000007",
+      "fullUrl": "_baseUrl_/STU3/Slot/11000007",
       "resource": {
         "id": "11000007",
         "meta": {
@@ -79,7 +79,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000008",
+      "fullUrl": "_baseUrl_/STU3/Slot/11000008",
       "resource": {
         "id": "11000008",
         "meta": {
@@ -106,7 +106,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000009",
+      "fullUrl": "_baseUrl_/STU3/Slot/11000009",
       "resource": {
         "id": "11000009",
         "meta": {
@@ -133,7 +133,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Slot/11000010",
+      "fullUrl": "_baseUrl_/STU3/Slot/11000010",
       "resource": {
         "id": "11000010",
         "meta": {
@@ -160,7 +160,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/v1/Schedule/11000-921600556514",
+      "fullUrl": "_baseUrl_/STU3/Schedule/11000-921600556514",
       "resource": {
         "id": "11000-921600556514",
         "meta": {

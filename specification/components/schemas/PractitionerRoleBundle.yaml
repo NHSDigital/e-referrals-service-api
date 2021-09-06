@@ -61,7 +61,7 @@ properties:
           example: 'self'
         url:
           type: string
-          example: '_baseUrl_/R4/v1/PractitionerRole'
+          example: '_baseUrl_/R4/PractitionerRole'
   entry:
     type: array
     items:
@@ -73,7 +73,7 @@ properties:
       properties:
         fullUrl:
           type: string
-          example: '_baseUrl_/R4/v1/PractitionerRole/PractitionerRole-R69-000000000101'
+          example: '_baseUrl_/R4/PractitionerRole/PractitionerRole-R69-000000000101'
         search:
           type: object
           required:

@@ -7,7 +7,7 @@ module.exports = [
    */
   {
     method: 'POST',
-    path: '/STU3/v1/HealthcareService/$ers.searchHealthcareServicesForPatient',
+    path: '/FHIR/STU3/HealthcareService/$ers.searchHealthcareServicesForPatient',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]

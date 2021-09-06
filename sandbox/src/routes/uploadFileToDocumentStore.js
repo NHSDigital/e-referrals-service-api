@@ -6,7 +6,7 @@ module.exports = [
    */
   {
     method: 'POST',
-    path: '/STU3/v1/Binary',
+    path: '/FHIR/STU3/Binary',
     config: {
       payload: {
         parse: false,

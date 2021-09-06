@@ -7,7 +7,7 @@ module.exports = [
    */
   {
     method: 'GET',
-    path: '/STU3/v1/Slot',
+    path: '/FHIR/STU3/Slot',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]

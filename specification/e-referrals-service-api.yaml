@@ -1308,6 +1308,88 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'      
+  /STU3/CommunicationRequest/$ers.fetchworklist:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [[HYPERLINK_A008]] to retrieve available worklists of referral requests.
+
+        Worklists provide lists of referral/advice requests that meet certain criteria, typically where a user needs to be aware of something important, 
+        or to undertake an action, in order to avoid delays to patient care.
+        
+        Service provider organisations can retrieve the contents of their 'Advice and guidance requests' worklist using 
+        this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning.
+
+        There are currently no advice and guidance related worklists available for referring organisations.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_ADMIN`
+        
+        ## Use case
+        As an authenticated user
+
+        I need to retrieve a worklist of advice and guidance requests
+
+        So I can determine which ones I need to take further action on.
+
+        ## Related endpoints
+
+        Having used this endpoint to retrieve the 'Advice and Guidance Requests' worklist, entries from it can be used as follows:
+          - Use [[HYPERLINK_A024]] to retrieve contextual summary details of the advice and guidance request
+          - Use [[HYPERLINK_A025]] to retrieve the conversation within the advice and guidance request, including references to attachments
+          - Use [[HYPERLINK_A006]] to retrieve clinical attachments for an advice and guidance request
+          - Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information
+          - Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so
+      summary: A023 - Retrieve Advice and Guidance Requests Worklist
+      operationId: a023-retrieve-a&g-worklist
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-FetchWorklist-Parameters.yaml'
+            examples:
+              referrals-for-review:
+                summary: Referrals for review
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalReferralsForReview.json'
+              appointment-slot-issues:
+                summary: Appointment slot issues
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json'
+              filtered-by-specialty:
+                summary: Filter by specialty
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/FilteringBySpecialty.json'
+              filtered-by-clinician:
+                summary: Filter by clinician
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/FilteringByClinician.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveWorklist/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'      
 components:
   securitySchemes:
     bearerAuth:

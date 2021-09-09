@@ -27,7 +27,9 @@ INTERNAL_DEV_VARIANTS:
 - alpha
 - rc
 - fix
+
 ---
+
 meta:
   api:
     name: e-referrals-service-api
@@ -64,7 +66,7 @@ apigee:
         quota: '300'
         quotaInterval: '1'
         quotaTimeUnit: minute
- {% endfor %}
+{% endfor %}
     specs:
       - name: {{ NAME }}
         path: e-referrals-service-api.json

@@ -11,7 +11,7 @@ APIGEE_ENVIRONMENTS:
   name: internal-dev
 - display_name: Internal Development Sandbox
   name: internal-dev-sandbox
-- display_name:  Integration Testing 
+- display_name:  Integration Testing
   make_spec_visible: true
   name: int
 - display_name: Internal QA
@@ -24,9 +24,9 @@ APIGEE_ENVIRONMENTS:
   name: sandbox
 
 INTERNAL_DEV_VARIANTS:
-  - alpha
-  - rc
-  - fix
+- alpha
+- rc
+- fix
 ---
 meta:
   api:
@@ -44,7 +44,7 @@ apigee:
 {% if ENV.name == 'internal-dev' %}
   - name: {{ ENV.name }}
     products:
-      {% for VARIANT in INTERNAL_DEV_VARIANTS %}
+{% for VARIANT in INTERNAL_DEV_VARIANTS %}
       - name: {{ NAME }}-{{ VARIANT }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
@@ -64,12 +64,12 @@ apigee:
         quota: '300'
         quotaInterval: '1'
         quotaTimeUnit: minute
-      {% endfor %}
+ {% endfor %}
     specs:
       - name: {{ NAME }}
         path: e-referrals-service-api.json
     api_catalog:
-      {% for VARIANT in INTERNAL_DEV_VARIANTS %}
+{% for VARIANT in INTERNAL_DEV_VARIANTS %}
       - edgeAPIProductName: {{ NAME }}-{{ VARIANT }}
         anonAllowed: true
         description: {{ DESCRIPTION }}
@@ -77,7 +77,7 @@ apigee:
         title: {{ TITLE }} ({{ VARIANT }})
         visibility: {{ ENV.make_spec_visible | default(false) }}
         specId: {{ NAME }}
-      {% endfor %}
+{% endfor %}
 {% else %}
   - name: {{ ENV.name }}
     products:

@@ -3,11 +3,11 @@ const businessFunctionValidator = require('../services/businessFunctionValidator
 
 module.exports = [
   /**
-   * Sandbox implementation for retrieveWorklist endpoint
+   * Sandbox implementation for retrieve advice and guidance (CommunicationRequest) worklist endpoint
    */
   {
     method: 'POST',
-    path: '/FHIR/STU3/ReferralRequest/$ers.fetchworklist',
+    path: '/FHIR/STU3/CommunicationRequest/$ers.fetchworklist',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN", "SERVICE_PROVIDER_ADMIN"]
@@ -17,7 +17,7 @@ module.exports = [
         return validationResult
       }
 
-      var responsePath = mockResponseProvider.getExampleResponseForRetrieveWorklist(request);
+      var responsePath = mockResponseProvider.getExampleResponseForRetrieveAdviceAndGuidanceWorklist(request);
       if (responsePath != null) {
         return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
       }

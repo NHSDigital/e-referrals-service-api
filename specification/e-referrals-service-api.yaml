@@ -1359,25 +1359,13 @@ paths:
             schema:
               $ref: 'components/schemas/eRS-FetchWorklist-Parameters.yaml'
             examples:
-              referrals-for-review:
-                summary: Referrals for review
+              a&g-requests:
+                summary: Advice and guidance requests
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalReferralsForReview.json'
-              appointment-slot-issues:
-                summary: Appointment slot issues
-                value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json'
-              filtered-by-specialty:
-                summary: Filter by specialty
-                value:
-                  $ref: 'components/examples/retrieveWorklist/requests/FilteringBySpecialty.json'
-              filtered-by-clinician:
-                summary: Filter by clinician
-                value:
-                  $ref: 'components/examples/retrieveWorklist/requests/FilteringByClinician.json'
+                  $ref: 'components/examples/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveWorklist/200Response.yaml'
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/200Response.yaml'
         '400':
           $ref: 'components/schemas/responses/BadRequest.yaml'
         '401':
@@ -1385,7 +1373,7 @@ paths:
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':

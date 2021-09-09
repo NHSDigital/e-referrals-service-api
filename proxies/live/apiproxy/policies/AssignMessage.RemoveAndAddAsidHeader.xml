@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddAsidHeader">
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.RemoveAndAddAsidHeader">
+   <Remove>
+    <Headers>
+      <Header name="XAPI_ASID"/>
+    </Headers>
+  </Remove>
   <Add>
     <Headers>
       <Header name="XAPI_ASID">{private.apigee.NHSD-ASID}</Header>

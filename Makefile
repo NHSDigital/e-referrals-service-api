@@ -51,5 +51,8 @@ release: clean publish build-proxy
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-qa-sandbox.yml
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
 
+validate-examples: publish
+	poetry run python scripts/validate_oas_examples.py
+
 test:
 	echo "TODO: add tests"

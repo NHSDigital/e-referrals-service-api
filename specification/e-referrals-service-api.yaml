@@ -1378,7 +1378,7 @@ paths:
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'      
  
-  /FHIR/R4/HealthcareService/{id}:
+  /R4/HealthcareService/{id}:
     get:
       security:
         - bearerAuth: []
@@ -1400,7 +1400,7 @@ paths:
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
         
-  /FHIR/R4/HealthcareService/{id}/_history/{version}:
+  /R4/HealthcareService/{id}/_history/{version}:
     get:
       security:
         - bearerAuth: []
@@ -1420,7 +1420,8 @@ paths:
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '200':
           $ref: 'components/schemas/responses/getService/200Response.yaml'
-  /FHIR/R4/HealthcareService:
+
+  /R4/HealthcareService:
     get:
       security:
         - bearerAuth: []
@@ -1456,7 +1457,8 @@ paths:
           $ref: 'components/schemas/responses/searchForService/200Response.yaml'
         '400':
           $ref: 'components/schemas/responses/searchForService/400Response.yaml'
-  /FHIR/STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
+          
+  /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
     post:
       security:
         - bearerAuth: []

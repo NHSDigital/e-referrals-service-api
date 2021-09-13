@@ -985,7 +985,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
 
-      summary: A005 - Retrieve referral request (versioned)
+      summary: A005 Retrieve Referral Request (Versioned)
       operationId: a005-retrieve-referral-request-versioned
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'

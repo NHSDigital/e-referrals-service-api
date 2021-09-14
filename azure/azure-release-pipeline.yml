@@ -89,6 +89,13 @@ extends:
       make_spec_visible: true
       depends_on:
       - manual_approval_int
+    - environment: manual-approval
+      stage_name: manual_approval_nft2
+    - environment: ref
+      stage_name: ers_nft2_release
+      make_spec_visible: true
+      depends_on:
+      - manual_approval_nft2
     - environment: internal-qa-sandbox
       proxy_path: sandbox
       depends_on:

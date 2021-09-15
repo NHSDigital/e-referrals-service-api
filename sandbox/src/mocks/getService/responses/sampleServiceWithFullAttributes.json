@@ -1,5 +1,5 @@
 {
-    "id": "1",
+    "id": "2",
     "meta": {
         "versionId": "1",
         "profile": [
@@ -66,7 +66,6 @@
             ]
         }
     ],
-    "active": true,
     "location": [
         {
             "identifier": {
@@ -90,7 +89,7 @@
             "coding": [
                 {
                     "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
-                    "code": "APPOINTMENT_REQUEST",
+                    "code": "BOOKABLE",
                     "display": "Appointment Request"
                 }
             ]

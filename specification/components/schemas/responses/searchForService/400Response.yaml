@@ -4,7 +4,8 @@ description: |
 
   | Error code               | Description                                                         |
   | ------------------------ | ------------------------------------------------------------------- |
-  | MISSING_VALUE            | A field defined as mandatory for an endpoint has not been provided. |
+  | INVALID_VALUE            | Service Id format is invalid or missing |
+  | INAPPOPRIATE_VALUE       | 'Number of Service Ids' exceeds the range. Up to 20 service ID's can be provided. |
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
@@ -13,6 +14,6 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../../eRS-OperationOutcome.yaml'
+      $ref: '../../R4-OperationOutcome.yaml'
     example:
-       $ref: '../../../examples/GenericOperationOutcome.json'
+       $ref: '../../../examples/R4-OperationOutcome.json'

@@ -1037,7 +1037,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
 
-      summary: A005 - Retrieve referral request
+      summary: A005 - Retrieve Referral Request
       operationId: a005-retrieve-referral-request
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -2526,10 +2526,34 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        To be added....
-
-      summary: Axxx - Retrieve HealthcareService
-      operationId: axxx-retrieve-healthcare-service
+        
+        A patient may have 0 to 20 services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical 
+        advice concerning a specific patient. Services have attributes that can be used to understand a services functionality, terms of use, and contact 
+        information. 
+        You can use this endpoint to obtain the current version and attributes of a single service.
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        You need to have identified one service ID in order to use this endpoint.
+        ## Use case
+        As an authenticated user,
+        
+        I would like to be able to see current service information
+        So that I can trust that the service information is correct for my patient's referral.
+        ## Related endpoints
+          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
+          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]]
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Service Id |
+        | ------------------------------------------------------------------------ | ---------- |
+        | `Service` and minimal attributes                                         | `1`        |
+        | `Service` and its attributes                                             | `2`        |
+      summary: A033 - Retrieve Healthcare Service
+      operationId: a033-retrieve-healthcare-service
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
@@ -2537,10 +2561,16 @@ paths:
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
-        '200':
-          $ref: 'components/schemas/responses/getService/200Response.yaml'        
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
   /R4/HealthcareService/{id}/_history/{version}:
     get:
       security:
@@ -2548,8 +2578,9 @@ paths:
       description: |
         ## Overview
         To be added....
-      summary: Axxx - Retrieve HealthcareService (versioned)
-      operationId: axxx-retrieve-healthcare-service-versioned
+      
+      summary: A034 - Retrieve service version
+      operationId: a034-retrieve-service-version
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
@@ -2558,6 +2589,8 @@ paths:
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '200':
@@ -2568,10 +2601,35 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        To be added.....
-      
-      summary: Axxx - Search for HealthcareService
-      operationId: Axxx - Search for HealthcareService
+        
+        A Patient may have 0 to 20 Services associated with a single referral. 
+        A service is a place where a referrer can send a patient or obtain clinical advise concerning a specific patient. 
+        You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call. 
+       
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        You need to have identified one service ID in order to use this endpoint.
+        ## Use case
+        As an authenticated user,        
+        I would like to obtain information about all services on my patients current shortlist.
+        So that I can review the entire shortlist of services and each services current attributes.
+        ## Related endpoints
+          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist of at least one service.
+          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can fetch the attributes of a single service via [[HYPERLINK_A033]]
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Service Id |
+        | ------------------------------------------------------------------------ | ---------- |
+        | Search for multiple service with minimal attributes                      | `1,2`      |
+        | Search for multiple service max and min attributes                       | `3`,`4`    |
+        | Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match                      | `5`,`6`    |
+  
+      summary: A035 - Search for Healthcare Services
+      operationId: a035-search-for-healthcare-services
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
@@ -2585,19 +2643,21 @@ paths:
           schema:
             type: string
             example: '1,2'
-        - in: query
-          name: active
-          description: |
-            Indicates what "active" status should be included as part of the search.
-          required: true
-          schema:
-            type: boolean
-            example: true
       responses:
         '200':
           $ref: 'components/schemas/responses/searchForService/200Response.yaml'
         '400':
           $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
     post:
       security:
@@ -2644,8 +2704,6 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-
-
 components:
   securitySchemes:
     bearerAuth:

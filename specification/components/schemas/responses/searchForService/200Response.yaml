@@ -7,6 +7,7 @@ headers:
 content:
   application/fhir+json:
     schema:
+      title: Bundle resource containg healthcare services
       type: object
       required:
         - id
@@ -46,22 +47,29 @@ content:
           type: integer
           example: 1
         link:
-          type: object
-          required:
-            - relation
-            - url
-          properties:
-            relation:
-              type: string
-              enum:
-                - 'self'
-              example: 'self'
-            url:
-              type: string
-              example: "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2&active=true"
-        entry:
           type: array
           items:
+            type: object
+            required:
+              - relation
+              - url  
+            properties:
+              relation:
+                type: string
+                enum:
+                  - 'self'
+                example: 'self'
+              url:
+                type: string
+                example: "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2"
+        entry:
+          type: array
+          description: |
+            | Field                  | Cardinality | Notes                                      |
+            | ---------------------- | ----------- | ------------------------------------------ |
+            | `HealthcareService`    | `0..*`      |                                            |            
+          items:
+            title: HealthcareService
             type: object
             required:
               - fullUrl
@@ -84,7 +92,15 @@ content:
                       - match
                     example: 'match'
     examples:
-      multiple-services:
-        summary: Result returning multiple services.
+      multiple-services-minimal:
+        summary: Search for multiple service with minimal attributes.
         value:
-          $ref: '../../../examples/searchForServices/responses/multipleResults.json'
+          $ref: '../../../examples/searchForServices/responses/searchServiceWithMinmumalAttributes.json'
+      multiple-services-max-min:
+        summary: Search for multiple service max and min attributes.
+        value:
+          $ref: '../../../examples/searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
+      multiple-services-empty:
+        summary: Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match
+        value:
+          $ref: '../../../examples/searchForServices/responses/searchServiceWithEmptyResponse.json'

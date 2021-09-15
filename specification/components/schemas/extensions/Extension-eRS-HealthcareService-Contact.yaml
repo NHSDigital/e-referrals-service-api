@@ -59,7 +59,7 @@ properties:
                               - PAYOR
                               - PATINF
                               - PRESS
-                              - HEALTHCARE_PROFESSIONAL
+                              - HEALTHCARE_PROFESSIONALS
                             example: PATINF
                         display:
                           type: string
@@ -70,6 +70,32 @@ properties:
                             - Payor
                             - Patient
                             - Press
-                            - Professional
+                            - Healthcare Professionals
                           example: Patient
+          - type: object
+            title: telecom
+            required:
+              - url
+              - valueContactPoint
+            properties:
+              url:
+                type: string
+                enum:
+                  - 'telecom'
+                example: 'telecom'
+              valueContactPoint:
+                type: object
+                required:
+                  - system
+                  - value
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - 'phone'
+                      - 'email'
+                    example: 'phone'
+                  value:
+                    type: string
+                    example: '01235 209823'
                 

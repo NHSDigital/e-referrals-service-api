@@ -4,14 +4,18 @@ headers:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
-  Etag:
+  ETag:
     $ref: '../../headers/response/ETag.yaml'
 content:
   application/fhir+json:
     schema:
       $ref: '../../eRS-HealthcareService.yaml'
     examples:
-      sample-service:
-        summary: Sample `HealthcareService`.
+      single-service-minimal:
+        summary: Service and minimal attributes.
         value:
-          $ref: '../../../examples/getService/responses/sampleService.json'
+          $ref: '../../../examples/getService/responses/sampleServiceWithMinimumAttributes.json'
+      single-service:
+        summary: Service and its attributes.
+        value:
+          $ref: '../../../examples/getService/responses/sampleServiceWithFullAttributes.json'

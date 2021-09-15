@@ -11,7 +11,7 @@ APIGEE_ENVIRONMENTS:
   name: internal-dev
 - display_name: Internal Development Sandbox
   name: internal-dev-sandbox
-- display_name:  Integration Testing
+- display_name:  Integration Testing 
   make_spec_visible: true
   name: int
 - display_name: Internal QA
@@ -20,19 +20,9 @@ APIGEE_ENVIRONMENTS:
 - display_name: Internal QA Sandbox
   make_spec_visible: true
   name: internal-qa-sandbox
-- display_name: Reference
-  make_spec_visible: true
-  name: ref
 - display_name: Sandbox
   name: sandbox
-
-INTERNAL_DEV_VARIANTS:
-- alpha
-- rc
-- fix
-
 ---
-
 meta:
   api:
     name: e-referrals-service-api
@@ -46,44 +36,6 @@ apigee:
 {% set TITLE = 'e-Referrals-Service (' + ENV.display_name + ')' %}
 {% set DESCRIPTION = 'e-Referrals-Service - ' + ENV.display_name | lower + ' environment' %}
 {% set NAME = 'e-referrals-service-api-' + ENV.name %}
-{% if ENV.name == 'internal-dev' %}
-  - name: {{ ENV.name }}
-    products:
-{% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - name: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
-        approvalType: {{ ENV.approval_type | default('auto') }}
-        attributes:
-          - name: access
-            value: public
-          - name: ratelimit
-            value: 5ps
-        description: {{ DESCRIPTION }} ({{ VARIANT }})
-        displayName: {{ TITLE }} {{ VARIANT }}
-        environments: [ {{ ENV.name }} ]
-        proxies:
-          - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
-          - identity-service-{{ ENV.name }}
-        scopes:
-          - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
-          - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
-        quota: '300'
-        quotaInterval: '1'
-        quotaTimeUnit: minute
-{% endfor %}
-    specs:
-      - name: {{ NAME }}
-        path: e-referrals-service-api.json
-    api_catalog:
-{% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
-        anonAllowed: true
-        description: {{ DESCRIPTION }}
-        requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
-        title: {{ TITLE }} ({{ VARIANT }})
-        visibility: {{ ENV.make_spec_visible | default(false) }}
-        specId: {{ NAME }}
-{% endfor %}
-{% else %}
   - name: {{ ENV.name }}
     products:
       - name: {{ NAME }}
@@ -98,7 +50,7 @@ apigee:
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ ENV.name }}
-          - identity-service-{{ ("%s-int" | format(ENV.name)) if ENV.name == 'internal-qa' else ENV.name }}
+          - identity-service-{{ ENV.name }}
 {% if ENV.name == 'int' %}
           - identity-service-int-no-smartcard
 {% endif %}
@@ -119,5 +71,4 @@ apigee:
         title: {{ TITLE }}
         visibility: {{ ENV.make_spec_visible | default(false) }}
         specId: {{ NAME }}
-{% endif %}
 {% endfor %}

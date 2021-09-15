@@ -34,6 +34,6 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../eRS-OperationOutcome.yaml'
+      $ref: '../STU3-OperationOutcome.yaml'
     example:
-      $ref: '../../examples/GenericOperationOutcome.json'
+      $ref: '../../examples/STU3-OperationOutcome.json'

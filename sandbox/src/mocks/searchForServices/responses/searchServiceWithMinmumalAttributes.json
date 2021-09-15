@@ -1,0 +1,89 @@
+{
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
+        ]
+    },
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "timestamp": "2021-08-04T14:35:00.00Z",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/1",
+            "resource": {
+                "id": "1",
+                "meta": {
+                    "versionId": "1",
+                    "profile": [
+                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
+                    ]
+                },
+                "language": "en",
+                "resourceType": "HealthcareService",                 
+                "location": [
+                    {
+                        "identifier": {
+                            "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                            "value": "R6901"
+                        }
+                    }
+                ],
+                "name": "Direct SVC 1",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+                            "code": "DAY_CASE",
+                            "display": "Day Case"
+                        }
+                    ]
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/2",
+            "resource": {
+                "id": "2",
+                "meta": {
+                    "versionId": "1",
+                    "profile": [
+                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
+                    ]
+                },
+                "language": "en",
+                "resourceType": "HealthcareService",
+                "active": true,
+                "location": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                        "value": "R6901"
+                    }
+                },
+                "name": "Direct SVC 2",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+                            "code": "DAY_CASE",
+                            "display": "Day Case"
+                        }
+                    ]
+                }                 
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

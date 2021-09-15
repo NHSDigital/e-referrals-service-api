@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-referral-id">
+  <Set>
+    <Headers>
+      <Header name="x-ers-xapi-meta-intended_ubrn">{message.header.nhsd-ers-referral-id}</Header>
+    </Headers>
+  </Set>
+  <Remove>
+    <Headers>
+      <Header name="nhsd-ers-referral-id"/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

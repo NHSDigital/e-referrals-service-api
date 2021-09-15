@@ -536,7 +536,7 @@ paths:
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/ErsXapiCommRuleOrg.yaml'
+        - $ref: 'components/schemas/headers/request/ErsCommRuleOrg.yaml'
         - $ref: 'components/schemas/queryParameters/ServiceId.yaml'
         - $ref: 'components/schemas/queryParameters/Priority.yaml'
         - $ref: 'components/schemas/queryParameters/Status.yaml'
@@ -658,8 +658,8 @@ paths:
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/ErsXapiMetaFilename.yaml'
-        - $ref: 'components/schemas/headers/request/ErsXapiMetaIntendedUbrn.yaml'
+        - $ref: 'components/schemas/headers/request/ErsFileName.yaml'
+        - $ref: 'components/schemas/headers/request/ErsReferralId.yaml'
       requestBody:
         required: true
         content:

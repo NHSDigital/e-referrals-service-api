@@ -4,7 +4,7 @@
     <Set>
         <Headers>
             <Header name="Access-Control-Allow-Origin">{request.header.origin}</Header>
-            <Header name="Access-Control-Allow-Headers">origin, x-requested-with, x-correlation-id, accept, content-type, nhsd-session-urid, nhsd-ers-ods-code, nhsd-ers-business-function, authorization, x-ers-xapi-comm-rule-org, x-ers-xapi-meta-file_name, x-ers-xapi-meta-intended_ubrn, if-match </Header>
+            <Header name="Access-Control-Allow-Headers">origin, x-requested-with, x-correlation-id, accept, content-type, nhsd-session-urid, nhsd-ers-ods-code, nhsd-ers-business-function, authorization, nhsd-ers-comm-rule-org, nhsd-ers-file-name, nhsd-ers-referral-id, if-match </Header>
             <Header name="Access-Control-Expose-Headers">x-correlation-id, x-request-id, content-type, Location, ETag, Content-Disposition, Content-Length</Header>
             <Header name="Access-Control-Max-Age">3628800</Header>
             <Header name="Access-Control-Allow-Methods">GET, PUT, POST, DELETE</Header>

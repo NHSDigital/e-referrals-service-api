@@ -16,9 +16,7 @@ info:
   description: |
     ## Overview
     Use this API to create paperless referrals from primary to secondary care with the [e-Referral Service (e-RS)](https://digital.nhs.uk/services/e-referral-service).
-
     As a primary care referrer, you can:
-
       -	create a new e-referral
       - search for relevant patient services to create a shortlist
       -	access existing e-referrals
@@ -26,9 +24,7 @@ info:
       -	upload and manage a patient letter or attachments, linking them to a referral
       -	retrieve appointment slots and book appointments
       -	defer a booking to a provider if an appointment slot is unavailable
-
     As a secondary care provider, you can:
-
       -	access referrals as a worklist
       -	retrieve non-clinical information (meta-data) about the referral
       -	retrieve attachments which are linked to a referral or triage (RAS) request
@@ -36,13 +32,9 @@ info:
       -	accept or reject a referral request
       -	retrieve Advice & Guidance (A&G) conversations and send responses
       -	convert Advice & Guidance (A&G) conversations into a referral
-
     You cannot currently use this API to:
-
       -	get patient details – instead, use the [[HYPERLINK_PDS]]
-
     You can access the following data:
-
       -	referral attachments
       -	referral letters
       -	appointment slots
@@ -50,19 +42,15 @@ info:
       -	worklists for triage (RAS) requests
       -	worklists for Advice and Guidance (A&G) requests
       -	conversation histories for Advice and Guidance (A&G) requests
-
-
     ### Access modes
     
     ##### Users within the Health and Social Care Network (HSCN) who have smartcards
-
     This access mode is in production and [[HYPERLINK_STABLE]]. 
     This access mechanism is documented on the older ['API Hub' documentation portal](https://developer.nhs.uk/apis/e-Referrals/getstarted_get_connected.html). 
     Using this authentication mechanism allows full use of all e-RS endpoints. 
     This access mode requires the creation of a professional session and selection of a role in order to authenticate.
     
     ##### Users without access to the Health and Social Care Network (HSCN), or without access to smartcards
-
     e-RS has recently released a new solution which allows authentication over the internet, 
     using [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/developer/api-catalogue/nhs-cis2). 
     The documentation you are currently reading must be used when you wish to authenticate over the internet. 
@@ -70,130 +58,81 @@ info:
     This access mode requires the use of [[HYPERLINK_A030]] endpoint to authenticate. 
     Please note that this is currently in [[HYPERLINK_BETA]], 
     meaning we might make breaking changes, but only if we cannot avoid it.
-
     ## Who can use this API
-
     You can use this API if you are a software developer wishing to interact with the e-referrals service (e-RS) data. 
-
     To use this API:
-
       -	you must have justification for doing so
       -	you must register with the [e-RS Partners Service](https://developer-test.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html)
       -	as an e-RS Partner, we offer you guidance and support for onboarding via the e-RS Partners Service which can be contacted via emailing [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
       -	you must [assure](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html) your solution before we grant access to live data
       -	clinical safety remains your responsibility (and the responsibility of your end user organisations), as laid out in the NHS e-RS Integration API [compliance approach](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html)
-
     See the [[HYPERLINK_ONBOARDING]] section below for more information.
-
-
     ## Related APIs
-
     The following API also gives access to the e-referrals service (e-RS) data:
-
       - [e-RS FHIR v2 API](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_catalogue.html) - this is deprecated and we plan to retire it. Do not integrate with this API
-
-
     ## API status and roadmap
-
     The e-RS FHIR STU3 API is [[HYPERLINK_STABLE]], when accessed via HSCN network with a smartcard. 
-
     The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed via the internet 
     using [[HYPERLINK_CIS2]]. There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
     We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
     our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
-
     For the current e-RS roadmap see [the future of the NHS e-referral service](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap).
-
     ## Technology
-
     This API is primarily [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest) 
     and based on [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standards for health care data exchange.
-
     ## Network access
-
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
-
     To use this API with NHS smartcards you do need an HSCN connection, although internet-facing alternatives are available.
-
     For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
-
-
     ## Security and authorisation
-
     For users with access to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network), 
     access is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), 
     meaning an end user must be present, authenticated and authorised.
-
     The end user must also be:
-
       -	a healthcare worker
       -	strongly authenticated using an NHS smartcard
-
     For more details see [Authentication and Authorisation](https://developer.nhs.uk/apis/e-Referrals/develop_business_flow_bf001.html).
-
     If you wish to authenticate users without smartcards, access is still [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis) 
     but uses the following security patterns instead:
-
       -	[user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
       -	[user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
-
     ## Environments and testing
-
     | Environment       | Base URL                                                               |
     | ----------------- | ---------------------------------------------------------------------- |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals/FHIR` |
     | Integration test  | `https://int.api.service.nhs.uk/referrals/FHIR` |
     | Production        | Not yet available |
-
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
       -	is for early developer testing
       -	only covers a limited set of scenarios
       -	is stateless, so does not actually persist any updates
       -	is open access, so does not allow you to test authorisation
-
     Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
-
     The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
-
     ### Integration testing
-
     Our integration test environment:
-
       -	is for formal integration testing
       - is where we will conduct witness testing for your application
       -	is stateful, so data will be persisted
-
     ## Onboarding
-
     You need to get your software approved by us before it can go live with this API. We call this onboarding. 
     The onboarding process can sometimes be quite long, so it's worth planning well ahead.
-
     To onboard for this API, follow 
     the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process).
-
     When following the SCAL process, note that:
-
     In step 1: to confirm your use case for this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) 
     using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and 
     discuss your use case with us.
-
     In step 2: when requesting the SCAL, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly, 
     they are responsible for solutions assurance of e-RS APIs.
-
     In step 8: to organise witness testing of your solution, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
     In step 11: when submitting your SCAL for review, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
     In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). 
     You will need to provide your approved SCAL including an embedded Technical Conformance Certificate.
-
     In step 13: to obtain the End User Organisation Acceptable Use Policy, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net).
-
     In step 14: to request production access, you need to liaise with both [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net) (for all methods of access) and 
     also [api.management@nhs.net](mailto:api.management@nhs.net) if your users are not on HSCN, using smartcards.
-
-
   contact:
     url: 'https://digital.nhs.uk/developer/help-and-support'
     email: api.management@nhs.net
@@ -214,39 +153,25 @@ paths:
       description: |
         ## Overview
         Use this endpoint to create a referral by choosing a shortlist of bookable services.
-
         Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A021]].
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
         
         You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
-
         You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
-
         ## Use case
         As an authenticated user
-
         I need to create a shortlist of bookable services
-
         So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
-
         ## Related endpoints
-
         To allow the patient to book their appointment in their own time, you can generate a letter for the patient by 
         using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
         patient may need to follow (e.g. appointment booking instructions).
-
         You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
-
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
-
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
-        You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
-
       summary: A011 - Create referral
       operationId: a011-create-referral
       parameters:
@@ -297,34 +222,23 @@ paths:
       description: |
         ## Overview
         Use this endpoint to refer the patient directly to a triage service.
-
         Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services please use [[HYPERLINK_A011]].
         
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
-
         You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
-
         You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
-
         ## Use case
         As an authenticated user
-
         I need to send the patient's referral to a triage service for assessment
-
         So that I can put the patient on the appropriate clinical pathway for the chosen service provider.
-
         ## Related endpoints
-
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
-
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
         You can generate a letter for the patient by using [[HYPERLINK_A019]]. 
         The letter summarises the current state of the referral and any steps the patient may need to follow.
-
       summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
       parameters:
@@ -371,21 +285,16 @@ paths:
       description: |
         ## Overview
         Use this endpoint to find services that meet the referral needs of a patient.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
         
         You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
-
         ## Use case
         As an authenticated user
-
         I need to find services I can refer the patient to
-
         So that I can offer the patient appropriate services that meet their referral needs
-
         ## Related endpoints
         Once you have identified appropriate services for the patient you can either:
           - create a referral by choosing a shortlist of bookable services using [[HYPERLINK_A011]], or
@@ -452,12 +361,9 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         ## Use case
         As an authenticated user
-
         I need to retrieve e-RS reference data
-
         So I can use it with other endpoints or display the reference data in a user-friendly format to my users.
         
         ## Related endpoints
@@ -501,38 +407,26 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve available appointment slots for a service.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
-
         You need to have identified a directly bookable `service` that is on the current referral shortlist. You can do this by using [[HYPERLINK_A005]].
-
         ## Use case
-
         As an authenticated user
-
         I need to retrieve a list of available appointment slots for a service
-
         So that I can offer them to the patient for booking.
-
         ## Important note
         You need to provide the 'commissioning rule organisation' when calling A015 - Retrieve appointment slots to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
         
         ## Related endpoints
-
         You can book an appointment to an available slot using [[HYPERLINK_A016]].
-
         You can defer booking to a directly bookable service using [[HYPERLINK_A016]] but only in the following circumstances:
           - when the service has no available slots
           - when trying to book an appointment into a service, the slot advertised is no longer available
           - when trying to book an appointment into a service, no response is received within message timeout period (currently 2 minutes)
-
         ## Sandbox test scenarios
-
         You can test the following scenarios in our sandbox environment:
-
         | Scenario                               | Request Query Parameters                                                                                                                                          | Response                                                                |
         | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
         | Minimum slot search                    | `schedule.actor:HealthcareService`=`12000`, `appointmentType`=`ROUTINE`, `_count`=`20`, `status`=`free`, `page`=`1`                                               | Illustrates minimum usage/parameters with concise, minimal response.    |
@@ -542,7 +436,6 @@ paths:
         | Multipage slot search (invalid page 5) | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`5`                                                | Illustrates error when page is outside of valid range.                  |
         | Multi schedule response                | `schedule.actor:HealthcareService`=`13000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates response when there is >1 Schedule: one Schedule is for slots with no associated clinician and the other does have an associated clinician. |
         | Slot clinician search                  | `schedule.actor:HealthcareService`=`14000`, `schedule.actor:Practitioner`=`921600556514`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | Illustrates search for clinician-specific slots                         |
-
       summary: A015 - Retrieve appointment slots
       operationId: a015-retrieve-appointment-slots
       parameters:
@@ -579,23 +472,14 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a list of available e-RS roles (i.e. business functions) at each organisation where the user works.
-
         ## Pre-requisites
-
         In order to use this endpoint you must be an authenticated user
-
         ## Use case
-
         As an authenticated user
-
         I need to retrieve a list of authorised e-RS roles for organisations I work for
-
         So I can choose the appropriate role and organisation to work under when performing tasks.
-
         ## Related endpoints
-
         You can then use the e-RS roles to perform specific tasks using other e-RS endpoints.
-
       summary: A030 - Retrieve e-RS business functions
       operationId: a030-retrieve-business-functions
       parameters:
@@ -620,15 +504,12 @@ paths:
         ## Overview
         
         Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
-
         | File type          | File extension(s)           |
         | ------------------ | --------------------------- |
         | Plain Text         | `.txt`                      |
@@ -644,27 +525,17 @@ paths:
         | TIFF Image         | `.tif`, `.tiff`             |
         | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     |
         | MSWORD             | `.doc`, `.docx`             |
-
         Currently, the maximum file size supported by e-RS is 5MB.
-
         ## Use case
-
         As an authenticated user
-
         I need to upload a referral letter or other clinical information file to e-RS
-
         So that I can associate the file with an existing referral.
-
         ## Important notes:
-
         This endpoint **only** performs the file upload. The uploaded file is **not** associated with a referral until the file has been associated with a referral, for example using [[HYPERLINK_A012]].
         
         The resulting URL within e-RS for the uploaded file is returned in the 'Location' header of the response.
-
         ## Related endpoints
-
         You can associate the uploaded file with a specific referral using [[HYPERLINK_A012]].
-
       summary: A020 - Upload file to document store
       operationId: a020-upload-file-to-document-store
       parameters:
@@ -701,22 +572,15 @@ paths:
         ## Overview
         
         Use this endpoint to download a PDF format letter for the patient summarising the current state of their referral and any steps the patient may need to follow.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
-
         You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
-
         ## Use case
-
         As an authenticated user
-
         I need to generate the patient letter including up-to-date details about their referral and any steps the patient may need to follow
-
         So that I can pass it to the patient.
-
       summary: A019 - Generate patient letter
       operationId: a019-generate-patient-letter
       parameters:
@@ -748,42 +612,30 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a file that is attached to a referral or advice request.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You need to have retrieved the referral via [[HYPERLINK_A005]] to obtain the URLs for its attachments.
-
         ## Important note
-
         A referral pathway in e-RS can be made up of more than one UBRN. 
         For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
         and the service decides to onward refer to a more specialist knee miniscus service (UBRN #2). 
         This would result in two UBRNs for the referral pathway in this example (but there could be more related UBRNs if onward referred multiple times).
-
         As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. 
         You can do this using the following endpoints:
-
           - [[HYPERLINK_A007]]
           - A006 - Retrieve Attachment
-
         Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
         
         ## Use case
-
         As an authenticated user
-
         I need to retrieve a clinical attachment associated with a referral
-
         So that I can assess its content and decide what further action may be needed.
-
         ## Related endpoints
         
         You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
-
       summary: A006 - Retrieve attachment
       operationId: a006-retrieve-attachment
       parameters:
@@ -816,38 +668,23 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
-
         ## Pre-requisites
-
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to retrieve details of a referral.
-
         ## Use case
-
         As an authenticated user
-
         I want to read details of a referral
-
         So that I can decide what further action may be needed.
-
         ## Related endpoints
-
         You can retrieve attachments that are associated with the referral using [[HYPERLINK_A006]]
-
         You can retrieve a clinical information summary for the referral using [[HYPERLINK_A007]]
-
         You can search for services appropriate to a referral to form a shortlist using [[HYPERLINK_A010]]
-
         If bookable services are on the shortlist of the referral, you can retrieve appointment slots for a service on the shortlist for a referral using [[HYPERLINK_A015]]
-
         You can retrieve the patient letter appropriate to the referral using [[HYPERLINK_A019]]
-
         ## Sandbox test scenarios
-
         You can test the following scenarios in our sandbox environment
         
         | Scenario                                                                 | Request                 |
@@ -858,8 +695,7 @@ paths:
         | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`   |
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
-
-      summary: A005 - Retrieve referral request
+      summary: A005 - Retrieve Referral Request
       operationId: a005-retrieve-referral-request
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -892,21 +728,13 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a specific version of `ReferralRequest`.
-
         ## Pre-requisites
-
         The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A005]].
-
         Note: e-RS only supports the retrieval of the most recent version of `ReferralRequest`. You cannot retrieve earlier versions.
-
         ## Use case
-
         See [[HYPERLINK_A005]].
-
         ## Related endpoints
-
         See [[HYPERLINK_A005]].
-
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
         
@@ -918,8 +746,7 @@ paths:
         | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`, `version`=`5`  |
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
-
-      summary: A005 Retrieve Referral Request (Versioned)
+      summary: A005 - Retrieve Referral Request (Versioned)
       operationId: a005-retrieve-referral-request-versioned
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -952,27 +779,22 @@ paths:
       description: |
         ## Overview
         Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
         
         All new files to be associated with a referral must be uploaded first using [[HYPERLINK_A020]] and then linked to the referral using this endpoint.
-
         ## Important information about using this endpoint
         
         This endpoint can be used to associate attachments to a referral that has no existing referral letter attachments. 
         In this case you must upload the file first using [[HYPERLINK_A020]] and then associate it to the referral using this endpoint.
-
         You can also use this endpoint to modify the *set* of referral letter attachments already associated with a referral. 
         In this case, you must post all referral letter attachments you wish to be (finally) associated to the referral, 
         including any that were already associated. In other words, this endpoint replaces the set of referral letter 
         attachments previously associated - with those specified in your latest request. 
         As such, it is imperative that this call references all the attachments the user wishes to keep, every time it is called.
-
         Below are three example scenarios which clarify the behaviour of the endpoint when referral attachments are already present on the referral:
-
         1. Let us consider a referral that has two referral letter attachments associated (say "A.pdf" and "B.pdf"). If 
         you wish to add an additional attachment (say "C.pdf"), you must upload the additional attachment 
         "C.pdf" using [[HYPERLINK_A020]], and then associate attachments "A.pdf", "B.pdf" and "C.pdf" 
@@ -990,39 +812,28 @@ paths:
         referral letter attachments the user wishes to keep (namely "L.doc", "M.doc", "P.doc" and "Q.doc") 
         in a single request to A012 - Maintain referral letter. Attachments not included in the request 
         (namely "N.doc" and "O.doc") will be dis-associated from the referral as a result.
-
         As a developer or software supplier, please ensure your users are made aware or protected from this behaviour. 
         For example, when a referring user wants to update the attachments on a referral, the user should be presented 
         with the currently associated attachments so they can add and/or remove attachments as required.
-
         Note: It is not permissible to remove *all* referral letter attachments leaving zero attachments associated. 
         There must be at least one referral letter attachment associated.
-
         ## Use case
         As an authenticated user
-
         I need to be able to manage referral letter attachments associated with a referral
-
         So I can ensure the service provider has enough information to review/process the referral.
-
-
         ## Related endpoints
         Documents must be uploaded into the e-RS document store using [[HYPERLINK_A020]] before they can be associated 
         with a referral.
         
         You can check to see what referral letter information has been added to a referral by using [[HYPERLINK_A005]], 
         [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
         ## Sandbox test scenarios
-
         You can test the following scenarios in our sandbox environment:
-
         | Scenario                                               | Request                                                 |
         | ------------------------------------------------------ | ------------------------------------------------------- |
         | Add clinical information for first time (single file)  | `ubrn`=`000000070000`, `body` as defined in example 1   |
         | Add clinical information for first time (two files)    | `ubrn`=`000000070001`, `body` as defined in example 2   |
         | Update clinical information                            | `ubrn`=`000000070001`, `body` as defined in example 3   |
-
       summary: A012 - Maintain referral letter
       operationId: a012-maintain-referral-letter
       parameters:
@@ -1083,36 +894,28 @@ paths:
       description: |
         ## Overview
         Use this endpoint to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
         
         You need to retrieve available appointment slots for a service using [[HYPERLINK_A015]].
-
         You need to use the 'Unique Booking Reference Number' (UBRN) of a referral request in order to use this endpoint.
-
         ## Important note when deferring to provider
         
         You should only defer booking to a directly bookable service in the following circumstances:
           - when the service has no available slots *or*
           - when trying to book an appointment into a service, the slot advertised is no longer available *or*
           - when trying to book an appointment into a service, no response is received within the message timeout period (currently 2 minutes)
-
         ## Use case
         As an authenticated user
-
         I need to either:
           - book an appointment to an available appointment slot for a service *or*
           - defer booking responsibility for the service to the service provider if a booking is not possible
-
         So I can progress my patient's care at that service.
-
         ## Related endpoints
         You can generate a letter for the patient, summarising the current state of their referral and any steps 
         the patient may need to follow using [[HYPERLINK_A019]].
-
       summary: A016 - Book or defer appointment
       operationId: a016-book-or-defer-appointment
       parameters:
@@ -1178,38 +981,27 @@ paths:
         ## Overview
         
         Use this endpoint to generate a PDF file that summarises clinical information for a referral.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
-
         ## Important note
         A referral pathway in e-RS can be made up of more than one UBRN. For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
         and the service decides to onward refer to a more specialist knee miniscus service (UBRN #2). This would result in two UBRNs for the referral pathway 
         in this example (but there could be more related UBRNs if onward referred multiple times).
-
         As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. 
         You can do this using the following endpoints:
           - A007 - Retrieve Clinical Information
           - [[HYPERLINK_A006]]
-
         Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
-
         ## Use case
-
         As an authenticated user
-
         I need to retrieve a clinical information summary (in PDF format) associated with the referral
-
         So that I can assess its content and decide what further action may be needed.
-
         ## Related endpoints
         You can retrieve clinical attachments that are associated with a referral using [[HYPERLINK_A006]].
-
       summary: A007 - Retrieve clinical information
       operationId: a007-retrieve-clinical-information
       parameters:
@@ -1241,17 +1033,14 @@ paths:
         ## Overview
         Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
         advice and guidance requests. 
-
         Worklists provide lists of referral/advice requests that meet certain criteria, 
         typically where a user needs to be aware of something important, or to undertake an action, in order to avoid delays to patient care.
-
         Service provider organisations can currently access the following referral related worklists:
           - The 'Referrals for Review' worklist contains booked and RAS (triage) referrals that require review by the service provider organisation
           - The 'Appointment Slot Issues' worklist contains referrals which have been 'deferred to provider' because of a lack of appointment availability (e.g. no appointment slots). 
           The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
         
         There are currently no referral related worklists available for referring organisations.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1259,29 +1048,21 @@ paths:
         
         ## Use case
         As an authenticated user
-
         I need to retrieve a referral worklist
-
         So that I can determine which referrals I need to take further action on
-
         ## Related endpoints
-
         To retrieve pertinent details relating to a referral:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral
           - Use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral
           - Use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral
-
         For reviewing booked referrals on the 'Referrals for review' worklist:
           - Use [[HYPERLINK_A013]] to accept a referral into a bookable service
           - Use [[HYPERLINK_A014]] to reject a referral from a bookable service
           - Use [[HYPERLINK_A022]] to request an admin team to rebook or redirect a referral
-
         For reviewing triage (RAS) referrals on the 'Referrals for review' worklist:
           - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
-
         For reviewing referrals that have been deferred to provider on the 'Appointment slot issues' worklist:
           - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
-
       summary: A008 - Retrieve referral worklist
       operationId: a008-retrieve-worklist
       parameters:
@@ -1336,15 +1117,12 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve available worklists of advice and guidance requests. Use [[HYPERLINK_A008]] to retrieve available worklists of referral requests.
-
         Worklists provide lists of referral/advice requests that meet certain criteria, typically where a user needs to be aware of something important, 
         or to undertake an action, in order to avoid delays to patient care.
         
         Service provider organisations can retrieve the contents of their 'Advice and guidance requests' worklist using 
         this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning.
-
         There are currently no advice and guidance related worklists available for referring organisations.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1352,13 +1130,9 @@ paths:
         
         ## Use case
         As an authenticated user
-
         I need to retrieve a worklist of advice and guidance requests
-
         So I can determine which ones I need to take further action on.
-
         ## Related endpoints
-
         Having used this endpoint to retrieve the 'Advice and Guidance Requests' worklist, entries from it can be used as follows:
           - Use [[HYPERLINK_A024]] to retrieve contextual summary details of the advice and guidance request
           - Use [[HYPERLINK_A025]] to retrieve the conversation within the advice and guidance request, including references to attachments
@@ -1408,47 +1182,32 @@ paths:
         ## Overview
         Use this endpoint to retrieve the summary of an advice and guidance request. This endpoint provides important 
         contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc)
-
         This does not include the actual advice and guidance conversation between the referrer and the service provider. 
         The conversation can be retrieved via [[HYPERLINK_A025]].
-
         ## Pre-requisites
-
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
         For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
-
         ## Use case
-
         As an authenticated user
-
         I need to retrieve the summary of an advice and guidance request
-
         So I can understand all of the relevant context for the request.
-
         ## Important note
-
         The summary includes an indicator of whether the referrer has authorised the providing organisation to 
         convert the advice and guidance request into an appointment request. 
         If authorised, [[HYPERLINK_A027]] can be used to convert the advice and guidance request into an appointment request.
-
         ## Related endpoints
-
         After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
-
         ## Sandbox test scenarios
-
         You can test the following scenarios in our sandbox environment
         
         | Scenario                                                                 | Request                 |
         | ------------------------------------------------------------------------ | ----------------------- |
         | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
         | Attachment file reference present                                        | `ubrn`=`000000070001`   |
-
       summary: A024 - Retrieve advice and guidance request summary
       operationId: a024-retrieve-advice-and-guidance
       parameters:
@@ -1482,21 +1241,13 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a specific version of `CommunicationRequest`.
-
         ## Pre-requisites
-
         The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A024]].
-
         Note: e-RS only supports the retrieval of the most recent version of `CommunicationRequest`. You cannot retrieve earlier versions.
-
         ## Use case
-
         See [[HYPERLINK_A005]].
-
         ## Related endpoints
-
         See [[HYPERLINK_A024]].
-
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
         
@@ -1504,7 +1255,6 @@ paths:
         | ------------------------------------------------------------------------ | ------------------------------------- |
         | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
         | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
-
       summary: A024 - Retrieve advice and guidance request summary (versioned)
       operationId: a024-retrieve-advice-and-guidance-versioned
       parameters:
@@ -1539,41 +1289,27 @@ paths:
         ## Overview
         Use this endpoint to retrieve the advice and guidance conversation between the referring organisation 
         and service providing organisation.
-
         A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
-
         ## Pre-requisites
-
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
         you may have identified the UBRN via [[HYPERLINK_A023]].
-
         You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
         This will importantly include the latest version of the request which must be used.
-
         ## Use case
-
         As an authenticated user
-
         I need to retrieve the conversation that is present on an advice and guidance request
-
         So that I can review the conversation and potentially contribute further to it.
-
         ## Important note
-
         The conversation returned includes links to any attachments associated with the conversation.
-
         ## Related endpoints
-
         After using this endpoint:
           - Use [[HYPERLINK_A006]] to retrieve any attachments associated with the advice and guidance request.
           - (For service provider users) Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information.
           - (For service provider users) Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so.
-
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
         
@@ -1584,7 +1320,6 @@ paths:
         | Attachment present in each direction                           | `based-on`=`CommunicationRequest/000000070001/_history/6` |
         | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
         | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
-
       summary: A025 - Retrieve advice and guidance conversation
       operationId: a025-retrieve-advice-and-guidance-conversation
       parameters:
@@ -1618,7 +1353,6 @@ paths:
         Use this endpoint, as a service provider, to respond to an advice and guidance request your service provider organisation has received. 
         You can either provide guidance back to the referrer or request further information from the referrer. 
         This will return the advice and guidance request back to the referrer for action.
-
         Note:  If you want to convert an advice and guidance request into a referral, 
         and provide a final guidance response back to the referrer at the same time, please 
         use [[HYPERLINK_A027]] instead. This option is only permissible 
@@ -1629,25 +1363,16 @@ paths:
           - `SERVICE_PROVIDER_CLINICIAN`
         
         You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request.
-
         You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
-
         If you want to include attachments with the response, you need to use [[HYPERLINK_A020]] so they are ready to be associated with the response.
-
         ## Use case
         As an authenticated user
-
         I need to return an advice and guidance request back to the referrer with some guidance
-
         So that I can progress the conversation regarding the patient's care.
-
         ## Related endpoints
-
         You can use [[HYPERLINK_A007]] to generate a PDF file that summarises 
         the advice and guidance request and associated conversation.
-
         You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
-
         You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
         
       summary: A026 - Send advice and guidance response
@@ -1714,7 +1439,6 @@ paths:
         
         Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
         and guidance request into a referral.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1722,37 +1446,24 @@ paths:
         You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
         This will include whether or not the referrer has authorised the provider to be able to convert an 
         advice and guidance request into a referral, and thus dictate whether this endpoint can be used.
-
         You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
-
         If you want to include attachments with the admin task and/or the response to the referrer, 
         you need to use [[HYPERLINK_A020]] so they are ready to be associated when this endpoint is called.
-
         ## Use case
         As an authenticated user
-
         I need to convert an inbound advice and guidance request into a referral 
         and task my admin team to shortlist appropriate services for the patient
-
         So that I can progress the patient's care along the most appropriate referral pathway.
-
         ## Important notes
-
         When this endpoint is successfully used, an entry will be added to the service providers 
         Appointments For Booking worklist for the admin team to action the task. The provider 
         admin team will currently only be able to progress the referral via the e-RS Professional 
         Application user interface (e.g. shortlisting appropriate services for the patient).
-
         ## Related endpoints
-
         You can use [[HYPERLINK_A005]] to retrieve the details of the referral.
-
         You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
-
         You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
-
         You can use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral/advice request.
-
         You can use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral.
         
       summary: A027 - Convert advice and guidance request to referral
@@ -1809,7 +1520,6 @@ paths:
         Use this endpoint, as a service provider, to record a triage outcome for the following referrals awaiting review:
           - referrals sent into a triage service
           - referrals deferred into a directly bookable service because of appointment slot unavailability
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1817,41 +1527,25 @@ paths:
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
         [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
         booked into bookable services.
-
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Appointment Slot Issues' worklist. 
         This provides a list of referrals that have been deferred into directly bookable services.
-
           - Referrals from this worklist may already have been reviewed or may not have any referral clinical information associated, 
           in which case [[HYPERLINK_A028]] cannot be used.
           - [[HYPERLINK_A028]] can only be used for those referrals, on the 'Appointment Slot Issues' worklist, which are pending review.
           - As such, you need to use [[HYPERLINK_A029]] to determine if [[HYPERLINK_A028]] is a permissible action.
-
         You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
-
         You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
-
         You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
-
         If you want to include attachments with the triage outcome, you need to use [[HYPERLINK_A020]] so 
         they are ready to be associated when this endpoint is called.
-
         ## Use cases
         As an authenticated user
-
         I need to return the referral back to the referrer with some advice
-
         So that I can progress the patient's care appropriately with the referrer.
-
-
         As an authenticated user
-
         I need to accept the referral and task my admin team to shortlist appropriate services for the patient
-
         So that I can progress the patient's care along the most appropriate referral pathway.
-
-
         ## Important notes
-
           - The only outcomes that are supported by this endpoint are 'Return to referrer with advice' and 'Accept and refer/book later'. 'Refer/book now' is not supported.
           - The triage comment text is mandatory. This comment provided will be sent to:
             - The initial referrer when the 'Return to referrer with advice' triage outcome is chosen.
@@ -1919,25 +1613,18 @@ paths:
       description: |
         ## Overview
         Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
         booked into bookable services, and not the referrals sent into triage services.
-
         You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
-
         You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
-
         You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
-
         ## Use cases
         As an authenticated user
-
         I need to accept an inbound referral after its review
-
         So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
         
       summary: A013 - Accept referral
@@ -1980,29 +1667,20 @@ paths:
         ## Overview
         Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
         This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
-
         Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
         be used for referrals booked into bookable services, and not the referrals sent into triage services.
-
         You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
-
         You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
-
         You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
-
         You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
-
         ## Use cases
         As an authenticated user
-
         I need to reject an inbound referral back to the referrer after its review with an explanation of why
-
         So that the referrer can address the reason for rejection and progress the referral appropriately.
         
       summary: A014 - Reject referral
@@ -2067,43 +1745,30 @@ paths:
         supported actions that can be *currently* performed, by the the *current* e-RS user on a *specific* 
         referral. When a permitted action is returned, the e-RS user could immediately attempt to 
         perform a permitted action.
-
         You SHOULD NOT cache the list of available user actions returned because this endpoint 
         gives the *current* actions for the *current* e-RS user, for the referral in context and is therefore, 
         transient; a future call for a different e-RS user, referral, or at a different point in time, 
         might result in a different set of actions, leading to potential failure flows.
-
         ## Pre-requisites
-
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
-
         You should obtain a UBRN before using this endpoint, as the current UBRN version is required
-
         ## Use case
-
         As an authenticated user
-
         I want to know what actions I might currently perform on a referral prior to attempting to do so
-
         So that I can review my options, and do not try to persist a prohibited action
-
         ## Related endpoints
-
         To retrieve pertinent details relating to a referral:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
           - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
             - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
-
         ## Sandbox test scenarios
-
         You can test the following scenarios in our sandbox environment
         
         | Scenario                         | Request                 |
         | -------------------------------- | ----------------------- |
         | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
         | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
-
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list
       parameters:
@@ -2135,30 +1800,21 @@ paths:
         ## Overview
         Use this endpoint, as a service provider, to task your admin team to rebook/redirect a referral that is booked 
         into your bookable service and awaiting review.
-
         Note: this will also cancel the current appointment.
-
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A022]] can 
         only be used for referrals booked into bookable services, and not the referrals sent into triage services.
-
         You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
-
         You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
-
         You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
-
         If you want to include attachments with the admin task, you need to use [[HYPERLINK_A020]] so they are 
         ready to be associated when this endpoint is called.
-
         ## Use cases
         As an authenticated user
-
         I need to task my admin team to rebook/redirect a referral I have reviewed (whilst also cancelling the current appointment)
-
         So that I can progress the patient's care along the most appropriate referral pathway.
         
         ## Important notes
@@ -2171,7 +1827,6 @@ paths:
           - When this endpoint is successfully used, an entry will be added to the service providers 'Appointments For Booking' 
             worklist for the admin team to action the task. The provider admin team will only be able to progress the referral 
             via the e-RS Professional Application user interface (e.g. shortlisting appropriate services for the patient).
-
       summary: A022 - Cancel appointment, action later
       operationId: a022-cancel-appointment-action-later
       parameters:
@@ -2224,17 +1879,41 @@ paths:
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml' 
-   /R4/HealthcareService/{id}:
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/HealthcareService/{id}:
     get:
       security:
         - bearerAuth: []
       description: |
         ## Overview
-        To be added....
-
-      summary: Axxx - Retrieve HealthcareService
-      operationId: axxx-retrieve-healthcare-service
+        
+        A patient may have 0 to 20 services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical 
+        advice concerning a specific patient. Services have attributes that can be used to understand a services functionality, terms of use, and contact 
+        information. 
+        You can use this endpoint to obtain the current version and attributes of a single service.
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        You need to have identified one service ID in order to use this endpoint.
+        ## Use case
+        As an authenticated user,
+        
+        I would like to be able to see current service information
+        So that I can trust that the service information is correct for my patient's referral.
+        ## Related endpoints
+          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
+          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]]
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Service Id |
+        | ------------------------------------------------------------------------ | ---------- |
+        | `Service` and minimal attributes                                         | `1`        |
+        | `Service` and its attributes                                             | `2`        |
+      summary: A033 - Retrieve Healthcare Service
+      operationId: a033-retrieve-healthcare-service
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
@@ -2242,10 +1921,16 @@ paths:
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
+        '200':
+          $ref: 'components/schemas/responses/getService/200Response.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
-        '200':
-          $ref: 'components/schemas/responses/getService/200Response.yaml'        
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
   /R4/HealthcareService/{id}/_history/{version}:
     get:
       security:
@@ -2253,8 +1938,9 @@ paths:
       description: |
         ## Overview
         To be added....
-      summary: Axxx - Retrieve HealthcareService (versioned)
-      operationId: axxx-retrieve-healthcare-service-versioned
+      
+      summary: A034 - Retrieve service version
+      operationId: a034-retrieve-service-version
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
@@ -2263,6 +1949,8 @@ paths:
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '200':
@@ -2273,10 +1961,35 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        To be added.....
-      
-      summary: Axxx - Search for HealthcareService
-      operationId: Axxx - Search for HealthcareService
+        
+        A Patient may have 0 to 20 Services associated with a single referral. 
+        A service is a place where a referrer can send a patient or obtain clinical advise concerning a specific patient. 
+        You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call. 
+       
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+        You need to have identified one service ID in order to use this endpoint.
+        ## Use case
+        As an authenticated user,        
+        I would like to obtain information about all services on my patients current shortlist.
+        So that I can review the entire shortlist of services and each services current attributes.
+        ## Related endpoints
+          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist of at least one service.
+          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can fetch the attributes of a single service via [[HYPERLINK_A033]]
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Service Id |
+        | ------------------------------------------------------------------------ | ---------- |
+        | Search for multiple service with minimal attributes                      | `1,2`      |
+        | Search for multiple service max and min attributes                       | `3`,`4`    |
+        | Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match                      | `5`,`6`    |
+  
+      summary: A035 - Search for Healthcare Services
+      operationId: a035-search-for-healthcare-services
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
@@ -2290,19 +2003,21 @@ paths:
           schema:
             type: string
             example: '1,2'
-        - in: query
-          name: active
-          description: |
-            Indicates what "active" status should be included as part of the search.
-          required: true
-          schema:
-            type: boolean
-            example: true
       responses:
         '200':
           $ref: 'components/schemas/responses/searchForService/200Response.yaml'
         '400':
           $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
     post:
       security:
@@ -2349,12 +2064,9 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-
-
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-     

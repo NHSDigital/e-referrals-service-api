@@ -1,5 +1,5 @@
 {
-    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "id": "123e4567-e89b-12d3-a456-426614174001",
     "meta": {
         "profile": [
             "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
@@ -12,12 +12,12 @@
     "link": [
         {
             "relation": "self",
-            "url": "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2&active=true"
+            "url": "_baseUrl_/FHIR/R4/HealthcareService?_id=3,4"
         }
     ],
     "entry": [
         {
-            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/1",
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/3",
             "resource": {
                 "id": "1",
                 "meta": {
@@ -122,7 +122,7 @@
             }
         },
         {
-            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/2",
+            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/4",
             "resource": {
                 "id": "2",
                 "meta": {

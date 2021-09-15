@@ -415,7 +415,11 @@ module.exports = {
     const serviceId = request.params.serviceId
 
     if (serviceId == 1 && (!version || version == 1)) {
-      return 'getService/responses/sampleService.json'
+      return 'getService/responses/sampleServiceWithMinimumAttributes.json'
+    }
+   
+    if (serviceId == 2 && (!version || version == 1)) {
+      return 'getService/responses/sampleServiceWithFullAttributes.json'
     }
 
     return null
@@ -423,11 +427,18 @@ module.exports = {
 
   getExampleResponseForSearchForHealthcareServices: function (request) {
     const ids = request.query['_id']
-    const active = request.query['active']
-
-    if (ids == ['1', '2'] && active == 'true') {
-      return 'searchForServices/responses/multipleResults.json'
+    
+    if (ids == ['1', '2']) {
+      return 'searchForServices/responses/searchServiceWithMinmumalAttributes.json'
     }
+
+    if (ids == ['3', '4']) {
+      return 'searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
+    }
+   
+    if (ids == ['5', '6']) {
+      return 'searchForServices/responses/searchServiceWithEmptyResponse.json'
+    } 
 
     return null
   },

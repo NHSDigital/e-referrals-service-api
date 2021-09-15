@@ -1,0 +1,29 @@
+{
+    "id": "1",
+    "meta": {
+        "versionId": "1",
+        "profile": [
+            "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
+        ]
+    },
+    "language": "en",
+    "resourceType": "HealthcareService",
+    "location": [
+        {
+            "identifier": {
+                "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                "value": "R6901"
+            }
+        }
+    ],
+    "name": "Direct Service With Minimal",
+    "type": {
+        "coding": [
+            {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+                "code": "DAY_CASE",
+                "display": "Day Case"
+            }
+        ]
+    }
+}

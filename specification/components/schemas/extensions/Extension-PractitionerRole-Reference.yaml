@@ -1,0 +1,20 @@
+title: Extension-PractitionerRole-Reference
+description: Extension to supply practitioner details
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-PractitionerRole-Reference-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-PractitionerRole-Reference-1'
+  valueReference:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#PractitionerRole.021600556514.R68.REFERRING-CLINICIAN'

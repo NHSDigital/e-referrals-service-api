@@ -1,0 +1,21 @@
+description: e-RS Communication Request (advice and guidance summary)
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-CommunicationRequest.yaml'
+    examples:
+      minimal:
+        summary: Minimal `CommunicationRequest` example
+        value:
+          $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json'
+      with-attachment-file-reference:
+        summary: `ComminucationRequest` with attachment file reference
+        value:
+          $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json'

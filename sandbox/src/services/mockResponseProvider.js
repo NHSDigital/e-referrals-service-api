@@ -269,4 +269,21 @@ module.exports = {
 
   },
 
+  getResponseForRetrieveAdviceAndGuidanceRequest: function (request) {
+    const ubrn = request.params.ubrn;
+    const version = request.params.version
+
+    // Scenario 1 - Minimum example
+    if (ubrn === '000000070000' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json', responseCode: 200 }
+    }
+
+    // Scenario 2 - With attachment file reference
+    if (ubrn === '000000070001' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json', responseCode: 200 }
+    }
+
+    return {}
+  },
+
 }

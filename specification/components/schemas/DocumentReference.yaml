@@ -9,6 +9,9 @@ required:
   - indexed
   - content
 properties:
+  id: 
+    type: string
+    example: DocumentReference-70002
   meta:
     type: object
     required:
@@ -90,6 +93,9 @@ properties:
             - title
             - creation
           properties:
+            id:
+              type: string
+              example: '70002'
             contentType:
               type: string
               example: 'image/png'

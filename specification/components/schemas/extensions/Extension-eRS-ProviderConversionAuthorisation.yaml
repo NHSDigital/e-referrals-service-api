@@ -1,0 +1,34 @@
+title: Extension-eRS-ProviderConversionAuthorisation
+description: Extension to supply the conversion authorisation flag
+type: object
+required:
+  - url
+  - valueCoding
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation-1'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+      - display
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ProviderConversionAuthorisation-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ProviderConversionAuthorisation-1'
+      code:
+        type: string
+        enum:
+          - AUTHORISED_TO_CONVERT
+          - NOT_AUTHORISED_TO_CONVERT
+        example: 'NOT_AUTHORISED_TO_CONVERT'
+      display:
+        type: string
+        example: 'Referrer has NOT allowed the Service Provider to convert the Advice and Guidance to a Referral'
+

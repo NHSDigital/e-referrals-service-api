@@ -286,4 +286,35 @@ module.exports = {
     return {}
   },
 
+  getResponseForRetrieveAdviceAndGuidanceConversation: function (request) {
+    const basedOn = request.query["based-on"]
+
+    // Scenario 1 - Single message from referrer
+    if (basedOn === 'CommunicationRequest/000000070000/_history/1') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/SingleMessageFromReferrer.json', responseCode: 200, version: 1 }
+    }
+
+    // Scenario 2 - One message each way
+    if (basedOn === 'CommunicationRequest/000000070000/_history/2') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/OneMessageEachWay.json', responseCode: 200, version: 2 }
+    }
+
+    // Scenario 3 - Attachment present in each direction
+    if (basedOn === 'CommunicationRequest/000000070001/_history/6') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/AttachmentPresentInEachDirection.json', responseCode: 200, version: 6 }
+    }
+
+    // Scenario 4 -	Multi-way conversation
+    if (basedOn === 'CommunicationRequest/000000070002/_history/1') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/MultiWayConversation.json', responseCode: 200, version: 6 }
+    }
+
+    // Scenario 5 -	Attachment uploaded from RCS before A&G creation
+    if (basedOn === 'CommunicationRequest/000000070003/_history/7') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/AttachmentUploadedFromRCS.json', responseCode: 200, version: 7 }
+    }
+
+    return {}
+  },
+
 }

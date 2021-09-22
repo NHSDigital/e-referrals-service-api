@@ -6,7 +6,7 @@
         ]
     },
     "resourceType": "CodeSystem",
-    "url": "_baseUrl_/STU3/v1/CodeSystem/CLINIC-TYPE",
+    "url": "_baseUrl_/STU3/CodeSystem/CLINIC-TYPE",
     "name": "e-RS Clinic Type",
     "status": "active",
     "date": "2021-05-26T13:49:36.514Z",
@@ -47,7 +47,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "ADULT_MENTAL_ILLNESS"
                     }
                 }
@@ -64,7 +64,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "ALLERGY"
                     }
                 }
@@ -85,7 +85,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "ALLERGY"
                     }
                 }
@@ -106,7 +106,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "AUDIOLOGICAL_MEDICINE"
                     }
                 }
@@ -127,7 +127,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "AUDIOLOGICAL_MEDICINE"
                     }
                 }
@@ -148,7 +148,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "AUDIOLOGICAL_MEDICINE"
                     }
                 }
@@ -169,7 +169,7 @@
                 {
                     "code": "specialty",
                     "valueCoding": {
-                        "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                         "code": "BONE_AND_MARROW_TRANSPLANTATION"
                     }
                 }

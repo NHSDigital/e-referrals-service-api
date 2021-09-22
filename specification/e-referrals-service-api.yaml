@@ -141,8 +141,8 @@ info:
 
     | Environment       | Base URL                                                               |
     | ----------------- | ---------------------------------------------------------------------- |
-    | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals` |
-    | Integration test  | `https://int.api.service.nhs.uk/referrals` |
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals/FHIR` |
+    | Integration test  | `https://int.api.service.nhs.uk/referrals/FHIR` |
     | Production        | Not yet available |
 
     ### Sandbox testing
@@ -200,14 +200,14 @@ info:
   license:
     name: MIT
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/referrals'
+  - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
-  - url: 'https://int.api.service.nhs.uk/referrals'
+  - url: 'https://int.api.service.nhs.uk/referrals/FHIR'
     description: Integration test environment.
-  - url: 'https://api.service.nhs.uk/referrals'
+  - url: 'https://api.service.nhs.uk/referrals/FHIR'
     description: 'Production environment. Not yet available.'
 paths:
-  /STU3/v1/ReferralRequest/$ers.createReferral:
+  /STU3/ReferralRequest/$ers.createReferral:
     post:
       security:
         - bearerAuth: []
@@ -281,7 +281,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/ReferralRequest/$ers.createReferralAndSendForTriage:
+  /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
     post:
       security:
         - bearerAuth: []
@@ -350,7 +350,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/HealthcareService/$ers.searchHealthcareServicesForPatient:
+  /STU3/HealthcareService/$ers.searchHealthcareServicesForPatient:
     post:
       security:
         - bearerAuth: []
@@ -421,7 +421,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/CodeSystem/{codeSystemType}:
+  /STU3/CodeSystem/{codeSystemType}:
     parameters:
       - $ref: 'components/schemas/path/CodeSystemType.yaml'
     get:
@@ -482,7 +482,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/Slot:
+  /STU3/Slot:
     get:
       description: |
         ## Overview
@@ -557,7 +557,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /R4/v1/PractitionerRole:
+  /R4/PractitionerRole:
     get:
       security:
         - bearerAuth: []
@@ -598,7 +598,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/Binary:
+  /STU3/Binary:
     post:
       security:
         - bearerAuth: []
@@ -677,7 +677,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
+  /STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
     post:
       security:
         - bearerAuth: []
@@ -724,7 +724,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/Binary/{attachmentLogicalID}:
+  /STU3/Binary/{attachmentLogicalID}:
     get:
       security:
         - bearerAuth: []
@@ -793,7 +793,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/ReferralRequest/{ubrn}:
+  /STU3/ReferralRequest/{ubrn}:
     get:
       security:
         - bearerAuth: [ ]
@@ -868,7 +868,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/ReferralRequest/{ubrn}/_history/{version}:
+  /STU3/ReferralRequest/{ubrn}/_history/{version}:
     get:
       security:
         - bearerAuth: [ ]
@@ -929,7 +929,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
+  /STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
     post:
       security:
         - bearerAuth: []
@@ -1058,7 +1058,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /STU3/v1/Appointment:
+  /STU3/Appointment:
     post:
       security:
         - bearerAuth: []
@@ -1150,7 +1150,7 @@ paths:
           $ref: 'components/schemas/responses/bookOrDeferAppointment/502Response.yaml'      
         '504':
           $ref: 'components/schemas/responses/bookOrDeferAppointment/504Response.yaml'
-  /STU3/v1/ReferralRequest/{ubrn}/$ers.generateCRI:
+  /STU3/ReferralRequest/{ubrn}/$ers.generateCRI:
     post:
       security:
         - bearerAuth: []

@@ -7,7 +7,7 @@ module.exports = [
    */
   {
     method: 'GET',
-    path: '/STU3/v1/Binary/{attachmentLogicalID}',
+    path: '/FHIR/STU3/Binary/{attachmentLogicalID}',
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN"]

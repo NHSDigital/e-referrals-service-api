@@ -1,0 +1,979 @@
+title: eRS-FetchWorklist-List
+description: A list of referrals representing the available worklist items
+type: object
+required:
+  - meta
+  - resourceType
+  - status
+  - mode
+properties:
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1'
+  contained:
+    type: array
+    description: |
+      | Field                  | Cardinality | Notes                                                                           |
+      | ---------------------- | ----------- | ------------------------------------------------------------------------------- |
+      | `Practitioner`         | `0..*`      | This resource is only contained when fetching the Referrals for Review worklist |
+      | `Patient`              | `0..*`      | This resource is only contained when fetching the Referrals for Review worklist |
+    items:
+      anyOf:
+        - title: Practitioner
+          type: object
+          required:
+            - id
+            - meta
+            - resourceType
+            - identifier
+          properties:
+            id:
+              type: string
+              example: 'Practitioner-021600556514'
+            meta:
+              type: object
+              required:
+                - profile
+              properties:
+                profile:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1'
+            resourceType:
+              type: string
+              enum:
+                - Practitioner
+              example: 'Practitioner'
+            identifier:
+              type: array
+              minItems: 1
+              maxItems: 1
+              items:
+                $ref: 'identifiers/STU3_UserId.yaml'
+        - title: Patient
+          type: object
+          required:
+            - id
+            - meta
+            - resourceType
+            - identifier
+          properties:
+            id:
+              type: string
+              example: 'Patient-9912003888'
+            meta:
+              type: object
+              required:
+                - profile
+              properties:
+                profile:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Patient-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Patient-1'
+            resourceType:
+              type: string
+              enum:
+                - Patient
+              example: 'Patient'
+            identifier:
+              type: array
+              minItems: 1
+              maxItems: 1
+              items:
+                $ref: 'identifiers/NhsNumber.yaml'
+  resourceType:
+    type: string
+    enum:
+      - List
+    example: 'List'
+  status:
+    type: string
+    enum:
+      - current
+    example: 'current'
+  mode:
+    type: string
+    enum:
+      - snapshot
+    example: 'snapshot'
+  entry:
+    type: array
+    items:
+      title: Singular entry with referral details
+      type: object
+      required:
+        - item
+      properties:
+        item:
+          type: object
+          required:
+            - reference
+          properties:
+            reference:
+              type: string
+              example: 'ReferralRequest/000000070002'
+        extension:
+          type: array
+          description: |
+            | Field                                                  | Cardinality | Notes                                                         |
+            | ------------------------------------------------------ | ----------- | ------------------------------------------------------------- |
+            | `Extension-eRS-ReferralsforReview-WorkListItem`        | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-AppointmentSlotIssues-WorkListItem`     | `0..1`      | Type of worklist items depends on the worklist type requested | 
+            | `Extension-eRS-AdviceAndGuidanceRequests-WorkListItem` | `0..1`      | Type of worklist items depends on the worklist type requested |
+          items:
+            anyOf:
+              - title: Extension-eRS-ReferralsforReview-WorkListItem
+                type: object
+                required:
+                  - url
+                  - extension
+                properties:
+                  url:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1'
+                  extension:
+                    type: array
+                    description: |
+                      | Field                          | Cardinality | Notes                                      |
+                      | ------------------------------ | ----------- | ------------------------------------------ |
+                      | `priority`                     | `1..1`      |                                            |
+                      | `specialty`                    | `1..1`      |                                            |
+                      | `patient`                      | `1..1`      |                                            |
+                      | `namedClinician`               | `0..1`      |                                            |
+                      | `eReferralPathwayStart`        | `1..1`      |                                            |
+                      | `clinicalInfoPrinted`          | `1..1`      |                                            |
+                      | `requestContextStatus`         | `1..1`      |                                            |
+                      | `clinicalInfoFirstSubmitted`   | `0..1`      |                                            |
+                      | `clinicalInfoLastUpdated`      | `0..1`      |                                            |
+                      | `appointmentStart`             | `0..1`      |                                            |
+                      | `allocatedClinician`           | `0..1`      |                                            |
+                    items:
+                      anyOf:
+                        - title: priority
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - priority
+                              example: 'priority'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  items:
+                                    $ref: '../schemas/codings/Priority.yaml'
+                        - title: specialty
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - specialty
+                              example: 'specialty'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                  - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                          type: string
+                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+                                      code:
+                                          type: string
+                                          example: 'CARDIOLOGY'
+                        - title: patient
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - patient
+                              example: 'patient'
+                            valueReference:
+                              type: object
+                              required:
+                                - reference
+                              properties:
+                                reference:
+                                  type: string
+                                  example: '#Patient-9462979626'
+                        - title: namedClinician
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - namedClinician
+                              example: 'namedClinician'
+                            valueReference:
+                              type: object
+                              required:
+                                - reference
+                              properties:
+                                reference:
+                                  type: string
+                                  example: '#Practitioner-021600556514'
+                        - title: eReferralPathwayStart
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - eReferralPathwayStart
+                              example: 'eReferralPathwayStart'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: clinicalInfoPrinted
+                          type: object
+                          required: 
+                            - url
+                            - valueBoolean
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicalInfoPrinted
+                              example: 'clinicalInfoPrinted'
+                            valueBoolean:
+                              type: boolean
+                              example: false
+                        - title: requestContextStatus
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - requestContextStatus
+                              example: 'requestContextStatus'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                      - display
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestContextStatus-1
+                                        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestContextStatus-1'
+                                      code:
+                                        type: string
+                                        enum:
+                                          - LETTER_CHANGED
+                                          - PRIORITY_CHANGED
+                                          - PRIORITY_AND_LETTER_CHANGED
+                                          - NEVER_REVIEWED
+                                        example: 'NEVER_REVIEWED'
+                                      display: 
+                                        type: string
+                                        example: 'Never Reviewed'
+                        - title: clinicalInfoFirstSubmitted
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicalInfoFirstSubmitted
+                              example: 'clinicalInfoFirstSubmitted'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: clinicalInfoLastUpdated
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicalInfoLastUpdated
+                              example: 'clinicalInfoLastUpdated'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-03T10:44:42.764Z'
+                        - title: referralType
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - referralType
+                              example: 'referralType'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralType-1
+                                        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralType-1'
+                                      code:
+                                        type: string
+                                        enum:
+                                          - APPOINTMENT
+                                          - TRIAGE_DEFERRAL
+                                        example: 'TRIAGE_DEFERRAL'
+                        - title: appointmentStart
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - appointmentStart
+                              example: 'appointmentStart'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-02T14:15:00.000Z'
+                        - title: allocatedClinician
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - allocatedClinician
+                              example: 'allocatedClinician'
+                            valueReference:
+                              type: object
+                              required:
+                                - reference
+                              properties:
+                                reference:
+                                  type: string
+                                  example: '#Practitioner-021600556514'
+              - title: Extension-eRS-AppointmentSlotIssues-WorkListItem
+                type: object
+                required:
+                  - url
+                  - extension
+                properties:
+                  url:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1'
+                  extension:
+                    type: array
+                    description: |
+                      | Field                          | Cardinality | Notes                                      |
+                      | ------------------------------ | ----------- | ------------------------------------------ |
+                      | `priority`                     | `1..1`      |                                            |
+                      | `specialty`                    | `1..1`      |                                            |
+                      | `patient`                      | `1..1`      |                                            |
+                      | `namedClinician`               | `0..1`      |                                            |
+                      | `eReferralPathwayStart`        | `1..1`      |                                            |
+                      | `clinicalInfoPrinted`          | `1..1`      |                                            |
+                      | `ubrnReceived`                 | `0..1`      |                                            |
+                      | `patientContactExpected`       | `0..1`      |                                            |
+                      | `clinicalInformationStatus`    | `0..1`      |                                            |
+                      | `reason`                       | `0..1`      |                                            |
+                      | `lastContact`                  | `0..1`      |                                            |
+                      | `service`                      | `0..1`      |                                            |
+                    items:
+                      anyOf:
+                        - title: priority
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - priority
+                              example: 'priority'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  items:
+                                    $ref: '../schemas/codings/Priority.yaml'
+                        - title: specialty
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - specialty
+                              example: 'specialty'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                  - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                          type: string
+                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+                                      code:
+                                          type: string
+                                          example: 'CARDIOLOGY'
+                        - title: patient
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - patient
+                              example: 'patient'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/NhsNumber.yaml'
+                        - title: namedClinician
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - namedClinician
+                              example: 'namedClinician'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/STU3_UserId.yaml'
+                        - title: eReferralPathwayStart
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - eReferralPathwayStart
+                              example: 'eReferralPathwayStart'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: clinicalInfoPrinted
+                          type: object
+                          required: 
+                            - url
+                            - valueBoolean
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicalInfoPrinted
+                              example: 'clinicalInfoPrinted'
+                            valueBoolean:
+                              type: boolean
+                              example: false
+                        - title: ubrnReceived
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - ubrnReceived
+                              example: 'ubrnReceived'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: patientContactExpected
+                          type: object
+                          required: 
+                            - url
+                            - valueDate
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - patientContactExpected
+                              example: 'patientContactExpected'
+                            valueDate:
+                              type: string
+                              format: date
+                              example: '2021-09-07'
+                        - title: clinicalInformationStatus
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicalInformationStatus
+                              example: 'clinicalInformationStatus'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1
+                                        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1'
+                                      code:
+                                        type: string
+                                        enum:
+                                          - PRESENT
+                                          - NOT_APPLICABLE
+                                          - NOT_DUE
+                                          - OVERDUE
+                                        example: 'NOT_DUE'
+                        - title: reason
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - reason
+                              example: 'reason'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1
+                                        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1'
+                                      code:
+                                        type: string
+                                        enum:
+                                          - NO_SLOTS_AT_SERVICE
+                                          - SLOT_NOT_AVAILABLE
+                                          - BOOKING_ATTEMPT_PROBLEM
+                                          - TRIAGE
+                                        example: 'NO_SLOTS_AT_SERVICE'
+                        - title: lastContact
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - lastContact
+                              example: 'lastContact'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: service
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - service
+                              example: 'service'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/ServiceId.yaml'
+              - title: Extension-eRS-AdviceAndGuidanceRequests-WorkListItem
+                type: object
+                required:
+                  - url
+                  - extension
+                properties:
+                  url:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1'
+                  extension:
+                    type: array
+                    description: |
+                      | Field                          | Cardinality | Notes                                      |
+                      | ------------------------------ | ----------- | ------------------------------------------ |
+                      | `priority`                     | `1..1`      |                                            |
+                      | `specialty`                    | `1..1`      |                                            |
+                      | `patient`                      | `1..1`      |                                            |
+                      | `namedClinician`               | `0..1`      |                                            |
+                      | `category`                     | `1..1`      |                                            |
+                      | `adviceFirstRequested`         | `1..1`      |                                            |
+                      | `adviceLastUpdated`            | `1..1`      |                                            |
+                      | `referrer`                     | `1..1`      |                                            |
+                      | `service`                      | `1..1`      |                                            |
+                      | `clinicType`                   | `0..1`      |                                            |
+                    items:
+                      anyOf:
+                        - title: priority
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - priority
+                              example: 'priority'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  items:
+                                    $ref: '../schemas/codings/Priority.yaml'
+                        - title: specialty
+                          type: object
+                          required:
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - specialty
+                              example: 'specialty'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                  - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                          type: string
+                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+                                      code:
+                                          type: string
+                                          example: 'CARDIOLOGY'
+                        - title: patient
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - patient
+                              example: 'patient'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/NhsNumber.yaml'
+                        - title: namedClinician
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - namedClinician
+                              example: 'namedClinician'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/STU3_UserId.yaml'
+                        - title: category
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - category
+                              example: 'category'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1
+                                        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1'
+                                      code:
+                                        type: string
+                                        enum:
+                                          - PROVIDER_RESPONSE_REQUIRED
+                                          - REFERRER_TO_SUBMIT_FURTHER_INFORMATION
+                                          - REFERRER_TO_REVIEW_RESPONSE
+                                          - CONVERSATION_ENDED_CANCELLED
+                                          - CONVERSATION_ENDED_CLOSED
+                                          - ADVICE_CONVERTED
+                                        example: 'PROVIDER_RESPONSE_REQUIRED'
+                        - title: adviceFirstRequested
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - adviceFirstRequested
+                              example: 'adviceFirstRequested'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: adviceLastUpdated
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - adviceLastUpdated
+                              example: 'adviceLastUpdated'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - title: referrer
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - referrer
+                              example: 'referrer'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/STU3_UserId.yaml'
+                        - title: service
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - service
+                              example: 'service'
+                            valueReference:
+                              type: object
+                              required:
+                                - identifier
+                              properties:
+                                identifier:
+                                  $ref: 'identifiers/ServiceId.yaml'
+                        - title: clinicType
+                          type: object
+                          required: 
+                            - url
+                            - valueCodeableConcept
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - clinicType
+                              example: 'clinicType'
+                            valueCodeableConcept:
+                              type: object
+                              required:
+                                - coding
+                              properties:
+                                coding:
+                                  type: array
+                                  minItems: 1
+                                  maxItems: 1
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                    properties:
+                                      system:
+                                        type: string
+                                        example: '_baseUrl_/STU3/CodeSystem/CLINIC-TYPE'
+                                      code:
+                                        type: string
+                                        example: 'HEART_FAILURE'
+

@@ -234,13 +234,16 @@ paths:
         So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
 
         ## Related endpoints
+
+        To allow the patient to book their appointment in their own time, you can generate a letter for the patient by 
+        using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
+        patient may need to follow (e.g. appointment booking instructions).
+
         You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
-        You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
 
       summary: A011 - Create referral
       operationId: a011-create-referral
@@ -314,6 +317,9 @@ paths:
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+        You can generate a letter for the patient by using [[HYPERLINK_A019]]. 
+        The letter summarises the current state of the referral and any steps the patient may need to follow.
 
       summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
@@ -1375,7 +1381,136 @@ paths:
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'      
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/CommunicationRequest/{ubrn}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the summary of an advice and guidance request. This endpoint provides important 
+        contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc)
+
+        This does not include the actual advice and guidance conversation between the referrer and the service provider. 
+        The conversation can be retrieved via [[HYPERLINK_A025]].
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
+        You may have identified the UBRN via [[HYPERLINK_A023]].
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the summary of an advice and guidance request
+
+        So I can understand all of the relevant context for the request.
+
+        ## Important note
+
+        The summary includes an indicator of whether the referrer has authorised the providing organisation to 
+        convert the advice and guidance request into an appointment request. 
+        If authorised, [[HYPERLINK_A027]] can be used to convert the advice and guidance request into an appointment request.
+
+        ## Related endpoints
+
+        After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                 |
+        | ------------------------------------------------------------------------ | ----------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`   |
+
+      summary: A024 - Retrieve advice and guidance request summary
+      operationId: a024-retrieve-advice-and-guidance
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/CommunicationRequest/{ubrn}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a specific version of `CommunicationRequest`.
+
+        ## Pre-requisites
+
+        The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A024]].
+
+        Note: e-RS only supports the retrieval of the most recent version of `CommunicationRequest`. You cannot retrieve earlier versions.
+
+        ## Use case
+
+        See [[HYPERLINK_A005]].
+
+        ## Related endpoints
+
+        See [[HYPERLINK_A024]].
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                               |
+        | ------------------------------------------------------------------------ | ------------------------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
+
+      summary: A024 - Retrieve advice and guidance request summary (versioned)
+      operationId: a024-retrieve-advice-and-guidance-versioned
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
 components:
   securitySchemes:
     bearerAuth:

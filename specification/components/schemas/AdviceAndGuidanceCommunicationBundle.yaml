@@ -1,0 +1,150 @@
+title: Bundle resource containg advice and guidance conversation
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - type
+  - total
+  - link
+  - entry
+properties:
+  id:
+    type: string
+    example: '08acc887-6a7b-4b38-8f50-022e41319efe'
+  meta:
+    type: object
+    required: 
+      - lastUpdated
+      - profile
+    properties:
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-04-20T12:17:35.128Z'
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'http://hl7.org/fhir/STU3/StructureDefinition/Bundle'
+          example: 'http://hl7.org/fhir/STU3/StructureDefinition/Bundle'
+  resourceType:
+    type: string
+    enum:
+      - Bundle
+    example: 'Bundle'
+  type:
+    type: string
+    enum:
+      - searchset
+    example: 'searchset'
+  total:
+    type: integer
+    minimum: 0
+    format: int32
+    example: 3
+  link:
+    type: array
+    minItems: 1
+    maxItems: 3
+    items:
+      type: object
+      required:
+        - relation
+        - url
+      properties:
+        relation:
+          type: string
+          enum:
+            - self
+          example: 'self'
+        url:
+          type: string
+          example: '_baseUrl_/STU3/Communication?based-on=CommunicationRequest%2F000000070000%2F_history%2F6&_include=Communication%3Arequester-practitionerrole%3APractitionerRole&_include=Communication%3Asender-practitionerrole%3APractionerRole&_include=Communication%3Acontent-reference%3ADocumentReference'
+  entry:
+    type: array
+    description: |
+      | Field                   | Cardinality | Notes                                               |
+      | ----------------------- | ----------- | --------------------------------------------------- |
+      | `CommunicationEntry`    | `1..*`      |                                                     |
+      | `PractitionerRoleEntry` | `2..*`      |                                                     |
+      | `DocumentEntry`         | `0..*`      |                                                     |
+    items:
+      anyOf:
+        - title: CommunicationEntry
+          description: |
+            CommunicationEntry details a single chat entry.
+          type: object
+          required:
+            - fullUrl
+            - resource
+            - search
+          properties:
+            fullUrl:
+              type: string
+              example: '_baseUrl_/STU3/Communication/70000'
+            resource:
+              $ref: 'eRS-Communication.yaml'
+            search:
+              type: object
+              required:
+                - mode
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - match
+                  example: 'match'
+        - title: PractitionerRoleEntry
+          description: |
+            PractitionerRoleEntry details practitioner involved in this conversation.
+          type: object
+          required:
+            - fullUrl
+            - resource
+            - search
+          properties:
+            fullUrl:
+              type: string
+              example: '_baseUrl_/STU3/PractitionerRole/103264994981.R69.SERVICE-PROVIDER-CLINICIAN'
+            resource:
+              $ref: 'CareConnect-PractitionerRole.yaml'
+            search:
+              type: object
+              required:
+                - mode
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - include
+                  example: 'include'
+        - title: DocumentEntry
+          description: |
+            DocumentEntry contains the 'DocumentReference' assosiated with this advice and guidance conversation.
+          type: object
+          required:
+            - fullUrl
+            - resource
+            - search
+          properties:
+            fullUrl:
+              type: string
+              example: '_baseUrl_/STU3/DocumentReference/70000'
+            resource:
+              $ref: 'DocumentReference.yaml'
+            search:
+              type: object
+              required:
+                - mode
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - include
+                  example: 'include'
+      
+
+
+

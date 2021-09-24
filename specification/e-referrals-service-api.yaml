@@ -1397,10 +1397,12 @@ paths:
         ## Pre-requisites
 
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
 
         You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
-        You may have identified the UBRN via [[HYPERLINK_A023]].
+        For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
 
         ## Use case
 
@@ -1507,6 +1509,84 @@ paths:
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/Communication:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the advice and guidance conversation between the referring organisation 
+        and service providing organisation.
+
+        A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
+        you may have identified the UBRN via [[HYPERLINK_A023]].
+
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will importantly include the latest version of the request which must be used.
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the conversation that is present on an advice and guidance request
+
+        So that I can review the conversation and potentially contribute further to it.
+
+        ## Important note
+
+        The conversation returned includes links to any attachments associated with the conversation.
+
+        ## Related endpoints
+
+        After using this endpoint:
+          - Use [[HYPERLINK_A006]] to retrieve any attachments associated with the advice and guidance request.
+          - (For service provider users) Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information.
+          - (For service provider users) Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so.
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                       | Request                                                   |
+        | -------------------------------------------------------------- | --------------------------------------------------------- |
+        | Single message from referrer                                   | `based-on`=`CommunicationRequest/000000070000/_history/1` |
+        | One message each way                                           | `based-on`=`CommunicationRequest/000000070000/_history/2` |
+        | Attachment present in each direction                           | `based-on`=`CommunicationRequest/000000070001/_history/6` |
+        | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
+        | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
+
+      summary: A025 - Retrieve advice and guidance conversation
+      operationId: a025-retrieve-advice-and-guidance-conversation
+      parameters:
+        - $ref: 'components/schemas/queryParameters/BasedOn.yaml'
+        - $ref: 'components/schemas/queryParameters/Include-Communication.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':

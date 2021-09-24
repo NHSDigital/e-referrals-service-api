@@ -28,7 +28,7 @@ def main():
       "[[HYPERLINK_A022]]": "[A022 - Cancel appointment, action later](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a022.html)",
       "[[HYPERLINK_A023]]": "[A023 - Retrieve advice and guidance requests worklist](#api-Default-a008-retrieve-a&g-worklist)",
       "[[HYPERLINK_A024]]": "[A024 - Retrieve advice and guidance request summary](#api-Default-a024-retrieve-advice-and-guidance)",
-      "[[HYPERLINK_A025]]": "[A025 - Retrieve advice and guidance conversation](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a025.html)",
+      "[[HYPERLINK_A025]]": "[A025 - Retrieve advice and guidance conversation](#api-Default-a025-retrieve-advice-and-guidance-conversation)",
       "[[HYPERLINK_A026]]": "[A026 - Send advice and guidance response](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a026.html)",
       "[[HYPERLINK_A027]]": "[A027 - Convert advice and guidance request to referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a027.html)",
       "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a028.html)",

@@ -259,4 +259,14 @@ module.exports = {
 
   },
 
+  getExampleResponseForRetrieveAdviceAndGuidanceWorklist: function (request) {
+    var responseMap = {
+      'src/mocks/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json': 'retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
 }

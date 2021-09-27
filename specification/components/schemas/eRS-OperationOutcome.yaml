@@ -29,7 +29,6 @@ properties:
       required:
         - severity
         - code
-        - diagnostics
         - details
       properties:
         severity:

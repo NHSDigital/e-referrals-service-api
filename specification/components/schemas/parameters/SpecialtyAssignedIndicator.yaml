@@ -1,0 +1,24 @@
+title: specialtyAssignedIndicator
+description: |
+  Indicates whether filtering on Specialty is required or not
+type: object
+required:
+  - name
+  - valueCodeableConcept
+properties:
+  name:
+    type: string
+    enum:
+      - specialtyAssignedIndicator
+    example: 'specialtyAssignedIndicator'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          $ref: '../codings/AssignedIndicator.yaml'

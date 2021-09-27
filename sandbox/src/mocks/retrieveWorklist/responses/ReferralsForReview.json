@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "contained": [
+    {
+      "id": "Practitioner-021600556514",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1"
+        ]
+      },
+      "resourceType": "Practitioner",
+      "identifier": [
+        {
+          "system": "http://fhir.nhs.net/Id/sds-user-id",
+          "value": "021600556514"
+        }
+      ]
+    },
+    {
+      "id": "Patient-9462979626",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Patient-1"
+        ]
+      },
+      "resourceType": "Patient",
+      "identifier": [
+        {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "9462979626"
+        }
+      ]
+    },
+    {
+      "id": "Patient-1000000001",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Patient-1"
+        ]
+      },
+      "resourceType": "Patient",
+      "identifier": [
+        {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "1000000001"
+        }
+      ]
+    }
+  ],
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "ROUTINE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "reference": "#Patient-9462979626"
+              }
+            },
+            {
+              "url": "eReferralPathwayStart",
+              "valueDateTime": "2021-09-03T14:09:15.297Z"
+            },
+            {
+              "url": "clinicalInfoPrinted",
+              "valueBoolean": false
+            },
+            {
+              "url": "requestContextStatus",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestContextStatus-1",
+                    "code": "NEVER_REVIEWED",
+                    "display": "Never Reviewed"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "clinicalInfoFirstSubmitted",
+              "valueDateTime": "2021-09-03T14:09:15.297Z"
+            },
+            {
+              "url": "referralType",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralType-1",
+                    "code": "TRIAGE_DEFERRAL"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "ReferralRequest/000000070002"
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "ROUTINE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "reference": "#Patient-1000000001"
+              }
+            },
+            {
+              "url": "allocatedClinician",
+              "valueReference": {
+                "reference": "#Practitioner-021600556514"
+              }
+            },
+            {
+              "url": "eReferralPathwayStart",
+              "valueDateTime": "2021-09-03T14:09:11.381Z"
+            },
+            {
+              "url": "clinicalInfoPrinted",
+              "valueBoolean": false
+            },
+            {
+              "url": "requestContextStatus",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestContextStatus-1",
+                    "code": "NEVER_REVIEWED",
+                    "display": "Never Reviewed"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "clinicalInfoFirstSubmitted",
+              "valueDateTime": "2021-09-03T14:09:11.022Z"
+            },
+            {
+              "url": "clinicalInfoLastUpdated",
+              "valueDateTime": "2021-09-03T14:09:12.573Z"
+            },
+            {
+              "url": "appointmentStart",
+              "valueDateTime": "2021-09-05T15:09:03.971Z"
+            },
+            {
+              "url": "referralType",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralType-1",
+                    "code": "APPOINTMENT"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "ReferralRequest/000000070001"
+      }
+    }
+  ]
+}

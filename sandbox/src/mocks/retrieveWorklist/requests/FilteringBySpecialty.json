@@ -1,0 +1,43 @@
+{
+  "resourceType": "Parameters",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "listType",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1",
+            "code": "REFERRALS_FOR_REVIEW"
+          }
+        ]
+      }
+    },
+    {
+      "name": "specialtyAssignedIndicator",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AssignedIndicator-1",
+            "code": "ASSIGNED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "specialty",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+            "code": "CARDIOLOGY"
+          }
+        ]
+      }
+    }
+  ]
+}

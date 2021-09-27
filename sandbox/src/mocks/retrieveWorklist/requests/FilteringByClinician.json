@@ -1,0 +1,39 @@
+{
+  "resourceType": "Parameters",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "listType",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1",
+            "code": "REFERRALS_FOR_REVIEW"
+          }
+        ]
+      }
+    },
+    {
+      "name": "clinicianAssignedIndicator",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AssignedIndicator-1",
+            "code": "ASSIGNED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "clinician",
+      "valueIdentifier": {
+        "system": "http://fhir.nhs.net/Id/sds-user-id",
+        "value": "021600556514"
+      }
+    }
+  ]
+}

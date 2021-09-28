@@ -42,7 +42,7 @@ properties:
         - title: Shortlist
           description: |
             Parameter to supply a shortlist. When sending for triage, 
-            the shortlist must contain exactly one service, and this must support the ‘triage request flow’.
+            the shortlist must contain exactly one service, and this must support the 'triage request flow'.
           type: object
           required:
             - name

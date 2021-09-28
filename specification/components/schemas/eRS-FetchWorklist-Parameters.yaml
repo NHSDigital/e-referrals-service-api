@@ -1,0 +1,47 @@
+title: eRS-FetchWorklist-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `listType`                        | `1..1`      |                                            |
+      | `service`                         | `0..1`      |                                            |
+      | `specialtyAssignedIndicator`      | `0..1`      |                                            |
+      | `specialty`                       | `0..1`      |                                            | 
+      | `location`                        | `0..1`      |                                            | 
+      | `clinicianAssignedIndicator`      | `0..1`      |                                            | 
+      | `clinician`                       | `0..1`      |                                            | 
+    items:
+      anyOf:
+        - $ref: 'parameters/ListType.yaml'
+        - $ref: 'parameters/Service.yaml'
+        - $ref: 'parameters/SpecialtyAssignedIndicator.yaml'
+        - $ref: 'parameters/SpecialtyValueCodableConcept.yaml'
+        - $ref: 'parameters/Location.yaml'
+        - $ref: 'parameters/ClinicianAssignedIndicator.yaml'
+        - $ref: 'parameters/Clinician.yaml'

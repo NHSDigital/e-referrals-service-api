@@ -1,0 +1,14 @@
+title: clinician
+description: The clinician assigned to the Referral Request. If present, the 'clinicianAssignedIndicator' parameter must be set to 'Assigned'
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - clinician
+    example: 'clinician'
+  valueIdentifier:
+    $ref: '../identifiers/STU3_UserId.yaml'

@@ -29,7 +29,7 @@ def main():
       "[[HYPERLINK_A023]]": "[A023 - Retrieve advice and guidance requests worklist](#api-Default-a008-retrieve-a&g-worklist)",
       "[[HYPERLINK_A024]]": "[A024 - Retrieve advice and guidance request summary](#api-Default-a024-retrieve-advice-and-guidance)",
       "[[HYPERLINK_A025]]": "[A025 - Retrieve advice and guidance conversation](#api-Default-a025-retrieve-advice-and-guidance-conversation)",
-      "[[HYPERLINK_A026]]": "[A026 - Send advice and guidance response](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a026.html)",
+      "[[HYPERLINK_A026]]": "[A026 - Send advice and guidance response](#api-Default-a026-send-a&g-response)",
       "[[HYPERLINK_A027]]": "[A027 - Convert advice and guidance request to referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a027.html)",
       "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a028.html)",
       "[[HYPERLINK_A030]]": "[A030 - Retrieve e-RS business functions](#api-Default-a030-retrieve-business-functions)",

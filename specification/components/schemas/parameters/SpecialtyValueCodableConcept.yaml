@@ -1,0 +1,33 @@
+title: specialty
+description: Details the specialty parameter
+type: object
+required:
+  - name
+  - valueCodeableConcept
+properties:
+  name:
+    type: string
+    enum:
+      - specialty
+    example: 'specialty'
+  valueCodeableConcept:
+    type: object
+    required:
+        - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+                type: string
+                example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+            code:
+                type: string
+                example: 'CARDIOLOGY'

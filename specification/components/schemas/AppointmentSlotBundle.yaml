@@ -75,7 +75,7 @@ properties:
       anyOf:
         - title: Slot
           description: |
-            Slot resource includes the ‘Reference’ to the slot and the slot’s ‘start’ and ‘end’ times.
+            Slot resource includes the 'Reference' to the slot and the slot's 'start' and 'end' times.
           type: object
           required:
             - fullUrl
@@ -159,7 +159,7 @@ properties:
         - title: Schedule
           description: | 
             Schedule resource is used to indicate which allocated clinician a Slot is associated with (if any). 
-            The ‘Schedule’ also indicates the Service Id that will be the same Service for which the Slot search was performed
+            The 'Schedule' also indicates the Service Id that will be the same Service for which the Slot search was performed
           type: object
           required:
             - fullUrl

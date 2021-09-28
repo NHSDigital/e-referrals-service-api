@@ -1,0 +1,61 @@
+title: listType
+description: Indicates the type of list requested
+type: object
+required:
+  - name
+  - valueCodeableConcept
+properties:
+  name:
+    type: string
+    enum:
+      - listType
+    example: 'listType'
+  valueCodeableConcept:
+    type: object
+    required:
+        - coding
+    properties:
+        coding:
+          type: array
+          minItems: 1
+          maxItems: 1
+          description: |
+            | Field                            | Cardinality | Notes                                  |
+            | -------------------------------- | ----------- | -------------------------------------- |
+            | `eRS-ReferralListSelector`       | `0..1`      |                                        |
+            | `eRS-CommunicationListSelector`  | `0..1`      |                                        | 
+          items:
+            anyOf:
+              - title: eRS-ReferralListSelector
+                type: object
+                required:
+                 - system
+                 - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1
+                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1'
+                  code:
+                    type: string
+                    enum:
+                     - REFERRALS_FOR_REVIEW
+                     - APPOINTMENT_SLOT_ISSUES
+                    example: 'REFERRALS_FOR_REVIEW'
+              - title: eRS-CommunicationListSelector
+                type: object
+                required:
+                 - system
+                 - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommunicationListSelector-1
+                    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommunicationListSelector-1'
+                  code:
+                    type: string
+                    enum:
+                     - ADVICE_AND_GUIDANCE_REQUESTS
+                    example: 'ADVICE_AND_GUIDANCE_REQUESTS'

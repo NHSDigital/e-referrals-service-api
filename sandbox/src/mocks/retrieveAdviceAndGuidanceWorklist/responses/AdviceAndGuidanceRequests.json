@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1"
+    ]
+  },
+  "resourceType": "List",
+  "status": "current",
+  "mode": "snapshot",
+  "entry": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "ROUTINE"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/nhs-number",
+                  "value": "1000000001"
+                }
+              }
+            },
+            {
+              "url": "category",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1",
+                    "code": "PROVIDER_RESPONSE_REQUIRED"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "adviceFirstRequested",
+              "valueDateTime": "2021-09-08T13:17:27.655Z"
+            },
+            {
+              "url": "adviceLastUpdated",
+              "valueDateTime": "2021-09-08T13:17:27.655Z"
+            },
+            {
+              "url": "referrer",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/sds-user-id",
+                  "value": "021600556514"
+                }
+              }
+            },
+            {
+              "url": "service",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/ers-service",
+                  "value": "11014"
+                },
+                "display": "Advice Only"
+              }
+            },
+            {
+              "url": "clinicType",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://ers-api:445/STU3/v1/CodeSystem/CLINIC-TYPE",
+                    "code": "HEART_FAILURE"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "CommunicationRequest/000000070000"
+      }
+    },
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "priority",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                    "code": "TWO_WEEK_WAIT"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "specialty",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://ers-api:445/STU3/v1/CodeSystem/SPECIALTY",
+                    "code": "CARDIOLOGY"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "patient",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/nhs-number",
+                  "value": "9462979626"
+                }
+              }
+            },
+            {
+              "url": "category",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1",
+                    "code": "REFERRER_TO_SUBMIT_FURTHER_INFORMATION"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "adviceFirstRequested",
+              "valueDateTime": "2021-09-08T13:17:29.248Z"
+            },
+            {
+              "url": "adviceLastUpdated",
+              "valueDateTime": "2021-09-08T13:17:29.860Z"
+            },
+            {
+              "url": "referrer",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/sds-user-id",
+                  "value": "921600556514"
+                }
+              }
+            },
+            {
+              "url": "service",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/ers-service",
+                  "value": "11014"
+                },
+                "display": "Advice Only"
+              }
+            },
+            {
+              "url": "clinicType",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://ers-api:445/STU3/v1/CodeSystem/CLINIC-TYPE",
+                    "code": "HEART_FAILURE"
+                  }
+                ]
+              }
+            }
+          ],
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1"
+        }
+      ],
+      "item": {
+        "reference": "CommunicationRequest/000000070002"
+      }
+    }
+  ]
+}

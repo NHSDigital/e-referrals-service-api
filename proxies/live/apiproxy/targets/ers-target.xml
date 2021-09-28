@@ -25,10 +25,10 @@
         <Name>AssignMessage.PopulateAsidFromApp</Name>
       </Step>
       <Step>
-        <Name>AssignMessage.AddAsidHeader</Name>
+        <Name>AssignMessage.RemoveAndAddAsidHeader</Name>
       </Step>
       <Step>
-        <Name>AssignMessage.AddUserIdHeader</Name>
+        <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
       </Step>
       <Step>
         <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>

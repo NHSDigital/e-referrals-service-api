@@ -1,4 +1,9 @@
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddUserIdHeader">
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.RemoveAndAddUserIdHeader">
+  <Remove>
+    <Headers>
+      <Header name="x-ers-user-id"/>
+    </Headers>
+  </Remove>
   <Add>
     <Headers>
       <Header name="x-ers-user-id">{accesstoken.id_token-subject}</Header>

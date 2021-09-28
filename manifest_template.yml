@@ -55,7 +55,7 @@ apigee:
           - name: ratelimit
             value: 5ps
         description: {{ DESCRIPTION }} ({{ VARIANT }})
-        displayName: {{ lookup('env', 'API_NAME') }}
+        displayName: {{ TITLE }} {{ VARIANT }}
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}

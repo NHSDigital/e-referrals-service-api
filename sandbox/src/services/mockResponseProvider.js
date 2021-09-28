@@ -317,4 +317,16 @@ module.exports = {
     return {}
   },
 
+  getResponseForSendAdviceAndGuidanceResponse: function (request) {
+    var responseMap = {
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json': 'sendAdviceAndGuidanceResponse/responses/RequireFurtherInformation.json',
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json': 'sendAdviceAndGuidanceResponse/responses/ReturnToReferrerWithAdvice.json',
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json': 'sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
 }

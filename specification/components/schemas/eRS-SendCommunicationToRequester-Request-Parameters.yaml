@@ -1,0 +1,221 @@
+title: eRS-SendCommunicationToRequester-Request-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Request-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Request-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `guidanceOutcome`                 | `1..1`      |                                            |
+      | `guidanceIntendedRecommendation`  | `0..1`      | Conditionally Mandatory if guidanceOutcome value is `RETURN_TO_REFERRER_WITH_ADVICE` |
+      | `guidance`                        | `1..1`      |                                            |
+      | `updatedPriority`                 | `1..1`      |                                            | 
+      | `guidanceAttachmentFile`          | `0..*`      |                                            | 
+    items:
+      anyOf:
+        - title: guidanceOutcome
+          description: Parameter to supply a guidanceOutcome
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - guidanceOutcome
+              example: 'guidanceOutcome'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceResponseOutcome-1
+                  example: https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceResponseOutcome-1
+                code:
+                  type: string
+                  enum:
+                    - RETURN_TO_REFERRER_WITH_ADVICE
+                    - REQUIRE_FURTHER_INFORMATION
+                    - PROVIDER_CONVERTED
+                  example: RETURN_TO_REFERRER_WITH_ADVICE
+        - title: guidanceIntendedRecommendation
+          description: Parameter to supply a guidanceIntendedRecommendation
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - guidanceIntendedRecommendation
+              example: 'guidanceIntendedRecommendation'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceIntendedRecommendation-1
+                  example: https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceIntendedRecommendation-1
+                code:
+                  type: string
+                  enum:
+                    - ADVICE_ONLY_NO_REFERRAL_RECOMMENDED
+                    - ADVICE_FOLLOWED_BY_REFERRAL_IF_REQUIRED
+                    - REFERRAL_RECOMMENDED
+                    - OTHER
+                  example: ADVICE_ONLY_NO_REFERRAL_RECOMMENDED
+        - title: guidance
+          description: Parameter to supply the guidance
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - guidance
+              example: 'guidance'
+            valueString:
+              type: string
+              example: 'Please perform test B and send me back the results'
+        - title: updatedPriority
+          description: Parameter to supply a updatedPriority
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - updatedPriority
+              example: 'updatedPriority'
+            valueCoding:
+              $ref: 'codings/Priority.yaml'
+        - title: guidanceAttachmentFile
+          description: Parameter to supply an attachment file
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - guidanceAttachmentFile
+              example: 'guidanceAttachmentFile'
+            resource:
+              title: DocumentReference
+              description: 'A reference to a document'
+              type: object
+              required:
+                - meta
+                - resourceType
+                - type
+                - status
+                - indexed
+                - content
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - profile
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                        example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                resourceType:
+                  type: string
+                  enum:
+                    - DocumentReference
+                  example: 'DocumentReference'
+                type:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - system
+                          - code
+                        properties:
+                          system:
+                            type: string
+                            enum:
+                              - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                            example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                          code:
+                            type: string
+                            enum:
+                              - GUIDANCE_RESPONSE
+                            example: GUIDANCE_RESPONSE
+                status:
+                  type: string
+                  enum:
+                    - current
+                  example: current
+                indexed:
+                  type: string
+                  format: date-time
+                  example: '2021-04-22T10:00:00.000Z'
+                description:
+                  type: string
+                  nullable: true
+                  example: 'upload png'
+                content:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - attachment
+                    properties:
+                      attachment:
+                        title: 'A reference to an already created Attachment (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+                        type: object
+                        required:
+                          - url
+                        properties:
+                          url:
+                            type: string
+                            example: 'Binary/att-70000-70000'
+

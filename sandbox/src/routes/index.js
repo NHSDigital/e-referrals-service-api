@@ -18,6 +18,7 @@ const retrieveWorklist = require('./retrieveWorklist')
 const retrieveAdviceAndGuidanceWorklist = require('./retrieveAdviceAndGuidanceWorklist')
 const retrieveAdviceAndGuidanceRequest = require('./retrieveAdviceAndGuidanceRequest')
 const retrieveAdviceAndGuidanceConversation = require('./retrieveAdviceAndGuidanceConversation')
+const sendAdviceAndGuidanceResponse = require('./sendAdviceAndGuidanceResponse')
 
 const routes = [].concat(
   getStatus,
@@ -39,7 +40,8 @@ const routes = [].concat(
   retrieveWorklist,
   retrieveAdviceAndGuidanceWorklist,
   retrieveAdviceAndGuidanceRequest,
-  retrieveAdviceAndGuidanceConversation
+  retrieveAdviceAndGuidanceConversation,
+  sendAdviceAndGuidanceResponse
 )
 
 module.exports = routes

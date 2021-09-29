@@ -1,0 +1,23 @@
+description: Parameters resource containing updated communication request and newly created communication
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-SendCommunicationToRequester-Response-Parameters.yaml'
+    examples:
+      require-further-information:
+        summary: Response for 'Require further information'
+        value:
+          $ref: '../../../examples/sendAdviceAndGuidanceResponse/responses/RequireFurtherInformation.json'
+      return-to-referrer-with-advice:
+        summary: Response for 'Return to referrer with advice'
+        value:
+          $ref: '../../../examples/sendAdviceAndGuidanceResponse/responses/ReturnToReferrerWithAdvice.json'
+      with-attachment:
+        summary: Response with attachment
+        value:
+          $ref: '../../../examples/sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json'

@@ -1681,6 +1681,103 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to:
+          - convert the advice and guidance request you have received into a referral, AND
+          - create a task for the service provider admin team to select/shortlist appropriate services for the patient, AND
+          - provide a final guidance response details back to the referrer
+        
+        Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
+        and guidance request into a referral.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will include whether or not the referrer has authorised the provider to be able to convert an 
+        advice and guidance request into a referral, and thus dictate whether this endpoint can be used.
+
+        You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
+
+        If you want to include attachments with the admin task and/or the response to the referrer, 
+        you need to use [[HYPERLINK_A020]] so they are ready to be associated when this endpoint is called.
+
+        ## Use case
+        As an authenticated user
+
+        I need to convert an inbound advice and guidance request into a referral 
+        and task my admin team to shortlist appropriate services for the patient
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+
+        ## Important notes
+
+        When this endpoint is successfully used, an entry will be added to the service providers 
+        Appointments For Booking worklist for the admin team to action the task. The provider 
+        admin team will currently only be able to progress the referral via the e-RS Professional 
+        Application user interface (e.g. shortlisting appropriate services for the patient).
+
+        ## Related endpoints
+
+        You can use [[HYPERLINK_A005]] to retrieve the details of the referral.
+
+        You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
+
+        You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
+
+        You can use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral/advice request.
+
+        You can use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral.
+        
+      summary: A027 - Convert advice and guidance request to referral
+      operationId: a027-convert-a&g-to-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters.yaml'
+            examples:
+              no-attachments:
+                summary: No attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json'
+              with-attachments:
+                summary: With attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/201Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '422':
+          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
 components:
   securitySchemes:
     bearerAuth:

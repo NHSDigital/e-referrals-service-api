@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "OAS (Swagger v3) API Definition for Template API",
   "scripts": {
-    "lint": "node_modules/.bin/speccy lint -s openapi-tags -s operation-tags specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",
+    "lint-oas": "node_modules/.bin/speccy lint -s openapi-tags -s operation-tags specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",
     "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/e-referrals-service-api.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py | poetry run python scripts/populate_placeholders.py > build/e-referrals-service-api.json",
     "serve": "node_modules/.bin/speccy serve build/e-referrals-service-api.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
@@ -15,11 +15,11 @@
     "speccy": "^0.11.0"
   },
   "devDependencies": {
-    "newman": "^4.5.7",
-    "newman-reporter-html": "^1.0.5",
-    "newman-reporter-htmlextra": "^1.11.3",
     "apigeetool": "^0.14.2",
     "license-checker": "^25.0.1",
-    "minimist": "^1.2.2"
+    "minimist": "^1.2.2",
+    "newman": "^4.5.7",
+    "newman-reporter-html": "^1.0.5",
+    "newman-reporter-htmlextra": "^1.11.3"
   }
 }

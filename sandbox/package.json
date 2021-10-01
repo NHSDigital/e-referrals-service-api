@@ -1,6 +1,6 @@
 {
   "name": "e-referrals-service-api-sandbox",
-  "version": "1.0.0",
+  "version": "v1.1.0-alpha",
   "description": "e-Referrals Service API Sandbox Server",
   "scripts": {
     "lint": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",

@@ -29,6 +29,16 @@ def update_npm_version(version):
         json.dump(npm_data, outFile, indent=2)
 
 
+def update_sandbox_version(version):
+    print('Updating sandbox version....')
+    with open("sandbox/package.json", "r") as inFile:
+        sandbox_data = json.load(inFile)
+    sandbox_data["version"] = version
+
+    with open("sandbox/package.json", "w") as outFile:
+        json.dump(sandbox_data, outFile, indent=2)
+
+
 if __name__ == "__main__":
     version = str(calculate_version())
 
@@ -36,5 +46,6 @@ if __name__ == "__main__":
 
     update_npm_version(version)
     update_poetry_version(version)
+    update_sandbox_version(version)
 
     print('Version updated')

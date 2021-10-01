@@ -1,12 +1,13 @@
 {
   "name": "e-referrals-service-api",
-  "version": "0.0.1",
+  "version": "v1.1.0-alpha",
   "description": "OAS (Swagger v3) API Definition for Template API",
   "scripts": {
     "lint": "node_modules/.bin/speccy lint -s openapi-tags -s operation-tags specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",
     "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/e-referrals-service-api.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py | poetry run python scripts/populate_placeholders.py > build/e-referrals-service-api.json",
     "serve": "node_modules/.bin/speccy serve build/e-referrals-service-api.json",
-    "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
+    "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL",
+    "update-version": "poetry run python scripts/update_version.py"
   },
   "author": "NHS Digital",
   "license": "MIT",

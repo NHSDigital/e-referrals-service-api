@@ -32,9 +32,9 @@ def update_npm_version(version):
 if __name__ == "__main__":
     version = str(calculate_version())
 
-    print('Updating packaging version to: ' + version)
+    print('Updating version to: ' + version)
 
     update_npm_version(version)
     update_poetry_version(version)
 
-    print('Packing version updated')
+    print('Version updated')

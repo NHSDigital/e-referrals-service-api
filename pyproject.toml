@@ -3,7 +3,7 @@ python = "^3.8"
 
 [tool.poetry]
 name = "e-referrals-service-api"
-version = "v1.1.0-alpha"
+version = "v1.1.1-alpha"
 description = "TODO"
 license = "MIT"
 authors = []

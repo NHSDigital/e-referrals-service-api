@@ -1,3 +1,2 @@
 #!/bin/sh
 make lint
-make update-version

@@ -1,6 +1,6 @@
 {
   "name": "e-referrals-service-api",
-  "version": "v1.1.1-alpha",
+  "version": "v1.1.0-alpha",
   "description": "OAS (Swagger v3) API Definition for Template API",
   "scripts": {
     "lint": "node_modules/.bin/speccy lint -s openapi-tags -s operation-tags specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",

@@ -53,3 +53,7 @@ release: clean publish build-proxy
 
 test:
 	echo "TODO: add tests"
+
+.PHONY: update-version
+update-version:
+	npm run update-version

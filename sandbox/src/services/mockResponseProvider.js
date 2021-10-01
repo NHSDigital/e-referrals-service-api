@@ -329,4 +329,14 @@ module.exports = {
 
   },
 
+  getResponseForConvertAdviceAndGuidanceToReferral: function (request) {
+    var responseMap = {
+      'src/mocks/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json': 'convertAdviceAndGuidanceToReferral/responses/NoAttachments.json',
+      'src/mocks/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json': 'convertAdviceAndGuidanceToReferral/responses/WithAttachments.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
 }

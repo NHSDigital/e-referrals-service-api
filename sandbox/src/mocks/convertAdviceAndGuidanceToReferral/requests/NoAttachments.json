@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "createFrom",
+      "valueReference": {
+        "reference": "CommunicationRequest/000000070000/_history/3"
+      }
+    },
+    {
+      "name": "guidance",
+      "valueString": "I have converted this to send the patient to one of our services"
+    },
+    {
+      "name": "newReferralPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "ROUTINE"
+      }
+    },
+    {
+      "name": "reviewComments",
+      "valueString": "Refer this patient to our 'xxx' service please as soon as possible"
+    }
+  ]
+}

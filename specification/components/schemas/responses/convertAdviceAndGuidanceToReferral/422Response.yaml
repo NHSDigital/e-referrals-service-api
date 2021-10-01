@@ -1,0 +1,29 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again.                                              |
+  | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
+  | UNSUPPORTED_PRIORITY               | The Priority submitted is not supported by the responsible Service.                                                          |
+  | INAPPROPRIATE_VALUE                | A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided.  |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format.                                                   |
+  | INVALID_REQUEST_STATE              | The Request, while otherwise valid, is not in the correct state for the specific action being performed.                     |
+  | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed.                              |
+  | MISSING_VALUE                      | A field defined as mandatory for an endpoint has not been provided.                                                          |
+  | VALUE_IS_REQUIRED                  | A business rule defines a value as mandatory but it has not been provided.                                                   |
+  | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation).                 |
+  | DUPLICATE_FILENAME                 | A file being attached, matches another file being attached, or matches a file that is already linked.                        |
+  | CONFLICTING_VALUES                 | Two or more supplied values are contradictory.                                                                               |
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/GenericOperationOutcome.json'

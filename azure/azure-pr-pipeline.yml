@@ -45,5 +45,7 @@ extends:
         stage_name: ers_alpha_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--alpha
+        post_deploy:
+        - template: templates/ers-smoke.yml
       - environment: internal-dev-sandbox
         proxy_path: sandbox

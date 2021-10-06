@@ -1,3 +1,12 @@
-description: You have exceeded your application's [rate limit](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#rate-limits).
+description: |
+  When a client receives a 429 response, indicating it has been rate limited,
+  the client must back off and retry with exponentially increasing periods between requests.
+  Once a request is successful again, the client may continue to send requests inline with the documented rate limits
+  (see [rate limit](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#rate-limits)).
+  Example:
 
-
+    1)  Client receives a 429 response
+    2)  Client waits 1s and resends, but still receives a 429
+    3)  Client waits 2s and resends, but still receives a 429
+    4)  Client waits 4s, request is successful
+    5)  Return to normal request cadence

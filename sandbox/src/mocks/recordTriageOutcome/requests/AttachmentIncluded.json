@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RecordReviewOutcome-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "reviewOutcome",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+        "code": "RETURN_TO_REFERRER_WITH_ADVICE"
+      }
+    },
+    {
+      "name": "reviewComments",
+      "valueString": "Condition not serious. See attached document"
+    },
+    {
+      "name": "reviewAttachmentFile",
+      "resource": {
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "PROVIDER"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-10-07T15:00:41.239000+00:00",
+        "description": "Condition details",
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/att-70000-70001"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

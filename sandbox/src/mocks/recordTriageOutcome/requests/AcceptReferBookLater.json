@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RecordReviewOutcome-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "reviewPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "URGENT"
+      }
+    },
+    {
+      "name": "reviewOutcome",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+        "code": "ACCEPT_REFER_BOOK_LATER"
+      }
+    },
+    {
+      "name": "reviewComments",
+      "valueString": "Urgent action needed. To be booked ASAP"
+    }
+  ]
+}

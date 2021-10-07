@@ -339,4 +339,16 @@ module.exports = {
 
 
   },
+
+  getResponseForRecordTriageOutcome: function (request) {
+    var responseMap = {
+      'src/mocks/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json': 'recordTriageOutcome/responses/ReturnToReferrerWithAdvice.json',
+      'src/mocks/recordTriageOutcome/requests/AcceptReferBookLater.json': 'recordTriageOutcome/responses/AcceptReferBookLater.json',
+      'src/mocks/recordTriageOutcome/requests/AttachmentIncluded.json': 'recordTriageOutcome/responses/AttachmentIncluded.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
 }

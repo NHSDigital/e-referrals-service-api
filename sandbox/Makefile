@@ -4,7 +4,7 @@ install:
 	 npm install
 
 lint:
-	npm run lint
+	npm run lint-js
 
 build:
 	docker build -t e-referrals-service-api-sandbox .

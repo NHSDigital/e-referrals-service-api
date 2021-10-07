@@ -23,10 +23,10 @@
         <Description/>
         <Request>
           <Step>
-            <Name>KeyValueMapOperations.GetSecureVariables</Name>
+            <Name>KeyValueMapOperations.GetSharedSecureVariables</Name>
           </Step>
           <Step>
-            <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
+            <Condition>(private.apigee.status-endpoint-api-key NotEquals request.header.apikey) or (private.apigee.status-endpoint-api-key Is null)</Condition>
             <Name>RaiseFault.401Unauthorized</Name>
           </Step>
           <Step>
@@ -43,6 +43,15 @@
     </Flows>
     
     <PreFlow/>
+
+    <PostClientFlow>
+        <Response>
+            <Step>
+                <Name>FlowCallout.LogToSplunk</Name>
+            </Step>
+        </Response>
+    </PostClientFlow>
+
     <HTTPProxyConnection>
         <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
         <VirtualHost>secure</VirtualHost>

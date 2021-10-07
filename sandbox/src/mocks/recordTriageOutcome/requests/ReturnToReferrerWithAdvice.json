@@ -1,0 +1,21 @@
+{
+	"meta": {
+		"profile": [
+			"https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RecordReviewOutcome-Parameters-1"
+		]
+	},
+	"resourceType": "Parameters",
+	"parameter": [
+		{
+			"name": "reviewOutcome",
+			"valueCoding": {
+				"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+				"code": "RETURN_TO_REFERRER_WITH_ADVICE"
+			}
+		},
+		{
+			"name": "reviewComments",
+			"valueString": "Condition not serious. No further action needed"
+    }
+	]
+}

@@ -32,7 +32,7 @@ extends:
     service_base_path: ${{ variables.service_base_path }}
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
-    enable_status_monitoring: false
+    enable_status_monitoring: true
     manual_approval_env: manual-approval-ptl
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
@@ -89,6 +89,13 @@ extends:
       make_spec_visible: true
       depends_on:
       - manual_approval_int
+    - environment: manual-approval
+      stage_name: manual_approval_nft2
+    - environment: ref
+      stage_name: ers_nft2_release
+      make_spec_visible: true
+      depends_on:
+      - manual_approval_nft2
     - environment: internal-qa-sandbox
       proxy_path: sandbox
       depends_on:

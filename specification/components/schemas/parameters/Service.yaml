@@ -1,0 +1,14 @@
+title: service
+description: The service identifier
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - service
+    example: 'service'
+  valueIdentifier:
+    $ref: '../identifiers/ServiceId.yaml'

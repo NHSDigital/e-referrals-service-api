@@ -1,7 +1,7 @@
 in: query
 name: schedule.actor:Practitioner
 description: |
-  Slots in e-RS may be allocated to a clinician and is set in the service provider’s PAS. 
+  Slots in e-RS may be allocated to a clinician and is set in the service provider's PAS. 
   If a named clinician is supplied (by the UUID), the appointment slots returned are constrained to slots for which this clinician is allocated to the appointment slot. 
   The clinician must be a named clinician for the selected service.
 required: false

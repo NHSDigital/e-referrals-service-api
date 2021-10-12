@@ -21,6 +21,7 @@ APIGEE_ENVIRONMENTS:
   make_spec_visible: true
   name: internal-qa-sandbox
 - display_name: Reference
+  make_spec_visible: true
   name: ref
 - display_name: Sandbox
   name: sandbox

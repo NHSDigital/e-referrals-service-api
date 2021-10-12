@@ -1,0 +1,26 @@
+title: BusinessFunction
+description: This will only be returned when `codeSystemType` is `APPOINTMENT-CANCELLATION-REASON` or `REQUEST-CANCELLATION-REASON`
+type: object
+required:
+  - code
+  - valueCoding
+properties:
+  code:
+    type: string
+    enum:
+      - businessFunction
+    example: 'businessFunction'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system: 
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1'
+      code:
+        type: string
+        example: 'REFERRING_CLINICIAN'

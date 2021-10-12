@@ -9,4 +9,5 @@ schema:
       - 'SPECIALTY'
       - 'APPOINTMENT-CANCELLATION-REASON'
       - 'CLINIC-TYPE'
+      - 'REQUEST-CANCELLATION-REASON'
    example: 'SPECIALTY'

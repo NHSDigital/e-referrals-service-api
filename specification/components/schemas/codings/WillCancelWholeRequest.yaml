@@ -1,6 +1,7 @@
 title: Will cancel whole request value
 description: This will only be returned when codeSystemType is APPOINTMENT-CANCELLATION-REASON
 type: object
+deprecated: true
 required:
    - code
    - valueBoolean

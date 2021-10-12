@@ -21,6 +21,7 @@ properties:
       | Specialty                       | UROLOGY                       |
       | Clinic Type                     | GENERAL_UROLOGY               |
       | Appointment Cancellation Reason | SERVICE_INAPPROPRIATE         |
+      | Request Cancellation Reason     | INTEND_PRIVATE                |
       
     type: string
   display:
@@ -32,6 +33,7 @@ properties:
       | Specialty                       | Urology                       |
       | Clinic Type                     | General Urology               |
       | Appointment Cancellation Reason | Inappropriate service         |
+      | Request Cancellation Reason     | Intend to go private          |
       
     type: string
   property:
@@ -39,22 +41,32 @@ properties:
 
       Some properties are only returned for certain code systems
       
-      | Property                                 | Code System                     |
-      | -----------------------------------------| ------------------------------- |
-      | EffectiveFrom                            | All Code Systems                |
-      | EffectiveTo                              | All Code Systems                |
-      | Specialty                                | CLINIC-TYPE                     |
-      | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON |
-      | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON |
-      | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON |
+      | Property                                 | Code System                                                 |
+      | -----------------------------------------| ----------------------------------------------------------- |
+      | EffectiveFrom                            | All Code Systems                                            |
+      | EffectiveTo                              | All Code Systems                                            |
+      | Specialty                                | CLINIC-TYPE                                                 |
+      | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON                             |
+      | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON                             |
+      | Usage                                    | APPOINTMENT-CANCELLATION-REASON                             |
+      | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON/REQUEST-CANCELLATION-REASON |
+      | businessFunction                         | APPOINTMENT-CANCELLATION-REASON/REQUEST-CANCELLATION-REASON |
+      | CanCancelAppointment                     | REQUEST-CANCELLATION-REASON                                 |
+      | RequestCancellationProviderUsage         | REQUEST-CANCELLATION-REASON                                 |
+      | RequestCancellationReferrerUsage         | REQUEST-CANCELLATION-REASON                                 |
       
     type: array
     nullable: true
     items:
       anyOf:
-        - $ref: 'codings/CommentIsMandatory.yaml'
         - $ref: 'codings/WillCancelWholeRequest.yaml'
         - $ref: 'codings/EffectiveFrom.yaml'
         - $ref: 'codings/EffectiveTo.yaml'
         - $ref: 'codings/Specialty.yaml'
         - $ref: 'codings/AppointmentBookingCancellationReasonType.yaml'
+        - $ref: 'codings/AppointmentCancellationUsage.yaml'
+        - $ref: 'codings/CommentIsMandatory.yaml'
+        - $ref: 'codings/BusinessFunction.yaml'
+        - $ref: 'codings/CanCancelAppointment.yaml'
+        - $ref: 'codings/RequestCancellationProviderUsage.yaml'
+        - $ref: 'codings/RequestCancellationReferrerUsage.yaml'

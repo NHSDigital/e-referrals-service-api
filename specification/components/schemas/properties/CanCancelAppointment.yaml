@@ -1,0 +1,23 @@
+title: CanCancelAppointment
+description: This will only be returned when codeSystemType is REQUEST-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - canCancelAppointment
+    example: 'canCancelAppointment'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#canCancelAppointment'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#canCancelAppointment'
+  type:
+    type: string
+    enum:
+      - boolean
+    example: 'boolean'

@@ -1,0 +1,23 @@
+title: Usage
+description: Details how the current code system should be used
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - 'usage'
+    example: 'usage'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#usage'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#usage'
+  type:
+    type: string
+    enum:
+      - Coding
+    example: 'Coding'

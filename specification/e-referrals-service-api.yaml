@@ -1884,6 +1884,67 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
+        booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to accept an inbound referral after its review
+
+        So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
+        
+      summary: A013 - Accept referral
+      operationId: a013-accept-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/acceptReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '422':
+          $ref: 'components/schemas/responses/acceptReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          
 components:
   securitySchemes:
     bearerAuth:

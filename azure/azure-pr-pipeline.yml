@@ -38,15 +38,6 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
-        service_name: ${{ variables.service_name }}-fix
-        short_service_name: ${{ variables.short_service_name }}-fix
-        product_display_name: ${{ variables.product_display_name }} (ERSFIX)
-        service_base_path: ${{ variables.service_base_path }}-fix
-        stage_name: ers_fix_pr
-        jinja_templates:
-          ERS_TARGET_SERVER: e-referrals-service-api--fix
-      - environment: internal-dev
-        make_spec_visible: true
         service_name: ${{ variables.service_name }}-alpha
         short_service_name: ${{ variables.short_service_name }}-alpha
         product_display_name: ${{ variables.product_display_name }} (ERSALPHA)
@@ -54,14 +45,5 @@ extends:
         stage_name: ers_alpha_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--alpha
-      - environment: internal-dev
-        make_spec_visible: true
-        service_name: ${{ variables.service_name }}-rc
-        short_service_name: ${{ variables.short_service_name }}-rc
-        product_display_name: ${{ variables.product_display_name }} (ERSRC)
-        service_base_path: ${{ variables.service_base_path }}-rc
-        stage_name: ers_rc_pr
-        jinja_templates:
-          ERS_TARGET_SERVER: e-referrals-service-api--rc
       - environment: internal-dev-sandbox
         proxy_path: sandbox

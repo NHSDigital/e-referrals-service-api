@@ -94,6 +94,8 @@ extends:
     - environment: ref
       stage_name: ers_nft2_release
       make_spec_visible: true
+      jinja_templates:
+          ENABLE_LOGGING: false
       depends_on:
       - manual_approval_nft2
     - environment: internal-qa-sandbox

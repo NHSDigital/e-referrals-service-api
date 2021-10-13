@@ -351,4 +351,15 @@ module.exports = {
 
 
   },
+
+  getResponseForAcceptReferral: function (request) {
+
+    const ubrn = request.params.ubrn;
+
+    if (ubrn === '000000070000') {
+      return { responsePath: 'acceptReferral/responses/ExampleResponse.json', responseCode: 200 }
+    }
+    return {}
+
+  },
 }

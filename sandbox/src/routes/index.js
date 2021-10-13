@@ -21,6 +21,7 @@ const retrieveAdviceAndGuidanceConversation = require('./retrieveAdviceAndGuidan
 const sendAdviceAndGuidanceResponse = require('./sendAdviceAndGuidanceResponse')
 const convertAdviceAndGuidanceToReferral = require('./convertAdviceAndGuidanceToReferral')
 const recordTriageOutcome = require('./recordTriageOutcome')
+const acceptReferral = require('./acceptReferral')
 
 const routes = [].concat(
   getStatus,
@@ -45,7 +46,8 @@ const routes = [].concat(
   retrieveAdviceAndGuidanceConversation,
   sendAdviceAndGuidanceResponse,
   convertAdviceAndGuidanceToReferral,
-  recordTriageOutcome
+  recordTriageOutcome,
+  acceptReferral
 )
 
 module.exports = routes

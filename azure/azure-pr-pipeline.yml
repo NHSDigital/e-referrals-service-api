@@ -54,6 +54,7 @@ extends:
         stage_name: ers_alpha_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--alpha
+          ENABLE_LOGGING: false
       - environment: internal-dev
         make_spec_visible: true
         service_name: ${{ variables.service_name }}-rc

@@ -43,7 +43,7 @@
     </Flows>
     
     <PreFlow/>
-
+{% if ENABLE_LOGGING | default(true) %}
     <PostClientFlow>
         <Response>
             <Step>
@@ -51,6 +51,7 @@
             </Step>
         </Response>
     </PostClientFlow>
+{% endif %}
 
     <HTTPProxyConnection>
         <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>

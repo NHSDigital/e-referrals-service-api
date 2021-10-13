@@ -51,6 +51,18 @@
         <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
       </Step>
       <Step>
+        <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
+        <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
+      </Step>
+      <Step>
+        <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
+        <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
+      </Step>
+      <Step>
+        <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
+        <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
+      </Step>
+      <Step>
         <Name>AssignMessage.Remove.x-request-id-header</Name>
       </Step>
       <Step>

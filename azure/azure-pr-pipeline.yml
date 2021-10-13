@@ -45,6 +45,9 @@ extends:
         stage_name: ers_fix_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--fix
+        # ERSSUP-57747 - Re-enable the smoke tests after e-RS v11.1 has been deployed to the fix environment
+        # post_deploy:
+        # - template: templates/ers-smoke.yml
       - environment: internal-dev
         make_spec_visible: true
         service_name: ${{ variables.service_name }}-alpha
@@ -54,6 +57,8 @@ extends:
         stage_name: ers_alpha_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--alpha
+        post_deploy:
+        - template: templates/ers-smoke.yml
       - environment: internal-dev
         make_spec_visible: true
         service_name: ${{ variables.service_name }}-rc
@@ -63,5 +68,8 @@ extends:
         stage_name: ers_rc_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--rc
+        # ERSSUP-57747 - Re-enable the smoke tests after e-RS v11.1 has been deployed to the rc environment
+        # post_deploy:
+        # - template: templates/ers-smoke.yml
       - environment: internal-dev-sandbox
         proxy_path: sandbox

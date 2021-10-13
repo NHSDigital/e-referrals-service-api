@@ -78,29 +78,29 @@ else
 fi
 
 
-#Installing python 3.8.2 with pyenv
-echo "Installing python 3.8.2 with pyenv ..."
-if pyenv versions | grep -Fq "3.8.2" ; then
-    echo "Pyenv has already got Python 3.8.2 installed."
+#Installing python 3.8.12 with pyenv
+echo "Installing python 3.8.12 with pyenv ..."
+if pyenv versions | grep -Fq "3.8.12" ; then
+    echo "Pyenv has already got Python 3.8.12 installed."
 else 
-    if pyenv install 3.8.2 ; then
-        echo "Pyenv installed Python 3.8.2 successfully."
+    if pyenv install 3.8.12 ; then
+        echo "Pyenv installed Python 3.8.12 successfully."
     else
-        echo "Pyenv did NOT install Python 3.8.2 successfully."
+        echo "Pyenv did NOT install Python 3.8.12 successfully."
         exit 1
     fi
 fi
 
 
-#Creating Apigee environment with Python 3.8.2
-echo "Creating Apigee environment with Python 3.8.2 ..."
+#Creating Apigee environment with Python 3.8.12
+echo "Creating Apigee environment with Python 3.8.12 ..."
 if pyenv versions | grep -q ".*apigee" ; then
     echo "A Python virtualenv named 'apigee' already exists."
 else 
-    if pyenv virtualenv 3.8.2 apigee ; then
-        echo "A Python 3.8.2 virtualenv named 'apigee' was created."
+    if pyenv virtualenv 3.8.12 apigee ; then
+        echo "A Python 3.8.12 virtualenv named 'apigee' was created."
     else
-        echo "A Python 3.8.2 virtualenv named 'apigee' was NOT created."
+        echo "A Python 3.8.12 virtualenv named 'apigee' was NOT created."
         exit 1
     fi
 fi
@@ -119,7 +119,7 @@ fi
 #Checking python version
 echo "Checking python version ..."
 version=$(python -V 2>&1)
-if [[ $version = 'Python 3.8.2' ]] ; then
+if [[ $version = 'Python 3.8.12' ]] ; then
     echo "Python version is correct."
 else
     echo "Python version is NOT correct."

@@ -47,6 +47,8 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-alpha"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--alpha
+      post_deploy:
+      - template: templates/ers-smoke.yml
       depends_on:
       - manual_approval_alpha
     - environment: manual-approval
@@ -60,6 +62,8 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-rc"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--rc
+      post_deploy:
+      - template: templates/ers-smoke.yml
       depends_on:
       - manual_approval_rc
     - environment: manual-approval
@@ -73,6 +77,8 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-fix"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
+      post_deploy:
+      - template: templates/ers-smoke.yml
       depends_on:
       - manual_approval_fix
     - environment: manual-approval

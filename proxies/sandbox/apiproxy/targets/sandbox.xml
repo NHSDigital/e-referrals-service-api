@@ -12,6 +12,9 @@
       <Step>
         <Name>AssignMessage.AddCors</Name>
       </Step>
+      <Step>
+        <Name>AssignMessage.AddBaseUrlHeader</Name>
+      </Step>
     </Response>
   </PreFlow>
   <HTTPTargetConnection>

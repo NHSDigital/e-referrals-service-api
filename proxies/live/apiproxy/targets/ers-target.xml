@@ -9,17 +9,26 @@
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
+    <FaultRule name="spike_arrest_fault">
+       <Step>
+            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+       </Step>
+       <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+    </FaultRule>
   </FaultRules>
   <PreFlow>
     <Request>
       <Step>
-        <Name>Quota</Name>
+        <Name>OauthV2.VerifyAccessToken</Name>
       </Step>
       <Step>
+        <!-- Should use Java Regex for non binary request -->
+        <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
         <Name>SpikeArrest</Name>
       </Step>
       <Step>
-        <Name>OauthV2.VerifyAccessToken</Name>
+       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+        <Name>SpikeArrest.Binary</Name>
       </Step>
       <Step>
         <Name>AssignMessage.PopulateAsidFromApp</Name>
@@ -29,6 +38,9 @@
       </Step>
       <Step>
         <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.AddBaseUrlHeader</Name>
       </Step>
       <Step>
         <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>

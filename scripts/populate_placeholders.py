@@ -18,7 +18,7 @@ def main():
       "[[HYPERLINK_A010]]": "[A010 - Patient service search](#api-Default-a010-patient-service-search)",
       "[[HYPERLINK_A011]]": "[A011 - Create referral](#api-Default-a011-create-referral)",
       "[[HYPERLINK_A012]]": "[A012 - Maintain referral letter](#api-Default-a012-maintain-referral-letter)",
-      "[[HYPERLINK_A013]]": "[A013 - Accept referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a013.html)",
+      "[[HYPERLINK_A013]]": "[A013 - Accept referral](#api-Default-a013-accept-referral)",
       "[[HYPERLINK_A014]]": "[A014 - Reject referral](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a014.html)",
       "[[HYPERLINK_A015]]": "[A015 - Retrieve appointment slots](#api-Default-a015-retrieve-appointment-slots)",
       "[[HYPERLINK_A016]]": "[A016 - Book or defer appointment](#api-Default-a016-book-or-defer-appointment)",

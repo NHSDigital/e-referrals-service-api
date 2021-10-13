@@ -5,5 +5,5 @@
       <JSONPath>$.fault.faultstring</JSONPath>
     </Variable>
   </JSONPayload>
-  <Source clearPayload="false">error</Source>
+  <Source clearPayload="true">error</Source>
 </ExtractVariables>

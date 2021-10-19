@@ -1,3 +1,23 @@
-description: You have exceeded your application's [rate limit](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#rate-limits).
+description: |
+  The e-Referral service APIs limit the number of transactions you can make per unit of time.
+  This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
 
+  Our standard rate limit for the production environment is 10 requests per second per application.
+  APIs associated with the "Binary" resource are further restricted to 2 requests per second per application.
+  If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
 
+  Our path-to-live environments have very low rate limits.
+  They are for functional testing only - you should not use them for [[HYPERLINK_PERFORMANCE_TESTING]].
+
+  If you have problems with rate limits, [[HYPERLINK_CONTACT_US]] to discuss your application design and volumetrics,
+  and to see whether it's appropriate to raise your rate limit.
+
+  If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests.
+  Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+  Example:
+    - Receive a 429 response
+    - Wait 1s and resend, but still receive a 429
+    - Wait 2s and resend, but still receive a 429
+    - Wait 4s, request is successful
+    - Return to normal request cadence

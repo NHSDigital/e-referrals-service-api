@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-comm-rule-org">
+  <Set>
+    <Headers>
+      <Header name="x-ers-xapi-comm-rule-org">{message.header.nhsd-ers-comm-rule-org}</Header>
+    </Headers>
+  </Set>
+  <Remove>
+    <Headers>
+      <Header name="nhsd-ers-comm-rule-org"/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

@@ -2346,7 +2346,7 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml' 
-   /R4/HealthcareService/{id}:
+  /R4/HealthcareService/{id}:
     get:
       security:
         - bearerAuth: []

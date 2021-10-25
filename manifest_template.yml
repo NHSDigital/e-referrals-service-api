@@ -110,13 +110,7 @@ apigee:
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ ENV.name }}
-<<<<<<< HEAD
           - identity-service-{{ ("%s-int" | format(ENV.name)) if ENV.name == 'internal-qa' else ENV.name }}
-||||||| parent of 3687320 ([ERSSUP-58134]-[HR]-[Add exception for oauth2 proxy used in internal-qa.]-[JH])
-          - identity-service-{{ ENV.name }}
-=======
-          - identity-service-{{ "%s-int".format(ENV.name) if ENV.name == 'internal-qa' else ENV.name }}
->>>>>>> 3687320 ([ERSSUP-58134]-[HR]-[Add exception for oauth2 proxy used in internal-qa.]-[JH])
 {% if ENV.name == 'int' %}
           - identity-service-int-no-smartcard
 {% endif %}

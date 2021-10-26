@@ -362,4 +362,15 @@ module.exports = {
     return {}
 
   },
+
+  getResponseForRejectReferral: function (request) {
+    var responseMap = {
+      'src/mocks/rejectReferral/requests/BasicExampleIbs.json': 'rejectReferral/responses/ExampleResponseIbs.json',
+      'src/mocks/rejectReferral/requests/BasicExampleDbs.json': 'rejectReferral/responses/ExampleResponseDbs.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
 }

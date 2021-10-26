@@ -33,8 +33,8 @@ properties:
       | `guidance`                        | `1..1`      |                                            |
       | `newReferralPriority`             | `1..1`      |                                            | 
       | `reviewComments`                  | `0..1`      |                                            |
-      | `guidanceAttachmentFile`          | `0..*`      |                                            | 
-      | `reviewAttachmentFile`            | `0..*`      |                                            | 
+      | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text | 
+      | `reviewAttachmentFile`            | `0..*`      | Property defining files to be associated with the created `ReferralRequest` | 
     items:
       anyOf:
         - title: createFrom
@@ -71,7 +71,6 @@ properties:
               example: 'guidance'
             valueString:
               type: string
-              maxLength: 2000
               example: 'I have converted this to send the patient to one of our services'
         - title: newReferralPriority
           description: Parameter to supply a newReferralPriority
@@ -101,7 +100,6 @@ properties:
               example: 'reviewComments'
             valueString:
               type: string
-              maxLength: 2000
               example: Refer this patient to our 'xxx' service please as soon as possible
         - title: guidanceAttachmentFile
           description: Parameter to supply a guidanceAttachmentFile

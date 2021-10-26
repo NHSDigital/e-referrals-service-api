@@ -1,0 +1,16 @@
+title: Shortlist
+description: |
+  Parameter to supply a shortlist. When sending for triage, 
+  the shortlist must contain exactly one service, and this must support the 'triage request flow'.
+type: object
+required:
+  - name
+  - resource
+properties:
+  name:
+    type: string
+    enum:
+      - shortlist
+    example: 'shortlist'
+  resource:
+    $ref: '../eRS-Shortlist-List.yaml'

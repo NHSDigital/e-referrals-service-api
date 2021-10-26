@@ -39,22 +39,7 @@ properties:
       anyOf:
         - $ref: 'parameters/Patient.yaml'
         - $ref: 'parameters/ReferringClinician.yaml'
-        - title: Shortlist
-          description: |
-            Parameter to supply a shortlist. When sending for triage, 
-            the shortlist must contain exactly one service, and this must support the 'triage request flow'.
-          type: object
-          required:
-            - name
-            - resource
-          properties:
-            name:
-              type: string
-              enum:
-                - shortlist
-              example: 'shortlist'
-            resource:
-              $ref: 'eRS-Shortlist-List.yaml'
+        - $ref: 'parameters/TriageShortlist.yaml'
         - title: IntentionToAddReferralLetter
           description: |
             Parameter to supply the intention to add referral letter flag.
@@ -85,23 +70,4 @@ properties:
                   enum:
                     - NEED_TO_ADD_LATER
                   example: 'NEED_TO_ADD_LATER'
-        - title: FirstReminderLetterFollowUpDays
-          description: |
-            Parameter to supply the first reminder follow up days. When sending for triage, 
-            the only acceptable value is 0, which means no follow up letter will be sent, 
-            as the patient does not need to book an appointment.
-          type: object
-          required:
-            - name
-            - valueUnsignedInt
-          properties:
-            name:
-              type: string
-              enum:
-                - firstReminderLetterFollowUpDays
-              example: 'firstReminderLetterFollowUpDays'
-            valueUnsignedInt:
-              type: integer
-              minimum: 0
-              format: int32
-              example: 0
+        - $ref: 'parameters/TriageFirstReminderLetterFollowUpDays.yaml'

@@ -33,11 +33,11 @@ properties:
       | `guidanceIntendedRecommendation`  | `0..1`      | Conditionally Mandatory if guidanceOutcome value is `RETURN_TO_REFERRER_WITH_ADVICE` |
       | `guidance`                        | `1..1`      |                                            |
       | `updatedPriority`                 | `1..1`      |                                            | 
-      | `guidanceAttachmentFile`          | `0..*`      |                                            | 
+      | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text | 
     items:
       anyOf:
         - title: guidanceOutcome
-          description: Parameter to supply a guidanceOutcome
+          description: Parameter indicating the expected outcome of the supplied guidance
           type: object
           required:
             - name
@@ -67,7 +67,7 @@ properties:
                     - PROVIDER_CONVERTED
                   example: RETURN_TO_REFERRER_WITH_ADVICE
         - title: guidanceIntendedRecommendation
-          description: Parameter to supply a guidanceIntendedRecommendation
+          description: Parameter to supply the recommendation for a patient's care off the back of the provided guidance. Only available and mandatory when supplying a `guidanceOutcome` of `RETURN_TO_REFERRER_WITH_ADVICE`
           type: object
           required:
             - name

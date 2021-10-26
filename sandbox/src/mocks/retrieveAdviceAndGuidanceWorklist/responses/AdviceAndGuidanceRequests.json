@@ -28,7 +28,7 @@
               "valueCodeableConcept": {
                 "coding": [
                   {
-                    "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                     "code": "CARDIOLOGY"
                   }
                 ]
@@ -86,7 +86,7 @@
               "valueCodeableConcept": {
                 "coding": [
                   {
-                    "system": "_baseUrl_/STU3/v1/CodeSystem/CLINIC-TYPE",
+                    "system": "_baseUrl_/STU3/CodeSystem/CLINIC-TYPE",
                     "code": "HEART_FAILURE"
                   }
                 ]
@@ -120,7 +120,7 @@
               "valueCodeableConcept": {
                 "coding": [
                   {
-                    "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                     "code": "CARDIOLOGY"
                   }
                 ]
@@ -178,7 +178,7 @@
               "valueCodeableConcept": {
                 "coding": [
                   {
-                    "system": "_baseUrl_/STU3/v1/CodeSystem/CLINIC-TYPE",
+                    "system": "_baseUrl_/STU3/CodeSystem/CLINIC-TYPE",
                     "code": "HEART_FAILURE"
                   }
                 ]

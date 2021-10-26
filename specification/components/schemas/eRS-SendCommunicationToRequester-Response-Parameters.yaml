@@ -34,7 +34,7 @@ properties:
     items:
       anyOf:
         - title: updatedCommunicationRequest
-          description: Parameter containing the updated communication request
+          description: Parameter containing the updated `CommunicationRequest` detailing changes to the overall conversation (changes to priority, status, etc)
           type: object
           required:
             - name
@@ -48,7 +48,7 @@ properties:
             resource:
               $ref: 'eRS-CommunicationRequest.yaml'
         - title: createdCommunication
-          description: Parameter containing the newly created communication
+          description: Parameter containing the newly created `Communication` detailing the guidance provided
           type: object
           required:
             - name

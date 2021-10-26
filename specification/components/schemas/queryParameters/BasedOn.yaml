@@ -7,7 +7,7 @@ description: |
    
    `CommunicationRequest/{ubrn}/_history/{version}`
 
-     - The `ubrn` represents the unique booking reference number of the Advice and Guidance Request for which the caller is obtaining the “Advice and Guidance Conversation”
+     - The `ubrn` represents the unique booking reference number of the Advice and Guidance Request for which the caller is obtaining the 'Advice and Guidance Conversation'
      - The `version` is the version of the A&G Request to be retrieved (only the most current version will be retrievable)
 required: true
 schema:

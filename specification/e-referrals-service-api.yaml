@@ -280,6 +280,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -352,6 +354,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -423,6 +427,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
         '429':
@@ -677,6 +683,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
         '429':
@@ -1056,6 +1064,8 @@ paths:
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
           $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/maintainReferralLetter/422Response.yaml'
         '423':
@@ -1144,6 +1154,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/bookOrDeferAppointment/422Response.yaml'
         '423':
@@ -1307,6 +1319,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
         '429':
@@ -1376,6 +1390,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
         '429':
@@ -1673,6 +1689,8 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
         '423':
@@ -1770,6 +1788,8 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/422Response.yaml'
         '423':
@@ -1795,6 +1815,10 @@ paths:
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
         [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
         booked into bookable services.
+
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Appointment Slot Issues' worklist. 
+        This provides a list of referrals that have been deferred into directly bookable services.
+
           - Referrals from this worklist may already have been reviewed or may not have any referral clinical information associated, 
           in which case [[HYPERLINK_A028]] cannot be used.
           - [[HYPERLINK_A028]] can only be used for those referrals, on the 'Appointment Slot Issues' worklist, which are pending review.
@@ -1876,6 +1900,8 @@ paths:
           $ref: 'components/schemas/responses/NotFound.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/recordTriageOutcome/422Response.yaml'
         '423':
@@ -1944,6 +1970,90 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
+        This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
+
+        Consider using [[HYPERLINK_A022]] instead if you wish to task your admin team to get the patient into the most appropriate service.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
+        be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to reject an inbound referral back to the referrer after its review with an explanation of why
+
+        So that the referrer can address the reason for rejection and progress the referral appropriately.
+        
+      summary: A014 - Reject referral
+      operationId: a014-reject-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-RejectReferral-Parameters.yaml'
+            examples:
+              basic-example-ibs:
+                summary: Basic example for IBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleIbs.json'
+              basic-example-dbs:
+                summary: Basic example for DBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleDbs.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/rejectReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/rejectReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml' 
+        '504':
+          $ref: 'components/schemas/responses/rejectReferral/504Response.yaml'  
           
 components:
   securitySchemes:

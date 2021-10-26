@@ -1,4 +1,4 @@
-title: Bundle resource containg advice and guidance conversation
+title: Bundle resource containing advice and guidance conversation
 type: object
 required:
   - id
@@ -47,7 +47,7 @@ properties:
   link:
     type: array
     minItems: 1
-    maxItems: 3
+    maxItems: 1
     items:
       type: object
       required:
@@ -122,7 +122,7 @@ properties:
                   example: 'include'
         - title: DocumentEntry
           description: |
-            DocumentEntry contains the 'DocumentReference' assosiated with this advice and guidance conversation.
+            DocumentEntry contains the 'DocumentReference' associated with this advice and guidance conversation.
           type: object
           required:
             - fullUrl

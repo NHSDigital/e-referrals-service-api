@@ -28,6 +28,7 @@ const rejectReferral = require('./rejectReferral')
 const availableActionsForUserList = require('./availableActionsForUserList')
 const cancelAppointmentActionLater = require('./cancelAppointmentActionLater')
 const changeShortlist = require('./changeShortlist')
+const changeShortlistAndSendForTriage = require('./changeShortlistAndSendForTriage')
 
 const routes = [].concat(
   getStatus,
@@ -51,6 +52,7 @@ const routes = [].concat(
   retrieveHealthcareService,
   searchForHealthcareServices,
   changeShortlist,
+  changeShortlistAndSendForTriage,
   retrieveAdviceAndGuidanceRequest,
   retrieveAdviceAndGuidanceConversation,
   sendAdviceAndGuidanceResponse,

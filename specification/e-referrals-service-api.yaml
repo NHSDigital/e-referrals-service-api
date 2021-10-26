@@ -217,6 +217,8 @@ info:
   license:
     name: MIT
 servers:
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-117/FHIR'
+    description: Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/referrals/FHIR'
@@ -2614,6 +2616,53 @@ paths:
           $ref: 'components/schemas/responses/changeShortlist/422Response.yaml'
         '423':
           $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          
+  /STU3/ReferralRequest/{ubrn}/$ers.changeShortlistAndSendForTriage:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        To be added.....
+      
+      summary: A032 - Change shortlist and send For triage
+      operationId: a032-change-shortlist-and-send-for-triage
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-ChangeShortlistAndSendForTriageRequest-Parameters.yaml'
+            examples:
+              parameters:
+                summary: Unbooked ReferralRequest
+                description: Changing the service list of an unbooked `ReferralRequest` and sending to Triage
+                value:
+                  $ref: 'components/examples/changeShortlistAndSendForTriage/requests/Parameters.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/changeShortlistAndSendForTriage/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/changeShortlist/422Response.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':

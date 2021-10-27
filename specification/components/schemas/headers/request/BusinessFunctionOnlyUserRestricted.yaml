@@ -1,8 +1,10 @@
 in: header
 name: nhsd-ers-business-function
 description: | 
-  The e-RS Business Function of the caller
-required: true
+  The e-RS Business Function of the caller.
+
+  Not allowed for application-restricted access. 
+  Required for user-restricted access. 
 schema:
   type: string
   enum:

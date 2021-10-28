@@ -1,4 +1,4 @@
-title: Bundle resource containg practitioner roles 
+title: Bundle resource containing practitioner roles 
 type: object
 required:
   - id

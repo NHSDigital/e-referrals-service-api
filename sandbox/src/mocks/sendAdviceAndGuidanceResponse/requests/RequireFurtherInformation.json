@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "guidanceOutcome",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceResponseOutcome-1",
+        "code": "REQUIRE_FURTHER_INFORMATION"
+      }
+    },
+    {
+      "name": "guidance",
+      "valueString": "Please supply me with xxx test results"
+    },
+    {
+      "name": "updatedPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "TWO_WEEK_WAIT"
+      }
+    }
+  ]
+}

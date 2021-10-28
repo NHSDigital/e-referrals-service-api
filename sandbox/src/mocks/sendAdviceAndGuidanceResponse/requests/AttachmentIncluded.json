@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "guidanceOutcome",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceResponseOutcome-1",
+        "code": "RETURN_TO_REFERRER_WITH_ADVICE"
+      }
+    },
+    {
+      "name": "guidanceIntendedRecommendation",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceIntendedRecommendation-1",
+        "code": "OTHER"
+      }
+    },
+    {
+      "name": "guidance",
+      "valueString": "Advise treatment as in attached document"
+    },
+    {
+      "name": "updatedPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "ROUTINE"
+      }
+    },
+    {
+      "name": "guidanceAttachmentFile",
+      "resource": {
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "GUIDANCE_RESPONSE"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-09-29T13:22:35.335000+00:00",
+        "description": "Treatment Specification",
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/att-70000-70000"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

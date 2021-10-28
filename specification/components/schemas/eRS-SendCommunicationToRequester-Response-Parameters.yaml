@@ -1,0 +1,63 @@
+title: eRS-SendCommunicationToRequester-Response-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Response-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Response-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `updatedCommunicationRequest`     | `1..1`      |                                            |
+      | `createdCommunication`            | `1..1`      |                                            |
+    items:
+      anyOf:
+        - title: updatedCommunicationRequest
+          description: Parameter containing the updated `CommunicationRequest` detailing changes to the overall conversation (changes to priority, status, etc)
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - updatedCommunicationRequest
+              example: 'updatedCommunicationRequest'
+            resource:
+              $ref: 'eRS-CommunicationRequest.yaml'
+        - title: createdCommunication
+          description: Parameter containing the newly created `Communication` detailing the guidance provided
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - createdCommunication
+              example: 'createdCommunication'
+            resource:
+              $ref: 'eRS-Communication.yaml'

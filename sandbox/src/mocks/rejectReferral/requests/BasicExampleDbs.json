@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RejectReferral-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "rejectionReason",
+      "valueCoding": {
+        "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+        "code": "SERVICE_INAPPROPRIATE"
+      }
+    },
+    {
+      "name": "rejectionComments",
+      "valueString": "This is a short comment"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-title: Bundle resource containg appointment slots
+title: Bundle resource containing appointment slots
 type: object
 required:
   - id

@@ -1,0 +1,21 @@
+description: e-RS Referral Request
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-ReferralRequest.yaml'
+    examples:
+      example-response-ibs:
+        summary: Example response for IBS
+        value:
+          $ref: '../../../examples/rejectReferral/responses/ExampleResponseIbs.json'
+      example-response-dbs:
+        summary: Example response for DBS
+        value:
+          $ref: '../../../examples/rejectReferral/responses/ExampleResponseDbs.json'

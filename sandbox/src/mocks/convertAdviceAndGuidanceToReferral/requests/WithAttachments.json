@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "createFrom",
+      "valueReference": {
+        "reference": "CommunicationRequest/000000070000/_history/3"
+      }
+    },
+    {
+      "name": "guidance",
+      "valueString": "Patient booked into our service. See attachment for best initial medication"
+    },
+    {
+      "name": "newReferralPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "ROUTINE"
+      }
+    },
+    {
+      "name": "reviewComments",
+      "valueString": "Book patient to 'xxx' service to include attached file as referral letter"
+    },
+    {
+      "name": "guidanceAttachmentFile",
+      "resource": {
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "GUIDANCE_RESPONSE"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-10-01T14:06:14.915000+00:00",
+        "description": "Initial medication",
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/att-70000-70003"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "reviewAttachmentFile",
+      "resource": {
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "PROVIDER"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-10-01T14:06:14.919000+00:00",
+        "description": "Referral letter",
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/att-70000-70004"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

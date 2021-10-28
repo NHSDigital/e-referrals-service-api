@@ -1,0 +1,19 @@
+title: Extension-HealthcareService-Reference
+description: Extension to supply the service id
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-HealthcareService-Reference-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-HealthcareService-Reference-1'
+  valueReference:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: ../identifiers/ServiceId.yaml

@@ -234,13 +234,16 @@ paths:
         So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
 
         ## Related endpoints
+
+        To allow the patient to book their appointment in their own time, you can generate a letter for the patient by 
+        using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
+        patient may need to follow (e.g. appointment booking instructions).
+
         You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
-        You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
 
       summary: A011 - Create referral
       operationId: a011-create-referral
@@ -277,6 +280,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -315,6 +320,9 @@ paths:
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
 
+        You can generate a letter for the patient by using [[HYPERLINK_A019]]. 
+        The letter summarises the current state of the referral and any steps the patient may need to follow.
+
       summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
       parameters:
@@ -346,6 +354,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -417,6 +427,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
         '429':
@@ -671,6 +683,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
         '429':
@@ -1050,6 +1064,8 @@ paths:
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
           $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/maintainReferralLetter/422Response.yaml'
         '423':
@@ -1138,6 +1154,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/bookOrDeferAppointment/422Response.yaml'
         '423':
@@ -1301,6 +1319,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
         '429':
@@ -1370,12 +1390,671 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'      
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/CommunicationRequest/{ubrn}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the summary of an advice and guidance request. This endpoint provides important 
+        contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc)
+
+        This does not include the actual advice and guidance conversation between the referrer and the service provider. 
+        The conversation can be retrieved via [[HYPERLINK_A025]].
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
+        For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the summary of an advice and guidance request
+
+        So I can understand all of the relevant context for the request.
+
+        ## Important note
+
+        The summary includes an indicator of whether the referrer has authorised the providing organisation to 
+        convert the advice and guidance request into an appointment request. 
+        If authorised, [[HYPERLINK_A027]] can be used to convert the advice and guidance request into an appointment request.
+
+        ## Related endpoints
+
+        After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                 |
+        | ------------------------------------------------------------------------ | ----------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`   |
+
+      summary: A024 - Retrieve advice and guidance request summary
+      operationId: a024-retrieve-advice-and-guidance
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/CommunicationRequest/{ubrn}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a specific version of `CommunicationRequest`.
+
+        ## Pre-requisites
+
+        The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A024]].
+
+        Note: e-RS only supports the retrieval of the most recent version of `CommunicationRequest`. You cannot retrieve earlier versions.
+
+        ## Use case
+
+        See [[HYPERLINK_A005]].
+
+        ## Related endpoints
+
+        See [[HYPERLINK_A024]].
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                               |
+        | ------------------------------------------------------------------------ | ------------------------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
+
+      summary: A024 - Retrieve advice and guidance request summary (versioned)
+      operationId: a024-retrieve-advice-and-guidance-versioned
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/Communication:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the advice and guidance conversation between the referring organisation 
+        and service providing organisation.
+
+        A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
+        you may have identified the UBRN via [[HYPERLINK_A023]].
+
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will importantly include the latest version of the request which must be used.
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the conversation that is present on an advice and guidance request
+
+        So that I can review the conversation and potentially contribute further to it.
+
+        ## Important note
+
+        The conversation returned includes links to any attachments associated with the conversation.
+
+        ## Related endpoints
+
+        After using this endpoint:
+          - Use [[HYPERLINK_A006]] to retrieve any attachments associated with the advice and guidance request.
+          - (For service provider users) Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information.
+          - (For service provider users) Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so.
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                       | Request                                                   |
+        | -------------------------------------------------------------- | --------------------------------------------------------- |
+        | Single message from referrer                                   | `based-on`=`CommunicationRequest/000000070000/_history/1` |
+        | One message each way                                           | `based-on`=`CommunicationRequest/000000070000/_history/2` |
+        | Attachment present in each direction                           | `based-on`=`CommunicationRequest/000000070001/_history/6` |
+        | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
+        | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
+
+      summary: A025 - Retrieve advice and guidance conversation
+      operationId: a025-retrieve-advice-and-guidance-conversation
+      parameters:
+        - $ref: 'components/schemas/queryParameters/BasedOn.yaml'
+        - $ref: 'components/schemas/queryParameters/Include-Communication.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/CommunicationRequest/{ubrn}/$ers.sendCommunicationToRequester:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to respond to an advice and guidance request your service provider organisation has received. 
+        You can either provide guidance back to the referrer or request further information from the referrer. 
+        This will return the advice and guidance request back to the referrer for action.
+
+        Note:  If you want to convert an advice and guidance request into a referral, 
+        and provide a final guidance response back to the referrer at the same time, please 
+        use [[HYPERLINK_A027]] instead. This option is only permissible 
+        if the referrer has authorised the provider to convert the advice and guidance request into a referral. 
+        
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request.
+
+        You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
+
+        If you want to include attachments with the response, you need to use [[HYPERLINK_A020]] so they are ready to be associated with the response.
+
+        ## Use case
+        As an authenticated user
+
+        I need to return an advice and guidance request back to the referrer with some guidance
+
+        So that I can progress the conversation regarding the patient's care.
+
+        ## Related endpoints
+
+        You can use [[HYPERLINK_A007]] to generate a PDF file that summarises 
+        the advice and guidance request and associated conversation.
+
+        You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
+
+        You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
+        
+      summary: A026 - Send advice and guidance response
+      operationId: a026-send-a&g-response
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-SendCommunicationToRequester-Request-Parameters.yaml'
+            examples:
+              require-further-information:
+                summary: Require further information
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json'
+              return-to-referrer-with-advice:
+                summary: Return to referrer with advice
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json'
+              attachment-included:
+                summary: Attachment included
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to:
+          - convert the advice and guidance request you have received into a referral, AND
+          - create a task for the service provider admin team to select/shortlist appropriate services for the patient, AND
+          - provide a final guidance response details back to the referrer
+        
+        Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
+        and guidance request into a referral.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will include whether or not the referrer has authorised the provider to be able to convert an 
+        advice and guidance request into a referral, and thus dictate whether this endpoint can be used.
+
+        You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
+
+        If you want to include attachments with the admin task and/or the response to the referrer, 
+        you need to use [[HYPERLINK_A020]] so they are ready to be associated when this endpoint is called.
+
+        ## Use case
+        As an authenticated user
+
+        I need to convert an inbound advice and guidance request into a referral 
+        and task my admin team to shortlist appropriate services for the patient
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+
+        ## Important notes
+
+        When this endpoint is successfully used, an entry will be added to the service providers 
+        Appointments For Booking worklist for the admin team to action the task. The provider 
+        admin team will currently only be able to progress the referral via the e-RS Professional 
+        Application user interface (e.g. shortlisting appropriate services for the patient).
+
+        ## Related endpoints
+
+        You can use [[HYPERLINK_A005]] to retrieve the details of the referral.
+
+        You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
+
+        You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
+
+        You can use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral/advice request.
+
+        You can use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral.
+        
+      summary: A027 - Convert advice and guidance request to referral
+      operationId: a027-convert-a&g-to-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters.yaml'
+            examples:
+              no-attachments:
+                summary: No attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json'
+              with-attachments:
+                summary: With attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/201Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.recordReviewOutcome:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to record a triage outcome for the following referrals awaiting review:
+          - referrals sent into a triage service
+          - referrals deferred into a directly bookable service because of appointment slot unavailability
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
+        [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
+        booked into bookable services.
+
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Appointment Slot Issues' worklist. 
+        This provides a list of referrals that have been deferred into directly bookable services.
+
+          - Referrals from this worklist may already have been reviewed or may not have any referral clinical information associated, 
+          in which case [[HYPERLINK_A028]] cannot be used.
+          - [[HYPERLINK_A028]] can only be used for those referrals, on the 'Appointment Slot Issues' worklist, which are pending review.
+          - As such, you need to use [[HYPERLINK_A029]] to determine if [[HYPERLINK_A028]] is a permissible action.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        If you want to include attachments with the triage outcome, you need to use [[HYPERLINK_A020]] so 
+        they are ready to be associated when this endpoint is called.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to return the referral back to the referrer with some advice
+
+        So that I can progress the patient's care appropriately with the referrer.
+
+
+        As an authenticated user
+
+        I need to accept the referral and task my admin team to shortlist appropriate services for the patient
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+
+
+        ## Important notes
+
+          - The only outcomes that are supported by this endpoint are 'Return to referrer with advice' and 'Accept and refer/book later'. 'Refer/book now' is not supported.
+          - The triage comment text is mandatory. This comment provided will be sent to:
+            - The initial referrer when the 'Return to referrer with advice' triage outcome is chosen.
+            - An administrator at the receiving service provider when the 'Accept and refer/book later' outcome is chosen.
+          - The priority of the referral can be changed as part of recording the triage outcome
+          - When this endpoint is successfully used for recording an outcome of 'Accept and refer/book later', 
+          an entry will be added to the service providers Appointments For Booking worklist for the admin team to action the task. 
+          The provider admin team will only be able to progress the referral via the e-RS Professional Application user 
+          interface (e.g. shortlisting appropriate services for the patient).
+        
+      summary: A028 - Record triage outcome
+      operationId: a028-record-triage-outcome
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-RecordReviewOutcome-Parameters.yaml'
+            examples:
+              return-to-referrer-with-advice:
+                summary: Return to referrer with advice
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json'
+              accept-refer-book-later:
+                summary: Accept refer book later
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/AcceptReferBookLater.json'
+              attachment-included:
+                summary: Attachment included
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/AttachmentIncluded.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/recordTriageOutcome/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/recordTriageOutcome/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
+        booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to accept an inbound referral after its review
+
+        So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
+        
+      summary: A013 - Accept referral
+      operationId: a013-accept-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/acceptReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '422':
+          $ref: 'components/schemas/responses/acceptReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
+        This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
+
+        Consider using [[HYPERLINK_A022]] instead if you wish to task your admin team to get the patient into the most appropriate service.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
+        be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to reject an inbound referral back to the referrer after its review with an explanation of why
+
+        So that the referrer can address the reason for rejection and progress the referral appropriately.
+        
+      summary: A014 - Reject referral
+      operationId: a014-reject-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-RejectReferral-Parameters.yaml'
+            examples:
+              basic-example-ibs:
+                summary: Basic example for IBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleIbs.json'
+              basic-example-dbs:
+                summary: Basic example for DBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleDbs.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/rejectReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/rejectReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml' 
+        '504':
+          $ref: 'components/schemas/responses/rejectReferral/504Response.yaml'  
+          
 components:
   securitySchemes:
     bearerAuth:

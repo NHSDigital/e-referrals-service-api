@@ -1,0 +1,249 @@
+{
+  "id": "000000070000",
+  "meta": {
+    "versionId": "10",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
+      "valueReference": {
+        "reference": "#appointment"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
+      "valueDateTime": "2021-10-07T15:00:18.561Z"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "URGENT",
+            "display": "Urgent"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code": "ROUTINE"
+          }
+        },
+        {
+          "name": "specialty",
+          "valueCoding": {
+            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+            "code": "CARDIOLOGY"
+          }
+        },
+        {
+          "name": "clinicType",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code": "HEART_FAILURE"
+          }
+        },
+        {
+          "name": "organisation",
+          "valueIdentifier": {
+            "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
+            "value": "TEST-ORG-GP1"
+          }
+        },
+        {
+          "name": "postcode",
+          "valueString": "LS1 2TW"
+        },
+        {
+          "name": "distanceLimit",
+          "valueUnsignedInt": 123
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11010"
+            },
+            "display": "Excellent Cardiology Business Service"
+          }
+        }
+      ]
+    },
+    {
+      "id": "appointment",
+      "meta": {
+        "versionId": "2",
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+          "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+        ]
+      },
+      "language": "en",
+      "resourceType": "Appointment",
+      "status": "proposed",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+              "code": "ACCEPT_REFER_BOOK_LATER",
+              "display": "Accept Refer Book Later"
+            }
+          ]
+        }
+      ],
+      "description": "e-Referral Appointment",
+      "created": "2021-10-07T15:00:19.711Z",
+      "comment": "Urgent action needed. To be booked ASAP",
+      "incomingReferral": [
+        {
+          "reference": "ReferralRequest/000000070000/_history/10"
+        }
+      ],
+      "participant": [
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11010"
+            },
+            "display": "Excellent Cardiology Business Service"
+          },
+          "status": "accepted"
+        },
+        {
+          "actor": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/nhs-number",
+              "value": "1000000001"
+            }
+          },
+          "status": "accepted"
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-70000",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-10-07T15:00:44.338Z",
+      "description": "upload png",
+      "content": [
+        {
+          "attachment": {
+            "id": "70000",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "103264992985"
+                  }
+                }
+              }
+            ],
+            "contentType": "image/png",
+            "url": "Binary/att-70000-70000",
+            "size": 6,
+            "title": "upload.png",
+            "creation": "2021-10-07"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "specialty": {
+    "coding": [
+      {
+        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+        "code": "CARDIOLOGY",
+        "display": "Cardiology"
+      }
+    ]
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "1000000001"
+    }
+  },
+  "supportingInfo": [
+    {
+      "reference": "#DocumentReference-70000"
+    }
+  ],
+  "intent": "plan"
+}

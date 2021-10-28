@@ -1,0 +1,91 @@
+title: eRS-RejectReferral-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RejectReferral-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-RejectReferral-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `rejectionReason`                 | `1..1`      |  The reason why the referral is being rejected |
+      | `rejectionComments`               | `0..1`      |  This may be mandatory if mandatory comment indicator is set to 'Yes' for the Rejection Reason Type selected. Maximum 2000 characters. |
+      | `appointmentCancelledInPAS`       | `0..1`      |  This flag is mandatory for indirectly bookable services | 
+    items:
+      anyOf:
+        - title: rejectionReason
+          description: Parameter to supply a rejectionReason
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - rejectionReason
+              example: 'rejectionReason'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+              properties:
+                system:
+                  type: string
+                  example: _baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                code:
+                  type: string
+                  example: TREATMENT_NO_LONGER_REQUIRED
+        - title: rejectionComments
+          description: Parameter to supply the rejectionComments
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - rejectionComments
+              example: 'rejectionComments'
+            valueString:
+              type: string
+              example: 'Condition of the patient has improved. No further action needed'
+        - title: appointmentCancelledInPAS
+          description: Parameter to supply a appointmentCancelledInPAS
+          type: object
+          required:
+            - name
+            - valueBoolean
+          properties:
+            name:
+              type: string
+              enum:
+                - appointmentCancelledInPAS
+              example: 'appointmentCancelledInPAS'
+            valueBoolean:
+              type: boolean
+              example: true
+

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SpikeArrest continueOnError="false" enabled="true" name="SpikeArrest">
-  <DisplayName>SpikeArrest</DisplayName>
-  <Identifier ref="app.asid"/>
-  <Rate ref="app.ratelimit">10ps</Rate>
-  <UseEffectiveCount>true</UseEffectiveCount>
+    <DisplayName>SpikeArrest</DisplayName>
+    <Identifier ref="app.asid"/>
+    <Rate ref="app.ratelimit">600pm</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
 </SpikeArrest>
-

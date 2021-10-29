@@ -93,6 +93,8 @@ extends:
       stage_name: ers_prod_release
       post_deploy:
       - template: templates/ers-smoke.yml
+      depends_on:
+      - ers_sa_release
     - environment: manual-approval
       stage_name: manual_approval_nft2
     - environment: ref

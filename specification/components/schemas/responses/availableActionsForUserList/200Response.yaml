@@ -1,0 +1,19 @@
+description: Bundle containing list of available tasks
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../TaskBundle.yaml'
+    examples:
+      with-entries:
+        summary: With entries
+        value:
+          $ref: '../../../examples/availableActionsForUserList/WithEntries.json'
+      empty:
+        summary: Empty
+        value:
+          $ref: '../../../examples/availableActionsForUserList/Empty.json'

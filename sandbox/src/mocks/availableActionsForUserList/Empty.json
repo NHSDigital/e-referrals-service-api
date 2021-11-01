@@ -1,0 +1,18 @@
+{
+	"id": "234a9168-a72f-4969-b611-d1b64426d18e",
+	"meta": {
+		"lastUpdated": "2021-11-01T16:08:05.484Z",
+		"profile": [
+			"http://hl7.org/fhir/STU3/StructureDefinition/Bundle"
+		]
+	},
+	"resourceType": "Bundle",
+	"type": "searchset",
+	"link": [
+		{
+			"relation": "self",
+			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070001/_history/6&intent=proposal&status=ready"
+		}
+	],
+	"entry": []
+}

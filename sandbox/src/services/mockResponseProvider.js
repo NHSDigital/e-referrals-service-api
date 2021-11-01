@@ -373,4 +373,24 @@ module.exports = {
 
 
   },
+
+  getResponseForAvailableActionsForUserList: function (request) {
+
+    const focus = request.query['focus']
+    const intent = request.query['intent']
+    const status = request.query['status']
+
+    // Scenario 1 An "action" is available - Illustrate success response to caller
+    if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
+
+      return { responsePath: 'availableActionsForUserList/WithEntries.json' }
+    }
+
+    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
+    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+
+      return { responsePath: 'availableActionsForUserList/Empty.json' }
+    }
+
+  },
 }

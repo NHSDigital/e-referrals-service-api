@@ -2054,7 +2054,78 @@ paths:
           $ref: 'components/schemas/responses/InternalServerError.yaml' 
         '504':
           $ref: 'components/schemas/responses/rejectReferral/504Response.yaml'  
-          
+  /STU3/Task:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        This endpoint allows an authenticated e-RS user to check ahead of of performing an action, 
+        whether or not the action is permitted. This endpoint performs a search for available and 
+        supported actions that can be *currently* performed, by the the *current* e-RS user on a *specific* 
+        referral. When a permitted action is returned, the e-RS user could immediately attempt to 
+        perform a permitted action.
+
+        You SHOULD NOT cache the list of available user actions returned because this endpoint 
+        gives the *current* actions for the *current* e-RS user, for the referral in context and is therefore, 
+        transient; a future call for a different e-RS user, referral, or at a different point in time, 
+        might result in a different set of actions, leading to potential failure flows.
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You should obtain a UBRN before using this endpoint, as the current UBRN version is required
+
+        ## Use case
+
+        As an authenticated user
+
+        I want to know what actions I might currently perform on a referral prior to attempting to do so
+
+        So that I can review my options, and do not try to persist a prohibited action
+
+        ## Related endpoints
+
+        To retrieve pertinent details relating to a referral:
+          - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
+            After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
+          - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
+            - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                         | Request                 |
+        | -------------------------------- | ----------------------- |
+        | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal, `status`=`ready` |
+        | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal, `status`=`ready` |
+
+      summary: A029 - Available actions for user list
+      operationId: a029-available-actions-for-user-list
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/queryParameters/Focus.yaml'
+        - $ref: 'components/schemas/queryParameters/Intent.yaml'
+        - $ref: 'components/schemas/queryParameters/TaskStatus.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/availableActionsForUserList/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/availableActionsForUserList/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'  
 components:
   securitySchemes:
     bearerAuth:

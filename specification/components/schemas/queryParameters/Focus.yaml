@@ -1,0 +1,15 @@
+in: query
+name: focus
+description: |
+   The component describing the ReferralRequest for which the task list is requested for.
+
+   Pattern:
+   
+   `ReferralRequest/{ubrn}/_history/{version}`
+
+     - The `ubrn` represents the unique booking reference number of the referral request
+     - The `version` is the version of the referral request (only the most current version will be accepted)
+required: true
+schema:
+   type: string
+   example: 'ReferralRequest/000000070000/_history/6'

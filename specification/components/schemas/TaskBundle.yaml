@@ -61,11 +61,11 @@ properties:
     description: |
       | Field                   | Cardinality | Notes                                               |
       | ----------------------- | ----------- | --------------------------------------------------- |
-      | `TaskEntry`             | `0..*`      |                                                     |
+      | `CareConnect-Task`      | `0..*`      |                                                     |
     items:
-      title: TaskEntry
+      title: CareConnect-Task
       description: |
-        TaskEntry details a single `task` (action available for user).
+        CareConnect-Task details a single `task` (action available for user).
       type: object
       required:
         - fullUrl

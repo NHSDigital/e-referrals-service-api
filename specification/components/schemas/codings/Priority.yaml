@@ -15,3 +15,8 @@ properties:
       - URGENT
       - TWO_WEEK_WAIT
     example: URGENT
+  display:
+    description: display value is returned in response from the server
+    nullable: true
+    type: string
+    example: Urgent

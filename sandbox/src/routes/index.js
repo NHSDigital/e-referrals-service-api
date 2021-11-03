@@ -24,6 +24,7 @@ const recordTriageOutcome = require('./recordTriageOutcome')
 const acceptReferral = require('./acceptReferral')
 const rejectReferral = require('./rejectReferral')
 const availableActionsForUserList = require('./availableActionsForUserList')
+const cancelAppointmentActionLater = require('./cancelAppointmentActionLater')
 
 const routes = [].concat(
   getStatus,
@@ -51,7 +52,8 @@ const routes = [].concat(
   recordTriageOutcome,
   acceptReferral,
   rejectReferral,
-  availableActionsForUserList
+  availableActionsForUserList,
+  cancelAppointmentActionLater
 )
 
 module.exports = routes

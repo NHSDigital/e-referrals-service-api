@@ -9,8 +9,8 @@ function retrieveAvailableActionsForUserList(request, h) {
     return validationResult
   }
 
-  const { responsePath } = mockResponseProvider.getResponseForAvailableActionsForUserList(request);
-  if (responsePath != null) {
+  const responsePath = mockResponseProvider.getResponseForAvailableActionsForUserList(request);
+  if (responsePath) {
     return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
   }
 

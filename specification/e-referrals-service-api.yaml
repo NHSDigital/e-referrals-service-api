@@ -1708,7 +1708,7 @@ paths:
         Use this endpoint, as a service provider, to:
           - convert the advice and guidance request you have received into a referral, AND
           - create a task for the service provider admin team to select/shortlist appropriate services for the patient, AND
-          - provide a final guidance response details back to the referrer
+          - provide final guidance response details back to the referrer
         
         Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
         and guidance request into a referral.
@@ -1979,7 +1979,7 @@ paths:
         Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
         This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
 
-        Consider using [[HYPERLINK_A022]] instead if you wish to task your admin team to get the patient into the most appropriate service.
+        Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -2090,7 +2090,6 @@ paths:
 
         To retrieve pertinent details relating to a referral:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
-            After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
           - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
             - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
 
@@ -2100,8 +2099,8 @@ paths:
         
         | Scenario                         | Request                 |
         | -------------------------------- | ----------------------- |
-        | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal, `status`=`ready` |
-        | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal, `status`=`ready` |
+        | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
 
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list
@@ -2126,6 +2125,104 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'  
+  /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to task your admin team to rebook/redirect a referral that is booked 
+        into your bookable service and awaiting review.
+
+        Note: this will also cancel the current appointment.
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A022]] can 
+        only be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        If you want to include attachments with the admin task, you need to use [[HYPERLINK_A020]] so they are 
+        ready to be associated when this endpoint is called.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to task my admin team to rebook/redirect a referral I have reviewed (whilst also cancelling the current appointment)
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+        
+        ## Important notes
+          - The priority of the referral can be changed as part of this endpoint.
+          - A comment must be added to explain to the administrator what is required and can include optional attachments.
+          - The current appointment is cancelled as part of this endpoint . If the current appointment is booked to an indirectly 
+            bookable service, you must indicate whether the appointment has been cancelled on the local provider system. 
+            If indicated as not cancelled, the referral will be added to the 'Indirectly Booked Appointments to Cancel in PAS' 
+            worklist to task the admin team to do so.
+          - When this endpoint is successfully used, an entry will be added to the service providers 'Appointments For Booking' 
+            worklist for the admin team to action the task. The provider admin team will only be able to progress the referral 
+            via the e-RS Professional Application user interface (e.g. shortlisting appropriate services for the patient).
+
+      summary: A022 - Cancel appointment, action later
+      operationId: a022-cancel-appointment-action-later
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-cancelAppointmentActionLater-Parameters.yaml'
+            examples:
+              basic-example-dbs:
+                summary: Basic example for DBS
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleDBS.json'
+              example-priority-change-and-attachments:
+                summary: Example for priority change and attachments
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json'
+              basic-example-ibs:
+                summary: Basic example for IBS
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleIBS.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/cancelAppointmentActionLater/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/cancelAppointmentActionLater/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml' 
 components:
   securitySchemes:
     bearerAuth:

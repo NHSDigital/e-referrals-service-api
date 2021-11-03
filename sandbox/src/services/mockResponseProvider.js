@@ -383,14 +383,27 @@ module.exports = {
     // Scenario 1 An "action" is available - Illustrate success response to caller
     if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
 
-      return { responsePath: 'availableActionsForUserList/WithEntries.json' }
+      return 'availableActionsForUserList/WithEntries.json'
     }
 
     // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
     if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
 
-      return { responsePath: 'availableActionsForUserList/Empty.json' }
+      return 'availableActionsForUserList/Empty.json'
     }
+
+
+  },
+
+  getResponseForCancelAppointmentActionLater: function (request) {
+    var responseMap = {
+      'src/mocks/cancelAppointmentActionLater/requests/MinimalExampleDBS.json': 'cancelAppointmentActionLater/responses/MinimalExampleDBS.json',
+      'src/mocks/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json': 'cancelAppointmentActionLater/responses/PriorityChangeAndWithAttachmentsDBS.json',
+      'src/mocks/cancelAppointmentActionLater/requests/MinimalExampleIBS.json': 'cancelAppointmentActionLater/responses/MinimalExampleIBS.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
 
   },
 }

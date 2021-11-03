@@ -26,6 +26,10 @@ properties:
             - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1'
             - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1'
           example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1'
+      versionId:
+        type: string
+        nullable: true
+        example: '3'
   language:
     type: string
     example: 'en'

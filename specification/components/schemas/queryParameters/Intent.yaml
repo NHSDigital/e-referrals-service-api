@@ -1,0 +1,10 @@
+in: query
+name: intent
+description: |
+  Value must be set to `proposal`
+required: true
+schema:
+  type: string
+  enum:
+    - proposal
+  example: proposal

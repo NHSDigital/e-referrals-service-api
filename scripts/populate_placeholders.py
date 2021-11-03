@@ -33,7 +33,7 @@ def main():
         "[[HYPERLINK_A026]]": "[A026 - Send advice and guidance response](#api-Default-a026-send-a&g-response)",
         "[[HYPERLINK_A027]]": "[A027 - Convert advice and guidance request to referral](#api-Default-a027-convert-a&g-to-referral)",
         "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](#api-Default-a028-record-triage-outcome)",
-        "[[HYPERLINK_A029]]": "[A029 - Available actions for user list](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a029.html)",
+        "[[HYPERLINK_A029]]": "[A029 - Available actions for user list](#api-Default-a029-available-actions-for-user-list)",
         "[[HYPERLINK_A030]]": "[A030 - Retrieve e-RS business functions](#api-Default-a030-retrieve-business-functions)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

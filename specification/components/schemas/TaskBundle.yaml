@@ -1,0 +1,92 @@
+title: Bundle resource containing tasks
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - type
+  - link
+  - entry
+properties:
+  id:
+    type: string
+    example: '604dc1ea-986c-45ec-b36c-cf9d2fabc5c0'
+  meta:
+    type: object
+    required: 
+      - lastUpdated
+      - profile
+    properties:
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-04-20T12:17:35.128Z'
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'http://hl7.org/fhir/STU3/StructureDefinition/Bundle'
+          example: 'http://hl7.org/fhir/STU3/StructureDefinition/Bundle'
+  resourceType:
+    type: string
+    enum:
+      - Bundle
+    example: 'Bundle'
+  type:
+    type: string
+    enum:
+      - searchset
+    example: 'searchset'
+  link:
+    type: array
+    minItems: 1
+    maxItems: 1
+    items:
+      type: object
+      required:
+        - relation
+        - url
+      properties:
+        relation:
+          type: string
+          enum:
+            - self
+          example: 'self'
+        url:
+          type: string
+          example: '_baseUrl_/STU3/Task?focus=ReferralRequest/000000070000/_history/6&intent=proposal&status=ready'
+  entry:
+    type: array
+    description: |
+      | Field                   | Cardinality | Notes                                               |
+      | ----------------------- | ----------- | --------------------------------------------------- |
+      | `TaskEntry`             | `0..*`      |                                                     |
+    items:
+      title: TaskEntry
+      description: |
+        TaskEntry details a single `task` (action available for user).
+      type: object
+      required:
+        - fullUrl
+        - resource
+        - search
+      properties:
+        fullUrl:
+          type: string
+          example: '_baseUrl_/STU3/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a'
+        resource:
+          $ref: 'CareConnect-Task.yaml'
+        search:
+          type: object
+          required:
+            - mode
+          properties:
+            mode:
+              type: string
+              enum:
+                - match
+              example: 'match'
+
+
+

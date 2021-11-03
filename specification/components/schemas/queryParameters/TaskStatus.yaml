@@ -1,0 +1,10 @@
+in: query
+name: status
+description: |
+  The status of the `task`, value must be set to `ready`
+required: true
+schema:
+  type: string
+  enum:
+    - ready
+  example: ready

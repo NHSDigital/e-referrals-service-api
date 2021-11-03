@@ -1,0 +1,97 @@
+title: CareConnect-Task
+description: 'The Task resource represents a specific task to be performed by the user.'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - status
+  - intent
+  - focus
+properties:
+  id:
+    type: string
+    example: 'ed4dff57-503c-46ef-9084-4045a23f4c2a'
+  meta:
+    type: object
+    required: 
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Task-1'
+          example: 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Task-1'
+  resourceType:
+    type: string
+    enum:
+      - Task
+    example: 'Task'
+  status:
+    type: string
+    enum:
+      - draft
+      - requested
+      - received
+      - accepted
+      - rejected
+      - ready
+      - cancelled
+      - in-progress
+      - on-hold
+      - failed
+      - completed
+      - entered-in-error
+    example: ready
+  intent:
+    type: string
+    enum:
+      - proposal
+      - plan
+      - order
+      - option
+    example: proposal
+  focus:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: ReferralRequest/000000070000/_history/6
+  code:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          anyOf:
+            - title: RecordReviewOutcome
+              type: object
+              required:
+                - system
+                - code
+                - display
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1
+                  example: https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1
+                code:
+                  type: string
+                  enum:
+                    - RECORD_REVIEW_OUTCOME
+                  example: RECORD_REVIEW_OUTCOME
+                display:
+                  type: string
+                  enum:
+                    - Record Review Outcome
+                  example: Record Review Outcome
+
+
+            

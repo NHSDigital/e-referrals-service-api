@@ -31,6 +31,20 @@ INTERNAL_DEV_VARIANTS:
 - rc
 - fix
 
+ACCESS_MODES:
+  - name: healthcare-worker
+    nameSuffix: -healthcare-worker
+    displayName: Healthcare Worker
+    scopes: ['urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api']
+    requireCallbackUrl: true
+    description: User restricted
+  - name: application-restricted
+    nameSuffix: -application-restricted
+    displayName: Application Restricted
+    scopes: ['urn:nhsd:apim:app:level3:e-referrals-service-api']
+    requireCallbackUrl: false
+    description: Application Restricted
+
 ---
 
 meta:
@@ -44,58 +58,60 @@ apigee:
 
 {% for ENV in APIGEE_ENVIRONMENTS %}
 {% set portal_visibility = ENV.portal_visibility | default(true) %}
-{% set TITLE = 'e-Referrals-Service (' + ENV.display_name + ')' %}
-{% set DESCRIPTION = 'e-Referrals-Service - ' + ENV.display_name | lower + ' environment' %}
+{% set TITLE = 'e-Referral Service' %}
 {% set NAME = 'e-referrals-service-api-' + ENV.name %}
 {% if ENV.name == 'internal-dev' %}
   - name: {{ ENV.name }}
     products:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - name: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+{% for MODE in ACCESS_MODES %}
+      - name: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
           - name: access
             value: public
           - name: ratelimit
             value: {{ ENV.ratelimit | default('5ps') }}
-        description: {{ DESCRIPTION }} ({{ VARIANT }})
-        displayName: {{ TITLE }} {{ VARIANT }}
+        description: {{ MODE.description }}
+        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT }} )
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
           - identity-service-{{ ENV.name }}
-        scopes:
-          - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
-          - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
+        scopes: {{ MODE.scopes }}
         quota: {{ ENV.quota | default('300') }}
         quotaInterval: '1'
         quotaTimeUnit: minute
+{% endfor %}
 {% endfor %}
     specs:
       - name: {{ NAME }}
         path: e-referrals-service-api.json
     api_catalog:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+{% for MODE in ACCESS_MODES %}
+      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         anonAllowed: true
-        description: {{ DESCRIPTION }}
-        requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
-        title: {{ TITLE }} ({{ VARIANT }})
+        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} - {{ VARIANT }} environment
+        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
+        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT }} )
         visibility: {{ portal_visibility }}
         specId: {{ NAME }}
+{% endfor %}
 {% endfor %}
 {% else %}
   - name: {{ ENV.name }}
     products:
-      - name: {{ NAME }}
+{% for MODE in ACCESS_MODES %}
+      - name: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
           - name: access
             value: public
           - name: ratelimit
             value: {{ ENV.ratelimit | default('5ps') }}
-        description: {{ DESCRIPTION }}
-        displayName: {{ TITLE }}
+        description: {{ MODE.description }}
+        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ ENV.name }}
@@ -103,22 +119,23 @@ apigee:
 {% if ENV.name == 'int' %}
           - identity-service-int-no-smartcard
 {% endif %}
-        scopes:
-          - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
-          - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
+        scopes: {{ MODE.scopes }}
         quota: {{ ENV.quota | default('300') }}
         quotaInterval: '1'
         quotaTimeUnit: minute
+{% endfor %}
     specs:
       - name: {{ NAME }}
         path: e-referrals-service-api.json
     api_catalog:
-      - edgeAPIProductName: {{ NAME }}
+{% for MODE in ACCESS_MODES %}
+      - edgeAPIProductName: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
         anonAllowed: true
-        description: {{ DESCRIPTION }}
-        requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
-        title: {{ TITLE }}
+        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} environment
+        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
+        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
         visibility: {{ portal_visibility }}
         specId: {{ NAME }}
+{% endfor %}
 {% endif %}
 {% endfor %}

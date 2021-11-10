@@ -14,7 +14,6 @@ description: |
   | INVALID_FHIR_STRUCTURE             | The FHIR data structure in the message body does not match the expected structure (e.g. an array is present for a value when no array is expected). |
   | ORGANISATION_IS_CLOSED             | The organisation supplied corresponds to an organisation that is closed. |
   | ORGANISATION_NOT_APPROPRIATE       | The organisation supplied corresponds to an organisation that is not valid for the given request. |
-  | DUPLICATE_SERVICE                  | Unique service value expected. |
   | SHORTLISTED_SERVICE_NOT_IN_RESULTS | The service selected for the shortlist submitted does not satisfy the search criteria provided. |
   | SNOMED_NOT_FOUND                   | A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS dictionary. |
   | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |

@@ -30,20 +30,16 @@ extends:
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
-    product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
     enable_status_monitoring: true
     manual_approval_env: manual-approval-ptl
-    spec_file: ${{ variables.spec_file }}
     apigee_deployments:
     - environment: manual-approval
       stage_name: manual_approval_alpha
     - environment: internal-dev
       stage_name: ers_alpha_release
-      make_spec_visible: true
       service_name: "${{ variables.service_name }}-alpha"
       short_service_name: "${{ variables.short_service_name }}-alpha"
-      product_display_name: "${{ variables.product_display_name }} (ERSALPHA)"
       service_base_path: "${{ variables.service_base_path }}-alpha"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--alpha
@@ -55,10 +51,8 @@ extends:
       stage_name: manual_approval_rc
     - environment: internal-dev
       stage_name: ers_rc_release
-      make_spec_visible: true
       service_name: "${{ variables.service_name }}-rc"
       short_service_name: "${{ variables.short_service_name }}-rc"
-      product_display_name: "${{ variables.product_display_name }} (ERSRC)"
       service_base_path: "${{ variables.service_base_path }}-rc"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--rc
@@ -70,10 +64,8 @@ extends:
       stage_name: manual_approval_fix
     - environment: internal-dev
       stage_name: ers_fix_release
-      make_spec_visible: true
       service_name: "${{ variables.service_name }}-fix"
       short_service_name: "${{ variables.short_service_name }}-fix"
-      product_display_name: "${{ variables.product_display_name }} (ERSFIX)"
       service_base_path: "${{ variables.service_base_path }}-fix"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
@@ -85,25 +77,28 @@ extends:
       stage_name: manual_approval_sa
     - environment: internal-qa
       stage_name: ers_sa_release
-      make_spec_visible: true
       post_deploy:
       - template: templates/ers-smoke.yml
       depends_on:
       - manual_approval_sa
-    - environment: manual-approval 
+    - environment: manual-approval
       stage_name: manual_approval_int
     - environment: int
       stage_name: ers_int_release
-      make_spec_visible: true
       post_deploy:
       - template: templates/ers-smoke.yml
       depends_on:
       - manual_approval_int
+    - environment: prod
+      stage_name: ers_prod_release
+      post_deploy:
+      - template: templates/ers-smoke.yml
+      depends_on:
+      - ers_sa_release
     - environment: manual-approval
       stage_name: manual_approval_nft2
     - environment: ref
       stage_name: ers_nft2_release
-      make_spec_visible: true
       post_deploy:
       - template: templates/ers-smoke.yml
       depends_on:

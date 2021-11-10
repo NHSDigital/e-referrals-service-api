@@ -7,24 +7,24 @@
 #
 APIGEE_ENVIRONMENTS:
 - display_name: Internal Development
-  make_spec_visible: true
   name: internal-dev
 - display_name: Internal Development Sandbox
   name: internal-dev-sandbox
 - display_name:  Integration Testing
-  make_spec_visible: true
   name: int
 - display_name: Internal QA
-  make_spec_visible: true
   name: internal-qa
 - display_name: Internal QA Sandbox
-  make_spec_visible: true
   name: internal-qa-sandbox
 - display_name: Reference
-  make_spec_visible: true
   name: ref
 - display_name: Sandbox
   name: sandbox
+- name: prod
+  approval_type: manual
+  display_name: Production
+  ratelimit: '15000pm'
+  quota: '7800'
 
 INTERNAL_DEV_VARIANTS:
 - alpha
@@ -43,6 +43,7 @@ apigee:
   environments:
 
 {% for ENV in APIGEE_ENVIRONMENTS %}
+{% set portal_visibility = ENV.portal_visibility | default(true) %}
 {% set TITLE = 'e-Referrals-Service (' + ENV.display_name + ')' %}
 {% set DESCRIPTION = 'e-Referrals-Service - ' + ENV.display_name | lower + ' environment' %}
 {% set NAME = 'e-referrals-service-api-' + ENV.name %}
@@ -56,7 +57,7 @@ apigee:
           - name: access
             value: public
           - name: ratelimit
-            value: 5ps
+            value: {{ ENV.ratelimit | default('5ps') }}
         description: {{ DESCRIPTION }} ({{ VARIANT }})
         displayName: {{ TITLE }} {{ VARIANT }}
         environments: [ {{ ENV.name }} ]
@@ -66,7 +67,7 @@ apigee:
         scopes:
           - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
           - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
-        quota: '300'
+        quota: {{ ENV.quota | default('300') }}
         quotaInterval: '1'
         quotaTimeUnit: minute
 {% endfor %}
@@ -80,7 +81,7 @@ apigee:
         description: {{ DESCRIPTION }}
         requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
         title: {{ TITLE }} ({{ VARIANT }})
-        visibility: {{ ENV.make_spec_visible | default(false) }}
+        visibility: {{ portal_visibility }}
         specId: {{ NAME }}
 {% endfor %}
 {% else %}
@@ -92,7 +93,7 @@ apigee:
           - name: access
             value: public
           - name: ratelimit
-            value: 5ps
+            value: {{ ENV.ratelimit | default('5ps') }}
         description: {{ DESCRIPTION }}
         displayName: {{ TITLE }}
         environments: [ {{ ENV.name }} ]
@@ -105,7 +106,7 @@ apigee:
         scopes:
           - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
           - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'
-        quota: '300'
+        quota: {{ ENV.quota | default('300') }}
         quotaInterval: '1'
         quotaTimeUnit: minute
     specs:
@@ -117,7 +118,7 @@ apigee:
         description: {{ DESCRIPTION }}
         requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
         title: {{ TITLE }}
-        visibility: {{ ENV.make_spec_visible | default(false) }}
+        visibility: {{ portal_visibility }}
         specId: {{ NAME }}
 {% endif %}
 {% endfor %}

@@ -1,0 +1,174 @@
+title: eRS-cancelAppointmentActionLater-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-cancelAppointmentActionLater-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-cancelAppointmentActionLater-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `priority`                        | `0..1`      | Optionaly updates the priority                          |
+      | `appointmentCancelledinPAS`       | `0..1`      | This flag is mandatory for indirectly bookable services |
+      | `comments`                        | `1..1`      |                                            | 
+      | `providerAttachmentFile`          | `0..*`      |                                            | 
+    items:
+      anyOf:
+        - title: priority
+          description: Parameter to supply a priority
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - priority
+              example: 'priority'
+            valueCoding:
+              $ref: 'codings/Priority.yaml'
+        - title: appointmentCancelledInPAS
+          description: Parameter to supply a appointmentCancelledInPAS
+          type: object
+          required:
+            - name
+            - valueBoolean
+          properties:
+            name:
+              type: string
+              enum:
+                - appointmentCancelledInPAS
+              example: 'appointmentCancelledInPAS'
+            valueBoolean:
+              type: boolean
+              example: true
+        - title: comments
+          description: Parameter to supply the comments
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - comments
+              example: 'comments'
+            valueString:
+              type: string
+              example: 'Please contact patient to rebook'
+        - title: providerAttachmentFile
+          description: Parameter to supply an attachment file
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - providerAttachmentFile
+              example: 'providerAttachmentFile'
+            resource:
+              title: DocumentReference
+              description: 'A reference to a document'
+              type: object
+              required:
+                - meta
+                - resourceType
+                - type
+                - status
+                - indexed
+                - content
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - profile
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                        example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                resourceType:
+                  type: string
+                  enum:
+                    - DocumentReference
+                  example: 'DocumentReference'
+                type:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - system
+                          - code
+                        properties:
+                          system:
+                            type: string
+                            enum:
+                              - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                            example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                          code:
+                            type: string
+                            enum:
+                              - PROVIDER
+                            example: PROVIDER
+                status:
+                  type: string
+                  enum:
+                    - current
+                  example: current
+                indexed:
+                  type: string
+                  format: date-time
+                  example: '2021-04-22T10:00:00.000Z'
+                description:
+                  type: string
+                  nullable: true
+                  example: 'upload png'
+                content:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - attachment
+                    properties:
+                      attachment:
+                        title: 'A reference to an already created Attachment (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+                        type: object
+                        required:
+                          - url
+                        properties:
+                          url:
+                            type: string
+                            example: 'Binary/att-70000-70000'
+

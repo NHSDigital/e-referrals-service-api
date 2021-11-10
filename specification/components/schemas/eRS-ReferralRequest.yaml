@@ -9,6 +9,7 @@ required:
   - status
   - subject
   - supportingInfo
+  - intent
 properties:
   id:
     type: string
@@ -94,3 +95,8 @@ properties:
         reference:
           type: string
           example: '#DocumentReference-70000'
+  intent:
+    type: string
+    enum: 
+      - plan
+    example: plan

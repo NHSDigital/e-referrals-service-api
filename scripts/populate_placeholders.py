@@ -26,7 +26,7 @@ def main():
         "[[HYPERLINK_A019]]": "[A019 - Generate patient letter](#api-Default-a019-generate-patient-letter)",
         "[[HYPERLINK_A020]]": "[A020 - Upload file to document store](#api-Default-a020-upload-file-to-document-store)",
         "[[HYPERLINK_A021]]": "[A021 - Create referral and send for triage](#api-Default-a021-create-referral-request-and-send-for-triage)",
-        "[[HYPERLINK_A022]]": "[A022 - Cancel appointment, action later](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a022.html)",
+        "[[HYPERLINK_A022]]": "[A022 - Cancel appointment, action later](#api-Default-a022-cancel-appointment-action-later)",
         "[[HYPERLINK_A023]]": "[A023 - Retrieve advice and guidance requests worklist](#api-Default-a008-retrieve-a&g-worklist)",
         "[[HYPERLINK_A024]]": "[A024 - Retrieve advice and guidance request summary](#api-Default-a024-retrieve-advice-and-guidance)",
         "[[HYPERLINK_A025]]": "[A025 - Retrieve advice and guidance conversation](#api-Default-a025-retrieve-advice-and-guidance-conversation)",

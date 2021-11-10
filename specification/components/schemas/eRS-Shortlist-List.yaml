@@ -2,10 +2,25 @@ title: eRS-Shortlist-List
 description: A list of services representing the services available to the patient to have treatment at
 type: object
 required:
+  - status
+  - mode
   - meta
   - resourceType
   - entry
 properties:
+  id: 
+    type: string
+    example: 'shortlist'
+  status:
+    type: string
+    enum:
+      - current
+    example: 'current'
+  mode:
+    type: string
+    enum:
+      - snapshot
+    example: 'snapshot'
   meta:
     type: object
     required:
@@ -22,6 +37,31 @@ properties:
     type: array
     items:
       $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+  extension:
+    type: array
+    nullable: true
+    maxItems: 1
+    minItems: 1
+    items:
+      title: Extension-eRS-Shortlist-SearchCriteria
+      type: object
+      required:
+        - url
+        - valueReference
+      properties:
+        url:
+          type: string
+          enum:
+            - https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1
+          example: https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1
+        valueReference:
+          type: object
+          required:
+            - reference
+          properties:
+            reference:
+              type: string
+              example: '#serviceSearchCriteria'
   resourceType:
     type: string
     enum:

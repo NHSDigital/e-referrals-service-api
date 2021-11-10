@@ -1,0 +1,14 @@
+{
+	"meta": {
+		"profile": [
+			"https://fhir.nhs.uk/STU3/StructureDefinition/eRS-cancelAppointmentActionLater-Parameters-1"
+		]
+	},
+	"resourceType": "Parameters",
+	"parameter": [
+		{
+			"name": "comments",
+			"valueString": "Please contact patient to rebook"
+		}
+	]
+}

@@ -32,15 +32,11 @@ extends:
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
-    product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
-    spec_file: ${{ variables.spec_file }}
     apigee_deployments:
       - environment: internal-dev
-        make_spec_visible: true
         service_name: ${{ variables.service_name }}-alpha
         short_service_name: ${{ variables.short_service_name }}-alpha
-        product_display_name: ${{ variables.product_display_name }} (ERSALPHA)
         service_base_path: ${{ variables.service_base_path }}-alpha
         stage_name: ers_alpha_pr
         jinja_templates:

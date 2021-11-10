@@ -1,0 +1,79 @@
+{
+	"meta": {
+		"profile": [
+			"https://fhir.nhs.uk/STU3/StructureDefinition/eRS-cancelAppointmentActionLater-Parameters-1"
+		]
+	},
+	"resourceType": "Parameters",
+	"parameter": [
+		{
+			"name": "comments",
+			"valueString": "Please contact patient to rebook"
+		},
+		{
+			"name": "priority",
+			"valueCoding": {
+				"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+				"code": "URGENT"
+			}
+		},
+		{
+			"name": "providerAttachmentFile",
+			"resource": {
+				"meta": {
+					"profile": [
+						"https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+					]
+				},
+				"resourceType": "DocumentReference",
+				"type": {
+					"coding": [
+						{
+							"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+							"code": "PROVIDER"
+						}
+					]
+				},
+				"status": "current",
+				"indexed": "2021-11-03T14:29:41.988000+00:00",
+				"description": "My first provider attachment",
+				"content": [
+					{
+						"attachment": {
+							"url": "Binary/att-70000-70001"
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "providerAttachmentFile",
+			"resource": {
+				"meta": {
+					"profile": [
+						"https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+					]
+				},
+				"resourceType": "DocumentReference",
+				"type": {
+					"coding": [
+						{
+							"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+							"code": "PROVIDER"
+						}
+					]
+				},
+				"status": "current",
+				"indexed": "2021-11-03T14:29:41.988000+00:00",
+				"description": "My second provider attachment",
+				"content": [
+					{
+						"attachment": {
+							"url": "Binary/att-70000-70002"
+						}
+					}
+				]
+			}
+		}
+	]
+}

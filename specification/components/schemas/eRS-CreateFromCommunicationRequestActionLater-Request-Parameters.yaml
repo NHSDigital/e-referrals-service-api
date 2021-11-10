@@ -32,7 +32,7 @@ properties:
       | `createFrom`                      | `1..1`      |                                            |
       | `guidance`                        | `1..1`      |                                            |
       | `newReferralPriority`             | `1..1`      |                                            | 
-      | `reviewComments`                  | `0..1`      |                                            |
+      | `reviewComments`                  | `1..1`      |                                            |
       | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text | 
       | `reviewAttachmentFile`            | `0..*`      | Property defining files to be associated with the created `ReferralRequest` | 
     items:

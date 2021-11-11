@@ -48,6 +48,9 @@ const routes = [].concat(
   retrieveClinicalInformation,
   retrieveWorklist,
   retrieveAdviceAndGuidanceWorklist,
+  retrieveHealthcareService,
+  searchForHealthcareServices,
+  changeShortlist,
   retrieveAdviceAndGuidanceRequest,
   retrieveAdviceAndGuidanceConversation,
   sendAdviceAndGuidanceResponse,
@@ -56,10 +59,7 @@ const routes = [].concat(
   acceptReferral,
   rejectReferral,
   availableActionsForUserList,
-  cancelAppointmentActionLater,
-  retrieveHealthcareService,
-  searchForHealthcareServices,
-  changeShortlist
+  cancelAppointmentActionLater
 )
 
 module.exports = routes

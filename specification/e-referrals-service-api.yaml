@@ -2580,30 +2580,64 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
-  /R4/HealthcareService/{id}/_history/{version}:
-    get:
+    head:
       security:
         - bearerAuth: []
       description: |
-        ## Overview
-        To be added....
-      
-      summary: A034 - Retrieve service version
-      operationId: a034-retrieve-service-version
+        
+        A Patient may have 0 to 20 services associated with a single referral. 
+        A service is a place where a referrer can send a patient or obtain clinical advice concerning a specific patient.
+        
+        You can use this endpoint to obtain the current service's "version" held in e-RS, in order to compare to a locally cached version. 
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+
+        You need to have identified one service ID in order to use this endpoint.
+       
+        ## Use case
+        As an authenticated user
+
+        I would like to be able to see the current information about a service on my patients current shortlist
+
+        So that I can review and trust the information is still valid within the context of my patients needs
+        
+        ## Related endpoints
+          -  You can obtain Service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least one service.
+          -  You can retrieve a set of services and their attributes via [[HYPERLINK_A035]].
+          -  You can fetch the attributes of a single service via [[HYPERLINK_A033]].
+        
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Service Id |
+        | ------------------------------------------------------------------------ | ---------- |
+        |  Get `Service` Version                                                   | `1`        |
+
+      summary: A037 - Retrieve Healthcare Service Version
+      operationId: a037-retrieve-healthcare-service-version
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/path/ServiceId.yaml'
-        - $ref: 'components/schemas/path/Version.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveServiceVersion/200Response.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
-        '200':
-          $ref: 'components/schemas/responses/getService/200Response.yaml'
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
   /R4/HealthcareService:
     get:
       security:
@@ -2634,7 +2668,7 @@ paths:
 
         ## Related endpoints
           -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist of at least one service.
-          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can check if a cached service has changed via [[HYPERLINK_A037]].
           -  You can fetch the attributes of a single service via [[HYPERLINK_A033]].
 
         ## Sandbox test scenarios
@@ -2645,7 +2679,7 @@ paths:
         | Search for multiple service with minimal attributes                      | `1,2`      |
         | Search for multiple service max and min attributes                       | `3`,`4`    |
         | Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match                      | `5`,`6`    |
-  
+
       summary: A035 - Search for Healthcare Services
       operationId: a035-search-for-healthcare-services
       parameters:

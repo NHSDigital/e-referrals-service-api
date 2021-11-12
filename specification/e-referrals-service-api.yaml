@@ -642,6 +642,7 @@ paths:
         | TIFF Image         | `.tif`, `.tiff`             |
         | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     |
         | MSWORD             | `.doc`, `.docx`             |
+        | DICOM              | `.dcm`                      |
 
         Currently, the maximum file size supported by e-RS is 5MB.
 

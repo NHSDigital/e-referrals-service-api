@@ -17,7 +17,7 @@ info:
     ## Overview
     Use this API to create paperless referrals from primary to secondary care with the [e-Referral Service (e-RS)](https://digital.nhs.uk/services/e-referral-service).
 
-    As a primary care referrer, you can:
+    **As a primary care referrer, you can:**
 
       -	create a new e-referral
       - search for relevant patient services to create a shortlist
@@ -27,7 +27,7 @@ info:
       -	retrieve appointment slots and book appointments
       -	defer a booking to a provider if an appointment slot is unavailable
 
-    As a secondary care provider, you can:
+    **As a secondary care provider, you can:**
 
       -	access referrals as a worklist
       -	retrieve non-clinical information (meta-data) about the referral
@@ -37,11 +37,11 @@ info:
       -	retrieve Advice & Guidance (A&G) conversations and send responses
       -	convert Advice & Guidance (A&G) conversations into a referral
 
-    You cannot currently use this API to:
+    **You cannot use this API to:**
 
       -	get patient details – instead, use the [[HYPERLINK_PDS]]
 
-    You can access the following data:
+    **You can access the following data:**
 
       -	referral attachments
       -	referral letters
@@ -54,22 +54,25 @@ info:
 
     ### Access modes
     
-    ##### Users within the Health and Social Care Network (HSCN) who have smartcards
+    This API has two access modes:
 
-    This access mode is in production and [[HYPERLINK_STABLE]]. 
-    This access mechanism is documented on the older ['API Hub' documentation portal](https://developer.nhs.uk/apis/e-Referrals/getstarted_get_connected.html). 
-    Using this authentication mechanism allows full use of all e-RS endpoints. 
-    This access mode requires the creation of a professional session and selection of a role in order to authenticate.
+    | Access mode                   | Authentication via    | Functions               | Availability                    |
+    | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
+    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment) and [A007](#api-Default-a007-retrieve-clinical-information) | [Alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+    | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+
+    ##### Application-restricted, unattended access
+
+    This access mode has been introduced to allow a Partner application which has been [registered with us](https://portal.developer.nhs.uk/create-a-developer-account) and [authenticated via signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication) to interact with a subset of e-RS FHIR API endpoints in an unattended and read-only fashion.
+    Application-restricted, unattended access should only be used when authenticating a human user (for example via smartcard) is not possible.
     
-    ##### Users without access to the Health and Social Care Network (HSCN), or without access to smartcards
+    Writing changes (such as Create Referral) are not supported via this access mode.
 
-    e-RS has recently released a new solution which allows authentication over the internet, 
-    using [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/developer/api-catalogue/nhs-cis2). 
-    The documentation you are currently reading must be used when you wish to authenticate over the internet. 
-    Not every endpoint is available yet: we have only released the endpoints you see listed below in the Endpoints section below. 
-    This access mode requires the use of [[HYPERLINK_A030]] endpoint to authenticate. 
-    Please note that this is currently in [[HYPERLINK_BETA]], 
-    meaning we might make breaking changes, but only if we cannot avoid it.
+    ##### Healthcare worker, user-restricted access
+
+    This access mode allows Partner applications to access e-RS FHIR API endpoints by authenticating users with [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2).
+    
+    This access mode must be used for writing changes (such as Create Referral).
 
     ## Who can use this API
 
@@ -88,17 +91,22 @@ info:
 
     ## Related APIs
 
-    The following API also gives access to the e-referrals service (e-RS) data:
-
-      - [e-RS FHIR v2 API](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_catalogue.html) - this is deprecated and we plan to retire it. Do not integrate with this API
+    [HL7 V3 API](https://digital.nhs.uk/developer/api-catalogue/e-referral-service-hl7-v3) - this API allows you to manage appointment slots for a Patient Administration System (PAS). 
 
 
     ## API status and roadmap
 
-    The e-RS FHIR STU3 API is [[HYPERLINK_STABLE]], when accessed via HSCN network with a smartcard. 
+    ### Application-restricted, unattended access
 
-    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed via the internet 
-    using [[HYPERLINK_CIS2]]. There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
+    This access mode is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+
+    - it is available for testing in the Alpha environment only
+    - we might make breaking changes
+
+    ### Healthcare worker, user-restricted access
+
+    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed using [[HYPERLINK_CIS2]]. 
+    There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
     We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
     our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
 
@@ -120,79 +128,88 @@ info:
 
     ## Security and authorisation
 
-    For users with access to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network), 
-    access is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), 
-    meaning an end user must be present, authenticated and authorised.
+    ### Application-restricted, unattended access
 
-    The end user must also be:
+    This access mode is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate the calling application but not the end user.
+    
+    You can only use this access mode when authenticating a human user (for example via smartcard) is not possible.
+    
+    To use this access mode, use the following security pattern:
+    - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
 
-      -	a healthcare worker
-      -	strongly authenticated using an NHS smartcard
+    ###  Healthcare worker, user-restricted access
 
-    For more details see [Authentication and Authorisation](https://developer.nhs.uk/apis/e-Referrals/develop_business_flow_bf001.html).
+    This access mode is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present, authenticated and authorised.
 
-    If you wish to authenticate users without smartcards, access is still [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis) 
-    but uses the following security patterns instead:
+    The end user must be:
+    - present
+    - a healthcare worker
+    - strongly authenticated and authorised by [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)
 
-      -	[user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
-      -	[user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
-
+    To use this access mode, use one of the following security patterns:
+    - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
+    - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
+    
     ## Environments and testing
 
     | Environment       | Base URL                                                               |
     | ----------------- | ---------------------------------------------------------------------- |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals/FHIR` |
+    | Alpha             | See Alpha testing section below |
     | Integration test  | `https://int.api.service.nhs.uk/referrals/FHIR` |
-    | Production        | Not yet available |
+    | Production        | `https://api.service.nhs.uk/referrals/FHIR` |
 
     ### Sandbox testing
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-      -	is for early developer testing
-      -	only covers a limited set of scenarios
-      -	is stateless, so does not actually persist any updates
-      -	is open access, so does not allow you to test authorisation
+
+    Our [sandbox](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) environment:
+    -	is for developer education and early testing
+    -	only covers a limited set of scenarios
+    -	is stateless, so does not actually persist any updates
+    -	is open access, so does not allow you to test authorisation
 
     Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
 
     The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
 
+    ### Alpha testing
+
+    Our [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) environment:
+    -	is available for early developer testing of future functionality  
+    -	may experience breaking changes or downtime without advance notice, but only if we cannot avoid it
+    - can be accessed by contacting [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
+
     ### Integration testing
 
     Our integration test environment:
-
-      -	is for formal integration testing
-      - is where we will conduct witness testing for your application
+      -	is where the majority of your integration efforts will take place
+      - is where we conduct witness testing for your application
       -	is stateful, so data will be persisted
+
 
     ## Onboarding
 
-    You need to get your software approved by us before it can go live with this API. We call this onboarding. 
-    The onboarding process can sometimes be quite long, so it's worth planning well ahead.
+    You need to get your software approved by us before it can go live. We call this process onboarding. 
 
-    To onboard for this API, follow 
-    the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process).
-
-    When following the SCAL process, note that:
-
-    In step 1: to confirm your use case for this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) 
-    using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and 
-    discuss your use case with us.
-
-    In step 2: when requesting the SCAL, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly, 
-    they are responsible for solutions assurance of e-RS APIs.
-
-    In step 8: to organise witness testing of your solution, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
-    In step 11: when submitting your SCAL for review, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
-    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). 
-    You will need to provide your approved SCAL including an embedded Technical Conformance Certificate.
-
+    Onboarding essentially involves connecting to the Path-to-Live (PTL) environments, assuring your solution and going live, in accordance with the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process). 
+   
+    In order to pass through the onboarding process as efficiently as possible, it is worth planning ahead. 
+    
+    When following the general SCAL process, please note:
+    
+    In step 1: to use this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and discuss your use case with us. You must also register with the API Management team via [https://digital.nhs.uk/developer/getting-started](https://digital.nhs.uk/developer/getting-started) to register your application. 
+   
+    In step 2: to request a SCAL, please ensure you have discussed your solution with the Partners service via [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net), who will put you in touch with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) who are responsible for assurance of solutions that integrate with the e-RS FHIR API.
+   
+    In step 8: to organise witness testing of your solution, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
+    
+    In step 11: when submitting your SCAL for review, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
+    
+    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). You will need to have successfully passed witness testing with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) and obtained a Technical Conformance Certificate (TCC).
+    
     In step 13: to obtain the End User Organisation Acceptable Use Policy, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net).
-
-    In step 14: to request production access, you need to liaise with both [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net) (for all methods of access) and 
-    also [api.management@nhs.net](mailto:api.management@nhs.net) if your users are not on HSCN, using smartcards.
-
+    
+    In step 14: to request production access, send your completed SCAL and TCC to [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). To activate your application in production please [contact us](https://digital.nhs.uk/developer/help-and-support).
+    
 
   contact:
     url: 'https://digital.nhs.uk/developer/help-and-support'
@@ -216,6 +233,9 @@ paths:
         Use this endpoint to create a referral by choosing a shortlist of bookable services.
 
         Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A021]].
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -298,6 +318,9 @@ paths:
 
         Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services please use [[HYPERLINK_A011]].
         
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -369,6 +392,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to find services that meet the referral needs of a patient.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -444,15 +470,23 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
-        
+
+        ## Supported security patterns
+        - Application-restricted, unattended access
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
+        ### Application-restricted access 
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
 
         ## Use case
-        As an authenticated user
+        As an authenticated user or application
 
         I need to retrieve e-RS reference data
 
@@ -478,8 +512,8 @@ paths:
       operationId: a004-retrieve-reference-data
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -499,6 +533,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve available appointment slots for a service.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -578,6 +615,9 @@ paths:
         
         Use this endpoint to retrieve a list of available e-RS roles (i.e. business functions) at each organisation where the user works.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
 
         In order to use this endpoint you must be an authenticated user
@@ -618,6 +658,9 @@ paths:
         ## Overview
         
         Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -701,6 +744,9 @@ paths:
         
         Use this endpoint to download a PDF format letter for the patient summarising the current state of their referral and any steps the patient may need to follow.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -748,8 +794,17 @@ paths:
         
         Use this endpoint to retrieve a file that is attached to a referral or advice request.
 
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
+      
+
         ## Pre-requisites
-        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        ### Application-restricted access
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
+        In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -787,8 +842,8 @@ paths:
       operationId: a006-retrieve-attachment
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/AttachmentLogicalID.yaml'
       responses:
@@ -816,9 +871,16 @@ paths:
         ## Overview
         Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
 
-        ## Pre-requisites
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
 
-        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        ## Pre-requisites
+        ### Application-restricted access
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
+        In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -827,7 +889,7 @@ paths:
 
         ## Use case
 
-        As an authenticated user
+        As an authenticated user or application
 
         I want to read details of a referral
 
@@ -863,8 +925,8 @@ paths:
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -891,6 +953,9 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a specific version of `ReferralRequest`.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
 
@@ -951,6 +1016,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1083,6 +1151,9 @@ paths:
         ## Overview
         Use this endpoint to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -1178,7 +1249,15 @@ paths:
         
         Use this endpoint to generate a PDF file that summarises clinical information for a referral.
 
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
+        ### Application-restricted access 
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
@@ -1200,7 +1279,7 @@ paths:
 
         ## Use case
 
-        As an authenticated user
+        As an authenticated user or application
 
         I need to retrieve a clinical information summary (in PDF format) associated with the referral
 
@@ -1213,8 +1292,8 @@ paths:
       operationId: a007-retrieve-clinical-information
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
       responses:
@@ -1238,7 +1317,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
+        Use this endpoint to retrieve available worklists of referral requests. Use [A023 - Retrieve advice and guidance request worklists](#api-Default-a023-retrieve-a&g-worklist) to retrieve available worklists of 
         advice and guidance requests. 
 
         Worklists provide lists of referral/advice requests that meet certain criteria, 
@@ -1250,6 +1329,9 @@ paths:
           The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
         
         There are currently no referral related worklists available for referring organisations.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1334,7 +1416,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [[HYPERLINK_A008]] to retrieve available worklists of referral requests.
+        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [A008 - Retrieve referral worklist](#api-Default-a008-retrieve-referral-worklist) to retrieve available worklists of referral requests.
 
         Worklists provide lists of referral/advice requests that meet certain criteria, typically where a user needs to be aware of something important, 
         or to undertake an action, in order to avoid delays to patient care.
@@ -1343,6 +1425,9 @@ paths:
         this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning.
 
         There are currently no advice and guidance related worklists available for referring organisations.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1410,6 +1495,9 @@ paths:
 
         This does not include the actual advice and guidance conversation between the referrer and the service provider. 
         The conversation can be retrieved via [[HYPERLINK_A025]].
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
 
@@ -1482,6 +1570,9 @@ paths:
         
         Use this endpoint to retrieve a specific version of `CommunicationRequest`.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
 
         The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A024]].
@@ -1540,6 +1631,9 @@ paths:
         and service providing organisation.
 
         A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
 
@@ -1623,6 +1717,9 @@ paths:
         use [[HYPERLINK_A027]] instead. This option is only permissible 
         if the referrer has authorised the provider to convert the advice and guidance request into a referral. 
         
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1713,6 +1810,9 @@ paths:
         
         Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
         and guidance request into a referral.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1808,6 +1908,9 @@ paths:
         Use this endpoint, as a service provider, to record a triage outcome for the following referrals awaiting review:
           - referrals sent into a triage service
           - referrals deferred into a directly bookable service because of appointment slot unavailability
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1919,6 +2022,9 @@ paths:
         ## Overview
         Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -1981,6 +2087,9 @@ paths:
         This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
 
         Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -2072,6 +2181,9 @@ paths:
         transient; a future call for a different e-RS user, referral, or at a different point in time, 
         might result in a different set of actions, leading to potential failure flows.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
 
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -2136,6 +2248,9 @@ paths:
         into your bookable service and awaiting review.
 
         Note: this will also cancel the current appointment.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:

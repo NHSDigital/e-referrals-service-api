@@ -1,0 +1,20 @@
+in: query
+name: _include
+description: |
+  Suppliers must request includes they rely on. The default includes behaviour is subject to change. 
+
+  Please note that '_include' query parameter can be supplied multiple times for example:
+
+  `GET /STU3/Communication
+  ?based-on=CommunicationRequest/{ubrn}/_history/{version}
+  &_include=Communication:requester-practitionerrole:PractitionerRole
+  &_include=Communication:sender-practitionerrole:PractionerRole
+  &_include=Communication:content-reference:DocumentReference`
+required: false
+schema:
+  type: string
+  enum:
+    - Communication:requester-practitionerrole:PractitionerRole
+    - Communication:sender-practitionerrole:PractionerRole
+    - Communication:content-reference:DocumentReference
+  example: 'Communication:requester-practitionerrole:PractitionerRole'

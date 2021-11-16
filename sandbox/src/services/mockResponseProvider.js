@@ -269,4 +269,141 @@ module.exports = {
 
   },
 
+  getResponseForRetrieveAdviceAndGuidanceRequest: function (request) {
+    const ubrn = request.params.ubrn;
+    const version = request.params.version
+
+    // Scenario 1 - Minimum example
+    if (ubrn === '000000070000' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json', responseCode: 200 }
+    }
+
+    // Scenario 2 - With attachment file reference
+    if (ubrn === '000000070001' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json', responseCode: 200 }
+    }
+
+    return {}
+  },
+
+  getResponseForRetrieveAdviceAndGuidanceConversation: function (request) {
+    const basedOn = request.query["based-on"]
+
+    // Scenario 1 - Single message from referrer
+    if (basedOn === 'CommunicationRequest/000000070000/_history/1') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/SingleMessageFromReferrer.json', responseCode: 200, version: 1 }
+    }
+
+    // Scenario 2 - One message each way
+    if (basedOn === 'CommunicationRequest/000000070000/_history/2') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/OneMessageEachWay.json', responseCode: 200, version: 2 }
+    }
+
+    // Scenario 3 - Attachment present in each direction
+    if (basedOn === 'CommunicationRequest/000000070001/_history/6') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/AttachmentPresentInEachDirection.json', responseCode: 200, version: 6 }
+    }
+
+    // Scenario 4 -	Multi-way conversation
+    if (basedOn === 'CommunicationRequest/000000070002/_history/1') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/MultiWayConversation.json', responseCode: 200, version: 6 }
+    }
+
+    // Scenario 5 -	Attachment uploaded from RCS before A&G creation
+    if (basedOn === 'CommunicationRequest/000000070003/_history/7') {
+      return { responsePath: 'retrieveAdviceAndGuidanceConversation/AttachmentUploadedFromRCS.json', responseCode: 200, version: 7 }
+    }
+
+    return {}
+  },
+
+  getResponseForSendAdviceAndGuidanceResponse: function (request) {
+    var responseMap = {
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json': 'sendAdviceAndGuidanceResponse/responses/RequireFurtherInformation.json',
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json': 'sendAdviceAndGuidanceResponse/responses/ReturnToReferrerWithAdvice.json',
+      'src/mocks/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json': 'sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
+  getResponseForConvertAdviceAndGuidanceToReferral: function (request) {
+    var responseMap = {
+      'src/mocks/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json': 'convertAdviceAndGuidanceToReferral/responses/NoAttachments.json',
+      'src/mocks/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json': 'convertAdviceAndGuidanceToReferral/responses/WithAttachments.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
+  getResponseForRecordTriageOutcome: function (request) {
+    var responseMap = {
+      'src/mocks/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json': 'recordTriageOutcome/responses/ReturnToReferrerWithAdvice.json',
+      'src/mocks/recordTriageOutcome/requests/AcceptReferBookLater.json': 'recordTriageOutcome/responses/AcceptReferBookLater.json',
+      'src/mocks/recordTriageOutcome/requests/AttachmentIncluded.json': 'recordTriageOutcome/responses/AttachmentIncluded.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
+  getResponseForAcceptReferral: function (request) {
+
+    const ubrn = request.params.ubrn;
+
+    if (ubrn === '000000070000') {
+      return { responsePath: 'acceptReferral/responses/ExampleResponse.json', responseCode: 200 }
+    }
+    return {}
+
+  },
+
+  getResponseForRejectReferral: function (request) {
+    var responseMap = {
+      'src/mocks/rejectReferral/requests/BasicExampleIbs.json': 'rejectReferral/responses/ExampleResponseIbs.json',
+      'src/mocks/rejectReferral/requests/BasicExampleDbs.json': 'rejectReferral/responses/ExampleResponseDbs.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
+
+  getResponseForAvailableActionsForUserList: function (request) {
+
+    const focus = request.query['focus']
+    const intent = request.query['intent']
+    const status = request.query['status']
+
+    // Scenario 1 An "action" is available - Illustrate success response to caller
+    if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
+
+      return 'availableActionsForUserList/WithEntries.json'
+    }
+
+    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
+    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+
+      return 'availableActionsForUserList/Empty.json'
+    }
+
+
+  },
+
+  getResponseForCancelAppointmentActionLater: function (request) {
+    var responseMap = {
+      'src/mocks/cancelAppointmentActionLater/requests/MinimalExampleDBS.json': 'cancelAppointmentActionLater/responses/MinimalExampleDBS.json',
+      'src/mocks/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json': 'cancelAppointmentActionLater/responses/PriorityChangeAndWithAttachmentsDBS.json',
+      'src/mocks/cancelAppointmentActionLater/requests/MinimalExampleIBS.json': 'cancelAppointmentActionLater/responses/MinimalExampleIBS.json',
+    }
+
+    return mapExampleResponse(request, responseMap)
+
+
+  },
 }

@@ -17,7 +17,7 @@ info:
     ## Overview
     Use this API to create paperless referrals from primary to secondary care with the [e-Referral Service (e-RS)](https://digital.nhs.uk/services/e-referral-service).
 
-    As a primary care referrer, you can:
+    **As a primary care referrer, you can:**
 
       -	create a new e-referral
       - search for relevant patient services to create a shortlist
@@ -27,7 +27,7 @@ info:
       -	retrieve appointment slots and book appointments
       -	defer a booking to a provider if an appointment slot is unavailable
 
-    As a secondary care provider, you can:
+    **As a secondary care provider, you can:**
 
       -	access referrals as a worklist
       -	retrieve non-clinical information (meta-data) about the referral
@@ -37,11 +37,11 @@ info:
       -	retrieve Advice & Guidance (A&G) conversations and send responses
       -	convert Advice & Guidance (A&G) conversations into a referral
 
-    You cannot currently use this API to:
+    **You cannot use this API to:**
 
       -	get patient details – instead, use the [[HYPERLINK_PDS]]
 
-    You can access the following data:
+    **You can access the following data:**
 
       -	referral attachments
       -	referral letters
@@ -54,22 +54,25 @@ info:
 
     ### Access modes
     
-    ##### Users within the Health and Social Care Network (HSCN) who have smartcards
+    This API has two access modes:
 
-    This access mode is in production and [[HYPERLINK_STABLE]]. 
-    This access mechanism is documented on the older ['API Hub' documentation portal](https://developer.nhs.uk/apis/e-Referrals/getstarted_get_connected.html). 
-    Using this authentication mechanism allows full use of all e-RS endpoints. 
-    This access mode requires the creation of a professional session and selection of a role in order to authenticate.
+    | Access mode                   | Authentication via    | Functions               | Availability                    |
+    | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
+    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment) and [A007](#api-Default-a007-retrieve-clinical-information) | [Alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+    | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+
+    ##### Application-restricted, unattended access
+
+    This access mode has been introduced to allow a Partner application which has been [registered with us](https://portal.developer.nhs.uk/create-a-developer-account) and [authenticated via signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication) to interact with a subset of e-RS FHIR API endpoints in an unattended and read-only fashion.
+    Application-restricted, unattended access should only be used when authenticating a human user (for example via smartcard) is not possible.
     
-    ##### Users without access to the Health and Social Care Network (HSCN), or without access to smartcards
+    Writing changes (such as Create Referral) are not supported via this access mode.
 
-    e-RS has recently released a new solution which allows authentication over the internet, 
-    using [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/developer/api-catalogue/nhs-cis2). 
-    The documentation you are currently reading must be used when you wish to authenticate over the internet. 
-    Not every endpoint is available yet: we have only released the endpoints you see listed below in the Endpoints section below. 
-    This access mode requires the use of [[HYPERLINK_A030]] endpoint to authenticate. 
-    Please note that this is currently in [[HYPERLINK_BETA]], 
-    meaning we might make breaking changes, but only if we cannot avoid it.
+    ##### Healthcare worker, user-restricted access
+
+    This access mode allows Partner applications to access e-RS FHIR API endpoints by authenticating users with [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2).
+    
+    This access mode must be used for writing changes (such as Create Referral).
 
     ## Who can use this API
 
@@ -88,17 +91,22 @@ info:
 
     ## Related APIs
 
-    The following API also gives access to the e-referrals service (e-RS) data:
-
-      - [e-RS FHIR v2 API](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_catalogue.html) - this is deprecated and we plan to retire it. Do not integrate with this API
+    [HL7 V3 API](https://digital.nhs.uk/developer/api-catalogue/e-referral-service-hl7-v3) - this API allows you to manage appointment slots for a Patient Administration System (PAS). 
 
 
     ## API status and roadmap
 
-    The e-RS FHIR STU3 API is [[HYPERLINK_STABLE]], when accessed via HSCN network with a smartcard. 
+    ### Application-restricted, unattended access
 
-    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed via the internet 
-    using [[HYPERLINK_CIS2]]. There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
+    This access mode is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+
+    - it is available for testing in the Alpha environment only
+    - we might make breaking changes
+
+    ### Healthcare worker, user-restricted access
+
+    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed using [[HYPERLINK_CIS2]]. 
+    There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
     We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
     our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
 
@@ -120,79 +128,88 @@ info:
 
     ## Security and authorisation
 
-    For users with access to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network), 
-    access is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), 
-    meaning an end user must be present, authenticated and authorised.
+    ### Application-restricted, unattended access
 
-    The end user must also be:
+    This access mode is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate the calling application but not the end user.
+    
+    You can only use this access mode when authenticating a human user (for example via smartcard) is not possible.
+    
+    To use this access mode, use the following security pattern:
+    - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
 
-      -	a healthcare worker
-      -	strongly authenticated using an NHS smartcard
+    ###  Healthcare worker, user-restricted access
 
-    For more details see [Authentication and Authorisation](https://developer.nhs.uk/apis/e-Referrals/develop_business_flow_bf001.html).
+    This access mode is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present, authenticated and authorised.
 
-    If you wish to authenticate users without smartcards, access is still [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis) 
-    but uses the following security patterns instead:
+    The end user must be:
+    - present
+    - a healthcare worker
+    - strongly authenticated and authorised by [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)
 
-      -	[user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
-      -	[user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
-
+    To use this access mode, use one of the following security patterns:
+    - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
+    - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
+    
     ## Environments and testing
 
     | Environment       | Base URL                                                               |
     | ----------------- | ---------------------------------------------------------------------- |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals/FHIR` |
+    | Alpha             | See Alpha testing section below |
     | Integration test  | `https://int.api.service.nhs.uk/referrals/FHIR` |
-    | Production        | Not yet available |
+    | Production        | `https://api.service.nhs.uk/referrals/FHIR` |
 
     ### Sandbox testing
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-      -	is for early developer testing
-      -	only covers a limited set of scenarios
-      -	is stateless, so does not actually persist any updates
-      -	is open access, so does not allow you to test authorisation
+
+    Our [sandbox](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) environment:
+    -	is for developer education and early testing
+    -	only covers a limited set of scenarios
+    -	is stateless, so does not actually persist any updates
+    -	is open access, so does not allow you to test authorisation
 
     Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
 
     The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
 
+    ### Alpha testing
+
+    Our [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) environment:
+    -	is available for early developer testing of future functionality  
+    -	may experience breaking changes or downtime without advance notice, but only if we cannot avoid it
+    - can be accessed by contacting [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
+
     ### Integration testing
 
     Our integration test environment:
-
-      -	is for formal integration testing
-      - is where we will conduct witness testing for your application
+      -	is where the majority of your integration efforts will take place
+      - is where we conduct witness testing for your application
       -	is stateful, so data will be persisted
+
 
     ## Onboarding
 
-    You need to get your software approved by us before it can go live with this API. We call this onboarding. 
-    The onboarding process can sometimes be quite long, so it's worth planning well ahead.
+    You need to get your software approved by us before it can go live. We call this process onboarding. 
 
-    To onboard for this API, follow 
-    the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process).
-
-    When following the SCAL process, note that:
-
-    In step 1: to confirm your use case for this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) 
-    using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and 
-    discuss your use case with us.
-
-    In step 2: when requesting the SCAL, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly, 
-    they are responsible for solutions assurance of e-RS APIs.
-
-    In step 8: to organise witness testing of your solution, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
-    In step 11: when submitting your SCAL for review, please liaise with [functional.assurance@nhs.net](mailto:functional.assurance@nhs.net) directly.
-
-    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). 
-    You will need to provide your approved SCAL including an embedded Technical Conformance Certificate.
-
+    Onboarding essentially involves connecting to the Path-to-Live (PTL) environments, assuring your solution and going live, in accordance with the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process). 
+   
+    In order to pass through the onboarding process as efficiently as possible, it is worth planning ahead. 
+    
+    When following the general SCAL process, please note:
+    
+    In step 1: to use this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and discuss your use case with us. You must also register with the API Management team via [https://digital.nhs.uk/developer/getting-started](https://digital.nhs.uk/developer/getting-started) to register your application. 
+   
+    In step 2: to request a SCAL, please ensure you have discussed your solution with the Partners service via [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net), who will put you in touch with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) who are responsible for assurance of solutions that integrate with the e-RS FHIR API.
+   
+    In step 8: to organise witness testing of your solution, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
+    
+    In step 11: when submitting your SCAL for review, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
+    
+    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). You will need to have successfully passed witness testing with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) and obtained a Technical Conformance Certificate (TCC).
+    
     In step 13: to obtain the End User Organisation Acceptable Use Policy, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net).
-
-    In step 14: to request production access, you need to liaise with both [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net) (for all methods of access) and 
-    also [api.management@nhs.net](mailto:api.management@nhs.net) if your users are not on HSCN, using smartcards.
-
+    
+    In step 14: to request production access, send your completed SCAL and TCC to [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). To activate your application in production please [contact us](https://digital.nhs.uk/developer/help-and-support).
+    
 
   contact:
     url: 'https://digital.nhs.uk/developer/help-and-support'
@@ -217,6 +234,9 @@ paths:
 
         Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A021]].
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -234,13 +254,16 @@ paths:
         So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
 
         ## Related endpoints
+
+        To allow the patient to book their appointment in their own time, you can generate a letter for the patient by 
+        using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
+        patient may need to follow (e.g. appointment booking instructions).
+
         You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-
-        You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
 
       summary: A011 - Create referral
       operationId: a011-create-referral
@@ -277,6 +300,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -293,6 +318,9 @@ paths:
 
         Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services please use [[HYPERLINK_A011]].
         
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -314,6 +342,9 @@ paths:
         For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+        You can generate a letter for the patient by using [[HYPERLINK_A019]]. 
+        The letter summarises the current state of the referral and any steps the patient may need to follow.
 
       summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
@@ -346,6 +377,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
@@ -359,6 +392,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to find services that meet the referral needs of a patient.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -417,6 +453,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
         '429':
@@ -432,15 +470,23 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
-        
+
+        ## Supported security patterns
+        - Application-restricted, unattended access
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
+        ### Application-restricted access 
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
 
         ## Use case
-        As an authenticated user
+        As an authenticated user or application
 
         I need to retrieve e-RS reference data
 
@@ -466,8 +512,8 @@ paths:
       operationId: a004-retrieve-reference-data
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -487,6 +533,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve available appointment slots for a service.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -566,6 +615,9 @@ paths:
         
         Use this endpoint to retrieve a list of available e-RS roles (i.e. business functions) at each organisation where the user works.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
 
         In order to use this endpoint you must be an authenticated user
@@ -607,6 +659,9 @@ paths:
         
         Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
@@ -630,6 +685,7 @@ paths:
         | TIFF Image         | `.tif`, `.tiff`             |
         | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     |
         | MSWORD             | `.doc`, `.docx`             |
+        | DICOM              | `.dcm`                      |
 
         Currently, the maximum file size supported by e-RS is 5MB.
 
@@ -671,6 +727,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
         '429':
@@ -685,6 +743,9 @@ paths:
         ## Overview
         
         Use this endpoint to download a PDF format letter for the patient summarising the current state of their referral and any steps the patient may need to follow.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -733,8 +794,17 @@ paths:
         
         Use this endpoint to retrieve a file that is attached to a referral or advice request.
 
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
+      
+
         ## Pre-requisites
-        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        ### Application-restricted access
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
+        In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -772,8 +842,8 @@ paths:
       operationId: a006-retrieve-attachment
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/AttachmentLogicalID.yaml'
       responses:
@@ -801,9 +871,16 @@ paths:
         ## Overview
         Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
 
-        ## Pre-requisites
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
 
-        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        ## Pre-requisites
+        ### Application-restricted access
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
+        In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
@@ -812,7 +889,7 @@ paths:
 
         ## Use case
 
-        As an authenticated user
+        As an authenticated user or application
 
         I want to read details of a referral
 
@@ -848,8 +925,8 @@ paths:
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -876,6 +953,9 @@ paths:
         ## Overview
         
         Use this endpoint to retrieve a specific version of `ReferralRequest`.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
 
@@ -936,6 +1016,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1050,6 +1133,8 @@ paths:
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
           $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/maintainReferralLetter/422Response.yaml'
         '423':
@@ -1065,6 +1150,9 @@ paths:
       description: |
         ## Overview
         Use this endpoint to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1138,6 +1226,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/bookOrDeferAppointment/422Response.yaml'
         '423':
@@ -1159,7 +1249,15 @@ paths:
         
         Use this endpoint to generate a PDF file that summarises clinical information for a referral.
 
+        ## Supported security patterns
+        - Application-restricted access
+        - Healthcare worker, user-restricted access
+
         ## Pre-requisites
+        ### Application-restricted access 
+        In order to use this endpoint you must be an authenticated e-RS calling application.
+
+        ### Healthcare worker, user-restricted access
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
@@ -1181,7 +1279,7 @@ paths:
 
         ## Use case
 
-        As an authenticated user
+        As an authenticated user or application
 
         I need to retrieve a clinical information summary (in PDF format) associated with the referral
 
@@ -1194,8 +1292,8 @@ paths:
       operationId: a007-retrieve-clinical-information
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
       responses:
@@ -1219,7 +1317,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
+        Use this endpoint to retrieve available worklists of referral requests. Use [A023 - Retrieve advice and guidance request worklists](#api-Default-a023-retrieve-a&g-worklist) to retrieve available worklists of 
         advice and guidance requests. 
 
         Worklists provide lists of referral/advice requests that meet certain criteria, 
@@ -1231,6 +1329,9 @@ paths:
           The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
         
         There are currently no referral related worklists available for referring organisations.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1301,6 +1402,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
         '429':
@@ -1313,7 +1416,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [[HYPERLINK_A008]] to retrieve available worklists of referral requests.
+        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [A008 - Retrieve referral worklist](#api-Default-a008-retrieve-referral-worklist) to retrieve available worklists of referral requests.
 
         Worklists provide lists of referral/advice requests that meet certain criteria, typically where a user needs to be aware of something important, 
         or to undertake an action, in order to avoid delays to patient care.
@@ -1322,6 +1425,9 @@ paths:
         this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning.
 
         There are currently no advice and guidance related worklists available for referring organisations.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
 
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -1370,12 +1476,869 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'      
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/CommunicationRequest/{ubrn}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the summary of an advice and guidance request. This endpoint provides important 
+        contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc)
+
+        This does not include the actual advice and guidance conversation between the referrer and the service provider. 
+        The conversation can be retrieved via [[HYPERLINK_A025]].
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
+        For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the summary of an advice and guidance request
+
+        So I can understand all of the relevant context for the request.
+
+        ## Important note
+
+        The summary includes an indicator of whether the referrer has authorised the providing organisation to 
+        convert the advice and guidance request into an appointment request. 
+        If authorised, [[HYPERLINK_A027]] can be used to convert the advice and guidance request into an appointment request.
+
+        ## Related endpoints
+
+        After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                 |
+        | ------------------------------------------------------------------------ | ----------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`   |
+
+      summary: A024 - Retrieve advice and guidance request summary
+      operationId: a024-retrieve-advice-and-guidance
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /STU3/CommunicationRequest/{ubrn}/_history/{version}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        
+        Use this endpoint to retrieve a specific version of `CommunicationRequest`.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+
+        The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A024]].
+
+        Note: e-RS only supports the retrieval of the most recent version of `CommunicationRequest`. You cannot retrieve earlier versions.
+
+        ## Use case
+
+        See [[HYPERLINK_A005]].
+
+        ## Related endpoints
+
+        See [[HYPERLINK_A024]].
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                                 | Request                               |
+        | ------------------------------------------------------------------------ | ------------------------------------- |
+        | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
+        | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
+
+      summary: A024 - Retrieve advice and guidance request summary (versioned)
+      operationId: a024-retrieve-advice-and-guidance-versioned
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '422':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/Communication:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        Use this endpoint to retrieve the advice and guidance conversation between the referring organisation 
+        and service providing organisation.
+
+        A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
+        you may have identified the UBRN via [[HYPERLINK_A023]].
+
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will importantly include the latest version of the request which must be used.
+
+        ## Use case
+
+        As an authenticated user
+
+        I need to retrieve the conversation that is present on an advice and guidance request
+
+        So that I can review the conversation and potentially contribute further to it.
+
+        ## Important note
+
+        The conversation returned includes links to any attachments associated with the conversation.
+
+        ## Related endpoints
+
+        After using this endpoint:
+          - Use [[HYPERLINK_A006]] to retrieve any attachments associated with the advice and guidance request.
+          - (For service provider users) Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information.
+          - (For service provider users) Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so.
+
+        ## Sandbox test scenarios
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                                                       | Request                                                   |
+        | -------------------------------------------------------------- | --------------------------------------------------------- |
+        | Single message from referrer                                   | `based-on`=`CommunicationRequest/000000070000/_history/1` |
+        | One message each way                                           | `based-on`=`CommunicationRequest/000000070000/_history/2` |
+        | Attachment present in each direction                           | `based-on`=`CommunicationRequest/000000070001/_history/6` |
+        | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
+        | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
+
+      summary: A025 - Retrieve advice and guidance conversation
+      operationId: a025-retrieve-advice-and-guidance-conversation
+      parameters:
+        - $ref: 'components/schemas/queryParameters/BasedOn.yaml'
+        - $ref: 'components/schemas/queryParameters/Include-Communication.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/CommunicationRequest/{ubrn}/$ers.sendCommunicationToRequester:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to respond to an advice and guidance request your service provider organisation has received. 
+        You can either provide guidance back to the referrer or request further information from the referrer. 
+        This will return the advice and guidance request back to the referrer for action.
+
+        Note:  If you want to convert an advice and guidance request into a referral, 
+        and provide a final guidance response back to the referrer at the same time, please 
+        use [[HYPERLINK_A027]] instead. This option is only permissible 
+        if the referrer has authorised the provider to convert the advice and guidance request into a referral. 
+        
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request.
+
+        You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
+
+        If you want to include attachments with the response, you need to use [[HYPERLINK_A020]] so they are ready to be associated with the response.
+
+        ## Use case
+        As an authenticated user
+
+        I need to return an advice and guidance request back to the referrer with some guidance
+
+        So that I can progress the conversation regarding the patient's care.
+
+        ## Related endpoints
+
+        You can use [[HYPERLINK_A007]] to generate a PDF file that summarises 
+        the advice and guidance request and associated conversation.
+
+        You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
+
+        You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
+        
+      summary: A026 - Send advice and guidance response
+      operationId: a026-send-a&g-response
+      parameters:
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-SendCommunicationToRequester-Request-Parameters.yaml'
+            examples:
+              require-further-information:
+                summary: Require further information
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json'
+              return-to-referrer-with-advice:
+                summary: Return to referrer with advice
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json'
+              attachment-included:
+                summary: Attachment included
+                value:
+                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to:
+          - convert the advice and guidance request you have received into a referral, AND
+          - create a task for the service provider admin team to select/shortlist appropriate services for the patient, AND
+          - provide final guidance response details back to the referrer
+        
+        Note: This endpoint is only allowed to be used if the referrer has authorised the provider to convert the advice 
+        and guidance request into a referral.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+        This will include whether or not the referrer has authorised the provider to be able to convert an 
+        advice and guidance request into a referral, and thus dictate whether this endpoint can be used.
+
+        You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
+
+        If you want to include attachments with the admin task and/or the response to the referrer, 
+        you need to use [[HYPERLINK_A020]] so they are ready to be associated when this endpoint is called.
+
+        ## Use case
+        As an authenticated user
+
+        I need to convert an inbound advice and guidance request into a referral 
+        and task my admin team to shortlist appropriate services for the patient
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+
+        ## Important notes
+
+        When this endpoint is successfully used, an entry will be added to the service providers 
+        Appointments For Booking worklist for the admin team to action the task. The provider 
+        admin team will currently only be able to progress the referral via the e-RS Professional 
+        Application user interface (e.g. shortlisting appropriate services for the patient).
+
+        ## Related endpoints
+
+        You can use [[HYPERLINK_A005]] to retrieve the details of the referral.
+
+        You can use [[HYPERLINK_A024]] to retrieve the latest summary of the advice and guidance request.
+
+        You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
+
+        You can use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral/advice request.
+
+        You can use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral.
+        
+      summary: A027 - Convert advice and guidance request to referral
+      operationId: a027-convert-a&g-to-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters.yaml'
+            examples:
+              no-attachments:
+                summary: No attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json'
+              with-attachments:
+                summary: With attachments
+                value:
+                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json'
+      responses:
+        '201':
+          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/201Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.recordReviewOutcome:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to record a triage outcome for the following referrals awaiting review:
+          - referrals sent into a triage service
+          - referrals deferred into a directly bookable service because of appointment slot unavailability
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
+        [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
+        booked into bookable services.
+
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Appointment Slot Issues' worklist. 
+        This provides a list of referrals that have been deferred into directly bookable services.
+
+          - Referrals from this worklist may already have been reviewed or may not have any referral clinical information associated, 
+          in which case [[HYPERLINK_A028]] cannot be used.
+          - [[HYPERLINK_A028]] can only be used for those referrals, on the 'Appointment Slot Issues' worklist, which are pending review.
+          - As such, you need to use [[HYPERLINK_A029]] to determine if [[HYPERLINK_A028]] is a permissible action.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        If you want to include attachments with the triage outcome, you need to use [[HYPERLINK_A020]] so 
+        they are ready to be associated when this endpoint is called.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to return the referral back to the referrer with some advice
+
+        So that I can progress the patient's care appropriately with the referrer.
+
+
+        As an authenticated user
+
+        I need to accept the referral and task my admin team to shortlist appropriate services for the patient
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+
+
+        ## Important notes
+
+          - The only outcomes that are supported by this endpoint are 'Return to referrer with advice' and 'Accept and refer/book later'. 'Refer/book now' is not supported.
+          - The triage comment text is mandatory. This comment provided will be sent to:
+            - The initial referrer when the 'Return to referrer with advice' triage outcome is chosen.
+            - An administrator at the receiving service provider when the 'Accept and refer/book later' outcome is chosen.
+          - The priority of the referral can be changed as part of recording the triage outcome
+          - When this endpoint is successfully used for recording an outcome of 'Accept and refer/book later', 
+          an entry will be added to the service providers Appointments For Booking worklist for the admin team to action the task. 
+          The provider admin team will only be able to progress the referral via the e-RS Professional Application user 
+          interface (e.g. shortlisting appropriate services for the patient).
+        
+      summary: A028 - Record triage outcome
+      operationId: a028-record-triage-outcome
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-RecordReviewOutcome-Parameters.yaml'
+            examples:
+              return-to-referrer-with-advice:
+                summary: Return to referrer with advice
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json'
+              accept-refer-book-later:
+                summary: Accept refer book later
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/AcceptReferBookLater.json'
+              attachment-included:
+                summary: Attachment included
+                value:
+                  $ref: 'components/examples/recordTriageOutcome/requests/AttachmentIncluded.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/recordTriageOutcome/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/recordTriageOutcome/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
+        booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to accept an inbound referral after its review
+
+        So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
+        
+      summary: A013 - Accept referral
+      operationId: a013-accept-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/acceptReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '422':
+          $ref: 'components/schemas/responses/acceptReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+  /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
+        This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
+
+        Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
+        be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to reject an inbound referral back to the referrer after its review with an explanation of why
+
+        So that the referrer can address the reason for rejection and progress the referral appropriately.
+        
+      summary: A014 - Reject referral
+      operationId: a014-reject-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-RejectReferral-Parameters.yaml'
+            examples:
+              basic-example-ibs:
+                summary: Basic example for IBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleIbs.json'
+              basic-example-dbs:
+                summary: Basic example for DBS
+                value:
+                  $ref: 'components/examples/rejectReferral/requests/BasicExampleDbs.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/rejectReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/rejectReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml' 
+        '504':
+          $ref: 'components/schemas/responses/rejectReferral/504Response.yaml'  
+  /STU3/Task:
+    get:
+      security:
+        - bearerAuth: [ ]
+      description: |
+        ## Overview
+        This endpoint allows an authenticated e-RS user to check ahead of of performing an action, 
+        whether or not the action is permitted. This endpoint performs a search for available and 
+        supported actions that can be *currently* performed, by the the *current* e-RS user on a *specific* 
+        referral. When a permitted action is returned, the e-RS user could immediately attempt to 
+        perform a permitted action.
+
+        You SHOULD NOT cache the list of available user actions returned because this endpoint 
+        gives the *current* actions for the *current* e-RS user, for the referral in context and is therefore, 
+        transient; a future call for a different e-RS user, referral, or at a different point in time, 
+        might result in a different set of actions, leading to potential failure flows.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+
+        You should obtain a UBRN before using this endpoint, as the current UBRN version is required
+
+        ## Use case
+
+        As an authenticated user
+
+        I want to know what actions I might currently perform on a referral prior to attempting to do so
+
+        So that I can review my options, and do not try to persist a prohibited action
+
+        ## Related endpoints
+
+        To retrieve pertinent details relating to a referral:
+          - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
+          - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
+            - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
+
+        ## Sandbox test scenarios
+
+        You can test the following scenarios in our sandbox environment
+        
+        | Scenario                         | Request                 |
+        | -------------------------------- | ----------------------- |
+        | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
+
+      summary: A029 - Available actions for user list
+      operationId: a029-available-actions-for-user-list
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/queryParameters/Focus.yaml'
+        - $ref: 'components/schemas/queryParameters/Intent.yaml'
+        - $ref: 'components/schemas/queryParameters/TaskStatus.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/availableActionsForUserList/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/availableActionsForUserList/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'  
+  /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+        Use this endpoint, as a service provider, to task your admin team to rebook/redirect a referral that is booked 
+        into your bookable service and awaiting review.
+
+        Note: this will also cancel the current appointment.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `SERVICE_PROVIDER_CLINICIAN`
+        
+        You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A022]] can 
+        only be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+        You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+        You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+        You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+        If you want to include attachments with the admin task, you need to use [[HYPERLINK_A020]] so they are 
+        ready to be associated when this endpoint is called.
+
+        ## Use cases
+        As an authenticated user
+
+        I need to task my admin team to rebook/redirect a referral I have reviewed (whilst also cancelling the current appointment)
+
+        So that I can progress the patient's care along the most appropriate referral pathway.
+        
+        ## Important notes
+          - The priority of the referral can be changed as part of this endpoint.
+          - A comment must be added to explain to the administrator what is required and can include optional attachments.
+          - The current appointment is cancelled as part of this endpoint . If the current appointment is booked to an indirectly 
+            bookable service, you must indicate whether the appointment has been cancelled on the local provider system. 
+            If indicated as not cancelled, the referral will be added to the 'Indirectly Booked Appointments to Cancel in PAS' 
+            worklist to task the admin team to do so.
+          - When this endpoint is successfully used, an entry will be added to the service providers 'Appointments For Booking' 
+            worklist for the admin team to action the task. The provider admin team will only be able to progress the referral 
+            via the e-RS Professional Application user interface (e.g. shortlisting appropriate services for the patient).
+
+      summary: A022 - Cancel appointment, action later
+      operationId: a022-cancel-appointment-action-later
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-cancelAppointmentActionLater-Parameters.yaml'
+            examples:
+              basic-example-dbs:
+                summary: Basic example for DBS
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleDBS.json'
+              example-priority-change-and-attachments:
+                summary: Example for priority change and attachments
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json'
+              basic-example-ibs:
+                summary: Basic example for IBS
+                value:
+                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleIBS.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/cancelAppointmentActionLater/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/cancelAppointmentActionLater/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml' 
 components:
   securitySchemes:
     bearerAuth:

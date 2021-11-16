@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-SendCommunicationToRequester-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "guidanceOutcome",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceResponseOutcome-1",
+        "code": "RETURN_TO_REFERRER_WITH_ADVICE"
+      }
+    },
+    {
+      "name": "guidanceIntendedRecommendation",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-GuidanceIntendedRecommendation-1",
+        "code": "ADVICE_ONLY_NO_REFERRAL_RECOMMENDED"
+      }
+    },
+    {
+      "name": "guidance",
+      "valueString": "No evidence of serious problem: patient can be advised to xxx"
+    },
+    {
+      "name": "updatedPriority",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code": "ROUTINE"
+      }
+    }
+  ]
+}

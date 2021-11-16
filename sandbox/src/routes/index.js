@@ -16,6 +16,15 @@ const bookOrDeferAppointment = require('./bookOrDeferAppointment')
 const retrieveClinicalInformation = require('./retrieveClinicalInformation')
 const retrieveWorklist = require('./retrieveWorklist')
 const retrieveAdviceAndGuidanceWorklist = require('./retrieveAdviceAndGuidanceWorklist')
+const retrieveAdviceAndGuidanceRequest = require('./retrieveAdviceAndGuidanceRequest')
+const retrieveAdviceAndGuidanceConversation = require('./retrieveAdviceAndGuidanceConversation')
+const sendAdviceAndGuidanceResponse = require('./sendAdviceAndGuidanceResponse')
+const convertAdviceAndGuidanceToReferral = require('./convertAdviceAndGuidanceToReferral')
+const recordTriageOutcome = require('./recordTriageOutcome')
+const acceptReferral = require('./acceptReferral')
+const rejectReferral = require('./rejectReferral')
+const availableActionsForUserList = require('./availableActionsForUserList')
+const cancelAppointmentActionLater = require('./cancelAppointmentActionLater')
 
 const routes = [].concat(
   getStatus,
@@ -35,7 +44,16 @@ const routes = [].concat(
   bookOrDeferAppointment,
   retrieveClinicalInformation,
   retrieveWorklist,
-  retrieveAdviceAndGuidanceWorklist
+  retrieveAdviceAndGuidanceWorklist,
+  retrieveAdviceAndGuidanceRequest,
+  retrieveAdviceAndGuidanceConversation,
+  sendAdviceAndGuidanceResponse,
+  convertAdviceAndGuidanceToReferral,
+  recordTriageOutcome,
+  acceptReferral,
+  rejectReferral,
+  availableActionsForUserList,
+  cancelAppointmentActionLater
 )
 
 module.exports = routes

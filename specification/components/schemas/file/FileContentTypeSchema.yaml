@@ -41,3 +41,6 @@ application/msword:
 application/vnd.openxmlformats-officedocument.wordprocessingml.document:
   schema:
     $ref: 'StringBinarySchema.yaml'
+application/dicom:
+  schema:
+    $ref: 'StringBinarySchema.yaml'

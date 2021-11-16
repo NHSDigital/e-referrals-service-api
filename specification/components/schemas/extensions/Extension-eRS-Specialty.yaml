@@ -1,0 +1,29 @@
+title: Extension-eRS-Specialty
+description: Extension to supply the specialty
+type: object
+required:
+  - url
+  - valueCoding
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Specialty-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Specialty-1'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+      - display
+    properties:
+      system:
+        type: string
+        example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+      code:
+        type: string
+        example: 'CARDIOLOGY'
+      display:
+        type: string
+        example: 'Cardiology'
+

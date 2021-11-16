@@ -1,0 +1,288 @@
+title: eRS-CreateFromCommunicationRequestActionLater-Request-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `createFrom`                      | `1..1`      |                                            |
+      | `guidance`                        | `1..1`      |                                            |
+      | `newReferralPriority`             | `1..1`      |                                            | 
+      | `reviewComments`                  | `1..1`      |                                            |
+      | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text | 
+      | `reviewAttachmentFile`            | `0..*`      | Property defining files to be associated with the created `ReferralRequest` | 
+    items:
+      anyOf:
+        - title: createFrom
+          description: Parameter to supply a createFrom
+          type: object
+          required:
+            - name
+            - valueReference
+          properties:
+            name:
+              type: string
+              enum:
+                - createFrom
+              example: 'createFrom'
+            valueReference:
+              type: object
+              required:
+                - reference
+              properties:
+                reference:
+                  type: string
+                  example: CommunicationRequest/000000070000/_history/4
+        - title: guidance
+          description: Parameter to supply the guidance
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - guidance
+              example: 'guidance'
+            valueString:
+              type: string
+              example: 'I have converted this to send the patient to one of our services'
+        - title: newReferralPriority
+          description: Parameter to supply a newReferralPriority
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - newReferralPriority
+              example: 'newReferralPriority'
+            valueCoding:
+              $ref: 'codings/Priority.yaml'
+        - title: reviewComments
+          description: Parameter to supply the reviewComments
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - reviewComments
+              example: 'reviewComments'
+            valueString:
+              type: string
+              example: Refer this patient to our 'xxx' service please as soon as possible
+        - title: guidanceAttachmentFile
+          description: Parameter to supply a guidanceAttachmentFile
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - guidanceAttachmentFile
+              example: 'guidanceAttachmentFile'
+            resource:
+              title: DocumentReference
+              description: 'A reference to a document'
+              type: object
+              required:
+                - meta
+                - resourceType
+                - type
+                - status
+                - indexed
+                - content
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - profile
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                        example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                resourceType:
+                  type: string
+                  enum:
+                    - DocumentReference
+                  example: 'DocumentReference'
+                type:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - system
+                          - code
+                        properties:
+                          system:
+                            type: string
+                            enum:
+                              - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                            example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                          code:
+                            type: string
+                            enum:
+                              - GUIDANCE_RESPONSE
+                            example: GUIDANCE_RESPONSE
+                status:
+                  type: string
+                  enum:
+                    - current
+                  example: current
+                indexed:
+                  type: string
+                  format: date-time
+                  example: '2021-04-22T10:00:00.000Z'
+                description:
+                  type: string
+                  nullable: true
+                  example: 'upload png'
+                content:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - attachment
+                    properties:
+                      attachment:
+                        title: 'A reference to an already created Attachment (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+                        type: object
+                        required:
+                          - url
+                        properties:
+                          url:
+                            type: string
+                            example: 'Binary/att-70000-70001'
+        - title: reviewAttachmentFile
+          description: Parameter to supply a reviewAttachmentFile
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - reviewAttachmentFile
+              example: 'reviewAttachmentFile'
+            resource:
+              title: DocumentReference
+              description: 'A reference to a document'
+              type: object
+              required:
+                - meta
+                - resourceType
+                - type
+                - status
+                - indexed
+                - content
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - profile
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                        example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1'
+                resourceType:
+                  type: string
+                  enum:
+                    - DocumentReference
+                  example: 'DocumentReference'
+                type:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - system
+                          - code
+                        properties:
+                          system:
+                            type: string
+                            enum:
+                              - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                            example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1'
+                          code:
+                            type: string
+                            enum:
+                              - PROVIDER
+                            example: PROVIDER
+                status:
+                  type: string
+                  enum:
+                    - current
+                  example: current
+                indexed:
+                  type: string
+                  format: date-time
+                  example: '2021-04-22T10:00:00.000Z'
+                description:
+                  type: string
+                  nullable: true
+                  example: 'upload png'
+                content:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - attachment
+                    properties:
+                      attachment:
+                        title: 'A reference to an already created Attachment (http://hl7.org/fhir/stu3/datatypes.html#Attachment)'
+                        type: object
+                        required:
+                          - url
+                        properties:
+                          url:
+                            type: string
+                            example: 'Binary/att-70000-70002'
+

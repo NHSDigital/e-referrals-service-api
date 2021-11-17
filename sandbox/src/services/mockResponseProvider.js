@@ -387,11 +387,16 @@ module.exports = {
     // Scenario 1 An "action" is available - Illustrate success response to caller
     if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
 
-      return 'availableActionsForUserList/WithEntries.json'
+      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
     }
 
-    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
     if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+
+          return 'availableActionsForUserList/WithCreateAppointment.json'
+        }
+
+    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
+    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
 
       return 'availableActionsForUserList/Empty.json'
     }

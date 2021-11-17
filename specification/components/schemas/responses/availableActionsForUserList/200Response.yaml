@@ -9,10 +9,14 @@ content:
     schema:
       $ref: '../../TaskBundle.yaml'
     examples:
-      with-entries:
-        summary: With entries
+      with-record-review-outcome:
+        summary: With Record Review Outcome
         value:
-          $ref: '../../../examples/availableActionsForUserList/WithEntries.json'
+          $ref: '../../../examples/availableActionsForUserList/WithRecordReviewOutcome.json'
+      with-create-appointment:
+        summary: With Create Appointment
+        value:
+          $ref: '../../../examples/availableActionsForUserList/WithCreateAppointment.json'
       empty:
         summary: Empty
         value:

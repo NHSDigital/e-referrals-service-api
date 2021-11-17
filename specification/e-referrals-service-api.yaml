@@ -217,6 +217,8 @@ info:
   license:
     name: MIT
 servers:
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-145/FHIR'
+    description: Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/referrals/FHIR'
@@ -2188,6 +2190,8 @@ paths:
 
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
 
         You should obtain a UBRN before using this endpoint, as the current UBRN version is required
 
@@ -2205,15 +2209,17 @@ paths:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
           - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
             - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
+            - Use [[HYPERLINK_A016]] to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
 
         ## Sandbox test scenarios
 
         You can test the following scenarios in our sandbox environment
         
-        | Scenario                         | Request                 |
-        | -------------------------------- | ----------------------- |
-        | An "action" is available         | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | No "action" is available         | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | Scenario                             | Request                 |
+        | ------------------------------------ | ----------------------- |
+        | "Record Review Outcome" is available | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Create Appointment" is available    | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | No "action" is available             | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
 
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list

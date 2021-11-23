@@ -9,12 +9,13 @@ module.exports = [
     path: '/FHIR/STU3/Binary',
     config: {
       payload: {
+        maxBytes: 5242880, //5MB
         parse: false,
         // https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-9016 lists currently supported file types
         allow: ['text/plain', 'text/html', 'application/pdf', 'text/xml', 'text/rtf',
           'audio/basic', 'audio/mpeg', 'image/png', 'image/gif', 'image/jpeg',
           'image/tiff', 'video/mpeg', 'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/dicom']
       }
     },
     handler: (request, h) => {

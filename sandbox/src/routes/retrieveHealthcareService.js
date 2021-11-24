@@ -24,8 +24,8 @@ module.exports = [
         handler: retrieveHealthcareService
     },
     {
-        method: 'GET',
-        path: '/FHIR/R4/HealthcareService/{serviceId}/_history/{version}',
+        method: 'HEAD',
+        path: '/FHIR/R4/HealthcareService/{serviceId}',
         handler: retrieveHealthcareService
     }
 ]

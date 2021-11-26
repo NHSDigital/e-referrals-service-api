@@ -265,7 +265,11 @@ module.exports = {
       'src/mocks/retrieveWorklist/requests/MinimalReferralsForReview.json': 'retrieveWorklist/responses/ReferralsForReview.json',
       'src/mocks/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json': 'retrieveWorklist/responses/AppointmentSlotIssues.json',
       'src/mocks/retrieveWorklist/requests/FilteringBySpecialty.json': 'retrieveWorklist/responses/FilteredBySpecialty.json',
-      'src/mocks/retrieveWorklist/requests/FilteringByClinician.json': 'retrieveWorklist/responses/FilteredByClinician.json'
+      'src/mocks/retrieveWorklist/requests/FilteringByClinician.json': 'retrieveWorklist/responses/FilteredByClinician.json',
+      'src/mocks/retrieveWorklist/requests/MinimalRejectedTriageResponse.json': 'retrieveWorklist/responses/RejectedTriageResponse.json',
+      'src/mocks/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json': 'retrieveWorklist/responses/AssessmentReturnedCancelledDna.json',
+      'src/mocks/retrieveWorklist/requests/MinimalAwaitingBooking.json': 'retrieveWorklist/responses/AwaitingBooking.json',
+      'src/mocks/retrieveWorklist/requests/MinimalLettersOutstanding.json': 'retrieveWorklist/responses/LettersOutstanding.json'
     }
 
     return mapExampleResponse(request, responseMap)

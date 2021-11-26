@@ -1,0 +1,15 @@
+title: referralCreated
+type: object
+required:
+  - url
+  - valueDateTime
+properties:
+  url:
+    type: string
+    enum:
+      - referralCreated
+    example: referralCreated
+  valueDateTime:
+    type: string
+    format: date-time
+    example: '2021-11-24T14:46:01.001Z'

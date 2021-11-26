@@ -1317,50 +1317,81 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of referral requests. Use [A023 - Retrieve advice and guidance request worklists](#api-Default-a023-retrieve-a&g-worklist) to retrieve available worklists of 
-        advice and guidance requests. 
+        Use this endpoint to retrieve available worklists of referral requests. Service Providers can use [A023 - Retrieve advice and guidance request worklists](#api-Default-a023-retrieve-a&g-worklist) to retrieve available worklists of 
+        advice and guidance requests. There are currently no worklists of advice and guidance requests for Referrers.
 
         Worklists provide lists of referral/advice requests that meet certain criteria, 
         typically where a user needs to be aware of something important, or to undertake an action, in order to avoid delays to patient care.
 
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Referring Organisations
+        Referring organisations can currently access the following referral related worklists:
+          - The 'Letters Outstanding' worklist contains referrals which require a referral letter to be added.
+          - The 'Rejected / Triage Response' worklist contains referrals which have had an appointment rejected or have been returned to the referrer with a response as part of a triage outcome.
+          - The 'Assessment Returned / Cancelled / DNA" worklist contains referrals which have a clinical assessment outcome of 'advise referrer' recorded, or referrals which have been cancelled by someone outside the initial referring organisation, or referrals where the patient did not attend the appointment booking and the provider has returned the referral back to the referrer for action.
+          - The 'Awaiting Booking' worklist contains referrals for which an appointment booking could be made but they do not currently have an appointment booking. This includes referrals that are currently awaiting triage, deferred to provider, or have had their appointment booking cancelled.
+        
+        Filters can be used in requests for service provider organisation worklists, however, filters cannot be used in requests for referring organisation worklists.
+
+        ### Pre-requisites
+        In order to use this endpoint and retrieve the referring organisation worklists, you must be an authenticated e-RS user and use one of the following e-RS roles:
+          - `REFERRING_CLINICIAN`
+          - `REFERRING_CLINICIAN_ADMIN`
+          - `REFERRING_ADMIN`
+        
+        ### Use case
+        As an authenticated e-RS user
+        
+        I need to retrieve a referral worklist for my referring organisation
+        
+        So that I can determine which referrals I need to take further action on
+
+        ### Related endpoints
+        To retrieve pertinent details relating to a referral:
+          - Use [[HYPERLINK_A005]] to retrieve the details of the referral
+          - Use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral
+          - Use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral
+
+        You can use [[HYPERLINK_A029]] to determine what endpoints an authenticated user is permitted to use for a referral in it's current state.
+
+        ## Service Providing Organisations
         Service provider organisations can currently access the following referral related worklists:
           - The 'Referrals for Review' worklist contains booked and RAS (triage) referrals that require review by the service provider organisation
           - The 'Appointment Slot Issues' worklist contains referrals which have been 'deferred to provider' because of a lack of appointment availability (e.g. no appointment slots). 
           The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
         
-        There are currently no referral related worklists available for referring organisations.
+        Filters can be used in requests for service provider organisation worklists.
 
-        ## Supported security patterns
-        - Healthcare worker, user-restricted access
-
-        ## Pre-requisites
-        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        ### Pre-requisites
+        In order to use this endpoint to retrieve service provider organisation worklists, you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_ADMIN`
         
-        ## Use case
+        ### Use case
         As an authenticated user
 
-        I need to retrieve a referral worklist
+        I need to retrieve a referral worklist for my service providing organisation
 
         So that I can determine which referrals I need to take further action on
 
-        ## Related endpoints
+        ### Related endpoints
 
         To retrieve pertinent details relating to a referral:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral
           - Use [[HYPERLINK_A006]] to retrieve the clinical attachments for a referral
           - Use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral
 
-        For reviewing booked referrals on the 'Referrals for review' worklist:
+        For service providing organisations reviewing booked referrals on the 'Referrals for review' worklist:
           - Use [[HYPERLINK_A013]] to accept a referral into a bookable service
           - Use [[HYPERLINK_A014]] to reject a referral from a bookable service
           - Use [[HYPERLINK_A022]] to request an admin team to rebook or redirect a referral
 
-        For reviewing triage (RAS) referrals on the 'Referrals for review' worklist:
+        For service providing organisations reviewing triage (RAS) referrals on the 'Referrals for review' worklist:
           - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
 
-        For reviewing referrals that have been deferred to provider on the 'Appointment slot issues' worklist:
+        For service providing organisations reviewing referrals that have been deferred to provider on the 'Appointment slot issues' worklist:
           - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
 
       summary: A008 - Retrieve referral worklist
@@ -1393,6 +1424,22 @@ paths:
                 summary: Filter by clinician
                 value:
                   $ref: 'components/examples/retrieveWorklist/requests/FilteringByClinician.json'
+              rejected-triage-responses:
+                summary: Rejected Triage Responses
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalRejectedTriageResponse.json'
+              assessment-returned-cancelled-dna:
+                summary: Assessment Returned Cancelled DNA
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json'
+              awaiting-booking:
+                summary: Awaiting Booking
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAwaitingBooking.json'
+              letters-outstanding:
+                summary: Letters Outstanding
+                value:
+                  $ref: 'components/examples/retrieveWorklist/requests/MinimalLettersOutstanding.json'
       responses:
         '200':
           $ref: 'components/schemas/responses/retrieveWorklist/200Response.yaml'

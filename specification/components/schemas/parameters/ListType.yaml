@@ -42,6 +42,10 @@ properties:
                     enum:
                      - REFERRALS_FOR_REVIEW
                      - APPOINTMENT_SLOT_ISSUES
+                     - REJECTED_TRIAGE_RESPONSE
+                     - ASSESSMENT_RETURNED_CANCELLED_DNA
+                     - AWAITING_BOOKING
+                     - LETTERS_OUTSTANDING
                     example: 'REFERRALS_FOR_REVIEW'
               - title: eRS-CommunicationListSelector
                 type: object

@@ -25,4 +25,19 @@ content:
         summary: Filtered by clinician
         value:
           $ref: '../../../examples/retrieveWorklist/responses/FilteredByClinician.json'
-
+      rejected-triage-responses:
+        summary: Rejected Triage Responses
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/RejectedTriageResponse.json'
+      assessment-returned-cancelled-dna:
+        summary: Assessment Returned Cancelled DNA
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/AssessmentReturnedCancelledDna.json'
+      awaiting-booking:
+        summary: Awaiting Booking
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/AwaitingBooking.json'
+      letters-outstanding:
+        summary: Letters Outstanding
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/LettersOutstanding.json'

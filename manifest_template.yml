@@ -30,6 +30,11 @@ INTERNAL_DEV_VARIANTS:
 - alpha
 - rc
 - fix
+- fti
+- ftiv
+- ftv
+- ftix
+- ftxxii
 
 ---
 

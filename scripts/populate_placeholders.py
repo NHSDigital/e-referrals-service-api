@@ -35,6 +35,7 @@ def main():
         "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](#api-Default-a028-record-triage-outcome)",
         "[[HYPERLINK_A029]]": "[A029 - Available actions for user list](#api-Default-a029-available-actions-for-user-list)",
         "[[HYPERLINK_A030]]": "[A030 - Retrieve e-RS business functions](#api-Default-a030-retrieve-business-functions)",
+        "[[HYPERLINK_A034]]": "[A034 - Update Appointment](#api-Default-a034-update-appointment)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",
         "[[HYPERLINK_BETA]]": "[beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

@@ -107,6 +107,24 @@ properties:
                     type: string
                     nullable: true
                     example: 'Provider Converted Advice and Guidance, Admin to Refer'
+              - type: object
+                title: eRS-Cancellation-Reason
+                required:
+                  - system
+                  - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                    example: '_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON'
+                  code:
+                    type: string
+                    example: 'PATIENT_HOLIDAY'
+                  display: 
+                    type: string
+                    nullable: true
+                    example: 'Patient on holiday'
   description:
     type: string
     enum:

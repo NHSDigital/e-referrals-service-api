@@ -242,6 +242,15 @@ module.exports = {
 
   },
 
+  putExampleResponseForUpdateAppointment: function (request) {
+    const appointmentId = request.params.appointmentId;
+    // Scenario 1 - Minimum Booking Update for Cancellation example
+    if (appointmentId == 11000) {
+      return { responsePath: 'updateAppointment/responses/MinimalBookingUpdateForCancel.json', responseCode: 200 }
+    }
+    return {}
+  },
+
   getExampleResponseForRetrieveClinicalInformation: function () {
     return { responsePath: 'retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf', filename: '000000070000_Clinical_Information_Summary_20210706114852.pdf', responseCode: 200 }
   },

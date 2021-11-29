@@ -13,6 +13,7 @@ const retrieveAttachment = require('./retrieveAttachment')
 const retrieveReferralRequest = require('./retrieveReferralRequest')
 const maintainReferralLetter = require('./maintainReferralLetter')
 const bookOrDeferAppointment = require('./bookOrDeferAppointment')
+const updateAppointment = require('./updateAppointment')
 const retrieveClinicalInformation = require('./retrieveClinicalInformation')
 const retrieveWorklist = require('./retrieveWorklist')
 const retrieveAdviceAndGuidanceWorklist = require('./retrieveAdviceAndGuidanceWorklist')
@@ -46,6 +47,7 @@ const routes = [].concat(
   retrieveReferralRequest,
   maintainReferralLetter,
   bookOrDeferAppointment,
+  updateAppointment,
   retrieveClinicalInformation,
   retrieveWorklist,
   retrieveAdviceAndGuidanceWorklist,

@@ -27,14 +27,19 @@ APIGEE_ENVIRONMENTS:
   quota: '7800'
 
 INTERNAL_DEV_VARIANTS:
-- alpha
-- rc
-- fix
-- fti
-- ftiv
-- ftv
-- ftix
-- ftxxii
+- name: alpha
+- name: rc
+- name: fix
+- name: ft01
+  service: fti
+- name: ft04
+  service: ftiv
+- name: ft05
+  service: ftv
+- name: ft09
+  service: ftix
+- name: ft22
+  service: ftxxii
 
 ---
 
@@ -56,18 +61,18 @@ apigee:
   - name: {{ ENV.name }}
     products:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - name: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
           - name: access
             value: public
           - name: ratelimit
             value: {{ ENV.ratelimit | default('5ps') }}
-        description: {{ DESCRIPTION }} ({{ VARIANT }})
-        displayName: {{ TITLE }} {{ VARIANT }}
+        description: {{ DESCRIPTION }} ({{ VARIANT.name }})
+        displayName: {{ TITLE }} {{ VARIANT.name }}
         environments: [ {{ ENV.name }} ]
         proxies:
-          - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+          - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
           - identity-service-{{ ENV.name }}
         scopes:
           - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
@@ -81,11 +86,11 @@ apigee:
         path: e-referrals-service-api.json
     api_catalog:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
         anonAllowed: true
         description: {{ DESCRIPTION }}
         requireCallbackUrl: {{ ENV.require_callback_url | default(true) }}
-        title: {{ TITLE }} ({{ VARIANT }})
+        title: {{ TITLE }} ({{ VARIANT.name }})
         visibility: {{ portal_visibility }}
         specId: {{ NAME }}
 {% endfor %}

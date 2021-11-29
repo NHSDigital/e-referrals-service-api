@@ -30,9 +30,6 @@ INTERNAL_DEV_VARIANTS:
 - alpha
 - rc
 - fix
-- ft
-
-ERS_FT_ENVS:
 - ft01
 - ft04
 - ft05
@@ -70,12 +67,8 @@ apigee:
         displayName: {{ TITLE }} {{ VARIANT }}
         environments: [ {{ ENV.name }} ]
         proxies:
-          - identity-service-{{ ENV.name }}
-{% for FT in ERS_FT_ENVS if VARIANT == 'ft' %}
-          - e-referrals-service-api-{{ FT }}-{{ ENV.name }}
-{% else %}
           - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
-{% endfor %}
+          - identity-service-{{ ENV.name }}
         scopes:
           - 'urn:nhsd:apim:app:level3:e-referrals-service-api'
           - 'urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api'

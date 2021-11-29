@@ -43,36 +43,36 @@ extends:
         post_deploy:
         - template: templates/ers-smoke.yml
       - environment: internal-dev
-        service_name: ${{ variables.service_name }}-ft01
-        short_service_name: ${{ variables.short_service_name }}-ft01
+        service_name: ${{ variables.service_name }}-fti
+        short_service_name: ${{ variables.short_service_name }}-fti
         service_base_path: ${{ variables.service_base_path }}-ft01
         stage_name: ers_ft01_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8443
       - environment: internal-dev
-        service_name: ${{ variables.service_name }}-ft04
-        short_service_name: ${{ variables.short_service_name }}-ft04
+        service_name: ${{ variables.service_name }}-ftiv
+        short_service_name: ${{ variables.short_service_name }}-ftiv
         service_base_path: ${{ variables.service_base_path }}-ft04
         stage_name: ers_ft04_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8444
       - environment: internal-dev
-        service_name: ${{ variables.service_name }}-ft05
-        short_service_name: ${{ variables.short_service_name }}-ft05
+        service_name: ${{ variables.service_name }}-ftv
+        short_service_name: ${{ variables.short_service_name }}-ftv
         service_base_path: ${{ variables.service_base_path }}-ft05
         stage_name: ers_ft05_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8445
       - environment: internal-dev
-        service_name: ${{ variables.service_name }}-ft09
-        short_service_name: ${{ variables.short_service_name }}-ft09
+        service_name: ${{ variables.service_name }}-ftix
+        short_service_name: ${{ variables.short_service_name }}-ftix
         service_base_path: ${{ variables.service_base_path }}-ft09
         stage_name: ers_ft09_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8446
       - environment: internal-dev
-        service_name: ${{ variables.service_name }}-ft22
-        short_service_name: ${{ variables.short_service_name }}-ft22
+        service_name: ${{ variables.service_name }}-ftxxii
+        short_service_name: ${{ variables.short_service_name }}-ftxxii
         service_base_path: ${{ variables.service_base_path }}-ft22
         stage_name: ers_ft22_pr
         jinja_templates:

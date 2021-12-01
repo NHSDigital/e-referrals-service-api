@@ -446,7 +446,8 @@ module.exports = {
 
   getExampleResponseForChangeShortlist: function (request) {
     var responseMap = {
-      'src/mocks/changeShortlist/requests/UnbookedReferral.json': 'changeShortlist/responses/UnbookedReferral.json'
+      'src/mocks/changeShortlist/requests/UnbookedReferral.json': 'changeShortlist/responses/UnbookedReferral.json',
+      'src/mocks/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'changeShortlist/responses/UnbookedReferralMultipleServices.json'
     }
 
     return mapExampleResponse(request, responseMap)

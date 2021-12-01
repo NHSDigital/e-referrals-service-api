@@ -13,7 +13,12 @@ content:
     examples:
       unbookedReferralRequest:
           summary: Unbooked ReferralRequest
-          description: Changing the service list of an unbooked `ReferralRequest`
+          description: Changing the shortlist of an unbooked `ReferralRequest` (single service shortlist)
           value:
             $ref: '../../../examples/changeShortlist/responses/UnbookedReferral.json'
+      unbookedReferralRequestMultipleServices:
+          summary: Unbooked ReferralRequest with Multiple Services
+          description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
+          value:
+            $ref: '../../../examples/changeShortlist/responses/UnbookedReferralMultipleServices.json'
 

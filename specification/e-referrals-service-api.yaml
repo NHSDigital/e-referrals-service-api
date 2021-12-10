@@ -261,7 +261,7 @@ paths:
 
         You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
-        For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [A012 - Maintain referral letter](https://developer.nhs.uk/apis/e-Referrals/explore_endpoint_a012.html).
+        For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
 
@@ -1317,7 +1317,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of referral requests. Use [A023 - Retrieve advice and guidance request worklists](#api-Default-a023-retrieve-a&g-worklist) to retrieve available worklists of 
+        Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
         advice and guidance requests. 
 
         Worklists provide lists of referral/advice requests that meet certain criteria, 
@@ -1416,7 +1416,7 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [A008 - Retrieve referral worklist](#api-Default-a008-retrieve-referral-worklist) to retrieve available worklists of referral requests.
+        Use this endpoint to retrieve available worklists of advice and guidance requests. Use [[HYPERLINK_A008]] to retrieve available worklists of referral requests.
 
         Worklists provide lists of referral/advice requests that meet certain criteria, typically where a user needs to be aware of something important, 
         or to undertake an action, in order to avoid delays to patient care.

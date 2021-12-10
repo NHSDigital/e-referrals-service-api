@@ -27,8 +27,8 @@ module.exports = [
         return validationResult
       }
 
-      const filename = request.headers['x-ers-xapi-meta-file_name']
-      const ubrn = request.headers['x-ers-xapi-meta-intended_ubrn']
+      const filename = request.headers['nhsd-ers-file-name']
+      const ubrn = request.headers['nhsd-ers-referral-id']
 
       // Simply checking if file content is provided along with filename and ubrn header
       if (request.payload && request.payload.length != 0 && filename && ubrn) {

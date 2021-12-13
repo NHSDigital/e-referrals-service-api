@@ -30,7 +30,6 @@ extends:
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
-    product_description: ${{ variables.product_description }}
     enable_status_monitoring: true
     manual_approval_env: manual-approval-ptl
     apigee_deployments:

@@ -89,6 +89,9 @@
   </PreFlow>
   <HTTPTargetConnection>
     <SSLInfo>
+{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %}
+      <TrustStore>ref://e-referral-service-ca</TrustStore>
+{% endif %}
       <Enabled>true</Enabled>
     </SSLInfo>
     <LoadBalancer>

@@ -27,9 +27,19 @@ APIGEE_ENVIRONMENTS:
   quota: '7800'
 
 INTERNAL_DEV_VARIANTS:
-- alpha
-- rc
-- fix
+- name: alpha
+- name: rc
+- name: fix
+- name: ft01
+  service: fti
+- name: ft04
+  service: ftiv
+- name: ft05
+  service: ftv
+- name: ft09
+  service: ftix
+- name: ft22
+  service: ftxxii
 
 ACCESS_MODES:
   - name: healthcare-worker
@@ -60,7 +70,7 @@ apigee:
     products:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
 {% for MODE in ACCESS_MODES %}
-      - name: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}{{ MODE.nameSuffix }}
+      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
           - name: access
@@ -68,10 +78,10 @@ apigee:
           - name: ratelimit
             value: {{ ENV.ratelimit | default('5ps') }}
         description: {{ MODE.description }}
-        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT }} )
+        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
         environments: [ {{ ENV.name }} ]
         proxies:
-          - e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}
+          - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
           - identity-service-{{ ENV.name }}
         scopes: {{ MODE.scopes }}
         quota: {{ ENV.quota | default('300') }}
@@ -85,11 +95,11 @@ apigee:
     api_catalog:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
 {% for MODE in ACCESS_MODES %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT }}-{{ ENV.name }}{{ MODE.nameSuffix }}
+      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         anonAllowed: true
-        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} - {{ VARIANT }} environment
+        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} - {{ VARIANT.name }} environment
         requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
-        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT }} )
+        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
         visibility: {{ portal_visibility }}
         specId: {{ NAME }}
 {% endfor %}

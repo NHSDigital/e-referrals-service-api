@@ -2,7 +2,7 @@ from .environment import ENV
 
 # API Details
 ENVIRONMENT = ENV["environment"]
-BASE_URL = f"https://{ENVIRONMENT}.api.service.nhs.uk"
+BASE_URL = f"https://api.service.nhs.uk" if ENVIRONMENT == "prod" else f"https://{ENVIRONMENT}.api.service.nhs.uk"
 STATUS_ENDPOINT_API_KEY = ENV["status_endpoint_api_key"]
 
 # e-RS

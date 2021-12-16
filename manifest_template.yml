@@ -48,7 +48,12 @@ ACCESS_MODES:
     scopes: ['urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api']
     requireCallbackUrl: true
     description: User restricted
-
+  - name: application-restricted
+    nameSuffix: -application-restricted
+    displayName: Application Restricted
+    scopes: ['urn:nhsd:apim:app:level3:e-referrals-service-api']
+    requireCallbackUrl: false
+    description: Application Restricted
 
 ---
 

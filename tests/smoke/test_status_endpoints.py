@@ -1,26 +1,25 @@
 import pytest
 from pytest_check import check
 import requests
-from configuration import config
 from jsonpath_rw import parse
 
 @pytest.mark.smoke_test
 class TestStatusEndpoints:
 
-    def test_ping_endpoint(self):
+    def test_ping_endpoint(self, service_url):
         response = requests.get(
-            f"{config.BASE_URL}/{config.ERS_BASE_PATH}/_ping"
+            f"{service_url}/_ping"
         )
         with check:
             assert response.status_code == 200, (
                 f"UNEXPECTED RESPONSE: "
                 f"Actual response status code = {response.status_code}"
             )
-            
-    def test_status_endpoint(self):
+
+    def test_status_endpoint(self, service_url, status_endpoint_api_key):
         response = requests.get(
-            f"{config.BASE_URL}/{config.ERS_BASE_PATH}/_status",
-            headers = {"apikey": config.STATUS_ENDPOINT_API_KEY}
+            f"{service_url}/_status",
+            headers = {"apikey": status_endpoint_api_key}
         )
         with check:
             assert response.status_code == 200, (

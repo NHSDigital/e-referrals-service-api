@@ -40,8 +40,12 @@ extends:
         stage_name: ers_alpha_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--alpha
+          ALLOW_ECHO_TARGET: true
         post_deploy:
-        - template: templates/ers-smoke.yml
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-fti
         short_service_name: ${{ variables.short_service_name }}-fti

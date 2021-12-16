@@ -40,9 +40,11 @@ flake8 = "^3.7.9"
 black = "^19.10b0"
 pip-licenses = "^2.0.1"
 jinja2 = "^2.11.1"
-
+pytest = "^6.1.2"
+pytest-asyncio = "^0.14.0"
+api-test-utils = {url = "https://github.com/NHSDigital/apim-test-utils/releases/download/v1.1.11-alpha/api_test_utils-1.1.11a0-py3-none-any.whl"}
 
 [tool.poetry.scripts]
 
 [tool.pytest.ini_options]
-markers = ["smoke_test"]
+markers = ["smoke_test", "integration_test"]

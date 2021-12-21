@@ -89,7 +89,7 @@ extends:
       depends_on:
       - manual_approval_int
     - environment: prod
-      stage_name: ers_prod_release
+      stage_name: prod #revert to ers_prod_release when monitoring stack fixed to support it.
       post_deploy:
       - template: templates/ers-smoke.yml
       depends_on:

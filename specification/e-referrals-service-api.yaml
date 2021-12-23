@@ -2365,7 +2365,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
 
-        You should obtain a UBRN before using this endpoint, as the current UBRN version is required
+        You should obtain a `Unique Booking Reference Number` (UBRN) before using this endpoint, as the current UBRN version is required
 
         ## Use case
 
@@ -2381,7 +2381,7 @@ paths:
           - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
           - Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
             - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
-            - Use [[HYPERLINK_A016]] to book an appointment to a service if an appointment slot is available or defer booking if no appointment slot is available.
+            - Use [[HYPERLINK_A016]] to Book, or if unable, Defer, an appointment to a specific service on the current shortlist.
 
         ## Sandbox test scenarios
 

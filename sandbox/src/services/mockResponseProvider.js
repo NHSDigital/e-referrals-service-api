@@ -464,7 +464,7 @@ module.exports = {
   
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
       var responseMap = {
-        'src/mocks/changeShortlistAndSendForTriage/requests/Parameters.json': 'changeShortlistAndSendForTriage/responses/TriageCreated.json'
+        'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
       }
 
       return mapExampleResponse(request, responseMap)

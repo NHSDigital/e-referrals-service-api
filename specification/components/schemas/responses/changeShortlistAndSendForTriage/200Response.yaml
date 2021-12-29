@@ -15,5 +15,5 @@ content:
           summary: TriagedReferralRequest
           description: Changing the service list of an unbooked `ReferralRequest` and send for Triage
           value:
-            $ref: '../../../examples/changeShortlistAndSendForTriage/responses/TriageCreated.json'
+            $ref: '../../../examples/changeShortlistAndSendForTriage/responses/MinimalRequest.json'
 

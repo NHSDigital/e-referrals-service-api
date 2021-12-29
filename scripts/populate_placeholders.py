@@ -35,6 +35,8 @@ def main():
         "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](#api-Default-a028-record-triage-outcome)",
         "[[HYPERLINK_A029]]": "[A029 - Available actions for user list](#api-Default-a029-available-actions-for-user-list)",
         "[[HYPERLINK_A030]]": "[A030 - Retrieve e-RS business functions](#api-Default-a030-retrieve-business-functions)",
+        "[[HYPERLINK_A031]]": "[A031 - Change Shortlist](#api-Default-a031-change-shortlist)",
+        "[[HYPERLINK_A032]]": "[A032 - Change Shortlist and Send for Triage](#api-Default-a032-change-shortlist-and-send-for-triage)",
         "[[HYPERLINK_A033]]": "[A033 - Retrieve Healthcare Service](#api-Default-a033-retrieve-healthcare-service)",
         "[[HYPERLINK_A035]]": "[A035 - Search for Healthcare Services](#api-Default-a035-search-for-healthcare-services)",
 	"[[HYPERLINK_A037]]": "[A037 - Retrieve Healthcare Service Version](#api-Default-a037-retrieve-healthcare-service-version)",

@@ -3,7 +3,7 @@ const businessFunctionValidator = require('../services/businessFunctionValidator
 
 module.exports = [
     /**
-     * Sandbox implementation for the changeShortlist Endpoint
+     * Sandbox implementation for the changeShortlistAndSendForTriage endpoint
      */
     {
         method: 'POST',

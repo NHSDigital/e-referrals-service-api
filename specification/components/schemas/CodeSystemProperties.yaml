@@ -11,11 +11,10 @@ description: |
   | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON                               |
   | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON                               |
   | Usage                                    | APPOINTMENT-CANCELLATION-REASON                               |
-  | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON / REQUEST-CANCELLATION-REASON |
-  | BusinessFunction                         | APPOINTMENT-CANCELLATION-REASON / REQUEST-CANCELLATION-REASON |
-  | CanCancelAppointment                     | REQUEST-CANCELLATION-REASON                                   |
-  | ProviderUsage                            | REQUEST-CANCELLATION-REASON                                   |
-  | ReferrerUsage                            | REQUEST-CANCELLATION-REASON                                   |
+  | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
+  | BusinessFunction                         | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
+  | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                   |
+  | ReferrerUsage                            | REFERRAL-CANCELLATION-REASON                                   |
   
 type: array
 items:
@@ -29,5 +28,4 @@ items:
     - $ref: 'properties/CommentIsMandatory.yaml'
     - $ref: 'properties/BusinessFunction.yaml'
     - $ref: 'properties/CanCancelAppointment.yaml'
-    - $ref: 'properties/ProviderUsage.yaml'
     - $ref: 'properties/ReferrerUsage.yaml'

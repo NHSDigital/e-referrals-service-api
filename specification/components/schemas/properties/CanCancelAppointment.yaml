@@ -1,5 +1,5 @@
 title: CanCancelAppointment
-description: This will only be returned when codeSystemType is REQUEST-CANCELLATION-REASON
+description: This will only be returned when codeSystemType is REFERRAL-CANCELLATION-REASON
 type: object
 required:
   - code

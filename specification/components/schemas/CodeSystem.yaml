@@ -19,7 +19,7 @@ properties:
      - SPECIALTY
      - APPOINTMENT-CANCELLATION-REASON
      - CLINIC-TYPE
-     - REQUEST-CANCELLATION-REASON
+     - REFERRAL-CANCELLATION-REASON
     example: 'SPECIALTY'
   meta:
     type: object

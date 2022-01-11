@@ -11,7 +11,7 @@
 	"link": [
 		{
 			"relation": "self",
-			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070001/_history/6&intent=proposal&status=ready"
+			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070004/_history/6&intent=proposal&status=ready"
 		}
 	],
 	"entry": []

@@ -2222,7 +2222,9 @@ paths:
         | ------------------------------------ | ----------------------- |
         | "Record Review Outcome" is available | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
         | "Create Appointment" is available    | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | No "action" is available             | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Change Shortlist" is available      | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Change Shortlist and Send for Triage" is available      | `focus`=`ReferralRequest/000000070003/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | No "action" is available             | `focus`=`ReferralRequest/000000070004/_history/6`, `intent`=`proposal`, `status`=`ready` |
 
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list

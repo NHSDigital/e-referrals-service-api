@@ -11,7 +11,7 @@
 	"link": [
 		{
 			"relation": "self",
-			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070001/_history/6&intent=proposal&status=ready"
+			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070003/_history/6&intent=proposal&status=ready"
 		}
 	],
 	"entry": [
@@ -28,14 +28,14 @@
         "status": "ready",
         "intent": "proposal",
         "focus": {
-          "reference": "ReferralRequest/000000070001/_history/6"
+          "reference": "ReferralRequest/000000070003/_history/6"
         },
         "code": {
           "coding": [
             {
               "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1",
-              "code": "CREATE_APPOINTMENT",
-              "display": "Create Appointment"
+              "code": "CHANGE_SHORTLIST_AND_SEND_FOR_TRIAGE",
+              "display": "Change Shortlist and Send for Triage"
             }
           ]
         }

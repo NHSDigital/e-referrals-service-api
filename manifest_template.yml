@@ -91,8 +91,10 @@ apigee:
 {% endfor %}
 {% endfor %}
     specs:
-      - name: {{ NAME }}
+{% for VARIANT in INTERNAL_DEV_VARIANTS %}
+      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
         path: e-referrals-service-api.json
+{% endfor %}
     api_catalog:
 {% for VARIANT in INTERNAL_DEV_VARIANTS %}
 {% for MODE in ACCESS_MODES %}
@@ -102,7 +104,7 @@ apigee:
         requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
         title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
         visibility: {{ portal_visibility }}
-        specId: {{ NAME }}
+        specId: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
 {% endfor %}
 {% endfor %}
 {% else %}

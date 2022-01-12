@@ -195,8 +195,44 @@ properties:
                                   items:
                                     $ref: '../schemas/codings/Priority.yaml'
                         - $ref: './extensions/worklists/Extension-WorklistItem-Specialty.yaml' 
-                        - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
-                        - $ref: './extensions/worklists/Extension-WorklistItem-NamedClinician.yaml'
+                        - title: patient
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - patient
+                              example: 'patient'
+                            valueReference:
+                              type: object
+                              required:
+                                - reference
+                              properties:
+                                reference:
+                                  type: string
+                                  example: '#Patient-9462979626'
+                        - title: namedClinician
+                          type: object
+                          required: 
+                            - url
+                            - valueReference
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - namedClinician
+                              example: 'namedClinician'
+                            valueReference:
+                              type: object
+                              required:
+                                - reference
+                              properties:
+                                reference:
+                                  type: string
+                                  example: '#Practitioner-021600556514'
                         - title: eReferralPathwayStart
                           type: object
                           required: 
@@ -634,7 +670,23 @@ properties:
                               type: string
                               format: date-time
                               example: '2021-09-01T14:26:18.314Z'
+                        - title: adviceLastUpdated
+                          type: object
+                          required: 
+                            - url
+                            - valueDateTime
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - adviceLastUpdated
+                              example: 'adviceLastUpdated'
+                            valueDateTime:
+                              type: string
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
                         - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Service.yaml'
                         - $ref: './extensions/worklists/Extension-WorklistItem-ClinicType.yaml'
               - title: Extension-eRS-RejectedTriageResponse-WorkListItem
                 type: object
@@ -686,23 +738,25 @@ properties:
                                 - coding
                               properties:
                                 coding:
-                                  type: object
-                                  required:
-                                    - system
-                                    - code
-                                    - display
-                                  properties:
-                                    system:
-                                      type: string
-                                      enum:
-                                        - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                      example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                    code:
-                                      type: string
-                                      example: FURTHER_INFORMATION_REQUIRED
-                                    display:
-                                      type: string
-                                      example: Further Information Required
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                      - display
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                      code:
+                                        type: string
+                                        example: FURTHER_INFORMATION_REQUIRED
+                                      display:
+                                        type: string
+                                        example: 'Further information required'
               - title: 'Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem'
                 type: object
                 required:
@@ -753,23 +807,25 @@ properties:
                                   - coding
                                 properties:
                                   coding:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                      - display
-                                    properties:
-                                      system:
-                                        type: string
-                                        enum:
-                                          - _baseurl_/STU3/CodeSystem/REQUEST-CANCELLATION-REASON
-                                        example: _baseurl_/STU3/CodeSystem/REQUEST-CANCELLATION-REASON
-                                      code:
-                                        type: string
-                                        example: INTEND_PRIVATE
-                                      display:
-                                        type: string
-                                        example: Intend to go private
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: INTEND_PRIVATE
+                                        display:
+                                          type: string
+                                          example: Patient intends to go private
               - title: 'Extension-eRS-AwaitingBooking-WorklistItem'
                 type: object
                 required:
@@ -820,23 +876,25 @@ properties:
                                   - coding
                                 properties:
                                   coding:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                      - display
-                                    properties:
-                                      system:
-                                        type: string
-                                        enum:
-                                          - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                        example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                      code:
-                                        type: string
-                                        example: PATIENT_APPOINTMENT_CLASH
-                                      display:
-                                        type: string
-                                        example: Patient Appointment Clash
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: PATIENT_APPOINTMENT_CLASH
+                                        display:
+                                          type: string
+                                          example: Patient - Clashes with another appointment
               - title: Extension-eRS-LettersOutstanding-WorklistItem
                 type: object
                 required:
@@ -857,7 +915,7 @@ properties:
                       | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                                        |
                       | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                                               |
                       | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                                               |
-                      | `letterDue`                    | `1..1`      | The `dateTime` a referral letter is due for the `ReferralRequest`                                                                            |
+                      | `letterDue`                    | `1..1`      | The `date` a referral letter is due for the `ReferralRequest`                                                                            |
                     type: array
                     items:
                       anyOf:
@@ -870,14 +928,14 @@ properties:
                           type: object
                           required:
                             - url
-                            - valueDateTime
+                            - valueDate
                           properties:
                             url:
                               type: string
                               enum:
                                 - letterDue
                               example: letterDue
-                            valueDateTime:
+                            valueDate:
                               type: string
-                              format: date-time
-                              example: '2021-11-24T14:46:01.001Z'
+                              format: date
+                              example: '2021-11-24'

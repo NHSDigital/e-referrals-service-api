@@ -1447,8 +1447,10 @@ paths:
         - bearerAuth: [ ]
       description: |
         ## Overview
-        Use this endpoint to retrieve available worklists of referral requests. Use [[HYPERLINK_A023]] to retrieve available worklists of 
-        advice and guidance requests. There are currently no worklists of advice and guidance requests for Referrers.
+
+        Use this endpoint to retrieve available worklists of referral requests. 
+        Service Providers can use [[HYPERLINK_A023]] to retrieve available worklists of advice and guidance requests. 
+        There are currently no worklists of advice and guidance requests for Referrers.
 
         Worklists provide lists of referral/advice requests that meet certain criteria, 
         typically where a user needs to be aware of something important, or to undertake an action, in order to avoid delays to patient care.
@@ -1460,7 +1462,7 @@ paths:
         Referring organisations can currently access the following referral related worklists:
           - The 'Letters Outstanding' worklist contains referrals which require a referral letter to be added.
           - The 'Rejected / Triage Response' worklist contains referrals which have had an appointment rejected or have been returned to the referrer with a response as part of a triage outcome.
-          - The 'Assessment Returned / Cancelled / DNA" worklist contains referrals which have a clinical assessment outcome of 'advise referrer' recorded, or referrals which have been cancelled by someone outside the initial referring organisation, or referrals where the patient did not attend the appointment booking and the provider has returned the referral back to the referrer for action.
+          - The 'Assessment Returned / Cancelled / DNA' worklist contains referrals which have a clinical assessment outcome of 'advise referrer' recorded, or referrals which have been cancelled by someone outside the initial referring organisation, or referrals where the patient did not attend the appointment booking and the provider has returned the referral back to the referrer for action.
           - The 'Awaiting Booking' worklist contains referrals for which an appointment booking could be made but they do not currently have an appointment booking. This includes referrals that are currently awaiting triage, deferred to provider, or have had their appointment booking cancelled.
         
         Filters can be used in requests for service provider organisation worklists, however, filters cannot be used in requests for referring organisation worklists.
@@ -1472,7 +1474,7 @@ paths:
           - `REFERRING_ADMIN`
         
         ### Use case
-        As an authenticated e-RS user
+        As an authenticated user
         
         I need to retrieve a referral worklist for my referring organisation
         

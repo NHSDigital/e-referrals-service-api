@@ -59,20 +59,8 @@
                   "coding": [
                     {
                       "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-                      "code": "APPOINTMENT_CANCELLED_BY_PATIENT",
-                      "display": "Appointment Cancelled by Patient"
-                    }
-                  ]
-                }
-              },
-              {
-                "url": "reason",
-                "valueCodeableConcept": {
-                  "coding": [
-                    {
-                      "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
-                      "code": "PATIENT_APPOINTMENT_CLASH",
-                      "display": "Patient Appointment Clash"
+                      "code": "NOT_BOOKED",
+                      "display": "Not booked"
                     }
                   ]
                 }
@@ -136,8 +124,20 @@
                   "coding": [
                     {
                       "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-                      "code": "APPOINTMENT_CANCELLED_BY_PATIENT",
-                      "display": "Appointment Cancelled by Patient"
+                      "code": "APP_CANCELLED_BY_PATIENT",
+                      "display": "Appointment cancelled by patient"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "reason",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+                      "code": "PATIENT_HOLIDAY",
+                      "display": "Patient on holiday"
                     }
                   ]
                 }

@@ -51,7 +51,7 @@
               },
               {
                 "url": "letterDue",
-                "valueDateTime": "2021-09-03T14:19:04.702Z"
+                "valueDate": "2021-09-03"
               }
             ],
             "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1"

@@ -70,7 +70,7 @@
                 "valueCodeableConcept": {
                   "coding": [
                     {
-                      "system": "_baseurl_/STU3/CodeSystem/REQUEST-CANCELLATION-REASON",
+                      "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
                       "code": "FURTHER_INFORMATION_REQUIRED",
                       "display": "Further Information Required"
                     }

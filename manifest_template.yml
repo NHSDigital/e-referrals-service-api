@@ -83,6 +83,7 @@ apigee:
         proxies:
           - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
           - identity-service-{{ ENV.name }}
+          - identity-service-mock-{{ ENV.name }}
         scopes: {{ MODE.scopes }}
         quota: {{ ENV.quota | default('300') }}
         quotaInterval: '1'
@@ -123,6 +124,10 @@ apigee:
           - identity-service-{{ ("%s-int" | format(ENV.name)) if ENV.name == 'internal-qa' else ENV.name }}
 {% if ENV.name == 'int' %}
           - identity-service-int-no-smartcard
+          - identity-service-mock-{{ ENV.name }}
+{% endif %}
+{% if ENV.name == 'internal-qa' %}
+          - identity-service-mock-{{ ENV.name }}
 {% endif %}
         scopes: {{ MODE.scopes }}
         quota: {{ ENV.quota | default('300') }}

@@ -121,12 +121,13 @@ apigee:
         environments: [ {{ ENV.name }} ]
         proxies:
           - e-referrals-service-api-{{ ENV.name }}
-          - identity-service-{{ ("%s-int" | format(ENV.name)) if ENV.name == 'internal-qa' else ENV.name }}
+          - identity-service-{{ ENV.name }}
 {% if ENV.name == 'int' %}
           - identity-service-int-no-smartcard
           - identity-service-mock-{{ ENV.name }}
 {% endif %}
 {% if ENV.name == 'internal-qa' %}
+          - identity-service-{{ ENV.name }}-int
           - identity-service-mock-{{ ENV.name }}
 {% endif %}
         scopes: {{ MODE.scopes }}

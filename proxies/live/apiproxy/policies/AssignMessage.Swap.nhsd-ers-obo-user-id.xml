@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-obo-user-id">
+    <Set>
+        <Headers>
+            <Header name="x-ers-obo-user-id">{message.header.nhsd-ers-obo-user-id}</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="nhsd-ers-obo-user-id"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
+</AssignMessage>

@@ -27,6 +27,7 @@ clean:
 publish: clean copy-examples
 	mkdir -p build
 	npm run publish 2> /dev/null
+	poetry run python scripts/validate_oas_examples.py
 
 copy-examples:
 	scripts/copy_examples_from_sandbox.sh
@@ -48,11 +49,9 @@ release: clean publish build-proxy
 	mkdir -p dist
 	cp -r build/. dist
 	cp -R tests dist
-	
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-dev-sandbox.yml
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-qa-sandbox.yml
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
-
 	cp pyproject.toml dist/pyproject.toml
 
 test:

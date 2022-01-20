@@ -208,7 +208,7 @@ properties:
                     $ref: identifiers/ErsSchedule.yaml
                 actor:
                   type: array
-                  minItems: 2
+                  minItems: 1
                   maxItems: 2
                   items:
                     type: object

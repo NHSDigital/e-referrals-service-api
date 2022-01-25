@@ -547,7 +547,7 @@ paths:
         Note that the "deferToProviderContactDays" and "triageContactDays" values are dynamic, and may change independently from one another, so the above calculation is for illustration purposes only.
 
         You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]] and [[HYPERLINK_A038]].
-
+        
         Documentation for other endpoints will reference this endpoint, where specific reference data is required.
         
         ## Sandbox test scenarios
@@ -3153,7 +3153,7 @@ paths:
 
         ## Use case
 
-        As an authenticated user or application
+        As an authenticated user
 
         I want to read details of an appointment
 
@@ -3259,14 +3259,14 @@ paths:
 
         | Scenario                                                                                                  | Request                                |
         | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-        | `Appointment` booked to directly-bookable service                                                         | `appointmentId`=`70001`, `version`=`5` |
-        | `Appointment` booked to indirectly-bookable service                                                       | `appointmentId`=`70002`, `version`=`5` |
-        | `Appointment` deferred to service provider for booking                                                    | `appointmentId`=`70003`, `version`=`5` |
-        | `Appointment` sent for triage                                                                             | `appointmentId`=`70004`, `version`=`5` |
-        | `Appointment` triage response (Record Triage Outcome)                                                     | `appointmentId`=`70005`, `version`=`5` |
-        | `Appointment` Cancel Appointment, Action Later                                                            | `appointmentId`=`70006`, `version`=`5` |
-        | `Appointment` cancelled                                                                                   | `appointmentId`=`70007`, `version`=`5` |
-        | `Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service     | `appointmentId`=`70008`, `version`=`5` |
+        | `Appointment` booked to directly-bookable service                                                         | `appointmentId`=`70000`, `version`=`5` |
+        | `Appointment` booked to indirectly-bookable service                                                       | `appointmentId`=`70001`, `version`=`5` |
+        | `Appointment` deferred to service provider for booking                                                    | `appointmentId`=`70002`, `version`=`5` |
+        | `Appointment` sent for triage                                                                             | `appointmentId`=`70003`, `version`=`5` |
+        | `Appointment` triage response (Record Triage Outcome)                                                     | `appointmentId`=`70004`, `version`=`5` |
+        | `Appointment` Cancel Appointment, Action Later                                                            | `appointmentId`=`70005`, `version`=`5` |
+        | `Appointment` cancelled                                                                                   | `appointmentId`=`70006`, `version`=`5` |
+        | `Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service     | `appointmentId`=`70007`, `version`=`5` |
 
       summary: A038 - Retrieve appointment (versioned)
       operationId: a038-retrieve-appointment-versioned

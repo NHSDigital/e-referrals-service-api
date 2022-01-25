@@ -15,6 +15,12 @@
       }
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1",
+      "valueReference": {
+        "reference": "Appointment/70009"
+      }
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
       "valueDateTime": "2021-10-07T15:00:18.561Z"
     },

@@ -1,0 +1,52 @@
+{
+  "id": "70002",
+  "meta": {
+    "versionId": "1",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "proposed",
+  "reason": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+          "code": "NO_SLOTS_AT_SERVICE"
+        }
+      ]
+    }
+  ],
+  "description": "e-Referral Appointment",
+  "created": "2022-02-24T14:13:36.636Z",
+  "comment": "Slot unavailable",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070002/_history/8"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "50"
+        },
+        "display": "Direct SVC 1"
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "1000000001"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

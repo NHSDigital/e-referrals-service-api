@@ -391,7 +391,7 @@ module.exports = {
       return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
     }
     else if (ubrn === '000000070001') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json', responseCode: 200 }
+      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppointment.json', responseCode: 200 }
     }
     return {}
   },
@@ -510,12 +510,12 @@ module.exports = {
       const id = request.params.id;
       const version = request.params.version
 
-      // Scenario 1 - ooked to directly-bookable service
+      // Scenario 1 - Booked to directly-bookable service
       if (id === '70000' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
       }
 
-      // Scenario 2 - ooked to indirectly-bookable service
+      // Scenario 2 - Booked to indirectly-bookable service
       if (id === '70001' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
       }
@@ -545,7 +545,7 @@ module.exports = {
         return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
       }
 
-      // Scenario 8 -	CConverted from A and G and Booked to DBS
+      // Scenario 8 -	Converted from A and G and Booked to DBS
       if (id === '70007' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
       }

@@ -16,4 +16,4 @@ content:
       example-response-cancelled-referral-booking:
         summary: Example Cancelled Referral with Booking
         value:
-          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json'
+          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferralWithAppointment.json'

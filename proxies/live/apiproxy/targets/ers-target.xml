@@ -10,10 +10,10 @@
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
     <FaultRule name="spike_arrest_fault">
-       <Step>
-            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
-       </Step>
-       <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+      <Step>
+        <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+      </Step>
+      <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
@@ -27,7 +27,7 @@
         <Name>SpikeArrest</Name>
       </Step>
       <Step>
-       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
         <Name>SpikeArrest.Binary</Name>
       </Step>
       <Step>
@@ -41,6 +41,10 @@
       </Step>
       <Step>
         <Name>AssignMessage.AddBaseUrlHeader</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
+        <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
       </Step>
       <Step>
         <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
@@ -65,12 +69,12 @@
       <Step>
         <Name>AssignMessage.Remove.x-request-id-header</Name>
       </Step>
-{% if ALLOW_ECHO_TARGET | default(false) == true %}
+      {% if ALLOW_ECHO_TARGET | default(false) == true %}
       <Step>
         <Name>AssignMessage.SetEchoTarget</Name>
         <Condition>(request.header.echo)</Condition>
       </Step>
-{% endif %}
+      {% endif %}
       <Step>
         <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
@@ -95,13 +99,13 @@
   </PreFlow>
   <HTTPTargetConnection>
     <SSLInfo>
-{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %}
+      {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %}
       <TrustStore>ref://e-referral-service-ca</TrustStore>
-{% endif %}
+      {% endif %}
       <Enabled>true</Enabled>
     </SSLInfo>
     <LoadBalancer>
-      <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
+      <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}" />
     </LoadBalancer>
     <Path>/ers-api</Path>
     <Properties>

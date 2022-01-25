@@ -1,126 +1,115 @@
 <TargetEndpoint name="e-referrals-service-api-target">
-  <FaultRules>
-    <FaultRule name="access_token_expired">
-      <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule>
-    <FaultRule name="spike_arrest_fault">
-       <Step>
-            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
-       </Step>
-       <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
-    </FaultRule>
-  </FaultRules>
-  <PreFlow>
-    <Request>
-      <Step>
-        <Name>OauthV2.VerifyAccessToken</Name>
-      </Step>
-      <Step>
-        <!-- Should use Java Regex for non binary request -->
-        <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
-        <Name>SpikeArrest</Name>
-      </Step>
-      <Step>
-       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
-        <Name>SpikeArrest.Binary</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.PopulateAsidFromApp</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.RemoveAndAddAsidHeader</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.AddBaseUrlHeader</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
-        <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
-        <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
-        <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
-        <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
-        <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Remove.x-request-id-header</Name>
-      </Step>
-{% if ALLOW_ECHO_TARGET | default(false) == true %}
-      <Step>
-        <Name>AssignMessage.SetEchoTarget</Name>
-        <Condition>(request.header.echo)</Condition>
-      </Step>
-{% endif %}
-      <Step>
-        <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+    <FaultRules>
+        <FaultRule name="access_token_expired">
+            <Step>
+                <Name>ExtractVariables.OAuthErrorFaultString</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+            </Step>
+            <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+        </FaultRule>
+        <FaultRule name="spike_arrest_fault">
+            <Step>
+                <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+            </Step>
+            <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow>
+        <Request><Step>
+                <Name>OauthV2.VerifyAccessToken</Name>
+            </Step> <Step>
+                <!-- Should use Java Regex for non binary request -->
+                <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
+                <Name>SpikeArrest</Name>
+            </Step> <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+                <Name>SpikeArrest.Binary</Name>
+            </Step> <Step>
+                <Name>AssignMessage.PopulateAsidFromApp</Name>
+            </Step> <Step>
+                <Name>AssignMessage.RemoveAndAddAsidHeader</Name>
+            </Step> <Step>
+                <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
+            </Step> <Step>
+                <Name>AssignMessage.AddBaseUrlHeader</Name>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
+                <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
+                <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
+                <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
+                <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
+                <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
+                <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
+            </Step> <Step>
+                <Name>AssignMessage.Remove.x-request-id-header</Name>
+            </Step> 
+{% if ALLOW_ECHO_TARGET | default(false) == true %} 
+            <Step>
+                <Name>AssignMessage.SetEchoTarget</Name>
+                <Condition>(request.header.echo)</Condition>
+            </Step> 
+{% endif %} 
+            <Step>
+                <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
-        <Name>AssignMessage.Swap.CorrelationHeader</Name>
-      </Step>
-    </Request>
-    <Response>
-      <!-- Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
+                <Name>AssignMessage.Swap.CorrelationHeader</Name>
+            </Step></Request>
+        <Response>
+            <!-- Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
            to response on non success status code e.g. 200/201, Take care when updating these steps-->
-      <Step>
-        <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Swap.TransactionID</Name>
-        <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
-        <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
-      </Step>
-    </Response>
-  </PreFlow>
-  <HTTPTargetConnection>
-    <SSLInfo>
-{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %}
-      <TrustStore>ref://e-referral-service-ca</TrustStore>
-{% endif %}
-      <Enabled>true</Enabled>
-    </SSLInfo>
-    <LoadBalancer>
-      <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
-    </LoadBalancer>
-    <Path>/ers-api</Path>
-    <Properties>
-      <Property name="supports.http10">true</Property>
-      <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
-      <Property name="retain.queryparams">apikey</Property>
-    </Properties>
-  </HTTPTargetConnection>
-  <DefaultFaultRule>
-    <Step>
-      <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
-    </Step>
-    <Step>
-      <Name>AssignMessage.Swap.TransactionID</Name>
-      <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
-    </Step>
-    <Step>
-      <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
-      <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
-    </Step>
-  </DefaultFaultRule>
+            <Step>
+                <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.Swap.TransactionID</Name>
+                <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
+                <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
+            </Step>
+        </Response>
+    </PreFlow>
+    <HTTPTargetConnection>
+        <SSLInfo>
+{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} 
+          <TrustStore>ref://e-referral-service-ca</TrustStore> 
+{% endif %} 
+          <Enabled>true</Enabled>
+        </SSLInfo>
+        <LoadBalancer>
+            <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
+        </LoadBalancer>
+        <Path>/ers-api</Path>
+        <Properties>
+            <Property name="supports.http10">true</Property>
+            <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
+            <Property name="retain.queryparams">apikey</Property>
+        </Properties>
+    </HTTPTargetConnection>
+    <DefaultFaultRule>
+        <Step>
+            <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
+        </Step>
+        <Step>
+            <Name>AssignMessage.Swap.TransactionID</Name>
+            <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
+        </Step>
+        <Step>
+            <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
+            <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
+        </Step>
+    </DefaultFaultRule>
 </TargetEndpoint>

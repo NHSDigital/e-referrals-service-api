@@ -63,6 +63,7 @@ properties:
       | `Extension-eRS-Appointment`                | `0..1`      |                                            |
       | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                            |
       | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                            |
+      | `Extension-eRS-Appointment-Reference`      | `0..1`      |                                            |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
@@ -71,6 +72,7 @@ properties:
         - $ref: 'extensions/Extension-eRS-Appointment.yaml'
         - $ref: 'extensions/Extension-eRS-ClinicalInfoFirstSubmitted.yaml'
         - $ref: 'extensions/Extension-eRS-ClinicalInfoLastUpdated.yaml'
+        - $ref: 'extensions/Extension-eRS-Appointment-Reference.yaml'
   status:
     type: string
     enum:

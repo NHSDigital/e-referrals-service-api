@@ -5,5 +5,5 @@ description: |
 required: true
 schema:
   type: string
-  example: '11000'
+  example: '70000'
   

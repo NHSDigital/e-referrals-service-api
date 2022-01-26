@@ -376,6 +376,19 @@ module.exports = {
     return {}
 
   },
+  
+  getResponseForCancelReferral: function (request) {
+
+    const ubrn = request.params.ubrn;
+
+    if (ubrn === '000000070000') {
+      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
+    }
+    else if (ubrn === '000000070001') {
+      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json', responseCode: 200 }
+    }
+    return {}
+  },
 
   getResponseForRejectReferral: function (request) {
     var responseMap = {

@@ -40,6 +40,7 @@ def main():
         "[[HYPERLINK_A033]]": "[A033 - Retrieve Healthcare Service](#api-Default-a033-retrieve-healthcare-service)",
         "[[HYPERLINK_A034]]": "[A034 - Update Appointment](#api-Default-a034-update-appointment)",
         "[[HYPERLINK_A035]]": "[A035 - Search for Healthcare Services](#api-Default-a035-search-for-healthcare-services)",
+        "[[HYPERLINK_A036]]": "[A036 - Cancel Referral](#api-Default-a036-cancel-referral)",
         "[[HYPERLINK_A037]]": "[A037 - Retrieve Healthcare Service Version](#api-Default-a037-retrieve-healthcare-service-version)",
         "[[HYPERLINK_A038]]": "[A038 - Retrieve Appointment](#api-Default-a038-retrieve-appointment)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",

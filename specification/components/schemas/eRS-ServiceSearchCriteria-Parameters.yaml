@@ -30,20 +30,20 @@ properties:
   parameter:
     type: array
     description: |
-      | Field                                   | Cardinality | Notes                                                                     |
-      | --------------------------------------- | ----------- | ------------------------------------------------------------------------- |
-      | `Priority`                              | `1..1`      |                                                                           |
-      | `Specialty`                             | `0..1`      |                                                                           |
-      | `ClinicType`                            | `0..1`      |                                                                           |
-      | `IndicativeAppointmentWaitTimeLimit`    | `0..1`      |                                                                           |
-      | `Postcode`                              | `0..1`      |                                                                           |
-      | `DistanceLimit`                         | `0..1`      |                                                                           |
-      | `ClinicalTerm`                          | `0..1`      |                                                                           |
-      | `NamedClinician`                        | `0..1`      |                                                                           |
-      | `AgeAndGenderAppropriate`               | `1..1`      |                                                                           |
-      | `CommissioningProvisioning`             | `1..1`      |                                                                           |
-      | `Organisation`                          | `0..1`      |                                                                           |
-      | `Place`                                 | `0..1`      | Only supported in read mode, search by `place` is not possible currently. |
+      | Field                                   | Cardinality | Notes                                                                                       |
+      | --------------------------------------- | ----------- | ------------------------------------------------------------------------------------------- |
+      | `Priority`                              | `1..1`      |                                                                                             |
+      | `Specialty`                             | `0..1`      |                                                                                             |
+      | `ClinicType`                            | `0..1`      |                                                                                             |
+      | `IndicativeAppointmentWaitTimeLimit`    | `0..1`      |                                                                                             |
+      | `Postcode`                              | `0..1`      |                                                                                             |
+      | `DistanceLimit`                         | `0..1`      |                                                                                             |
+      | `ClinicalTerm`                          | `0..1`      |                                                                                             |
+      | `NamedClinician`                        | `0..1`      |                                                                                             |
+      | `AgeAndGenderAppropriate`               | `1..1`      |                                                                                             |
+      | `CommissioningProvisioning`             | `1..1`      |                                                                                             |
+      | `Organisation`                          | `0..1`      | This parameter is not included in the response when retrieving the service search criteria. |
+      | `Place`                                 | `0..1`      | Only supported in read mode, search by `place` is not possible currently.                   |
     items:
       anyOf:
         - $ref: 'parameters/Priority.yaml'

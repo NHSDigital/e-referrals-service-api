@@ -74,13 +74,6 @@
           }
         },
         {
-          "name": "organisation",
-          "valueIdentifier": {
-            "system": "https://directory.spineservices.nhs.uk/STU3/Organization",
-            "value": "TEST-ORG-GP1"
-          }
-        },
-        {
           "name": "postcode",
           "valueString": "LS1 2TW"
         },

@@ -11,4 +11,4 @@ properties:
     example: clinicalContext
   valueString:
     type: string
-    example: 'GENERAL_MEDICINE/GENERAL_MEDICINE_1'
+    example: 'ORTHAPEDICS/KNEE'

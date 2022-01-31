@@ -137,7 +137,7 @@
                     {
                       "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                       "code": "DID_NOT_ATTEND",
-                      "display": "Did not Attend"
+                      "display": "Did Not Attend"
                     }
                   ]
                 }

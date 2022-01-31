@@ -738,23 +738,25 @@ properties:
                                 - coding
                               properties:
                                 coding:
-                                  type: object
-                                  required:
-                                    - system
-                                    - code
-                                    - display
-                                  properties:
-                                    system:
-                                      type: string
-                                      enum:
-                                        - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                      example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                    code:
-                                      type: string
-                                      example: FURTHER_INFORMATION_REQUIRED
-                                    display:
-                                      type: string
-                                      example: Further Information Required
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - system
+                                      - code
+                                      - display
+                                    properties:
+                                      system:
+                                        type: string
+                                        enum:
+                                          - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                      code:
+                                        type: string
+                                        example: FURTHER_INFORMATION_REQUIRED
+                                      display:
+                                        type: string
+                                        example: 'Further Information Required'
               - title: 'Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem'
                 type: object
                 required:
@@ -805,23 +807,25 @@ properties:
                                   - coding
                                 properties:
                                   coding:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                      - display
-                                    properties:
-                                      system:
-                                        type: string
-                                        enum:
-                                          - _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
-                                        example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
-                                      code:
-                                        type: string
-                                        example: INTEND_PRIVATE
-                                      display:
-                                        type: string
-                                        example: Intend to go private
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: INTEND_PRIVATE
+                                        display:
+                                          type: string
+                                          example: Intend to go private
               - title: 'Extension-eRS-AwaitingBooking-WorklistItem'
                 type: object
                 required:
@@ -872,23 +876,25 @@ properties:
                                   - coding
                                 properties:
                                   coding:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                      - display
-                                    properties:
-                                      system:
-                                        type: string
-                                        enum:
-                                          - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                        example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
-                                      code:
-                                        type: string
-                                        example: PATIENT_APPOINTMENT_CLASH
-                                      display:
-                                        type: string
-                                        example: Patient Appointment Clash
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: PATIENT_APPOINTMENT_CLASH
+                                        display:
+                                          type: string
+                                          example: Patient Appointment Clash
               - title: Extension-eRS-LettersOutstanding-WorklistItem
                 type: object
                 required:

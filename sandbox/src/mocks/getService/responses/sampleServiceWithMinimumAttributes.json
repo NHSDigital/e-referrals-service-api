@@ -17,13 +17,15 @@
         }
     ],
     "name": "Direct Service With Minimal",
-    "type": {
-        "coding": [
-            {
-                "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
-                "code": "DAY_CASE",
-                "display": "Day Case"
-            }
-        ]
-    }
+    "characteristic": [
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+                    "code": "BOOKABLE",
+                    "display": "Appointment Request"
+                }
+            ]
+        }
+    ]
 }

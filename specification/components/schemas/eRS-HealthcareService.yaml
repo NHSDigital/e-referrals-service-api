@@ -5,10 +5,9 @@ required:
   - id
   - meta
   - resourceType
-  - extension
   - location
   - name
-  - type
+  - characteristic
 properties:
   id: 
     type: string

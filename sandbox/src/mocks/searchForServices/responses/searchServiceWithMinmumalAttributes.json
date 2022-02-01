@@ -37,15 +37,17 @@
                     }
                 ],
                 "name": "Direct SVC 1",
-                "type": {
-                    "coding": [
-                        {
-                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
-                            "code": "DAY_CASE",
-                            "display": "Day Case"
-                        }
-                    ]
-                }
+                "characteristic": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+                                "code": "BOOKABLE",
+                                "display": "Appointment Request"
+                            }
+                        ]
+                    }
+                ]
             },
             "search": {
                 "mode": "match"
@@ -64,22 +66,26 @@
                 "language": "en",
                 "resourceType": "HealthcareService",
                 "active": true,
-                "location": {
-                    "identifier": {
-                        "system": "https://fhir.nhs.uk/Id/ods-site-code",
-                        "value": "R6901"
-                    }
-                },
-                "name": "Direct SVC 2",
-                "type": {
-                    "coding": [
-                        {
-                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
-                            "code": "DAY_CASE",
-                            "display": "Day Case"
+                "location": [
+                    {
+                        "identifier": {
+                            "system": "https://fhir.nhs.uk/Id/ods-site-code",
+                            "value": "R6901"
                         }
-                    ]
-                }                 
+                    }
+                ],
+                "name": "Direct SVC 2",
+                "characteristic": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+                                "code": "BOOKABLE",
+                                "display": "Appointment Request"
+                            }
+                        ]
+                    }
+                ]                 
             },
             "search": {
                 "mode": "match"

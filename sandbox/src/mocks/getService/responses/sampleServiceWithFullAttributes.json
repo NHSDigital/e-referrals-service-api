@@ -42,7 +42,7 @@
             ]
         },
         {
-            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-HealthcareService-Contact",
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
             "extension": [
                 {
                     "url": "purpose",

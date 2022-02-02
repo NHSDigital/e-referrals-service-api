@@ -65,6 +65,12 @@
       <Step>
         <Name>AssignMessage.Remove.x-request-id-header</Name>
       </Step>
+{% if ALLOW_ECHO_TARGET | default(false) == true %}
+      <Step>
+        <Name>AssignMessage.SetEchoTarget</Name>
+        <Condition>(request.header.echo)</Condition>
+      </Step>
+{% endif %}
       <Step>
         <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->

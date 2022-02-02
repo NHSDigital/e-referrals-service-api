@@ -42,8 +42,12 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-alpha"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--alpha
+        ALLOW_ECHO_TARGET: true
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          integration_tests: true
+          smoke_tests: true
       depends_on:
       - manual_approval_alpha
     - environment: manual-approval
@@ -55,8 +59,12 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-rc"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--rc
+        ALLOW_ECHO_TARGET: true
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          integration_tests: true
+          smoke_tests: true
       depends_on:
       - manual_approval_rc
     - environment: manual-approval
@@ -68,8 +76,12 @@ extends:
       service_base_path: "${{ variables.service_base_path }}-fix"
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
+        ALLOW_ECHO_TARGET: true
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          integration_tests: true
+          smoke_tests: true
       depends_on:
       - manual_approval_fix
     - environment: manual-approval
@@ -77,7 +89,9 @@ extends:
     - environment: internal-qa
       stage_name: ers_sa_release
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
       depends_on:
       - manual_approval_sa
     - environment: manual-approval
@@ -85,13 +99,17 @@ extends:
     - environment: int
       stage_name: ers_int_release
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
       depends_on:
       - manual_approval_int
     - environment: prod
       stage_name: prod #revert to ers_prod_release when monitoring stack fixed to support it.
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
       depends_on:
       - ers_sa_release
     - environment: manual-approval
@@ -99,7 +117,9 @@ extends:
     - environment: ref
       stage_name: ers_nft2_release
       post_deploy:
-      - template: templates/ers-smoke.yml
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
       depends_on:
       - manual_approval_nft2
     - environment: internal-qa-sandbox

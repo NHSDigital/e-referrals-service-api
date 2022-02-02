@@ -1,0 +1,17 @@
+steps:
+
+  - bash: |
+      export APIGEE_API_TOKEN="$(secret.AccessToken)"
+      export JWT_PRIVATE_KEY_ABSOLUTE_PATH="$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)"
+      export ID_TOKEN_TESTING_PRIVATE_KEY_ABSOLUTE_PATH="$(Pipeline.Workspace)/secrets/$(ID_TOKEN_TESTING_PRIVATE_KEY)"
+      export OAUTH_PROXY="oauth2"
+      export OAUTH_BASE_URI="https://$(ENVIRONMENT).api.service.nhs.uk"
+
+      poetry run pytest -v tests/integration --junitxml=tests/ers-test-integration-report.xml
+    displayName: Run eRS integration tests
+    workingDirectory: "$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)"
+  - task: PublishTestResults@2
+    displayName: 'Publish eRS integration test results'
+    inputs:
+      testResultsFiles: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/ers-test-integration-report.xml
+      failTaskOnFailedTests: true

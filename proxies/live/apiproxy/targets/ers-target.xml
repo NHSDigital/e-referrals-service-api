@@ -47,8 +47,8 @@
         <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
       </Step>
       <Step>
-        <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
-        <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>
+        <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
+        <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
       </Step>
       <Step>
         <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-end-user-organisation-ods">
+  <Set>
+    <Headers>
+      <Header name="x-ers-ods-code">{message.header.nhsd-end-user-organisation-ods}</Header>
+    </Headers>
+  </Set>
+  <Remove>
+    <Headers>
+      <Header name="nhsd-end-user-organisation-ods"/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

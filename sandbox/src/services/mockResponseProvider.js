@@ -460,5 +460,13 @@ module.exports = {
     }
 
     return mapExampleResponse(request, responseMap)
-  }
+  },
+  
+  getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
+      var responseMap = {
+        'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
+      }
+
+      return mapExampleResponse(request, responseMap)
+    }
 }

@@ -2,9 +2,10 @@ in: header
 name: nhsd-ers-business-function
 description: | 
   The e-RS Business Function of the caller.
-
-  Not allowed for application-restricted access. 
-  Required for user-restricted access. 
+  
+  Not allowed for application-restricted access.
+  
+  Required for user-restricted access.
 schema:
   type: string
   enum:
@@ -12,6 +13,7 @@ schema:
     - 'REFERRING_CLINICIAN_ADMIN'
     - 'REFERRING_ADMIN'
     - 'COMMISSIONER'
+    - 'SERVICE_PROVIDER_CLINICIAN_ADMIN'
     - 'SERVICE_PROVIDER_CLINICIAN'
     - 'SERVICE_PROVIDER_ADMIN'
     - 'INFORMATION_ANALYST'

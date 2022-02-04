@@ -2,7 +2,7 @@ const mockResponseProvider = require('../services/mockResponseProvider')
 const businessFunctionValidator = require('../services/businessFunctionValidator')
 
 function retrieveAvailableActionsForUserList(request, h) {
-  const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN"]
+  const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
   const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
   if (validationResult) {

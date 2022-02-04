@@ -155,6 +155,10 @@ info:
     - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
     - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
     
+    #### On Behalf Of User
+
+    If the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role is used then the User ID of Service Provider Clinician that the Admin is acting on behalf of must be supplied via the `NHSD-eRS-On-Behalf-Of-User-ID` header in the request. Currently "on behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
     ## Environments and testing
 
     | Environment       | Base URL                                                               |
@@ -489,6 +493,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         ## Use case
         As an authenticated user or application
@@ -522,6 +527,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -675,6 +681,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
 
@@ -721,6 +728,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/headers/request/ErsFileName.yaml'
         - $ref: 'components/schemas/headers/request/ErsReferralId.yaml'
@@ -816,6 +824,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You need to have retrieved the referral via [[HYPERLINK_A005]] to obtain the URLs for its attachments.
 
@@ -853,6 +862,7 @@ paths:
         - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/path/AttachmentLogicalID.yaml'
       responses:
         '200':
@@ -892,6 +902,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to retrieve details of a referral.
 
@@ -935,6 +946,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -1270,6 +1282,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
 
@@ -1302,6 +1315,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
       responses:
@@ -1345,6 +1359,7 @@ paths:
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         ## Use case
         As an authenticated user
@@ -1377,6 +1392,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
@@ -1441,6 +1457,7 @@ paths:
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_ADMIN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         ## Use case
         As an authenticated user
@@ -1463,6 +1480,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
@@ -1513,6 +1531,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
         For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
@@ -1551,6 +1570,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -1649,6 +1669,7 @@ paths:
           - `REFERRING_CLINICIAN`
           - `REFERRING_CLINICIAN_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
         you may have identified the UBRN via [[HYPERLINK_A023]].
@@ -1694,6 +1715,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -1731,6 +1753,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request.
 
@@ -1761,6 +1784,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/headers/request/IfMatch.yaml'
       requestBody:
@@ -1825,6 +1849,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
         This will include whether or not the referrer has authorised the provider to be able to convert an 
@@ -1868,6 +1893,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
@@ -1923,6 +1949,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
         [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
@@ -1978,6 +2005,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
       requestBody:
@@ -2036,6 +2064,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
         booked into bookable services, and not the referrals sent into triage services.
@@ -2059,6 +2088,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/headers/request/IfMatch.yaml'
@@ -2102,6 +2132,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
         be used for referrals booked into bookable services, and not the referrals sent into triage services.
@@ -2132,6 +2163,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/headers/request/IfMatch.yaml'
@@ -2201,6 +2233,7 @@ paths:
 
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
         You should obtain a UBRN before using this endpoint, as the current UBRN version is required
 
@@ -2234,6 +2267,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/queryParameters/Focus.yaml'
         - $ref: 'components/schemas/queryParameters/Intent.yaml'
@@ -2268,6 +2302,7 @@ paths:
         ## Pre-requisites
         In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
           - `SERVICE_PROVIDER_CLINICIAN`
+          - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
         
         You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A022]] can 
         only be used for referrals booked into bookable services, and not the referrals sent into triage services.
@@ -2305,6 +2340,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/headers/request/IfMatch.yaml'

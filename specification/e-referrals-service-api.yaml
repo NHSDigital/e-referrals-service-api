@@ -155,6 +155,59 @@ info:
     - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
     - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
     
+    #### Role and Organization Validation
+
+    For most endpoints the e-RS role and Organization of the authenticated user pertaining to the request must be supplied. 
+    The e-RS Role is supplied via the `nshd-ers-business-function` request header. 
+    The Organization is supplied via the `nhsd-ers-ods-code` request header. 
+    
+    Suitable values for these request headers can be determined using [[HYPERLINK_A030]].
+
+    The `entry` field in the response from a successful call to [[HYPERLINK_A030]] is an array of PractitionerRole resources. 
+    
+    Each PractitionerRole resource has a `code` field which is an array of codings. e.g. 
+    ```json
+    "code": [
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        ]
+      },
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        ]
+      },
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_ADMIN"
+          }
+        ]
+      }
+    ]
+    ```
+    The available e-RS Roles are represented by the `value` fields in the `https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1` code system. 
+    The `nshd-ers-business-function` request header value should be a `code` field value from one of the eRS-Business-Function-1 codings in the PractitionerRole resource.
+
+    Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system. e.g. 
+    ```json
+    "organization": {
+      "identifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+    ```
+    The `nhsd-ers-ods-code` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource.
+
     ## Environments and testing
 
     | Environment       | Base URL                                                               |

@@ -10,7 +10,7 @@ module.exports = [
     path: '/FHIR/STU3/Binary/{attachmentLogicalID}',
     handler: (request, h) => {
 
-      const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN"]
+      const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
       const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {

@@ -10,7 +10,7 @@ module.exports = [
     path: '/FHIR/STU3/ReferralRequest/{ubrn}/$ers.acceptReferral',
     handler: (request, h) => {
 
-      const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN"]
+      const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
       const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
 
@@ -24,8 +24,6 @@ module.exports = [
       }
 
       return h.file('SandboxErrorOutcome.json').code(422);
-
-
     }
   }
 ]

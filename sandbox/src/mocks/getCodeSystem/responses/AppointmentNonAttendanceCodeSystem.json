@@ -1,0 +1,119 @@
+{
+    "id": "APPOINTMENT-NON-ATTENDANCE",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-NON-ATTENDANCE",
+    "version":"1",
+    "name": "e-RS Appointment Non-attendance",
+    "status":"active",
+    "experimental":false,
+    "date": "2021-05-26T13:47:15.123Z",
+    "publisher":"e-Referral Service",
+    "description":"e-RS Priority",
+    "copyright":"Copyright © 2016 HL7 UK",
+    "caseSensitive":true,
+    "content":"complete",
+
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        }
+    ],
+    "concept": [
+        {
+            "code": "CANCELLED_TOO_LATE",
+            "display": "Cancelled too late",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "ARRIVED_TOO_LATE",
+            "display": "Patient arrived too late to be seen",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "PATIENT_FORGOT",
+            "display": "Patient forgot about appointment",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "PATIENT_DIED",
+            "display": "Patient died",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "PATIENT_ILL",
+            "display": "Patient ill",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "UNKNOWN",
+            "display": "Reason not known",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "NOT_SPECIFIED",
+            "display": "Not specified",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "code": "OTHER_MIGRATION_FROM_CAB",
+            "display": "Other (Migration from CAB)",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "effectiveTo",
+                    "valueDateTime": "2012-01-31T00:00:00.000Z"
+                }
+            ]
+        }
+    ]
+}

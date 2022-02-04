@@ -21,7 +21,8 @@ properties:
       | Specialty                       | UROLOGY                       |
       | Clinic Type                     | GENERAL_UROLOGY               |
       | Appointment Cancellation Reason | SERVICE_INAPPROPRIATE         |
-      | Referral Cancellation Reason     | INTEND_PRIVATE                |
+      | Referral Cancellation Reason    | INTEND_PRIVATE                |
+      | Appointment Non-attendance      | PATIENT_ILL                   |
       
     type: string
   display:
@@ -34,6 +35,7 @@ properties:
       | Clinic Type                     | General Urology               |
       | Appointment Cancellation Reason | Inappropriate service         |
       | Referral Cancellation Reason    | Intend to go private          |
+      | Appointment Non-attendance      | Patient ill                   |
       
     type: string
   property:

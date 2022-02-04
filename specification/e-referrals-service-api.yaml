@@ -537,8 +537,9 @@ paths:
         | Retrieve speciality reference data                      | `codeSystemType`=`SPECIALTY`                       | Specialty details                   |
         | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details                 |
         | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details     |
-        | Retrieve referral cancellation reason reference data    | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`     | ReferralRequest reason type details |
-        
+        | Retrieve referral cancellation reason reference data    | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`    | ReferralRequest reason type details |
+        | Retrieve appointment non-attendance reason reference data | `codeSystemType`=`APPOINTMENT-NON-ATTENDANCE`    | Appointment non-attendance reason details |
+
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
       parameters:

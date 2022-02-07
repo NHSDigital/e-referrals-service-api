@@ -539,6 +539,7 @@ paths:
         | Retrieve appointment cancellation reason reference data   | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON`      | Appointment reason type details           |
         | Retrieve referral cancellation reason reference data      | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`         | ReferralRequest reason type details       |
         | Retrieve appointment non-attendance reason reference data | `codeSystemType`=`APPOINTMENT-NON-ATTENDANCE-REASON`    | Appointment non-attendance reason details |
+        | Retrieve priority reference data                        | `codeSystemType`=`PRIORITY`                               | Priority details                          |
 
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data

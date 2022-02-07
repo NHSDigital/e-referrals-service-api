@@ -21,6 +21,7 @@ properties:
      - CLINIC-TYPE
      - REFERRAL-CANCELLATION-REASON
      - APPOINTMENT-NON-ATTENDANCE-REASON
+     - PRIORITY
     example: 'SPECIALTY'
   meta:
     type: object
@@ -52,6 +53,7 @@ properties:
       - 'e-RS Clinic Type'
       - 'e-RS ReferralRequest Cancellation Reason'
       - 'e-RS Appointment Non-attendance Reason'
+      - 'e-RS Priority'
     example: 'e-RS Specialty'
   status:
     type: string

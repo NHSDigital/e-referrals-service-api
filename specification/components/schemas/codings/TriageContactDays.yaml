@@ -1,0 +1,14 @@
+title: Triage contact days
+description: This will only be returned when codeSystemType is PRIORITY
+type: object
+required:
+  - code
+  - valueInteger
+properties:
+  code:
+    type: string
+    enum:
+      - triageContactDays
+  valueInteger:
+    type: integer
+    example: 10

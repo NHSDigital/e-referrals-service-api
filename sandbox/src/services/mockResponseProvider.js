@@ -97,7 +97,8 @@ module.exports = {
       'CLINIC-TYPE': 'getCodeSystem/responses/ClinicTypeCodeSystem.json',
       'APPOINTMENT-CANCELLATION-REASON': 'getCodeSystem/responses/AppointmentCancellationReasonCodeSystem.json',
       'REFERRAL-CANCELLATION-REASON': 'getCodeSystem/responses/ReferralCancellationReasonCodeSystem.json',
-      'APPOINTMENT-NON-ATTENDANCE-REASON': 'getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json'
+      'APPOINTMENT-NON-ATTENDANCE-REASON': 'getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json',
+      'PRIORITY': 'getCodeSystem/responses/PriorityCodeSystem.json'
     };
 
     return mapExampleGetResponse(request, exampleResponseMap);

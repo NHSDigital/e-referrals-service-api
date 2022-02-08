@@ -163,7 +163,7 @@ info:
     
     The Organisation is supplied to the endpoint via the `nhsd-ers-ods-code` request header. 
     
-    Suitable values for these request headers can be obtained from the Practioner Role Bundle returned by [[HYPERLINK_A030]].
+    Suitable values for these request headers can be obtained from the Practitioner Role Bundle returned by [[HYPERLINK_A030]].
 
     ## Environments and testing
 

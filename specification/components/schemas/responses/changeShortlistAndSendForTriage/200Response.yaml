@@ -9,7 +9,7 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../../eRS-ChangeShortlistAndSendForTriageResponse-Parameters.yaml'
+      $ref: '../../eRS-ChangeShortlistAndSendForTriage-Response-Parameters.yaml'
     examples:
       unbookedReferralRequest:
           summary: TriagedReferralRequest

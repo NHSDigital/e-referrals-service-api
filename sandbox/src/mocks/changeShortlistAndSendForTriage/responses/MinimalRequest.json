@@ -1,7 +1,7 @@
 {
     "meta": {
         "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriageResponse-Parameters-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriage-Response-Parameters-1"
         ]
     },
     "resourceType": "Parameters",

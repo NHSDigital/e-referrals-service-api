@@ -2852,7 +2852,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-ChangeShortlistAndSendForTriageRequest-Parameters.yaml'
+              $ref: 'components/schemas/eRS-ChangeShortlistAndSendForTriage-Request-Parameters.yaml'
             examples:
               parameters:
                 summary: Unbooked ReferralRequest

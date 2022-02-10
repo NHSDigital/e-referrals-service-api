@@ -1,10 +1,14 @@
 in: header
 name: NHSD-eRS-On-Behalf-Of-User-ID
 description: | 
-  The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO). Currently "on behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC). Where an OBO User ID is supplied then the authenticating user should therefore be an SPCA and the OBO User ID should be the ID of an appropriate SPC.
-  
+  The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO). 
+
+  "On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC). 
+
+  Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
   Not allowed for application-restricted access.
-  
+
   Required for user-restricted access where the Service Provider Clinician Admin Business Function is used for authentication.
 required: false
 schema:

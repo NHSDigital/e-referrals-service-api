@@ -7,7 +7,6 @@ required:
   - resourceType
   - location
   - name
-  - characteristic
 properties:
   id: 
     type: string

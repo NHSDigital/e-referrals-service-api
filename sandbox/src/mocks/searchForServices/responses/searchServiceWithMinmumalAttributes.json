@@ -36,18 +36,7 @@
                         }
                     }
                 ],
-                "name": "Direct SVC 1",
-                "characteristic": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
-                                "code": "BOOKABLE",
-                                "display": "Appointment Request"
-                            }
-                        ]
-                    }
-                ]
+                "name": "Direct SVC 1"
             },
             "search": {
                 "mode": "match"
@@ -74,18 +63,7 @@
                         }
                     }
                 ],
-                "name": "Direct SVC 2",
-                "characteristic": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
-                                "code": "BOOKABLE",
-                                "display": "Appointment Request"
-                            }
-                        ]
-                    }
-                ]                 
+                "name": "Direct SVC 2"
             },
             "search": {
                 "mode": "match"

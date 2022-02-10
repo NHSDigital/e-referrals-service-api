@@ -156,8 +156,9 @@ info:
     - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
     
     #### On Behalf Of User
+    If the SERVICE_PROVIDER_CLINICIAN_ADMIN role is used then the User ID of the Service Provider Clinician that the Admin is acting on behalf of must be supplied via the NHSD-eRS-On-Behalf-Of-User-ID header. 
 
-    If the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role is used then the User ID of Service Provider Clinician that the Admin is acting on behalf of must be supplied via the `NHSD-eRS-On-Behalf-Of-User-ID` header in the request. Currently "on behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+    "On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
 
     ## Environments and testing
 

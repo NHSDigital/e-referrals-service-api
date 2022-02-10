@@ -39,7 +39,7 @@ def main():
         "[[HYPERLINK_A032]]": "[A032 - Change Shortlist and Send for Triage](#api-Default-a032-change-shortlist-and-send-for-triage)",
         "[[HYPERLINK_A033]]": "[A033 - Retrieve Healthcare Service](#api-Default-a033-retrieve-healthcare-service)",
         "[[HYPERLINK_A035]]": "[A035 - Search for Healthcare Services](#api-Default-a035-search-for-healthcare-services)",
-	"[[HYPERLINK_A037]]": "[A037 - Retrieve Healthcare Service Version](#api-Default-a037-retrieve-healthcare-service-version)",
+        "[[HYPERLINK_A037]]": "[A037 - Retrieve Healthcare Service Version](#api-Default-a037-retrieve-healthcare-service-version)",
         "[[HYPERLINK_A038]]": "[A038 - Retrieve Appointment](#api-Default-a038-retrieve-appointment)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

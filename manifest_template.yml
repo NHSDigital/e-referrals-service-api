@@ -4,7 +4,7 @@
 #   $ cd /path/to/local/api-management-utils/ansible
 #   $ DIST_DIR=/path/to/this/repo make template-manifest
 #
-#
+# test
 APIGEE_ENVIRONMENTS:
 - display_name: Internal Development
   name: internal-dev

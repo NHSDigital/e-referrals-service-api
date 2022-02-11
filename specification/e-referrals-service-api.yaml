@@ -503,15 +503,18 @@ paths:
         - create a referral using [[HYPERLINK_A011]] or [[HYPERLINK_A021]]
         
         You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]].
+
+        Documentation for other endpoints will reference this endpoint, where specific reference data is required.
         
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
         
-        | Scenario                                                | Request                                            | Response                        |
-        | ------------------------------------------------------- | -------------------------------------------------- | ------------------------------- |
-        | Retrieve speciality reference data                      | `codeSystemType`=`SPECIALTY`                       | Specialty details               |
-        | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details             |
-        | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details |
+        | Scenario                                                | Request                                            | Response                            |
+        | ------------------------------------------------------- | -------------------------------------------------- | ----------------------------------- |
+        | Retrieve speciality reference data                      | `codeSystemType`=`SPECIALTY`                       | Specialty details                   |
+        | Retrieve clinic type reference data                     | `codeSystemType`=`CLINIC-TYPE`                     | Clinic type details                 |
+        | Retrieve appointment cancellation reason reference data | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON` | Appointment reason type details     |
+        | Retrieve referral cancellation reason reference data    | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`     | ReferralRequest reason type details |
         
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
@@ -2109,7 +2112,12 @@ paths:
 
         You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
 
-        You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
+        You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.  To find 
+        relevant rejection reasons, obtain reference data from `APPOINTMENT-CANCELLATION-REASON` and filter as follows:
+
+          - `appointmentBookingCancellationReasonType` must be `PROVIDER_REJECT`
+          - `effectiveFrom` must be in the past, and
+          - `effectiveTo` must not be in the past
 
         ## Use cases
         As an authenticated user

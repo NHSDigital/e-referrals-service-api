@@ -3,14 +3,18 @@ description: |
 
   Some properties are only returned for certain code systems
       
-  | Property                                 | Code System                     |
-  | -----------------------------------------| ------------------------------- |
-  | EffectiveFrom                            | All Code Systems                |
-  | EffectiveTo                              | All Code Systems                |
-  | Specialty                                | CLINIC-TYPE                     |
-  | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON |
-  | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON |
-  | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON |
+  | Property                                 | Code System                                                   |
+  | -----------------------------------------| ------------------------------------------------------------- |
+  | EffectiveFrom                            | All Code Systems                                              |
+  | EffectiveTo                              | All Code Systems                                              |
+  | Specialty                                | CLINIC-TYPE                                                   |
+  | AppointmentBookingCancellationReasonType | APPOINTMENT-CANCELLATION-REASON                               |
+  | WillCancelWholeRequest                   | APPOINTMENT-CANCELLATION-REASON                               |
+  | Usage                                    | APPOINTMENT-CANCELLATION-REASON                               |
+  | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
+  | BusinessFunction                         | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
+  | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                   |
+  | ReferrerUsage                            | REFERRAL-CANCELLATION-REASON                                   |
   
 type: array
 items:
@@ -20,5 +24,8 @@ items:
     - $ref: 'properties/Specialty.yaml'
     - $ref: 'properties/AppointmentBookingCancellationReasonType.yaml'
     - $ref: 'properties/WillCancelWholeRequest.yaml'
+    - $ref: 'properties/Usage.yaml'
     - $ref: 'properties/CommentIsMandatory.yaml'
-    
+    - $ref: 'properties/BusinessFunction.yaml'
+    - $ref: 'properties/CanCancelAppointment.yaml'
+    - $ref: 'properties/ReferrerUsage.yaml'

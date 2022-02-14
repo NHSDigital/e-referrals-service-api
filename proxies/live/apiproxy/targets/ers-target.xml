@@ -17,42 +17,56 @@
         </FaultRule>
     </FaultRules>
     <PreFlow>
-        <Request><Step>
+        <Request>
+            <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <!-- Should use Java Regex for non binary request -->
                 <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
                 <Name>SpikeArrest</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
                 <Name>SpikeArrest.Binary</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.RemoveAndAddAsidHeader</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.AddBaseUrlHeader</Name>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
                 <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
                 <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
                 <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
                 <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
                 <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
                 <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
-            </Step> <Step>
+            </Step> 
+            <Step>
                 <Name>AssignMessage.Remove.x-request-id-header</Name>
             </Step> 
 {% if ALLOW_ECHO_TARGET | default(false) == true %} 

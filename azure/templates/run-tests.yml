@@ -21,16 +21,10 @@ steps:
 
   - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
     parameters:
-     secret_file_ids:
-       - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_WITH_ASID_PRIVATE_KEY
-       - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_PRIVATE_KEY
-       - ptl/app-credentials/jwt_testing/non-prod/ID_TOKEN_TESTING_PRIVATE_KEY
-     config_ids:
-       - /ptl/azure-devops/env-int/test-app/internal-testing-int/CLIENT_ID_INT
-       - /ptl/azure-devops/env-int/test-app/internal-testing-int/CLIENT_SECRET_INT
+     secret_file_ids: []
+     config_ids: []
      secret_ids:
-       - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_API_KEY
-       - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_WITH_ASID_API_KEY
+       - ptl/api-deployment/e-referrals-service/ers-testing-asid
 
   # Smoke tests
   - ${{ if parameters.smoke_tests }}:

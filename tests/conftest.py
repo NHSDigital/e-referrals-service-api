@@ -4,11 +4,6 @@ import pytest
 from api_test_utils.apigee_api_apps import ApigeeApiDeveloperApps
 from api_test_utils.apigee_api_products import ApigeeApiProducts
 from api_test_utils.oauth_helper import OauthHelper
-from time import time
-
-
-DEFAULT_ASID = '1234567890'
-DEFAULT_USERID = '9999999999'
 
 
 def get_env(variable_name: str) -> str:
@@ -49,8 +44,12 @@ def service_name():
 
 @pytest.fixture(scope="session")
 def service_url(environment):
-    base_url = "https://api.service.nhs.uk" if environment == "prod" else f"https://{environment}.api.service.nhs.uk"
-    service_base_path = get_env('SERVICE_BASE_PATH')
+    if environment == "prod":
+        base_url = "https://api.service.nhs.uk"
+    else:
+        base_url = f"https://{environment}.api.service.nhs.uk"
+
+    service_base_path = get_env("SERVICE_BASE_PATH")
 
     return f"{base_url}/{service_base_path}"
 
@@ -61,21 +60,8 @@ def status_endpoint_api_key():
 
 
 @pytest.fixture(scope="session")
-def id_token_key():
-    id_token_key_path = get_env("ID_TOKEN_TESTING_PRIVATE_KEY_ABSOLUTE_PATH")
-
-    with open(id_token_key_path, "r") as f:
-        return f.read()
-
-
-@pytest.fixture(scope="session")
 def asid():
-    return DEFAULT_ASID
-
-
-@pytest.fixture(scope="session")
-def user_id():
-    return DEFAULT_USERID
+    return get_env("ERS_TEST_ASID")
 
 
 @pytest.fixture
@@ -84,84 +70,50 @@ async def product(environment, service_name):
     product = ApigeeApiProducts()
     await product.create_new_product()
 
-    print('CREATED PRODUCT NAME: ' + product.name)
+    print(f"CREATED PRODUCT NAME: {product.name}")
 
     # Update products allowed paths
-    await product.update_proxies([service_name, 'identity-service-' + environment])
+    proxies = [f"identity-service-mock-{environment}"]
 
+    if service_name is not None:
+        proxies.append(service_name)
+
+    await product.update_proxies(proxies)
     await product.update_scopes(
         scopes=["urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api"]
     )
     yield product
 
     # Teardown
-    print('Cleanup product')
+    print("Cleanup product")
     await product.destroy_product()
 
 
 @pytest.fixture
-async def app(environment, product, asid):
+async def app(product, asid):
     # Setup
     app = ApigeeApiDeveloperApps()
     await app.create_new_app()
 
-    print('CREATED APP NAME: ' + app.name)
+    print(f"CREATED APP NAME: {app.name}")
 
-    # Set default JWT Testing resource url and ASID
-    await app.set_custom_attributes({
-            'asid': asid,
-            'jwks-resource-url': 'https://raw.githubusercontent.com/NHSDigital/'
-                                 f'identity-service-jwks/main/jwks/{environment}/'
-                                 '9baed6f4-1361-4a8e-8531-1f8426e3aba8.json'
-    })
+    # Set ASID
+    await app.set_custom_attributes({"asid": asid})
 
     # Assign the new app to the product
     await app.add_api_product([product.name])
 
+    app.oauth = OauthHelper(app.client_id, app.client_secret, app.callback_url)
+
     yield app
 
     # Teardown
-    print('Cleanup app')
+    print("Cleanup app")
     await app.destroy_app()
 
 
 @pytest.fixture
-async def access_code(app, id_token_key, user_id):
-    oauth = OauthHelper(app.client_id, app.client_secret, app.callback_url)
+async def access_code(app, actor):
+    token_resp = app.oauth.get_authenticated_with_mock_auth(actor.user_id)
 
-    claims = {
-            'at_hash': 'tf_-lqpq36lwO7WmSBIJ6Q',
-            'sub': user_id,
-            'auditTrackingId': '91f694e6-3749-42fd-90b0-c3134b0d98f6-1546391',
-            'amr': ['N3_SMARTCARD'],
-            'iss': 'https://am.nhsint.auth-ptl.cis2.spineservices.nhs.uk:443/'
-                   'openam/oauth2/realms/root/realms/NHSIdentity/realms/Healthcare',
-            'tokenName': 'id_token',
-            'aud': '969567331415.apps.national',
-            'c_hash': 'bc7zzGkClC3MEiFQ3YhPKg',
-            'acr': 'AAL3_ANY',
-            'org.forgerock.openidconnect.ops': '-I45NjmMDdMa-aNF2sr9hC7qEGQ',
-            's_hash': 'LPJNul-wow4m6Dsqxbning',
-            'azp': '969567331415.apps.national',
-            'auth_time': int(time()),
-            'realm': '/NHSIdentity/Healthcare',
-            'exp': int(time()) + 6000,
-            'tokenType': 'JWTToken',
-            'iat': int(time()) - 100
-    }
-
-    print('Claims:')
-    print(claims)
-
-    client_assertion_jwt = oauth.create_jwt(kid='test-1')
-    id_token_jwt = oauth.create_id_token_jwt(algorithm="RS512", kid="identity-service-tests-1", claims=claims, signing_key=id_token_key)
-
-    resp = await oauth.get_token_response(
-        grant_type="token_exchange",
-        _jwt=client_assertion_jwt,
-        id_token_jwt=id_token_jwt
-    )
-    print('JWT Token response:')
-    print(resp)
-
-    return resp['body']['access_token']
+    return token_resp["access_token"]

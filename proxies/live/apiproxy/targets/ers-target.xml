@@ -10,10 +10,10 @@
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
     <FaultRule name="spike_arrest_fault">
-       <Step>
-            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
-       </Step>
-       <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+      <Step>
+        <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+      </Step>
+      <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>

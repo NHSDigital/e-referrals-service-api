@@ -27,7 +27,7 @@
         <Name>SpikeArrest</Name>
       </Step>
       <Step>
-       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
         <Name>SpikeArrest.Binary</Name>
       </Step>
       <Step>

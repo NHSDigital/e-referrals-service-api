@@ -10,10 +10,10 @@
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
     <FaultRule name="spike_arrest_fault">
-       <Step>
-            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
-       </Step>
-       <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+      <Step>
+        <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+      </Step>
+      <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
@@ -27,7 +27,7 @@
         <Name>SpikeArrest</Name>
       </Step>
       <Step>
-       <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
         <Name>SpikeArrest.Binary</Name>
       </Step>
       <Step>
@@ -42,6 +42,10 @@
       <Step>
         <Name>AssignMessage.AddBaseUrlHeader</Name>
       </Step>
+      <Step>
+        <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
+        <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
+      </Step> 
       <Step>
         <Name>AssignMessage.Swap.nhsd-ers-ods-code</Name>
         <Condition>(request.header.nhsd-ers-ods-code ~~ ".+")</Condition>

@@ -319,6 +319,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -396,6 +398,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -472,6 +476,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -548,6 +554,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
@@ -626,6 +634,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
@@ -740,6 +750,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
@@ -823,6 +835,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -875,6 +889,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/generatePatientLetter/422Response.yaml'
         '429':
@@ -1039,6 +1055,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
         '429':
@@ -1103,6 +1121,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
         '429':
@@ -1229,6 +1249,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
@@ -1324,6 +1346,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '415':
@@ -1407,6 +1431,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveClinicalInformation/422Response.yaml'
         '429':
@@ -1506,6 +1532,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -1582,6 +1610,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '415':
           $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
         '422':
@@ -1663,6 +1693,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
         '429':
@@ -1723,6 +1755,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '422':
           $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
         '429':
@@ -1808,6 +1842,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
@@ -1897,6 +1933,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '415':
@@ -2001,6 +2039,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '415':
@@ -2118,6 +2158,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '415':
@@ -2183,6 +2225,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
@@ -2273,6 +2317,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':
@@ -2361,6 +2407,8 @@ paths:
           $ref: 'components/schemas/responses/Unauthorized.yaml'
         '403':
           $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '429':
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
@@ -2454,6 +2502,8 @@ paths:
           $ref: 'components/schemas/responses/Forbidden.yaml'
         '404':
           $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
         '409':
           $ref: 'components/schemas/responses/Conflict.yaml'
         '412':

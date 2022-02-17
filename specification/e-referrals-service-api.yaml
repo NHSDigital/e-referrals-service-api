@@ -1468,6 +1468,8 @@ paths:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+        If a worklist response exceeds 10MB, a successful response will not be returned. This is due to the size limitation on the APIM platform.
         
         ## Use case
         As an authenticated user
@@ -1568,6 +1570,8 @@ paths:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_ADMIN`
           - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+        If a worklist response exceeds 10MB, a successful response will not be returned. This is due to the size limitation on the APIM platform.
         
         ## Use case
         As an authenticated user

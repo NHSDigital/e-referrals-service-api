@@ -56,7 +56,7 @@ properties:
         type: array
         items:
           anyOf:
-            - title: RecordReviewOutcome
+            - title: AvailableActionsForUser
               type: object
               required:
                 - system
@@ -72,11 +72,17 @@ properties:
                   type: string
                   enum:
                     - RECORD_REVIEW_OUTCOME
+                    - CREATE_APPOINTMENT
+                    - CHANGE_SHORTLIST
+                    - CHANGE_SHORTLIST_AND_SEND_FOR_TRIAGE
                   example: RECORD_REVIEW_OUTCOME
                 display:
                   type: string
                   enum:
                     - Record Review Outcome
+                    - Create Appointment
+                    - Change Shortlist
+                    - Change Shortlist and Send for Triage
                   example: Record Review Outcome
 
 

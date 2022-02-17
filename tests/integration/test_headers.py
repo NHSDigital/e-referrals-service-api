@@ -25,7 +25,7 @@ SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
 class RenamedHeader(Enum):
     CORRELATION_ID = ("x-correlation-id", "nhsd-correlation-id")
     BUSINESS_FUNCTION = ("nhsd-ers-business-function", "x-ers-business-function")
-    ODS_CODE = ("nhsd-ers-ods-code", "x-ers-ods-code")
+    ODS_CODE = ("NHSD-End-User-Organisation-ODS", "x-ers-ods-code")
     FILENAME = ("nhsd-ers-file-name", "x-ers-xapi-meta-file_name")
     COMM_RULE_ORG = ("nhsd-ers-comm-rule-org", "x-ers-xapi-comm-rule-org")
     REFERRAL_ID = ("nhsd-ers-referral-id", "x-ers-xapi-meta-intended_ubrn")

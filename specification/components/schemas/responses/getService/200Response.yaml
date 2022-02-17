@@ -1,0 +1,23 @@
+description: Response contains the Healthcare Service requested.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  Cache-Control:
+    $ref: '../../headers/response/CacheControl.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-HealthcareService.yaml'
+    examples:
+      single-service-minimal:
+        summary: Service and minimal attributes.
+        value:
+          $ref: '../../../examples/getService/responses/sampleServiceWithMinimumAttributes.json'
+      single-service:
+        summary: Service and its attributes.
+        value:
+          $ref: '../../../examples/getService/responses/sampleServiceWithFullAttributes.json'

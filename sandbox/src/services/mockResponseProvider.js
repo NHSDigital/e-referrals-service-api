@@ -4,21 +4,24 @@ const lodash = require('lodash')
 
 function mapExampleResponse(request, exampleResponseMap) {
 
-  if (request != null && request.payload != null) {
-
+  if (request && request.payload) {
     for (const [requestBodyPath, responseBodyPath] of Object.entries(exampleResponseMap)) {
+      try {
+        const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
+        var requestBody = request.payload;
 
-      const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
+        if ('object' != (typeof requestBody)) {
+          requestBody = JSON.parse(request.payload)
+        }
 
-      var requestBody = request.payload;
-      if ('object' != (typeof requestBody)) {
-        requestBody = JSON.parse(request.payload)
-      }
-      if (lodash.isEqual(requestBody, exampleRequestBody)) {
-        return responseBodyPath;
+        if (lodash.isEqual(requestBody, exampleRequestBody)) {
+          return responseBodyPath;
+        }
+      } catch (err) {
+        console.error(err)
+        throw err
       }
     }
-
   }
 
   return null;
@@ -383,13 +386,23 @@ module.exports = {
 
     // Scenario 1 An "action" is available - Illustrate success response to caller
     if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
+    }
 
-      return 'availableActionsForUserList/WithEntries.json'
+    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCreateAppointment.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlist.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070003/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
     }
 
     // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
-    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
-
+    if (focus === 'ReferralRequest/000000070004/_history/6' && intent === 'proposal' && status === 'ready') {
       return 'availableActionsForUserList/Empty.json'
     }
 
@@ -407,4 +420,54 @@ module.exports = {
 
 
   },
+ 
+ getExampleResponseForGetHealthcareService: function (request) {
+    const version = request.params.version
+    const serviceId = request.params.serviceId
+
+    if (serviceId == 1 && (!version || version == 1)) {
+      return 'getService/responses/sampleServiceWithMinimumAttributes.json'
+    }
+   
+    if (serviceId == 2 && (!version || version == 1)) {
+      return 'getService/responses/sampleServiceWithFullAttributes.json'
+    }
+
+    return null
+  },
+
+  getExampleResponseForSearchForHealthcareServices: function (request) {
+    const ids = request.query['_id']
+    
+    if (ids == ['1', '2']) {
+      return 'searchForServices/responses/searchServiceWithMinmumalAttributes.json'
+    }
+
+    if (ids == ['3', '4']) {
+      return 'searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
+    }
+   
+    if (ids == ['5', '6']) {
+      return 'searchForServices/responses/searchServiceWithEmptyResponse.json'
+    } 
+
+    return null
+  },
+
+  getExampleResponseForChangeShortlist: function (request) {
+    var responseMap = {
+      'src/mocks/changeShortlist/requests/UnbookedReferral.json': 'changeShortlist/responses/UnbookedReferral.json',
+      'src/mocks/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'changeShortlist/responses/UnbookedReferralMultipleServices.json'
+    }
+
+    return mapExampleResponse(request, responseMap)
+  },
+  
+  getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
+      var responseMap = {
+        'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
+      }
+
+      return mapExampleResponse(request, responseMap)
+    }
 }

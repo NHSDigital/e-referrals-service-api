@@ -1,0 +1,38 @@
+title: eRS-ChangeShortlistAndSendForTriage-Request-Parameters
+type: object
+description: "Parameters provided when looking to change the services a referral has currently shortlisted"
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: Parameters
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriage-Request-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriage-Request-Parameters-1"
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                                                                    |
+      | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+      | `Shortlist`                       | `1..1`      | Shortlist indicating the new service a referral should have shortlisted                 |
+      | `IntentionToAddReferralLetter`    | `1..1`      | Flag indicating whether a referral letter is going to be added later or is already added | 
+      | `FirstReminderLetterFollowUpDays` | `1..1`      | Time at which a reminder should be sent to remind the patient about the referral         |
+    items:
+      anyOf:
+        - $ref: 'parameters/TriageShortlist.yaml'
+        - $ref: 'parameters/IntentionToAddReferralLetter.yaml'
+        - $ref: 'parameters/TriageFirstReminderLetterFollowUpDays.yaml'

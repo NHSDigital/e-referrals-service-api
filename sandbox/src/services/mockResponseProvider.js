@@ -407,28 +407,31 @@ module.exports = {
     const intent = request.query['intent']
     const status = request.query['status']
 
-    // Scenario 1 An "action" is available - Illustrate success response to caller
+    // Scenario 1 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
     if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithCreateAppointment.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithChangeShortlist.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070003/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
-    }
-
-    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
-    if (focus === 'ReferralRequest/000000070004/_history/6' && intent === 'proposal' && status === 'ready') {
       return 'availableActionsForUserList/Empty.json'
     }
 
+    // Scenario 2 An "action" is available - Illustrate success response to caller
+    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCreateAppointment.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070003/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlist.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070004/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070005/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCancelReferral.json'
+    }
 
   },
 

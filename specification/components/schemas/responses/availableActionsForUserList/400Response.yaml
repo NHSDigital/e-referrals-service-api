@@ -6,7 +6,7 @@ description: |
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
   | INVALID_VALUE                      | The input provided does not conform to the expected data types and format. |
   | MISSING_PARAMETER                  | Indicates missing mandatory FHIR search parameter. |
-  | HISTORY_NOT_SUPPORTED              | Only the current version of the UBRN is permissible |
+  | HISTORY_NOT_SUPPORTED              | Only the current version of the UBRN is permissible. |
   | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation). |
 headers:
   x-correlation-id:

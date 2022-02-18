@@ -75,6 +75,7 @@ properties:
                     - CREATE_APPOINTMENT
                     - CHANGE_SHORTLIST
                     - CHANGE_SHORTLIST_AND_SEND_FOR_TRIAGE
+                    - CANCEL_REFERRAL
                   example: RECORD_REVIEW_OUTCOME
                 display:
                   type: string
@@ -83,6 +84,7 @@ properties:
                     - Create Appointment
                     - Change Shortlist
                     - Change Shortlist and Send for Triage
+                    - Cancel Referral
                   example: Record Review Outcome
 
 

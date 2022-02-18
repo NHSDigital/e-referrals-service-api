@@ -5,7 +5,7 @@ const lodash = require('lodash')
 function mapExampleResponse(request, exampleResponseMap) {
 
   if (request && request.payload) {
-    for (const [requestBodyPath, responseBodyPath] of Object.entries(exampleResponseMap)) {
+    for (const [requestBodyPath, response] of Object.entries(exampleResponseMap)) {
       try {
         const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
         var requestBody = request.payload;
@@ -15,7 +15,7 @@ function mapExampleResponse(request, exampleResponseMap) {
         }
 
         if (lodash.isEqual(requestBody, exampleRequestBody)) {
-          return responseBodyPath;
+          return response;
         }
       } catch (err) {
         console.error(err)
@@ -248,12 +248,13 @@ module.exports = {
   },
 
   putExampleResponseForUpdateAppointment: function (request) {
-    const appointmentId = request.params.appointmentId;
-    // Scenario 1 - Minimum Booking Update for Cancellation example
-    if (appointmentId == 11000) {
-      return { responsePath: 'updateAppointment/responses/MinimalBookingUpdateForCancel.json', responseCode: 200 }
+    var responseMap = {
+          'src/mocks/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json': {responsePath: 'updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json', responseCode: 200},
+          'src/mocks/updateAppointment/requests/CancellationReasonAndMandatoryComment.json': {responsePath: 'updateAppointment/responses/CancellationReasonAndMandatoryComment.json', responseCode: 200},
+          'src/mocks/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json': {responsePath: 'updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json', responseCode: 422},
+          'src/mocks/updateAppointment/requests/CancellationInvalidReason.json': {responsePath: 'updateAppointment/responses/CancellationInvalidReason.json', responseCode: 422}
     }
-    return {}
+    return mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForRetrieveClinicalInformation: function () {
@@ -443,7 +444,7 @@ module.exports = {
 
 
   },
- 
+
  getExampleResponseForGetHealthcareService: function (request) {
     const version = request.params.version
     const serviceId = request.params.serviceId
@@ -451,7 +452,7 @@ module.exports = {
     if (serviceId == 1 && (!version || version == 1)) {
       return 'getService/responses/sampleServiceWithMinimumAttributes.json'
     }
-   
+
     if (serviceId == 2 && (!version || version == 1)) {
       return 'getService/responses/sampleServiceWithFullAttributes.json'
     }
@@ -461,7 +462,7 @@ module.exports = {
 
   getExampleResponseForSearchForHealthcareServices: function (request) {
     const ids = request.query['_id']
-    
+
     if (ids == ['1', '2']) {
       return 'searchForServices/responses/searchServiceWithMinmumalAttributes.json'
     }
@@ -469,10 +470,10 @@ module.exports = {
     if (ids == ['3', '4']) {
       return 'searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
     }
-   
+
     if (ids == ['5', '6']) {
       return 'searchForServices/responses/searchServiceWithEmptyResponse.json'
-    } 
+    }
 
     return null
   },
@@ -485,7 +486,7 @@ module.exports = {
 
     return mapExampleResponse(request, responseMap)
   },
-  
+
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
       var responseMap = {
         'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'

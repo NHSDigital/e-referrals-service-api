@@ -2922,7 +2922,52 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        To be added....
+        Use this endpoint to cancel an appointment that is booked into a directly-bookable service. Appointments made to directly-bookable services always have a date and time. You can only ever update the current appointment, i.e. an appointment that is related to a service on the current shortlist *and* the most recent appointment made.
+
+        Currently, this endpoint only allows cancellation of an appointment as an update. Future developments may permit further updates.
+
+        To cancel the referral, use [[HYPERLINK_A036]].
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+        - `REFERRING_CLINICIAN`
+        - `REFERRING_CLINICIAN_ADMIN`
+
+        You must use [[HYPERLINK_A004]] to retrieve reference data from the set `APPOINTMENT-CANCELLATION-REASON`.
+
+        To find out which reference data from this set can be used to cancel an appointment, filter as follows:
+
+          - *usage* must be `CANCEL`,
+          - *businessFunction* must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action),
+          - *effectiveFrom* must be in the past, and
+          - *effectiveTo* must not be in the past
+
+        Both the appointment reference, and version, are needed to update an appointment:
+
+        You must use [[HYPERLINK_A005]] to obtain the current appointment reference (via *Extension-eRS-Appointment-Reference-1*).
+
+        You must use [[HYPERLINK_A038]] to obtain the current appointment and get the current appointment's version. 
+
+        ## Use case
+        As an authenticated user
+
+        I need to update the current appointment
+
+        So that I can manage the patients care appropriately. 
+
+        ## Related endpoints
+        You can retrieve the reference data needed to cancel an appointment by using [[HYPERLINK_A004]]. This contains "reasons" for cancellation.
+
+        You can check if you currently can cancel the appointment by checking [[HYPERLINK_A029]].
+
+        You must use [[HYPERLINK_A005]] to obtain the current appointment reference (via *Extension-eRS-Appointment-Reference-1*) .
+
+        You must use [[HYPERLINK_A038]] to obtain the current appointment and get the current appointment's version. 
+
+        You can use [[HYPERLINK_A031]] after updating an appointment, to create a new shortlist of services. After changing a shortlist, you may be able to [[HYPERLINK_A016]]. 
 
       summary: A034 - Update appointment
       operationId: a034-update-appointment
@@ -2940,10 +2985,22 @@ paths:
             schema:
               $ref: 'components/schemas/eRS-Appointment.yaml'
             examples:
-              minimal-booking:
-                summary: Minimum booking update For Cancellation
+              minimal-cancellation-reason-only:
+                summary: Minimal Cancellation - Only Reason Provided (when a cancellation comment is not mandatory)
                 value:
-                  $ref: 'components/examples/updateAppointment/requests/MinimalBookingUpdateForCancel.json'
+                  $ref: 'components/examples/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json'
+              cancellation-reason-and-comment:
+                summary: Reason and Comment Provided
+                value:
+                  $ref: 'components/examples/updateAppointment/requests/CancellationReasonAndMandatoryComment.json'
+              cancellation-reason-only-comment-mandatory:
+                summary: Only Reason Provided (when a cancellation comment is mandatory)
+                value:
+                  $ref: 'components/examples/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json'
+              unauthorised-cancellation-reason:
+                summary: Unauthorised Cancellation Reason
+                value:
+                  $ref: 'components/examples/updateAppointment/requests/CancellationInvalidReason.json'
       responses:
         '200':
           $ref: 'components/schemas/responses/updateAppointment/200Response.yaml'

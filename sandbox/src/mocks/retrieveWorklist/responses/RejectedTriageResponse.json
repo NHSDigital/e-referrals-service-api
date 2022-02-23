@@ -64,6 +64,18 @@
                   }
                 ]
               }
+            },
+            {
+              "url": "reason",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+                    "code": "FURTHER_INFORMATION_REQUIRED",
+                    "display": "Further information required"
+                  }
+                ]
+              }
             }
           ],
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-RejectedTriageResponse-WorkListItem-1"
@@ -126,18 +138,6 @@
                     "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                     "code": "TRIAGE_RESPONSE",
                     "display": "Triage Response"
-                  }
-                ]
-              }
-            },
-            {
-              "url": "reason",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
-                    "code": "FURTHER_INFORMATION_REQUIRED",
-                    "display": "Further Information Required"
                   }
                 ]
               }

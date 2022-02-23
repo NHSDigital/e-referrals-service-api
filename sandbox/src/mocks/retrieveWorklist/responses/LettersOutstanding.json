@@ -60,6 +60,59 @@
         "item": {
           "reference": "ReferralRequest/000000070001"
         }
+      },
+      {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "patient",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/nhs-number",
+                    "value": "9312201101"
+                  }
+                }
+              },
+              {
+                "url": "priority",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                      "code": "ROUTINE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralCreated",
+                "valueDateTime": "2021-01-25T08:45:31.219Z"
+              },
+              {
+                "url": "clinicalContext",
+                "valueString": "EAR_NOSE_THROAT/EAR"
+              },
+              {
+                "url": "referrer",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556513"
+                  }
+                }
+              },
+              {
+                "url": "letterDue",
+                "valueDate": "2021-01-25"
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1"
+          }
+        ],
+        "item": {
+          "reference": "ReferralRequest/000000068002"
+        }
       }
     ]
   }

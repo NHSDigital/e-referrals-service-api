@@ -60,7 +60,7 @@
                     {
                       "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                       "code": "CANCELLED_REFERRAL",
-                      "display": "Cancelled Referral"
+                      "display": "Cancelled referral"
                     }
                   ]
                 }
@@ -71,8 +71,8 @@
                   "coding": [
                     {
                       "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
-                      "code": "FURTHER_INFORMATION_REQUIRED",
-                      "display": "Further Information Required"
+                      "code": "INTEND_PRIVATE",
+                      "display": "Patient intends to go private"
                     }
                   ]
                 }
@@ -137,7 +137,7 @@
                     {
                       "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                       "code": "DID_NOT_ATTEND",
-                      "display": "Did Not Attend"
+                      "display": "Did not attend"
                     }
                   ]
                 }

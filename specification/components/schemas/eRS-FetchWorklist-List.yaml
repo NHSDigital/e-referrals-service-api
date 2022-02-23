@@ -756,7 +756,7 @@ properties:
                                         example: FURTHER_INFORMATION_REQUIRED
                                       display:
                                         type: string
-                                        example: 'Further Information Required'
+                                        example: 'Further information required'
               - title: 'Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem'
                 type: object
                 required:
@@ -825,7 +825,7 @@ properties:
                                           example: INTEND_PRIVATE
                                         display:
                                           type: string
-                                          example: Intend to go private
+                                          example: Patient intends to go private
               - title: 'Extension-eRS-AwaitingBooking-WorklistItem'
                 type: object
                 required:
@@ -894,7 +894,7 @@ properties:
                                           example: PATIENT_APPOINTMENT_CLASH
                                         display:
                                           type: string
-                                          example: Patient Appointment Clash
+                                          example: Patient - Clashes with another appointment
               - title: Extension-eRS-LettersOutstanding-WorklistItem
                 type: object
                 required:

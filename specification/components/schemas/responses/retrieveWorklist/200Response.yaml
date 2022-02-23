@@ -10,11 +10,11 @@ content:
       $ref: '../../eRS-FetchWorklist-List.yaml'
     examples:
       referrals-for-review:
-        summary: Referrals for review
+        summary: Referrals for Review
         value:
           $ref: '../../../examples/retrieveWorklist/responses/ReferralsForReview.json'
       appointment-slot-issues:
-        summary: Appointment slot issues
+        summary: Appointment Slot Issues
         value:
           $ref: '../../../examples/retrieveWorklist/responses/AppointmentSlotIssues.json'
       filtered-by-specialty:
@@ -26,11 +26,11 @@ content:
         value:
           $ref: '../../../examples/retrieveWorklist/responses/FilteredByClinician.json'
       rejected-triage-responses:
-        summary: Rejected Triage Responses
+        summary: Rejected Triage / Response
         value:
           $ref: '../../../examples/retrieveWorklist/responses/RejectedTriageResponse.json'
       assessment-returned-cancelled-dna:
-        summary: Assessment Returned Cancelled DNA
+        summary: Assessment Returned / Cancelled / DNA
         value:
           $ref: '../../../examples/retrieveWorklist/responses/AssessmentReturnedCancelledDna.json'
       awaiting-booking:

@@ -1,0 +1,23 @@
+title: BusinessFunction
+description: Details which Business functions are able to use the current code system
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - businessFunction
+    example: 'businessFunction'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#businessFunction'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#businessFunction'
+  type:
+    type: string
+    enum:
+      - Coding
+    example: 'Coding'

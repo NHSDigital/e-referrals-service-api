@@ -1,0 +1,152 @@
+title: eRS-HealthcareService
+description: 'A e-referral service'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - location
+  - name
+properties:
+  id: 
+    type: string
+    example: "1"
+  meta:
+    type: object
+    required:
+      - profile
+      - versionId
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService'
+          example: 'https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService'
+      versionId:
+        type: string
+        example: '1'
+  language:
+    type: string
+    example: 'en'
+  resourceType:
+    type: string
+    enum:
+      -  HealthcareService
+    example: HealthcareService
+  extension:
+    type: array
+    nullable: false
+    description: |
+      | Field                                      | Cardinality | Notes                                                                                   |
+      | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
+      | Extension-eRS-HoursOfOperation             | 0..1        | Details the hours the current HealthcareService is operational                          |
+      | Extension-eRS-HealthcareService-Contact    | 0..*        | Details any contact information for the HealthcareService                               |
+      | Extension-eRS-ServiceInstructions          | 0..1        | Outlines any specific instructions that should be followed around the HealthcareService |
+    items:
+      anyOf:
+        - $ref: 'extensions/Extension-eRS-HoursOfOperation.yaml'
+        - $ref: 'extensions/Extension-eRS-HealthcareService-Contact.yaml'
+        - $ref: 'extensions/Extension-eRS-ServiceInstructions.yaml'
+  location:
+    type: array
+    items:
+      type: object
+      properties:
+        identifier:
+          description: 'Reference detailing the location a service is based within.'
+          type: object
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/Id/ods-site-code'
+              example: 'https://fhir.nhs.uk/Id/ods-site-code'
+            value:
+              type: string
+              example: 'R6901'
+  name:
+    type: string
+    example: 'Direct SVC 1'
+    description: Name of the current HealthcareService within eRS
+  type:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+            - display
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
+              example: https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
+            code:
+              type: string
+              enum:
+                - DAY_CASE
+                - FIRST_OUTPATIENT
+                - ASSESSMENT_SERVICE
+                - GPSI
+                - AHP_CLINIC
+                - DIAGNOSTIC
+                - NURSE_CLINIC
+                - OPHTHALMOLOGIST
+                - TELEPHONE_ASSESSMENT
+              example: DAY_CASE
+            display:
+              type: string
+              enum:
+                - Day Case
+                - First Outpatient
+                - Assessment Service
+                - GPSI
+                - AHP Clinic
+                - Diagnostic
+                - Nurse Clinic
+                - Ophthalmologist
+                - Telephone Assessment
+              example: Day Case
+  characteristic:
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+              - display
+            properties:
+              system:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
+                example: https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
+              code:
+                type: string
+                # Might need to think about these codings given Appointment/Advice and Guidance/Triage requests aren't mentioned in the xAPI
+                enum:
+                  - BOOKABLE
+                  - REVIEW
+                  - ADVICE_AND_GUIDANCE
+                example: BOOKABLE
+              display:
+                enum:
+                  - Appointment Request
+                  - Triage Request
+                  - Advice and Guidance Request
+                example: Appointment Request

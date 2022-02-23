@@ -1,15 +1,9 @@
 steps:
 
-  - bash: poetry install
-    workingDirectory: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)
-    displayName: Setup tests
-
   - bash: |
-      export ERS_BASE_PATH="$(SERVICE_BASE_PATH)"
-      export APIGEE_ENVIRONMENT="$(ENVIRONMENT)"
       export STATUS_ENDPOINT_API_KEY="$(status-endpoint-api-key)"
-      
-      poetry run pytest -v tests/smoke/test_status_endpoints.py --junitxml=tests/smoke-test-report.xml
+
+      poetry run pytest -v tests/smoke --junitxml=tests/smoke-test-report.xml
     displayName: Run basic smoke tests
     workingDirectory: "$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)"
   - task: PublishTestResults@2

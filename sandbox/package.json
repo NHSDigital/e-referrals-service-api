@@ -4,8 +4,8 @@
   "description": "e-Referrals Service API Sandbox Server",
   "scripts": {
     "lint-js": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",
-    "start": "node src/app.js --use_strict",
-    "debug": "DEBUG=pd* nodemon --inspect-brk --harmony --nolazy server.js"
+    "start": "node --use_strict src/app.js",
+    "debug": "node --use_strict --inspect=0.0.0.0:9229 src/app.js"
   },
   "author": "NHS Digital",
   "license": "(MIT OR OGL)",

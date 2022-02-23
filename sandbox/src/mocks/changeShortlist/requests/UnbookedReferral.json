@@ -1,0 +1,97 @@
+{
+    "resourceType": "Parameters",
+    "meta": {
+        "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlist-Parameters-1"
+        ]
+    },
+    "parameter": [
+        {
+            "name": "shortlist",
+            "resource": {
+                "meta": {
+                    "profile": [
+                        "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+                    ]
+                },
+                "resourceType": "List",
+                "status": "current",
+                "mode": "snapshot",
+                "contained": [
+                    {
+                        "resourceType": "Parameters",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+                            ]
+                        },
+                        "id": "ServiceSearchCriteria-1",
+                        "parameter": [
+                            {
+                                "name": "priority",
+                                "valueCoding": {
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                                    "code": "URGENT"
+                                }
+                            },
+                            {
+                                "name": "specialty",
+                                "valueCoding": {
+                                    "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                                    "code": "CARDIOLOGY"
+                                }
+                            },
+                            {
+                                "name": "clinicType",
+                                "valueCoding": {
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+                                    "code": "HEART_FAILURE"
+                                }
+                            },
+                            {
+                                "name": "commissioningProvisioning",
+                                "valueCoding": {
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+                                    "code": "ALL_AVAILABLE_FOR_BOOKING"
+                                }
+                            },
+                            {
+                                "name": "ageAndGenderAppropriate",
+                                "valueBoolean": false
+                            }
+                        ]
+                    }
+                ],
+                "entry": [
+                    {
+                        "item": {
+                            "identifier": {
+                                "system": "http://fhir.nhs.net/Id/ers-service",
+                                "value": "11002"
+                            }
+                        }
+                    }
+                ],
+                "extension": [
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+                        "valueReference": {
+                            "reference": "#ServiceSearchCriteria-1"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "intentionToAddReferralLetter",
+            "valueCoding": {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1",
+                "code": "NEED_TO_ADD_LATER"
+            }
+        },
+        {
+            "name": "firstReminderLetterFollowUpDays",
+            "valueUnsignedInt": 0
+        }
+    ]
+}

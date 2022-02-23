@@ -1,0 +1,14 @@
+title: CanCancelAppoinment
+description: This will only be returned when `codeSystemType` is REFERRAL-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - valueBoolean
+properties:
+  code:
+    type: string
+    enum:
+      - canCancelAppointment
+    example: 'canCancelAppointment'
+  valueBoolean:
+    type: boolean

@@ -1,1 +1,5 @@
 description: Not Acceptable
+content:
+  text/plain;charset=utf-8:
+    schema:
+      type: string

@@ -1,0 +1,20 @@
+title: FirstReminderLetterFollowUpDays
+description: |
+  Parameter to supply the first reminder follow up days. When sending for triage, 
+  the only acceptable value is 0, which means no follow up letter will be sent, 
+  as the patient does not need to book an appointment.
+type: object
+required:
+  - name
+  - valueUnsignedInt
+properties:
+  name:
+    type: string
+    enum:
+      - firstReminderLetterFollowUpDays
+    example: 'firstReminderLetterFollowUpDays'
+  valueUnsignedInt:
+    type: integer
+    minimum: 0
+    format: int32
+    example: 0

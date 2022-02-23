@@ -1,10 +1,12 @@
 in: header
-name: nhsd-ers-ods-code
+name: NHSD-End-User-Organisation-ODS
 description: | 
   The ODS code of the caller's Organisation.
-
-  Not allowed for application-restricted access. 
-  Required for user-restricted access. 
+  
+  Not allowed for application-restricted access.
+  
+  Required for user-restricted access.
 schema:
   type: string
   example: 'R69'
+  

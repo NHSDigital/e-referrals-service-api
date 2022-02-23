@@ -16,6 +16,8 @@ const bookOrDeferAppointment = require('./bookOrDeferAppointment')
 const retrieveClinicalInformation = require('./retrieveClinicalInformation')
 const retrieveWorklist = require('./retrieveWorklist')
 const retrieveAdviceAndGuidanceWorklist = require('./retrieveAdviceAndGuidanceWorklist')
+const retrieveHealthcareService = require('./retrieveHealthcareService')
+const searchForHealthcareServices = require('./searchForHealthcareServices')
 const retrieveAdviceAndGuidanceRequest = require('./retrieveAdviceAndGuidanceRequest')
 const retrieveAdviceAndGuidanceConversation = require('./retrieveAdviceAndGuidanceConversation')
 const sendAdviceAndGuidanceResponse = require('./sendAdviceAndGuidanceResponse')
@@ -25,6 +27,8 @@ const acceptReferral = require('./acceptReferral')
 const rejectReferral = require('./rejectReferral')
 const availableActionsForUserList = require('./availableActionsForUserList')
 const cancelAppointmentActionLater = require('./cancelAppointmentActionLater')
+const changeShortlist = require('./changeShortlist')
+const changeShortlistAndSendForTriage = require('./changeShortlistAndSendForTriage')
 
 const routes = [].concat(
   getStatus,
@@ -45,6 +49,10 @@ const routes = [].concat(
   retrieveClinicalInformation,
   retrieveWorklist,
   retrieveAdviceAndGuidanceWorklist,
+  retrieveHealthcareService,
+  searchForHealthcareServices,
+  changeShortlist,
+  changeShortlistAndSendForTriage,
   retrieveAdviceAndGuidanceRequest,
   retrieveAdviceAndGuidanceConversation,
   sendAdviceAndGuidanceResponse,

@@ -1,0 +1,35 @@
+parameters:
+  - name: smoke_tests
+    type: boolean
+    displayName: Toggle smoke tests
+    default: false
+  - name: integration_tests
+    type: boolean
+    displayName: Toggle integration tests
+    default: false
+
+steps:
+
+  - bash: poetry install
+    workingDirectory: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)
+    displayName: Setup tests
+
+  - template: "azure/components/aws-assume-role.yml@common"
+    parameters:
+     role: "auto-ops"
+     profile: "apm_ptl"
+
+  - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
+    parameters:
+     secret_file_ids: []
+     config_ids: []
+     secret_ids:
+       - ptl/api-deployment/e-referrals-service/ers-testing-asid
+
+  # Smoke tests
+  - ${{ if parameters.smoke_tests }}:
+    - template: ers-smoke.yml
+
+  # integration tests
+  - ${{ if parameters.integration_tests }}:
+    - template: ers-integration-tests.yml

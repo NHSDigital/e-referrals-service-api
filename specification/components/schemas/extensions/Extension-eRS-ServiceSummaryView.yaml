@@ -461,29 +461,6 @@ properties:
             valueBoolean:
               type: boolean
               example: true
-            valueReference:
-              type: object
-              required:
-                - identifier
-                - display
-              properties:
-                identifier:
-                  type: object
-                  required:
-                    - system
-                    - value
-                  properties:
-                    system:
-                      type: string
-                      enum:
-                        - https://directory.spineservices.nhs.uk/STU3/Organization
-                      example: 'https://directory.spineservices.nhs.uk/STU3/Organization'
-                    value:
-                      type: string
-                      example: 'R69'
-                display:
-                  type: string
-                  example: 'Cicero-Clinic'
         - title: Specialty
           description: The specialty supported by the Service
           type: object

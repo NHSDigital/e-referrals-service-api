@@ -10,7 +10,7 @@ module.exports = [
     path: '/FHIR/STU3/CommunicationRequest/$ers.fetchworklist',
     handler: (request, h) => {
 
-      const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_ADMIN"]
+      const allowedBusinessFunctions = ["SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_ADMIN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
       const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {

@@ -1,0 +1,504 @@
+{
+  "id": "REFERRAL-CANCELLATION-REASON",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+    ]
+  },
+  "resourceType": "CodeSystem",
+  "url": "_baseUrl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
+  "version": "1",
+  "name": "e-RS ReferralRequest Cancellation Reason",
+  "status": "active",
+  "experimental": false,
+  "date": "2022-01-21T13:27:51.923Z",
+  "publisher": "e-Referral Service",
+  "description": "e-RS ReferralRequest Cancellation Reason",
+  "copyright": "Copyright © 2016 HL7 UK",
+  "caseSensitive": true,
+  "content": "complete",
+  "property": [
+    {
+      "code": "effectiveFrom",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+      "type": "dateTime"
+    },
+    {
+      "code": "effectiveTo",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+      "type": "dateTime"
+    },
+    {
+      "code": "commentIsMandatory",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory",
+      "type": "boolean"
+    },
+    {
+      "code": "canCancelAppointment",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#canCancelAppointment",
+      "type": "boolean"
+    },
+    {
+      "code": "businessFunction",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#businessFunction",
+      "type": "Coding"
+    },
+    {
+      "code": "referrerUsage",
+      "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#referrerUsage",
+      "type": "Coding"
+    }
+  ],
+  "concept": [
+    {
+      "code": "BOOKED_CLINICAL_NEED",
+      "display": "Booked more urgently due to clinical need",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "BOOKED_OUTSIDE_CAB",
+      "display": "Patient booked outside NHS e-Referral Service",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2007-09-14T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "code": "COMMUNITY_SERVICE_NA",
+      "display": "Sent to community service not available in this system",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "COMPLEX_PATHWAY",
+      "display": "Complex pathway, multiple appointments needed",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "INTEND_PRIVATE",
+      "display": "Patient intends to go private",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "NO_LONGER_REQUIRED",
+      "display": "Referral is no longer required",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "OTHER_OTHER",
+      "display": "Other reason",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "OUTPATIENT_CLINICIAN_NA",
+      "display": "Sent to outpatient service as named clinician is not available in this system",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "OUTPATIENT_SERVICE_NA",
+      "display": "Sent to outpatient service not available in this system",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "PATIENT_DIED",
+      "display": "Patient died",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "PATIENT_REQUEST_CANCELLATION_OTHER",
+      "display": "Other reason",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "RAISED_IN_ERROR",
+      "display": "Referral raised in error",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2007-09-14T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "REFERRER_CANCELLATION",
+      "display": "Other - Referrer request cancellation",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2007-09-14T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "STRAIGHT_TO_TEST",
+      "display": "Sent straight to test / procedure",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": true
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "TREATMENT_NO_LONGER_REQUIRED",
+      "display": "Referral no longer required",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN_ADMIN"
+          }
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "REFERRING_CLINICIAN"
+          }
+        },
+        {
+          "code": "referrerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "CANCEL_REFERRAL"
+          }
+        }
+      ]
+    },
+    {
+      "code": "TRIAGE_ENDED",
+      "display": "Triage Ended",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2019-07-23T17:09:56.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": false
+        }
+      ]
+    },
+    {
+      "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER",
+      "display": "Other reason",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        }
+      ]
+    },
+    {
+      "code": "PROVIDER_CANCELLATION",
+      "display": "Other - Provider Cancellation",
+      "property": [
+        {
+          "code": "effectiveFrom",
+          "valueDateTime": "2004-06-01T00:00:00.000Z"
+        },
+        {
+          "code": "commentIsMandatory",
+          "valueBoolean": false
+        },
+        {
+          "code": "canCancelAppointment",
+          "valueBoolean": true
+        }
+      ]
+    }
+  ]
+}

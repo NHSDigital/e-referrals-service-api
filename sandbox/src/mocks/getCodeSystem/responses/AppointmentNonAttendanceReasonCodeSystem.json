@@ -1,14 +1,14 @@
 {
-    "id": "APPOINTMENT-NON-ATTENDANCE",
+    "id": "APPOINTMENT-NON-ATTENDANCE-REASON",
     "meta": {
         "profile": [
             "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
         ]
     },
     "resourceType": "CodeSystem",
-    "url": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-NON-ATTENDANCE",
+    "url": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-NON-ATTENDANCE-REASON",
     "version":"1",
-    "name": "e-RS Appointment Non-attendance",
+    "name": "e-RS Appointment Non-attendance Reason",
     "status":"active",
     "experimental":false,
     "date": "2021-05-26T13:47:15.123Z",

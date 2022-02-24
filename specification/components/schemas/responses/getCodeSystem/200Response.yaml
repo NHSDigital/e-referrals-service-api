@@ -30,9 +30,9 @@ content:
         description: This is example data only and should not be taken as the real reference data.
         value:
           $ref: '../../../examples/getCodeSystem/responses/ReferralCancellationReasonCodeSystem.json'
-      appointment-non-attendance:
-        summary: Appointment Non-attendance reason Reference Data
+      appointment-non-attendance-reason:
+        summary: Appointment Non-attendance Reason Reference Data
         description: This is example data only and should not be taken as the real reference data. 
         value:
-          $ref: '../../../examples/getCodeSystem/responses/AppointmentNonAttendanceCodeSystem.json'
+          $ref: '../../../examples/getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json'
           

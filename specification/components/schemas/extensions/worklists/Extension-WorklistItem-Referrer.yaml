@@ -1,0 +1,18 @@
+title: referrer
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - referrer
+    example: referrer
+  valueReference:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: '../../identifiers/STU3_UserId.yaml'

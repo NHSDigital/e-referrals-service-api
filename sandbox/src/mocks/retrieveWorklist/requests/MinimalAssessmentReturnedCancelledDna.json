@@ -1,0 +1,22 @@
+{
+    "resourceType": "Parameters",
+    "meta": {
+      "profile": [
+        "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+      ]
+    },
+    "parameter": [
+      {
+        "name": "listType",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1",
+              "code": "ASSESSMENT_RETURNED_CANCELLED_DNA"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  

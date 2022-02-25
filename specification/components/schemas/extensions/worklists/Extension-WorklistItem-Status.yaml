@@ -1,0 +1,62 @@
+title: status
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - status
+    example: status
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+            - display
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1
+              example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1'
+            code:
+              type: string
+              enum:
+                - 'REJECTED'
+                - 'ASSESSMENT_RESULT'
+                - 'CANCELLED_REFERRAL'
+                - 'DID_NOT_ATTEND'
+                - 'NOT_BOOKED'
+                - 'BOOKED'
+                - 'AWAITING_TRIAGE'
+                - 'DEFERRED_TO_PROVIDER'
+                - 'APP_CANCELLED_BY_PROVIDER'
+                - 'APP_CANCELLED_BY_PATIENT'
+                - 'TRIAGED_PROVIDER_TO_ACTION'
+                - 'TRIAGE_RESPONSE'
+              example: 'REJECTED'
+            display:
+              type: string
+              enum:
+                - 'Rejected'
+                - 'Assessment result'
+                - 'Cancelled referral'
+                - 'Did not attend'
+                - 'Not booked'
+                - 'Booked'
+                - 'Awaiting triage'
+                - 'Deferred to provider'
+                - 'Appointment cancelled by provider'
+                - 'Appointment cancelled by patient'
+                - 'Triaged - provider to action'
+                - 'Triage Response'
+              example: 'Rejected'

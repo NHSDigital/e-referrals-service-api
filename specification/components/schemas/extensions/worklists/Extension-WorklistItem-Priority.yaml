@@ -1,0 +1,20 @@
+title: priority
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - priority
+    example: priority
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          $ref: '../../codings/Priority.yaml'

@@ -134,11 +134,15 @@ properties:
         extension:
           type: array
           description: |
-            | Field                                                  | Cardinality | Notes                                                         |
-            | ------------------------------------------------------ | ----------- | ------------------------------------------------------------- |
-            | `Extension-eRS-ReferralsforReview-WorkListItem`        | `0..1`      | Type of worklist items depends on the worklist type requested |
-            | `Extension-eRS-AppointmentSlotIssues-WorkListItem`     | `0..1`      | Type of worklist items depends on the worklist type requested | 
-            | `Extension-eRS-AdviceAndGuidanceRequests-WorkListItem` | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | Field                                                       | Cardinality | Notes                                                         |
+            | ----------------------------------------------------------- | ----------- | ------------------------------------------------------------- |
+            | `Extension-eRS-ReferralsforReview-WorkListItem`             | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-AppointmentSlotIssues-WorkListItem`          | `0..1`      | Type of worklist items depends on the worklist type requested | 
+            | `Extension-eRS-AdviceAndGuidanceRequests-WorkListItem`      | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-RejectedTriageResponse-WorkListItem`         | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem` | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-AwaitingBooking-WorklistItem`                | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-LettersOutstanding-WorklistItem`             | `0..1`      | Type of worklist items depends on the worklist type requested |
           items:
             anyOf:
               - title: Extension-eRS-ReferralsforReview-WorkListItem
@@ -190,38 +194,7 @@ properties:
                                   type: array
                                   items:
                                     $ref: '../schemas/codings/Priority.yaml'
-                        - title: specialty
-                          type: object
-                          required:
-                            - url
-                            - valueCodeableConcept
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - specialty
-                              example: 'specialty'
-                            valueCodeableConcept:
-                              type: object
-                              required:
-                                  - coding
-                              properties:
-                                coding:
-                                  type: array
-                                  minItems: 1
-                                  maxItems: 1
-                                  items:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                    properties:
-                                      system:
-                                          type: string
-                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
-                                      code:
-                                          type: string
-                                          example: 'CARDIOLOGY'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Specialty.yaml' 
                         - title: patient
                           type: object
                           required: 
@@ -275,20 +248,7 @@ properties:
                               type: string
                               format: date-time
                               example: '2021-09-01T14:26:18.314Z'
-                        - title: clinicalInfoPrinted
-                          type: object
-                          required: 
-                            - url
-                            - valueBoolean
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - clinicalInfoPrinted
-                              example: 'clinicalInfoPrinted'
-                            valueBoolean:
-                              type: boolean
-                              example: false
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalInfoPrinted.yaml'
                         - title: requestContextStatus
                           type: object
                           required: 
@@ -463,94 +423,10 @@ properties:
                       | `service`                      | `0..1`      |                                            |
                     items:
                       anyOf:
-                        - title: priority
-                          type: object
-                          required:
-                            - url
-                            - valueCodeableConcept
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - priority
-                              example: 'priority'
-                            valueCodeableConcept:
-                              type: object
-                              required:
-                                - coding
-                              properties:
-                                coding:
-                                  type: array
-                                  items:
-                                    $ref: '../schemas/codings/Priority.yaml'
-                        - title: specialty
-                          type: object
-                          required:
-                            - url
-                            - valueCodeableConcept
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - specialty
-                              example: 'specialty'
-                            valueCodeableConcept:
-                              type: object
-                              required:
-                                  - coding
-                              properties:
-                                coding:
-                                  type: array
-                                  minItems: 1
-                                  maxItems: 1
-                                  items:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                    properties:
-                                      system:
-                                          type: string
-                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
-                                      code:
-                                          type: string
-                                          example: 'CARDIOLOGY'
-                        - title: patient
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - patient
-                              example: 'patient'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/NhsNumber.yaml'
-                        - title: namedClinician
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - namedClinician
-                              example: 'namedClinician'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/STU3_UserId.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Specialty.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-NamedClinician.yaml'
                         - title: eReferralPathwayStart
                           type: object
                           required: 
@@ -566,20 +442,7 @@ properties:
                               type: string
                               format: date-time
                               example: '2021-09-01T14:26:18.314Z'
-                        - title: clinicalInfoPrinted
-                          type: object
-                          required: 
-                            - url
-                            - valueBoolean
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - clinicalInfoPrinted
-                              example: 'clinicalInfoPrinted'
-                            valueBoolean:
-                              type: boolean
-                              example: false
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalInfoPrinted.yaml'
                         - title: ubrnReceived
                           type: object
                           required: 
@@ -703,24 +566,7 @@ properties:
                               type: string
                               format: date-time
                               example: '2021-09-01T14:26:18.314Z'
-                        - title: service
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - service
-                              example: 'service'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/ServiceId.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Service.yaml'
               - title: Extension-eRS-AdviceAndGuidanceRequests-WorkListItem
                 type: object
                 required:
@@ -749,94 +595,10 @@ properties:
                       | `clinicType`                   | `0..1`      |                                            |
                     items:
                       anyOf:
-                        - title: priority
-                          type: object
-                          required:
-                            - url
-                            - valueCodeableConcept
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - priority
-                              example: 'priority'
-                            valueCodeableConcept:
-                              type: object
-                              required:
-                                - coding
-                              properties:
-                                coding:
-                                  type: array
-                                  items:
-                                    $ref: '../schemas/codings/Priority.yaml'
-                        - title: specialty
-                          type: object
-                          required:
-                            - url
-                            - valueCodeableConcept
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - specialty
-                              example: 'specialty'
-                            valueCodeableConcept:
-                              type: object
-                              required:
-                                  - coding
-                              properties:
-                                coding:
-                                  type: array
-                                  minItems: 1
-                                  maxItems: 1
-                                  items:
-                                    type: object
-                                    required:
-                                      - system
-                                      - code
-                                    properties:
-                                      system:
-                                          type: string
-                                          example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
-                                      code:
-                                          type: string
-                                          example: 'CARDIOLOGY'
-                        - title: patient
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - patient
-                              example: 'patient'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/NhsNumber.yaml'
-                        - title: namedClinician
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
-                              type: string
-                              enum:
-                                - namedClinician
-                              example: 'namedClinician'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/STU3_UserId.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Specialty.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-NamedClinician.yaml'
                         - title: category
                           type: object
                           required: 
@@ -908,53 +670,68 @@ properties:
                               type: string
                               format: date-time
                               example: '2021-09-01T14:26:18.314Z'
-                        - title: referrer
+                        - title: adviceLastUpdated
                           type: object
                           required: 
                             - url
-                            - valueReference
+                            - valueDateTime
                           properties:
                             url:
                               type: string
                               enum:
-                                - referrer
-                              example: 'referrer'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/STU3_UserId.yaml'
-                        - title: service
-                          type: object
-                          required: 
-                            - url
-                            - valueReference
-                          properties:
-                            url:
+                                - adviceLastUpdated
+                              example: 'adviceLastUpdated'
+                            valueDateTime:
                               type: string
-                              enum:
-                                - service
-                              example: 'service'
-                            valueReference:
-                              type: object
-                              required:
-                                - identifier
-                              properties:
-                                identifier:
-                                  $ref: 'identifiers/ServiceId.yaml'
-                        - title: clinicType
+                              format: date-time
+                              example: '2021-09-01T14:26:18.314Z'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Service.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ClinicType.yaml'
+              - title: Extension-eRS-RejectedTriageResponse-WorkListItem
+                type: object
+                required:
+                  - url
+                  - extension
+                properties:
+                  url:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-RejectedTriageResponse-WorkListItem-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-RejectedTriageResponse-WorkListItem-1'
+                  extension:
+                    type: array
+                    description: |
+                      | Field                          | Cardinality | Notes                                                                                                                      |
+                      | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- |
+                      | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                          |
+                      | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                         |
+                      | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                      |
+                      | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                             |
+                      | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                             |
+                      | `referralLastUpdated`          | `1..1`      | The `dateTime` the `ReferralRequest` was last updated                                                                      |
+                      | `status`                       | `1..1`      | The status of the `ReferralRequest`                                                                                        |
+                      | `reason`                       | `0..1`      | The reason the `ReferralRequest` is on the Rejected/TriageRequest worklist, only included if `status` is `TRIAGE_RESPONSE` |
+                    items:
+                      anyOf:
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ReferralCreated.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalContext.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ReferralLastUpdated.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Status.yaml'
+                        - title: reason
                           type: object
-                          required: 
+                          required:
                             - url
                             - valueCodeableConcept
                           properties:
                             url:
                               type: string
                               enum:
-                                - clinicType
-                              example: 'clinicType'
+                                - reason
+                              example: reason
                             valueCodeableConcept:
                               type: object
                               required:
@@ -962,18 +739,203 @@ properties:
                               properties:
                                 coding:
                                   type: array
-                                  minItems: 1
-                                  maxItems: 1
                                   items:
                                     type: object
                                     required:
                                       - system
                                       - code
+                                      - display
                                     properties:
                                       system:
                                         type: string
-                                        example: '_baseUrl_/STU3/CodeSystem/CLINIC-TYPE'
+                                        enum:
+                                          - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
                                       code:
                                         type: string
-                                        example: 'HEART_FAILURE'
-
+                                        example: FURTHER_INFORMATION_REQUIRED
+                                      display:
+                                        type: string
+                                        example: 'Further information required'
+              - title: 'Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem'
+                type: object
+                required:
+                    - url
+                    - extension
+                properties:
+                    url:
+                      type: string
+                      enum:
+                        - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1'
+                      example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1'
+                    extension:
+                      description: |
+                        | Field                          | Cardinality | Notes                                                                                                                                        |
+                        | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+                        | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                                            |
+                        | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                                           |
+                        | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                                        |
+                        | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                                               |
+                        | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                                               |
+                        | `referralLastUpdated`          | `1..1`      | The `dateTime` the `ReferralRequest` was last updated                                                                                        |
+                        | `status`                       | `1..1`      | The status of the `ReferralRequest`                                                                                                          |
+                        | `reason`                       | `0..1`      | The reason the `ReferralRequest` is on the Assessment Returned / Cancelled / DNA worklist, only included if `status` is `CANCELLED_REFERRAL` |
+                      type: array
+                      items:
+                        anyOf:
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ReferralCreated.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalContext.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ReferralLastUpdated.yaml' 
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Status.yaml'
+                          - title: reason
+                            type: object
+                            required:
+                              - url
+                              - valueCodeableConcept
+                            properties:
+                              url:
+                                type: string
+                                enum:
+                                  - reason
+                                example: reason
+                              valueCodeableConcept:
+                                type: object
+                                required:
+                                  - coding
+                                properties:
+                                  coding:
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: INTEND_PRIVATE
+                                        display:
+                                          type: string
+                                          example: Patient intends to go private
+              - title: 'Extension-eRS-AwaitingBooking-WorklistItem'
+                type: object
+                required:
+                    - url
+                    - extension
+                properties:
+                    url:
+                      type: string
+                      enum:
+                        - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1'
+                      example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1'
+                    extension:
+                      description: |
+                        | Field                          | Cardinality | Notes                                                                                                                      |
+                        | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- |
+                        | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                          |
+                        | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                         |
+                        | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                      |
+                        | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                             |
+                        | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                             |
+                        | `referralLastUpdated`          | `1..1`      | The `dateTime` the `ReferralRequest` was last updated                                                                      |
+                        | `status`                       | `1..1`      | The status of the `ReferralRequest`                                                                                        |
+                        | `reason`                       | `0..1`      | The reason the `ReferralRequest` is on the Awaiting Booking worklist, only included if `status` is `APPOINTMENT_CANCELLED_BY_PROVIDER` or `APPOINTMENT_CANCELLED_BY_PATIENT` |
+                      type: array
+                      items:
+                        anyOf:
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml' 
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ReferralCreated.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalContext.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                          - $ref: './extensions/worklists/Extension-WorklistItem-ReferralLastUpdated.yaml' 
+                          - $ref: './extensions/worklists/Extension-WorklistItem-Status.yaml'
+                          - title: reason
+                            type: object
+                            required:
+                              - url
+                              - valueCodeableConcept
+                            properties:
+                              url:
+                                type: string
+                                enum:
+                                  - reason
+                                example: reason
+                              valueCodeableConcept:
+                                type: object
+                                required:
+                                  - coding
+                                properties:
+                                  coding:
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                        - system
+                                        - code
+                                        - display
+                                      properties:
+                                        system:
+                                          type: string
+                                          enum:
+                                            - _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                          example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                                        code:
+                                          type: string
+                                          example: PATIENT_APPOINTMENT_CLASH
+                                        display:
+                                          type: string
+                                          example: Patient - Clashes with another appointment
+              - title: Extension-eRS-LettersOutstanding-WorklistItem
+                type: object
+                required:
+                  - url
+                  - extension
+                properties:
+                  url:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1'
+                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1'
+                  extension:
+                    description: |
+                      | Field                          | Cardinality | Notes                                                                                                                                        |
+                      | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+                      | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                                            |
+                      | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                                           |
+                      | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                                        |
+                      | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                                               |
+                      | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                                               |
+                      | `letterDue`                    | `1..1`      | The `date` a referral letter is due for the `ReferralRequest`                                                                            |
+                    type: array
+                    items:
+                      anyOf:
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Patient.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ReferralCreated.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-ClinicalContext.yaml'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Referrer.yaml'
+                        - title: letterDue
+                          type: object
+                          required:
+                            - url
+                            - valueDate
+                          properties:
+                            url:
+                              type: string
+                              enum:
+                                - letterDue
+                              example: letterDue
+                            valueDate:
+                              type: string
+                              format: date
+                              example: '2021-11-24'

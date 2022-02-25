@@ -1,0 +1,154 @@
+{
+    "meta": {
+      "profile": [
+        "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1"
+      ]
+    },
+    "resourceType": "List",
+    "status": "current",
+    "mode": "snapshot",
+    "entry": [
+      {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "patient",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/nhs-number",
+                    "value": "9462979626"
+                  }
+                }
+              },
+              {
+                "url": "priority",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                      "code": "ROUTINE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralCreated",
+                "valueDateTime": "2021-09-03T14:19:04.702Z"
+              },
+              {
+                "url": "clinicalContext",
+                "valueString": "ORTHAPEDICS/KNEE"
+              },
+              {
+                "url": "referrer",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              },
+              {
+                "url": "referralLastUpdated",
+                "valueDateTime": "2021-09-03T14:19:04.702Z"
+              },
+              {
+                "url": "status",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+                      "code": "NOT_BOOKED",
+                      "display": "Not booked"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1"
+          }
+        ],
+        "item": {
+          "reference": "ReferralRequest/000000070001"
+        }
+      },
+      {
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "patient",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/nhs-number",
+                    "value": "9462979626"
+                  }
+                }
+              },
+              {
+                "url": "priority",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                      "code": "ROUTINE"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "referralCreated",
+                "valueDateTime": "2021-09-03T14:19:04.702Z"
+              },
+              {
+                "url": "clinicalContext",
+                "valueString": "ORTHAPEDICS/KNEE"
+              },
+              {
+                "url": "referrer",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              },
+              {
+                "url": "referralLastUpdated",
+                "valueDateTime": "2021-09-03T14:19:04.702Z"
+              },
+              {
+                "url": "status",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+                      "code": "APP_CANCELLED_BY_PATIENT",
+                      "display": "Appointment cancelled by patient"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "reason",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+                      "code": "PATIENT_HOLIDAY",
+                      "display": "Patient on holiday"
+                    }
+                  ]
+                }
+              }
+            ],
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1"
+          }
+        ],
+        "item": {
+          "reference": "ReferralRequest/000000070000"
+        }
+      }
+    ]
+  }

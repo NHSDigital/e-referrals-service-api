@@ -2397,7 +2397,8 @@ paths:
         | "Change Shortlist" is available      | `focus`=`ReferralRequest/000000070003/_history/6`, `intent`=`proposal`, `status`=`ready` |
         | "Change Shortlist and Send for Triage" is available | `focus`=`ReferralRequest/000000070004/_history/6`, `intent`=`proposal`, `status`=`ready` |
         | "Cancel Referral" is available       | `focus`=`ReferralRequest/000000070005/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        
+        | "Cancel Directly Booked Appointment" is available       | `focus`=`ReferralRequest/000000070006/_history/6`, `intent`=`proposal`, `status`=`ready` |
+
 
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list

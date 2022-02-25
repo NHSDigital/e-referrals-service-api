@@ -433,6 +433,9 @@ module.exports = {
       return 'availableActionsForUserList/WithCancelReferral.json'
     }
 
+    if (focus === 'ReferralRequest/000000070006/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCancelDBAppointment.json'
+    }
   },
 
   getResponseForCancelAppointmentActionLater: function (request) {

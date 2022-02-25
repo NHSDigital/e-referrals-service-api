@@ -33,3 +33,7 @@ content:
         summary: With Cancel Referral
         value:
           $ref: '../../../examples/availableActionsForUserList/WithCancelReferral.json'
+      with-cancel-directly-booked-appointment:
+        summary: With Cancel Directly Booked Appointment
+        value:
+          $ref: '../../../examples/availableActionsForUserList/WithCancelDBAppointment.json'

@@ -384,16 +384,16 @@ module.exports = {
   },
 
   getResponseForCancelReferral: function (request) {
-
-    const ubrn = request.params.ubrn;
-
-    if (ubrn === '000000070000') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
+    var responseMap = {
+      'src/mocks/cancelReferral/requests/IntendPrivateWithoutComment.json': 'cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json',
+      'src/mocks/cancelReferral/requests/PatientRequestCancellationOther.json': 'cancelReferral/responses/CancelledReferralPatientOther.json',
+      'src/mocks/cancelReferral/requests/RaisedInError.json': 'cancelReferral/responses/CancelledReferralRaisedInError.json',
+      'src/mocks/cancelReferral/requests/ReferrerCancellation.json': 'cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json',
+      'src/mocks/cancelReferral/requests/NoLongerRequired.json': 'cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json',
+      'src/mocks/cancelReferral/requests/IntendPrivateWithComment.json': 'cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
     }
-    else if (ubrn === '000000070001') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppointment.json', responseCode: 200 }
-    }
-    return {}
+
+    return mapExampleResponse(request, responseMap)
   },
 
   getResponseForRejectReferral: function (request) {
@@ -403,8 +403,6 @@ module.exports = {
     }
 
     return mapExampleResponse(request, responseMap)
-
-
   },
 
   getResponseForAvailableActionsForUserList: function (request) {

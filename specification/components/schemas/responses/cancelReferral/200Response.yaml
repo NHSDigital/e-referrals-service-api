@@ -9,11 +9,27 @@ content:
     schema:
       $ref: '../../eRS-CancelReferral-Response-Parameters.yaml'
     examples:
-      example-response-cancelled-referral:
-        summary: Example Cancelled Referral without Booking
+      cancelled-referral-intend-private-without-comment:
+        summary: Cancelled Referral without Booking with Reason 'Intend to go private' without Comment (Comment Not Mandatory)
         value:
-          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferral.json'
-      example-response-cancelled-referral-booking:
-        summary: Example Cancelled Referral with Booking
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json'
+      cancelled-referral-patient-other-reason:
+        summary: Cancelled Referral without Booking with Reason 'Other reason' with Comment (Comment Mandatory)
         value:
-          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferralWithAppointment.json'
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralPatientOther.json'
+      cancelled-referral-raised-in-error:
+        summary: Cancelled Referral without Booking with Reason 'Referral raised in error'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralRaisedInError.json'
+      cancelled-referral-with-booking-referrer-cancellation:
+        summary: Cancelled Referral with Booking with Reason 'Other - Referrer request cancellation'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json'
+      cancelled-referral-with-cancelled-booking-no-longer-required:
+        summary: Cancelled Referral with Cancelled Booking with Reason 'Referral no longer required'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json'
+      cancelled-referral-with-deferral-intend-private-with-comment:
+        summary: Cancelled Referral with Existing Review Outcome with Reason 'Intend to go private'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'

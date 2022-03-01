@@ -75,6 +75,7 @@ properties:
     type: string
     enum:
       - active
+      - cancelled
       - completed
     example: 'active'
   subject:

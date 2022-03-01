@@ -236,6 +236,8 @@ info:
   license:
     name: MIT
 servers:
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-199/FHIR'
+    description: Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/referrals/FHIR'
@@ -2964,6 +2966,64 @@ paths:
           $ref: 'components/schemas/responses/updateAppointment/502Response.yaml'
         '504':
           $ref: 'components/schemas/responses/updateAppointment/504Response.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.cancelReferral:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ## Overview
+         TBD
+      summary: A036 - Cancel referral
+      operationId: a036-cancel-referral
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/schemas/eRS-CancelReferral-Request-Parameters.yaml'
+            examples:
+              basic-example:
+                summary: Cancel Referral with Reason and Comment
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/cancelReferralExample.json'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/cancelReferral/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+        '409':
+          $ref: 'components/schemas/responses/Conflict.yaml'
+        '412':
+          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+        '415':
+          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+        '422':
+          $ref: 'components/schemas/responses/cancelReferral/422Response.yaml'
+        '423':
+          $ref: 'components/schemas/responses/Locked.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+        '502':
+          $ref: 'components/schemas/responses/cancelReferral/502Response.yaml'
+        '504':
+          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'   
 components:
   securitySchemes:
     bearerAuth:

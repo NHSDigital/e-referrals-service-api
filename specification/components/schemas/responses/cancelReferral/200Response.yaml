@@ -1,0 +1,19 @@
+description: e-RS Referral Request
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-CancelReferral-Response-Parameters.yaml'
+    examples:
+      example-response-cancelled-referral:
+        summary: Example Cancelled Referral without Booking
+        value:
+          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferral.json'
+      example-response-cancelled-referral-booking:
+        summary: Example Cancelled Referral with Booking
+        value:
+          $ref: '../../../examples/cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json'

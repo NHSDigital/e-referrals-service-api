@@ -32,6 +32,19 @@
 				"system": "https://fhir.nhs.uk/Id/ods-organization-code",
 				"value": "R69"
 			}
+		},
+		{
+			"url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+			"extension": [
+				{
+					"url": "state",
+					"valueCoding": {
+						"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+						"code": "NOT_BOOKED",
+						"display": "Not Booked"
+					}
+				}
+			]
 		}
 	],
 	"contained": [

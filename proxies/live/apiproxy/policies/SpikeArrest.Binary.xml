@@ -3,5 +3,5 @@
     <DisplayName>SpikeArrest.Binary</DisplayName>
     <Identifier ref="app.asid"/>
     <Rate ref="app.ratelimit.binary">120pm</Rate>
-    <UseEffectiveCount>true</UseEffectiveCount>
+    <UseEffectiveCount>false</UseEffectiveCount>
 </SpikeArrest>

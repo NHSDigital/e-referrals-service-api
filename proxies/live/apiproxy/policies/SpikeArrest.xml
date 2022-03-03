@@ -3,5 +3,5 @@
     <DisplayName>SpikeArrest</DisplayName>
     <Identifier ref="app.asid"/>
     <Rate ref="app.ratelimit">600pm</Rate>
-    <UseEffectiveCount>true</UseEffectiveCount>
+    <UseEffectiveCount>false</UseEffectiveCount>
 </SpikeArrest>

@@ -48,7 +48,32 @@
         "system": "https://fhir.nhs.uk/Id/ods-organization-code",
         "value": "R69"
       }
-    }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+            "code": "TRIAGE_RESPONSE",
+            "display": "Triage Response"
+          }
+        },
+        {
+          "url": "reason",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+            "code": "RETURN_TO_REFERRER_WITH_ADVICE",
+            "display": "Return to Referrer With Advice"
+          }
+        },
+        {
+          "url": "comments",
+          "valueString": "Condition not serious. No further action needed."
+        }
+      ]
+     }
   ],
   "contained": [
     {

@@ -1,0 +1,10 @@
+steps:
+  - bash: |
+      poetry run pytest -v tests/sandbox --junitxml=tests/sandbox-test-report.xml
+    displayName: Run Sandbox tests
+    workingDirectory: "$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)"
+  - task: PublishTestResults@2
+    displayName: 'Publish Sandbox test results'
+    inputs:
+      testResultsFiles: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/sandbox-test-report.xml
+      failTaskOnFailedTests: true

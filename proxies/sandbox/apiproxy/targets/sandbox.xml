@@ -1,23 +1,14 @@
 <TargetEndpoint name="sandbox">
-  <Description/>
-  <FaultRules/>
-  <Flows/>
-  <PostFlow name="PostFlow">
-    <Request/>
-    <Response/>
-  </PostFlow>
-  <PreFlow name="PreFlow">
-    <Request/>
-    <Response>
-      <Step>
-        <Name>AssignMessage.AddCors</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.AddBaseUrlHeader</Name>
-      </Step>
-    </Response>
-  </PreFlow>
-  <HTTPTargetConnection>
-    {{ HOSTED_TARGET_CONNECTION }}
-  </HTTPTargetConnection>
+    <Description/>
+    <FaultRules/>
+    <Flows/>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response></Response>
+    </PreFlow>
+    <HTTPTargetConnection>{{ HOSTED_TARGET_CONNECTION }}</HTTPTargetConnection>
 </TargetEndpoint>

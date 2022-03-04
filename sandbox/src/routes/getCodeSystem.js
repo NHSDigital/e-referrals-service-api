@@ -3,8 +3,8 @@ const businessFunctionValidator = require('../services/businessFunctionValidator
 
 module.exports = [
   /**
-     * Sandbox implementation for getCodeSystem endpoint
-     */
+   * Sandbox implementation for getCodeSystem endpoint
+   */
   {
     method: 'GET',
     path: '/FHIR/STU3/CodeSystem/{codeSystemType}',
@@ -19,7 +19,7 @@ module.exports = [
 
       var responsePath = mockResponseProvider.getExampleResponseForGetCodeSystem(request.params.codeSystemType);
       if (responsePath != null) {
-        return h.file(responsePath).code(200).type("application/fhir+json");
+        return h.file(responsePath, {"etagMethod": false}).code(200).type("application/fhir+json");
       }
 
       return h.response().code(404);

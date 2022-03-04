@@ -1,9 +1,0 @@
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddBaseUrlHeader">
-  <Add>
-      <Headers>
-          <Header name="x-ers-network-baseurl">https://{request.header.Host}/{proxy.basepath}</Header>
-      </Headers>
-  </Add>
-  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false"/>
-</AssignMessage>

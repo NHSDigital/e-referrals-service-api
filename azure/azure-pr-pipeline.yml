@@ -83,3 +83,7 @@ extends:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8447
       - environment: internal-dev-sandbox
         proxy_path: sandbox
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            sandbox_tests: true

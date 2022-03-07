@@ -12,6 +12,8 @@
   "license": "MIT",
   "homepage": "https://github.com/NHSDigital/e-referrals-service-api",
   "dependencies": {
+    "npm-audit-csv": "^1.0.1",
+    "npm-audit-html": "^1.5.0",
     "speccy": "^0.11.0"
   },
   "devDependencies": {

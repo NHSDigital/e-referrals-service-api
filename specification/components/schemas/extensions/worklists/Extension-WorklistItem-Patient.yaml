@@ -1,0 +1,18 @@
+title: patient
+type: object
+required: 
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - patient
+    example: 'patient'
+  valueReference:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: '../../identifiers/NhsNumber.yaml'

@@ -1,0 +1,14 @@
+title: clinicalContext
+type: object
+required:
+  - url
+  - valueString
+properties:
+  url:
+    type: string
+    enum:
+      - clinicalContext
+    example: clinicalContext
+  valueString:
+    type: string
+    example: 'ORTHAPEDICS/KNEE'

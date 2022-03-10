@@ -160,7 +160,7 @@ info:
 
     The e-RS Role is supplied to the endpoint via the `nhsd-ers-business-function` request header. 
     
-    The Organisation is supplied to the endpoint via the `nhsd-ers-ods-code` request header. 
+    The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
     
     Suitable values for these request headers can be obtained from the Practitioner Role Bundle returned by [[HYPERLINK_A030]].
 
@@ -677,11 +677,11 @@ paths:
         Each Practitioner Role represents an e-RS Role at a specific Organisation. 
         
         For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. 
-        This is accomplished by setting the values of the `nhsd-ers-business-function` and `nhsd-ers-ods-code` request headers. 
+        This is accomplished by setting the values of the `nhsd-ers-business-function` and `NHSD-End-User-Organisation-ODS` request headers. 
         
         The e-RS Role is supplied to the endpoint via the `nhsd-ers-business-function` request header. 
         
-        The Organisation is supplied to the endpoint via the `nhsd-ers-ods-code` request header. 
+        The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
 
         The `entry` field in the response from [[HYPERLINK_A030]] is an array of PractitionerRole resources. An example of a PractitionerRole resource is: 
         ```json
@@ -739,7 +739,7 @@ paths:
         The `nhsd-ers-business-function` request header value should be the `code` field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. `SERVICE_PROVIDER_CLINICIAN`.
 
         Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system.
-        The `nhsd-ers-ods-code` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource e.g. "R69".
+        The `NHSD-End-User-Organisation-ODS` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource e.g. "R69".
 
       summary: A030 - Retrieve e-RS business functions
       operationId: a030-retrieve-business-functions
@@ -2561,7 +2561,7 @@ paths:
 
         ## Related endpoints
           -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
-          -  You can check if a cached service has changed via [[HYPERLINK_A034]].
+          -  You can check if a cached service has changed via [[HYPERLINK_A037]].
           -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]].
 
         ## Sandbox test scenarios

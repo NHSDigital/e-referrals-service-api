@@ -1076,6 +1076,7 @@ paths:
         Use this endpoint to retrieve a specific version of `ReferralRequest`.
 
         ## Supported security patterns
+        - Application-restricted access
         - Healthcare worker, user-restricted access
 
         ## Pre-requisites
@@ -1110,8 +1111,9 @@ paths:
         - $ref: 'components/schemas/path/Ubrn.yaml'
         - $ref: 'components/schemas/path/Version.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
@@ -1746,6 +1748,7 @@ paths:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':

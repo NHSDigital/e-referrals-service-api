@@ -1,0 +1,17 @@
+description: An appointment within e-RS.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-Appointment.yaml'
+    examples:
+      minimal-booking:
+        summary: Minimum booking update for Cancel
+        value:
+          $ref: '../../../examples/updateAppointment/responses/MinimalBookingUpdateForCancel.json'

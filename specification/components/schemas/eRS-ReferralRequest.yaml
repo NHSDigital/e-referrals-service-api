@@ -55,16 +55,16 @@ properties:
     type: array
     nullable: true
     description: |
-      | Field                                      | Cardinality | Notes                                      |
-      | ------------------------------------------ | ----------- | ------------------------------------------ |
-      | `Extension-eRS-ReferralShortlist`          | `1..1`      |                                            |
-      | `Extension-eRS-Commissioning-Rule-Org`     | `1..1`      |                                            |
-      | `Extension-eRS-ReferralPriority`           | `1..1`      |                                            |
-      | `Extension-eRS-ReferralState`              | `1..1`      |                                            |
-      | `Extension-eRS-Appointment`                | `0..1`      |                                            |
-      | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                            |
-      | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                            |
-      | `Extension-eRS-Appointment-Reference`      | `0..1`      |                                            |
+      | Field                                      | Cardinality | Notes                                                                   |
+      | ------------------------------------------ | ----------- | ----------------------------------------------------------------------- |
+      | `Extension-eRS-ReferralShortlist`          | `1..1`      |                                                                         |
+      | `Extension-eRS-Commissioning-Rule-Org`     | `1..1`      |                                                                         |
+      | `Extension-eRS-ReferralPriority`           | `1..1`      |                                                                         |
+      | `Extension-eRS-Appointment`                | `0..1`      |                                                                         |
+      | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                                                         |
+      | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                                                         |
+      | `Extension-eRS-Appointment-Reference`      | `0..1`      |                                                                         |
+      | `Extension-eRS-AdditionalRequirement`      | `0..3`      | Outlines that this `ReferralRequest` requires an additional requirement |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
@@ -75,6 +75,7 @@ properties:
         - $ref: 'extensions/Extension-eRS-ClinicalInfoFirstSubmitted.yaml'
         - $ref: 'extensions/Extension-eRS-ClinicalInfoLastUpdated.yaml'
         - $ref: 'extensions/Extension-eRS-Appointment-Reference.yaml'
+        - $ref: 'extensions/Extension-eRS-AdditionalRequirement.yaml'
   status:
     type: string
     enum:

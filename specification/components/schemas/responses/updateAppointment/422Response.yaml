@@ -8,8 +8,9 @@ description: |
   | INVALID_VALUE                      | Reason provided is not a valid Cancellation Reason. |
   | INAPPROPRIATE_VALUE                | Reason provided is not a valid in this case. |
   | MISSING_VALUE                      | Part of early validation that checks that the input conforms with the specifications of the FHIR profiles. A field defined as Mandatory on the FHIR profile is not provided. |
+  | UNEXPECTED_FIELD                   | A field is provided that is not expected as part of the request. E.g. a field is mis-spelt, was defined on a previous version of the endpoint but has subsequently been removed. |
   | NO_RELATIONSHIP                    | No legitimate relationship with referral (UBRN).    |
-  | PATIENT_SENSITIVE                  | An error occurred while retrieving the requested patient. Do not attempt again. |
+  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again. |
   | UNABLE_TO_CANCEL_APPOINTMENT       | Unable to cancel the appointment. |
 headers:
   x-correlation-id:
@@ -20,5 +21,13 @@ content:
   application/fhir+json:
     schema:
       $ref: '../../STU3-OperationOutcome.yaml'
-    example:
-      $ref: '../../../examples/STU3-OperationOutcome.json'
+    examples:
+      cancellation-reason-only-comment-mandatory:
+        summary: Only Reason Provided (when a cancellation comment is mandatory)
+        value:
+          $ref: '../../../examples/updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json'
+      unauthorised-cancellation-reason:
+        summary: Unauthorised Cancellation Reason
+        value:
+         $ref: '../../../examples/updateAppointment/responses/CancellationInvalidReason.json'
+         

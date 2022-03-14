@@ -11,7 +11,12 @@ content:
     schema:
       $ref: '../../eRS-Appointment.yaml'
     examples:
-      minimal-booking:
-        summary: Minimum booking update for Cancel
+      minimal-cancellation-reason-only:
+        summary: Minimal Cancellation - Only Reason Provided (when a cancellation comment is not mandatory)
         value:
-          $ref: '../../../examples/updateAppointment/responses/MinimalBookingUpdateForCancel.json'
+          $ref: '../../../examples/updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json'
+      cancellation-reason-and-comment:
+        summary: Reason and Comment Provided
+        value:
+          $ref: '../../../examples/updateAppointment/responses/CancellationReasonAndMandatoryComment.json'
+          

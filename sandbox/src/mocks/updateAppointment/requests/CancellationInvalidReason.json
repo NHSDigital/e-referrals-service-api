@@ -1,7 +1,7 @@
 {
-  "id": "10000",
+  "id": "70006",
   "meta": {
-    "versionId": "0",
+    "versionId": "1",
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
       "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
@@ -10,24 +10,19 @@
   "language": "en",
   "resourceType": "Appointment",
   "status": "cancelled",
-  "description": "e-Referral Appointment",
-  "start": "2022-07-11T12:00:00+00:00",
-  "end": "2022-07-11T13:00:00+00:00",
   "reason": [
     {
-      "coding": [
-        {
-          "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
-          "code": "PATIENT_HOLIDAY",
-          "display": "Patient on holiday"
-        }
-      ]
+      "coding": [{
+        "system": "https://ers-api:445/ers-api/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+        "code": "INTEND_PRIVATE"
+      }]
     }
   ],
-  "comment": "Comments go here max 2000",
+  "comment": "Intend Private Comment",
+  "description": "e-Referral Appointment",
   "incomingReferral": [
     {
-      "reference": "ReferralRequest/000000070000/_history/6"
+      "reference": "ReferralRequest/000000070006/_history/6"
     }
   ],
   "participant": [
@@ -35,8 +30,9 @@
       "actor": {
         "identifier": {
           "system": "http://fhir.nhs.net/Id/ers-service",
-          "value": "11000"
-        }
+          "value": "50"
+        },
+        "display": "Direct SVC 1"
       },
       "status": "accepted"
     },
@@ -44,7 +40,7 @@
       "actor": {
         "identifier": {
           "system": "http://fhir.nhs.net/Id/nhs-number",
-          "value": "9912003888"
+          "value": "1000000001"
         }
       },
       "status": "accepted"

@@ -209,6 +209,11 @@ module.exports = {
       return { responsePath: 'retrieveReferralRequest/responses/WithRelatedReferral.json', responseCode: 200 }
     }
 
+    // Scenario 7 - ReferralRequest with additional requirements
+    if (ubrn === '000000070011' && (!version || version === '5')) {
+      return { responsePath: 'retrieveReferralRequest/responses/WithAdditionalRequirements.json', responseCode: 200 }
+    }
+
     return {}
   },
 

@@ -1,0 +1,38 @@
+title: Extension-eRS-AdditionalRequirement
+description: Outlines the additional requirement type required along with any supplied comments
+type: object
+required:
+  - url
+  - valueCoding
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+      - display
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1'
+      code:
+        type: string
+        enum:
+          - 'ADVOCACY'
+          - 'INTERPRETER'
+          - 'TRANSPORT'
+        example: 'ADVOCACY'
+      display:
+        type: string
+        enum:
+          - 'Advocacy'
+          - 'Interpreter'
+          - 'Transport'
+        example: 'Advocacy'

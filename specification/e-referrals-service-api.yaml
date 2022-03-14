@@ -1093,6 +1093,7 @@ paths:
         | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`   |
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
+        | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`   |
 
       summary: A005 - Retrieve referral request
       operationId: a005-retrieve-referral-request
@@ -1160,6 +1161,7 @@ paths:
         | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`, `version`=`5`  |
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
+        | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`, `version`=`5`  |
 
       summary: A005 - Retrieve referral request (versioned)
       operationId: a005-retrieve-referral-request-versioned

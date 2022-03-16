@@ -6,6 +6,8 @@ headers:
     $ref: '../../headers/response/RequestID.yaml'
   ETag:
     $ref: '../../headers/response/ETag.yaml'
+  Content-type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:

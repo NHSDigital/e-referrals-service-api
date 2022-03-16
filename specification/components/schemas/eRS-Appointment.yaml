@@ -12,11 +12,9 @@ required:
 properties:
   id:
     type: string
-    example: 
-      appointment:
-        value: 'appointment'
-      appointmentId:
-        value: '123456'
+    example: |
+      'appointment'
+      '70001'
   meta:
     type: object
     required:

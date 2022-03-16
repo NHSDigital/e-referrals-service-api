@@ -260,7 +260,7 @@
         },
         "status": "current",
         "indexed": "2021-09-23T14:43:49.565Z",
-        "description": "test restults A",
+        "description": "test results A",
         "content": [
           {
             "attachment": {
@@ -279,7 +279,7 @@
               "contentType": "application/pdf",
               "url": "Binary/att-70001-70000",
               "size": 6,
-              "title": "testRestultsA.pdf",
+              "title": "testResultsA.pdf",
               "creation": "2021-09-23"
             }
           }

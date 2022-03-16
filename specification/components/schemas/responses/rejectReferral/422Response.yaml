@@ -20,6 +20,8 @@ headers:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:

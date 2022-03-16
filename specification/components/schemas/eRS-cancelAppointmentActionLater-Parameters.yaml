@@ -27,12 +27,12 @@ properties:
   parameter:
     type: array
     description: |
-      | Field                             | Cardinality | Notes                                      |
-      | --------------------------------- | ----------- | ------------------------------------------ |
-      | `priority`                        | `0..1`      | Optionaly updates the priority                          |
+      | Field                             | Cardinality | Notes                                                   |
+      | --------------------------------- | ----------- | ------------------------------------------------------- |
+      | `priority`                        | `0..1`      | Optionally updates the priority                         |
       | `appointmentCancelledinPAS`       | `0..1`      | This flag is mandatory for indirectly bookable services |
-      | `comments`                        | `1..1`      |                                            | 
-      | `providerAttachmentFile`          | `0..*`      |                                            | 
+      | `comments`                        | `1..1`      |                                                         |
+      | `providerAttachmentFile`          | `0..*`      |                                                         |
     items:
       anyOf:
         - title: priority

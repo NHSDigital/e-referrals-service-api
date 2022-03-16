@@ -165,7 +165,7 @@ info:
     Suitable values for these request headers can be obtained from the Practitioner Role Bundle returned by [[HYPERLINK_A030]].
 
     #### On Behalf Of User
-    If the SERVICE_PROVIDER_CLINICIAN_ADMIN role is used then the User ID of the Service Provider Clinician that the Admin is acting on behalf of must be supplied via the NHSD-eRS-On-Behalf-Of-User-ID header. 
+    If the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role is used then the User ID of the Service Provider Clinician that the Admin is acting on behalf of must be supplied via the `NHSD-eRS-On-Behalf-Of-User-ID` header.
 
     "On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
 
@@ -1060,7 +1060,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
 
-      summary: A005 - Retrieve Referral Request
+      summary: A005 - Retrieve referral request
       operationId: a005-retrieve-referral-request
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -1127,7 +1127,7 @@ paths:
         | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`, `version`=`5`  |
         | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
 
-      summary: A005 Retrieve Referral Request (Versioned)
+      summary: A005 - Retrieve referral request (Versioned)
       operationId: a005-retrieve-referral-request-versioned
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -1310,7 +1310,7 @@ paths:
         
         You need to retrieve available appointment slots for a service using [[HYPERLINK_A015]].
 
-        You need to use the 'Unique Booking Reference Number' (UBRN) of a referral request in order to use this endpoint.
+        You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
 
         ## Important note when deferring to provider
         
@@ -1712,7 +1712,7 @@ paths:
       description: |
         ## Overview
         Use this endpoint to retrieve the summary of an advice and guidance request. This endpoint provides important 
-        contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc)
+        contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc).
 
         This does not include the actual advice and guidance conversation between the referrer and the service provider. 
         The conversation can be retrieved via [[HYPERLINK_A025]].
@@ -1820,7 +1820,7 @@ paths:
         | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
         | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
 
-      summary: A024 - Retrieve advice and guidance request summary (versioned)
+      summary: A024 - Retrieve advice and guidance request summary (Versioned)
       operationId: a024-retrieve-advice-and-guidance-versioned
       parameters:
         - $ref: 'components/schemas/path/Ubrn.yaml'
@@ -2449,7 +2449,7 @@ paths:
           - `SERVICE_PROVIDER_CLINICIAN`
           - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
-        You should obtain a `Unique Booking Reference Number` (UBRN) before using this endpoint, as the current UBRN version is required
+        You should obtain a `Unique Booking Reference Number` (UBRN) before using this endpoint, as the current UBRN version is required.
 
         ## Use case
 
@@ -2474,15 +2474,15 @@ paths:
 
         You can test the following scenarios in our sandbox environment
         
-        | Scenario                             | Request                 |
-        | ------------------------------------ | ----------------------- |
-        | No "action" is available             | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | "Record Review Outcome" is available | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | "Create Appointment" is available    | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | "Change Shortlist" is available      | `focus`=`ReferralRequest/000000070003/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | Scenario                                            | Request                                                                                  |
+        | --------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+        | No "action" is available                            | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Record Review Outcome" is available                | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Create Appointment" is available                   | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Change Shortlist" is available                     | `focus`=`ReferralRequest/000000070003/_history/6`, `intent`=`proposal`, `status`=`ready` |
         | "Change Shortlist and Send for Triage" is available | `focus`=`ReferralRequest/000000070004/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | "Cancel Referral" is available       | `focus`=`ReferralRequest/000000070005/_history/6`, `intent`=`proposal`, `status`=`ready` |
-        | "Cancel Directly Booked Appointment" is available       | `focus`=`ReferralRequest/000000070006/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Cancel Referral" is available                      | `focus`=`ReferralRequest/000000070005/_history/6`, `intent`=`proposal`, `status`=`ready` |
+        | "Cancel Directly Booked Appointment" is available   | `focus`=`ReferralRequest/000000070006/_history/6`, `intent`=`proposal`, `status`=`ready` |
 
 
       summary: A029 - Available actions for user list
@@ -2552,7 +2552,7 @@ paths:
         ## Important notes
           - The priority of the referral can be changed as part of this endpoint.
           - A comment must be added to explain to the administrator what is required and can include optional attachments.
-          - The current appointment is cancelled as part of this endpoint . If the current appointment is booked to an indirectly 
+          - The current appointment is cancelled as part of this endpoint. If the current appointment is booked to an indirectly
             bookable service, you must indicate whether the appointment has been cancelled on the local provider system. 
             If indicated as not cancelled, the referral will be added to the 'Indirectly Booked Appointments to Cancel in PAS' 
             worklist to task the admin team to do so.
@@ -2646,7 +2646,7 @@ paths:
         So that I can trust that the service information is correct for my patient's referral
 
         ## Related endpoints
-          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
+          -  You can retrieve service IDs on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
           -  You can check if a cached service has changed via [[HYPERLINK_A037]].
           -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]].
 
@@ -2657,7 +2657,7 @@ paths:
         | ------------------------------------------------------------------------ | ---------- |
         | `Service` and minimal attributes                                         | `1`        |
         | `Service` and its attributes                                             | `2`        |
-      summary: A033 - Retrieve Healthcare Service
+      summary: A033 - Retrieve healthcare service
       operationId: a033-retrieve-healthcare-service
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -2704,7 +2704,7 @@ paths:
         So that I can review and trust the information is still valid within the context of my patients needs
         
         ## Related endpoints
-          -  You can obtain Service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least one service.
+          -  You can obtain Service IDs on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least one service.
           -  You can retrieve a set of services and their attributes via [[HYPERLINK_A035]].
           -  You can fetch the attributes of a single service via [[HYPERLINK_A033]].
         
@@ -2715,7 +2715,7 @@ paths:
         | ------------------------------------------------------------------------ | ---------- |
         |  Get `Service` Version                                                   | `1`        |
 
-      summary: A037 - Retrieve Healthcare Service Version
+      summary: A037 - Retrieve healthcare service version
       operationId: a037-retrieve-healthcare-service-version
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -2763,20 +2763,20 @@ paths:
         So that I can review the entire shortlist of services and each services current attributes
 
         ## Related endpoints
-          -  You can retrieve service ID's on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist of at least one service.
+          -  You can retrieve service IDs on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist of at least one service.
           -  You can check if a cached service has changed via [[HYPERLINK_A037]].
           -  You can fetch the attributes of a single service via [[HYPERLINK_A033]].
 
         ## Sandbox test scenarios
         You can test the following scenarios in our sandbox environment
         
-        | Scenario                                                                 | Service Id |
-        | ------------------------------------------------------------------------ | ---------- |
-        | Search for multiple service with minimal attributes                      | `1,2`      |
-        | Search for multiple service max and min attributes                       | `3`,`4`    |
-        | Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match                      | `5`,`6`    |
+        | Scenario                                                                                                     | Service Id |
+        | ------------------------------------------------------------------------------------------------------------ | ---------- |
+        | Search for multiple service with minimal attributes                                                          | `1,2`      |
+        | Search for multiple service max and min attributes                                                           | `3`,`4`    |
+        | Search for multiple service, where the service IDs are formatted correctly, but non of the service IDs match | `5`,`6`    |
 
-      summary: A035 - Search for Healthcare Services
+      summary: A035 - Search for healthcare services
       operationId: a035-search-for-healthcare-services
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -2820,7 +2820,7 @@ paths:
 
         A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
 
-        The e-RS API's do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
 
         If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
 
@@ -2856,7 +2856,7 @@ paths:
 
         You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
 
-      summary: A031 - Change Shortlist
+      summary: A031 - Change shortlist
       operationId: a031-change-shortlist
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -2919,7 +2919,7 @@ paths:
 
         A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
 
-        The e-RS API's do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
 
         If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
 
@@ -2953,7 +2953,7 @@ paths:
 
         You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
-      summary: A032 - Change Shortlist and Send for Triage
+      summary: A032 - Change shortlist and send for triage
       operationId: a032-change-shortlist-and-send-for-triage
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'

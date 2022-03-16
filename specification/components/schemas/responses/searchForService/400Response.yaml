@@ -5,7 +5,7 @@ description: |
   | Error code               | Description                                                         |
   | ------------------------ | ------------------------------------------------------------------- |
   | INVALID_VALUE            | Service Id format is invalid or missing |
-  | INAPPOPRIATE_VALUE       | 'Number of Service Ids' exceeds the range. Up to 20 service ID's can be provided. |
+  | INAPPOPRIATE_VALUE       | 'Number of Service Ids' exceeds the range. Up to 20 service IDs can be provided. |
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'

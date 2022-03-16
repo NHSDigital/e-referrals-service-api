@@ -101,6 +101,6 @@ content:
         value:
           $ref: '../../../examples/searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
       multiple-services-empty:
-        summary: Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match
+        summary: Search for multiple service, where the service IDs are formatted correctly, but non of the service IDs match
         value:
           $ref: '../../../examples/searchForServices/responses/searchServiceWithEmptyResponse.json'

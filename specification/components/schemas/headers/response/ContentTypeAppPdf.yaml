@@ -1,0 +1,7 @@
+description: |
+  Indicates the media type of the associated resource. 
+schema:
+  type: string
+  enum:
+  - 'application/pdf'
+  example: 'application/pdf'

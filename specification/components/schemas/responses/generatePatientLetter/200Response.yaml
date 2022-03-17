@@ -8,6 +8,8 @@ headers:
     $ref: '../../headers/response/ContentDispositionAttachment.yaml'
   Content-Length:
     $ref: '../../headers/response/ContentLength.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeAppPdf.yaml'
 content:
   application/pdf:
     schema:

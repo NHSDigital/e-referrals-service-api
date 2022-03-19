@@ -1,0 +1,23 @@
+title: Triage Contact Days
+description: This will only be returned when codeSystemType is PRIORITY
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - triageContactDays
+    example: 'triageContactDays'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#triageContactDays'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#triageContactDays'
+  type:
+    type: string
+    enum:
+      - integer
+    example: 'integer'

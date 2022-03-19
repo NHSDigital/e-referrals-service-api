@@ -30,9 +30,13 @@ content:
         description: This is example data only and should not be taken as the real reference data.
         value:
           $ref: '../../../examples/getCodeSystem/responses/ReferralCancellationReasonCodeSystem.json'
+      priority:
+        summary: Priority Reference Data
+        description: This is example data only and should not be taken as the real reference data.
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/PriorityCodeSystem.json'   
       appointment-non-attendance-reason:
         summary: Appointment Non-attendance Reason Reference Data
         description: This is example data only and should not be taken as the real reference data. 
         value:
           $ref: '../../../examples/getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json'
-          

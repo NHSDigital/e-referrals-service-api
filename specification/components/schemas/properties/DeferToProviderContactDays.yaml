@@ -1,0 +1,23 @@
+title: Defer to Provider Contact Days
+description: This will only be returned when codeSystemType is PRIORITY
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - deferToProviderContactDays
+    example: 'deferToProviderContactDays'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#deferToProviderContactDays'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#deferToProviderContactDays'
+  type:
+    type: string
+    enum:
+      - integer
+    example: 'integer'

@@ -11,4 +11,6 @@ schema:
       - 'CLINIC-TYPE'
       - 'REFERRAL-CANCELLATION-REASON'
       - 'PRIORITY'
+      - 'APPOINTMENT-NON-ATTENDANCE-REASON'
    example: 'SPECIALTY'
+   

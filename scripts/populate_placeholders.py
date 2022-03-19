@@ -2,7 +2,7 @@
 """
 set_version.py
 
-Reads an openapi spec on stdin and substitutes placeholders with values sotred in dictionary,
+Reads an openapi spec on stdin and substitutes placeholders with values stored in dictionary,
 then prints it on stdout.
 """
 import sys

@@ -15,27 +15,29 @@ properties:
   code:
     title: Value of the code system
     description: |
-      
-      | Code System                     | Example Value                 |
-      | ------------------------------- | ----------------------------- |
-      | Specialty                       | UROLOGY                       |
-      | Clinic Type                     | GENERAL_UROLOGY               |
-      | Appointment Cancellation Reason | SERVICE_INAPPROPRIATE         |
-      | Referral Cancellation Reason     | INTEND_PRIVATE                |
-      | Priority                        | ROUTINE                       |
+   
+      | Code System                           | Example Value                 |
+      | ------------------------------------- | ----------------------------- |
+      | Specialty                             | UROLOGY                       |
+      | Clinic Type                           | GENERAL_UROLOGY               |
+      | Appointment Cancellation Reason       | SERVICE_INAPPROPRIATE         |
+      | Referral Cancellation Reason          | INTEND_PRIVATE                |
+      | Appointment Non-attendance Reason     | PATIENT_ILL                   |
+      | Priority                              | ROUTINE                       |
       
     type: string
   display:
     title: Display value of the code system
     description: |
       
-      | Code System                     | Example Display Value         |
-      | ------------------------------- | ----------------------------- |
-      | Specialty                       | Urology                       |
-      | Clinic Type                     | General Urology               |
-      | Appointment Cancellation Reason | Inappropriate service         |
-      | Referral Cancellation Reason    | Intend to go private          |
-      | Priority                        | Routine                       |
+      | Code System                           | Example Display Value         |
+      | ------------------------------------- | ----------------------------- |
+      | Specialty                             | Urology                       |
+      | Clinic Type                           | General Urology               |
+      | Appointment Cancellation Reason       | Inappropriate service         |
+      | Referral Cancellation Reason          | Intend to go private          |
+      | Appointment Non-attendance Reason     | Patient ill                   |
+      | Priority                              | Routine                       |
       
     type: string
   property:

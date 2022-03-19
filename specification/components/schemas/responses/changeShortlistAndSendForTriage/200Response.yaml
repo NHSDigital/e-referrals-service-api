@@ -4,8 +4,6 @@ headers:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
-  ETag:
-    $ref: '../../headers/response/ETag.yaml'
 content:
   application/fhir+json:
     schema:

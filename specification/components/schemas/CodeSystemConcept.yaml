@@ -23,6 +23,7 @@ properties:
       | Appointment Cancellation Reason       | SERVICE_INAPPROPRIATE         |
       | Referral Cancellation Reason          | INTEND_PRIVATE                |
       | Appointment Non-attendance Reason     | PATIENT_ILL                   |
+      | Priority                              | ROUTINE                       |
       
     type: string
   display:
@@ -36,6 +37,7 @@ properties:
       | Appointment Cancellation Reason       | Inappropriate service         |
       | Referral Cancellation Reason          | Intend to go private          |
       | Appointment Non-attendance Reason     | Patient ill                   |
+      | Priority                              | Routine                       |
       
     type: string
   property:
@@ -55,6 +57,8 @@ properties:
       | businessFunction                         | APPOINTMENT-CANCELLATION-REASON/REFERRAL-CANCELLATION-REASON |
       | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                 |
       | RequestCancellationReferrerUsage         | REFERRAL-CANCELLATION-REASON                                 |
+      | DeferToProviderContactDays               | PRIORITY                                                    |
+      | TriageContactDays                        | PRIORITY                                                    |
       
     type: array
     nullable: true
@@ -70,3 +74,5 @@ properties:
         - $ref: 'codings/BusinessFunction.yaml'
         - $ref: 'codings/CanCancelAppointment.yaml'
         - $ref: 'codings/RequestCancellationReferrerUsage.yaml'
+        - $ref: 'codings/DeferToProviderContactDays.yaml'
+        - $ref: 'codings/TriageContactDays.yaml'

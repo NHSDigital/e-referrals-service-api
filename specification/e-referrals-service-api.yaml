@@ -3303,15 +3303,15 @@ paths:
         - bearerAuth: []
       description: |
         ## Overview
-        Use this endpoint to cancel a referral and the current appointment, if there is one.  Cancelling a referral is a one-way process and results in an end-state. No further progression of care can occur once this action has been performed.
+        Use this endpoint to cancel a referral and the current appointment, if there is one. Cancelling a referral is a one-way process and results in an end-state. No further progression of care can occur once this action has been performed.
 
         A reason for cancelling an appointment must be provided. A comment on the cancellation is conditionally mandatory depending on the reason selected. See pre-requisites and related referrals for more information.
 
-        You can check if you can cancel a referral by calling <A029 - Available actions for user list>
+        You can check if you can cancel a referral by calling [[HYPERLINK_A029]].
 
         e-RS does not allow a referral to be cancelled if there is a current appointment. Therefore, if there is a current appointment associated with the referral, this must be cancelled in advance, or at the same time.
 
-        In order to cancel (only) an appointment you must use [[HYPERLINK_A034]]
+        In order to cancel (only) an appointment you must use [[HYPERLINK_A034]].
 
         ## Supported security patterns
         - Healthcare worker, user-restricted access
@@ -3321,7 +3321,7 @@ paths:
         - `REFERRING_CLINICIAN`
         - `REFERRING_CLINICIAN_ADMIN`
 
-        You must use [[HYPERLINK_A004]] to retrieve a list reference data, which detail the reason the cancellation is being performed. You can only use reference data from the set REFERRAL-CANCELLATION-REASON.
+        You must use [[HYPERLINK_A004]] to retrieve a list reference data, which detail the reason the cancellation is being performed. You can only use reference data from the set `REFERRAL-CANCELLATION-REASON`.
 
 
         To find out which reference data from this set can be used, the following filters can be used depending on the cancellation scenario:
@@ -3334,7 +3334,7 @@ paths:
         
         `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
         
-        `canCancelAppointment` must be true
+        `canCancelAppointment` must be true, and
         
         `effectiveFrom` must be in the past, and 
         
@@ -3349,44 +3349,43 @@ paths:
         
         `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and 
         
-        `canCancelAppointment` could be true or false
+        `canCancelAppointment` could be true or false, and
         
         `effectiveFrom` must be in the past, and 
         
         `effectiveTo` must not be in the past
 
 
-        You need to use  [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
+        You need to use [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
         
         ## Use case
         As an authenticated user
 
         I need to cancel a referral, and any active appointments
 
-        So that the referral is completed appropriately
+        So that the referral is no longer processed
 
         ## Related endpoints
         You can retrieve the reference data needed to cancel a referral by using [[HYPERLINK_A004]]. This contains "reasons" for cancellation.
 
-        You can check if you can cancel the referral by checking [[HYPERLINK_A029]]
+        You can check if you can cancel the referral by checking [[HYPERLINK_A029]].
 
         You can use [[HYPERLINK_A005]] to obtain a current appointment reference, if there is one. This endpoint will also provide you with the current UBRN version.
 
-        You can use [[HYPERLINK_A038]] to view the current appointment (where applicable)
+        You can use [[HYPERLINK_A038]] to view the current appointment (where applicable).
 
         ## Sandbox test scenarios
 
-        You can test the following scenarios in our sandbox environment
+        You can test the following scenarios in our sandbox environment:
 
-        | Scenario                                                                 | Request                 | 
-        | ------------------------------------------------------------------------ | ----------------------- |
-        | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment   |
-        | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment   |
-        | Cancelled Referral                                                       | Raised in Error   |
-        | Cancelled Appointment and Referral                                       | Referrer Cancellation   |
-        | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No longer Required  |
-        | Cancelled Referral with Current Deferral                                 | Intend Private With Comment   |
-        
+        | Scenario                                                                 | Request                           |
+        | ------------------------------------------------------------------------ | --------------------------------- |
+        | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment    |
+        | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment |
+        | Cancelled Referral                                                       | Raised in Error                   |
+        | Cancelled Appointment and Referral                                       | Referrer Cancellation             |
+        | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No longer Required      |
+        | Cancelled Referral with Current Deferral                                 | Intend Private With Comment       |
       summary: A036 - Cancel referral
       operationId: a036-cancel-referral
       parameters:
@@ -3403,10 +3402,30 @@ paths:
             schema:
               $ref: 'components/schemas/eRS-CancelReferral-Request-Parameters.yaml'
             examples:
-              basic-example:
+              cancel-referral-with-reason-and-comment:
                 summary: Cancel Referral with Reason and Comment
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/cancelReferralExample.json'
+                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithComment.json'
+              cancel-referral-with-reason:
+                summary: Cancel Referral with Reason
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithoutComment.json'
+              cancel-referral-referrer-cancellation:
+                summary: Cancel Referral with Referrer Cancellation Reason
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/ReferrerCancellation.json'
+              cancel-referral-patient-cancellation:
+                summary: Cancel Referral with Patient Cancellation Reason
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/PatientRequestCancellationOther.json'
+              cancel-referral-no-longer-required:
+                summary: Cancel Referral with Treatment No Longer Required Reason
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/NoLongerRequired.json'
+              cancel-referral-raised-in-error:
+                summary: Cancel Referral with Rasied In Error Reason
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/RaisedInError.json'
       responses:
         '200':
           $ref: 'components/schemas/responses/cancelReferral/200Response.yaml'

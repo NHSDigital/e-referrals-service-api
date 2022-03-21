@@ -1,0 +1,43 @@
+{
+  "id": "70001",
+  "meta": {
+    "versionId": "0",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "booked",
+  "description": "e-Referral Appointment",
+  "start": "2022-03-24T10:10:00.000Z",
+  "end": "2022-03-24T10:10:00.000Z",
+  "created": "2022-02-24T14:07:07.101Z",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070001/_history/8"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "50002"
+        },
+        "display": "Leeds Neuro Business Service"
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "1000000001"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

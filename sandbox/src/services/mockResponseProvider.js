@@ -5,7 +5,7 @@ const lodash = require('lodash')
 function mapExampleResponse(request, exampleResponseMap) {
 
   if (request && request.payload) {
-    for (const [requestBodyPath, responseBodyPath] of Object.entries(exampleResponseMap)) {
+    for (const [requestBodyPath, response] of Object.entries(exampleResponseMap)) {
       try {
         const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
         var requestBody = request.payload;
@@ -15,7 +15,7 @@ function mapExampleResponse(request, exampleResponseMap) {
         }
 
         if (lodash.isEqual(requestBody, exampleRequestBody)) {
-          return responseBodyPath;
+          return response;
         }
       } catch (err) {
         console.error(err)
@@ -97,7 +97,8 @@ module.exports = {
       'CLINIC-TYPE': 'getCodeSystem/responses/ClinicTypeCodeSystem.json',
       'APPOINTMENT-CANCELLATION-REASON': 'getCodeSystem/responses/AppointmentCancellationReasonCodeSystem.json',
       'REFERRAL-CANCELLATION-REASON': 'getCodeSystem/responses/ReferralCancellationReasonCodeSystem.json',
-      'APPOINTMENT-NON-ATTENDANCE-REASON': 'getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json'
+      'APPOINTMENT-NON-ATTENDANCE-REASON': 'getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json',
+      'PRIORITY': 'getCodeSystem/responses/PriorityCodeSystem.json'
     };
 
     return mapExampleGetResponse(request, exampleResponseMap);
@@ -247,6 +248,16 @@ module.exports = {
 
   },
 
+  putExampleResponseForUpdateAppointment: function (request) {
+    var responseMap = {
+          'src/mocks/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json': {responsePath: 'updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json', responseCode: 200},
+          'src/mocks/updateAppointment/requests/CancellationReasonAndMandatoryComment.json': {responsePath: 'updateAppointment/responses/CancellationReasonAndMandatoryComment.json', responseCode: 200},
+          'src/mocks/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json': {responsePath: 'updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json', responseCode: 422},
+          'src/mocks/updateAppointment/requests/CancellationInvalidReason.json': {responsePath: 'updateAppointment/responses/CancellationInvalidReason.json', responseCode: 422}
+    }
+    return mapExampleResponse(request, responseMap)
+  },
+
   getExampleResponseForRetrieveClinicalInformation: function () {
     return { responsePath: 'retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf', filename: '000000070000_Clinical_Information_Summary_20210706114852.pdf', responseCode: 200 }
   },
@@ -256,7 +267,11 @@ module.exports = {
       'src/mocks/retrieveWorklist/requests/MinimalReferralsForReview.json': 'retrieveWorklist/responses/ReferralsForReview.json',
       'src/mocks/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json': 'retrieveWorklist/responses/AppointmentSlotIssues.json',
       'src/mocks/retrieveWorklist/requests/FilteringBySpecialty.json': 'retrieveWorklist/responses/FilteredBySpecialty.json',
-      'src/mocks/retrieveWorklist/requests/FilteringByClinician.json': 'retrieveWorklist/responses/FilteredByClinician.json'
+      'src/mocks/retrieveWorklist/requests/FilteringByClinician.json': 'retrieveWorklist/responses/FilteredByClinician.json',
+      'src/mocks/retrieveWorklist/requests/MinimalRejectedTriageResponse.json': 'retrieveWorklist/responses/RejectedTriageResponse.json',
+      'src/mocks/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json': 'retrieveWorklist/responses/AssessmentReturnedCancelledDna.json',
+      'src/mocks/retrieveWorklist/requests/MinimalAwaitingBooking.json': 'retrieveWorklist/responses/AwaitingBooking.json',
+      'src/mocks/retrieveWorklist/requests/MinimalLettersOutstanding.json': 'retrieveWorklist/responses/LettersOutstanding.json'
     }
 
     return mapExampleResponse(request, responseMap)
@@ -368,6 +383,19 @@ module.exports = {
 
   },
 
+  getResponseForCancelReferral: function (request) {
+
+    const ubrn = request.params.ubrn;
+
+    if (ubrn === '000000070000') {
+      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
+    }
+    else if (ubrn === '000000070001') {
+      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json', responseCode: 200 }
+    }
+    return {}
+  },
+
   getResponseForRejectReferral: function (request) {
     var responseMap = {
       'src/mocks/rejectReferral/requests/BasicExampleIbs.json': 'rejectReferral/responses/ExampleResponseIbs.json',
@@ -385,29 +413,35 @@ module.exports = {
     const intent = request.query['intent']
     const status = request.query['status']
 
-    // Scenario 1 An "action" is available - Illustrate success response to caller
+    // Scenario 1 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
     if (focus === 'ReferralRequest/000000070000/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithCreateAppointment.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithChangeShortlist.json'
-    }
-
-    if (focus === 'ReferralRequest/000000070003/_history/6' && intent === 'proposal' && status === 'ready') {
-      return 'availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
-    }
-
-    // Scenario 2 No "action" is available - A empty list is returned to the caller indicating there are no "actions" available currently
-    if (focus === 'ReferralRequest/000000070004/_history/6' && intent === 'proposal' && status === 'ready') {
       return 'availableActionsForUserList/Empty.json'
     }
 
+    // Scenario 2 An "action" is available - Illustrate success response to caller
+    if (focus === 'ReferralRequest/000000070001/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithRecordReviewOutcome.json'
+    }
 
+    if (focus === 'ReferralRequest/000000070002/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCreateAppointment.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070003/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlist.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070004/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070005/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCancelReferral.json'
+    }
+
+    if (focus === 'ReferralRequest/000000070006/_history/6' && intent === 'proposal' && status === 'ready') {
+      return 'availableActionsForUserList/WithCancelDBAppointment.json'
+    }
   },
 
   getResponseForCancelAppointmentActionLater: function (request) {
@@ -421,7 +455,7 @@ module.exports = {
 
 
   },
- 
+
  getExampleResponseForGetHealthcareService: function (request) {
     const version = request.params.version
     const serviceId = request.params.serviceId
@@ -429,7 +463,7 @@ module.exports = {
     if (serviceId == 1 && (!version || version == 1)) {
       return 'getService/responses/sampleServiceWithMinimumAttributes.json'
     }
-   
+
     if (serviceId == 2 && (!version || version == 1)) {
       return 'getService/responses/sampleServiceWithFullAttributes.json'
     }
@@ -439,7 +473,7 @@ module.exports = {
 
   getExampleResponseForSearchForHealthcareServices: function (request) {
     const ids = request.query['_id']
-    
+
     if (ids == ['1', '2']) {
       return 'searchForServices/responses/searchServiceWithMinmumalAttributes.json'
     }
@@ -447,10 +481,10 @@ module.exports = {
     if (ids == ['3', '4']) {
       return 'searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
     }
-   
+
     if (ids == ['5', '6']) {
       return 'searchForServices/responses/searchServiceWithEmptyResponse.json'
-    } 
+    }
 
     return null
   },
@@ -463,12 +497,59 @@ module.exports = {
 
     return mapExampleResponse(request, responseMap)
   },
-  
+
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
       var responseMap = {
         'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
       }
 
       return mapExampleResponse(request, responseMap)
+  },
+
+  getExampleResponseForRetrieveAppointment: function (request) {
+      const id = request.params.id;
+      const version = request.params.version
+
+      // Scenario 1 - ooked to directly-bookable service
+      if (id === '70000' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
+      }
+
+      // Scenario 2 - ooked to indirectly-bookable service
+      if (id === '70001' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
+      }
+
+      // Scenario 3 - Appointment Deferral
+      if (id === '70002' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/AppointmentDeferral.json', responseCode: 200 }
+      }
+
+      // Scenario 4 -	Triage Deferral
+      if (id === '70003' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/TriageDeferral.json', responseCode: 200 }
+      }
+
+      // Scenario 5 -	Triage Response
+      if (id === '70004' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/TriageResponse.json', responseCode: 200 }
+      }
+
+      // Scenario 6 -	Cancel Appointment Action Later
+      if (id === '70005' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/CAAL.json', responseCode: 200 }
+      }
+
+      // Scenario 7 -	Cancelled
+      if (id === '70006' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
+      }
+
+      // Scenario 8 -	CConverted from A and G and Booked to DBS
+      if (id === '70007' && (version === undefined || version === '5')) {
+        return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
+      }
+
+      return {}
     }
 }

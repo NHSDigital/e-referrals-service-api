@@ -60,21 +60,26 @@ properties:
       | `Extension-eRS-ReferralShortlist`          | `1..1`      |                                            |
       | `Extension-eRS-Commissioning-Rule-Org`     | `1..1`      |                                            |
       | `Extension-eRS-ReferralPriority`           | `1..1`      |                                            |
+      | `Extension-eRS-ReferralState`              | `1..1`      |                                            |
       | `Extension-eRS-Appointment`                | `0..1`      |                                            |
       | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                            |
       | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                            |
+      | `Extension-eRS-Appointment-Reference`      | `0..1`      |                                            |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
         - $ref: 'extensions/Extension-eRS-Commissioning-Rule-Org.yaml'
         - $ref: 'extensions/Extension-eRS-ReferralPriority.yaml'
+        - $ref: 'extensions/Extension-eRS-ReferralState.yaml'
         - $ref: 'extensions/Extension-eRS-Appointment.yaml'
         - $ref: 'extensions/Extension-eRS-ClinicalInfoFirstSubmitted.yaml'
         - $ref: 'extensions/Extension-eRS-ClinicalInfoLastUpdated.yaml'
+        - $ref: 'extensions/Extension-eRS-Appointment-Reference.yaml'
   status:
     type: string
     enum:
       - active
+      - cancelled
       - completed
     example: 'active'
   subject:

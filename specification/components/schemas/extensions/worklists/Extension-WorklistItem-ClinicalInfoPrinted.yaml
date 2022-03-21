@@ -1,0 +1,14 @@
+title: clinicalInfoPrinted
+type: object
+required: 
+  - url
+  - valueBoolean
+properties:
+  url:
+    type: string
+    enum:
+      - clinicalInfoPrinted
+    example: 'clinicalInfoPrinted'
+  valueBoolean:
+    type: boolean
+    example: false

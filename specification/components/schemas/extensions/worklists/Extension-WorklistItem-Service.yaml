@@ -1,0 +1,18 @@
+title: service
+type: object
+required: 
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - service
+    example: 'service'
+  valueReference:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: '../../identifiers/ServiceId.yaml'

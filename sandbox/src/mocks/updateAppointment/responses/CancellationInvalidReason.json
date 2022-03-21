@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+    ]
+  },
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "business-rule",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
+            "code": "INAPPROPRIATE_VALUE",
+            "display": "Inappropriate value"
+          }
+        ]
+      },
+      "diagnostics": "'reason' The reason provided is not valid in this case"
+    }
+  ]
+}

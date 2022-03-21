@@ -1,0 +1,126 @@
+title: Extension-eRS-ReferralState
+description: Extension to outline the current state of a ReferralRequest within e-RS.
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1'
+  extension:
+    type: array
+    description: |
+      | Field                                      | Cardinality | Notes                                                                            |
+      | ------------------------------------------ | ----------- | -------------------------------------------------------------------------------- |
+      | `state`                                    | `1..1`      | Outlines the current state of the `ReferralRequest`                              |
+      | `reason`                                   | `0..1`      | Details the reason why the `ReferralRequest` is in this state, where appropriate |
+      | `comments`                                 | `0..1`      | Any comments around the current `ReferralRequest` state                          |
+    items:
+      anyOf:
+        - title: Extension - Referral State 
+          description: Extension to provide the Referral State.
+          type: object
+          required:
+            - url
+            - valueCoding
+          properties:
+            url:
+              type: string
+              enum:
+                - 'state'
+              example: 'state'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+                - display
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1'
+                  example: https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1
+                code:
+                  type: string
+                  enum:
+                    - REJECTED
+                    - CANCELLED_REFERRAL
+                    - DID_NOT_ATTEND
+                    - ASSESSMENT_RESULT
+                    - TRIAGE_RESPONSE
+                    - APPT_CANCELLED_BY_PROVIDER
+                    - APPT_CANCELLED_BY_PATIENT
+                    - AWAITING_TRIAGE
+                    - NOT_BOOKED
+                    - DEFERRED_TO_PROVIDER
+                    - BOOKED
+                    - TRIAGED_PROVIDER_TO_ACTION
+                  example: 'APPT_CANCELLED_BY_PATIENT'
+                display:
+                  type: string
+                  enum:
+                    - 'Rejected'
+                    - 'Cancelled Referral'
+                    - 'Did Not Attend'
+                    - 'Assessment Result'
+                    - 'Triage Response'
+                    - 'Appointment Cancelled By Provider'
+                    - 'Appointment Cancelled By Patient'
+                    - 'Awaiting Triage'
+                    - 'Not Booked'
+                    - 'Deferred To Provider'
+                    - 'Booked'
+                    - 'Triaged - Provider To Action'
+                  example: 'Appointment Cancelled By Patient'
+        - title: Extension - Referral State Reason 
+          description: Extension to provide the Referral State Reason.
+          type: object
+          required:
+            - url
+            - valueCoding
+          properties:
+            url:
+              type: string
+              enum:
+                - 'reason'
+              example: 'reason'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+              properties:
+                system:
+                  type: string
+                  example: |
+                    'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1'
+                    'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1'
+                    'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AssessmentOutcome-1'
+                    '_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON'
+                    '_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON'
+                    '_baseurl_/STU3/CodeSystem/APPOINTMENT-NON-ATTENDANCE-REASON'
+                code:
+                  type: string
+                  example: 'PATIENT_ILL'
+                display: 
+                  type: string
+                  example: 'Patient Ill'
+        - title: Extension - Referral State Reason Comment 
+          description: Extension to provide the Referral State Reason Comment.
+          type: object
+          required:
+            - url
+            - valueString
+          properties:
+            url:
+              type: string
+              enum:
+                - 'comments'
+              example: 'comments'
+            valueString:
+              type: string
+              example: "Patient could not attend appointment due to them being ill."

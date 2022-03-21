@@ -1,0 +1,76 @@
+title: eRS-CancelReferral-Request-Parameters
+type: object
+description: "Parameters containing the cancellation reason and comment for referral cancellation request."
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Request-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Request-Parameters-1"
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                      |
+      | --------------------------------- | ----------- | ------------------------------------------ |
+      | `cancellationReason`                 | `1..1`      |  The reason why the referral is being cancelled |
+      | `cancellationComments`               | `0..1`      |  This may be mandatory if mandatory comment indicator is set to 'Yes' for the Cancellation Reason Type selected. Maximum 2000 characters. |
+    items:
+      anyOf:
+        - title: cancellationReason
+          description: Parameter to supply a cancellationReason
+          type: object
+          required:
+            - name
+            - valueCoding
+          properties:
+            name:
+              type: string
+              enum:
+                - cancellationReason
+              example: 'cancellationReason'
+            valueCoding:
+              type: object
+              required:
+                - system
+                - code
+              properties:
+                system:
+                  type: string
+                  example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+                code:
+                  type: string
+                  example: INTEND_PRIVATE
+        - title: cancellationComments
+          description: Parameter to supply the cancellationComments
+          type: object
+          required:
+            - name
+            - valueString
+          properties:
+            name:
+              type: string
+              enum:
+                - cancellationComments
+              example: 'cancellationComments'
+            valueString:
+              type: string
+              example: 'Patient intend to go private'
+

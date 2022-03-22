@@ -9,7 +9,7 @@
         {
             "name": "updatedReferralRequest",
             "resource": {
-                "id": "000000070000",
+                "id": "000000070005",
                 "meta": {
                     "versionId": "4",
                     "profile": [
@@ -19,12 +19,16 @@
                 "resourceType": "ReferralRequest",
                 "extension": [
                     {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
+                        "valueDateTime": "2022-03-22T19:02:39.984Z"
+                    },
+                    {
                         "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
                         "valueCodeableConcept": {
                             "coding": [
                                 {
-                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
                                     "code": "ROUTINE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
                                     "display": "Routine"
                                 }
                             ]
@@ -37,36 +41,36 @@
                         }
                     },
                     {
-                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
-                        "valueIdentifier": {
-                            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
-                            "value": "R69"
-                        }
-                    },
-                    {
-                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
                         "extension": [
                             {
                                 "url": "state",
                                 "valueCoding": {
-                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                                     "code": "CANCELLED_REFERRAL",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
                                     "display": "Cancelled Referral"
                                 }
                             },
                             {
                                 "url": "reason",
                                 "valueCoding": {
-                                    "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
-                                    "code": "PATIENT_ILL",
-                                    "display": "Patient Ill"
+                                    "code": "INTEND_PRIVATE",
+                                    "system": "_baseurl_/STU3/v1/CodeSystem/REFERRAL-CANCELLATION-REASON",
+                                    "display": "Patient intends to go private"
                                 }
                             },
                             {
                                 "url": "comments",
-                                "valueString": "Cancelled Referral"
+                                "valueString": "This is a cancellation reason comment"
                             }
-                        ]
+                        ],
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1"
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+                        "valueIdentifier": {
+                            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                            "value": "R69"
+                        }
                     }
                 ],
                 "contained": [
@@ -82,23 +86,27 @@
                             {
                                 "name": "priority",
                                 "valueCoding": {
-                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
-                                    "code": "ROUTINE"
+                                    "code": "ROUTINE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1"
                                 }
                             },
                             {
                                 "name": "specialty",
                                 "valueCoding": {
-                                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
-                                    "code": "CARDIOLOGY"
+                                    "code": "DERMATOLOGY",
+                                    "system": "https://ers-api:445/ers-api/STU3/v1/CodeSystem/SPECIALTY"
                                 }
                             },
                             {
                                 "name": "clinicType",
                                 "valueCoding": {
-                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
-                                    "code": "HEART_FAILURE"
+                                    "code": "ECZEMA_AND_DERMATITIS",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1"
                                 }
+                            },
+                            {
+                                "name": "postcode",
+                                "valueString": ""
                             },
                             {
                                 "name": "ageAndGenderAppropriate",
@@ -107,8 +115,8 @@
                             {
                                 "name": "commissioningProvisioning",
                                 "valueCoding": {
-                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
-                                    "code": "ALL_AVAILABLE_FOR_BOOKING"
+                                    "code": "ALL_AVAILABLE_FOR_BOOKING",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1"
                                 }
                             }
                         ]
@@ -136,28 +144,19 @@
                                 "item": {
                                     "identifier": {
                                         "system": "http://fhir.nhs.net/Id/ers-service",
-                                        "value": "11004"
+                                        "value": "70072"
                                     },
-                                    "display": "Cardiology Triage Business Service"
+                                    "display": "DBS No slots"
                                 }
                             }
                         ]
                     }
                 ],
                 "status": "cancelled",
-                "specialty": {
-                    "coding": [
-                        {
-                            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
-                            "code": "CARDIOLOGY",
-                            "display": "Cardiology"
-                        }
-                    ]
-                },
                 "subject": {
                     "identifier": {
                         "system": "http://fhir.nhs.net/Id/nhs-number",
-                        "value": "9912003888"
+                        "value": "1000000001"
                     }
                 },
                 "supportingInfo": [],

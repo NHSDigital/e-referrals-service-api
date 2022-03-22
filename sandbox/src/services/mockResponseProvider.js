@@ -388,11 +388,30 @@ module.exports = {
     const ubrn = request.params.ubrn;
 
     if (ubrn === '000000070000') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
+      return { responsePath: 'cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json', responseCode: 200 }
     }
-    else if (ubrn === '000000070001') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppointment.json', responseCode: 200 }
+    
+    if (ubrn === '000000070001') {
+      return { responsePath: 'cancelReferral/responses/CancelledReferralPatientOther.json', responseCode: 200 }
     }
+
+    if (ubrn === '000000070002') {
+      return { responsePath: 'cancelReferral/responses/CancelledReferralRaisedInError.json', responseCode: 200 }
+    }
+
+    if (ubrn === '000000070003') {
+      return { responsePath: 'cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json', responseCode: 200 }
+    }
+
+    if (ubrn === '000000070004') {
+      return { responsePath: 'cancelReferral/responses/CancelledReferralNoLongerRequired.json', responseCode: 200 }
+    }
+
+    if (ubrn === '000000070005') {
+      return { responsePath: 'cancelReferral/responses/CancelledReferralDeferredIntendPrivateWithComment.json', responseCode: 200 }
+    }
+
+    return {}
   },
 
   getResponseForRejectReferral: function (request) {

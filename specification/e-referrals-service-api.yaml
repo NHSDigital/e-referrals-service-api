@@ -3309,7 +3309,7 @@ paths:
 
         You can check if you can cancel a referral by calling [[HYPERLINK_A029]].
 
-        e-RS does not allow a referral to be cancelled if there is a current appointment. Therefore, if there is a current appointment associated with the referral, this must be cancelled in advance, or at the same time.
+        e-RS does not allow a referral to be cancelled if there is a current appointment. Therefore, if there is a current appointment associated with the referral, this *must* be cancelled in advance, or at the same time.
 
         In order to cancel (only) an appointment you must use [[HYPERLINK_A034]].
 
@@ -3321,43 +3321,43 @@ paths:
         - `REFERRING_CLINICIAN`
         - `REFERRING_CLINICIAN_ADMIN`
 
-        You must use [[HYPERLINK_A004]] to retrieve a list reference data, which detail the reason the cancellation is being performed. You can only use reference data from the set `REFERRAL-CANCELLATION-REASON`.
+        You must use [[HYPERLINK_A004]] to retrieve a list of reference data, which detail the reason the cancellation is being performed. You can only use reference data from the set `REFERRAL-CANCELLATION-REASON`.
 
 
         To find out which reference data from this set can be used, the following filters can be used depending on the cancellation scenario:
 
-        1. I want to cancel the referral and the appointment
+        ***1. I want to cancel the referral and the current appointment***
 
-        Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+        * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
 
-        `referrerUsage` must be `CANCEL_REFERRAL`, and
-        
-        `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
-        
-        `canCancelAppointment` must be true, and
-        
-        `effectiveFrom` must be in the past, and 
-        
-        `effectiveTo` must not be in the past
+          * `referrerUsage` must be `CANCEL_REFERRAL`, and
+
+          * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
+
+          * `canCancelAppointment` must be true, and
+
+          * `effectiveFrom` must be in the past, and 
+
+          * if provided, `effectiveTo` must **not** be in the past
 
 
-        2. I want to cancel the referral and there is no appointment that requires cancelling
-        
-        Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+        ***2. I want to cancel a referral, for which there is no current appointment***
 
-        `referrerUsage` must be `CANCEL_REFERRAL`, and 
-        
-        `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and 
-        
-        `canCancelAppointment` could be true or false, and
-        
-        `effectiveFrom` must be in the past, and 
-        
-        `effectiveTo` must not be in the past
+        * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+
+          * `referrerUsage` must be `CANCEL_REFERRAL`, and
+
+          * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN`   *(depending which authenticated user will be performing the action), and
+
+          * `canCancelAppointment` could be true or false, and
+
+          * `effectiveFrom` must be in the past, and
+
+          * if provided, `effectiveTo` must **not** be in the past
 
 
         You need to use [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
-        
+
         ## Use case
         As an authenticated user
 
@@ -3378,14 +3378,14 @@ paths:
 
         You can test the following scenarios in our sandbox environment:
 
-        | Scenario                                                                 | Request                           |
-        | ------------------------------------------------------------------------ | --------------------------------- |
-        | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment    |
-        | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment |
-        | Cancelled Referral                                                       | Raised in Error                   |
-        | Cancelled Appointment and Referral                                       | Referrer Cancellation             |
-        | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No longer Required      |
-        | Cancelled Referral with Current Deferral                                 | Intend Private With Comment       |
+        | Scenario                                                                 | Request details                   | UBRN                  |
+        | ------------------------------------------------------------------------ | --------------------------------- | --------------------- |
+        | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment    | `ubrn`=`000000070000` |
+        | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment | `ubrn`=`000000070001` |
+        | Cancelled Referral                                                       | Raised in Error                   | `ubrn`=`000000070002` |
+        | Cancelled Appointment and Referral                                       | Referrer Cancellation             | `ubrn`=`000000070003` |
+        | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No longer Required      | `ubrn`=`000000070004` |
+        | Cancelled Referral with Current Deferral                                 | Intend Private With Comment       | `ubrn`=`000000070005` |
       summary: A036 - Cancel referral
       operationId: a036-cancel-referral
       parameters:
@@ -3402,30 +3402,30 @@ paths:
             schema:
               $ref: 'components/schemas/eRS-CancelReferral-Request-Parameters.yaml'
             examples:
-              cancel-referral-with-reason-and-comment:
-                summary: Cancel Referral with Reason and Comment
-                value:
-                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithComment.json'
-              cancel-referral-with-reason:
-                summary: Cancel Referral with Reason
+              cancel-referral-without-comment:
+                summary: Reason for Cancellation without Comment (Comment Not Mandatory)
                 value:
                   $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithoutComment.json'
-              cancel-referral-referrer-cancellation:
-                summary: Cancel Referral with Referrer Cancellation Reason
-                value:
-                  $ref: 'components/examples/cancelReferral/requests/ReferrerCancellation.json'
               cancel-referral-patient-cancellation:
-                summary: Cancel Referral with Patient Cancellation Reason
+                summary: Reason for Cancellation with Comment (Comment Mandatory)
                 value:
                   $ref: 'components/examples/cancelReferral/requests/PatientRequestCancellationOther.json'
-              cancel-referral-no-longer-required:
-                summary: Cancel Referral with Treatment No Longer Required Reason
-                value:
-                  $ref: 'components/examples/cancelReferral/requests/NoLongerRequired.json'
               cancel-referral-raised-in-error:
-                summary: Cancel Referral with Rasied In Error Reason
+                summary: Cancelled Referral
                 value:
                   $ref: 'components/examples/cancelReferral/requests/RaisedInError.json'
+              cancel-referral-referrer-cancellation:
+                summary: Cancelled Appointment and Referral
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/ReferrerCancellation.json'
+              cancel-referral-no-longer-required:
+                summary: Cancelled Referral After Prior Appointment Cancellation
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/NoLongerRequired.json'
+              cancel-referral-with-reason-and-comment:
+                summary: Cancelled Referral with Current Deferral
+                value:
+                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithComment.json'
       responses:
         '200':
           $ref: 'components/schemas/responses/cancelReferral/200Response.yaml'

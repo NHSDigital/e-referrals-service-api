@@ -560,7 +560,7 @@ paths:
         | Retrieve appointment cancellation reason reference data   | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON`      | Appointment reason type details           |
         | Retrieve referral cancellation reason reference data      | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`         | ReferralRequest reason type details       |
         | Retrieve appointment non-attendance reason reference data | `codeSystemType`=`APPOINTMENT-NON-ATTENDANCE-REASON`    | Appointment non-attendance reason details |
-        | Retrieve priority reference data                        | `codeSystemType`=`PRIORITY`                               | Priority details                          |
+        | Retrieve priority reference data                          | `codeSystemType`=`PRIORITY`                             | Priority details                          |
 
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
@@ -1010,6 +1010,33 @@ paths:
         ## Overview
         Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
 
+        During the lifecycle of a referral, the state of the referral may change multiple times. To help with understanding the state of a referral, we provide an "at a glance" summary of the referral as detailed below:
+
+        | Code returned via https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1 | Description                                                                                          |
+        | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+        | `APPT_CANCELLED_BY_PATIENT`                                               | The referral's most recent appointment was cancelled at the request of, or directly by, a patient    |
+        | `APPT_CANCELLED_BY_PROVIDER`                                              | The referral's most recent appointment was cancelled by the service provider                         |
+        | `ASSESSMENT_RESULT`                                                       | A service provider has reviewed and drafted, or submitted a clinical assessment for the referral     |
+        | `AWAITING_TRIAGE`                                                         | The triage referral is currently pending review with a service provider                              |
+        | `BOOKED`                                                                  | This referral's appointment indicates a date and time with a service                                 |
+        | `CANCELLED_REFERRAL`                                                      | The referral has been cancelled and cannot be progressed any further                                 |
+        | `DEFERRED_TO_PROVIDER`                                                    | The service provider will arrange the patient’s appointment                                          |
+        | `DID_NOT_ATTEND`                                                          | The patient did not attend their last appointment                                                    |
+        | `NOT_BOOKED`                                                              | The referral is currently not booked, there is currently no planned patient encounter                |
+        | `REJECTED`                                                                | The referral was rejected by a provider at their service                                             |
+        | `TRIAGE_RESPONSE`                                                         | A service has passed the referral back to the referrer, with advice                                  |
+        | `TRIAGED_PROVIDER_TO_ACTION`                                              | The service provider has recorded a review decision, with the intention of processing this referral  |
+
+        Some referral states may also have a `reason` and some reasons may also have a `comment`.  These are described below:
+
+        ## Reason
+        - The reason is always connected to the current state. This means the reason is likely to change each time the state changes. You cannot currently retrieve previous versions of a referral.
+        - This reason may have been selected by a clinician or automatically applied by the e-RS system at the time the state was persisted.
+        - A reason can be dynamic reference data, from any of the following sets of reference data: `APPOINTMENT-CANCELLATION-REASON`, `REFERRAL-CANCELLATION-REASON`, `APPOINTMENT-NON-ATTENDANCE-REASON`. These are retrievable from [[HYPERLINK_A004]]. *A reason may be static reference data.
+
+        ## Comments
+        - The comment is always connected to the current reason, and state. This means the comment is likely to change as the state changes.
+
         ## Supported security patterns
         - Application-restricted access
         - Healthcare worker, user-restricted access
@@ -1046,6 +1073,8 @@ paths:
         If bookable services are on the shortlist of the referral, you can retrieve appointment slots for a service on the shortlist for a referral using [[HYPERLINK_A015]]
 
         You can retrieve the patient letter appropriate to the referral using [[HYPERLINK_A019]]
+
+        You can retrieve reference data used in viewing a referral using [[HYPERLINK_A004]]
 
         ## Sandbox test scenarios
 

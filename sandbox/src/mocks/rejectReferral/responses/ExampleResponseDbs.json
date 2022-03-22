@@ -70,7 +70,7 @@
 				},
 				{
 					"url": "comments",
-					"valueString": "Wrong Service Booked"
+					"valueString": "This is a short comment"
 				}
 			]
 		}
@@ -173,7 +173,7 @@
 				  }]
 				}
 		    ],
-			"comment": "Wrong Service Booked",
+			"comment": "This is a short comment",
 			"incomingReferral": [
 				{
 					"reference": "ReferralRequest/000000070000/_history/10"

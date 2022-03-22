@@ -64,13 +64,13 @@
           "url": "reason",
           "valueCoding": {
             "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
-            "code": "SERVICE_INAPPROPRIATE",
-            "display": "Inappropriate service"
+            "code": "OTHER",
+            "display": "Other"
           }
         },
         {
           "url": "comments",
-          "valueString": "Wrong Service Booked"
+          "valueString": "This is a short comment"
         }
       ]
      }
@@ -168,12 +168,12 @@
 				{
 				  "coding": [{
             "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
-            "code": "SERVICE_INAPPROPRIATE",
-            "display": "Inappropriate service"
+            "code": "OTHER",
+            "display": "Other"
 				  }]
 				}
 		  ],
-			"comment": "Wrong Service Booked",
+			"comment": "This is a short comment",
       "incomingReferral": [
         {
           "reference": "ReferralRequest/000000070000/_history/10"

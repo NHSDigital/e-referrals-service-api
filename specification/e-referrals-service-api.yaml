@@ -3069,6 +3069,7 @@ paths:
       summary: A034 - Update appointment
       operationId: a034-update-appointment
       parameters:
+        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
@@ -3321,6 +3322,7 @@ paths:
       summary: A036 - Cancel referral
       operationId: a036-cancel-referral
       parameters:
+        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'

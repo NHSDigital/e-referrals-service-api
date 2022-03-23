@@ -56,21 +56,21 @@
           "url": "state",
           "valueCoding": {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-            "code": "TRIAGE_RESPONSE",
-            "display": "Triage Response"
+            "code": "TRIAGED_PROVIDER_TO_ACTION",
+            "display": "Triaged - Provider To Action"
           }
         },
         {
           "url": "reason",
           "valueCoding": {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
-            "code": "ACCEPT_REFER_BOOK_LATER",
-            "display": "Accept Refer Book Later"
+            "code": "RETURN_TO_REFERRER_WITH_ADVICE",
+            "display": "Return to Referrer With Advice"
           }
         },
         {
           "url": "comments",
-          "valueString": "Urgent action needed. To be booked ASAP."
+          "valueString": "Condition not serious. See attached document"
         }
       ]
     }
@@ -167,15 +167,15 @@
           "coding": [
             {
               "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
-              "code": "ACCEPT_REFER_BOOK_LATER",
-              "display": "Accept Refer Book Later"
+              "code": "RETURN_TO_REFERRER_WITH_ADVICE",
+              "display": "Return to Referrer With Advice"
             }
           ]
         }
       ],
       "description": "e-Referral Appointment",
       "created": "2021-10-07T15:00:19.711Z",
-      "comment": "Comment Is Mandatory",
+      "comment": "Condition not serious. See attached document",
       "incomingReferral": [
         {
           "reference": "ReferralRequest/000000070000/_history/10"

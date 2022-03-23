@@ -56,9 +56,21 @@
 					"url": "state",
 					"valueCoding": {
 						"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-						"code": "NOT_BOOKED",
-						"display": "Not Booked"
+						"code": "TRIAGED_PROVIDER_TO_ACTION",
+						"display": "Triaged - Provider To Action"
 					}
+				},
+				{
+				  "url": "reason",
+				  "valueCoding": {
+					"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+					"code": "CANCEL_APPOINTMENT_ACTION_LATER",
+					"display": "Cancel Appointment Action Later"
+				  }
+				},
+				{
+					"url": "comments",
+					"valueString": "Please contact patient to rebook"
 				}
 			]
 		}

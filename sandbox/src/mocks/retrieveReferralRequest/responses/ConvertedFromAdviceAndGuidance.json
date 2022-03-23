@@ -56,9 +56,21 @@
           "url": "state",
           "valueCoding": {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-            "code": "NOT_BOOKED",
-            "display": "Not Booked"
+            "code": "TRIAGED_PROVIDER_TO_ACTION",
+            "display": "Triaged - Provider To Action"
           }
+        },
+        {
+          "url": "reason",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+            "code": "PROVIDER_CONVERTED_ADVICE_AND_GUIDANCE_ADMIN_TO_REFER",
+            "display": "Provider Converted Advice and Guidance, Admin to Refer"
+          }
+        },
+        {
+          "url": "comments",
+          "valueString": "Actually I'd rather not"
         }
       ]
     }

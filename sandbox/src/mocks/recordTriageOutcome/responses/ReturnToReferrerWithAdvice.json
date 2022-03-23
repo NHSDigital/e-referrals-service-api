@@ -56,8 +56,8 @@
           "url": "state",
           "valueCoding": {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-            "code": "TRIAGE_RESPONSE",
-            "display": "Triage Response"
+            "code": "TRIAGED_PROVIDER_TO_ACTION",
+            "display": "Triaged - Provider To Action"
           }
         },
         {
@@ -70,7 +70,7 @@
         },
         {
           "url": "comments",
-          "valueString": "Condition not serious. No further action needed."
+          "valueString": "Condition not serious. No further action needed"
         }
       ]
      }

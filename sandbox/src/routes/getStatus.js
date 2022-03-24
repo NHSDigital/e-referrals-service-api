@@ -6,8 +6,12 @@ module.exports = [
   {
     method: 'GET',
     path: '/_status',
-    handler: () => {
-      return "";
+    handler: (request, h) => {
+      return h.response(
+        {
+          "status": "pass",
+          "date": Date.now()
+        });
     }
   }
 ]

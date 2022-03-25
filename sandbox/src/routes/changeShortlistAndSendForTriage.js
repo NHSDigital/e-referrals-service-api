@@ -21,7 +21,7 @@ module.exports = [
                 return h.file('SandboxErrorOutcome.json').code(422)
             }
 
-            return h.file(responsePath, { etagMethod: false }).code(200).type('application/fhir+json').etag("3", { weak: true })
+            return h.file(responsePath, { etagMethod: false }).code(200).type('application/fhir+json')
         }
     }
 ]

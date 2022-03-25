@@ -15,6 +15,12 @@
       }
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1",
+      "valueReference": {
+        "reference": "Appointment/70009"
+      }
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
       "valueDateTime": "2021-10-07T15:00:18.561Z"
     },
@@ -42,6 +48,31 @@
         "system": "https://fhir.nhs.uk/Id/ods-organization-code",
         "value": "R69"
       }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+            "code": "TRIAGED_PROVIDER_TO_ACTION",
+            "display": "Triaged - Provider To Action"
+          }
+        },
+        {
+          "url": "reason",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+            "code": "ACCEPT_REFER_BOOK_LATER",
+            "display": "Accept Refer Book Later"
+          }        
+        },
+        {
+          "url": "comments",
+          "valueString": "Urgent action needed. To be booked ASAP"
+        }
+	    ]
     }
   ],
   "contained": [

@@ -9,6 +9,10 @@ content:
     schema:
       $ref: '../../TaskBundle.yaml'
     examples:
+      empty:
+        summary: Empty
+        value:
+          $ref: '../../../examples/availableActionsForUserList/Empty.json'
       with-record-review-outcome:
         summary: With Record Review Outcome
         value:
@@ -25,7 +29,11 @@ content:
         summary: With Change Shortlist and Send for Triage
         value:
           $ref: '../../../examples/availableActionsForUserList/WithChangeShortlistAndSendForTriage.json'
-      empty:
-        summary: Empty
+      with-cancel-referral:
+        summary: With Cancel Referral
         value:
-          $ref: '../../../examples/availableActionsForUserList/Empty.json'
+          $ref: '../../../examples/availableActionsForUserList/WithCancelReferral.json'
+      with-cancel-directly-booked-appointment:
+        summary: With Cancel Directly Booked Appointment
+        value:
+          $ref: '../../../examples/availableActionsForUserList/WithCancelDBAppointment.json'

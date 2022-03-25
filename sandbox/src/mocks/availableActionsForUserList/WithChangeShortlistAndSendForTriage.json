@@ -11,12 +11,12 @@
 	"link": [
 		{
 			"relation": "self",
-			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070003/_history/6&intent=proposal&status=ready"
+			"url": "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070004/_history/6&intent=proposal&status=ready"
 		}
 	],
 	"entry": [
     {
-      "fullUrl": "_baseUrl_/STU3/STU3/v1/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a",
+      "fullUrl": "_baseUrl_/STU3/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a",
       "resource": {
         "id": "ed4dff57-503c-46ef-9084-4045a23f4c2a",
         "meta": {
@@ -28,7 +28,7 @@
         "status": "ready",
         "intent": "proposal",
         "focus": {
-          "reference": "ReferralRequest/000000070003/_history/6"
+          "reference": "ReferralRequest/000000070004/_history/6"
         },
         "code": {
           "coding": [

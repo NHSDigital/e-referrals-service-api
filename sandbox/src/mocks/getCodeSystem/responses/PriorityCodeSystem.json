@@ -1,0 +1,98 @@
+{
+    "id": "PRIORITY",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+        ]
+    },
+    "resourceType": "CodeSystem",
+    "url": "_baseUrl_/STU3/CodeSystem/PRIORITY",
+    "version": "1",
+    "name": "e-RS Priority",
+    "status": "active",
+    "experimental": false,
+    "date": "2022-02-19T15:30:48.538Z",
+    "publisher": "e-Referral Service",
+    "description": "e-RS Priority",
+    "copyright": "Copyright © 2016 HL7 UK",
+    "caseSensitive": true,
+    "content": "complete",
+    "property": [
+        {
+            "code": "effectiveFrom",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+            "type": "dateTime"
+        },
+        {
+            "code": "effectiveTo",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+            "type": "dateTime"
+        },
+        {
+            "code": "deferToProviderContactDays",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#deferToProviderContactDays",
+            "type": "integer"
+        },
+        {
+            "code": "triageContactDays",
+            "uri": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#triageContactDays",
+            "type": "integer"
+        }
+    ],
+    "concept": [
+        {
+            "code": "ROUTINE",
+            "display": "Routine",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "deferToProviderContactDays",
+                    "valueInteger": 40
+                },
+                {
+                    "code": "triageContactDays",
+                    "valueInteger": 40
+                }
+            ]
+        },
+        {
+            "code": "URGENT",
+            "display": "urgent",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "deferToProviderContactDays",
+                    "valueInteger": 10
+                },
+                {
+                    "code": "triageContactDays",
+                    "valueInteger": 5
+                }
+            ]
+        },
+        {
+            "code": "TWO_WEEK_WAIT",
+            "display": "Two Week Wait",
+            "property": [
+                {
+                    "code": "effectiveFrom",
+                    "valueDateTime": "2004-06-01T00:00:00.000Z"
+                },
+                {
+                    "code": "deferToProviderContactDays",
+                    "valueInteger": 5
+                },
+                {
+                    "code": "triageContactDays",
+                    "valueInteger": 2
+                }
+            ]
+        }
+    ]
+}

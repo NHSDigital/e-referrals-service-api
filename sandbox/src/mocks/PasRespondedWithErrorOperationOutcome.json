@@ -14,7 +14,7 @@
           {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
             "code": "PAS_RESPONDED_WITH_ERROR",
-            "display": "Error recieved from PAS"
+            "display": "Error received from PAS"
           }
         ]
       },

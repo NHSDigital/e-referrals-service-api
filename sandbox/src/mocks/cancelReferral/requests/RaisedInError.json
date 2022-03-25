@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Request-Parameters-1"
+    ]
+  },
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "cancellationReason",
+      "valueCoding": {
+        "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
+        "code": "RAISED_IN_ERROR"
+      }
+    },
+    {
+      "name": "cancellationComments",
+      "valueString": "This is a cancellation reason comment"
+    }
+  ]
+}

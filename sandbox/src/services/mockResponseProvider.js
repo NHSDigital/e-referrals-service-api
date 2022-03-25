@@ -384,16 +384,16 @@ module.exports = {
   },
 
   getResponseForCancelReferral: function (request) {
-
-    const ubrn = request.params.ubrn;
-
-    if (ubrn === '000000070000') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferral.json', responseCode: 200 }
+    var responseMap = {
+      'src/mocks/cancelReferral/requests/IntendPrivateWithoutComment.json': 'cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json',
+      'src/mocks/cancelReferral/requests/PatientRequestCancellationOther.json': 'cancelReferral/responses/CancelledReferralPatientOther.json',
+      'src/mocks/cancelReferral/requests/RaisedInError.json': 'cancelReferral/responses/CancelledReferralRaisedInError.json',
+      'src/mocks/cancelReferral/requests/ReferrerCancellation.json': 'cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json',
+      'src/mocks/cancelReferral/requests/NoLongerRequired.json': 'cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json',
+      'src/mocks/cancelReferral/requests/IntendPrivateWithComment.json': 'cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
     }
-    else if (ubrn === '000000070001') {
-      return { responsePath: 'cancelReferral/responses/ExampleCancelledReferralWithAppoinment.json', responseCode: 200 }
-    }
-    return {}
+
+    return mapExampleResponse(request, responseMap)
   },
 
   getResponseForRejectReferral: function (request) {
@@ -403,8 +403,6 @@ module.exports = {
     }
 
     return mapExampleResponse(request, responseMap)
-
-
   },
 
   getResponseForAvailableActionsForUserList: function (request) {
@@ -510,12 +508,12 @@ module.exports = {
       const id = request.params.id;
       const version = request.params.version
 
-      // Scenario 1 - ooked to directly-bookable service
+      // Scenario 1 - Booked to directly-bookable service
       if (id === '70000' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
       }
 
-      // Scenario 2 - ooked to indirectly-bookable service
+      // Scenario 2 - Booked to indirectly-bookable service
       if (id === '70001' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
       }
@@ -545,7 +543,7 @@ module.exports = {
         return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
       }
 
-      // Scenario 8 -	CConverted from A and G and Booked to DBS
+      // Scenario 8 -	Converted from A and G and Booked to DBS
       if (id === '70007' && (version === undefined || version === '5')) {
         return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
       }

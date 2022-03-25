@@ -19,12 +19,13 @@ description: |
   | UNABLE_TO_CONFIRM_APPOINTMENT      | An unexpected error prevented eRS from successfully confirming the appointment.  |
   | SLOTS_CURRENTLY_AVAILABLE          | There are currently future slots available, so you cannot defer to this Service to book. |
   | THIS_SLOT_IS_AVAILABLE             | Slot is currently available. |
-
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:

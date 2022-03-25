@@ -6,6 +6,8 @@ headers:
     $ref: '../../headers/response/RequestID.yaml'
   ETag:
     $ref: '../../headers/response/ETag.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:
@@ -16,6 +18,6 @@ content:
         value:
           $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json'
       with-attachment-file-reference:
-        summary: `ComminucationRequest` with attachment file reference
+        summary: `CommunicationRequest` with attachment file reference
         value:
           $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json'

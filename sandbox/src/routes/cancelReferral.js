@@ -18,14 +18,12 @@ module.exports = [
         return validationResult
       }
 
-      const { responsePath } = mockResponseProvider.getResponseForCancelReferral(request);
-      if (responsePath != null) {
-        return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
+      const responsePath = mockResponseProvider.getResponseForCancelReferral(request);
+      if (!responsePath) {
+        return h.file('SandboxErrorOutcome.json').code(422);
       }
 
-      return h.file('SandboxErrorOutcome.json').code(422);
-
-
+      return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
     }
   }
 ]

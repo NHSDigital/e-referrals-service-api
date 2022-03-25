@@ -1032,7 +1032,8 @@ paths:
         ## Reason
         - The reason is always connected to the current state. This means the reason is likely to change each time the state changes. You cannot currently retrieve previous versions of a referral.
         - This reason may have been selected by a clinician or automatically applied by the e-RS system at the time the state was persisted.
-        - A reason can be dynamic reference data, from any of the following sets of reference data: `APPOINTMENT-CANCELLATION-REASON`, `REFERRAL-CANCELLATION-REASON`, `APPOINTMENT-NON-ATTENDANCE-REASON`. These are retrievable from [[HYPERLINK_A004]]. *A reason may be static reference data.
+        - A reason can be dynamic reference data, from any of the following sets of reference data: `APPOINTMENT-CANCELLATION-REASON`, `REFERRAL-CANCELLATION-REASON`, `APPOINTMENT-NON-ATTENDANCE-REASON`. These are retrievable from [[HYPERLINK_A004]].
+        - A reason may be static reference data.
 
         ## Comments
         - The comment is always connected to the current reason, and state. This means the comment is likely to change as the state changes.

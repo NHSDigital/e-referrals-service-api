@@ -1,0 +1,232 @@
+{
+    "meta": {
+        "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Response-Parameters-1"
+        ]
+    },
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "updatedReferralRequest",
+            "resource": {
+                "id": "000000070000",
+                "meta": {
+                    "versionId": "4",
+                    "profile": [
+                        "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+                    ]
+                },
+                "resourceType": "ReferralRequest",
+                "extension": [
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1",
+                        "valueReference": {
+                            "reference": "Appointment/70001"
+                        }
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
+                        "valueReference": {
+                            "reference": "#appointment"
+                        }
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+                        "valueCodeableConcept": {
+                            "coding": [
+                                {
+                                    "code": "ROUTINE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                                    "display": "Routine"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+                        "valueReference": {
+                            "reference": "#shortlist"
+                        }
+                    },
+                    {
+                        "extension": [
+                            {
+                                "url": "state",
+                                "valueCoding": {
+                                    "code": "CANCELLED_REFERRAL",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+                                    "display": "Cancelled Referral"
+                                }
+                            },
+                            {
+                                "url": "reason",
+                                "valueCoding": {
+                                    "code": "TREATMENT_NO_LONGER_REQUIRED",
+                                    "system": "_baseurl_/FHIR/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
+                                    "display": "Referral no longer required"
+                                }
+                            },
+                            {
+                                "url": "comments",
+                                "valueString": "This is a cancellation reason comment"
+                            }
+                        ],
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1"
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+                        "valueIdentifier": {
+                            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                            "value": "R69"
+                        }
+                    }
+                ],
+                "contained": [
+                    {
+                        "id": "serviceSearchCriteria",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+                            ]
+                        },
+                        "resourceType": "Parameters",
+                        "parameter": [
+                            {
+                                "name": "priority",
+                                "valueCoding": {
+                                    "code": "ROUTINE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1"
+                                }
+                            },
+                            {
+                                "name": "specialty",
+                                "valueCoding": {
+                                    "code": "2WW",
+                                    "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY"
+                                }
+                            },
+                            {
+                                "name": "clinicType",
+                                "valueCoding": {
+                                    "code": "2WW_BONE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1"
+                                }
+                            },
+                            {
+                                "name": "ageAndGenderAppropriate",
+                                "valueBoolean": true
+                            },
+                            {
+                                "name": "commissioningProvisioning",
+                                "valueCoding": {
+                                    "code": "NATIONALLY_AVAILABLE",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "appointment",
+                        "meta": {
+                            "versionId": "2",
+                            "profile": [
+                                "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+                                "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+                            ]
+                        },
+                        "language": "en",
+                        "resourceType": "Appointment",
+                        "status": "cancelled",
+                        "reason": [
+                            {
+                                "coding": [
+                                    {
+                                        "code": "PATIENT_HOLIDAY",
+                                        "system": "_baseUrl_/FHIR/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON"
+                                    }
+                                ]
+                            }
+                        ],
+                        "description": "e-Referral Appointment",
+                        "created": "2022-03-22T17:27:46.920Z",
+                        "comment": "This is a reason for cancelling the appointment",
+                        "incomingReferral": [
+                            {
+                                "reference": "ReferralRequest/000000070000/_history/10"
+                            }
+                        ],
+                        "participant": [
+                            {
+                                "actor": {
+                                    "identifier": {
+                                        "system": "http://fhir.nhs.net/Id/ers-service",
+                                        "value": "57"
+                                    },
+                                    "display": "Direct SVC 8"
+                                },
+                                "status": "accepted"
+                            },
+                            {
+                                "actor": {
+                                    "identifier": {
+                                        "system": "http://fhir.nhs.net/Id/nhs-number",
+                                        "value": "1000000001"
+                                    }
+                                },
+                                "status": "accepted"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "shortlist",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+                            ]
+                        },
+                        "resourceType": "List",
+                        "extension": [
+                            {
+                                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+                                "valueReference": {
+                                    "reference": "#serviceSearchCriteria"
+                                }
+                            }
+                        ],
+                        "status": "current",
+                        "mode": "snapshot",
+                        "entry": [
+                            {
+                                "item": {
+                                    "identifier": {
+                                        "system": "http://fhir.nhs.net/Id/ers-service",
+                                        "value": "57"
+                                    },
+                                    "display": "Direct SVC 8"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "status": "cancelled",
+                "specialty": {
+                    "coding": [
+                        {
+                            "code": "2WW",
+                            "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY",
+                            "display": "2WW"
+                        }
+                    ]
+                },
+                "subject": {
+                    "identifier": {
+                        "system": "http://fhir.nhs.net/Id/nhs-number",
+                        "value": "1000000001"
+                    }
+                },
+                "supportingInfo": [],
+                "intent": "plan"
+            }
+        }
+    ]
+}

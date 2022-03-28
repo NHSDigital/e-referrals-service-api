@@ -2,7 +2,7 @@
 """
 set_version.py
 
-Reads an openapi spec on stdin and substitutes placeholders with values sotred in dictionary,
+Reads an openapi spec on stdin and substitutes placeholders with values stored in dictionary,
 then prints it on stdout.
 """
 import sys
@@ -35,12 +35,14 @@ def main():
         "[[HYPERLINK_A028]]": "[A028 - Record triage outcome](#api-Default-a028-record-triage-outcome)",
         "[[HYPERLINK_A029]]": "[A029 - Available actions for user list](#api-Default-a029-available-actions-for-user-list)",
         "[[HYPERLINK_A030]]": "[A030 - Retrieve e-RS business functions](#api-Default-a030-retrieve-business-functions)",
-        "[[HYPERLINK_A031]]": "[A031 - Change Shortlist](#api-Default-a031-change-shortlist)",
-        "[[HYPERLINK_A032]]": "[A032 - Change Shortlist and Send for Triage](#api-Default-a032-change-shortlist-and-send-for-triage)",
-        "[[HYPERLINK_A033]]": "[A033 - Retrieve Healthcare Service](#api-Default-a033-retrieve-healthcare-service)",
-        "[[HYPERLINK_A035]]": "[A035 - Search for Healthcare Services](#api-Default-a035-search-for-healthcare-services)",
-        "[[HYPERLINK_A037]]": "[A037 - Retrieve Healthcare Service Version](#api-Default-a037-retrieve-healthcare-service-version)",
-        "[[HYPERLINK_A038]]": "[A038 - Retrieve Appointment](#api-Default-a038-retrieve-appointment)",
+        "[[HYPERLINK_A031]]": "[A031 - Change shortlist](#api-Default-a031-change-shortlist)",
+        "[[HYPERLINK_A032]]": "[A032 - Change shortlist and send for triage](#api-Default-a032-change-shortlist-and-send-for-triage)",
+        "[[HYPERLINK_A033]]": "[A033 - Retrieve healthcare service](#api-Default-a033-retrieve-healthcare-service)",
+        "[[HYPERLINK_A034]]": "[A034 - Update appointment](#api-Default-a034-update-appointment)",
+        "[[HYPERLINK_A035]]": "[A035 - Search for healthcare services](#api-Default-a035-search-for-healthcare-services)",
+        "[[HYPERLINK_A036]]": "[A036 - Cancel referral](#api-Default-a036-cancel-referral)",
+        "[[HYPERLINK_A037]]": "[A037 - Retrieve healthcare service version](#api-Default-a037-retrieve-healthcare-service-version)",
+        "[[HYPERLINK_A038]]": "[A038 - Retrieve appointment](#api-Default-a038-retrieve-appointment)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",
         "[[HYPERLINK_BETA]]": "[beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

@@ -9,7 +9,7 @@ required:
 properties:
   id:
     type: string
-    example: 'ServiceSearchCriteria-1'
+    example: 'serviceSearchCriteria'
   meta:
     type: object
     required:

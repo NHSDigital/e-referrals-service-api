@@ -9,7 +9,7 @@
     {
       "name": "rejectionReason",
       "valueCoding": {
-        "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+        "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
         "code": "SERVICE_INAPPROPRIATE"
       }
     },

@@ -1,0 +1,53 @@
+{
+  "id": "70005",
+  "meta": {
+    "versionId": "5",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "proposed",
+  "reason": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+          "code": "CANCEL_APPOINTMENT_ACTION_LATER",
+          "display": "Cancel Appointment Action Later"
+        }
+      ]
+    }
+  ],
+  "description": "e-Referral Appointment",
+  "created": "2022-02-24T14:19:53.050Z",
+  "comment": "Please rebook later",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070006/_history/9"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "50"
+        },
+        "display": "Direct SVC 1"
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "1000000001"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

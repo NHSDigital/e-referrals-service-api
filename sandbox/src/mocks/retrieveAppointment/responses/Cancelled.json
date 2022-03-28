@@ -1,0 +1,52 @@
+{
+  "id": "70006",
+  "meta": {
+    "versionId": "5",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "cancelled",
+  "reason": [
+    {
+      "coding": [
+        {
+          "system": "https://ers-api:445/ers-api/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+          "code": "PATIENT_HOLIDAY"
+        }
+      ]
+    }
+  ],
+  "description": "e-Referral Appointment",
+  "created": "2022-02-24T14:21:12.927Z",
+  "comment": "Patient away",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070007/_history/7"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "50"
+        },
+        "display": "Direct SVC 1"
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "1000000001"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

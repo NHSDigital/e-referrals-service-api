@@ -1,0 +1,63 @@
+title: eRS-CancelReferral-Response-Parameters
+type: object
+description: "Parameters containing for the cancelled referral with/without cancelled appointment."
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: Parameters
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Response-Parameters-1"
+          example: "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CancelReferral-Response-Parameters-1"
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                                                                    |
+      | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+      | `updatedReferralRequest`          | `1..1`      | Cancelled Referral Request .                                                             |
+      | `updatedAppointment`              | `0..1`      | The cancelled appointment resource is only returned if appointment was cancelled part of this cancel referral operation.|
+    
+    items:
+      anyOf:
+        - title: updatedReferralRequest
+          description: Parameter containing the cancelled referral request
+          type: object
+          required:
+            -  name
+            -  resource
+          properties:
+            name:
+              type: string
+              enum:
+                -  updatedReferralRequest
+              example: 'updatedReferralRequest'
+            resource:
+              $ref: 'eRS-ReferralRequest.yaml'
+        - title: updatedAppointment
+          description: Parameter containing the cancelled appointment
+          type: object
+          required:
+            -  name
+            -  resource
+          properties:
+            name:
+              type: string
+              enum:
+                -  updatedAppointment
+              example: 'updatedAppointment'
+            resource:
+              $ref: 'eRS-Appointment.yaml'

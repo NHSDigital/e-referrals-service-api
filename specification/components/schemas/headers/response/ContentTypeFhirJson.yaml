@@ -1,0 +1,8 @@
+description: |
+  Indicates the media type of the associated resource.
+required: true
+schema:
+  type: string
+  enum:
+  - 'application/fhir+json'
+  example: 'application/fhir+json'

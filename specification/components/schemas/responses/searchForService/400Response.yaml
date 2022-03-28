@@ -2,15 +2,17 @@ description: |
   Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
   Check diagnostics property for specific information regarding the error.
 
-  | Error code               | Description                                                         |
-  | ------------------------ | ------------------------------------------------------------------- |
-  | INVALID_VALUE            | Service Id format is invalid or missing |
-  | INAPPOPRIATE_VALUE       | 'Number of Service Ids' exceeds the range. Up to 20 service ID's can be provided. |
+  | Error code               | Description                                                                      |
+  | ------------------------ | -------------------------------------------------------------------------------- |
+  | INVALID_VALUE            | Service Id format is invalid or missing                                          |
+  | INAPPROPRIATE_VALUE      | 'Number of Service Ids' exceeds the range. Up to 20 service IDs can be provided. |
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:

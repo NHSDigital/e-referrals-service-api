@@ -8,6 +8,8 @@ headers:
     $ref: '../../headers/response/ETag.yaml'
   Cache-Control:
     $ref: '../../headers/response/CacheControl.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:

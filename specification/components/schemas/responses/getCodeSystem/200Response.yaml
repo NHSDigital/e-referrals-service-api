@@ -4,6 +4,8 @@ headers:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
 content:
   application/fhir+json:
     schema:
@@ -30,4 +32,14 @@ content:
         description: This is example data only and should not be taken as the real reference data.
         value:
           $ref: '../../../examples/getCodeSystem/responses/ReferralCancellationReasonCodeSystem.json'
+      appointment-non-attendance-reason:
+        summary: Appointment Non-attendance Reason Reference Data
+        description: This is example data only and should not be taken as the real reference data. 
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/AppointmentNonAttendanceReasonCodeSystem.json'
+      priority:
+        summary: Priority Reference Data
+        description: This is example data only and should not be taken as the real reference data.
+        value:
+          $ref: '../../../examples/getCodeSystem/responses/PriorityCodeSystem.json'
           

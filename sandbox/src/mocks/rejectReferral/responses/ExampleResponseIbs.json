@@ -15,6 +15,12 @@
       }
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1",
+      "valueReference": {
+        "reference": "Appointment/70009"
+      }
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
       "valueDateTime": "2021-10-26T10:03:32.637Z"
     },
@@ -42,7 +48,32 @@
         "system": "https://fhir.nhs.uk/Id/ods-organization-code",
         "value": "R69"
       }
-    }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+            "code": "REJECTED",
+            "display": "Rejected"
+          }
+        },
+        {
+          "url": "reason",
+          "valueCoding": {
+            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
+            "code": "OTHER",
+            "display": "Other"
+          }
+        },
+        {
+          "url": "comments",
+          "valueString": "This is a short comment"
+        }
+      ]
+     }
   ],
   "contained": [
     {
@@ -133,6 +164,16 @@
       "status": "cancelled",
       "description": "e-Referral Appointment",
       "created": "2021-10-26T10:03:34.258Z",
+      "reason": [
+				{
+				  "coding": [{
+            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
+            "code": "OTHER",
+            "display": "Other"
+				  }]
+				}
+		  ],
+			"comment": "This is a short comment",
       "incomingReferral": [
         {
           "reference": "ReferralRequest/000000070000/_history/10"

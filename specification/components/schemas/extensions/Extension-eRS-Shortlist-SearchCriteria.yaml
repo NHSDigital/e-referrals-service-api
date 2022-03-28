@@ -17,4 +17,4 @@ properties:
     properties:
       reference:
         type: string
-        example: '#searchCriteria'
+        example: '#serviceSearchCriteria'

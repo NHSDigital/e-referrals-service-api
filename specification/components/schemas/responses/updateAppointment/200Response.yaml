@@ -1,0 +1,24 @@
+description: An appointment within e-RS.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-Appointment.yaml'
+    examples:
+      minimal-cancellation-reason-only:
+        summary: Minimal Cancellation - Only Reason Provided (when a cancellation comment is not mandatory)
+        value:
+          $ref: '../../../examples/updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json'
+      cancellation-reason-and-comment:
+        summary: Reason and Comment Provided
+        value:
+          $ref: '../../../examples/updateAppointment/responses/CancellationReasonAndMandatoryComment.json'
+          

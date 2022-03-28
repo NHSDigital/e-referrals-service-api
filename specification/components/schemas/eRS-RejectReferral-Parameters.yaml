@@ -54,7 +54,7 @@ properties:
               properties:
                 system:
                   type: string
-                  example: _baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
+                  example: _baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON
                 code:
                   type: string
                   example: TREATMENT_NO_LONGER_REQUIRED

@@ -8,8 +8,8 @@ properties:
   url:
     type: string
     enum:
-      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdditionalRequirement-1'
-    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdditionalRequirement-1'
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1'
   valueCoding:
     type: object
     required:

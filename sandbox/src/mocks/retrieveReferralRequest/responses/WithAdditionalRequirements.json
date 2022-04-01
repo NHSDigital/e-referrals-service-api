@@ -38,7 +38,7 @@
             }
         },
         {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdditionalRequirement-1",
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1",
             "valueCoding": {
                 "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1",
                 "code": "ADVOCACY",
@@ -46,7 +46,7 @@
             }
         },
         {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdditionalRequirement-1",
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1",
             "valueCoding": {
                 "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1",
                 "code": "INTERPRETER",
@@ -54,7 +54,7 @@
             }
         },
         {
-            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdditionalRequirement-1",
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1",
             "valueCoding": {
                 "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1",
                 "code": "TRANSPORT",

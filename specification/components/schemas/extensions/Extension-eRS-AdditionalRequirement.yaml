@@ -1,5 +1,5 @@
 title: Extension-eRS-AdditionalRequirement
-description: Outlines the additional requirement type required along with any supplied comments
+description: Indicates a patient's additional needs that they require when requesting an appointment. This e-RS feature, including the management of additional requirements and booking them, is not currently supported.
 type: object
 required:
   - url

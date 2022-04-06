@@ -2865,13 +2865,15 @@ paths:
 
         A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
 
-        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, arrange additional requirements for a patient, or view comments associated with the request for additional requirements.
+
+        You must consider if you are fully meeting the patient's additional requirement needs if there are additional requirements associated with the referral.
 
         If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
 
         If you are changing services to send the patient to a triage service, the triaging service will not support additional requirements but will need to consider if the patient has any additional requirements as part of their decision for future care.
 
-        You can view additional requirements on a referral via the e-RS web application.
+        You can view additional requirements on a referral via the e-RS web application or by fetching [[HYPERLINK_A005]].
 
         ## Supported security patterns
         - Healthcare worker, user-restricted access
@@ -2964,13 +2966,15 @@ paths:
 
         A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
 
-        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+        The e-RS APIs do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, arrange additional requirements for a patient, or view comments associated with the request for additional requirements.
+
+        You must consider if you are fully meeting the patient's additional requirement needs if there are additional requirements associated with the referral.
 
         If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
 
         If you are changing services to send the patient to a triage service, the triaging service will not support additional requirements but will need to consider if the patient has any additional requirements as part of their decision for future care.
 
-        You can view additional requirements on a referral via the e-RS web application.
+        You can view additional requirements on a referral via the e-RS web application or by fetching [[HYPERLINK_A005]].
 
         ## Supported security patterns
         - Healthcare worker, user-restricted access

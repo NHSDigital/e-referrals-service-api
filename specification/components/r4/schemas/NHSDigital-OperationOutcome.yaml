@@ -1,0 +1,79 @@
+title: NHSDigital-OperationOutcome
+type: object
+required:
+  - resourceType
+  - meta
+  - issue
+properties:
+  resourceType:
+    type: string
+    enum:
+      - OperationOutcome
+    example: 'OperationOutcome'
+  meta:
+    type: object
+    required:
+      - lastUpdated
+    properties:
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-08-04T14:35:00.000Z'
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome'
+          example: 'https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome'
+        minItems: 1
+        maxItems: 1
+  issue:
+    type: array
+    items:
+      type: object
+      required:
+        - severity
+        - code
+        - diagnostics
+        - details
+      properties:
+        severity:
+          type: string
+          enum:
+            - fatal
+            - error
+            - warning
+            - information
+          example: 'error'
+        code:
+          type: string
+          example: 'forbidden'
+        diagnostics:
+          type: string
+          example: "Appointment request is not in a valid state."
+        details:
+          type: object
+          required:
+            - coding
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                required:
+                  - system
+                  - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
+                      - 'https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode'
+                    example: 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
+                  code:
+                    type: string
+                    example: 'REC_BAD_REQUEST'
+                  display:
+                    type: string
+                    example: 'Receiver Bad Request'

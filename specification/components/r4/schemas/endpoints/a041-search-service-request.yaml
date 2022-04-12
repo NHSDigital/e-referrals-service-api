@@ -1,0 +1,29 @@
+security:
+  - bearerAuth: []
+description: |
+  # TO ADD LATER
+summary: A041 - Search service request
+operationId: a041-search-service-request
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../queryParameters/Category.yaml'
+  - $ref: '../queryParameters/Identifier.yaml'
+responses:
+  '200':
+    $ref: '../responses/searchServiceRequest/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/R4-Unauthorized.yaml'
+  '403':
+    $ref: '../responses/R4-Forbidden.yaml'
+  '406':
+    $ref: '../responses/R4-NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/R4-TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/R4-InternalServerError.yaml'

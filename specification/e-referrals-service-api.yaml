@@ -3653,10 +3653,40 @@ paths:
           $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
+  /R4/ServiceRequest:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        # TO ADD LATER
+      summary: A041 - Search service request
+      operationId: a041-search-service-request
+      parameters:
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/r4/schemas/queryParameters/Category.yaml'
+        - $ref: 'components/r4/schemas/queryParameters/Identifier.yaml'
+      responses:
+        '200':
+          $ref: 'components/r4/schemas/responses/searchServiceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/r4/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/r4/schemas/responses/R4-Unauthorized.yaml'
+        '403':
+          $ref: 'components/r4/schemas/responses/R4-Forbidden.yaml'
+        '406':
+          $ref: 'components/r4/schemas/responses/R4-NotAcceptable.yaml'
+        '429':
+          $ref: 'components/r4/schemas/responses/R4-TooManyRequests.yaml'
+        '500':
+          $ref: 'components/r4/schemas/responses/R4-InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-

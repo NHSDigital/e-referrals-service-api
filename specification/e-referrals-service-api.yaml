@@ -352,10 +352,12 @@ paths:
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
+  /R4/ServiceRequest:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'    
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-

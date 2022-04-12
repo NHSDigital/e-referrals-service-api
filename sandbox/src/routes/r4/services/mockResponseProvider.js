@@ -40,5 +40,23 @@ module.exports = {
     }
 
     return null
+  },
+
+  getExampleResponseForSearchServiceRequest: function (request) {
+    let ubrn;
+    const identifier = request.query.identifier;
+    
+    if (identifier.includes('|')) {
+      ubrn = identifier.split('|')[1]
+    }
+    else {
+      ubrn = identifier
+    }
+
+    if (ubrn === '000000070000') {
+      return 'r4/searchServiceRequest/responses/ResponseExample.json'
+    }
+
+    return {}
   }
 }

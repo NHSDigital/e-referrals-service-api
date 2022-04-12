@@ -40,6 +40,7 @@ const retrieveBusinessFunctions = require('./r4/retrieveBusinessFunctions')
 const retrieveOboUsers = require('./r4/retrieveOboUsers')
 const retrieveHealthcareService = require('./r4/retrieveHealthcareService')
 const searchForHealthcareServices = require('./r4/searchForHealthcareServices')
+const searchServiceRequest = require('./r4/searchServiceRequest')
 
 const routes = [].concat(
   getStatus,
@@ -76,7 +77,8 @@ const routes = [].concat(
   cancelAppointmentActionLater,
   cancelReferral,
   retrieveAppointment,
-  retrieveAdviceAndGuidanceOverviewPdf
+  retrieveAdviceAndGuidanceOverviewPdf,
+  searchServiceRequest
 )
 
 module.exports = routes

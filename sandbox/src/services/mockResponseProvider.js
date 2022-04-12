@@ -1,4 +1,3 @@
-
 const fs = require('fs')
 const lodash = require('lodash')
 
@@ -459,7 +458,7 @@ module.exports = {
 
   },
 
- getExampleResponseForGetHealthcareService: function (request) {
+  getExampleResponseForGetHealthcareService: function (request) {
     const version = request.params.version
     const serviceId = request.params.serviceId
 
@@ -502,57 +501,75 @@ module.exports = {
   },
 
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
-      var responseMap = {
-        'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
-      }
+    var responseMap = {
+      'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
+    }
 
-      return mapExampleResponse(request, responseMap)
+    return mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForRetrieveAppointment: function (request) {
-      const id = request.params.id;
-      const version = request.params.version
+    const id = request.params.id;
+    const version = request.params.version
 
-      // Scenario 1 - Booked to directly-bookable service
-      if (id === '70000' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
-      }
-
-      // Scenario 2 - Booked to indirectly-bookable service
-      if (id === '70001' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
-      }
-
-      // Scenario 3 - Appointment Deferral
-      if (id === '70002' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/AppointmentDeferral.json', responseCode: 200 }
-      }
-
-      // Scenario 4 -	Triage Deferral
-      if (id === '70003' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/TriageDeferral.json', responseCode: 200 }
-      }
-
-      // Scenario 5 -	Triage Response
-      if (id === '70004' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/TriageResponse.json', responseCode: 200 }
-      }
-
-      // Scenario 6 -	Cancel Appointment Action Later
-      if (id === '70005' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/CAAL.json', responseCode: 200 }
-      }
-
-      // Scenario 7 -	Cancelled
-      if (id === '70006' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
-      }
-
-      // Scenario 8 -	Converted from A and G and Booked to DBS
-      if (id === '70007' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
-      }
-
-      return {}
+    // Scenario 1 - Booked to directly-bookable service
+    if (id === '70000' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
     }
+
+    // Scenario 2 - Booked to indirectly-bookable service
+    if (id === '70001' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
+    }
+
+    // Scenario 3 - Appointment Deferral
+    if (id === '70002' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/AppointmentDeferral.json', responseCode: 200 }
+    }
+
+    // Scenario 4 -	Triage Deferral
+    if (id === '70003' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/TriageDeferral.json', responseCode: 200 }
+    }
+
+    // Scenario 5 -	Triage Response
+    if (id === '70004' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/TriageResponse.json', responseCode: 200 }
+    }
+
+    // Scenario 6 -	Cancel Appointment Action Later
+    if (id === '70005' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/CAAL.json', responseCode: 200 }
+    }
+
+    // Scenario 7 -	Cancelled
+    if (id === '70006' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
+    }
+
+    // Scenario 8 -	Converted from A and G and Booked to DBS
+    if (id === '70007' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
+    }
+
+    return {}
+  },
+
+  getExampleResponseForSearchServiceRequest: function (request) {
+    let ubrn;
+    const identifier = request.query.identifier;
+    
+    if (identifier.includes('|')) {
+      ubrn = identifier.split('|')[1]
+    }
+    else {
+      ubrn = identifier
+    }
+
+    if (ubrn === '000000070000') {
+      return 'searchServiceRequest/responses/ResponseExample.json'
+    }
+
+    return {}
+  }
 }

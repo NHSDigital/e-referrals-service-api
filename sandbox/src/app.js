@@ -1,6 +1,6 @@
 const Hapi = require('@hapi/hapi')
 const Path = require('path')
-const Inert = require('inert')
+const Inert = require('@hapi/inert')
 const process = require('process')
 const routes = require('./routes')
 

@@ -40,8 +40,8 @@ check-licenses:
 	npm run check-licenses
 	scripts/check_python_licenses.sh
 
-sandbox: update-examples
-	cd sandbox && npm run start
+sandbox: publish
+	$(MAKE) -C sandbox/ build run
 
 build-proxy:
 	scripts/build_proxy.sh
@@ -76,4 +76,4 @@ clean-environment:
 		echo "Environment not Mac or RHEL"; \
 	fi
 
-.PHONY: setup-environment clean-environment
+.PHONY: setup-environment clean-environment sandbox

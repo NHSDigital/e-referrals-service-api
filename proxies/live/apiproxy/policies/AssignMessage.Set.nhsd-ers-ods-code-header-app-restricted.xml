@@ -1,9 +1,9 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Set.nhsd-ers-ods-code-header-app-restricted">
-  <Set>
-    <Headers>
-      <Header name="nhsd-ers-ods-code">{app.app-restricted-ods-code}</Header>
-    </Headers>
-  </Set>
-  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false"/>
+    <Set>
+        <Headers>
+            <Header name="x-ers-ods-code">{app.app-restricted-ods-code}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
 </AssignMessage>

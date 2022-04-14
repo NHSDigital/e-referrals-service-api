@@ -1,9 +1,9 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Set.x-ers-user-id-header-app-restricted">
-  <Set>
-    <Headers>
-      <Header name="x-ers-user-id">{app.app-restricted-user-id}</Header>
-    </Headers>
-  </Set>
-  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false"/>
+    <Set>
+        <Headers>
+            <Header name="x-ers-user-id">{app.app-restricted-user-id}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
 </AssignMessage>

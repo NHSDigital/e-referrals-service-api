@@ -25,7 +25,8 @@ steps:
 
   - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
     parameters:
-     secret_file_ids: []
+     secret_file_ids:  
+       - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_PRIVATE_KEY
      config_ids: []
      secret_ids:
        - ptl/api-deployment/e-referrals-service/ers-testing-asid

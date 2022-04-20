@@ -47,4 +47,4 @@ api-test-utils = {url = "https://github.com/NHSDigital/apim-test-utils/releases/
 [tool.poetry.scripts]
 
 [tool.pytest.ini_options]
-markers = ["smoke_test", "integration_test"]
+markers = ["smoke_test", "integration_test", "sandbox"]

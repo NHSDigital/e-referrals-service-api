@@ -7,6 +7,10 @@ parameters:
     type: boolean
     displayName: Toggle integration tests
     default: false
+  - name: sandbox_tests
+    type: boolean
+    displayName: Toggle sandbox tests
+    default: false
 
 steps:
 
@@ -33,3 +37,7 @@ steps:
   # integration tests
   - ${{ if parameters.integration_tests }}:
     - template: ers-integration-tests.yml
+
+  # Sandbox tests
+  - ${{ if parameters.sandbox_tests }}:
+    - template: ers-sandbox-tests.yml

@@ -88,6 +88,7 @@
             <Property name="supports.http10">true</Property>
             <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
             <Property name="retain.queryparams">apikey</Property>
+            <Property name="io.timeout.millis">180000</Property>
         </Properties>
     </HTTPTargetConnection>
     <DefaultFaultRule>

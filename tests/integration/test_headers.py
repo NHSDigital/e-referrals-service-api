@@ -1,7 +1,6 @@
 import pytest
 import requests
-from enum import Enum
-from data import Actor
+from data import Actor, RenamedHeader
 
 HEADER_AUTHORIZATION = "Authorization"
 HEADER_ECHO = "echo"  # enable echo target
@@ -20,24 +19,6 @@ EXPECTED_ACTOR = Actor.RC
 EXPECTED_OBO_USER_ID = "0123456789000"
 
 SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
-
-
-class RenamedHeader(Enum):
-    CORRELATION_ID = ("x-correlation-id", "nhsd-correlation-id")
-    BUSINESS_FUNCTION = ("nhsd-ers-business-function", "x-ers-business-function")
-    ODS_CODE = ("NHSD-End-User-Organisation-ODS", "x-ers-ods-code")
-    FILENAME = ("nhsd-ers-file-name", "x-ers-xapi-meta-file_name")
-    COMM_RULE_ORG = ("nhsd-ers-comm-rule-org", "x-ers-xapi-comm-rule-org")
-    REFERRAL_ID = ("nhsd-ers-referral-id", "x-ers-xapi-meta-intended_ubrn")
-    OBO_USER_ID = ("nhsd-ers-on-behalf-of-user-id", "x-ers-obo-user-id")
-
-    @property
-    def original(self):
-        return self.value[0]
-
-    @property
-    def renamed(self):
-        return self.value[1]
 
 
 @pytest.mark.integration_test

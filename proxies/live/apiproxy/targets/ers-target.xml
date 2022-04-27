@@ -17,51 +17,29 @@
         </FaultRule>
     </FaultRules>
     <PreFlow>
-        <Request><Step>
+        <Request>
+            <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
-            </Step> <Step>
+            </Step>
+            <Step>
                 <!-- Should use Java Regex for non binary request -->
                 <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
                 <Name>SpikeArrest</Name>
-            </Step> <Step>
+            </Step>
+            <Step>
                 <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
                 <Name>SpikeArrest.Binary</Name>
-            </Step> <Step>
+            </Step>
+            <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>
-            </Step> <Step>
+            </Step>
+            <Step>
                 <Name>AssignMessage.RemoveAndAddAsidHeader</Name>
-            </Step> <Step>
-                <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
-            </Step> <Step>
+            </Step>
+            <Step>
                 <Name>AssignMessage.AddBaseUrlHeader</Name>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
-                <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
-                <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
-                <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
-                <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
-                <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
-                <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
-            </Step> <Step>
-                <Name>AssignMessage.Remove.x-request-id-header</Name>
-            </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
-                <Name>AssignMessage.SetEchoTarget</Name>
-                <Condition>(request.header.echo)</Condition>
-            </Step> {% endif %} <Step>
-                <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
-            The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
-                <Name>AssignMessage.Swap.CorrelationHeader</Name>
-            </Step></Request>
+            </Step>
+        </Request>
         <Response>
             <!-- Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
            to response on non success status code e.g. 200/201, Take care when updating these steps-->
@@ -78,6 +56,63 @@
             </Step>
         </Response>
     </PreFlow>
+    <Flows>
+        <Flow name="user-restricted-flow">
+            <Condition>(accesstoken.auth_type == "user")</Condition>
+            <Request><!--AUTHORISED_APPLICATION business function is not supported in user restricted flow --><Step>
+                    <Name>RaiseFault.403Forbidden</Name>
+                    <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.RemoveAndAddUserIdHeader</Name>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
+                    <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
+                    <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
+                    <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
+                    <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
+                    <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
+                    <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Remove.x-request-id-header</Name>
+                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
+                    <Name>AssignMessage.SetEchoTarget</Name>
+                    <Condition>(request.header.echo)</Condition>
+                </Step> {% endif %} <Step>
+                    <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+                The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
+                    <Name>AssignMessage.Swap.CorrelationHeader</Name>
+                </Step></Request>
+            <Response/>
+        </Flow>
+        <Flow name="app-restricted-flow">
+            <Condition>(accesstoken.auth_type == "app")</Condition>
+            <Request>
+                <Step>
+                    <Name>RaiseFault.400BadRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+        <!-- Something went wrong as one of the above flows should have triggered, this flow should never trigger in normal operation-->
+        <Flow name="undefined-flow">
+            <Request>
+                <Step>
+                    <Name>RaiseFault.400BadRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
     <HTTPTargetConnection>
         <SSLInfo>{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <TrustStore>ref://e-referral-service-ca</TrustStore> {% endif %} <Enabled>true</Enabled></SSLInfo>
         <LoadBalancer>

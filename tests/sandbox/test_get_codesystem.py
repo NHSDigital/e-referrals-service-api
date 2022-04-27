@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Iterable
+from typing import Callable, Dict, Iterable, List
 from urllib import response
 
 import pytest
@@ -14,7 +14,27 @@ from utils import HttpMethod
 class TestGetCodesystem(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
-        return []
+        return self.unauthorised_actors_list()
+
+    def unauthorised_actors_list(self) -> List[Actor]:
+        return [Actor.AA]
+
+    @pytest.fixture
+    def authorised_actors(self) -> Iterable[Actor]:
+        authorised = []
+        for actor in Actor:
+            if actor not in self.unauthorised_actors_list():
+                authorised.append(actor)
+        return authorised
+
+    @pytest.fixture
+    def allowed_business_functions(self) -> Iterable[str]:
+        return [
+            "REFERRING_CLINICIAN",
+            "REFERRING_CLINICIAN_ADMIN",
+            "SERVICE_PROVIDER_CLINICIAN",
+            "SERVICE_PROVIDER_CLINICIAN_ADMIN",
+        ]
 
     @pytest.fixture
     def call_endpoint(
@@ -24,19 +44,19 @@ class TestGetCodesystem(SandboxTest):
             HttpMethod.GET, "FHIR/STU3/CodeSystem/SPECIALTY", actor, headers=headers
         )
 
-    @pytest.mark.parametrize("actor", Actor)
     def test_success(
         self,
         call_endpoint: Callable[[Actor], Response],
         load_json: Callable[[str], Dict[str, str]],
-        actor: Actor,
+        authorised_actors: Iterable[Actor],
     ):
-        actual_response = call_endpoint(actor)
+        for actor in authorised_actors:
+            actual_response = call_endpoint(actor)
 
-        asserts.assert_status_code(200, actual_response.status_code)
-        asserts.assert_response(
-            load_json("getCodeSystem/responses/SpecialtyCodeSystem.json"),
-            actual_response,
-        )
+            asserts.assert_status_code(200, actual_response.status_code)
+            asserts.assert_response(
+                load_json("getCodeSystem/responses/SpecialtyCodeSystem.json"),
+                actual_response,
+            )
 
-        asserts.assert_headers(actual_response)
+            asserts.assert_headers(actual_response)

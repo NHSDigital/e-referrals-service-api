@@ -571,5 +571,16 @@ module.exports = {
     }
 
     return {}
+  },
+
+
+  getExampleResponseForRequestUploadUri: function (request) {
+    const id = request.params.uuid
+
+    if (id === 'f6dc823a-e673-4f74-9edc-a49525edd2a5') {
+      return 'requestUploadUri/responses/ResponseExample.json'
+    }
+
+    return {}
   }
 }

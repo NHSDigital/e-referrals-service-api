@@ -33,6 +33,7 @@ const changeShortlistAndSendForTriage = require('./changeShortlistAndSendForTria
 const cancelReferral = require('./cancelReferral')
 const retrieveAppointment = require('./retrieveAppointment')
 const searchServiceRequest = require('./searchServiceRequest')
+const requestUploadUri = require('./requestUploadUri')
 
 
 const routes = [].concat(
@@ -70,7 +71,8 @@ const routes = [].concat(
   cancelAppointmentActionLater,
   cancelReferral,
   retrieveAppointment,
-  searchServiceRequest
+  searchServiceRequest,
+  requestUploadUri
 )
 
 module.exports = routes

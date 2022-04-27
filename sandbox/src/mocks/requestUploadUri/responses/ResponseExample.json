@@ -1,0 +1,18 @@
+{
+    "resourceType": "Parameters",
+    "meta": {
+        "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-<GenerateURI>-Response-Parameters-1"
+        ]
+    },
+    "parameters": [
+        {
+            "name": "uploadUri",
+            "valueUri": "<presignedUri>"
+        },
+        {
+            "name": "reference",
+            "valueUri": "/Binary/ce2fbda9-7c18-46ab-ae04-5b08df61e0d4"
+        }
+    ]
+}

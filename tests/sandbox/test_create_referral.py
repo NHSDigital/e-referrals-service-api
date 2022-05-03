@@ -13,7 +13,7 @@ from requests import Response
 class TestCreateReferral(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
-        return [Actor.SPC, Actor.SPCA]
+        return [Actor.SPC, Actor.SPCA, Actor.AA]
 
     @pytest.fixture
     def call_endpoint(

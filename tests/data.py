@@ -7,6 +7,8 @@ class Actor(Enum):
     RCA = ("555031998104", "D82106", "REFERRING_CLINICIAN_ADMIN")
     SPC = ("555032006106", "RCD", "SERVICE_PROVIDER_CLINICIAN")
     SPCA = ("555031998104", "RCD", "SERVICE_PROVIDER_CLINICIAN_ADMIN", "555031999105")
+    # AUTHORISED_APPLICATION isn't valid for user-restricted access and should only be used for application-restricted access
+    AA = ("555031998104", "RCD", "AUTHORISED_APPLICATION")
 
     @property
     def user_id(self):

@@ -808,7 +808,6 @@ paths:
         | File type          | File extension(s)           |
         | ------------------ | --------------------------- |
         | Plain Text         | `.txt`                      |
-        | HTML Text          | `.html,` `.htm`             |
         | PDF                | `.pdf`                      |
         | XML Text           | `.xml`                      |
         | RTF Text           | `.rtf`, `.rtx`              |
@@ -845,7 +844,7 @@ paths:
       summary: A020 - Upload file to document store
       operationId: a020-upload-file-to-document-store
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFileUpload.yaml'
+        - $ref: 'components/schemas/headers/request/ContentTypeAttachmentsUpload.yaml'
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
@@ -856,7 +855,7 @@ paths:
       requestBody:
         required: true
         content:
-          $ref: 'components/schemas/file/FileContentTypeSchema.yaml'
+          $ref: 'components/schemas/file/FileContentTypeSchemaUpload.yaml'
       responses:
         '201':
           $ref: 'components/schemas/responses/uploadFileToDocumentStore/201Response.yaml'

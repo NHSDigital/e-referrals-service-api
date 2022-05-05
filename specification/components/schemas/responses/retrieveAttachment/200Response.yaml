@@ -9,6 +9,8 @@ headers:
   Content-Length:
     $ref: '../../headers/response/ContentLength.yaml'
   Content-Type:
-    $ref: '../../headers/response/ContentTypeAttachmentsDownload.yaml'
+    $ref: '../../headers/response/ContentTypeFileUpload.yaml'
 content:
-  $ref: '../../file/FileContentTypeSchemaDownload.yaml'
+  $ref: '../../file/FileContentTypeSchema.yaml'
+
+          

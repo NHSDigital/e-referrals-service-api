@@ -3508,11 +3508,40 @@ paths:
         '502':
           $ref: 'components/schemas/responses/cancelReferral/502Response.yaml'
         '504':
-          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'   
+          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'
+  /R4/Binary/{attachmentUuid}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A042 - Request pre-signed URL to download file to document store
+      operationId: a042-request-url-file-download
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/path/AttachmentUuid.yaml'
+      responses:
+        '307':
+          $ref: 'components/schemas/responses/retrieveBinary/307Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveBinary/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-     

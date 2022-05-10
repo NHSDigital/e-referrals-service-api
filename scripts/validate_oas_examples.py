@@ -33,7 +33,7 @@ spec_path_yaml = os.path.join(REPO_ROOT, "specification/e-referrals-service-api.
 http_methods = ["post", "put", "patch", "get"]
 
 # List containing http success response codes
-http_success_codes = ["200", "201"]
+http_success_codes = ["200", "201", "307"]
 
 # Open OAS JSON file
 try:
@@ -141,6 +141,7 @@ def get_success_code(endpoint, http_method):
         oas_spec_from_yaml["paths"][endpoint][http_method]["responses"].keys()
     )
     filtered_code = filter(lambda x: x in http_success_codes, endpoint_return_codes)
+
     return list(filtered_code)[0]
 
 

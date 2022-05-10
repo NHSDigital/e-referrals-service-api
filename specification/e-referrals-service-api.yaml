@@ -367,6 +367,9 @@ paths:
   /R4/ServiceRequest/{id}/$ers.generateUploadURI:
     post:
       $ref: 'components/r4/schemas/endpoints/a039-request-pre-signed-url-for-file-upload.yaml'
+  /R4/Binary/{id}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a042-request-pre-signed-url-for-file-download.yaml'
 components:
   securitySchemes:
     bearerAuth:

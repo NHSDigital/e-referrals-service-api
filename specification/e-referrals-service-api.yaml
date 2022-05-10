@@ -3716,6 +3716,36 @@ paths:
           $ref: 'components/r4/schemas/responses/R4-TooManyRequests.yaml'
         '500':
           $ref: 'components/r4/schemas/responses/R4-InternalServerError.yaml'
+  /R4/Binary/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A042 - Request pre-signed URL to download file from document store
+      operationId: a042-request-pre-signed-url-for-file-download
+      parameters:
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/r4/schemas/path/AttachmentUuid.yaml'
+      responses:
+        '307':
+          $ref: 'components/r4/schemas/responses/retrieveBinary/307Response.yaml'
+        '400':
+          $ref: 'components/r4/schemas/responses/retrieveBinary/400Response.yaml'
+        '401':
+          $ref: 'components/r4/schemas/responses/R4-Unauthorized.yaml'
+        '403':
+          $ref: 'components/r4/schemas/responses/R4-Forbidden.yaml'
+        '404':
+          $ref: 'components/r4/schemas/responses/R4-NotFound.yaml'
+        '429':
+          $ref: 'components/r4/schemas/responses/R4-TooManyRequests.yaml'
+        '500':
+          $ref: 'components/r4/schemas/responses/R4-InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

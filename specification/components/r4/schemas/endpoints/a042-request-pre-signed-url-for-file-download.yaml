@@ -1,0 +1,28 @@
+security:
+  - bearerAuth: []
+description: |
+  ### TODO Add later
+summary: A042 - Request pre-signed URL to download file from document store
+operationId: a042-request-pre-signed-url-for-file-download
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../pathParameters/AttachmentUuid.yaml'
+responses:
+  '307':
+    $ref: '../responses/retrieveBinary/307Response.yaml'
+  '400':
+    $ref: '../responses/retrieveBinary/400Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

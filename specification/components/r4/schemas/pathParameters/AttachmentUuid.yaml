@@ -1,0 +1,8 @@
+in: path
+name: id
+description: | 
+  Reference for an attachment, as provided in the response from [[HYPERLINK_A039]].
+required: true
+schema:
+  type: string
+  example: '704c3791-0873-45e9-9a04-b51996f8d93f'

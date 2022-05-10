@@ -46,6 +46,7 @@ def main():
         "[[HYPERLINK_A039]]": "[A039 - Request pre-signed URL to upload file to document store](#api-Default-a039-request-pre-signed-url-for-file-upload)",
         "[[HYPERLINK_A040]]": "[A040 - Retrieve e-RS-Specific Practitioner Information](#api-Default-a040-retrieve-practitioner-info)",
         "[[HYPERLINK_A041]]": "[A041 - Search service request](#api-Default-a041-search-service-request)",
+        "[[HYPERLINK_A042]]": "[A042 - Request pre-signed URL to download file from document store](#api-Default-a042-request-pre-signed-url-for-file-download)",
         "[[HYPERLINK_A043]]": "[A043 - Retrieve advice and guidance overview PDF](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

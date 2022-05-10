@@ -34,7 +34,8 @@ const cancelReferral = require('./cancelReferral')
 const retrieveAppointment = require('./retrieveAppointment')
 const searchServiceRequest = require('./searchServiceRequest')
 const requestUploadUri = require('./requestUploadUri')
-
+const retrieveBinary = require('./retrieveBinary')
+const retrieveBinaryHelper = require('./retrieveBinaryHelper')
 
 const routes = [].concat(
   getStatus,
@@ -72,7 +73,9 @@ const routes = [].concat(
   cancelReferral,
   retrieveAppointment,
   searchServiceRequest,
-  requestUploadUri
+  requestUploadUri,
+  retrieveBinary,
+  retrieveBinaryHelper
 )
 
 module.exports = routes

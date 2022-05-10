@@ -3574,6 +3574,36 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/Binary/{attachmentUuid}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A0XX - Add later
+      operationId: a0xx-add-later
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/path/AttachmentUuid.yaml'
+      responses:
+        '307':
+          $ref: 'components/schemas/responses/retrieveBinary/307Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveBinary/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

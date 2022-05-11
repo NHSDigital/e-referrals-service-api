@@ -9,6 +9,7 @@ EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
 EXPECTED_ACTOR = Actor.AA
 
 SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
+# comment
 
 
 @pytest.mark.integration_test

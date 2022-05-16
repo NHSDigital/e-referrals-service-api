@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota continueOnError="false" name="Quota.Binary" type="calendar">
+    <DisplayName>Quota.Binary</DisplayName>
+    <Identifier ref="binaryRateLimitIdentifier"/>
+    <Allow count="120" countRef="app.requestLimit_binary"/>
+    <Interval>1</Interval>
+    <TimeUnit>minute</TimeUnit>
+    <StartTime>2020-3-30 12:00:00</StartTime>
+    <Synchronous>true</Synchronous>
+    <Distributed>true</Distributed>
+</Quota>

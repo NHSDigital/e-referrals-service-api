@@ -13,22 +13,19 @@
             <Step>
                 <Name>AssignMessage.SpikeArrestErrorResponse</Name>
             </Step>
-            <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
+            <Condition>(ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true)</Condition>
+        </FaultRule>
+        <FaultRule name="quota_fault">
+            <Step>
+                <Name>AssignMessage.QuotaErrorResponse</Name>
+            </Step>
+            <Condition>(ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
         <Request>
             <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
-            </Step>
-            <Step>
-                <!-- Should use Java Regex for non binary request -->
-                <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
-                <Name>SpikeArrest</Name>
-            </Step>
-            <Step>
-                <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
-                <Name>SpikeArrest.Binary</Name>
             </Step>
             <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>
@@ -38,6 +35,23 @@
             </Step>
             <Step>
                 <Name>AssignMessage.AddBaseUrlHeader</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetBinaryRateLimitIdentifier</Name>
+            </Step>
+            <Step>
+                <Name>javascript.IsBinaryPath</Name>
+            </Step>
+            <Step>
+                <Condition>(isBinaryPath = true)</Condition>
+                <Name>SpikeArrest.Binary</Name>
+            </Step>
+            <Step>
+                <Condition>(isBinaryPath = true)</Condition>
+                <Name>Quota.Binary</Name>
+            </Step>
+            <Step>
+                <Name>FlowCallout.ApplyRateLimiting</Name>
             </Step>
         </Request>
         <Response>

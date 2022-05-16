@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota name="Quota.Binary" type="rollingwindow">
+    <DisplayName>Quota.Binary</DisplayName>
+    <Identifier ref="developer.app.id"/>
+    <Allow count="57600" countRef="apiproduct.requestLimit_binary"/>
+    <Interval>8</Interval>
+    <TimeUnit>hour</TimeUnit>
+    <Synchronous>false</Synchronous>
+    <Distributed>true</Distributed>
+</Quota>

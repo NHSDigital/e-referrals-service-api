@@ -15,21 +15,15 @@
             </Step>
             <Condition>(fault.name Matches "SpikeArrestViolation")</Condition>
         </FaultRule>
+        <FaultRule name="quota_fault">
+            <Step>
+                <Name>AssignMessage.QuotaErrorResponse</Name>
+            </Step>
+            <Condition>(fault.name Matches "QuotaViolation")</Condition>
+        </FaultRule>
     </FaultRules>
     <PreFlow>
         <Request>
-            <Step>
-                <Name>OauthV2.VerifyAccessToken</Name>
-            </Step>
-            <Step>
-                <!-- Should use Java Regex for non binary request -->
-                <Condition>(proxy.pathsuffix Not Matches "/**/Binary/*")</Condition>
-                <Name>SpikeArrest</Name>
-            </Step>
-            <Step>
-                <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
-                <Name>SpikeArrest.Binary</Name>
-            </Step>
             <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>
             </Step>
@@ -57,6 +51,33 @@
         </Response>
     </PreFlow>
     <Flows>
+        <Flow name="rate-limit-binary">
+            <Description>Apply rate limiting to Binary endpoints</Description>
+            <Request>
+                <Condition>(proxy.pathsuffix MatchesPath "/**/Binary/*")</Condition>
+                <Step>
+                    <Name>OauthV2.VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>SpikeArrest.Binary</Name>
+                </Step>
+                <Step>
+                    <Name>Quota.Binary</Name>
+                </Step>
+            </Request>
+        </Flow>
+        <Flow name="rate-limit-flow">
+            <Description>Apply baseline rate limiting</Description>
+            <Request>
+                <Step>
+                    <Name>OauthV2.VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>FlowCallout.ApplyRateLimiting</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
         <Flow name="user-restricted-flow">
             <Condition>(accesstoken.auth_type == "user")</Condition>
             <Request><!--AUTHORISED_APPLICATION business function is not supported in user restricted flow --><Step>

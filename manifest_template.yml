@@ -23,8 +23,8 @@ APIGEE_ENVIRONMENTS:
 - name: prod
   approval_type: manual
   display_name: Production
-  ratelimit: '15000pm'
-  quota: '7800'
+  burstLimit: '15000pm'
+  requestLimit: '7800'
 
 INTERNAL_DEV_VARIANTS:
 - name: alpha
@@ -75,8 +75,26 @@ apigee:
         attributes:
           - name: access
             value: public
-          - name: ratelimit
-            value: {{ ENV.ratelimit | default('5ps') }}
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 8
+                  limit: {{ ENV.requestLimit | default('288000') }}
+                  timeunit: hour
+                spikeArrest:
+                  enabled: true
+                  ratelimit: {{ ENV.burstLimit | default('720pm') }}
+          - name: requestLimit_binary
+            value: 57600
+          - name: burstLimit_binary
+            value: 180pm
         description: {{ MODE.description }}
         displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
         environments: [ {{ ENV.name }} ]
@@ -85,9 +103,9 @@ apigee:
           - identity-service-{{ ENV.name }}
           - identity-service-mock-{{ ENV.name }}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.quota | default('300') }}
-        quotaInterval: '1'
-        quotaTimeUnit: minute
+        quota: {{ ENV.requestLimit | default('288000') }}
+        quotaInterval: '8'
+        quotaTimeUnit: hour
 {% endfor %}
 {% endfor %}
     specs:
@@ -116,8 +134,26 @@ apigee:
         attributes:
           - name: access
             value: public
-          - name: ratelimit
-            value: {{ ENV.ratelimit | default('5ps') }}
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ ENV.name }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 8
+                  limit: {{ ENV.requestLimit | default('288000') }}
+                  timeunit: hour
+                spikeArrest:
+                  enabled: true
+                  ratelimit: {{ ENV.burstLimit | default('720pm') }}
+          - name: requestLimit_binary
+            value: 57600
+          - name: burstLimit_binary
+            value: 180pm
         description: {{ MODE.description }}
         displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
         environments: [ {{ ENV.name }} ]
@@ -133,9 +169,9 @@ apigee:
           - identity-service-mock-{{ ENV.name }}
 {% endif %}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.quota | default('300') }}
-        quotaInterval: '1'
-        quotaTimeUnit: minute
+        quota: {{ ENV.requestLimit | default('288000') }}
+        quotaInterval: '8'
+        quotaTimeUnit: hour
 {% endfor %}
     specs:
       - name: {{ NAME }}

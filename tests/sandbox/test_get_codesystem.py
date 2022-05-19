@@ -17,7 +17,7 @@ class TestGetCodesystem(SandboxTest):
         return self.unauthorised_actors_list()
 
     def unauthorised_actors_list(self) -> List[Actor]:
-        return []
+        return [Actor.RA, Actor.SPA]
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:

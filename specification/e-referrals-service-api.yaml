@@ -3515,8 +3515,8 @@ paths:
         - bearerAuth: []
       description: |
         # TO ADD LATER
-      summary: A0XX - Search Service Request
-      operationId: a0xx-search-service-request
+      summary: A041 - Search Service Request
+      operationId: a041-search-service-request
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
@@ -3548,7 +3548,7 @@ paths:
         - bearerAuth: []
       description: |
         ### TODO Add later
-      summary: A039 - Request Pre-Signed URL for Large File Upload
+      summary: A039 - Request pre-signed URL for large file upload
       operationId: a039-request-pre-signed-url-for-large-file-upload
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
@@ -3580,8 +3580,8 @@ paths:
         - bearerAuth: []
       description: |
         ### TODO Add later
-      summary: A0XX - Add later
-      operationId: a0xx-add-later
+      summary: A0XX - Retrieve binary
+      operationId: a0xx-retrieve-binary
       parameters:
         - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
         - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'

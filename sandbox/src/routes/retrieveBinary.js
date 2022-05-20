@@ -19,7 +19,7 @@ module.exports = [
       const uuid = request.params.attachmentUuid
 
       if (uuid === '704c3791-0873-45e9-9a04-b51996f8d93f' && request.method === 'get') {
-        const response = h.response("").code(307)
+        const response = h.response().code(307)
         response.headers["Location"] = "/ObjectStore/RetrieveBinary/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f";
         return response
       } else {

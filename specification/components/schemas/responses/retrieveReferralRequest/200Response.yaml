@@ -37,3 +37,7 @@ content:
         summary: `ReferralRequest` with related ReferralRequest
         value:
           $ref: '../../../examples/retrieveReferralRequest/responses/WithRelatedReferral.json'
+      with-additional-requirements:
+        summary: `ReferralRequest` with additional requirements
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/WithAdditionalRequirements.json'

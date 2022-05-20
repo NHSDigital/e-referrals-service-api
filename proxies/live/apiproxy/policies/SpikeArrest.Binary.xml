@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SpikeArrest continueOnError="false" enabled="true" name="SpikeArrest.Binary">
     <DisplayName>SpikeArrest.Binary</DisplayName>
-    <Identifier ref="developer.app.id"/>
+    <Identifier ref="app.asid"/>
     <Rate ref="apiproduct.burstLimit_binary">180pm</Rate>
     <UseEffectiveCount>true</UseEffectiveCount>
 </SpikeArrest>

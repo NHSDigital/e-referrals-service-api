@@ -10,7 +10,7 @@ from requests import Response
 
 
 @pytest.mark.sandbox
-class TestCreateReferral(SandboxTest):
+class TestCreateReferralSendForTriage(SandboxTest):
     authorised_actor_data = [Actor.RC, Actor.RCA]
 
     allowed_business_function_data = [
@@ -21,32 +21,27 @@ class TestCreateReferral(SandboxTest):
     testdata = [
         (
             Actor.RC,
-            "createReferral/requests/MinimalRequest.json",
-            "createReferral/responses/ReferralRequest.json",
-        ),
-        (
-            Actor.RC,
-            "createReferral/requests/RequestTwentyServices.json",
-            "createReferral/responses/ReferralRequestTwentyServices.json",
+            "createReferralAndSendForTriage/requests/Parameters.json",
+            "createReferralAndSendForTriage/responses/ReferralRequest.json",
         ),
         (
             Actor.RCA,
-            "createReferral/requests/MinimalRequestWithReferringClinician.json",
-            "createReferral/responses/ReferralRequest.json",
+            "createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json",
+            "createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/$ers.createReferral"
+        return "FHIR/STU3/ReferralRequest/$ers.createReferralAndSendForTriage"
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestCreateReferral.authorised_actor_data
+        return TestCreateReferralSendForTriage.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestCreateReferral.allowed_business_function_data
+        return TestCreateReferralSendForTriage.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(

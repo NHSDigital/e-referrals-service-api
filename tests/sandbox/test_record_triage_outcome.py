@@ -11,33 +11,39 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetAdviceWorklist(SandboxTest):
-    authorised_actor_data = [Actor.SPC, Actor.SPA, Actor.SPCA]
+class TestRecordTriageOutcome(SandboxTest):
+    authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
         "SERVICE_PROVIDER_CLINICIAN",
-        "SERVICE_PROVIDER_ADMIN",
         "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
-
     testdata = [
         (
-            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
-            "retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json",
+            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
+            "recordTriageOutcome/responses/ReturnToReferrerWithAdvice.json",
+        ),
+        (
+            "recordTriageOutcome/requests/AcceptReferBookLater.json",
+            "recordTriageOutcome/responses/AcceptReferBookLater.json",
+        ),
+        (
+            "recordTriageOutcome/requests/AttachmentIncluded.json",
+            "recordTriageOutcome/responses/AttachmentIncluded.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/CommunicationRequest/$ers.fetchworklist"
+        return "FHIR/STU3/ReferralRequest/000000070000/$ers.recordReviewOutcome"
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestGetAdviceWorklist.authorised_actor_data
+        return TestRecordTriageOutcome.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestGetAdviceWorklist.allowed_business_function_data
+        return TestRecordTriageOutcome.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -45,7 +51,7 @@ class TestGetAdviceWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
-            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
+            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
             headers,
         )
 
@@ -65,4 +71,6 @@ class TestGetAdviceWorklist(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_headers(actual_response)
+        asserts.assert_headers(
+            actual_response, additional={"etag": 'W/"10"',},
+        )

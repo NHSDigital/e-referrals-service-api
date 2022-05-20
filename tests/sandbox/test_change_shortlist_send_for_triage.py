@@ -11,33 +11,32 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetAdviceWorklist(SandboxTest):
-    authorised_actor_data = [Actor.SPC, Actor.SPA, Actor.SPCA]
+class TestChangeShortlistSendForTriage(SandboxTest):
+    authorised_actor_data = [Actor.RC, Actor.RCA]
 
     allowed_business_function_data = [
-        "SERVICE_PROVIDER_CLINICIAN",
-        "SERVICE_PROVIDER_ADMIN",
-        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
+        "REFERRING_CLINICIAN",
+        "REFERRING_CLINICIAN_ADMIN",
     ]
 
     testdata = [
         (
-            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
-            "retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json",
+            "changeShortlistAndSendForTriage/requests/MinimalRequest.json",
+            "changeShortlistAndSendForTriage/responses/MinimalRequest.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/CommunicationRequest/$ers.fetchworklist"
+        return "FHIR/STU3/ReferralRequest/000000070000/$ers.changeShortlistAndSendForTriage"
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestGetAdviceWorklist.authorised_actor_data
+        return TestChangeShortlistSendForTriage.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestGetAdviceWorklist.allowed_business_function_data
+        return TestChangeShortlistSendForTriage.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -45,7 +44,7 @@ class TestGetAdviceWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
-            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
+            "changeShortlistAndSendForTriage/requests/MinimalRequest.json",
             headers,
         )
 

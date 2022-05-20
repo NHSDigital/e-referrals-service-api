@@ -11,71 +11,52 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetReferralWorklist(SandboxTest):
-    authorised_actor_data = [
-        Actor.RC,
-        Actor.RCA,
-        Actor.RA,
-        Actor.SPC,
-        Actor.SPCA,
-        Actor.SPA,
-    ]
+class TestCancelReferral(SandboxTest):
+    authorised_actor_data = [Actor.RC, Actor.RCA]
 
     allowed_business_function_data = [
-        "SERVICE_PROVIDER_CLINICIAN",
-        "SERVICE_PROVIDER_ADMIN",
-        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
-        "REFERRING_ADMIN",
     ]
 
     testdata = [
         (
-            "retrieveWorklist/requests/MinimalReferralsForReview.json",
-            "retrieveWorklist/responses/ReferralsForReview.json",
+            "cancelReferral/requests/IntendPrivateWithoutComment.json",
+            "cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalAppointmentSlotIssues.json",
-            "retrieveWorklist/responses/AppointmentSlotIssues.json",
+            "cancelReferral/requests/PatientRequestCancellationOther.json",
+            "cancelReferral/responses/CancelledReferralPatientOther.json",
         ),
         (
-            "retrieveWorklist/requests/FilteringBySpecialty.json",
-            "retrieveWorklist/responses/FilteredBySpecialty.json",
+            "cancelReferral/requests/RaisedInError.json",
+            "cancelReferral/responses/CancelledReferralRaisedInError.json",
         ),
         (
-            "retrieveWorklist/requests/FilteringByClinician.json",
-            "retrieveWorklist/responses/FilteredByClinician.json",
+            "cancelReferral/requests/ReferrerCancellation.json",
+            "cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalRejectedTriageResponse.json",
-            "retrieveWorklist/responses/RejectedTriageResponse.json",
+            "cancelReferral/requests/NoLongerRequired.json",
+            "cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json",
-            "retrieveWorklist/responses/AssessmentReturnedCancelledDna.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalAwaitingBooking.json",
-            "retrieveWorklist/responses/AwaitingBooking.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalLettersOutstanding.json",
-            "retrieveWorklist/responses/LettersOutstanding.json",
+            "cancelReferral/requests/IntendPrivateWithComment.json",
+            "cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/$ers.fetchworklist"
+        return "FHIR/STU3/ReferralRequest/000000070000/$ers.cancelReferral"
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestGetReferralWorklist.authorised_actor_data
+        return TestCancelReferral.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestGetReferralWorklist.allowed_business_function_data
+        return TestCancelReferral.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(

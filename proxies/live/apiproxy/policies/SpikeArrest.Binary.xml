@@ -2,6 +2,6 @@
 <SpikeArrest continueOnError="false" enabled="true" name="SpikeArrest.Binary">
     <DisplayName>SpikeArrest.Binary</DisplayName>
     <Identifier ref="app.asid"/>
-    <Rate ref="app.ratelimit.binary">120pm</Rate>
+    <Rate ref="apiproduct.burstLimit_binary">180pm</Rate>
     <UseEffectiveCount>true</UseEffectiveCount>
 </SpikeArrest>

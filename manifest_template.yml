@@ -23,8 +23,6 @@ APIGEE_ENVIRONMENTS:
 - name: prod
   approval_type: manual
   display_name: Production
-  burstLimit: '15000pm'
-  requestLimit: '7800'
 
 INTERNAL_DEV_VARIANTS:
 - name: alpha
@@ -86,11 +84,11 @@ apigee:
                 quota:
                   enabled: true
                   interval: 8
-                  limit: {{ ENV.requestLimit | default('288000') }}
+                  limit: 288000
                   timeunit: hour
                 spikeArrest:
                   enabled: true
-                  ratelimit: {{ ENV.burstLimit | default('720pm') }}
+                  ratelimit: 720pm
           - name: requestLimit_binary
             value: 57600
           - name: burstLimit_binary
@@ -103,8 +101,8 @@ apigee:
           - identity-service-{{ ENV.name }}
           - identity-service-mock-{{ ENV.name }}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.requestLimit | default('288000') }}
-        quotaInterval: '8'
+        quota: 288000
+        quotaInterval: 8
         quotaTimeUnit: hour
 {% endfor %}
 {% endfor %}
@@ -145,11 +143,11 @@ apigee:
                 quota:
                   enabled: true
                   interval: 8
-                  limit: {{ ENV.requestLimit | default('288000') }}
+                  limit: 288000
                   timeunit: hour
                 spikeArrest:
                   enabled: true
-                  ratelimit: {{ ENV.burstLimit | default('720pm') }}
+                  ratelimit: 720pm
           - name: requestLimit_binary
             value: 57600
           - name: burstLimit_binary
@@ -169,8 +167,8 @@ apigee:
           - identity-service-mock-{{ ENV.name }}
 {% endif %}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.requestLimit | default('288000') }}
-        quotaInterval: '8'
+        quota: 288000
+        quotaInterval: 8
         quotaTimeUnit: hour
 {% endfor %}
     specs:

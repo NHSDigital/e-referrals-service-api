@@ -11,7 +11,7 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetReferralWorklist(SandboxTest):
+class TestRejectReferral(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return self.unauthorised_actors_list()
@@ -31,11 +31,7 @@ class TestGetReferralWorklist(SandboxTest):
     def allowed_business_functions(self) -> Iterable[str]:
         return [
             "SERVICE_PROVIDER_CLINICIAN",
-            "SERVICE_PROVIDER_ADMIN",
             "SERVICE_PROVIDER_CLINICIAN_ADMIN",
-            "REFERRING_CLINICIAN",
-            "REFERRING_CLINICIAN_ADMIN",
-            "REFERRING_ADMIN",
         ]
 
     @pytest.fixture
@@ -46,9 +42,9 @@ class TestGetReferralWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.rejectReferral",
             actor,
-            json=load_json("retrieveWorklist/requests/MinimalReferralsForReview.json"),
+            json=load_json("rejectReferral/requests/BasicExampleIbs.json"),
             headers=headers,
         )
 
@@ -60,7 +56,7 @@ class TestGetReferralWorklist(SandboxTest):
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, requestJson, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.rejectReferral",
             actor,
             json=load_json(requestJson),
             headers=headers,
@@ -68,42 +64,16 @@ class TestGetReferralWorklist(SandboxTest):
 
     testdata = [
         (
-            "retrieveWorklist/requests/MinimalReferralsForReview.json",
-            "retrieveWorklist/responses/ReferralsForReview.json",
+            "rejectReferral/requests/BasicExampleIbs.json",
+            "rejectReferral/responses/ExampleResponseIbs.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalAppointmentSlotIssues.json",
-            "retrieveWorklist/responses/AppointmentSlotIssues.json",
-        ),
-        (
-            "retrieveWorklist/requests/FilteringBySpecialty.json",
-            "retrieveWorklist/responses/FilteredBySpecialty.json",
-        ),
-        (
-            "retrieveWorklist/requests/FilteringByClinician.json",
-            "retrieveWorklist/responses/FilteredByClinician.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalRejectedTriageResponse.json",
-            "retrieveWorklist/responses/RejectedTriageResponse.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json",
-            "retrieveWorklist/responses/AssessmentReturnedCancelledDna.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalAwaitingBooking.json",
-            "retrieveWorklist/responses/AwaitingBooking.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalLettersOutstanding.json",
-            "retrieveWorklist/responses/LettersOutstanding.json",
+            "rejectReferral/requests/BasicExampleDbs.json",
+            "rejectReferral/responses/ExampleResponseDbs.json",
         ),
     ]
 
-    @pytest.mark.parametrize(
-        "actor", [Actor.RC, Actor.RCA, Actor.RA, Actor.SPC, Actor.SPCA, Actor.SPA]
-    )
+    @pytest.mark.parametrize("actor", [Actor.SPC, Actor.SPCA])
     @pytest.mark.parametrize("requestJson,response", testdata)
     def test_success(
         self,
@@ -119,4 +89,6 @@ class TestGetReferralWorklist(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_headers(actual_response)
+        asserts.assert_headers(
+            actual_response, additional={"etag": 'W/"10"',},
+        )

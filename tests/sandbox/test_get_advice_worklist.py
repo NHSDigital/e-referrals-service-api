@@ -11,13 +11,13 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetReferralWorklist(SandboxTest):
+class TestGetAdviceWorklist(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return self.unauthorised_actors_list()
 
     def unauthorised_actors_list(self) -> List[Actor]:
-        return [Actor.AA]
+        return []
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:

@@ -11,7 +11,7 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetReferralWorklist(SandboxTest):
+class TestCancelReferral(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return self.unauthorised_actors_list()
@@ -30,12 +30,8 @@ class TestGetReferralWorklist(SandboxTest):
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
         return [
-            "SERVICE_PROVIDER_CLINICIAN",
-            "SERVICE_PROVIDER_ADMIN",
-            "SERVICE_PROVIDER_CLINICIAN_ADMIN",
             "REFERRING_CLINICIAN",
             "REFERRING_CLINICIAN_ADMIN",
-            "REFERRING_ADMIN",
         ]
 
     @pytest.fixture
@@ -46,9 +42,9 @@ class TestGetReferralWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.cancelReferral",
             actor,
-            json=load_json("retrieveWorklist/requests/MinimalReferralsForReview.json"),
+            json=load_json("cancelReferral/requests/ReferrerCancellation.json"),
             headers=headers,
         )
 
@@ -60,7 +56,7 @@ class TestGetReferralWorklist(SandboxTest):
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, requestJson, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.cancelReferral",
             actor,
             json=load_json(requestJson),
             headers=headers,
@@ -68,42 +64,32 @@ class TestGetReferralWorklist(SandboxTest):
 
     testdata = [
         (
-            "retrieveWorklist/requests/MinimalReferralsForReview.json",
-            "retrieveWorklist/responses/ReferralsForReview.json",
+            "cancelReferral/requests/IntendPrivateWithoutComment.json",
+            "cancelReferral/responses/CancelledReferralIntendPrivateWithoutComment.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalAppointmentSlotIssues.json",
-            "retrieveWorklist/responses/AppointmentSlotIssues.json",
+            "cancelReferral/requests/PatientRequestCancellationOther.json",
+            "cancelReferral/responses/CancelledReferralPatientOther.json",
         ),
         (
-            "retrieveWorklist/requests/FilteringBySpecialty.json",
-            "retrieveWorklist/responses/FilteredBySpecialty.json",
+            "cancelReferral/requests/RaisedInError.json",
+            "cancelReferral/responses/CancelledReferralRaisedInError.json",
         ),
         (
-            "retrieveWorklist/requests/FilteringByClinician.json",
-            "retrieveWorklist/responses/FilteredByClinician.json",
+            "cancelReferral/requests/ReferrerCancellation.json",
+            "cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalRejectedTriageResponse.json",
-            "retrieveWorklist/responses/RejectedTriageResponse.json",
+            "cancelReferral/requests/NoLongerRequired.json",
+            "cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json",
         ),
         (
-            "retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json",
-            "retrieveWorklist/responses/AssessmentReturnedCancelledDna.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalAwaitingBooking.json",
-            "retrieveWorklist/responses/AwaitingBooking.json",
-        ),
-        (
-            "retrieveWorklist/requests/MinimalLettersOutstanding.json",
-            "retrieveWorklist/responses/LettersOutstanding.json",
+            "cancelReferral/requests/IntendPrivateWithComment.json",
+            "cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json",
         ),
     ]
 
-    @pytest.mark.parametrize(
-        "actor", [Actor.RC, Actor.RCA, Actor.RA, Actor.SPC, Actor.SPCA, Actor.SPA]
-    )
+    @pytest.mark.parametrize("actor", [Actor.RC, Actor.RCA])
     @pytest.mark.parametrize("requestJson,response", testdata)
     def test_success(
         self,

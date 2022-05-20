@@ -10,7 +10,7 @@ from requests import Response
 
 
 @pytest.mark.sandbox
-class TestCreateReferral(SandboxTest):
+class TestCreateReferralSendForTriage(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return [Actor.SPC, Actor.SPCA]
@@ -23,7 +23,7 @@ class TestCreateReferral(SandboxTest):
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, requestJson, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.createReferral",
+            "FHIR/STU3/ReferralRequest/$ers.createReferralAndSendForTriage",
             actor,
             json=load_json(requestJson),
             headers=headers,
@@ -37,7 +37,7 @@ class TestCreateReferral(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/ReferralRequest/$ers.createReferral",
+            "FHIR/STU3/ReferralRequest/$ers.createReferralAndSendForTriage",
             actor,
             json=self._load_json_data(actor, load_json),
             headers=headers,
@@ -50,18 +50,13 @@ class TestCreateReferral(SandboxTest):
     testdata = [
         (
             Actor.RC,
-            "createReferral/requests/MinimalRequest.json",
-            "createReferral/responses/ReferralRequest.json",
-        ),
-        (
-            Actor.RC,
-            "createReferral/requests/RequestTwentyServices.json",
-            "createReferral/responses/ReferralRequestTwentyServices.json",
+            "createReferralAndSendForTriage/requests/Parameters.json",
+            "createReferralAndSendForTriage/responses/ReferralRequest.json",
         ),
         (
             Actor.RCA,
-            "createReferral/requests/MinimalRequestWithReferringClinician.json",
-            "createReferral/responses/ReferralRequest.json",
+            "createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json",
+            "createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json",
         ),
     ]
 

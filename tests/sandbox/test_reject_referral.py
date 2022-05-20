@@ -11,7 +11,7 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetAdviceWorklist(SandboxTest):
+class TestRejectReferral(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return self.unauthorised_actors_list()
@@ -31,7 +31,6 @@ class TestGetAdviceWorklist(SandboxTest):
     def allowed_business_functions(self) -> Iterable[str]:
         return [
             "SERVICE_PROVIDER_CLINICIAN",
-            "SERVICE_PROVIDER_ADMIN",
             "SERVICE_PROVIDER_CLINICIAN_ADMIN",
         ]
 
@@ -43,11 +42,9 @@ class TestGetAdviceWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/CommunicationRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.rejectReferral",
             actor,
-            json=load_json(
-                "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json"
-            ),
+            json=load_json("rejectReferral/requests/BasicExampleIbs.json"),
             headers=headers,
         )
 
@@ -59,7 +56,7 @@ class TestGetAdviceWorklist(SandboxTest):
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, requestJson, headers={}: send_rest_request(
             HttpMethod.POST,
-            "FHIR/STU3/CommunicationRequest/$ers.fetchworklist",
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.rejectReferral",
             actor,
             json=load_json(requestJson),
             headers=headers,
@@ -67,12 +64,16 @@ class TestGetAdviceWorklist(SandboxTest):
 
     testdata = [
         (
-            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
-            "retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json",
+            "rejectReferral/requests/BasicExampleIbs.json",
+            "rejectReferral/responses/ExampleResponseIbs.json",
+        ),
+        (
+            "rejectReferral/requests/BasicExampleDbs.json",
+            "rejectReferral/responses/ExampleResponseDbs.json",
         ),
     ]
 
-    @pytest.mark.parametrize("actor", [Actor.SPC, Actor.SPCA, Actor.SPA])
+    @pytest.mark.parametrize("actor", [Actor.SPC, Actor.SPCA])
     @pytest.mark.parametrize("requestJson,response", testdata)
     def test_success(
         self,
@@ -88,4 +89,6 @@ class TestGetAdviceWorklist(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_headers(actual_response)
+        asserts.assert_headers(
+            actual_response, additional={"etag": 'W/"10"',},
+        )

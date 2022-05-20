@@ -11,7 +11,7 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestGetReferralWorklist(SandboxTest):
+class TestGetReferralRequest(SandboxTest):
     @pytest.fixture
     def unauthorised_actors(self) -> Iterable[Actor]:
         return self.unauthorised_actors_list()

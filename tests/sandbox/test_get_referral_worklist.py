@@ -17,7 +17,7 @@ class TestGetReferralWorklist(SandboxTest):
         return self.unauthorised_actors_list()
 
     def unauthorised_actors_list(self) -> List[Actor]:
-        return [Actor.AA]
+        return []
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:

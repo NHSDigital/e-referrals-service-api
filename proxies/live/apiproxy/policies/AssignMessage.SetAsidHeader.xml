@@ -1,0 +1,9 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.SetAsidHeader">
+  <Set>
+    <Headers>
+      <Header name="XAPI_ASID">{private.apigee.NHSD-ASID}</Header>
+    </Headers>
+  </Set>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false"/>
+</AssignMessage>

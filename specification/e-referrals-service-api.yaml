@@ -3508,11 +3508,105 @@ paths:
         '502':
           $ref: 'components/schemas/responses/cancelReferral/502Response.yaml'
         '504':
-          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'   
+          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'
+  /R4/ServiceRequest:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        # TO ADD LATER
+      summary: A041 - Search Service Request
+      operationId: a041-search-service-request
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/queryParameters/Category.yaml'
+        - $ref: 'components/schemas/queryParameters/Identifier.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/searchServiceRequest/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+        '422':
+          $ref: 'components/schemas/responses/searchServiceRequest/422Response.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/ServiceRequest/{id}/$ers.generateUploadURI:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A039 - Request pre-signed URL for large file upload
+      operationId: a039-request-pre-signed-url-for-large-file-upload
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/path/ServiceRequestId.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/requestUploadUri/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/requestUploadUri/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/Binary/{attachmentUuid}:
+    get:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A0XX - Retrieve binary
+      operationId: a0xx-retrieve-binary
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/path/AttachmentUuid.yaml'
+      responses:
+        '307':
+          $ref: 'components/schemas/responses/retrieveBinary/307Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/retrieveBinary/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/NotFound.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-     

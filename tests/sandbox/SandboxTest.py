@@ -147,3 +147,18 @@ class SandboxTest:
         return lambda actor, param, headers={}: send_rest_request(
             HttpMethod.GET, endpoint_url.format(param=param), actor, headers=headers,
         )
+
+    @pytest.fixture
+    def call_get_endpoint_url_with_query(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        load_json: Callable[[str], Dict[str, str]],
+        endpoint_url: str,
+    ) -> Callable[[Actor, str, str, str], Response]:
+        return lambda actor, paramName, paramValue, headers={}: send_rest_request(
+            HttpMethod.GET,
+            endpoint_url,
+            actor,
+            headers=headers,
+            params={paramName: paramValue},
+        )

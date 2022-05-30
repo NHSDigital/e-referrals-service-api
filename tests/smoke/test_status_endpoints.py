@@ -27,12 +27,14 @@ class TestStatusEndpoints:
             expression = parse("$.status")
             matches = [match.value for match in expression.find(response.json())]
             assert matches.count("pass") == 1, (
-                f"UNEXPECTED RESPONSE: " f"Health check failed: $.status != 'pass'"
+                f"ACTUAL RESPONSE: = {response.json()}"
+                f"UNEXPECTED RESPONSE: "
+                f"Health check failed: $.status != 'pass'"
             )
         with check:
             expression = parse('$.checks["healthcheckService:status"][*].status')
             matches = [match.value for match in expression.find(response.json())]
             assert matches.count("pass") == len(matches), (
-                f"UNEXPECTED RESPONSE: "
+                f"UNEXPECTED RESPONSE: = {response.json()}"
                 f"Health check failed: $.checks['healthcheckService:status'][*].status)] != 'pass'"
             )

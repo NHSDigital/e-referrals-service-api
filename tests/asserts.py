@@ -2,6 +2,7 @@ import json
 from typing import Dict
 from pytest_check import check
 from requests import Response
+from data import RenamedHeader
 
 # Headers which are expected for all requests
 _generic_headers = {
@@ -23,6 +24,9 @@ _ignored_headers = ["Date", "last-modified"]
 
 # Headers which should be excluded from validation entirely.
 _excluded_headers = ["Keep-Alive"]
+
+_HEADER_REQUEST_ID = "x-request-id"
+_HEADER_ERS_TRANSACTION_ID = "X_ERS_TRANSACTION_ID"
 
 
 def assert_status_code(expected: int, actual: int):
@@ -85,3 +89,47 @@ def _filter_header(header: str) -> bool:
 
 def _lower_keys(dict: Dict[str, str]) -> Dict[str, str]:
     return {key.lower(): value for key, value in dict.items()}
+
+
+def assert_ok_response(response: Response, expected_correlation_id: int):
+    # Verify the status
+    assert (
+        response.status_code == 200
+    ), "Expected a 200 when accesing the api but got " + (str)(response.status_code)
+
+    # Verify the response headers
+    client_response_headers = response.headers
+    assert (
+        client_response_headers[RenamedHeader.CORRELATION_ID.original]
+        == expected_correlation_id
+    )
+    assert len(client_response_headers[_HEADER_REQUEST_ID]) > 10
+    assert _HEADER_ERS_TRANSACTION_ID not in client_response_headers
+
+    for renamed_header in RenamedHeader:
+        assert renamed_header.renamed not in client_response_headers
+
+
+def assert_error_response(
+    response: Response, expected_correlation_id: int, expected_status_code: int
+):
+    # Verify the status
+    assert response.status_code == expected_status_code, (
+        "Expected a "
+        + expected_status_code
+        + " when accesing the api but got "
+        + (str)(response.status_code)
+    )
+
+    assert len(response.content) == 0
+
+    # Verify the response headers
+    client_response_headers = response.headers
+
+    assert (
+        client_response_headers[RenamedHeader.CORRELATION_ID.original]
+        == expected_correlation_id
+    )
+
+    for renamed_header in RenamedHeader:
+        assert renamed_header.renamed not in client_response_headers

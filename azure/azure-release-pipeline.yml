@@ -126,7 +126,15 @@ extends:
       proxy_path: sandbox
       depends_on:
       - manual_approval_sa
+      post_deploy:
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
     - environment: sandbox
       proxy_path: sandbox
       depends_on:
       - manual_approval_int
+      post_deploy:
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true

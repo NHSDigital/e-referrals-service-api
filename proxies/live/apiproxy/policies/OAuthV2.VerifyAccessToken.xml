@@ -1,5 +1,4 @@
 <OAuthV2 async="false" continueOnError="false" enabled="true" name="OauthV2.VerifyAccessToken">
   <Operation>VerifyAccessToken</Operation>
-  <!-- Set Scope to accept only AAL3 security level. -->
-  <Scope>urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api</Scope>
+  <Scope>urn:nhsd:apim:app:level3:e-referrals-service-api urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api</Scope>
 </OAuthV2>

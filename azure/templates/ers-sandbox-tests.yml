@@ -1,5 +1,5 @@
 steps:
-  - bash: |
+  - bash: |      
       poetry run pytest -v tests/sandbox --junitxml=tests/sandbox-test-report.xml
     displayName: Run Sandbox tests
     workingDirectory: "$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)"

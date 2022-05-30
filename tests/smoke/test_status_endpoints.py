@@ -27,6 +27,8 @@ class TestStatusEndpoints:
             expression = parse("$.status")
             matches = [match.value for match in expression.find(response.json())]
             assert matches.count("pass") == 1, (
+                f"ACTUAL REQUEST: = {service_url}"
+                f"ACTUAL KEY: = {status_endpoint_api_key}"
                 f"ACTUAL RESPONSE: = {response.json()}"
                 f"UNEXPECTED RESPONSE: "
                 f"Health check failed: $.status != 'pass'"

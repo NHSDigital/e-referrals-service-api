@@ -4,7 +4,7 @@ module.exports = [
    * Returns empty body with 200 response code.
    */
   {
-    method: 'GET',
+    method: 'HEAD',
     path: '/_status',
     handler: (request, h) => {
       return h.response().code(200);

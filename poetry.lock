@@ -52,6 +52,7 @@ selenium = ">=4.0.0,<5.0.0"
 [package.source]
 type = "url"
 url = "https://github.com/NHSDigital/apim-test-utils/releases/download/v1.1.31-alpha/api_test_utils-1.1.31a0-py3-none-any.whl"
+
 [[package]]
 name = "appdirs"
 version = "1.4.4"
@@ -820,7 +821,7 @@ python-versions = "*"
 
 [[package]]
 name = "requests"
-version = "2.26.0"
+version = "2.27.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
@@ -1026,7 +1027,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6ecdefb54de0bd1b108852a746ced99553d447685fd9e63de8a4eb5ff39b0ab5"
+content-hash = "a68c0ddb533a938dc647fab66e28b764f8f510d0244ab1d28d54c08fb31c3b6a"
 
 [metadata.files]
 aiohttp = [
@@ -1841,8 +1842,8 @@ regex = [
     {file = "regex-2021.10.8.tar.gz", hash = "sha256:26895d7c9bbda5c52b3635ce5991caa90fbb1ddfac9c9ff1c7ce505e2282fb2a"},
 ]
 requests = [
-    {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
-    {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
+    {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
+    {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
 ]
 selenium = [
     {file = "selenium-4.1.0-py3-none-any.whl", hash = "sha256:27e7b64df961d609f3d57237caa0df123abbbe22d038f2ec9e332fb90ec1a939"},

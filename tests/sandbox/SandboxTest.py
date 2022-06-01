@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from functools import reduce
-from typing import Callable, Dict, Iterable
+from typing import Callable, Dict, Iterable, NoReturn
 from requests import Response
 from pytest_check import check
 
@@ -15,8 +15,29 @@ from utils import HttpMethod
 class SandboxTest:
     @pytest.fixture
     @abstractmethod
-    def unauthorised_actors(self) -> Iterable[Actor]:
+    def endpoint_url(self) -> str:
         pass
+
+    @pytest.fixture
+    @abstractmethod
+    def endpoint_versioned_url(self) -> str:
+        pass
+
+    @pytest.fixture
+    @abstractmethod
+    def authorised_actors(self) -> Iterable[Actor]:
+        pass
+
+    @pytest.fixture
+    def unauthorised_actors(
+        self, authorised_actors: Iterable[Actor]
+    ) -> Iterable[Actor]:
+        return filter(lambda x: not (x in authorised_actors), Actor)
+
+    # @pytest.fixture
+    # @abstractmethod
+    # def unauthorised_actors(self) -> Iterable[Actor]:
+    # pass
 
     @pytest.fixture
     @abstractmethod
@@ -58,12 +79,8 @@ class SandboxTest:
     def test_with_correlation_id(
         self,
         call_endpoint: Callable[[Actor], Response],
-        unauthorised_actors: Iterable[Actor],
+        authorised_actors: Iterable[Actor],
     ):
-        authorised_actors = list(
-            filter(lambda x: not (x in unauthorised_actors), Actor)
-        )
-
         assert (
             len(authorised_actors) > 0
         ), f"Current class {self.__class__.__name__} does not have any authorised users associated"
@@ -82,3 +99,51 @@ class SandboxTest:
                 f"Actual Correlation ID = {response.headers[RenamedHeader.CORRELATION_ID.original]}\n"
                 f"Expected Correlation ID = {correlation_id}"
             )
+
+    @pytest.fixture
+    def call_endpoint_url_with_request(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        load_json: Callable[[str], Dict[str, str]],
+        endpoint_url: str,
+    ) -> Callable[[Actor, str], Response]:
+        return lambda actor, requestJson, headers={}: send_rest_request(
+            HttpMethod.POST,
+            endpoint_url,
+            actor,
+            json=load_json(requestJson),
+            headers=headers,
+        )
+
+    @pytest.fixture
+    def call_endpoint_url_with_ubrn(
+        self,
+        call_endpoint_url_with_param: Callable[[HttpMethod, str, Actor], Response],
+    ) -> Callable[[Actor, str], Response]:
+        return lambda actor, ubrn, headers={}: call_endpoint_url_with_param(
+            actor, ubrn, headers,
+        )
+
+    @pytest.fixture
+    def call_endpoint_url_with_ubrn_and_version(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        endpoint_versioned_url: str,
+    ) -> Callable[[Actor, str, str], Response]:
+        return lambda actor, ubrn, version, headers={}: send_rest_request(
+            HttpMethod.GET,
+            endpoint_versioned_url.format(param1=ubrn, param2=version),
+            actor,
+            headers=headers,
+        )
+
+    @pytest.fixture
+    def call_endpoint_url_with_param(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        load_json: Callable[[str], Dict[str, str]],
+        endpoint_url: str,
+    ) -> Callable[[Actor, str], Response]:
+        return lambda actor, param, headers={}: send_rest_request(
+            HttpMethod.GET, endpoint_url.format(param=param), actor, headers=headers,
+        )

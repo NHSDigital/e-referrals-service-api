@@ -12,19 +12,20 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestAcceptReferral(SandboxTest):
-    @pytest.fixture
-    def unauthorised_actors(self) -> Iterable[Actor]:
-        return self.unauthorised_actors_list()
+    authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
-    def unauthorised_actors_list(self) -> List[Actor]:
-        return [Actor.RA, Actor.SPA]
+    allowed_business_function_data = [
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
+    ]
+
+    @pytest.fixture
+    def authorised_actors(self) -> Iterable[Actor]:
+        return TestAcceptReferral.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return [
-            "SERVICE_PROVIDER_CLINICIAN",
-            "SERVICE_PROVIDER_CLINICIAN_ADMIN",
-        ]
+        return TestAcceptReferral.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -37,7 +38,7 @@ class TestAcceptReferral(SandboxTest):
             headers=headers,
         )
 
-    @pytest.mark.parametrize("actor", [Actor.SPC, Actor.SPCA])
+    @pytest.mark.parametrize("actor", authorised_actor_data)
     def test_success(
         self,
         call_endpoint: Callable[[Actor], Response],

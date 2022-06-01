@@ -12,65 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGetReferralRequest(SandboxTest):
-    @pytest.fixture
-    def unauthorised_actors(self) -> Iterable[Actor]:
-        return self.unauthorised_actors_list()
+    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.SPC, Actor.SPCA]
 
-    def unauthorised_actors_list(self) -> List[Actor]:
-        return []
-
-    @pytest.fixture
-    def authorised_actors(self) -> Iterable[Actor]:
-        authorised = []
-        for actor in Actor:
-            if actor not in self.unauthorised_actors_list():
-                authorised.append(actor)
-        return authorised
-
-    @pytest.fixture
-    def allowed_business_functions(self) -> Iterable[str]:
-        return [
-            "REFERRING_CLINICIAN",
-            "REFERRING_CLINICIAN_ADMIN",
-            "SERVICE_PROVIDER_CLINICIAN",
-            "SERVICE_PROVIDER_CLINICIAN_ADMIN",
-        ]
-
-    @pytest.fixture
-    def call_endpoint(
-        self,
-        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
-        load_json: Callable[[str], Dict[str, str]],
-    ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: send_rest_request(
-            HttpMethod.GET,
-            "FHIR/STU3/ReferralRequest/000000070000",
-            actor,
-            headers=headers,
-        )
-
-    @pytest.fixture
-    def call_endpoint_with_ubrn(
-        self,
-        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
-        load_json: Callable[[str], Dict[str, str]],
-    ) -> Callable[[Actor, str], Response]:
-        return lambda actor, ubrn, headers={}: send_rest_request(
-            HttpMethod.GET, "FHIR/STU3/ReferralRequest/" + ubrn, actor, headers=headers,
-        )
-
-    @pytest.fixture
-    def call_endpoint_with_ubrn_and_version(
-        self,
-        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
-        load_json: Callable[[str], Dict[str, str]],
-    ) -> Callable[[Actor, str, str], Response]:
-        return lambda actor, ubrn, version, headers={}: send_rest_request(
-            HttpMethod.GET,
-            "FHIR/STU3/ReferralRequest/" + ubrn + "/_history/" + version,
-            actor,
-            headers=headers,
-        )
+    allowed_business_function_data = [
+        "REFERRING_CLINICIAN",
+        "REFERRING_CLINICIAN_ADMIN",
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
+    ]
 
     testdata = [
         ("000000070000", "retrieveReferralRequest/responses/Unbooked.json",),
@@ -88,18 +37,42 @@ class TestGetReferralRequest(SandboxTest):
         ),
     ]
 
-    @pytest.mark.parametrize("actor", [Actor.RC, Actor.RCA, Actor.SPC, Actor.SPCA])
+    @pytest.fixture
+    def endpoint_url(self) -> str:
+        return "FHIR/STU3/ReferralRequest/{param}"
+
+    @pytest.fixture
+    def endpoint_versioned_url(self) -> str:
+        return "FHIR/STU3/ReferralRequest/{param1}/_history/{param2}"
+
+    @pytest.fixture
+    def authorised_actors(self) -> Iterable[Actor]:
+        return TestGetReferralRequest.authorised_actor_data
+
+    @pytest.fixture
+    def allowed_business_functions(self) -> Iterable[str]:
+        return TestGetReferralRequest.allowed_business_function_data
+
+    @pytest.fixture
+    def call_endpoint(
+        self, call_endpoint_url_with_ubrn: Callable[[Actor, str], Response],
+    ) -> Callable[[Actor], Response]:
+        return lambda actor, headers={}: call_endpoint_url_with_ubrn(
+            actor, "000000070000", headers
+        )
+
+    @pytest.mark.parametrize("actor", authorised_actor_data)
     @pytest.mark.parametrize("ubrn,response", testdata)
     def test_success(
         self,
-        call_endpoint_with_ubrn: Callable[[Actor, str], Response],
+        call_endpoint_url_with_ubrn: Callable[[Actor, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         ubrn,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_with_ubrn(actor, ubrn)
+        actual_response = call_endpoint_url_with_ubrn(actor, ubrn)
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
@@ -108,18 +81,18 @@ class TestGetReferralRequest(SandboxTest):
             actual_response, additional={"etag": 'W/"5"',},
         )
 
-    @pytest.mark.parametrize("actor", [Actor.RC, Actor.RCA, Actor.SPC, Actor.SPCA])
+    @pytest.mark.parametrize("actor", authorised_actor_data)
     @pytest.mark.parametrize("ubrn,response", testdata)
     def test_success_versioned(
         self,
-        call_endpoint_with_ubrn_and_version: Callable[[Actor, str, str], Response],
+        call_endpoint_url_with_ubrn_and_version: Callable[[Actor, str, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         ubrn,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_with_ubrn_and_version(actor, ubrn, "5")
+        actual_response = call_endpoint_url_with_ubrn_and_version(actor, ubrn, "5")
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

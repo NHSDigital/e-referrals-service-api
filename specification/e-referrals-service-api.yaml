@@ -199,7 +199,7 @@ info:
 
     ### Integration testing
 
-    Our integration test environment:
+    Our [integration test](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis) environment:
       -	is where the majority of your integration efforts will take place
       - is where we conduct witness testing for your application
       -	is stateful, so data will be persisted

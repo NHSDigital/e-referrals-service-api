@@ -270,6 +270,10 @@ module.exports = {
     return { responsePath: 'retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf', filename: '000000070000_Clinical_Information_Summary_20210706114852.pdf', responseCode: 200 }
   },
 
+  getExampleResponseForRetrieveAdviceAndGuidanceOverviewPdf: function () {
+    return { responsePath: 'retrieveAdviceAndGuidanceOverviewPdf/responses/000049146177_Advice_And_Guidance_20220610143044.pdf', filename: '000049146177_Advice_And_Guidance_20220610143044.pdf', responseCode: 200 }
+  },                      
+
   getExampleResponseForRetrieveWorklist: function (request) {
     var responseMap = {
       'src/mocks/retrieveWorklist/requests/MinimalReferralsForReview.json': 'retrieveWorklist/responses/ReferralsForReview.json',

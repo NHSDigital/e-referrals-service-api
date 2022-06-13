@@ -53,9 +53,9 @@ class TestGetCodesystem(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_param: Callable[[Actor, str], Response],
+        self, call_endpoint_url_with_value: Callable[[Actor, str], Response],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_endpoint_url_with_param(
+        return lambda actor, headers={}: call_endpoint_url_with_value(
             actor, "SPECIALTY", headers
         )
 
@@ -63,14 +63,14 @@ class TestGetCodesystem(SandboxTest):
     @pytest.mark.parametrize("specialty,response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_param: Callable[[Actor, str], Response],
+        call_endpoint_url_with_value: Callable[[Actor, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         specialty,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_param(actor, specialty)
+        actual_response = call_endpoint_url_with_value(actor, specialty)
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

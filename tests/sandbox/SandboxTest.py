@@ -116,29 +116,35 @@ class SandboxTest:
         )
 
     @pytest.fixture
-    def call_endpoint_url_with_ubrn(
+    def call_put_endpoint_url_with_request(
         self,
-        call_endpoint_url_with_param: Callable[[HttpMethod, str, Actor], Response],
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        load_json: Callable[[str], Dict[str, str]],
+        endpoint_url: str,
     ) -> Callable[[Actor, str], Response]:
-        return lambda actor, ubrn, headers={}: call_endpoint_url_with_param(
-            actor, ubrn, headers,
+        return lambda actor, requestJson, headers={}: send_rest_request(
+            HttpMethod.PUT,
+            endpoint_url,
+            actor,
+            json=load_json(requestJson),
+            headers=headers,
         )
 
     @pytest.fixture
-    def call_endpoint_url_with_ubrn_and_version(
+    def call_endpoint_url_with_value_and_version(
         self,
         send_rest_request: Callable[[HttpMethod, str, Actor], Response],
         endpoint_versioned_url: str,
     ) -> Callable[[Actor, str, str], Response]:
-        return lambda actor, ubrn, version, headers={}: send_rest_request(
+        return lambda actor, value, version, headers={}: send_rest_request(
             HttpMethod.GET,
-            endpoint_versioned_url.format(param1=ubrn, param2=version),
+            endpoint_versioned_url.format(param1=value, param2=version),
             actor,
             headers=headers,
         )
 
     @pytest.fixture
-    def call_endpoint_url_with_param(
+    def call_endpoint_url_with_value(
         self,
         send_rest_request: Callable[[HttpMethod, str, Actor], Response],
         load_json: Callable[[str], Dict[str, str]],
@@ -154,11 +160,7 @@ class SandboxTest:
         send_rest_request: Callable[[HttpMethod, str, Actor], Response],
         load_json: Callable[[str], Dict[str, str]],
         endpoint_url: str,
-    ) -> Callable[[Actor, str, str, str], Response]:
-        return lambda actor, paramName, paramValue, headers={}: send_rest_request(
-            HttpMethod.GET,
-            endpoint_url,
-            actor,
-            headers=headers,
-            params={paramName: paramValue},
+    ) -> Callable[[Actor, Dict[str, str]], Response]:
+        return lambda actor, queryParams, headers={}: send_rest_request(
+            HttpMethod.GET, endpoint_url, actor, headers=headers, params=queryParams,
         )

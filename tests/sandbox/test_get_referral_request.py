@@ -55,9 +55,9 @@ class TestGetReferralRequest(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_ubrn: Callable[[Actor, str], Response],
+        self, call_endpoint_url_with_value: Callable[[Actor, str], Response],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_endpoint_url_with_ubrn(
+        return lambda actor, headers={}: call_endpoint_url_with_value(
             actor, "000000070000", headers
         )
 
@@ -65,14 +65,14 @@ class TestGetReferralRequest(SandboxTest):
     @pytest.mark.parametrize("ubrn,response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_ubrn: Callable[[Actor, str], Response],
+        call_endpoint_url_with_value: Callable[[Actor, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         ubrn,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_ubrn(actor, ubrn)
+        actual_response = call_endpoint_url_with_value(actor, ubrn)
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
@@ -85,14 +85,14 @@ class TestGetReferralRequest(SandboxTest):
     @pytest.mark.parametrize("ubrn,response", testdata)
     def test_success_versioned(
         self,
-        call_endpoint_url_with_ubrn_and_version: Callable[[Actor, str, str], Response],
+        call_endpoint_url_with_value_and_version: Callable[[Actor, str, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         ubrn,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_ubrn_and_version(actor, ubrn, "5")
+        actual_response = call_endpoint_url_with_value_and_version(actor, ubrn, "5")
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

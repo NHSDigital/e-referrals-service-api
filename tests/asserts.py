@@ -57,13 +57,27 @@ def assert_headers(response: Response, additional: Dict[str, str] = {}):
     :param additional any additional headers that should be included
 
     """
-    expected_headers = dict(_generic_headers)
-    expected_headers.update(additional)
-    expected_headers = _lower_keys(expected_headers)
 
     actual_headers = _lower_keys(
         dict(filter(_filter_header, response.headers.items(),))
     )
+
+    expected_headers = dict(_generic_headers)
+    expected_headers.update(additional)
+    expected_headers = _lower_keys(expected_headers)
+
+    # Content is uncompressed for < 1MB see sandbox/node_modules/@hapi/hapi/lib/compression.js
+
+    if "content-length" in response.headers:
+        content_length_header = int(response.headers["content-length"])
+
+        if (content_length_header is not None) and (content_length_header < 1024):
+            expected_headers.update({"vary": "origin"})
+            expected_headers.update({"content-length": str(content_length_header)})
+            del (
+                expected_headers["transfer-encoding"],
+                expected_headers["content-encoding"],
+            )
 
     with check:
         assert expected_headers == actual_headers, (

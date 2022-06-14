@@ -149,4 +149,4 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
         asserts.assert_status_code(responseCode, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_headers(actual_response,)
+        asserts.assert_json_response_headers(actual_response,)

@@ -27,6 +27,17 @@ def load_json(environment) -> Callable[[str], Dict[str, str]]:
     return lambda path: _get_json(base_path + "/src/mocks/", path)
 
 
+@pytest.fixture(scope="session")
+def load_file(environment) -> Callable[[str], bytes]:
+    """Provides a method which encapsulates the logic of retrieving some example JSON from a file"""
+    base_path = (
+        "sandbox"
+        if environment == "local"
+        else "proxies/sandbox/apiproxy/resources/hosted"
+    )
+    return lambda path: _get_file(base_path + "/src/mocks/", path)
+
+
 @pytest.fixture
 def send_rest_request(
     sandbox_url,
@@ -42,10 +53,16 @@ def _get_json(base_path: str, path: str) -> Dict[str, str]:
         return json.load(f)
 
 
+def _get_file(base_path: str, path: str) -> bytes:
+    with open(base_path + path, "rb") as f:
+        return f.read(-1)
+
+
 def _send_rest_request(
     method: HttpMethod, url: str, actor: Actor, headers: Dict[str, str], **kwargs
 ) -> requests.Response:
     headers[RenamedHeader.BUSINESS_FUNCTION.original] = actor.business_function
     if actor.obo_user_id != None:
         headers[RenamedHeader.OBO_USER_ID.original] = actor.obo_user_id
+    print(url)
     return method(url, headers=headers, **kwargs)

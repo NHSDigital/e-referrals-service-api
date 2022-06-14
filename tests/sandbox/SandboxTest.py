@@ -131,6 +131,21 @@ class SandboxTest:
         )
 
     @pytest.fixture
+    def call_endpoint_url_with_value_and_request(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        load_json: Callable[[str], Dict[str, str]],
+        endpoint_url: str,
+    ) -> Callable[[Actor, str, str], Response]:
+        return lambda actor, requestJson, param, headers={}: send_rest_request(
+            HttpMethod.POST,
+            endpoint_url.format(param=param),
+            actor,
+            json=load_json(requestJson),
+            headers=headers,
+        )
+
+    @pytest.fixture
     def call_endpoint_url_with_value_and_version(
         self,
         send_rest_request: Callable[[HttpMethod, str, Actor], Response],
@@ -152,6 +167,16 @@ class SandboxTest:
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, param, headers={}: send_rest_request(
             HttpMethod.GET, endpoint_url.format(param=param), actor, headers=headers,
+        )
+
+    @pytest.fixture
+    def call_post_endpoint_url_with_value(
+        self,
+        send_rest_request: Callable[[HttpMethod, str, Actor], Response],
+        endpoint_url: str,
+    ) -> Callable[[Actor, str], Response]:
+        return lambda actor, param, headers={}: send_rest_request(
+            HttpMethod.POST, endpoint_url.format(param=param), actor, headers=headers,
         )
 
     @pytest.fixture

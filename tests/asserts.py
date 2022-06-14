@@ -18,6 +18,17 @@ _generic_headers = {
     "strict-transport-security": "max-age=864000; includeSubDomains",
 }
 
+_generic_file_headers = {
+    "content-type": "application/pdf",
+    "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
+    "vary": "origin",
+    "cache-control": "no-cache",
+    "accept-ranges": "bytes",
+    "connection": "keep-alive",
+    "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
+    "strict-transport-security": "max-age=864000; includeSubDomains",
+}
+
 # Headers which should be ignored from validation. This should only be used when the value of a header cannot be accurately be predicted.
 # Note however the existance of these headers is still validated.
 _ignored_headers = ["Date", "last-modified"]
@@ -50,7 +61,23 @@ def assert_response(expected: Dict[str, str], actual: Response):
         )
 
 
-def assert_headers(response: Response, additional: Dict[str, str] = {}):
+def assert_file_response(expected: bytes, actual: Response):
+    """Assert that a supplied response is as expected"""
+    with check:
+        assert expected == actual.content, "\n UNEXPECTED RESPONSE: contents differ"
+
+
+def assert_json_response_headers(response: Response, additional: Dict[str, str] = {}):
+    assert_headers(response, _generic_headers, additional)
+
+
+def assert_file_response_headers(response: Response, additional: Dict[str, str] = {}):
+    assert_headers(response, _generic_file_headers, additional)
+
+
+def assert_headers(
+    response: Response, generic_headers: Dict[str, str], additional: Dict[str, str] = {}
+):
     """
     Assert that a supplied response containes the expected headers, ignoring casing for header names.
 
@@ -62,7 +89,7 @@ def assert_headers(response: Response, additional: Dict[str, str] = {}):
         dict(filter(_filter_header, response.headers.items(),))
     )
 
-    expected_headers = dict(_generic_headers)
+    expected_headers = dict(generic_headers)
     expected_headers.update(additional)
     expected_headers = _lower_keys(expected_headers)
 

@@ -53,6 +53,6 @@ class TestAcceptReferral(SandboxTest):
             load_json("acceptReferral/responses/ExampleResponse.json"), actual_response,
         )
 
-        asserts.assert_headers(
+        asserts.assert_json_response_headers(
             actual_response, additional={"etag": 'W/"9"',},
         )

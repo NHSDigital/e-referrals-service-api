@@ -20,7 +20,7 @@ module.exports = [
       var responsePath = mockResponseProvider.getExampleResponseForPatientServiceSearch(request);
 
       if (responsePath != null) {
-        return h.file(responsePath).code(200).type("application/fhir+json")
+        return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
       } else {
         return h.file('SandboxErrorOutcome.json').code(422);
       }

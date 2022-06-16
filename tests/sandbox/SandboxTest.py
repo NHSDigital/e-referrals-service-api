@@ -106,7 +106,7 @@ class SandboxTest:
         send_rest_request: Callable[[HttpMethod, str, Actor], Response],
         load_json: Callable[[str], Dict[str, str]],
         endpoint_url: str,
-    ) -> Callable[[Actor, str], Response]:
+    ) -> Callable[[Actor, str, Dict[str, str]], Response]:
         return lambda actor, requestJson, headers={}: send_rest_request(
             HttpMethod.POST,
             endpoint_url,

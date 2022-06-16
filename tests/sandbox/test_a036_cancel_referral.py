@@ -51,6 +51,10 @@ class TestCancelReferral(SandboxTest):
         return "FHIR/STU3/ReferralRequest/000000070000/$ers.cancelReferral"
 
     @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
+
+    @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
         return TestCancelReferral.authorised_actor_data
 

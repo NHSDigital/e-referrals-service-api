@@ -46,6 +46,10 @@ class TestUpdateAppointment(SandboxTest):
         return "FHIR/STU3/Appointment/70000"
 
     @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.PUT
+
+    @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
         return TestUpdateAppointment.authorised_actor_data
 
@@ -55,9 +59,9 @@ class TestUpdateAppointment(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_put_endpoint_url_with_request: Callable[[Actor, str], Response],
+        self, call_endpoint_url_with_request: Callable[[Actor, str], Response],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_put_endpoint_url_with_request(
+        return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
             "updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json",
             headers,
@@ -67,7 +71,7 @@ class TestUpdateAppointment(SandboxTest):
     @pytest.mark.parametrize("requestJson,response,responseCode", testdata)
     def test_success(
         self,
-        call_put_endpoint_url_with_request: Callable[[Actor, str], Response],
+        call_endpoint_url_with_request: Callable[[Actor, str], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         requestJson,
@@ -75,7 +79,7 @@ class TestUpdateAppointment(SandboxTest):
         responseCode,
     ):
         expected_response = load_json(response)
-        actual_response = call_put_endpoint_url_with_request(actor, requestJson)
+        actual_response = call_endpoint_url_with_request(actor, requestJson)
 
         asserts.assert_status_code(responseCode, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

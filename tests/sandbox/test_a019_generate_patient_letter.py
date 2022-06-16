@@ -31,7 +31,11 @@ class TestGeneratePatientLetter(SandboxTest):
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/{param}/$ers.generatePatientLetter"
+        return "FHIR/STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
@@ -43,26 +47,31 @@ class TestGeneratePatientLetter(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_post_endpoint_url_with_value: Callable[[Actor, str], Response],
+        self,
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_post_endpoint_url_with_value(
-            actor, "000000070000", headers
+        return lambda actor, headers={}: call_endpoint_url_with_pathParams(
+            actor, {"ubrn": "000000070000"}, headers
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
-    @pytest.mark.parametrize("id,response, filename", testdata)
+    @pytest.mark.parametrize("ubrn,response, filename", testdata)
     def test_success(
         self,
-        call_post_endpoint_url_with_value: Callable[[Actor, str], Response],
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
         load_file: Callable[[str], bytes],
         actor: Actor,
-        id,
+        ubrn,
         response,
         filename,
     ):
 
         expected_response = load_file(response)
-        actual_response = call_post_endpoint_url_with_value(actor, id)
+        actual_response = call_endpoint_url_with_pathParams(actor, {"ubrn": ubrn})
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_file_response(expected_response, actual_response)

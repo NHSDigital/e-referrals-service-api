@@ -11,47 +11,44 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestBookOrDeferAppointment(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA]
+class TestSendAdviceAndGuidance(SandboxTest):
+    authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
-        "REFERRING_CLINICIAN",
-        "REFERRING_CLINICIAN_ADMIN",
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
+
     testdata = [
         (
-            "bookOrDeferAppointment/requests/MinimalBooking.json",
-            "bookOrDeferAppointment/responses/MinimalBooking.json",
+            "sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json",
+            "sendAdviceAndGuidanceResponse/responses/RequireFurtherInformation.json",
         ),
         (
-            "bookOrDeferAppointment/requests/MinimalDeferral.json",
-            "bookOrDeferAppointment/responses/MinimalDeferral.json",
+            "sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json",
+            "sendAdviceAndGuidanceResponse/responses/ReturnToReferrerWithAdvice.json",
         ),
         (
-            "bookOrDeferAppointment/requests/BookingWithNamedClinician.json",
-            "bookOrDeferAppointment/responses/BookingWithNamedClinician.json",
-        ),
-        (
-            "bookOrDeferAppointment/requests/DeferralWithSlotReference.json",
-            "bookOrDeferAppointment/responses/DeferralWithSlotReference.json",
-        ),
-        (
-            "bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json",
-            "bookOrDeferAppointment/responses/DeferralBookingAttemptProblem.json",
+            "sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json",
+            "sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/Appointment"
+        return "FHIR/STU3/CommunicationRequest/000000070000/$ers.sendCommunicationToRequester"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestBookOrDeferAppointment.authorised_actor_data
+        return TestSendAdviceAndGuidance.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestBookOrDeferAppointment.allowed_business_function_data
+        return TestSendAdviceAndGuidance.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -61,7 +58,9 @@ class TestBookOrDeferAppointment(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "bookOrDeferAppointment/requests/MinimalBooking.json", headers,
+            actor,
+            "sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -79,9 +78,7 @@ class TestBookOrDeferAppointment(SandboxTest):
         expected_response = load_json(response)
         actual_response = call_endpoint_url_with_request(actor, requestJson)
 
-        asserts.assert_status_code(201, actual_response.status_code)
+        asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"1"',},
-        )
+        asserts.assert_json_response_headers(actual_response)

@@ -13,7 +13,7 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestRetrieveClinicalInformation(SandboxTest):
+class TestGetAttachment(SandboxTest):
     authorised_actor_data = [Actor.RC, Actor.RCA, Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
@@ -25,46 +25,56 @@ class TestRetrieveClinicalInformation(SandboxTest):
 
     testdata = [
         (
-            "000000070000",
-            "retrieveClinicalInformation/responses/000000070000_Clinical_Information_Summary_20210706114852.pdf",
-            "000000070000_Clinical_Information_Summary_20210706114852.pdf",
+            "att-70000-70001",
+            "retrieveAttachment/responses/example_attachment.pdf",
+            "example_attachment.pdf",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/{param}/$ers.generateCRI"
+        return "FHIR/STU3/Binary/{attachmentLogicalID}"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.GET
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestRetrieveClinicalInformation.authorised_actor_data
+        return TestGetAttachment.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestRetrieveClinicalInformation.allowed_business_function_data
+        return TestGetAttachment.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
-        self, call_post_endpoint_url_with_value: Callable[[Actor, str], Response],
+        self,
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_post_endpoint_url_with_value(
-            actor, "000000070000", headers
+        return lambda actor, headers={}: call_endpoint_url_with_pathParams(
+            actor, {"attachmentLogicalID": "att-70000-70001"}, headers
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
     @pytest.mark.parametrize("id,response, filename", testdata)
     def test_success(
         self,
-        call_post_endpoint_url_with_value: Callable[[Actor, str], Response],
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
         load_file: Callable[[str], bytes],
         actor: Actor,
         id,
         response,
         filename,
     ):
-
         expected_response = load_file(response)
-        actual_response = call_post_endpoint_url_with_value(actor, id)
+        actual_response = call_endpoint_url_with_pathParams(
+            actor, {"attachmentLogicalID": id}
+        )
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_file_response(expected_response, actual_response)

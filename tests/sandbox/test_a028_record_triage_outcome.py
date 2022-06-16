@@ -11,37 +11,43 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestChangeShortlist(SandboxTest):
-
-    authorised_actor_data = [Actor.RC, Actor.RCA]
+class TestRecordTriageOutcome(SandboxTest):
+    authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
-        "REFERRING_CLINICIAN",
-        "REFERRING_CLINICIAN_ADMIN",
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
-
     testdata = [
         (
-            "changeShortlist/requests/UnbookedReferral.json",
-            "changeShortlist/responses/UnbookedReferral.json",
+            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
+            "recordTriageOutcome/responses/ReturnToReferrerWithAdvice.json",
         ),
         (
-            "changeShortlist/requests/UnbookedReferralMultipleServices.json",
-            "changeShortlist/responses/UnbookedReferralMultipleServices.json",
+            "recordTriageOutcome/requests/AcceptReferBookLater.json",
+            "recordTriageOutcome/responses/AcceptReferBookLater.json",
+        ),
+        (
+            "recordTriageOutcome/requests/AttachmentIncluded.json",
+            "recordTriageOutcome/responses/AttachmentIncluded.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/000000070000/$ers.changeShortlist"
+        return "FHIR/STU3/ReferralRequest/000000070000/$ers.recordReviewOutcome"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestChangeShortlist.authorised_actor_data
+        return TestRecordTriageOutcome.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestChangeShortlist.allowed_business_function_data
+        return TestRecordTriageOutcome.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -51,7 +57,9 @@ class TestChangeShortlist(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "changeShortlist/requests/UnbookedReferral.json", headers,
+            actor,
+            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -73,5 +81,5 @@ class TestChangeShortlist(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"3"',},
+            actual_response, additional={"etag": 'W/"10"',},
         )

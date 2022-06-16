@@ -41,7 +41,11 @@ class TestGetCodesystem(SandboxTest):
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/CodeSystem/{param}"
+        return "FHIR/STU3/CodeSystem/{codeSystemType}"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.GET
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
@@ -53,24 +57,31 @@ class TestGetCodesystem(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_value: Callable[[Actor, str], Response],
+        self,
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_endpoint_url_with_value(
-            actor, "SPECIALTY", headers
+        return lambda actor, headers={}: call_endpoint_url_with_pathParams(
+            actor, {"codeSystemType": "SPECIALTY"}, headers
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
-    @pytest.mark.parametrize("specialty,response", testdata)
+    @pytest.mark.parametrize("codeSystemType,response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_value: Callable[[Actor, str], Response],
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
-        specialty,
+        codeSystemType,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_value(actor, specialty)
+        actual_response = call_endpoint_url_with_pathParams(
+            actor, {"codeSystemType": codeSystemType}
+        )
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

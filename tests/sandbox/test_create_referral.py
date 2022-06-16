@@ -50,7 +50,10 @@ class TestCreateReferral(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_request: Callable[[Actor, str], Response],
+        self,
+        call_endpoint_url_with_request: Callable[
+            [Actor, str, Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor, self._request_path(actor), headers,
@@ -59,7 +62,9 @@ class TestCreateReferral(SandboxTest):
     @pytest.mark.parametrize("actor, requestJson, response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_request: Callable[[Actor], Response],
+        call_endpoint_url_with_request: Callable[
+            [Actor, str, Dict[str, str]], Response
+        ],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         requestJson,

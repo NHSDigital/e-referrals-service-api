@@ -10,7 +10,7 @@ from requests import Response
 
 
 @pytest.mark.sandbox
-class TestCreateReferralSendForTriage(SandboxTest):
+class TestPatientServiceSearch(SandboxTest):
     authorised_actor_data = [Actor.RC, Actor.RCA]
 
     allowed_business_function_data = [
@@ -21,27 +21,37 @@ class TestCreateReferralSendForTriage(SandboxTest):
     testdata = [
         (
             Actor.RC,
-            "createReferralAndSendForTriage/requests/Parameters.json",
-            "createReferralAndSendForTriage/responses/ReferralRequest.json",
+            "patientServiceSearch/requests/RcMinimal.json",
+            "patientServiceSearch/responses/FetchServiceListWithMultipleServices.json",
+        ),
+        (
+            Actor.RC,
+            "patientServiceSearch/requests/RcSearchByClinicalTerm.json",
+            "patientServiceSearch/responses/EmptyResponse.json",
+        ),
+        (
+            Actor.RC,
+            "patientServiceSearch/requests/RcSearchByNamedClinician.json",
+            "patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
         (
             Actor.RCA,
-            "createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json",
-            "createReferralAndSendForTriage/responses/ReferralRequestWithNamedClinician.json",
+            "patientServiceSearch/requests/RcaWithIWT.json",
+            "patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/$ers.createReferralAndSendForTriage"
+        return "FHIR/STU3/HealthcareService/$ers.searchHealthcareServicesForPatient"
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestCreateReferralSendForTriage.authorised_actor_data
+        return TestPatientServiceSearch.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestCreateReferralSendForTriage.allowed_business_function_data
+        return TestPatientServiceSearch.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -68,16 +78,14 @@ class TestCreateReferralSendForTriage(SandboxTest):
         expected_response = load_json(response)
         actual_response = call_endpoint_url_with_request(actor, requestJson)
 
-        asserts.assert_status_code(201, actual_response.status_code)
+        asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
-        asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"1"',},
-        )
+        asserts.assert_json_response_headers(actual_response,)
 
     def _request_path(self, actor: Actor) -> str:
         path = (
-            "createReferral/requests/MinimalRequestWithReferringClinician.json"
+            "patientServiceSearch/requests/RcaWithIWT.json"
             if actor == Actor.RCA
-            else "createReferral/requests/MinimalRequest.json"
+            else "patientServiceSearch/requests/RcMinimal.json"
         )
         return path

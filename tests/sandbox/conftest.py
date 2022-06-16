@@ -65,4 +65,5 @@ def _send_rest_request(
     if actor.obo_user_id != None:
         headers[RenamedHeader.OBO_USER_ID.original] = actor.obo_user_id
     print(url)
+    print(headers)
     return method(url, headers=headers, **kwargs)

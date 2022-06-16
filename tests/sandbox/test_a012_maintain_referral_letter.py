@@ -38,7 +38,11 @@ class TestMaintainReferralLetter(SandboxTest):
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/{param}/$ers.maintainReferralLetter"
+        return "FHIR/STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
@@ -51,12 +55,14 @@ class TestMaintainReferralLetter(SandboxTest):
     @pytest.fixture
     def call_endpoint(
         self,
-        call_endpoint_url_with_value_and_request: Callable[[Actor, str, str], Response],
+        call_endpoint_url_with_pathParam_and_request: Callable[
+            [Actor, str, Dict[str, str], Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_endpoint_url_with_value_and_request(
+        return lambda actor, headers={}: call_endpoint_url_with_pathParam_and_request(
             actor,
             "maintainReferralLetter/requests/SingleDocumentReference.json",
-            "000000070000",
+            {"ubrn": "000000070000"},
             headers,
         )
 
@@ -64,7 +70,9 @@ class TestMaintainReferralLetter(SandboxTest):
     @pytest.mark.parametrize("ubrn,requestJson,response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_value_and_request: Callable[[Actor, str, str], Response],
+        call_endpoint_url_with_pathParam_and_request: Callable[
+            [Actor, str, Dict[str, str], Dict[str, str]], Response
+        ],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         ubrn,
@@ -72,8 +80,8 @@ class TestMaintainReferralLetter(SandboxTest):
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_value_and_request(
-            actor, requestJson, ubrn
+        actual_response = call_endpoint_url_with_pathParam_and_request(
+            actor, requestJson, {"ubrn": ubrn}
         )
 
         asserts.assert_status_code(200, actual_response.status_code)

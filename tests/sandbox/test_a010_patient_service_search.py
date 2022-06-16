@@ -46,6 +46,10 @@ class TestPatientServiceSearch(SandboxTest):
         return "FHIR/STU3/HealthcareService/$ers.searchHealthcareServicesForPatient"
 
     @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
+
+    @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
         return TestPatientServiceSearch.authorised_actor_data
 

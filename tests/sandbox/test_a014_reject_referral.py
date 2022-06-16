@@ -11,40 +11,39 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestSendAdviceAndGuidance(SandboxTest):
+class TestRejectReferral(SandboxTest):
     authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
         "SERVICE_PROVIDER_CLINICIAN",
         "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
-
     testdata = [
         (
-            "sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json",
-            "sendAdviceAndGuidanceResponse/responses/RequireFurtherInformation.json",
+            "rejectReferral/requests/BasicExampleIbs.json",
+            "rejectReferral/responses/ExampleResponseIbs.json",
         ),
         (
-            "sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json",
-            "sendAdviceAndGuidanceResponse/responses/ReturnToReferrerWithAdvice.json",
-        ),
-        (
-            "sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json",
-            "sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json",
+            "rejectReferral/requests/BasicExampleDbs.json",
+            "rejectReferral/responses/ExampleResponseDbs.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/CommunicationRequest/000000070000/$ers.sendCommunicationToRequester"
+        return "FHIR/STU3/ReferralRequest/000000070000/$ers.rejectReferral"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestSendAdviceAndGuidance.authorised_actor_data
+        return TestRejectReferral.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestSendAdviceAndGuidance.allowed_business_function_data
+        return TestRejectReferral.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -54,9 +53,7 @@ class TestSendAdviceAndGuidance(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor,
-            "sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json",
-            headers,
+            actor, "rejectReferral/requests/BasicExampleIbs.json", headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -77,4 +74,6 @@ class TestSendAdviceAndGuidance(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(actual_response)
+        asserts.assert_json_response_headers(
+            actual_response, additional={"etag": 'W/"10"',},
+        )

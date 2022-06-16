@@ -11,38 +11,37 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestConvertAdviceAndGuidance(SandboxTest):
-    authorised_actor_data = [Actor.SPC, Actor.SPCA]
+class TestGetAdviceWorklist(SandboxTest):
+    authorised_actor_data = [Actor.SPC, Actor.SPA, Actor.SPCA]
 
     allowed_business_function_data = [
         "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_ADMIN",
         "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
 
     testdata = [
         (
-            "convertAdviceAndGuidanceToReferral/requests/NoAttachments.json",
-            "convertAdviceAndGuidanceToReferral/responses/NoAttachments.json",
-        ),
-        (
-            "convertAdviceAndGuidanceToReferral/requests/WithAttachments.json",
-            "convertAdviceAndGuidanceToReferral/responses/WithAttachments.json",
+            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
+            "retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return (
-            "FHIR/STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater"
-        )
+        return "FHIR/STU3/CommunicationRequest/$ers.fetchworklist"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestConvertAdviceAndGuidance.authorised_actor_data
+        return TestGetAdviceWorklist.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestConvertAdviceAndGuidance.allowed_business_function_data
+        return TestGetAdviceWorklist.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -53,7 +52,7 @@ class TestConvertAdviceAndGuidance(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
-            "convertAdviceAndGuidanceToReferral/requests/NoAttachments.json",
+            "retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json",
             headers,
         )
 
@@ -72,7 +71,7 @@ class TestConvertAdviceAndGuidance(SandboxTest):
         expected_response = load_json(response)
         actual_response = call_endpoint_url_with_request(actor, requestJson)
 
-        asserts.assert_status_code(201, actual_response.status_code)
+        asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(actual_response)

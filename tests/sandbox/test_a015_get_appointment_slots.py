@@ -108,6 +108,10 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
         return "FHIR/STU3/Slot"
 
     @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.GET
+
+    @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
         return TestGetAdviceAndGuidanceConversation.authorised_actor_data
 
@@ -117,10 +121,9 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self,
-        call_get_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_get_endpoint_url_with_query(
+        return lambda actor, headers={}: call_endpoint_url_with_query(
             actor,
             {
                 "schedule.actor:HealthcareService": "12000",
@@ -136,7 +139,7 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
     @pytest.mark.parametrize("params,response, responseCode", testdata)
     def test_success(
         self,
-        call_get_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         params,
@@ -144,7 +147,7 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
         responseCode,
     ):
         expected_response = load_json(response)
-        actual_response = call_get_endpoint_url_with_query(actor, params)
+        actual_response = call_endpoint_url_with_query(actor, params)
 
         asserts.assert_status_code(responseCode, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

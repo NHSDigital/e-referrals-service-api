@@ -26,7 +26,11 @@ class TestRetrieveHealthcareService(SandboxTest):
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/R4/HealthcareService/{param}"
+        return "FHIR/R4/HealthcareService/{id}"
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.GET
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
@@ -38,24 +42,29 @@ class TestRetrieveHealthcareService(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_value: Callable[[Actor, str], Response],
+        self,
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
     ) -> Callable[[Actor], Response]:
-        return lambda actor, headers={}: call_endpoint_url_with_value(
-            actor, "1", headers
+        return lambda actor, headers={}: call_endpoint_url_with_pathParams(
+            actor, {"id": "1"}, headers
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
     @pytest.mark.parametrize("serviceId,response", testdata)
     def test_success(
         self,
-        call_endpoint_url_with_value: Callable[[Actor, str], Response],
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
         serviceId,
         response,
     ):
         expected_response = load_json(response)
-        actual_response = call_endpoint_url_with_value(actor, serviceId)
+        actual_response = call_endpoint_url_with_pathParams(actor, {"id": serviceId})
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

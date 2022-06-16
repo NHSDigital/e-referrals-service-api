@@ -70,6 +70,10 @@ class TestGetReferralWorklist(SandboxTest):
         return "FHIR/STU3/ReferralRequest/$ers.fetchworklist"
 
     @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
+
+    @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
         return TestGetReferralWorklist.authorised_actor_data
 

@@ -11,39 +11,46 @@ from utils import HttpMethod
 
 
 @pytest.mark.sandbox
-class TestRecordTriageOutcome(SandboxTest):
+class TestCancelAppointmentActionLater(SandboxTest):
     authorised_actor_data = [Actor.SPC, Actor.SPCA]
 
     allowed_business_function_data = [
         "SERVICE_PROVIDER_CLINICIAN",
         "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
+
     testdata = [
         (
-            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
-            "recordTriageOutcome/responses/ReturnToReferrerWithAdvice.json",
+            "cancelAppointmentActionLater/requests/MinimalExampleDBS.json",
+            "cancelAppointmentActionLater/responses/MinimalExampleDBS.json",
         ),
         (
-            "recordTriageOutcome/requests/AcceptReferBookLater.json",
-            "recordTriageOutcome/responses/AcceptReferBookLater.json",
+            "cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json",
+            "cancelAppointmentActionLater/responses/PriorityChangeAndWithAttachmentsDBS.json",
         ),
         (
-            "recordTriageOutcome/requests/AttachmentIncluded.json",
-            "recordTriageOutcome/responses/AttachmentIncluded.json",
+            "cancelAppointmentActionLater/requests/MinimalExampleIBS.json",
+            "cancelAppointmentActionLater/responses/MinimalExampleIBS.json",
         ),
     ]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/ReferralRequest/000000070000/$ers.recordReviewOutcome"
+        return (
+            "FHIR/STU3/ReferralRequest/000000070000/$ers.cancelAppointmentActionLater"
+        )
+
+    @pytest.fixture
+    def http_method(self) -> HttpMethod:
+        return HttpMethod.POST
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return TestRecordTriageOutcome.authorised_actor_data
+        return TestCancelAppointmentActionLater.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:
-        return TestRecordTriageOutcome.allowed_business_function_data
+        return TestCancelAppointmentActionLater.allowed_business_function_data
 
     @pytest.fixture
     def call_endpoint(
@@ -54,7 +61,7 @@ class TestRecordTriageOutcome(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
-            "recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json",
+            "cancelAppointmentActionLater/requests/MinimalExampleDBS.json",
             headers,
         )
 
@@ -77,5 +84,5 @@ class TestRecordTriageOutcome(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"10"',},
+            actual_response, additional={"etag": 'W/"11"',},
         )

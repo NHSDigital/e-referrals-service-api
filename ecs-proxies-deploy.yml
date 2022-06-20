@@ -3,4 +3,4 @@ docker_service:
     expose: true
     health_check:
       matcher: "200"
-      path: "/_health"
+      path: "/_ping"

@@ -15,7 +15,7 @@
     "speccy": "^0.11.0"
   },
   "devDependencies": {
-    "apigeetool": "^0.14.2",
+    "apigeetool": "^0.16.1",
     "license-checker": "^25.0.1",
     "minimist": "^1.2.6"
   }

@@ -760,7 +760,7 @@ paths:
         },
         ```
         Each PractitionerRole resource has a `code` field which is an array of codings. 
-        The authorised e-RS Roles for the authenticated user at a particilar Organisation are represented by the `value` fields in the `https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1` code system. 
+        The authorised e-RS Roles for the authenticated user at a particular Organisation are represented by the `value` fields in the `https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1` code system. 
         The `nhsd-ers-business-function` request header value should be the `code` field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. `SERVICE_PROVIDER_CLINICIAN`.
 
         Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system.
@@ -3509,6 +3509,62 @@ paths:
           $ref: 'components/schemas/responses/cancelReferral/502Response.yaml'
         '504':
           $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'   
+
+  /R4/Practitioner:
+    get:
+      security:
+        - bearerAuth: []
+      
+      description: |
+        ## Overview
+        
+        Use this endpoint to determine which e-RS users a `SERVICE_PROVIDER_CLINICIAN_ADMIN` is allowed to work "on-behalf-of".
+
+        Note: In e-RS, `SERVICE_PROVIDER_CLINICIAN_ADMIN` users always act "on-behalf-of" a `SERVICE_PROVIDER_CLINICIAN`. This endpoint specifically helps `SERVICE_PROVIDER_CLINICIAN_ADMIN` identify who they are allowed to log in as.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        To use this endpoint, you must be an authenticated e-RS user and use one of the following e-RS roles depending on the query being invoked:
+
+        | Query                                                                | e-RS Role(s)                      |
+        | -------------------------------------------------------------------- | --------------------------------- |
+        | onBehalfOf                                                           | `SERVICE_PROVIDER_CLINICIAN_ADMIN` |
+
+        ## Use case
+
+        As an authenticated user who has the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role
+
+        I need to know which provider clinical users I am allowed to work “on-behalf-of” at my provider organisation
+
+        So I can log in as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user and complete tasks on behalf of a chosen `SERVICE_PROVIDER_CLINICIAN` user.
+
+        ## Related endpoints
+
+        To perform actions as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user, you must provide one of the returned Practitioner IDs, in the `NHSD-eRS-On-Behalf-Of-User-ID` header parameter, to indicate which `SERVICE_PROVIDER_CLINICIAN` the call is on-behalf-of.
+        
+      summary: A040 - Retrieve e-RS-specific practitioner information
+      operationId: a040-retrieve-practitioner-info
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/queryParameters/OboQuery.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/retrieveOboPractitioners/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/BadRequest.yaml'
+        '401':
+          $ref: 'components/schemas/responses/Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/Forbidden.yaml'
+        '429':
+          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

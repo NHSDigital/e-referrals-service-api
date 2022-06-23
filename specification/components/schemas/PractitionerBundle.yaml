@@ -1,0 +1,138 @@
+title: Bundle resource containing On-Behalf-Of practitioners 
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - type
+  - total
+  - timestamp
+  - link
+properties:
+  id:
+    type: string
+    example: '08acc887-6a7b-4b38-8f50-022e41319efe'
+  resourceType:
+    type: string
+    enum:
+      - Bundle
+    example: 'Bundle'
+  meta:
+    type: object
+    required: 
+      - lastUpdated
+      - profile
+    properties:
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-04-20T12:17:35.128Z'
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
+          example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
+  type:
+    type: string
+    enum:
+      - searchset
+    example: 'searchset'
+  total:
+    type: integer
+    minimum: 0
+    format: int32
+    example: 1
+  timestamp:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'
+  link:
+    type: array
+    minItems: 1 
+    maxItems: 1
+    items:
+      type: object
+      required:
+        - relation
+        - url
+      properties:
+        relation:
+          type: string
+          enum:
+            - self
+          example: 'self'
+        url:
+          type: string
+          example: '_baseUrl_/R4/Practitioner?_query=onBehalfOf'
+  entry:
+    type: array
+    items:
+      type: object
+      required:
+        - fullUrl
+        - resource
+        - search
+      properties:
+        fullUrl:
+          type: string
+          example: 'Practitioner/111111111111'
+        resource:
+          type: object
+          required:
+            - id
+            - meta
+            - resourceType
+            - identifier
+          properties:
+            id:
+              type: string
+              example: '111111111111'
+            resourceType:
+              type: string
+              enum:
+                - Practitioner
+              example: 'Practitioner'
+            meta:
+              type: object
+              required:
+                - lastUpdated
+                - profile
+              properties:
+                lastUpdated:
+                  type: string
+                  format: date-time
+                  example: '2021-04-20T12:17:35.128Z'
+                profile:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                    example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
+            identifier:
+              type: object
+              required:
+                - system
+                - value
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/Id/sds-user-id'
+                  example: 'https://fhir.nhs.uk/Id/sds-user-id'
+                "value":
+                  type: string
+                  example: '111111111111'
+        search:
+          type: object
+          required:
+            - mode
+          properties:
+            mode: 
+              type: string
+              enum:
+                - match
+              example: 'match'
+        

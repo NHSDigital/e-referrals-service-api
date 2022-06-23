@@ -7,7 +7,6 @@ required:
   - type
   - total
   - link
-  - entry
 properties:
   id:
     type: string

@@ -6,6 +6,7 @@ const patientServiceSearch = require('./patientServiceSearch')
 const getCodeSystem = require('./getCodeSystem')
 const retrieveAppointmentSlots = require('./retrieveAppointmentSlots')
 const retrieveBusinessFunctions = require('./retrieveBusinessFunctions')
+const retrieveOboUsers = require('./retrieveOboUsers')
 const uploadFileToDocumentStore = require('./uploadFileToDocumentStore')
 const generatePatientLetter = require('./generatePatientLetter')
 const retrieveAttachment = require('./retrieveAttachment')
@@ -41,6 +42,7 @@ const routes = [].concat(
   getCodeSystem,
   retrieveAppointmentSlots,
   retrieveBusinessFunctions,
+  retrieveOboUsers,
   uploadFileToDocumentStore,
   generatePatientLetter,
   retrieveAttachment,

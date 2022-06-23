@@ -1,0 +1,18 @@
+description: The response body is a `Bundle` that contains `Practitioner` entries which define the [[HYPERLINK_ERS_BUS_FUNCTIONS]] that the user has available at each `Organisation` where they have a role.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../PractitionerBundle.yaml'
+    examples:
+      example-response-body:
+        summary: Example response body
+        value:
+          $ref: '../../../examples/retrieveOboUsers/responses/PractitionerBundle.json'
+

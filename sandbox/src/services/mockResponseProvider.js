@@ -161,6 +161,9 @@ module.exports = {
     return { responsePath: 'retrieveBusinessFunctions/responses/PractitionerRoleBundle.json', responseCode: 200 }
   },
 
+  getExampleResponseForRetrieveOboUsers: function () {
+    return { responsePath: 'retrieveOboUsers/responses/PractitionerBundle.json', responseCode: 200 }
+  },
 
   getExampleResponseForGeneratePatientLetter: function () {
 

@@ -14,7 +14,5 @@
             "relation": "self",
             "url": "_baseUrl_/FHIR/R4/HealthcareService?_id=5,6"
         }
-    ],
-    "entry": [       
     ]
 }

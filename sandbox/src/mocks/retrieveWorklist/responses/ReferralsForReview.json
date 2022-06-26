@@ -121,6 +121,16 @@
                   }
                 ]
               }
+            },
+            {
+              "url": "service",
+              "valueReference": {
+                "identifier": {
+                  "system": "http://fhir.nhs.net/Id/ers-service",
+                  "value": "11012"
+                },
+                "display": "Excellent Cardiology Business Service 12"
+              }
             }
           ],
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"

@@ -13,6 +13,10 @@ properties:
     type: object
     required:
       - identifier
+      - display
     properties:
       identifier:
         $ref: '../../identifiers/ServiceId.yaml'
+      display:
+        type: string
+        example: 'Service Name'

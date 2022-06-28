@@ -1,0 +1,62 @@
+version: 2
+updates:
+    - package-ecosystem: "npm"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      allow:
+          - dependency-type: "all"
+      target-branch: "develop"
+      commit-message:
+          prefix: "npm"
+          include: "scope"
+
+    - package-ecosystem: "npm"
+      directory: "/sandbox"
+      schedule:
+          interval: "daily"
+      allow:
+          -   dependency-type: "all"
+      target-branch: "develop"
+      commit-message:
+          prefix: "sandbox-npm"
+          include: "scope"
+
+    - package-ecosystem: "pip"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      allow:
+          - dependency-type: "all"
+      target-branch: "develop"
+      commit-message:
+          prefix: "pip"
+          include: "scope"
+
+    - package-ecosystem: "docker"
+      directory: "/sandbox"
+      schedule:
+          interval: "daily"
+      allow:
+          - dependency-type: "all"
+      target-branch: "develop"
+      commit-message:
+          prefix: "sandbox-docker"
+          include: "scope"
+
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      allow:
+          - dependency-type: "all"
+      target-branch: "develop"
+      commit-message:
+          prefix: "github-actions"
+          include: "scope"
+
+
+
+
+
+

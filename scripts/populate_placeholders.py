@@ -43,6 +43,7 @@ def main():
         "[[HYPERLINK_A036]]": "[A036 - Cancel referral](#api-Default-a036-cancel-referral)",
         "[[HYPERLINK_A037]]": "[A037 - Retrieve healthcare service version](#api-Default-a037-retrieve-healthcare-service-version)",
         "[[HYPERLINK_A038]]": "[A038 - Retrieve appointment](#api-Default-a038-retrieve-appointment)",
+        "[[HYPERLINK_A040]]": "[A040 - Retrieve e-RS-Specific Practitioner Information](#api-Default-a040-retrieve-practitioner-info)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#api-description__onboarding)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",
         "[[HYPERLINK_BETA]]": "[beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

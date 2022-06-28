@@ -8,3 +8,5 @@ class HttpMethod(Enum):
 
     GET = requests.get
     POST = requests.post
+    PUT = requests.put
+    HEAD = requests.head

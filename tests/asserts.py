@@ -1,5 +1,5 @@
 import json
-from typing import Dict
+from typing import Dict, Iterable
 from pytest_check import check
 from requests import Response
 from data import RenamedHeader
@@ -14,6 +14,28 @@ _generic_headers = {
     "content-encoding": "gzip",
     "connection": "keep-alive",
     "transfer-encoding": "chunked",
+    "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
+    "strict-transport-security": "max-age=864000; includeSubDomains",
+}
+
+_generic_file_headers = {
+    "content-type": "application/pdf",
+    "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
+    "vary": "origin",
+    "cache-control": "no-cache",
+    "accept-ranges": "bytes",
+    "connection": "keep-alive",
+    "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
+    "strict-transport-security": "max-age=864000; includeSubDomains",
+}
+
+_generic_upload_headers = {
+    "content-type": "text/html; charset=utf-8",
+    "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
+    "vary": "origin",
+    "cache-control": "no-cache",
+    "connection": "keep-alive",
+    "content-length": "0",
     "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
     "strict-transport-security": "max-age=864000; includeSubDomains",
 }
@@ -50,20 +72,56 @@ def assert_response(expected: Dict[str, str], actual: Response):
         )
 
 
-def assert_headers(response: Response, additional: Dict[str, str] = {}):
+def assert_file_response(expected: bytes, actual: Response):
+    """Assert that a supplied response is as expected"""
+    with check:
+        assert expected == actual.content, "\n UNEXPECTED RESPONSE: contents differ"
+
+
+def assert_json_response_headers(response: Response, additional: Dict[str, str] = {}):
+    assert_headers(response, _generic_headers, additional)
+
+
+def assert_file_response_headers(response: Response, additional: Dict[str, str] = {}):
+    assert_headers(response, _generic_file_headers, additional)
+
+
+def assert_headers(
+    response: Response,
+    generic_headers: Dict[str, str],
+    additional: Dict[str, str] = {},
+    excluded: Iterable[str] = [],
+):
     """
     Assert that a supplied response containes the expected headers, ignoring casing for header names.
 
     :param additional any additional headers that should be included
 
     """
-    expected_headers = dict(_generic_headers)
-    expected_headers.update(additional)
-    expected_headers = _lower_keys(expected_headers)
 
     actual_headers = _lower_keys(
         dict(filter(_filter_header, response.headers.items(),))
     )
+
+    expected_headers = dict(generic_headers)
+    expected_headers.update(additional)
+    expected_headers = _lower_keys(expected_headers)
+
+    # Content is uncompressed for < 1MB see sandbox/node_modules/@hapi/hapi/lib/compression.js
+
+    if "content-length" in response.headers:
+        content_length_header = int(response.headers["content-length"])
+
+        if (content_length_header is not None) and (content_length_header < 1024):
+            expected_headers.update({"vary": "origin"})
+            expected_headers.update({"content-length": str(content_length_header)})
+            try:
+                del (
+                    expected_headers["transfer-encoding"],
+                    expected_headers["content-encoding"],
+                )
+            except KeyError:
+                pass
 
     with check:
         assert expected_headers == actual_headers, (
@@ -80,6 +138,33 @@ def assert_headers(response: Response, additional: Dict[str, str] = {}):
                 f"Expected header = {header}\n"
                 f"Actual headers = {[header[0] for header in response.headers.items()]}"
             )
+
+
+def assert_upload_response_headers(
+    response: Response, additional: Dict[str, str] = {}, excluded: Iterable[str] = []
+):
+    """
+    Assert that a supplied response containes the expected headers, ignoring casing for header names.
+
+    :param additional any additional headers that should be included
+
+    """
+
+    actual_headers = _lower_keys(
+        dict(filter(_filter_header, response.headers.items(),))
+    )
+
+    expected_headers = dict(_generic_upload_headers)
+    expected_headers.update(additional)
+    expected_headers = _lower_keys(expected_headers)
+
+    with check:
+        assert expected_headers == actual_headers, (
+            "\n UNEXPECTED HEADERS: \n"
+            f"Expected Headers = {expected_headers}\n"
+            f"Actual Headers = {actual_headers}\n"
+            f"Differences = {expected_headers.items() ^ actual_headers.items()}"
+        )
 
 
 def _filter_header(header: str) -> bool:

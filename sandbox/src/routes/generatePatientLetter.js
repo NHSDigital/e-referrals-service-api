@@ -24,7 +24,8 @@ module.exports = [
         if (responsePath && responseCode) {
           return h.file(responsePath, {
             mode: 'attachment',
-            filename: filename
+            filename: filename,
+            etagMethod: false
           }).code(responseCode);
         }
       }

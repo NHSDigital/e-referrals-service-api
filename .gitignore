@@ -20,6 +20,7 @@ __pycache__/
 
 tests/test-report.xml
 tests/functional-test-report.xml
+tests/sandbox-test-report.xml
 .orig
 
 .python-version

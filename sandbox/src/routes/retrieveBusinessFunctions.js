@@ -11,7 +11,7 @@ module.exports = [
 
       const { responsePath, responseCode } = mockResponseProvider.getExampleResponseForRetrieveBusinessFunctions();
       if (responsePath && responseCode) {
-        return h.file(responsePath).code(responseCode).type("application/fhir+json");
+        return h.file(responsePath, { etagMethod: false }).code(responseCode).type("application/fhir+json");
 
       }
 

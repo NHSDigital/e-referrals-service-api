@@ -1,0 +1,1 @@
+A simple test upload file - this is only used by the sandbox integration tests and it not accessible to the 'try it' UI in Bloomreach

@@ -32,7 +32,10 @@ extends:
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
+    manual_approval_env: manual-approval-ptl
     apigee_deployments:
+      - environment: manual-approval
+        stage_name: manual_approval_alpha_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-alpha
         short_service_name: ${{ variables.short_service_name }}-alpha
@@ -46,6 +49,10 @@ extends:
           parameters:
             integration_tests: true
             smoke_tests: true
+        depends_on:
+        - manual_approval_alpha_pr
+      - environment: manual-approval
+        stage_name: manual_approval_ft01_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-fti
         short_service_name: ${{ variables.short_service_name }}-fti
@@ -53,6 +60,16 @@ extends:
         stage_name: ers_ft01_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8443
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+        depends_on:
+        - manual_approval_ft01_pr
+      - environment: manual-approval
+        stage_name: manual_approval_ft04_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-ftiv
         short_service_name: ${{ variables.short_service_name }}-ftiv
@@ -60,6 +77,14 @@ extends:
         stage_name: ers_ft04_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8444
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+        depends_on:
+        - manual_approval_ft04_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-ftv
         short_service_name: ${{ variables.short_service_name }}-ftv
@@ -67,6 +92,14 @@ extends:
         stage_name: ers_ft05_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8445
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+      - environment: manual-approval
+        stage_name: manual_approval_ft09_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-ftix
         short_service_name: ${{ variables.short_service_name }}-ftix
@@ -74,6 +107,16 @@ extends:
         stage_name: ers_ft09_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8446
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+        depends_on:
+        - manual_approval_ft09_pr
+      - environment: manual-approval
+        stage_name: manual_approval_ft22_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-ftxxii
         short_service_name: ${{ variables.short_service_name }}-ftxxii
@@ -81,6 +124,14 @@ extends:
         stage_name: ers_ft22_pr
         jinja_templates:
           ERS_TARGET_SERVER: e-referrals-service-api--ft-8447
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+        depends_on:
+        - manual_approval_ft22_pr
       - environment: internal-dev-sandbox
         proxy_path: sandbox
         post_deploy:

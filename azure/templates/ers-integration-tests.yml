@@ -3,6 +3,7 @@ steps:
   - bash: |
       export APIGEE_API_TOKEN="$(secret.AccessToken)"
       export ERS_TEST_ASID="$(ers-testing-asid)"
+      export ERS_MOCK_ASID="$(ers-mock-asid)"
       export OAUTH_PROXY="oauth2-mock"
       export OAUTH_BASE_URI="https://$(ENVIRONMENT).api.service.nhs.uk"
       export JWT_PRIVATE_KEY_ABSOLUTE_PATH="$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)"

@@ -8,6 +8,8 @@ from api_test_utils.apigee_api_apps import ApigeeApiDeveloperApps
 from api_test_utils.apigee_api_products import ApigeeApiProducts
 from api_test_utils.oauth_helper import OauthHelper
 
+from data import Actor
+
 __JWKS_RESOURCE_URL = "https://raw.githubusercontent.com/NHSDigital/identity-service-jwks/main/jwks/internal-dev/9baed6f4-1361-4a8e-8531-1f8426e3aba8.json"
 
 
@@ -48,15 +50,23 @@ def service_name():
 
 
 @pytest.fixture(scope="session")
-def service_url(environment):
+def service_base_path():
+    return get_env("SERVICE_BASE_PATH")
+
+
+@pytest.fixture(scope="session")
+def service_url(environment, service_base_path):
     if environment == "prod":
         base_url = "https://api.service.nhs.uk"
     else:
         base_url = f"https://{environment}.api.service.nhs.uk"
 
-    service_base_path = get_env("SERVICE_BASE_PATH")
-
     return f"{base_url}/{service_base_path}"
+
+
+@pytest.fixture(scope="session")
+def is_mocked_environment(environment, service_base_path):
+    return environment == "internal-dev" and "ft" in service_base_path
 
 
 @pytest.fixture(scope="session")
@@ -65,8 +75,15 @@ def status_endpoint_api_key():
 
 
 @pytest.fixture(scope="session")
-def asid():
-    return get_env("ERS_TEST_ASID")
+def asid(is_mocked_environment):
+    return (
+        get_env("ERS_MOCK_ASID") if is_mocked_environment else get_env("ERS_TEST_ASID")
+    )
+
+
+@pytest.fixture(scope="session")
+def referring_clinician(is_mocked_environment):
+    return Actor.RC_DEV if is_mocked_environment else Actor.RC
 
 
 @pytest.fixture(scope="session")
@@ -77,13 +94,13 @@ def token_url():
 
 
 @pytest.fixture(scope="session")
-def app_restricted_ods_code():
-    return "RCD"
+def app_restricted_ods_code(is_mocked_environment):
+    return "R68" if is_mocked_environment else "RCD"
 
 
 @pytest.fixture(scope="session")
-def app_restricted_user_id():
-    return "555032000100"
+def app_restricted_user_id(is_mocked_environment):
+    return "000000000101" if is_mocked_environment else "555032000100"
 
 
 @pytest.fixture
@@ -92,6 +109,8 @@ async def user_restricted_product(make_product):
     product = await make_product(
         ["urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api"]
     )
+
+    print(f"product created: {product.name}")
     yield product
 
     # Teardown
@@ -126,6 +145,7 @@ async def user_restricted_app(make_app, user_restricted_product, asid):
     # Setup
     app = await make_app(user_restricted_product, {"asid": asid})
 
+    print(f"App created: {app.name}")
     yield app
 
     # Teardown
@@ -155,12 +175,16 @@ def make_app():
 
 
 @pytest.fixture
-async def user_restricted_access_code(user_restricted_app, actor):
-    token_resp = user_restricted_app.oauth.get_authenticated_with_mock_auth(
-        actor.user_id
-    )
-    print(f"user restricted resp: {token_resp}")
-    return token_resp["access_token"]
+def authenticate_user(user_restricted_app):
+    async def _auth(actor: Actor):
+        print(f"Attempting to authenticate: {actor}")
+        token_resp = user_restricted_app.oauth.get_authenticated_with_mock_auth(
+            actor.user_id
+        )
+        print(f"user restricted resp: {token_resp}")
+        return token_resp["access_token"]
+
+    return _auth
 
 
 @pytest.fixture

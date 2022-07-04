@@ -14,6 +14,7 @@ from utils import HttpMethod
 class TestGetReferralWorklist(SandboxTest):
     authorised_actor_data = [
         Actor.RC,
+        Actor.RC_DEV,
         Actor.RCA,
         Actor.RA,
         Actor.SPC,

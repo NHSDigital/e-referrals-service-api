@@ -12,7 +12,7 @@
   "homepage": "https://github.com/NHSDigital/hello-world-api",
   "main": "app.js",
   "dependencies": {
-    "@hapi/hapi": "^20.2.1",
+    "@hapi/hapi": "^20.2.2",
     "@hapi/inert": "^6.0.5",
     "lodash": "^4.17.20"
   },

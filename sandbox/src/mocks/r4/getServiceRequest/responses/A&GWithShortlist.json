@@ -1,0 +1,88 @@
+{
+    "resourceType": "ServiceRequest",
+    "id": "a.4f32ed10-026e-4d01-984f-df5542673503",
+    "meta": {
+        "versionId": "W/\"2\"",
+        "lastUpdated": "2022-07-05T17:52:20.310Z"
+    },
+    "contained": [
+        {
+            "resourceType": "PractitionerRole",
+            "id": "requester",
+            "practitioner": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                    "value": "921600556514"
+                }
+            },
+            "organization": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "C81007"
+                },
+                "display": "VERNON STREET MEDICAL CTR"
+            }
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ERS-Referral",
+            "extension": [
+                {
+                    "url": "sourceSystem",
+                    "valueCode": "ers"
+                },
+                {
+                    "url": "status",
+                    "valueCode": "open"
+                },
+                {
+                    "url": "priority",
+                    "valueCode": "routine"
+                }
+            ]
+        }
+    ],
+    "identifier": [
+        {
+            "system": "https://fhir.nhs.uk/Id/UBRN",
+            "value": "000000070000"
+        }
+    ],
+    "status": "active",
+    "intent": "order",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "<ers_coding_system>",
+                    "code": "advice",
+                    "display": "Advice Request"
+                }
+            ]
+        }
+    ],
+    "priority": "routine",
+    "subject": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "9999998887"
+        }
+    },
+    "requester": {
+        "reference": "#requester"
+    },
+    "supportingInfo": [
+        {
+            "reference": "Binary/2100592e-2160-4f46-aaa6-1afd64e53c46"
+        },
+        {
+            "reference": "QuestionnaireResponse/be488a3a-e3f9-4002-8637-3c2060c9fbb3"
+        }
+    ],
+    "note": [
+        {
+            "text": "Please can I have some advice."
+        }
+    ]
+}

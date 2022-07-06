@@ -1,0 +1,33 @@
+{
+    "resourceType": "Communication",
+    "basedOn": {
+        "reference": "ServiceRequest/a.4f32ed10-026e-4d01-984f-df5542673503"
+    },
+    "status": "completed",
+    "subject": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "9999998887"
+        }
+    },
+    "sent": "2022-07-06T18:07:24.05Z",
+    "recipient": [
+        {
+            "identifier": {
+                "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                "value": "921600556514"
+            }
+        }
+    ],
+    "sender": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/sds-user-id",
+            "value": "123456789010"
+        }
+    },
+    "payload": [
+        {
+            "contentString": "Please could you give some more details."
+        }
+    ]
+}

@@ -258,10 +258,10 @@ module.exports = {
 
   putExampleResponseForUpdateAppointment: function (request) {
     var responseMap = {
-          'src/mocks/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json': {responsePath: 'updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json', responseCode: 200},
-          'src/mocks/updateAppointment/requests/CancellationReasonAndMandatoryComment.json': {responsePath: 'updateAppointment/responses/CancellationReasonAndMandatoryComment.json', responseCode: 200},
-          'src/mocks/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json': {responsePath: 'updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json', responseCode: 422},
-          'src/mocks/updateAppointment/requests/CancellationInvalidReason.json': {responsePath: 'updateAppointment/responses/CancellationInvalidReason.json', responseCode: 422}
+      'src/mocks/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json': { responsePath: 'updateAppointment/responses/MinimalCancellationReasonOnlyCommentNotMandatory.json', responseCode: 200 },
+      'src/mocks/updateAppointment/requests/CancellationReasonAndMandatoryComment.json': { responsePath: 'updateAppointment/responses/CancellationReasonAndMandatoryComment.json', responseCode: 200 },
+      'src/mocks/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json': { responsePath: 'updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json', responseCode: 422 },
+      'src/mocks/updateAppointment/requests/CancellationInvalidReason.json': { responsePath: 'updateAppointment/responses/CancellationInvalidReason.json', responseCode: 422 }
     }
     return mapExampleResponse(request, responseMap)
   },
@@ -462,7 +462,7 @@ module.exports = {
 
   },
 
- getExampleResponseForGetHealthcareService: function (request) {
+  getExampleResponseForGetHealthcareService: function (request) {
     const version = request.params.version
     const serviceId = request.params.serviceId
 
@@ -505,57 +505,98 @@ module.exports = {
   },
 
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
-      var responseMap = {
-        'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
-      }
+    var responseMap = {
+      'src/mocks/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'changeShortlistAndSendForTriage/responses/MinimalRequest.json'
+    }
 
-      return mapExampleResponse(request, responseMap)
+    return mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForRetrieveAppointment: function (request) {
-      const id = request.params.id;
-      const version = request.params.version
+    const id = request.params.id;
+    const version = request.params.version
 
-      // Scenario 1 - Booked to directly-bookable service
-      if (id === '70000' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
-      }
-
-      // Scenario 2 - Booked to indirectly-bookable service
-      if (id === '70001' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
-      }
-
-      // Scenario 3 - Appointment Deferral
-      if (id === '70002' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/AppointmentDeferral.json', responseCode: 200 }
-      }
-
-      // Scenario 4 -	Triage Deferral
-      if (id === '70003' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/TriageDeferral.json', responseCode: 200 }
-      }
-
-      // Scenario 5 -	Triage Response
-      if (id === '70004' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/TriageResponse.json', responseCode: 200 }
-      }
-
-      // Scenario 6 -	Cancel Appointment Action Later
-      if (id === '70005' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/CAAL.json', responseCode: 200 }
-      }
-
-      // Scenario 7 -	Cancelled
-      if (id === '70006' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
-      }
-
-      // Scenario 8 -	Converted from A and G and Booked to DBS
-      if (id === '70007' && (version === undefined || version === '5')) {
-        return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
-      }
-
-      return {}
+    // Scenario 1 - Booked to directly-bookable service
+    if (id === '70000' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/BookedDBS.json', responseCode: 200 }
     }
+
+    // Scenario 2 - Booked to indirectly-bookable service
+    if (id === '70001' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/BookedIBS.json', responseCode: 200 }
+    }
+
+    // Scenario 3 - Appointment Deferral
+    if (id === '70002' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/AppointmentDeferral.json', responseCode: 200 }
+    }
+
+    // Scenario 4 -	Triage Deferral
+    if (id === '70003' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/TriageDeferral.json', responseCode: 200 }
+    }
+
+    // Scenario 5 -	Triage Response
+    if (id === '70004' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/TriageResponse.json', responseCode: 200 }
+    }
+
+    // Scenario 6 -	Cancel Appointment Action Later
+    if (id === '70005' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/CAAL.json', responseCode: 200 }
+    }
+
+    // Scenario 7 -	Cancelled
+    if (id === '70006' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/Cancelled.json', responseCode: 200 }
+    }
+
+    // Scenario 8 -	Converted from A and G and Booked to DBS
+    if (id === '70007' && (version === undefined || version === '5')) {
+      return { responsePath: 'retrieveAppointment/responses/AandGConvertedToDBS.json', responseCode: 200 }
+    }
+
+    return {}
+  },
+
+  getExampleResponseForCreateServiceRequest: function (request) {
+    const responseMap = {
+      'src/mocks/r4/createServiceRequest/requests/createInitialA&G.json': 'r4/createServiceRequest/responses/createInitialA&G.json'
+    };
+
+    return mapExampleResponse(request, responseMap);
+  },
+
+  getExampleResponseForCreateQuestionnaireResponse: function (request) {
+    const responseMap = {
+      'src/mocks/r4/createQuestionnaireResponse/requests/createA&GShortlist.json': 'r4/createQuestionnaireResponse/responses/createA&GShortlist.json'
+    };
+
+    return mapExampleResponse(request, responseMap);
+  },
+
+  getExampleResponseForGetServiceRequest: function (request) {
+    const id = request.params.id;
+    if (id === 'a.4f32ed10-026e-4d01-984f-df5542673503') {
+      const version = request.params.version;
+      switch (version) {
+        case '1':
+          return { path: 'r4/getServiceRequest/responses/initialA&G.json', version: '1' };
+        case '2':
+        case undefined:
+          return { path: 'r4/getServiceRequest/responses/A&GWithShortlist.json', version: '2' };
+      }
+    }
+
+    return null;
+  },
+
+  getExampleResponseForCreateCommunication: function(request) {
+    const responseMap = {
+      "src/mocks/r4/createCommunication/requests/initialSPCResponse.json": "r4/createCommunication/responses/initialSPCResponse.json",
+      "src/mocks/r4/createCommunication/requests/RCRespondsWithExtraDetails.json": "r4/createCommunication/responses/RCRespondsWithExtraDetails.json"
+    };
+
+    return mapExampleResponse(request, responseMap);
+  }
 }

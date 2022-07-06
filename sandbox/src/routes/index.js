@@ -32,6 +32,10 @@ const changeShortlist = require('./changeShortlist')
 const changeShortlistAndSendForTriage = require('./changeShortlistAndSendForTriage')
 const cancelReferral = require('./cancelReferral')
 const retrieveAppointment = require('./retrieveAppointment')
+const createServiceRequest = require('./r4/createServiceRequest')
+const createQuestionnaireResponse = require('./r4/createQuestionnaireResponse')
+const getServiceRequest = require('./r4/getServiceRequest')
+const createCommunication = require('./r4/createCommunication')
 
 const routes = [].concat(
   getStatus,
@@ -67,7 +71,11 @@ const routes = [].concat(
   availableActionsForUserList,
   cancelAppointmentActionLater,
   cancelReferral,
-  retrieveAppointment
+  retrieveAppointment,
+  createServiceRequest,
+  createQuestionnaireResponse,
+  getServiceRequest,
+  createCommunication
 )
 
 module.exports = routes

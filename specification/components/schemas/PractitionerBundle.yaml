@@ -110,6 +110,8 @@ properties:
                   maxItems: 1
                   items:
                     type: string
+                    enum:
+                      - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
                     example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
             identifier:
               type: object

@@ -598,5 +598,13 @@ module.exports = {
     };
 
     return mapExampleResponse(request, responseMap);
+  },
+
+  getExampleResponseForCreateDocumentReference: function(request) {
+    const responseMap = {
+      'src/mocks/r4/createDocumentReference/requests/initialA&GFile.json': 'r4/createDocumentReference/responses/initialA&GFile.json'
+    };
+
+    return mapExampleResponse(request, responseMap);
   }
 }

@@ -4,6 +4,16 @@
         "reference": "ServiceRequest/a.4f32ed10-026e-4d01-984f-df5542673503"
     },
     "status": "completed",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "<ers_code_system>",
+                    "code": "advice"
+                }
+            ]
+        }
+    ],
     "subject": {
         "identifier": {
             "system": "https://fhir.nhs.uk/Id/nhs-number",

@@ -26,7 +26,7 @@
     ],
     "extension": [
         {
-            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ERS-Referral",
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ERS-Advice",
             "extension": [
                 {
                     "url": "sourceSystem",

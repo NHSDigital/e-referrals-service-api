@@ -1,0 +1,64 @@
+{
+    "contained": [
+        {
+            "resourceType": "PractitionerRole",
+            "id": "author",
+            "practitioner": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                    "value": "921600556514"
+                }
+            },
+            "organization": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "C81007"
+                }
+            }
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ERS-Intended-Service-Request",
+            "valueReference": {
+                "reference": "ServiceRequest/a.4f32ed10-026e-4d01-984f-df5542673503"
+            }
+        }
+    ],
+    "status": "current",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "<eRS File type (referrer, provider, advice)>",
+                    "code": "advice"
+                }
+            ]
+        }
+    ],
+    "subject": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "9999998887"
+        }
+    },
+    "author": [
+        {
+            "reference": "#author"
+        }
+    ],
+    "content": [
+        {
+            "attachment": {
+                "extension": [
+                    {
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-Attachment-State",
+                        "valueCode": "to-be-verified"
+                    }
+                ],
+                "contentType": "plain/txt",
+                "title": "Details.txt"
+            }
+        }
+    ]
+}

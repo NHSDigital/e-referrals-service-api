@@ -10,6 +10,7 @@ updates:
       commit-message:
           prefix: "npm"
           include: "scope"
+      rebase-strategy: "disabled"
 
     - package-ecosystem: "npm"
       directory: "/sandbox"
@@ -21,6 +22,7 @@ updates:
       commit-message:
           prefix: "sandbox-npm"
           include: "scope"
+      rebase-strategy: "disabled"
 
     - package-ecosystem: "pip"
       directory: "/"
@@ -32,6 +34,7 @@ updates:
       commit-message:
           prefix: "pip"
           include: "scope"
+      rebase-strategy: "disabled"
 
     - package-ecosystem: "docker"
       directory: "/sandbox"
@@ -43,6 +46,7 @@ updates:
       commit-message:
           prefix: "sandbox-docker"
           include: "scope"
+      rebase-strategy: "disabled"
 
     - package-ecosystem: "github-actions"
       directory: "/"
@@ -54,6 +58,7 @@ updates:
       commit-message:
           prefix: "github-actions"
           include: "scope"
+      rebase-strategy: "disabled"
 
 
 

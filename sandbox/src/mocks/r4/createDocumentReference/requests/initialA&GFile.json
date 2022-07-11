@@ -1,4 +1,5 @@
 {
+    "resourceType": "DocumentReference",
     "contained": [
         {
             "resourceType": "PractitionerRole",

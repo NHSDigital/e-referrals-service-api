@@ -606,5 +606,15 @@ module.exports = {
     };
 
     return mapExampleResponse(request, responseMap);
+  },
+
+  getExampleResponseForGeneratePresignedUrl: function(request) {
+    const id = request.params.id;
+
+    if (id === '4f32ed10-026e-4d01-984f-df5542673503') {
+      return 'r4/generateUploadUrl/responses/generateUploadUrl.json';
+    }
+
+    return null;
   }
 }

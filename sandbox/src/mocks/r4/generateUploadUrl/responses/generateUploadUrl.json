@@ -1,0 +1,9 @@
+{
+    "resourceType": "parameters",
+    "parameter": [
+        {
+            "name": "uploadUrl",
+            "valueUrl": "<pre-signed url>"
+        }
+    ]
+}

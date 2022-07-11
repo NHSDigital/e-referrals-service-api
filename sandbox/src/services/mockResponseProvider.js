@@ -591,7 +591,7 @@ module.exports = {
     return null;
   },
 
-  getExampleResponseForCreateCommunication: function(request) {
+  getExampleResponseForCreateCommunication: function (request) {
     const responseMap = {
       "src/mocks/r4/createCommunication/requests/initialSPCResponse.json": "r4/createCommunication/responses/initialSPCResponse.json",
       "src/mocks/r4/createCommunication/requests/RCRespondsWithExtraDetails.json": "r4/createCommunication/responses/RCRespondsWithExtraDetails.json"
@@ -600,7 +600,7 @@ module.exports = {
     return mapExampleResponse(request, responseMap);
   },
 
-  getExampleResponseForCreateDocumentReference: function(request) {
+  getExampleResponseForCreateDocumentReference: function (request) {
     const responseMap = {
       'src/mocks/r4/createDocumentReference/requests/initialA&GFile.json': 'r4/createDocumentReference/responses/initialA&GFile.json'
     };
@@ -608,11 +608,24 @@ module.exports = {
     return mapExampleResponse(request, responseMap);
   },
 
-  getExampleResponseForGeneratePresignedUrl: function(request) {
+  getExampleResponseForGeneratePresignedUrl: function (request) {
     const id = request.params.id;
 
     if (id === '4f32ed10-026e-4d01-984f-df5542673503') {
       return 'r4/generateUploadUrl/responses/generateUploadUrl.json';
+    }
+
+    return null;
+  },
+
+  getExampleResponseForSearchForCommunication: function (request) {
+    const basedOn = request.query['based-on'];
+    if (basedOn) {
+      switch (basedOn) {
+        case 'ServiceRequest/a.4f32ed10-026e-4d01-984f-df5542673503':
+        case 'a.4f32ed10-026e-4d01-984f-df5542673503':
+          return 'r4/searchForCommunications/responses/A&GConversation.json';
+      }
     }
 
     return null;

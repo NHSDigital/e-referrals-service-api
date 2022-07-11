@@ -37,6 +37,7 @@ const createQuestionnaireResponse = require('./r4/createQuestionnaireResponse')
 const getServiceRequest = require('./r4/getServiceRequest')
 const createCommunication = require('./r4/createCommunication')
 const createDocumentReference = require('./r4/createDocumentReference')
+const searchForCommunications = require('./r4/searchForCommunications')
 
 const routes = [].concat(
   getStatus,
@@ -77,7 +78,8 @@ const routes = [].concat(
   createQuestionnaireResponse,
   getServiceRequest,
   createCommunication,
-  createDocumentReference
+  createDocumentReference,
+  searchForCommunications
 )
 
 module.exports = routes

@@ -629,5 +629,19 @@ module.exports = {
     }
 
     return null;
+  },
+
+  getExampleResponseForGetCommunication: function (request) {
+    const id = request.params.id;
+    const version = request.params.version;
+
+    if (id === '10486214-fe62-4c00-b56f-f91e5c6c13fa' && (!version || version === '1')) {
+      return 'r4/getCommunication/responses/initialSPCResponse.json';
+    }
+    if (id === 'b6933869-5234-40da-8083-6d65b27057dd' && (!version || version === '1')) {
+      return 'r4/getCommunication/responses/RCRespondsWithExtraDetails.json';
+    }
+
+    return null;
   }
 }

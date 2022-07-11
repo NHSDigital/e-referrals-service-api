@@ -561,7 +561,8 @@ module.exports = {
 
   getExampleResponseForCreateServiceRequest: function (request) {
     const responseMap = {
-      'src/mocks/r4/createServiceRequest/requests/createInitialA&G.json': 'r4/createServiceRequest/responses/createInitialA&G.json'
+      'src/mocks/r4/createServiceRequest/requests/createInitialA&G.json': 'r4/createServiceRequest/responses/createInitialA&G.json',
+      'src/mocks/r4/createServiceRequest/requests/convertToReferral.json': 'r4/createServiceRequest/responses/convertToReferral.json'
     };
 
     return mapExampleResponse(request, responseMap);

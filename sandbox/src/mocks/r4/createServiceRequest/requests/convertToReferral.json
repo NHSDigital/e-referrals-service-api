@@ -1,0 +1,74 @@
+{
+    "resourceType": "ServiceRequest",
+    "contained": [
+        {
+            "resourceType": "PractitionerRole",
+            "id": "requester",
+            "practitioner": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                    "value": "921600556514"
+                }
+            },
+            "organization": {
+                "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "C81007"
+                }
+            }
+        }
+    ],
+    "extension": [
+        {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ERS-Referral",
+            "extension": [
+                {
+                    "url": "sourceSystem",
+                    "valueCode": "ers"
+                },
+                {
+                    "url": "status",
+                    "valueCode": "draft"
+                },
+                {
+                    "url": "priority",
+                    "valueCode": "routine"
+                }
+            ]
+        }
+    ],
+    "identifier": [
+        {
+            "system": "https://fhir.nhs.uk/Id/UBRN",
+            "value": "000000070000"
+        }
+    ],
+    "basedOn": [
+        {
+            "reference": "ServiceRequest/a.4f32ed10-026e-4d01-984f-df5542673503"
+        }
+    ],
+    "status": "draft",
+    "intent": "order",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/Id/UBRN",
+                    "code": "referral",
+                    "display": "Referral Request"
+                }
+            ]
+        }
+    ],
+    "priority": "routine",
+    "subject": {
+        "identifier": {
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "9999998887"
+        }
+    },
+    "requester": {
+        "reference": "#requester"
+    }
+}

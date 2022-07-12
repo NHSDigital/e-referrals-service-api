@@ -28,7 +28,6 @@ class TestUploadAttachment(SandboxTest):
 
     testdata = [
         "text/plain",
-        "text/html",
         "application/pdf",
         "text/xml",
         "text/rtf",

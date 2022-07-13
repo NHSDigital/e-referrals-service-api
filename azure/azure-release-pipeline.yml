@@ -67,6 +67,15 @@ extends:
           smoke_tests: true
       depends_on:
       - manual_approval_rc
+    - environment: internal-dev-sandbox
+      proxy_path: sandbox
+      post_deploy:
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
+          sandbox_tests: true
+      depends_on:
+      - manual_approval_rc
     - environment: manual-approval
       stage_name: manual_approval_fix
     - environment: internal-dev

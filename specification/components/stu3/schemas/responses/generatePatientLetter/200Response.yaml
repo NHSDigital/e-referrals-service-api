@@ -1,8 +1,8 @@
 description: Response contains the binary stream of the generated patient letter.
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Disposition:
     $ref: '../../headers/response/ContentDispositionAttachment.yaml'

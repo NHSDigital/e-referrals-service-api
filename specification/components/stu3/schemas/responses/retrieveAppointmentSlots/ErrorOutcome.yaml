@@ -12,9 +12,9 @@ description: |
   | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed. |
   | SERVICE_UNAVAILABLE                | Indicates that a service is no longer available. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

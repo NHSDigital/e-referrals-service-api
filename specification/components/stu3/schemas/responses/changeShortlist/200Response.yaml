@@ -1,8 +1,8 @@
 description: Referral updated with new service list
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   ETag:
     $ref: '../../headers/response/ETag.yaml'

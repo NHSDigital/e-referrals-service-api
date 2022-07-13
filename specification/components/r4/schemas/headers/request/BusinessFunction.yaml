@@ -1,5 +1,5 @@
 in: header
-name: nhsd-ers-business-function
+name: NHSD-eRS-Business-Function
 description: | 
   The e-RS Business Function of the caller
 required: true

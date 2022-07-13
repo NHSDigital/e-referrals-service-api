@@ -20,9 +20,9 @@ description: |
   | SLOTS_CURRENTLY_AVAILABLE          | There are currently future slots available, so you cannot defer to this Service to book. |
   | THIS_SLOT_IS_AVAILABLE             | Slot is currently available. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

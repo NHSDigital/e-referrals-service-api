@@ -172,6 +172,7 @@ properties:
                       | `clinicalInfoLastUpdated`      | `0..1`      |                                            |
                       | `appointmentStart`             | `0..1`      |                                            |
                       | `allocatedClinician`           | `0..1`      |                                            |
+                      | `service`                      | `1..1`      |                                            |
                     items:
                       anyOf:
                         - title: priority
@@ -393,6 +394,7 @@ properties:
                                 reference:
                                   type: string
                                   example: '#Practitioner-021600556514'
+                        - $ref: './extensions/worklists/Extension-WorklistItem-Service.yaml'
               - title: Extension-eRS-AppointmentSlotIssues-WorkListItem
                 type: object
                 required:
@@ -420,7 +422,7 @@ properties:
                       | `clinicalInformationStatus`    | `0..1`      |                                            |
                       | `reason`                       | `0..1`      |                                            |
                       | `lastContact`                  | `0..1`      |                                            |
-                      | `service`                      | `0..1`      |                                            |
+                      | `service`                      | `1..1`      |                                            |
                     items:
                       anyOf:
                         - $ref: './extensions/worklists/Extension-WorklistItem-Priority.yaml'

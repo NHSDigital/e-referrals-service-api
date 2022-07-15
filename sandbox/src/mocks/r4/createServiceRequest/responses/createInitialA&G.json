@@ -19,8 +19,7 @@
                 "identifier": {
                     "system": "https://fhir.nhs.uk/Id/ods-organization-code",
                     "value": "C81007"
-                },
-                "display": "VERNON STREET MEDICAL CTR"
+                }
             }
         }
     ],
@@ -34,7 +33,7 @@
                 },
                 {
                     "url": "status",
-                    "valueCode": "open"
+                    "valueCode": "draft"
                 },
                 {
                     "url": "priority",
@@ -49,20 +48,27 @@
             "value": "000000070000"
         }
     ],
-    "status": "active",
+    "status": "draft",
     "intent": "order",
     "category": [
         {
             "coding": [
                 {
-                    "system": "<ers_coding_system>",
-                    "code": "advice",
-                    "display": "Advice Request"
+                    "system": "https://fhir.nhs.uk/CodeSystem/message-category-servicerequest",
+                    "code": "request"
                 }
             ]
         }
     ],
     "priority": "routine",
+    "code": {
+        "coding": [
+            {
+                "system": "<to be created>",
+                "code": "advice"
+            }
+        ]
+    },
     "subject": {
         "identifier": {
             "system": "https://fhir.nhs.uk/Id/nhs-number",
@@ -71,15 +77,5 @@
     },
     "requester": {
         "reference": "#requester"
-    },
-    "supportingInfo": [
-        {
-            "reference": "DocumentReference/2100592e-2160-4f46-aaa6-1afd64e53c46"
-        }
-    ],
-    "note": [
-        {
-            "text": "Please can I have some advice."
-        }
-    ]
+    }
 }

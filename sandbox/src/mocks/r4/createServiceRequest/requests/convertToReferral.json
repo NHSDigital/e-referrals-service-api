@@ -54,9 +54,8 @@
         {
             "coding": [
                 {
-                    "system": "https://fhir.nhs.uk/Id/UBRN",
-                    "code": "referral",
-                    "display": "Referral Request"
+                    "system": "https://fhir.nhs.uk/CodeSystem/message-category-servicerequest",
+                    "code": "referral"
                 }
             ]
         }

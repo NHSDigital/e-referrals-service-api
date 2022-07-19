@@ -1,0 +1,25 @@
+name: category
+in: query
+description: |
+  A code that classifies the service for searching, sorting and display purposes.
+  The pattern follows that of a [token](https://www.hl7.org/fhir/search.html#token), with `code` (the SNOMED CT ID) being mandatory and `system` being optional.
+  In this case, the code system will be SNOMED CT (http://snomed.info/sct).
+  - [parameter]=[code]
+  - [parameter]=[system]|[code]
+required: false
+style: form
+explode: false
+schema:
+  type: array
+  items:
+    type: string
+    format: token
+  minItems: 1
+  maxItems: 1
+examples:
+  system_and_ubrn:
+    value: [ 'http://snomed.info/sct|3457005' ]
+    summary: Code system and category code
+  ubrn:
+    value: [ '3457005' ]
+    summary: Category code only

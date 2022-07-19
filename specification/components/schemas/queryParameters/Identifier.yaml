@@ -1,0 +1,25 @@
+name: identifier
+in: query   
+description: |
+  The UBRN which identifies the referral or advice and guidance.
+  The format follows that of a [token](https://www.hl7.org/fhir/search.html#token), with `code` (UBRN) being mandatory and `system` being optional.
+  In this case, the code system will be eRS UBRN (https://fhir.nhs.uk/Id/UBRN).
+  - [parameter]=[code]
+  - [parameter]=[system]|[code]
+required: true
+style: form
+explode: false
+schema:
+  type: array
+  items:
+    type: string
+    format: token
+  minItems: 1
+  maxItems: 1
+examples:
+  system_and_ubrn:
+    value: [ 'https://fhir.nhs.uk/Id/UBRN|000000070000' ]
+    summary: Code system and UBRN
+  ubrn:
+    value: [ '000000070000' ]
+    summary: UBRN only

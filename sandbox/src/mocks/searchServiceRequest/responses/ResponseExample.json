@@ -1,0 +1,98 @@
+{
+    "id": "123e4567-e89b-12d3-a456-426614174002",
+    "resourceType": "Bundle",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
+        ],
+        "lastUpdated": "2022-03-01T10:00:00.42Z"
+    },
+    "timestamp": "2022-04-06T15:42:00.42Z",
+    "link": [
+        {
+            "relation": "self",
+            "url": "_baseUrl_/FHIR/R4/ServiceRequest?identifier=https://fhir.nhs.uk/Id/UBRN%7C000000070000"
+        }
+    ],
+    "total": 1,
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "_baseUrl_/ServiceRequest/r.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+            "resource": {
+                "id": "r.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+                "meta": {
+                    "profile": [
+                        "https://fhir.nhs.uk/StructureDefinition/NHSDigital-ServiceRequest"
+                    ],
+                    "versionId": "5"
+                },
+                "resourceType": "ServiceRequest",
+                "extension":  [
+                    {
+                        "url": "https://fhir.nhs.uk/StructureDefinition/Extension-ServiceRequest-Priority",
+                        "valueCoding": {
+                            "system": "https://fhir.nhs.uk/CodeSystem/eRS-Priority",
+                            "code": "ROUTINE",
+                            "display": "Routine"
+                        }
+                    }
+                ],
+                "contained":  [
+                    {
+                        "resourceType": "PractitionerRole",
+                        "id": "PractitionerRole-R69-000000000101",
+                        "meta": {
+                            "profile": "https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-Minimal"
+                        },
+                        "practitioner": {
+                            "identifier": {
+                                "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                                "value": "000000000101"
+                            }
+                        },
+                        "organization": {
+                            "identifier": {
+                                "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                                "value": "R69"
+                            }
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://fhir.nhs.uk/Id/UBRN",
+                        "value": "000000070000"
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "3457005",
+                                "display": "Patient referral"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "subject": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/nhs-number",
+                        "value": "9912003888"
+                    }
+                },
+                "authoredOn": "2022-01-11T10:00:00.000Z",
+                "requester": {
+                    "reference": "#PractitionerRole-R69-000000000101"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

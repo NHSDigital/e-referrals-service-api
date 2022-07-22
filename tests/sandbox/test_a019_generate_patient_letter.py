@@ -14,7 +14,7 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGeneratePatientLetter(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA]
+    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",

@@ -84,9 +84,16 @@
                     <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
                 </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
-                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
+                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
+                </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
+                    <Name>AssignMessage.SetTruststore</Name>
+                    <!--Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                    <Condition>(isEchoCall != true )</Condition>
+                </Step><Step>
+                    <Name>AssignMessage.SetEchoTruststore</Name>
+                    <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
                     <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
@@ -113,9 +120,16 @@
                     <Name>AssignMessage.Set.x-ers-user-id-header-app-restricted</Name>
                 </Step><Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
-                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
+                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
+                </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
+                    <Name>AssignMessage.SetTruststore</Name>
+                    <!--Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                    <Condition>(isEchoCall != true )</Condition>
+                </Step><Step>
+                    <Name>AssignMessage.SetEchoTruststore</Name>
+                    <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
                     <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
@@ -134,7 +148,7 @@
         </Flow>
     </Flows>
     <HTTPTargetConnection>
-        <SSLInfo>{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <TrustStore>ref://e-referral-service-ca</TrustStore> {% endif %} <Enabled>true</Enabled></SSLInfo>
+        <SSLInfo>{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <TrustStore>{truststore}</TrustStore> {% endif %} <Enabled>true</Enabled></SSLInfo>
         <LoadBalancer>
             <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
         </LoadBalancer>

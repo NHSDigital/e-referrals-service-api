@@ -30,6 +30,7 @@ steps:
      config_ids: []
      secret_ids:
        - ptl/api-deployment/e-referrals-service/ers-testing-asid
+       - ptl/api-deployment/e-referrals-service/ers-mock-asid
 
   # Smoke tests
   - ${{ if parameters.smoke_tests }}:

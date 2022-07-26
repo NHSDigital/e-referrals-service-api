@@ -32,6 +32,7 @@ const changeShortlist = require('./changeShortlist')
 const changeShortlistAndSendForTriage = require('./changeShortlistAndSendForTriage')
 const cancelReferral = require('./cancelReferral')
 const retrieveAppointment = require('./retrieveAppointment')
+const retrieveAdviceAndGuidanceOverviewPdf = require('./retrieveAdviceAndGuidanceOverviewPdf')
 
 const routes = [].concat(
   getStatus,
@@ -67,7 +68,8 @@ const routes = [].concat(
   availableActionsForUserList,
   cancelAppointmentActionLater,
   cancelReferral,
-  retrieveAppointment
+  retrieveAppointment,
+  retrieveAdviceAndGuidanceOverviewPdf
 )
 
 module.exports = routes

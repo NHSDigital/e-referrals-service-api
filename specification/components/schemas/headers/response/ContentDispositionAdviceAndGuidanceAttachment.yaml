@@ -1,0 +1,6 @@
+description: | 
+  The description of the type of content provided.
+required: true
+schema:
+  type: string
+  example: 'attachment; filename="000049146177_Advice_And_Guidance_20220610143044.pdf"'

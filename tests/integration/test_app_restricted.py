@@ -1,6 +1,6 @@
 import pytest
 import requests
-from data import Actor, RenamedHeader
+from data import RenamedHeader
 from asserts import assert_ok_response, assert_error_response
 
 _HEADER_AUTHORIZATION = "Authorization"
@@ -9,28 +9,27 @@ _HEADER_BASE_URL = "x-ers-network-baseurl"
 _HEADER_USER_ID = "x-ers-user-id"
 _HEADER_REQUEST_ID = "x-request-id"
 _HEADER_ASID = "xapi_asid"
-_HEADER_ERS_TRANSACTION_ID = "X_ERS_TRANSACTION_ID"
 
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
-_EXPECTED_ACTOR = Actor.RC
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
 _AUTHORISED_APPLICATION = "AUTHORISED_APPLICATION"
-_EXPECTED_ASID = "280477200122"
 
 
 @pytest.mark.integration_test
 class TestAppRestricted:
-    @pytest.mark.parametrize("actor", [(_EXPECTED_ACTOR)])
-    def test_authorised_application_not_supported_for_user_restricted(
-        self, user_restricted_access_code, service_url, actor
+    @pytest.mark.asyncio
+    async def test_authorised_application_not_supported_for_user_restricted(
+        self, authenticate_user, service_url, referring_clinician
     ):
+        access_code = await authenticate_user(referring_clinician)
+
         # attempt to use AUTHORISED_APPLICATION with an RC
         client_request_headers = {
-            _HEADER_AUTHORIZATION: "Bearer " + user_restricted_access_code,
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
             RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
             RenamedHeader.BUSINESS_FUNCTION.original: _AUTHORISED_APPLICATION,
-            RenamedHeader.ODS_CODE.original: actor.org_code,
+            RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
             _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
         }
 

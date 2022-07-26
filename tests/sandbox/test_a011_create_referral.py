@@ -11,7 +11,7 @@ from requests import Response
 
 @pytest.mark.sandbox
 class TestCreateReferral(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA]
+    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",

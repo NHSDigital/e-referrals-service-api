@@ -1,0 +1,19 @@
+description: Response contains the binary stream of the advice and guidance overview PDF.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Disposition:
+    $ref: '../../headers/response/ContentDispositionAdviceAndGuidanceAttachment.yaml'
+  Content-Length:
+    $ref: '../../headers/response/ContentLength.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeAppPdf.yaml'
+content:
+  application/pdf:
+    schema:
+      type: string
+      format: binary
+
+          

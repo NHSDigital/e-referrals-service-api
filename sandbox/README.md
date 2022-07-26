@@ -33,4 +33,5 @@ Redeploy the API Proxy. See the main [README.md](../README.md).
 - [x] POST    `/STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter`
 - [x] POST    `/STU3/Appointment`
 - [x] POST    `/STU3/ReferralRequest/{ubrn}/$ers.generateCRI`
+- [x] POST    `/STU3/CommunicationRequest/{ubrn}/$ers.generateCRI`
 

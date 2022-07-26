@@ -1,0 +1,7 @@
+<AssignMessage name="AssignMessage.SetEchoTruststore">
+    <AssignVariable>
+        <!-- Setting truststore to be empty to later indicate that Apigee should use its default truststore when calling the echo target. -->
+        <Name>truststore</Name>
+        <Value/>
+    </AssignVariable>
+</AssignMessage>

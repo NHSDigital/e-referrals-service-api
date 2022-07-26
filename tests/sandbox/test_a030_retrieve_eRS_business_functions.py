@@ -17,6 +17,7 @@ class TestRetrieveERSBusinessFunctions(SandboxTest):
         Actor.SPCA,
         Actor.SPA,
         Actor.RC,
+        Actor.RC_DEV,
         Actor.RCA,
         Actor.RA,
     ]

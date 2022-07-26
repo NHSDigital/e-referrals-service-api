@@ -1,6 +1,6 @@
 {
     "id": "c529ff98-6729-4c18-8c3d-2ca1a9960fce",
-    "resourceType": "Bundle",    
+    "resourceType": "Bundle",
     "meta": {
         "lastUpdated": "2021-04-22T16:01:54.628+00:00",
         "profile": [
@@ -24,12 +24,12 @@
                 "resourceType": "Practitioner",
                 "meta": {
                     "lastUpdated": "2021-04-22T16:01:54.628+00:00",
-                    "profile": ["https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"]
+                    "profile": ["https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner"]
                 },
                 "identifier": {
                     "system": "https://fhir.nhs.uk/Id/sds-user-id",
                     "value": "111111111111"
-				}               
+				}
             },
             "search": {
                 "mode": "match"

@@ -1,0 +1,6 @@
+<AssignMessage name="AssignMessage.SetTruststore">
+    <AssignMessage>
+        <Name>truststore</Name>
+        <Value>ref://e-referral-service-ca</Value>
+    </AssignMessage>
+</AssignMessage>

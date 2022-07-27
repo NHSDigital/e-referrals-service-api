@@ -1,5 +1,5 @@
-const mockResponseProvider = require('../services/mockResponseProvider')
-const businessFunctionValidator = require('../services/businessFunctionValidator')
+const mockResponseProvider = require('../../services/mockResponseProvider')
+const businessFunctionValidator = require('../../services/businessFunctionValidator')
 
 module.exports = [
     {

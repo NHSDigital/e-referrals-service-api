@@ -20,8 +20,8 @@ class TestRetrieveHealthcareService(SandboxTest):
     ]
 
     testdata = [
-        ("1", "getService/responses/sampleServiceWithMinimumAttributes.json",),
-        ("2", "getService/responses/sampleServiceWithFullAttributes.json",),
+        ("1", "r4/getService/responses/sampleServiceWithMinimumAttributes.json",),
+        ("2", "r4/getService/responses/sampleServiceWithFullAttributes.json",),
     ]
 
     @pytest.fixture

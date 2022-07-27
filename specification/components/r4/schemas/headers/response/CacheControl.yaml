@@ -1,0 +1,6 @@
+description: | 
+  To specify the caching policies in client requests and server responses
+required: false
+schema:
+  type: string
+  example: 'no-cache'

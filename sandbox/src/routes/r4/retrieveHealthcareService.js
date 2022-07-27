@@ -1,5 +1,5 @@
-const mockResponseProvider = require('../services/mockResponseProvider')
-const businessFunctionValidator = require('../services/businessFunctionValidator')
+const mockResponseProvider = require('../../services/mockResponseProvider')
+const businessFunctionValidator = require('../../services/businessFunctionValidator')
 
 function retrieveHealthcareService(request, h) {
     const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
@@ -21,7 +21,7 @@ function retrieveHealthcareService(request, h) {
         }
     }
 
-    return h.file('NotFoundOutcome.txt').code(404)
+    return h.file('../NotFoundOutcome.txt').code(404)
 }
 
 

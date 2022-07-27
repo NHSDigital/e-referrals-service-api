@@ -41,7 +41,7 @@ properties:
       - identifier
     properties:
       identifier:
-        $ref: 'identifiers/R4_Organisation.yaml'
+        $ref: 'identifiers/STU3_ODS_Organisation.yaml'
   code:
     type: array
     items:

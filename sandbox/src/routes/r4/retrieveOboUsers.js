@@ -1,4 +1,4 @@
-const mockResponseProvider = require('../services/mockResponseProvider')
+const mockResponseProvider = require('../../services/mockResponseProvider')
 
 module.exports = [
     /**

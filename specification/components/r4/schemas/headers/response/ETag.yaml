@@ -1,0 +1,9 @@
+description: | 
+  Record version identifier enclosed in quotes and preceded by 'W/'. For example, `W/"2"`.
+
+  This Weak ETag corresponds to `meta.versionId` attribute in the resource body.
+required: true
+schema:
+  type: string
+  pattern: "^W\/\"[0-9]+\"$"
+  example: W/"2"

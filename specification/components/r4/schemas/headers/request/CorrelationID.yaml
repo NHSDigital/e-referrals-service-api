@@ -1,0 +1,12 @@
+in: header
+name: X-Correlation-Id
+description: | 
+  Arbitrary string value provided by API Consumer
+
+  Tends to be unique, but does not have to be
+
+  Returned, unchanged, in the response
+required: false
+schema:
+  type: string
+  example: '11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA'

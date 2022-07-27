@@ -1,0 +1,13 @@
+type: object
+required:
+  - system
+  - value
+properties:
+  system:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/Id/ods-organization-code'
+    example: 'https://fhir.nhs.uk/Id/ods-organization-code'
+  value:
+    type: string
+    example: 'R69'

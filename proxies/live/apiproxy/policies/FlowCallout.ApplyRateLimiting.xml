@@ -1,0 +1,7 @@
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FlowCallout.ApplyRateLimiting">
+    <DisplayName>Apply Rate Limiting</DisplayName>
+    <SharedFlowBundle>ApplyRateLimiting</SharedFlowBundle>
+    <Parameters>
+        <Parameter name="VerifyApiKey.XApiKey">VerifyApiKey.XApiKey</Parameter>
+    </Parameters>
+</FlowCallout>

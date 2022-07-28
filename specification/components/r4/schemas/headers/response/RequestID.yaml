@@ -1,0 +1,6 @@
+description: | 
+  The e-RS transaction id
+required: false
+schema:
+  type: string
+  example: '58621d65-d5ad-4c3a-959f-0438e355990e-1'

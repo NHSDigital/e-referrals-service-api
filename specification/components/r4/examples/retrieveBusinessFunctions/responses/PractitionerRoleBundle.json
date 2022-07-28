@@ -1,0 +1,113 @@
+{
+  "id": "85ca4b21-c327-47c1-9594-69dfc500ea7c",
+  "meta": {
+    "lastUpdated": "2021-05-24T16:09:32.252Z",
+    "profile": [
+      "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
+    ]
+  },
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 2,
+  "timestamp": "2021-05-24T16:09:32.252Z",
+  "link": [
+    {
+      "relation": "self",
+      "url": "_baseUrl_/R4/PractitionerRole"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "_baseUrl_/R4/PractitionerRole/PractitionerRole-R69-000000000101",
+      "resource": {
+        "id": "PractitionerRole-R69-000000000101",
+        "meta": {
+          "lastUpdated": "2021-05-24T16:09:32.252Z",
+          "profile": [
+            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
+          ]
+        },
+        "resourceType": "PractitionerRole",
+        "practitioner": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/sds-user-id",
+            "value": "000000000101"
+          }
+        },
+        "organization": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value": "R69"
+          }
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+                "code": "SERVICE_DEFINER"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+                "code": "SERVICE_PROVIDER_CLINICIAN"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+                "code": "SERVICE_PROVIDER_ADMIN"
+              }
+            ]
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "_baseUrl_/R4/PractitionerRole/PractitionerRole-R68-000000000101",
+      "resource": {
+        "id": "PractitionerRole-R68-000000000101",
+        "meta": {
+          "lastUpdated": "2021-05-24T16:09:32.252Z",
+          "profile": [
+            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
+          ]
+        },
+        "resourceType": "PractitionerRole",
+        "practitioner": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/sds-user-id",
+            "value": "000000000101"
+          }
+        },
+        "organization": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value": "R68"
+          }
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+                "code": "REFERRING_CLINICIAN"
+              }
+            ]
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

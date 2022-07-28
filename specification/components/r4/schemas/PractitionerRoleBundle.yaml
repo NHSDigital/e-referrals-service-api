@@ -124,14 +124,14 @@ properties:
                 - identifier
               properties:
                 identifier:
-                  $ref: 'identifiers/R4_UserId.yaml'
+                  $ref: 'identifiers/UserId.yaml'
             organization:
               type: object
               required:
                 - identifier
               properties:
                 identifier:
-                  $ref: 'identifiers/R4_Organisation.yaml'
+                  $ref: 'identifiers/Organisation.yaml'
             code:
               type: array
               items:

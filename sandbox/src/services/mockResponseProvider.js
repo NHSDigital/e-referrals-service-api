@@ -158,11 +158,11 @@ module.exports = {
 
   getExampleResponseForRetrieveBusinessFunctions: function () {
 
-    return { responsePath: 'retrieveBusinessFunctions/responses/PractitionerRoleBundle.json', responseCode: 200 }
+    return { responsePath: 'r4/retrieveBusinessFunctions/responses/PractitionerRoleBundle.json', responseCode: 200 }
   },
 
   getExampleResponseForRetrieveOboUsers: function () {
-    return { responsePath: 'retrieveOboUsers/responses/PractitionerBundle.json', responseCode: 200 }
+    return { responsePath: 'r4/retrieveOboUsers/responses/PractitionerBundle.json', responseCode: 200 }
   },
 
   getExampleResponseForGeneratePatientLetter: function () {
@@ -471,11 +471,11 @@ module.exports = {
     const serviceId = request.params.serviceId
 
     if (serviceId == 1 && (!version || version == 1)) {
-      return 'getService/responses/sampleServiceWithMinimumAttributes.json'
+      return 'r4/getService/responses/sampleServiceWithMinimumAttributes.json'
     }
 
     if (serviceId == 2 && (!version || version == 1)) {
-      return 'getService/responses/sampleServiceWithFullAttributes.json'
+      return 'r4/getService/responses/sampleServiceWithFullAttributes.json'
     }
 
     return null
@@ -485,15 +485,15 @@ module.exports = {
     const ids = request.query['_id']
 
     if (ids == ['1', '2']) {
-      return 'searchForServices/responses/searchServiceWithMinmumalAttributes.json'
+      return 'r4/searchForServices/responses/searchServiceWithMinmumalAttributes.json'
     }
 
     if (ids == ['3', '4']) {
-      return 'searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
+      return 'r4/searchForServices/responses/searchServiceWithMaxAndMinlAttributes.json'
     }
 
     if (ids == ['5', '6']) {
-      return 'searchForServices/responses/searchServiceWithEmptyResponse.json'
+      return 'r4/searchForServices/responses/searchServiceWithEmptyResponse.json'
     }
 
     return null

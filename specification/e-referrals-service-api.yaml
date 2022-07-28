@@ -769,21 +769,21 @@ paths:
       summary: A030 - Retrieve e-RS business functions
       operationId: a030-retrieve-business-functions
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveBusinessFunctions/200Response.yaml'
+          $ref: 'components/r4/schemas/responses/retrieveBusinessFunctions/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/r4/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/r4/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/r4/schemas/responses/NotAcceptable.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/r4/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/r4/schemas/responses/InternalServerError.yaml'
   /STU3/Binary:
     post:
       security:
@@ -2709,22 +2709,22 @@ paths:
       summary: A033 - Retrieve healthcare service
       operationId: a033-retrieve-healthcare-service
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/path/ServiceId.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/path/ServiceId.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/getService/200Response.yaml'
+          $ref: 'components/r4/schemas/responses/getService/200Response.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/r4/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/r4/schemas/responses/NotFound.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/r4/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/r4/schemas/responses/InternalServerError.yaml'
     head:
       security:
         - bearerAuth: []
@@ -2828,10 +2828,10 @@ paths:
       summary: A035 - Search for healthcare services
       operationId: a035-search-for-healthcare-services
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
         - in: query
           name: _id
           description: |
@@ -2842,19 +2842,19 @@ paths:
             example: '1,2'
       responses:
         '200':
-          $ref: 'components/schemas/responses/searchForService/200Response.yaml'
+          $ref: 'components/r4/schemas/responses/searchForService/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/searchForService/400Response.yaml'
+          $ref: 'components/r4/schemas/responses/searchForService/400Response.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/r4/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/r4/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/r4/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/r4/schemas/responses/UnsupportedMediaType.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/r4/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
@@ -3550,24 +3550,24 @@ paths:
       summary: A040 - Retrieve e-RS-specific practitioner information
       operationId: a040-retrieve-practitioner-info
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/queryParameters/OboQuery.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/r4/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/r4/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/r4/schemas/queryParameters/OboQuery.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveOboPractitioners/200Response.yaml'
+          $ref: 'components/r4/schemas/responses/retrieveOboPractitioners/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/r4/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/r4/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/r4/schemas/responses/Forbidden.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/r4/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/r4/schemas/responses/InternalServerError.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
       security:

@@ -1,4 +1,4 @@
-const mockResponseProvider = require('../services/mockResponseProvider')
+const mockResponseProvider = require('../../services/mockResponseProvider')
 
 module.exports = [
   /**
@@ -16,7 +16,7 @@ module.exports = [
       }
 
       // this should never happen as we always get a valid response for this endpoint
-      return h.file('SandboxErrorOutcome.json').code(400);
+      return h.file('../SandboxErrorOutcome.json').code(400);
 
 
     }

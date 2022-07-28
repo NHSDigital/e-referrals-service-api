@@ -1,0 +1,10 @@
+in: query
+name: _query
+description: |
+  A mandatory URL parameter where "onBehalfOf" is the name of the query operation.
+required: true
+schema:
+  type: string
+  enum:
+    - onBehalfOf
+  example: onBehalfOf

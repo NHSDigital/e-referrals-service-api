@@ -1,4 +1,4 @@
-const mockResponseProvider = require('../../services/mockResponseProvider')
+const mockResponseProvider = require('./services/mockResponseProvider')
 const businessFunctionValidator = require('../../services/businessFunctionValidator')
 
 function retrieveHealthcareService(request, h) {

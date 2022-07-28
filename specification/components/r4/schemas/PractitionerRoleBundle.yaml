@@ -131,7 +131,7 @@ properties:
                 - identifier
               properties:
                 identifier:
-                  $ref: 'identifiers/Organisation.yaml'
+                  $ref: '../../common/identifiers/Organisation.yaml'
             code:
               type: array
               items:

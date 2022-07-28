@@ -223,7 +223,7 @@ def validate_response_examples():
             path = (
                 "specification/components/r4"
                 if endpoint_dict["path"].startswith("/R4/")
-                else "specification/components"
+                else "specification/components/stu3"
             )
             abspath_example = os.path.join(REPO_ROOT, path, *args)
 

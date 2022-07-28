@@ -289,49 +289,49 @@ paths:
       summary: A011 - Create referral
       operationId: a011-create-referral
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-CreateReferral-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-CreateReferral-Parameters.yaml'
             examples:
               rc-minimum-request-body:
                 summary: Referring Clinician - minimum request body
                 value:
-                  $ref: 'components/examples/createReferral/requests/MinimalRequest.json'
+                  $ref: 'components/stu3/examples/createReferral/requests/MinimalRequest.json'
               rc-request-body-multi-service-shortlist:
                 summary: Referring Clinician - request body using multi-service shortlist
                 value:
-                  $ref: 'components/examples/createReferral/requests/RequestTwentyServices.json'
+                  $ref: 'components/stu3/examples/createReferral/requests/RequestTwentyServices.json'
               create-referral-parameters-twenty-services:
                 summary: Referring Clinician Admin - minimum request body
                 value:
-                  $ref: 'components/examples/createReferral/requests/MinimalRequestWithReferringClinician.json'
+                  $ref: 'components/stu3/examples/createReferral/requests/MinimalRequestWithReferringClinician.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/createReferral/201Response.yaml'
+          $ref: 'components/stu3/schemas/responses/createReferral/201Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+          $ref: 'components/stu3/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
     post:
       security:
@@ -375,45 +375,45 @@ paths:
       summary: A021 - Create referral and send for triage
       operationId: a021-create-referral-request-and-send-for-triage
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-CreateReferralAndSendForTriage-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-CreateReferralAndSendForTriage-Parameters.yaml'
             examples:
               parameters:
                 summary: Referring Clinician creates referral to a Triage service
                 value:
-                  $ref: 'components/examples/createReferralAndSendForTriage/requests/Parameters.json'
+                  $ref: 'components/stu3/examples/createReferralAndSendForTriage/requests/Parameters.json'
               parameters-with-named-clinician:
                 summary: Referring Clinician Admin minimum call
                 value:
-                  $ref: 'components/examples/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json'
+                  $ref: 'components/stu3/examples/createReferralAndSendForTriage/requests/ParametersWithNamedClinician.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/createReferralAndSendForTriage/201Response.yaml'
+          $ref: 'components/stu3/schemas/responses/createReferralAndSendForTriage/201Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/CreateReferralErrorOutcome.yaml'
+          $ref: 'components/stu3/schemas/responses/CreateReferralErrorOutcome.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/HealthcareService/$ers.searchHealthcareServicesForPatient:
     post:
       security:
@@ -446,56 +446,56 @@ paths:
       summary: A010 - Patient service search
       operationId: a010-patient-service-search
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-PatientServiceSearch-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-PatientServiceSearch-Parameters.yaml'
             examples:
               rc-minimal:
                 summary: Referring Clinician minimal search
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/RcMinimal.json'
+                  $ref: 'components/stu3/examples/patientServiceSearch/requests/RcMinimal.json'
               rc-search-by-clinical-term:
                 summary: Referring Clinician search by clinical term
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/RcSearchByClinicalTerm.json'
+                  $ref: 'components/stu3/examples/patientServiceSearch/requests/RcSearchByClinicalTerm.json'
               rc-search-by-named-clinician:
                 summary: Referring Clinician search by named clinician
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/RcSearchByNamedClinician.json'
+                  $ref: 'components/stu3/examples/patientServiceSearch/requests/RcSearchByNamedClinician.json'
               rca-with-iwt:
                 summary: Referring Clinician Admin search
                 value:
-                  $ref: 'components/examples/patientServiceSearch/requests/RcaWithIWT.json'
+                  $ref: 'components/stu3/examples/patientServiceSearch/requests/RcaWithIWT.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/patientServiceSearch/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/patientServiceSearch/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
+          $ref: 'components/stu3/schemas/responses/patientServiceSearch/ErrorOutcome.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/CodeSystem/{codeSystemType}:
     parameters:
-      - $ref: 'components/schemas/path/CodeSystemType.yaml'
+      - $ref: 'components/stu3/schemas/path/CodeSystemType.yaml'
     get:
       security:
         - bearerAuth: []
@@ -568,26 +568,26 @@ paths:
       summary: A004 - Retrieve reference data
       operationId: a004-retrieve-reference-data
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/getCodeSystem/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/getCodeSystem/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/Slot:
     get:
       description: |
@@ -641,33 +641,33 @@ paths:
       summary: A015 - Retrieve appointment slots
       operationId: a015-retrieve-appointment-slots
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/ErsCommRuleOrg.yaml'
-        - $ref: 'components/schemas/queryParameters/ServiceId.yaml'
-        - $ref: 'components/schemas/queryParameters/Priority.yaml'
-        - $ref: 'components/schemas/queryParameters/Status.yaml'
-        - $ref: 'components/schemas/queryParameters/PageSize.yaml'
-        - $ref: 'components/schemas/queryParameters/PageNumber.yaml'
-        - $ref: 'components/schemas/queryParameters/NamedClinician.yaml'
-        - $ref: 'components/schemas/queryParameters/Include.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ErsCommRuleOrg.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/ServiceId.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Priority.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Status.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/PageSize.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/PageNumber.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/NamedClinician.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Include.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAppointmentSlots/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointmentSlots/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/retrieveAppointmentSlots/ErrorOutcome.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointmentSlots/ErrorOutcome.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /R4/PractitionerRole:
     get:
       security:
@@ -844,35 +844,35 @@ paths:
       summary: A020 - Upload file to document store
       operationId: a020-upload-file-to-document-store
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeAttachmentsUpload.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/ErsFileName.yaml'
-        - $ref: 'components/schemas/headers/request/ErsReferralId.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeAttachmentsUpload.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ErsFileName.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ErsReferralId.yaml'
       requestBody:
         required: true
         content:
-          $ref: 'components/schemas/file/FileContentTypeSchemaUpload.yaml'
+          $ref: 'components/stu3/schemas/file/FileContentTypeSchemaUpload.yaml'
       responses:
         '201':
-          $ref: 'components/schemas/responses/uploadFileToDocumentStore/201Response.yaml'
+          $ref: 'components/stu3/schemas/responses/uploadFileToDocumentStore/201Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/uploadFileToDocumentStore/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
     post:
       security:
@@ -903,28 +903,28 @@ paths:
       summary: A019 - Generate patient letter
       operationId: a019-generate-patient-letter
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/generatePatientLetter/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/generatePatientLetter/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/generatePatientLetter/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/generatePatientLetter/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/Binary/{attachmentLogicalID}:
     get:
       security:
@@ -982,29 +982,29 @@ paths:
       summary: A006 - Retrieve attachment
       operationId: a006-retrieve-attachment
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/path/AttachmentLogicalID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/path/AttachmentLogicalID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAttachment/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAttachment/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAttachment/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAttachment/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}:
     get:
       security:
@@ -1097,31 +1097,31 @@ paths:
       summary: A005 - Retrieve referral request
       operationId: a005-retrieve-referral-request
       parameters:
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveReferralRequest/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveReferralRequest/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveReferralRequest/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/_history/{version}:
     get:
       security:
@@ -1165,32 +1165,32 @@ paths:
       summary: A005 - Retrieve referral request (versioned)
       operationId: a005-retrieve-referral-request-versioned
       parameters:
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/path/Version.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/path/Version.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveReferralRequest/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveReferralRequest/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFoundVersioned.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveReferralRequest/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveReferralRequest/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
     post:
       security:
@@ -1275,59 +1275,59 @@ paths:
       summary: A012 - Maintain referral letter
       operationId: a012-maintain-referral-letter
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-MaintainReferralLetter-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-MaintainReferralLetter-Parameters.yaml'
             examples:
               single-file:
                 summary: 1 - Add clinical information (single file)
                 value:
-                  $ref: 'components/examples/maintainReferralLetter/requests/SingleDocumentReference.json'
+                  $ref: 'components/stu3/examples/maintainReferralLetter/requests/SingleDocumentReference.json'
               two-files:
                 summary: 2 - Add clinical information (two files)
                 value:
-                  $ref: 'components/examples/maintainReferralLetter/requests/MultipleDocumentReferences.json'
+                  $ref: 'components/stu3/examples/maintainReferralLetter/requests/MultipleDocumentReferences.json'
               update-files:
                 summary: 3 - Update clinical information (removing one file from example above)
                 value:
-                  $ref: 'components/examples/maintainReferralLetter/requests/UpdateClinicalInfo.json'
+                  $ref: 'components/stu3/examples/maintainReferralLetter/requests/UpdateClinicalInfo.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/maintainReferralLetter/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/maintainReferralLetter/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/maintainReferralLetter/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/maintainReferralLetter/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/Appointment:
     post:
       security:
@@ -1373,63 +1373,63 @@ paths:
       summary: A016 - Book or defer appointment
       operationId: a016-book-or-defer-appointment
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-Appointment.yaml'
+              $ref: 'components/stu3/schemas/eRS-Appointment.yaml'
             examples:
               minimal-booking:
                 summary: Minimum booking
                 value:
-                  $ref: 'components/examples/bookOrDeferAppointment/requests/MinimalBooking.json'
+                  $ref: 'components/stu3/examples/bookOrDeferAppointment/requests/MinimalBooking.json'
               minimal-deferral:
                 summary: Minimum deferral
                 value:
-                  $ref: 'components/examples/bookOrDeferAppointment/requests/MinimalDeferral.json'
+                  $ref: 'components/stu3/examples/bookOrDeferAppointment/requests/MinimalDeferral.json'
               booking-with-named-clinician:
                 summary: Booking with named clinician
                 value:
-                  $ref: 'components/examples/bookOrDeferAppointment/requests/BookingWithNamedClinician.json'
+                  $ref: 'components/stu3/examples/bookOrDeferAppointment/requests/BookingWithNamedClinician.json'
               deferral-with-slot-reference:
                 summary: Deferral with slot reference
                 value:
-                  $ref: 'components/examples/bookOrDeferAppointment/requests/DeferralWithSlotReference.json'
+                  $ref: 'components/stu3/examples/bookOrDeferAppointment/requests/DeferralWithSlotReference.json'
               deferral-booking-attempt-problem:
                 summary: Deferral booking attempt problem
                 value:
-                  $ref: 'components/examples/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json'
+                  $ref: 'components/stu3/examples/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/bookOrDeferAppointment/201Response.yaml'
+          $ref: 'components/stu3/schemas/responses/bookOrDeferAppointment/201Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/bookOrDeferAppointment/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/bookOrDeferAppointment/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
         '502':
-          $ref: 'components/schemas/responses/bookOrDeferAppointment/502Response.yaml'      
+          $ref: 'components/stu3/schemas/responses/bookOrDeferAppointment/502Response.yaml'      
         '504':
-          $ref: 'components/schemas/responses/bookOrDeferAppointment/504Response.yaml'
+          $ref: 'components/stu3/schemas/responses/bookOrDeferAppointment/504Response.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.generateCRI:
     post:
       security:
@@ -1482,29 +1482,29 @@ paths:
       summary: A007 - Retrieve clinical information
       operationId: a007-retrieve-clinical-information
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCodeOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveClinicalInformation/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveClinicalInformation/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveClinicalInformation/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveClinicalInformation/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/$ers.fetchworklist:
     post:
       security:
@@ -1599,70 +1599,70 @@ paths:
       summary: A008 - Retrieve referral worklist
       operationId: a008-retrieve-worklist
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-FetchWorklist-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-FetchWorklist-Parameters.yaml'
             examples:
               referrals-for-review:
                 summary: Referrals for review
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalReferralsForReview.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalReferralsForReview.json'
               appointment-slot-issues:
                 summary: Appointment slot issues
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json'
               filtered-by-specialty:
                 summary: Filter by specialty
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/FilteringBySpecialty.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/FilteringBySpecialty.json'
               filtered-by-clinician:
                 summary: Filter by clinician
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/FilteringByClinician.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/FilteringByClinician.json'
               rejected-triage-responses:
                 summary: Rejected Triage Responses
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalRejectedTriageResponse.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalRejectedTriageResponse.json'
               assessment-returned-cancelled-dna:
                 summary: Assessment Returned Cancelled DNA
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json'
               awaiting-booking:
                 summary: Awaiting Booking
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalAwaitingBooking.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalAwaitingBooking.json'
               letters-outstanding:
                 summary: Letters Outstanding
                 value:
-                  $ref: 'components/examples/retrieveWorklist/requests/MinimalLettersOutstanding.json'
+                  $ref: 'components/stu3/examples/retrieveWorklist/requests/MinimalLettersOutstanding.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveWorklist/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveWorklist/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveWorklist/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveWorklist/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'      
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'      
   /STU3/CommunicationRequest/$ers.fetchworklist:
     post:
       security:
@@ -1709,42 +1709,42 @@ paths:
       summary: A023 - Retrieve advice and guidance requests worklist
       operationId: a023-retrieve-a&g-worklist
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-FetchWorklist-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-FetchWorklist-Parameters.yaml'
             examples:
               a&g-requests:
                 summary: Advice and guidance requests
                 value:
-                  $ref: 'components/examples/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json'
+                  $ref: 'components/stu3/examples/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceWorklist/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceWorklist/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/CommunicationRequest/{ubrn}:
     get:
       security:
@@ -1803,31 +1803,31 @@ paths:
       summary: A024 - Retrieve advice and guidance request summary
       operationId: a024-retrieve-advice-and-guidance
       parameters:
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/CommunicationRequest/{ubrn}/_history/{version}:
     get:
       security:
@@ -1865,32 +1865,32 @@ paths:
       summary: A024 - Retrieve advice and guidance request summary (versioned)
       operationId: a024-retrieve-advice-and-guidance-versioned
       parameters:
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/path/Version.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/path/Version.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceRequest/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFoundVersioned.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceRequest/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/Communication:
     get:
       security:
@@ -1954,30 +1954,30 @@ paths:
       summary: A025 - Retrieve advice and guidance conversation
       operationId: a025-retrieve-advice-and-guidance-conversation
       parameters:
-        - $ref: 'components/schemas/queryParameters/BasedOn.yaml'
-        - $ref: 'components/schemas/queryParameters/Include-Communication.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/BasedOn.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Include-Communication.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFoundVersioned.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFoundVersioned.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/CommunicationRequest/{ubrn}/$ers.sendCommunicationToRequester:
     post:
       security:
@@ -2026,58 +2026,58 @@ paths:
       summary: A026 - Send advice and guidance response
       operationId: a026-send-a&g-response
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-SendCommunicationToRequester-Request-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-SendCommunicationToRequester-Request-Parameters.yaml'
             examples:
               require-further-information:
                 summary: Require further information
                 value:
-                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json'
+                  $ref: 'components/stu3/examples/sendAdviceAndGuidanceResponse/requests/RequireFurtherInformation.json'
               return-to-referrer-with-advice:
                 summary: Return to referrer with advice
                 value:
-                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json'
+                  $ref: 'components/stu3/examples/sendAdviceAndGuidanceResponse/requests/ReturnToReferrerWithAdvice.json'
               attachment-included:
                 summary: Attachment included
                 value:
-                  $ref: 'components/examples/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json'
+                  $ref: 'components/stu3/examples/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/sendAdviceAndGuidanceResponse/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/sendAdviceAndGuidanceResponse/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater:
     post:
       security:
@@ -2139,52 +2139,52 @@ paths:
       summary: A027 - Convert advice and guidance request to referral
       operationId: a027-convert-a&g-to-referral
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters.yaml'
             examples:
               no-attachments:
                 summary: No attachments
                 value:
-                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json'
+                  $ref: 'components/stu3/examples/convertAdviceAndGuidanceToReferral/requests/NoAttachments.json'
               with-attachments:
                 summary: With attachments
                 value:
-                  $ref: 'components/examples/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json'
+                  $ref: 'components/stu3/examples/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json'
       responses:
         '201':
-          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/201Response.yaml'
+          $ref: 'components/stu3/schemas/responses/convertAdviceAndGuidanceToReferral/201Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/convertAdviceAndGuidanceToReferral/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/convertAdviceAndGuidanceToReferral/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/ReferralRequest/{ubrn}/$ers.recordReviewOutcome:
     post:
       security:
@@ -2254,57 +2254,57 @@ paths:
       summary: A028 - Record triage outcome
       operationId: a028-record-triage-outcome
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-RecordReviewOutcome-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-RecordReviewOutcome-Parameters.yaml'
             examples:
               return-to-referrer-with-advice:
                 summary: Return to referrer with advice
                 value:
-                  $ref: 'components/examples/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json'
+                  $ref: 'components/stu3/examples/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json'
               accept-refer-book-later:
                 summary: Accept refer book later
                 value:
-                  $ref: 'components/examples/recordTriageOutcome/requests/AcceptReferBookLater.json'
+                  $ref: 'components/stu3/examples/recordTriageOutcome/requests/AcceptReferBookLater.json'
               attachment-included:
                 summary: Attachment included
                 value:
-                  $ref: 'components/examples/recordTriageOutcome/requests/AttachmentIncluded.json'
+                  $ref: 'components/stu3/examples/recordTriageOutcome/requests/AttachmentIncluded.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/recordTriageOutcome/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/recordTriageOutcome/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/recordTriageOutcome/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/recordTriageOutcome/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
     post:
       security:
@@ -2340,38 +2340,38 @@ paths:
       summary: A013 - Accept referral
       operationId: a013-accept-referral
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/acceptReferral/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/acceptReferral/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '422':
-          $ref: 'components/schemas/responses/acceptReferral/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/acceptReferral/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'   
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'   
   /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
     post:
       security:
@@ -2417,58 +2417,58 @@ paths:
       summary: A014 - Reject referral
       operationId: a014-reject-referral
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-RejectReferral-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-RejectReferral-Parameters.yaml'
             examples:
               basic-example-ibs:
                 summary: Basic example for IBS
                 value:
-                  $ref: 'components/examples/rejectReferral/requests/BasicExampleIbs.json'
+                  $ref: 'components/stu3/examples/rejectReferral/requests/BasicExampleIbs.json'
               basic-example-dbs:
                 summary: Basic example for DBS
                 value:
-                  $ref: 'components/examples/rejectReferral/requests/BasicExampleDbs.json'
+                  $ref: 'components/stu3/examples/rejectReferral/requests/BasicExampleDbs.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/rejectReferral/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/rejectReferral/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/rejectReferral/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/rejectReferral/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml' 
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml' 
         '504':
-          $ref: 'components/schemas/responses/rejectReferral/504Response.yaml'  
+          $ref: 'components/stu3/schemas/responses/rejectReferral/504Response.yaml'  
   /STU3/Task:
     get:
       security:
@@ -2536,29 +2536,29 @@ paths:
       summary: A029 - Available actions for user list
       operationId: a029-available-actions-for-user-list
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/queryParameters/Focus.yaml'
-        - $ref: 'components/schemas/queryParameters/Intent.yaml'
-        - $ref: 'components/schemas/queryParameters/TaskStatus.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Focus.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/Intent.yaml'
+        - $ref: 'components/stu3/schemas/queryParameters/TaskStatus.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/availableActionsForUserList/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/availableActionsForUserList/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/availableActionsForUserList/400Response.yaml'
+          $ref: 'components/stu3/schemas/responses/availableActionsForUserList/400Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'  
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'  
   /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
     post:
       security:
@@ -2611,60 +2611,60 @@ paths:
       summary: A022 - Cancel appointment, action later
       operationId: a022-cancel-appointment-action-later
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-cancelAppointmentActionLater-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-cancelAppointmentActionLater-Parameters.yaml'
             examples:
               basic-example-dbs:
                 summary: Basic example for DBS
                 value:
-                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleDBS.json'
+                  $ref: 'components/stu3/examples/cancelAppointmentActionLater/requests/MinimalExampleDBS.json'
               example-priority-change-and-attachments:
                 summary: Example for priority change and attachments
                 value:
-                  $ref: 'components/examples/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json'
+                  $ref: 'components/stu3/examples/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json'
               basic-example-ibs:
                 summary: Basic example for IBS
                 value:
-                  $ref: 'components/examples/cancelAppointmentActionLater/requests/MinimalExampleIBS.json'
+                  $ref: 'components/stu3/examples/cancelAppointmentActionLater/requests/MinimalExampleIBS.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/cancelAppointmentActionLater/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/cancelAppointmentActionLater/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/cancelAppointmentActionLater/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/cancelAppointmentActionLater/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml' 
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml' 
   /R4/HealthcareService/{id}:
     get:
       security:
@@ -2767,22 +2767,22 @@ paths:
       summary: A037 - Retrieve healthcare service version
       operationId: a037-retrieve-healthcare-service-version
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/path/ServiceId.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/path/ServiceId.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveServiceVersion/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveServiceVersion/200Response.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /R4/HealthcareService:
     get:
       security:
@@ -2856,7 +2856,7 @@ paths:
         '429':
           $ref: 'components/r4/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
     post:
       security:
@@ -2909,55 +2909,55 @@ paths:
       summary: A031 - Change shortlist
       operationId: a031-change-shortlist
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-ChangeShortlist-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-ChangeShortlist-Parameters.yaml'
             examples:
               unbookedReferralRequest:
                 summary: Unbooked ReferralRequest
                 description: Changing the shortlist of an unbooked `ReferralRequest` (single service shortlist)
                 value:
-                  $ref: 'components/examples/changeShortlist/requests/UnbookedReferral.json'
+                  $ref: 'components/stu3/examples/changeShortlist/requests/UnbookedReferral.json'
               unbookedReferralRequestMultipleServices:
                 summary: Unbooked ReferralRequest with Multiple Services
                 description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
                 value:
-                  $ref: 'components/examples/changeShortlist/requests/UnbookedReferralMultipleServices.json'
+                  $ref: 'components/stu3/examples/changeShortlist/requests/UnbookedReferralMultipleServices.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/changeShortlist/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/changeShortlist/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/changeShortlist/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/changeShortlist/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlistAndSendForTriage:
     post:
       security:
@@ -3009,50 +3009,50 @@ paths:
       summary: A032 - Change shortlist and send for triage
       operationId: a032-change-shortlist-and-send-for-triage
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-ChangeShortlistAndSendForTriage-Request-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-ChangeShortlistAndSendForTriage-Request-Parameters.yaml'
             examples:
               parameters:
                 summary: Unbooked ReferralRequest
                 description: Changing the service list of an unbooked `ReferralRequest` and sending to Triage
                 value:
-                  $ref: 'components/examples/changeShortlistAndSendForTriage/requests/MinimalRequest.json'
+                  $ref: 'components/stu3/examples/changeShortlistAndSendForTriage/requests/MinimalRequest.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/changeShortlistAndSendForTriage/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/changeShortlistAndSendForTriage/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/changeShortlist/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/changeShortlist/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/Appointment/{id}:
     put:
       security:
@@ -3109,65 +3109,65 @@ paths:
       summary: A034 - Update appointment
       operationId: a034-update-appointment
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/AppointmentId.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/AppointmentId.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-Appointment.yaml'
+              $ref: 'components/stu3/schemas/eRS-Appointment.yaml'
             examples:
               minimal-cancellation-reason-only:
                 summary: Minimal Cancellation - Only Reason Provided (when a cancellation comment is not mandatory)
                 value:
-                  $ref: 'components/examples/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json'
+                  $ref: 'components/stu3/examples/updateAppointment/requests/MinimalCancellationReasonOnlyCommentNotMandatory.json'
               cancellation-reason-and-comment:
                 summary: Reason and Comment Provided
                 value:
-                  $ref: 'components/examples/updateAppointment/requests/CancellationReasonAndMandatoryComment.json'
+                  $ref: 'components/stu3/examples/updateAppointment/requests/CancellationReasonAndMandatoryComment.json'
               cancellation-reason-only-comment-mandatory:
                 summary: Only Reason Provided (when a cancellation comment is mandatory)
                 value:
-                  $ref: 'components/examples/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json'
+                  $ref: 'components/stu3/examples/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json'
               unauthorised-cancellation-reason:
                 summary: Unauthorised Cancellation Reason
                 value:
-                  $ref: 'components/examples/updateAppointment/requests/CancellationInvalidReason.json'
+                  $ref: 'components/stu3/examples/updateAppointment/requests/CancellationInvalidReason.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/updateAppointment/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/updateAppointment/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/updateAppointment/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/updateAppointment/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
         '502':
-          $ref: 'components/schemas/responses/updateAppointment/502Response.yaml'
+          $ref: 'components/stu3/schemas/responses/updateAppointment/502Response.yaml'
         '504':
-          $ref: 'components/schemas/responses/updateAppointment/504Response.yaml'
+          $ref: 'components/stu3/schemas/responses/updateAppointment/504Response.yaml'
     get:
       security:
         - bearerAuth: []
@@ -3257,31 +3257,31 @@ paths:
       summary: A038 - Retrieve appointment
       operationId: a038-retrieve-appointment
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/AppointmentId.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/AppointmentId.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAppointment/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointment/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAppointment/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointment/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/Appointment/{id}/_history/{version}:
     get:
       security:
@@ -3326,32 +3326,32 @@ paths:
       summary: A038 - Retrieve appointment (versioned)
       operationId: a038-retrieve-appointment-versioned
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/AppointmentId.yaml'
-        - $ref: 'components/schemas/path/Version.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/AppointmentId.yaml'
+        - $ref: 'components/stu3/schemas/path/Version.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAppointment/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointment/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAppointment/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAppointment/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.cancelReferral:
     post:
       security:
@@ -3444,75 +3444,75 @@ paths:
       summary: A036 - Cancel referral
       operationId: a036-cancel-referral
       parameters:
-        - $ref: 'components/schemas/headers/request/ContentTypeFhirJson.yaml'
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/Ubrn.yaml'
-        - $ref: 'components/schemas/headers/request/IfMatch.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/ContentTypeFhirJson.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/Ubrn.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/IfMatch.yaml'
       requestBody:
         required: true
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/eRS-CancelReferral-Request-Parameters.yaml'
+              $ref: 'components/stu3/schemas/eRS-CancelReferral-Request-Parameters.yaml'
             examples:
               cancel-referral-without-comment:
                 summary: Reason for Cancellation without Comment (Comment Not Mandatory)
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithoutComment.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/IntendPrivateWithoutComment.json'
               cancel-referral-patient-cancellation:
                 summary: Reason for Cancellation with Comment (Comment Mandatory)
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/PatientRequestCancellationOther.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/PatientRequestCancellationOther.json'
               cancel-referral-raised-in-error:
                 summary: Cancelled Referral
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/RaisedInError.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/RaisedInError.json'
               cancel-referral-referrer-cancellation:
                 summary: Cancelled Appointment and Referral
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/ReferrerCancellation.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/ReferrerCancellation.json'
               cancel-referral-no-longer-required:
                 summary: Cancelled Referral After Prior Appointment Cancellation
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/NoLongerRequired.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/NoLongerRequired.json'
               cancel-referral-with-reason-and-comment:
                 summary: Cancelled Referral with Existing Review Outcome
                 value:
-                  $ref: 'components/examples/cancelReferral/requests/IntendPrivateWithComment.json'
+                  $ref: 'components/stu3/examples/cancelReferral/requests/IntendPrivateWithComment.json'
       responses:
         '200':
-          $ref: 'components/schemas/responses/cancelReferral/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/cancelReferral/200Response.yaml'
         '400':
-          $ref: 'components/schemas/responses/BadRequest.yaml'
+          $ref: 'components/stu3/schemas/responses/BadRequest.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '409':
-          $ref: 'components/schemas/responses/Conflict.yaml'
+          $ref: 'components/stu3/schemas/responses/Conflict.yaml'
         '412':
-          $ref: 'components/schemas/responses/PreconditionFailed.yaml'
+          $ref: 'components/stu3/schemas/responses/PreconditionFailed.yaml'
         '415':
-          $ref: 'components/schemas/responses/UnsupportedMediaType.yaml'
+          $ref: 'components/stu3/schemas/responses/UnsupportedMediaType.yaml'
         '422':
-          $ref: 'components/schemas/responses/cancelReferral/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/cancelReferral/422Response.yaml'
         '423':
-          $ref: 'components/schemas/responses/Locked.yaml'
+          $ref: 'components/stu3/schemas/responses/Locked.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
         '502':
-          $ref: 'components/schemas/responses/cancelReferral/502Response.yaml'
+          $ref: 'components/stu3/schemas/responses/cancelReferral/502Response.yaml'
         '504':
-          $ref: 'components/schemas/responses/cancelReferral/504Response.yaml'   
+          $ref: 'components/stu3/schemas/responses/cancelReferral/504Response.yaml'   
   /R4/Practitioner:
     get:
       security:
@@ -3622,29 +3622,29 @@ paths:
       summary: A043 - Retrieve advice and guidance overview PDF
       operationId: a043-retrieve-advice-and-guidance-overview-pdf
       parameters:
-        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
-        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
-        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
-        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
-        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
-        - $ref: 'components/schemas/path/UbrnAdviceAndGuidance.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/stu3/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/stu3/schemas/path/UbrnAdviceAndGuidance.yaml'
       responses:
         '200':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceOverviewPdf/200Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceOverviewPdf/200Response.yaml'
         '401':
-          $ref: 'components/schemas/responses/Unauthorized.yaml'
+          $ref: 'components/stu3/schemas/responses/Unauthorized.yaml'
         '403':
-          $ref: 'components/schemas/responses/Forbidden.yaml'
+          $ref: 'components/stu3/schemas/responses/Forbidden.yaml'
         '404':
-          $ref: 'components/schemas/responses/NotFound.yaml'
+          $ref: 'components/stu3/schemas/responses/NotFound.yaml'
         '406':
-          $ref: 'components/schemas/responses/NotAcceptable.yaml'
+          $ref: 'components/stu3/schemas/responses/NotAcceptable.yaml'
         '422':
-          $ref: 'components/schemas/responses/retrieveAdviceAndGuidanceOverviewPdf/422Response.yaml'
+          $ref: 'components/stu3/schemas/responses/retrieveAdviceAndGuidanceOverviewPdf/422Response.yaml'
         '429':
-          $ref: 'components/schemas/responses/TooManyRequests.yaml'
+          $ref: 'components/stu3/schemas/responses/TooManyRequests.yaml'
         '500':
-          $ref: 'components/schemas/responses/InternalServerError.yaml'
+          $ref: 'components/stu3/schemas/responses/InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

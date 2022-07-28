@@ -1,0 +1,67 @@
+title: CareConnect-PractitionerRole
+description: 'The PractitionerRole resource represents a specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a period of time.'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - practitioner
+  - organization
+properties:
+  id:
+    type: string
+    example: 'PractitionerRole-R69-000000000101'
+  meta:
+    type: object
+    required: 
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1'
+          example: 'https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1'
+  resourceType:
+    type: string
+    enum:
+      - PractitionerRole
+    example: 'PractitionerRole'
+  practitioner:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: 'identifiers/STU3_UserId.yaml'
+  organization:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: '../../common/identifiers/Organisation.yaml'
+  code:
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum: 
+                  - https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1
+                example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1'
+              code:
+                type: string
+                example: 'REFERRING_CLINICIAN'

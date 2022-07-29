@@ -43,6 +43,7 @@ def main():
         "[[HYPERLINK_A036]]": "[A036 - Cancel referral](#api-Default-a036-cancel-referral)",
         "[[HYPERLINK_A037]]": "[A037 - Retrieve healthcare service version](#api-Default-a037-retrieve-healthcare-service-version)",
         "[[HYPERLINK_A038]]": "[A038 - Retrieve appointment](#api-Default-a038-retrieve-appointment)",
+        "[[HYPERLINK_A039]]": "[A039 - Request pre-signed URL to upload file to document store](#api-Default-a039-request-pre-signed-url-for-file-upload)",
         "[[HYPERLINK_A040]]": "[A040 - Retrieve e-RS-Specific Practitioner Information](#api-Default-a040-retrieve-practitioner-info)",
         "[[HYPERLINK_A041]]": "[A041 - Search service request](#api-Default-a041-search-service-request)",
         "[[HYPERLINK_A043]]": "[A043 - Retrieve advice and guidance overview PDF](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf)",

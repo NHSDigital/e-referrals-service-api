@@ -1,0 +1,13 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "uploadUri",
+            "valueUri": "<preSignedUri>"
+        },
+        {
+            "name": "reference",
+            "valueUri": "/Binary/ce2fbda9-7c18-46ab-ae04-5b08df61e0d4"
+        }
+    ]
+}

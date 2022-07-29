@@ -1,0 +1,30 @@
+security:
+  - bearerAuth: []
+description: |
+  ### TODO Add later
+summary: A039 - Request pre-signed URL to upload file to document store
+operationId: a039-request-pre-signed-url-for-file-upload
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../pathParameters/ServiceRequestId.yaml'
+responses:
+  '200':
+    $ref: '../responses/requestUploadUri/200Response.yaml'
+  '400':
+    $ref: '../responses/requestUploadUri/400Response.yaml'
+  '401':
+    $ref: '../responses/R4-Unauthorized.yaml'
+  '403':
+    $ref: '../responses/R4-Forbidden.yaml'
+  '404':
+    $ref: '../responses/R4-NotFound.yaml'
+  '406':
+    $ref: '../responses/R4-NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/R4-TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/R4-InternalServerError.yaml'

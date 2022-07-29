@@ -3645,6 +3645,38 @@ paths:
           $ref: 'components/schemas/responses/TooManyRequests.yaml'
         '500':
           $ref: 'components/schemas/responses/InternalServerError.yaml'
+  /R4/ServiceRequest/{id}/$ers.generateUploadURI:
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        ### TODO Add later
+      summary: A039 - Request Pre-Signed URL for Large File Upload
+      operationId: a039-request-pre-signed-url-for-large-file-upload
+      parameters:
+        - $ref: 'components/schemas/headers/request/BearerAuthorization.yaml'
+        - $ref: 'components/schemas/headers/request/BusinessFunction.yaml'
+        - $ref: 'components/schemas/headers/request/CorrelationID.yaml'
+        - $ref: 'components/schemas/headers/request/OdsCode.yaml'
+        - $ref: 'components/schemas/headers/request/OnBehalfOfUserID.yaml'
+        - $ref: 'components/schemas/path/ServiceRequestId.yaml'
+      responses:
+        '200':
+          $ref: 'components/schemas/responses/requestUploadUri/200Response.yaml'
+        '400':
+          $ref: 'components/schemas/responses/requestUploadUri/400Response.yaml'
+        '401':
+          $ref: 'components/schemas/responses/R4-Unauthorized.yaml'
+        '403':
+          $ref: 'components/schemas/responses/R4-Forbidden.yaml'
+        '404':
+          $ref: 'components/schemas/responses/R4-NotFound.yaml'
+        '406':
+          $ref: 'components/schemas/responses/R4-NotAcceptable.yaml'
+        '429':
+          $ref: 'components/schemas/responses/R4-TooManyRequests.yaml'
+        '500':
+          $ref: 'components/schemas/responses/R4-InternalServerError.yaml'
 components:
   securitySchemes:
     bearerAuth:

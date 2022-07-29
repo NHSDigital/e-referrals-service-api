@@ -1,0 +1,18 @@
+description: |
+  Where status code 401 (Unauthorized) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | FHIR issue.details code | FHIR issue.code              | Description                                                                                                 |
+  | ----------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+  | ACCESS_DENIED           | forbidden                    | The request has not been applied because it lacks valid authentication credentials for the target resource. |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome.json'

@@ -1,0 +1,21 @@
+description: |
+  Where status code 403 (Forbidden) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Description                                                  |
+  | ------------------------- | ---------- | ------------------------------------------------------------ |
+  | REC_FORBIDDEN             | forbidden  | Information can only be retrieved for an authenticated user. |
+  | NO_RELATIONSHIP           | forbidden  | The user has no legitimate relationship with the resource.   |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome.json'

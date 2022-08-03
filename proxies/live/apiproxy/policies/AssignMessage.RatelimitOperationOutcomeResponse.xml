@@ -1,0 +1,8 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.RatelimitOperationOutcomeResponse">
+    <Set>
+        <StatusCode>429</StatusCode>
+        <Payload contentType="application/fhir+json">{ "resourceType": "OperationOutcome", "meta": { "lastUpdated": "{current_timestamp}", "profile": [ "https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome" ] }, "issue": [ { "severity": "error", "code": "throttled", "details": { "coding": [ { "system": "https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode", "code": "TOO_MANY_REQUESTS", } ] } } ] }</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

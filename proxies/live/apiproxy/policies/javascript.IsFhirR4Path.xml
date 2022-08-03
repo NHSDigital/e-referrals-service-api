@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" name="javascript.IsFhirR4Path" timeLimit="200">
+    <DisplayName>javascript.IsFhirR4Path</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://IsFhirR4Path.js</ResourceURL>
+</Javascript>

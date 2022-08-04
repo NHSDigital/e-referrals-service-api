@@ -20,6 +20,7 @@ _EXPECTED_OBO_USER_ID = "0123456789000"
 _EXPECTED_ACCESS_MODE = "user-restricted"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
+_SEARCH_SERVICE_REQUEST_R4_URL = "/FHIR/R4/ServiceRequest"
 
 
 @pytest.mark.integration_test
@@ -126,10 +127,22 @@ class TestHeaders:
         assert_ok_response(response, _EXPECTED_CORRELATION_ID)
 
     @pytest.mark.parametrize(
-        "auth_header",
-        [("Bearer 99999999999999999999999999999999"), (None), (""), ("Bearer ")],
+        "auth_header,endpoint_url,is_operation_outcome",
+        [
+            ("Bearer 99999999999999999999999999999999", _SPECIALTY_REF_DATA_URL, False),
+            (None, _SPECIALTY_REF_DATA_URL, False),
+            ("", _SPECIALTY_REF_DATA_URL, False),
+            ("Bearer ", _SPECIALTY_REF_DATA_URL, False),
+            (
+                "Bearer 99999999999999999999999999999999",
+                _SEARCH_SERVICE_REQUEST_R4_URL,
+                True,
+            ),
+        ],
     )
-    def test_unknown_access_code(self, service_url, auth_header):
+    def test_unknown_access_code(
+        self, service_url, auth_header, endpoint_url, is_operation_outcome
+    ):
         client_request_headers = {
             RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
             _HEADER_REQUEST_ID: "DUMMY",
@@ -140,7 +153,7 @@ class TestHeaders:
 
         # Make the API call
         response = requests.get(
-            f"{service_url}{_SPECIALTY_REF_DATA_URL}", headers=client_request_headers
+            f"{service_url}{endpoint_url}", headers=client_request_headers
         )
 
         # Verify the status
@@ -148,7 +161,24 @@ class TestHeaders:
             response.status_code == 401
         ), "Expected a 401 when accesing the api but got " + (str)(response.status_code)
 
-        assert len(response.content) == 0
+        if not is_operation_outcome:
+            assert len(response.content) == 0
+        else:
+            response_data = response.json()
+            assert response_data["resourceType"] == "OperationOutcome"
+            assert response_data["meta"]["lastUpdated"] is not None
+            assert len(response_data["issue"]) == 1
+            issue = response_data["issue"][0]
+            assert issue["severity"] == "error"
+            assert issue["code"] == "forbidden"
+            assert issue["diagnostics"].lower() == "invalid access token"
+            assert len(issue["details"]["coding"]) == 1
+            issue_details = issue["details"]["coding"][0]
+            assert (
+                issue_details["system"]
+                == "https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode"
+            )
+            assert issue_details["code"] == "ACCESS_DENIED"
 
         # Verify the response headers
         client_response_headers = response.headers

@@ -1,4 +1,4 @@
-description: Bundle resource containg the service requests associated to the supplied UBRN.
+description: Bundle resource containg the `ServiceRequest` resources associated to the supplied UBRN.
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
@@ -17,7 +17,6 @@ content:
         - timestamp
         - total
         - link
-        - entry
       properties:
         id:
           type: string
@@ -25,15 +24,8 @@ content:
         meta:
           type: object
           required:
-            - profile
+            - lastUpdated
           properties:
-            profile:
-              type: array
-              items:
-                type: string
-                enum:
-                  - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
-                example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
             lastUpdated:
               type: string
               format: date-time
@@ -96,7 +88,19 @@ content:
                       - match
                     example: 'match'
     examples:
-      minimal-example:
-        summary: One UBRN associated with one ServiceRequest (referral)
+      minimal-example-empty:
+        summary: An empty bundle might be returned when the search completes but matches no requests.
         value:
-          $ref: '../../../examples/searchServiceRequest/responses/ResponseExample.json'
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleEmpty.json'
+      minimal-example-referral:
+        summary: A response containing a single Request ID for a `ServiceRequest` of category `referral`.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleReferral.json'
+      minimal-example-advice:
+        summary: A response containing a single Request ID for a `ServiceRequest` of category `request`.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleAdvice.json'
+      complex-example-referral-and-advice:
+        summary: A response containing two Request IDs.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleReferralAndAdvice.json'

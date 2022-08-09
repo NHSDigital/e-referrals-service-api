@@ -5,16 +5,11 @@ required:
   - id
   - meta
   - resourceType
-  - extension
-  - contained
   - identifier
   - status
   - intent
   - category
-  - priority
   - subject
-  - authoredOn
-  - requester
 properties:
   id:
     type: string
@@ -22,16 +17,8 @@ properties:
   meta:
     type: object
     required:
-      - profile
       - versionId
     properties:
-      profile:
-        type: array
-        items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/StructureDefinition/NHSDigital-ServiceRequest'
-          example: 'https://fhir.nhs.uk/StructureDefinition/NHSDigital-ServiceRequest'
       versionId:
         type: string
         example: '3834a43e-8696-4e77-aea4-b4fa0b6ef29e'
@@ -40,79 +27,6 @@ properties:
     enum:
       - ServiceRequest
     example: 'ServiceRequest'
-  extension:
-    type: array
-    minItems: 1
-    maxItems: 1
-    items:
-      $ref: 'extensions/Extension-eRS-ServiceRequest-Priority.yaml'  
-  contained:
-    type: array
-    items:
-      type: object
-      required:
-        - resourceType
-        - id
-        - meta
-        - practitioner
-        - organization
-      properties:
-        resourceType:
-          type: string
-          enum:
-            - PractitionerRole
-          example: PractitionerRole
-        id:
-          type: string
-          example: requester
-        meta:
-          type: object
-          required:
-            - profile
-          properties:
-            profile:
-              type: string
-              enum:
-                - https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-Minimal
-              example: https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-Minimal
-        practitioner:
-          type: object
-          required:
-            - identifier
-          properties:
-            identifier:
-              type: object
-              required:
-                - system
-                - value
-              properties:
-                system:
-                  type: string
-                  enum:
-                    - https://fhir.nhs.uk/Id/sds-user-id
-                  example: https://fhir.nhs.uk/Id/sds-user-id
-                value:
-                  type: string
-                  example: '000000000101'
-        organization:
-          type: object
-          required:
-            - identifier
-          properties:
-            identifier:
-              type: object
-              required:
-                - system
-                - value
-              properties:
-                system:
-                  type: string
-                  enum:
-                    - https://fhir.nhs.uk/Id/ods-organization-code
-                  example: https://fhir.nhs.uk/Id/ods-organization-code
-                value:
-                  type: string
-                  example: 'R69'
   identifier:
     type: array
     items:
@@ -131,8 +45,20 @@ properties:
           example: '000000070000'
   status:
     type: string
+    description: |
+      Whilst a potential value to return is `draft`, we are not currently returning this value, but may choose to do so in the future.
+
+      | ServiceRequest.status | Description                                                                       |
+      |-----------------------|---------------------------------------------------------------------------------- |
+      | active                | The `ServiceRequest` is ready to be acted upon.                                   |
+      | completed             | The `ServiceRequest` has been fully performed and no further activity will occur. |
+      | draft                 | The `ServiceRequest` is incomplete and is not yet ready to be processed.          |
+      | revoked               | The `ServiceRequest` has been terminated and no further activity will occur.      |
     enum:
       - active
+      - completed
+      - draft
+      - revoked
     example: 'active'
   intent:
     type: string
@@ -153,26 +79,40 @@ properties:
             required:
               - system
               - code
-              - display
             properties:
               system:
                 type: string
                 enum:
-                  - 'http://snomed.info/sct'
+                  - 'https://fhir.nhs.uk/CodeSystem/message-category-servicerequest'
               code:
                 type: string
-                example: '820641000000100'
-              display:
-                type: string
-                example: 'Choose and book advice and guidance request'
-  priority:
-    type: string
-    enum:
-      - routine
-      - urgent
-      - asap
-      - stat
-    example: 'asap'
+                enum:
+                  - referral
+                  - request
+                example: 'referral'
+  code:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/CodeSystem/servicerequest-code'
+              example: 'https://fhir.nhs.uk/CodeSystem/servicerequest-code'
+            code:
+              type: string
+              enum:
+                - advice-and-guidance
+              example: 'advice-and-guidance'
   subject:
     type: object
     required:
@@ -192,16 +132,3 @@ properties:
           value:
             type: string
             example: '9912003888'
-  authoredOn:
-    type: string
-    format: date-time
-    example: '2022-01-11T10:00:00.000Z'
-  requester:
-    type: object
-    required:
-      - reference
-    properties:
-      reference:
-        description: This will be a reference to the contained PractitionerRole id.
-        type: string
-        example: '#requester'

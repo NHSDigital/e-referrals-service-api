@@ -1,0 +1,16 @@
+{
+    "id": "123e4567-e89b-12d3-a456-426614174002",
+    "resourceType": "Bundle",
+    "meta": {
+        "lastUpdated": "2022-03-01T10:00:00.42Z"
+    },
+    "timestamp": "2022-04-06T15:42:00.42Z",
+    "link": [
+        {
+            "relation": "self",
+            "url": "_baseUrl_/R4/ServiceRequest?identifier=https://fhir.nhs.uk/Id/UBRN%7C000000070003"
+        }
+    ],
+    "total": 0,
+    "type": "searchset"
+}

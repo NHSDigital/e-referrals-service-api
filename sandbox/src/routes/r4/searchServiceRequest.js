@@ -16,7 +16,7 @@ function searchServiceRequest(request, h) {
         }
     }
 
-    return h.file('SandboxErrorOutcome.json').code(422)
+    return h.file('SandboxErrorOutcome.json').code(400)
 }
 
 

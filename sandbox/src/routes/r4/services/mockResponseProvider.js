@@ -54,10 +54,17 @@ module.exports = {
     }
 
     if (ubrn === '000000070000') {
-      return 'r4/searchServiceRequest/responses/ResponseExample.json'
+      return 'r4/searchServiceRequest/responses/ResponseExampleReferral.json'
     }
-
-    return {}
+    else if (ubrn === '000000070001') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleAdvice.json'
+    }
+    else if (ubrn === '000000070002') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleReferralAndAdvice.json'
+    }
+    else if (ubrn === '000000070003') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleEmpty.json'
+    }
   },
 
   getExampleResponseForRequestUploadUri: function (request) {

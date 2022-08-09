@@ -1,0 +1,100 @@
+{
+    "id": "123e4567-e89b-12d3-a456-426614174002",
+    "resourceType": "Bundle",
+    "meta": {
+        "lastUpdated": "2022-03-01T10:00:00.42Z"
+    },
+    "timestamp": "2022-04-06T15:42:00.42Z",
+    "link": [
+        {
+            "relation": "self",
+            "url": "_baseUrl_/R4/ServiceRequest?identifier=https://fhir.nhs.uk/Id/UBRN%7C000000070002"
+        }
+    ],
+    "total": 2,
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "_baseUrl_/R4/ServiceRequest/r.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+            "resource": {
+                "id": "r.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+                "meta": {
+                    "versionId": "5"
+                },
+                "resourceType": "ServiceRequest",
+                "identifier": [
+                    {
+                        "system": "https://fhir.nhs.uk/Id/UBRN",
+                        "value": "000000070002"
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/message-category-servicerequest",
+                                "code": "referral"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/nhs-number",
+                        "value": "9912003888"
+                    }
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "_baseUrl_/R4/ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+            "resource": {
+                "id": "a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+                "meta": {
+                    "versionId": "5"
+                },
+                "resourceType": "ServiceRequest",
+                "identifier": [
+                    {
+                        "system": "https://fhir.nhs.uk/Id/UBRN",
+                        "value": "000000070002"
+                    }
+                ],
+                "status": "completed",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/message-category-servicerequest",
+                                "code": "request"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "https://fhir.nhs.uk/CodeSystem/servicerequest-code",
+                            "code": "advice-and-guidance"
+                        }
+                    ]
+                },
+                "subject": {
+                    "identifier": {
+                        "system": "https://fhir.nhs.uk/Id/nhs-number",
+                        "value": "9912003888"
+                    }
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

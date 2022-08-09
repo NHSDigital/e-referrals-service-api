@@ -2,9 +2,9 @@ description: |
   Where status code 406 (Not Acceptable) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
   Check diagnostics property for specific information regarding the error.
   
-  | issue.details.coding.code | issue.code    | Description                                                                             |
-  | ------------------------- | ------------- | --------------------------------------------------------------------------------------- |
-  | NOT_ACCEPTABLE            | not-supported | The requested resource does not have a current representation that would be acceptable. |
+  | issue.details.coding.code | issue.code    | Coding System                                                      | Description                                                                             |
+  | ------------------------- | ------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+  | REC_NOT_ACCEPTABLE        | not-supported | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The requested resource does not have a current representation that would be acceptable. |
 headers:
   x-correlation-id:
     $ref: '../headers/response/CorrelationID.yaml'
@@ -17,4 +17,4 @@ content:
     schema:
       $ref: '../NHSDigital-OperationOutcome.yaml'
     example:
-      $ref: '../../examples/NHSDigital-OperationOutcome.json'
+      $ref: '../../examples/NHSDigital-OperationOutcome-406.json'

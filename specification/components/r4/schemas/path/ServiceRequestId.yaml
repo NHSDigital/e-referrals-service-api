@@ -1,7 +1,7 @@
 name: id
 in: path
 description: |
-   An identifier that uniquely identifies a referral request or an advice and guidance.
+   An identifier that uniquely identifies a `ServiceRequest` resource.
 required: true
 schema:
    type: string

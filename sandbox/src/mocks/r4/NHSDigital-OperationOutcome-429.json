@@ -1,0 +1,21 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2022-03-01T10:00:00.42Z"
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "throttled",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode",
+            "code": "TOO_MANY_REQUESTS"
+          }
+        ]
+      },
+      "diagnostics": "Example diagnostics message."
+    }
+  ]
+}

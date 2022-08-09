@@ -1,0 +1,139 @@
+title: eRS-Communication-1
+description: 'A record of information transmitted from a sender to a receiver'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - status
+  - category
+  - recipient
+  - sent
+  - sender
+  - note
+properties:
+  id:
+    type: string
+    example: 'appointment'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Communication-1'
+            - 'https://fhir.hl7.org.uk/STU3/StructureDefinition/eRS-Communication-1'
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Communication-1'
+  resourceType:
+    type: string
+    enum:
+      - Communication
+    example: 'Communication'
+  status:
+    type: string
+    enum:
+      - completed
+    example: completed
+  category:
+    type: array
+    minItems: 1
+    maxItems: 1
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum:
+                  - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommunicationSentBy-1'
+                example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommunicationSentBy-1'
+              code:
+                type: string
+                enum:
+                  - 'REQUESTER'
+                  - 'RESPONDER'
+                  - 'REFERRER_CLINICAL_INFORMATION_UPDATED'
+                example: 'REQUESTER'
+  recipient:
+    type: array
+    minItems: 1
+    maxItems: 1
+    items:
+      anyOf:
+        - type: object
+          required:
+            - extension
+          properties:
+            extension:
+              type: array
+              minItems: 1
+              maxItems: 1
+              items:
+                $ref: 'extensions/Extension-HealthcareService-Reference.yaml'
+        - type: object
+          required:
+            - identifier
+          properties:
+            identifier:
+              $ref: 'identifiers/Organisation.yaml'
+  sent:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'
+  sender:
+    type: object
+    required:
+      - extension
+    properties:
+      extension:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          $ref: 'extensions/Extension-PractitionerRole-Reference.yaml'
+  payload:
+    type: array
+    items:
+      type: object
+      required:
+        - contentReference
+      properties:
+        contentReference:
+          type: object
+          required:
+            - reference
+          properties:
+            reference:
+              type: string
+              example: 'DocumentReference/70000'
+  note: 
+    type: array
+    minItems: 1
+    maxItems: 1
+    items: 
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          example: 'Example content...'
+  
+

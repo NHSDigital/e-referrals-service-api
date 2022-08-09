@@ -219,7 +219,13 @@ def validate_response_examples():
 
             # Process response example file path
             args = list(filter(lambda x: x != "..", example_res_path.split("/")))
-            abspath_example = os.path.join(REPO_ROOT, "specification/components", *args)
+
+            path = (
+                "specification/components/r4"
+                if endpoint_dict["path"].startswith("/R4/")
+                else "specification/components/stu3"
+            )
+            abspath_example = os.path.join(REPO_ROOT, path, *args)
 
             with open(abspath_example, "r") as example_file:
                 example_response = load(example_file)

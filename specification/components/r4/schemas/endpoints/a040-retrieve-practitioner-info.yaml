@@ -42,11 +42,13 @@
         '200':
           $ref: '../responses/retrieveOboPractitioners/200Response.yaml'
         '400':
-          $ref: '../responses/BadRequest.yaml'
+          $ref: '../responses/retrieveOboPractitioners/400Response.yaml'
         '401':
           $ref: '../responses/Unauthorized.yaml'
         '403':
           $ref: '../responses/Forbidden.yaml'
+        '406':
+          $ref: '../responses/NotAcceptable.yaml'
         '429':
           $ref: '../responses/TooManyRequests.yaml'
         '500':

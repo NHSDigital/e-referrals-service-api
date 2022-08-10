@@ -1,1 +1,20 @@
-description: Internal Server Error
+description: |
+  Where status code 500 (Internal Server Error) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                                    |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+  | REC_SERVER_ERROR          | exception  | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The server encountered an unexpected condition that prevented it from fulfilling the request.  |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-500.json'

@@ -1,1 +1,20 @@
-description: Not Found
+description: |
+  Where status code 404 (Not Found) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
+  | REC_NOT_FOUND             | not-found  | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The supplied URL or Resource does not exist on the server. |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-404.json'

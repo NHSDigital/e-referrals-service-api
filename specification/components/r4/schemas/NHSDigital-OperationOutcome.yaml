@@ -1,4 +1,4 @@
-title: R4-OperationOutcome
+title: NHSDigital-OperationOutcome
 type: object
 required:
   - resourceType
@@ -12,16 +12,13 @@ properties:
     example: 'OperationOutcome'
   meta:
     type: object
+    required:
+      - lastUpdated
     properties:
-      profile:
-        type: array
-        items:
-          type: string
-          enum:
-            - 'https://www.hl7.org/fhir/R4/operationoutcome.html'
-          example: 'https://www.hl7.org/fhir/R4/operationoutcome.html'
-        minItems: 1
-        maxItems: 1
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-08-04T14:35:00.000Z'
   issue:
     type: array
     items:
@@ -34,13 +31,18 @@ properties:
       properties:
         severity:
           type: string
+          enum:
+            - fatal
+            - error
+            - warning
+            - information
           example: 'error'
         code:
           type: string
-          example: 'business-rule'
+          example: 'required'
         diagnostics:
           type: string
-          example: "'Shortlist/Service Id' (11002) cannot be added to a shortlist more than once."
+          example: "Incorrect or missing expected value."
         details:
           type: object
           required:
@@ -57,11 +59,10 @@ properties:
                   system:
                     type: string
                     enum:
-                      - 'https://fhir.nhs.uk/CodeSystem/eRS-APIErrorCode'
-                    example: 'https://fhir.nhs.uk/CodeSystem/eRS-APIErrorCode'
+                      - 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
+                      - 'https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode'
+                      - 'https://fhir.nhs.uk/CodeSystem/ers-error-codes'
+                    example: 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
                   code:
                     type: string
-                    example: 'DUPLICATE_SERVICE'
-                  display:
-                    type: string
-                    example: 'Duplicate service found in shortlist'
+                    example: 'REC_BAD_REQUEST'

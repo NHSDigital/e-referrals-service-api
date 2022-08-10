@@ -1,5 +1,5 @@
 in: header
-name: nhsd-ers-referral-id
+name: NHSD-eRS-Referral-ID
 description: | 
   The ID (typically the UBRN) of the referral which the documents are intended for
 required: true

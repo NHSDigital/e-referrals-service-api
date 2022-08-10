@@ -13,9 +13,9 @@ description: |
   | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again. |
   | UNABLE_TO_CANCEL_APPOINTMENT       | Unable to cancel the appointment. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

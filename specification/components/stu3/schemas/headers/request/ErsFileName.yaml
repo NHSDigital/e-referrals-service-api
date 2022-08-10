@@ -1,5 +1,5 @@
 in: header
-name: nhsd-ers-file-name
+name: NHSD-eRS-File-Name
 description: | 
   The name of file being uploaded, including the extension
 required: true

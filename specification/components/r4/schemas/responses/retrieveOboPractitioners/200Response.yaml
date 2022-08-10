@@ -1,8 +1,8 @@
 description: The response body is a `Bundle` that contains `Practitioner` entries which define the [[HYPERLINK_ERS_BUS_FUNCTIONS]] that the user has available at each `Organisation` where they have a role.
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

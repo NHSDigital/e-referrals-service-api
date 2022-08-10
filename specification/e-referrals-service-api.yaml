@@ -158,7 +158,7 @@ info:
     #### Role and Organisation Validation
     For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. 
 
-    The e-RS Role is supplied to the endpoint via the `nhsd-ers-business-function` request header. 
+    The e-RS Role is supplied to the endpoint via the `NHSD-eRS-Business-Function` request header. 
     
     The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
     
@@ -702,9 +702,9 @@ paths:
         Each Practitioner Role represents an e-RS Role at a specific Organisation. 
         
         For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. 
-        This is accomplished by setting the values of the `nhsd-ers-business-function` and `NHSD-End-User-Organisation-ODS` request headers. 
+        This is accomplished by setting the values of the `NHSD-eRS-Business-Function` and `NHSD-End-User-Organisation-ODS` request headers. 
         
-        The e-RS Role is supplied to the endpoint via the `nhsd-ers-business-function` request header. 
+        The e-RS Role is supplied to the endpoint via the `NHSD-eRS-Business-Function` request header. 
         
         The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
 
@@ -761,7 +761,7 @@ paths:
         ```
         Each PractitionerRole resource has a `code` field which is an array of codings. 
         The authorised e-RS Roles for the authenticated user at a particular Organisation are represented by the `value` fields in the `https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1` code system. 
-        The `nhsd-ers-business-function` request header value should be the `code` field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. `SERVICE_PROVIDER_CLINICIAN`.
+        The `NHSD-eRS-Business-Function` request header value should be the `code` field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. `SERVICE_PROVIDER_CLINICIAN`.
 
         Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system.
         The `NHSD-End-User-Organisation-ODS` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource e.g. "R69".

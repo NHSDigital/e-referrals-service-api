@@ -1,5 +1,5 @@
 in: header
-name: X-Correlation-Id
+name: X-Correlation-ID
 description: | 
   Arbitrary string value provided by API Consumer
 

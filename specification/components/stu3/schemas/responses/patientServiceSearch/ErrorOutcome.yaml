@@ -24,9 +24,9 @@ description: |
   | REFERENCED_USER_IS_NOT_RC_AT_ORG   | The user provided does not have the Referring Clinician authorisation at the organisation specified. |
   | SNOMED_NOT_FOUND                   | A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS dictionary. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

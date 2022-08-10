@@ -16,9 +16,9 @@ description: |
   | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
   | UNABLE_TO_CANCEL_APPOINTMENT       | System is unable to cancel the appointment. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

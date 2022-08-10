@@ -19,9 +19,9 @@ description: |
   | DUPLICATE_FILENAME                 | A file being attached, matches another file being attached, or matches a file that is already linked.                        |
   | NO_CHANGES_DETECTED                | No changes detected when processing supplied request. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

@@ -9,9 +9,9 @@ description: |
   | HISTORY_NOT_SUPPORTED              | Only the current version of the UBRN is permissible. |
   | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation). |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

@@ -7,9 +7,9 @@ description: |
   | INVALID_VALUE            | Service Id format is invalid or missing                                          |
   | INAPPROPRIATE_VALUE      | 'Number of Service Ids' exceeds the range. Up to 20 service IDs can be provided. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

@@ -16,7 +16,7 @@ multidict = ">=4.5,<7.0"
 yarl = ">=1.0,<2.0"
 
 [package.extras]
-speedups = ["cchardet", "brotli", "aiodns"]
+speedups = ["aiodns", "brotli", "cchardet"]
 
 [[package]]
 name = "aiosignal"
@@ -94,10 +94,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
-tests_no_zope = ["pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
-tests = ["zope.interface", "pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
-docs = ["sphinx-notfound-page", "zope.interface", "sphinx", "furo"]
-dev = ["pre-commit", "sphinx-notfound-page", "sphinx", "furo", "zope.interface", "pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
+dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit"]
+docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
+tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface"]
+tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
 
 [[package]]
 name = "bcrypt"
@@ -133,7 +133,7 @@ toml = ">=0.9.4"
 typed-ast = ">=1.4.0"
 
 [package.extras]
-d = ["aiohttp-cors", "aiohttp (>=3.3.2)"]
+d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
 
 [[package]]
 name = "certifi"
@@ -267,8 +267,8 @@ texttable = ">=0.9.0,<2"
 websocket-client = ">=0.32.0,<1"
 
 [package.extras]
-tests = ["pytest (<6)", "ddt (>=1.2.2,<2)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2)"]
+tests = ["ddt (>=1.2.2,<2)", "pytest (<6)"]
 
 [[package]]
 name = "dockerpty"
@@ -409,8 +409,8 @@ pyrsistent = ">=0.14.0"
 six = ">=1.11.0"
 
 [package.extras]
-format_nongpl = ["rfc3339-validator", "rfc3986-validator (>0.1.0)", "webcolors", "jsonpointer (>1.13)", "idna"]
-format = ["webcolors", "strict-rfc3339", "rfc3987", "jsonpointer (>1.13)", "idna"]
+format = ["idna", "jsonpointer (>1.13)", "rfc3987", "strict-rfc3339", "webcolors"]
+format_nongpl = ["idna", "jsonpointer (>1.13)", "webcolors", "rfc3986-validator (>0.1.0)", "rfc3339-validator"]
 
 [[package]]
 name = "lazy-object-proxy"
@@ -429,10 +429,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 
 [package.extras]
-source = ["Cython (>=0.29.7)"]
-htmlsoup = ["beautifulsoup4"]
-html5 = ["html5lib"]
 cssselect = ["cssselect (>=0.7)"]
+html5 = ["html5lib"]
+htmlsoup = ["beautifulsoup4"]
+source = ["Cython (>=0.29.7)"]
 
 [[package]]
 name = "markupsafe"
@@ -487,9 +487,9 @@ six = "*"
 werkzeug = "*"
 
 [package.extras]
-requests = ["requests"]
-flask = ["flask"]
 django = ["django (>=2.2)"]
+flask = ["flask"]
+requests = ["requests"]
 
 [[package]]
 name = "openapi-schema-validator"
@@ -668,10 +668,10 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
-docs = ["zope.interface", "sphinx-rtd-theme", "sphinx"]
-dev = ["pre-commit", "mypy", "coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)", "cryptography (>=3.3.1)", "zope.interface", "sphinx-rtd-theme", "sphinx"]
 crypto = ["cryptography (>=3.3.1)"]
+dev = ["sphinx", "sphinx-rtd-theme", "zope.interface", "cryptography (>=3.3.1)", "pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)", "mypy", "pre-commit"]
+docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
+tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
 name = "pynacl"
@@ -739,7 +739,7 @@ py = ">=1.8.2"
 toml = "*"
 
 [package.extras]
-testing = ["xmlschema", "requests", "nose", "mock", "hypothesis (>=3.56)", "argcomplete"]
+testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
 name = "pytest-asyncio"
@@ -783,7 +783,7 @@ docker-compose = ">=1.27.3,<2.0"
 pytest = ">=4.0,<7.0"
 
 [package.extras]
-tests = ["pytest-pycodestyle (>=2.0.0,<3.0)", "pytest-pylint (>=0.14.1,<1.0)", "requests (>=2.22.0,<3.0)"]
+tests = ["requests (>=2.22.0,<3.0)", "pytest-pylint (>=0.14.1,<1.0)", "pytest-pycodestyle (>=2.0.0,<3.0)"]
 
 [[package]]
 name = "python-dotenv"
@@ -822,21 +822,21 @@ python-versions = "*"
 
 [[package]]
 name = "requests"
-version = "2.26.0"
+version = "2.28.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+python-versions = ">=3.7, <4"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
-charset-normalizer = {version = ">=2.0.0,<2.1.0", markers = "python_version >= \"3\""}
-idna = {version = ">=2.5,<4", markers = "python_version >= \"3\""}
+charset-normalizer = ">=2,<3"
+idna = ">=2.5,<4"
 urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
-use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
-socks = ["win-inet-pton", "PySocks (>=1.5.6,!=1.5.7)"]
+socks = ["PySocks (>=1.5.6,!=1.5.7)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "selenium"
@@ -1028,7 +1028,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "35c948dadb19912bdcf07c63e141db41a83b8b8bebb8d3dea392cba35a9eb177"
+content-hash = "9388a0cf45ffd25a3af6cc5e198bbfe8ac5f1a7f090a22428d39bd268325ec43"
 
 [metadata.files]
 aiohttp = [
@@ -1853,8 +1853,8 @@ regex = [
     {file = "regex-2021.10.8.tar.gz", hash = "sha256:26895d7c9bbda5c52b3635ce5991caa90fbb1ddfac9c9ff1c7ce505e2282fb2a"},
 ]
 requests = [
-    {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
-    {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
+    {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
+    {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
 selenium = [
     {file = "selenium-4.1.0-py3-none-any.whl", hash = "sha256:27e7b64df961d609f3d57237caa0df123abbbe22d038f2ec9e332fb90ec1a939"},

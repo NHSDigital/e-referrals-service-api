@@ -1,0 +1,23 @@
+description: |
+  Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format. |
+  | MISSING_PARAMETER                  | Indicates missing mandatory FHIR search parameter. |
+  | HISTORY_NOT_SUPPORTED              | Only the current version of the UBRN is permissible. |
+  | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation). |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/STU3-OperationOutcome.json'

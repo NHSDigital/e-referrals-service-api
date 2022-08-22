@@ -1,8 +1,0 @@
-description: 201 (Created) - success response with no body
-headers:
-  x-correlation-id:
-    $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
-    $ref: '../../headers/response/RequestID.yaml'
-  Location:
-    $ref: '../../headers/response/Location.yaml'

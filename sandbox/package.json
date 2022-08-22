@@ -13,7 +13,7 @@
   "main": "app.js",
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
-    "@hapi/inert": "^6.0.5",
+    "@hapi/inert": "^7.0.0",
     "lodash": "^4.17.20"
   },
   "devDependencies": {

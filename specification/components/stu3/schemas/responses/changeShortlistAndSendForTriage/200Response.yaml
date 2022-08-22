@@ -1,0 +1,19 @@
+description: Referral updated with new service and sent for Triage
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-ChangeShortlistAndSendForTriage-Response-Parameters.yaml'
+    examples:
+      unbookedReferralRequest:
+          summary: TriagedReferralRequest
+          description: Changing the service list of an unbooked `ReferralRequest` and send for Triage
+          value:
+            $ref: '../../../examples/changeShortlistAndSendForTriage/responses/MinimalRequest.json'
+

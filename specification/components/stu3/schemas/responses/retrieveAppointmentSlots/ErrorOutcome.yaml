@@ -1,0 +1,26 @@
+description: |
+  Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+  
+  | Error code                         | Description                                                                                                             |
+  | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+  | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation). |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format. |
+  | INVALID_CODE                       | The input provided for a field is not one of the defined legal values. |
+  | MISSING_PARAMETER                  | Indicates missing mandatory FHIR search parameter. |
+  | MISSING_HEADER                     | Indicates missing mandatory HTTP header. |
+  | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed. |
+  | SERVICE_UNAVAILABLE                | Indicates that a service is no longer available. |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/retrieveAppointmentSlots/responses/ErrorPage5.json'

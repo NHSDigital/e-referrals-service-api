@@ -1,0 +1,27 @@
+description: e-RS Referral Request
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-ReferralRequest.yaml'
+    examples:
+      example-response-dbs:
+        summary: Example response for DBS
+        value:
+          $ref: '../../../examples/cancelAppointmentActionLater/responses/MinimalExampleDBS.json'
+      example-priority-change-and-attachments:
+        summary: Example response for priority change and attachments
+        value:
+          $ref: '../../../examples/cancelAppointmentActionLater/responses/PriorityChangeAndWithAttachmentsDBS.json'
+      example-response-ibs:
+        summary: Example response for IBS
+        value:
+          $ref: '../../../examples/cancelAppointmentActionLater/responses/MinimalExampleIBS.json'

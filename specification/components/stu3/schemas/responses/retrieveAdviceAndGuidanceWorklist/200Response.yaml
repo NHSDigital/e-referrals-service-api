@@ -1,0 +1,18 @@
+description: The response body contains the list of advice and guidance requests (if any) that match the search criteria provided 
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-FetchWorklist-List.yaml'
+    examples:
+      a&g-requests:
+        summary: Advice and guidance requests
+        value:
+          $ref: '../../../examples/retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json'
+

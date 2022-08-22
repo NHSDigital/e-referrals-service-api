@@ -1,0 +1,8 @@
+in: header
+name: NHSD-eRS-File-Name
+description: | 
+  The name of file being uploaded, including the extension
+required: true
+schema:
+  type: string
+  example: 'test.txt'

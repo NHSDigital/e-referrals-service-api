@@ -1,0 +1,32 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | PRIORITY_NOT_CURRENT               | 'Review Priority' value cannot be amended if Review Outcome value is RETURN_TO_REFERRER_WITH_ADVICE                          |
+  | VALUE_IS_REQUIRED                  | A business rule defines a value as mandatory but it has not been provided.                                                   |
+  | INVALID_CODE                       | The input provided for a field is not one of the defined legal values.                                                       |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format.                                                   |
+  | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed.                              |
+  | INAPPROPRIATE_VALUE                | A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided.  |
+  | MISSING_VALUE                      | A field defined as mandatory for an endpoint has not been provided.                                                          |
+  | INVALID_REQUEST_STATE              | The Request, while otherwise valid, is not in the correct state for the specific action being performed.                     |
+  | INVALID_REQUEST_TYPE               | The `UBRN` provided exists in e-RS but does not correspond to an active request.                                             |
+  | REFERENCE_NOT_FOUND                | A supplied reference could not be resolved to valid resource (e.g. a patient, clinician or an organisation).                 |
+  | DUPLICATE_FILENAME                 | A file being attached, matches another file being attached, or matches a file that is already linked.                        |
+  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again.                                              |
+  | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/STU3-OperationOutcome.json'

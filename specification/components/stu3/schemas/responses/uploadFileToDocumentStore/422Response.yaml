@@ -1,0 +1,24 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+  
+  | Error code                         | Description                                                                                                                 |
+  | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | CONFLICTING_VALUES                 | Two or more supplied values are contradictory.                                                               |
+  | FILE_SIZE_ERROR                    | The file is either empty or too large.                                                                                      |
+  | INAPPROPRIATE_VALUE                | A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided. |
+  | INVALID_VALUE                      | The input provided does not conform to the expected data types and format.                                                  |
+  | MISSING_VALUE                      | A field defined as mandatory for an endpoint has not been provided.                                                         |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/STU3-OperationOutcome.json'

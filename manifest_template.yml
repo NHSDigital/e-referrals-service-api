@@ -23,8 +23,6 @@ APIGEE_ENVIRONMENTS:
 - name: prod
   approval_type: manual
   display_name: Production
-  ratelimit: '15000pm'
-  quota: '7800'
 
 INTERNAL_DEV_VARIANTS:
 - name: alpha
@@ -80,8 +78,22 @@ apigee:
         attributes:
           - name: access
             value: public
-          - name: ratelimit
-            value: {{ ENV.ratelimit | default('5ps') }}
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 1
+                  limit: 600
+                  timeunit: minute
+                spikeArrest:
+                  enabled: true
+                  ratelimit: 720pm
         description: {{ MODE.description }}
         displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
         environments: [ {{ ENV.name }} ]
@@ -90,8 +102,8 @@ apigee:
           - identity-service-{{ ENV.name }}
           - identity-service-mock-{{ ENV.name }}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.quota | default('300') }}
-        quotaInterval: '1'
+        quota: 600
+        quotaInterval: 1
         quotaTimeUnit: minute
 {% endfor %}
 {% endfor %}
@@ -121,8 +133,22 @@ apigee:
         attributes:
           - name: access
             value: public
-          - name: ratelimit
-            value: {{ ENV.ratelimit | default('5ps') }}
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ ENV.name }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 1
+                  limit: 600
+                  timeunit: minute
+                spikeArrest:
+                  enabled: true
+                  ratelimit: 720pm
         description: {{ MODE.description }}
         displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
         environments: [ {{ ENV.name }} ]
@@ -138,8 +164,8 @@ apigee:
           - identity-service-mock-{{ ENV.name }}
 {% endif %}
         scopes: {{ MODE.scopes }}
-        quota: {{ ENV.quota | default('300') }}
-        quotaInterval: '1'
+        quota: 600
+        quotaInterval: 1
         quotaTimeUnit: minute
 {% endfor %}
     specs:

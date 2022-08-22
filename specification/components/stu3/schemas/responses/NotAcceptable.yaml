@@ -1,0 +1,14 @@
+description: Not Acceptable
+headers:
+  Content-Type:
+    description: |
+      Indicates the media type of the associated resource. 
+    schema:
+      type: string
+      enum:
+      - 'text/plain;charset=utf-8'
+      example: 'text/plain;charset=utf-8'
+content:
+  text/plain;charset=utf-8:
+    schema:
+      type: string

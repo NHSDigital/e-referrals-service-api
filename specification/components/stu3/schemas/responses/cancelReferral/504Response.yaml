@@ -1,0 +1,22 @@
+description: |
+  Where status code 504 (Gateway Timeout) is returned then an eRS-OperationOutcome-1 will be included in the body. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | PAS_NOT_RESPONDING                 | No response from PAS.                                                                                                        |
+  
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/PasNotRespondingOperationOutcome.json'
+

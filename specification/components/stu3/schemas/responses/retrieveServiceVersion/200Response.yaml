@@ -1,0 +1,10 @@
+description: Response doesn't contain the payload. But the current version of the Healthcare Service is in the ETag Response Header.
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  cache-control:
+    $ref: '../../headers/response/CacheControl.yaml'

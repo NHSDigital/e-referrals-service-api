@@ -1,0 +1,8 @@
+in: header
+name: NHSD-eRS-Referral-ID
+description: | 
+  The ID (typically the UBRN) of the referral which the documents are intended for
+required: true
+schema:
+  type: string
+  example: '000000070000'

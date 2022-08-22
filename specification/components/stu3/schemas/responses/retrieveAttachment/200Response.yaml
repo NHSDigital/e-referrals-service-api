@@ -1,0 +1,14 @@
+description: Response contains the binary stream of the file attachment requested.
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Disposition:
+    $ref: '../../headers/response/ContentDispositionAttachment.yaml'
+  Content-Length:
+    $ref: '../../headers/response/ContentLength.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeAttachmentsDownload.yaml'
+content:
+  $ref: '../../file/FileContentTypeSchemaDownload.yaml'

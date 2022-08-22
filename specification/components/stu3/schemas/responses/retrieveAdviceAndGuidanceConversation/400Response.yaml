@@ -1,0 +1,22 @@
+description: |
+  Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. 
+  Check diagnostics property for specific information regarding the error.
+
+  | Error code                         | Description                                                                                                                  |
+  | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again.                                              |
+  | INVALID_REQUEST_TYPE               | The `UBRN` provided exists in e-RS but does not correspond to an active request.                                             |
+  | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/STU3-OperationOutcome.json'

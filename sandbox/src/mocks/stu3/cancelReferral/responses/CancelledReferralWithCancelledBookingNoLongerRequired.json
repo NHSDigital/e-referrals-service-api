@@ -62,7 +62,7 @@
                                 "url": "reason",
                                 "valueCoding": {
                                     "code": "TREATMENT_NO_LONGER_REQUIRED",
-                                    "system": "_baseurl_/FHIR/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
+                                    "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
                                     "display": "Referral no longer required"
                                 }
                             },
@@ -102,7 +102,7 @@
                                 "name": "specialty",
                                 "valueCoding": {
                                     "code": "2WW",
-                                    "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY"
+                                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY"
                                 }
                             },
                             {
@@ -142,7 +142,7 @@
                                 "coding": [
                                     {
                                         "code": "PATIENT_HOLIDAY",
-                                        "system": "_baseUrl_/FHIR/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON"
+                                        "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON"
                                     }
                                 ]
                             }
@@ -213,7 +213,7 @@
                     "coding": [
                         {
                             "code": "2WW",
-                            "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY",
+                            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                             "display": "2WW"
                         }
                     ]

@@ -16,7 +16,7 @@ multidict = ">=4.5,<7.0"
 yarl = ">=1.0,<2.0"
 
 [package.extras]
-speedups = ["aiodns", "brotli", "cchardet"]
+speedups = ["Brotli", "aiodns", "cchardet"]
 
 [[package]]
 name = "aiosignal"
@@ -196,7 +196,7 @@ python-versions = ">=3.6"
 cffi = ">=1.12"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx-rtd-theme"]
+docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx_rtd_theme"]
 docstest = ["doc8", "pyenchant (>=1.6.11)", "sphinxcontrib-spelling (>=4.0.1)", "twine (>=1.12.0)"]
 pep8test = ["black", "flake8", "flake8-import-order", "pep8-naming"]
 sdist = ["setuptools-rust (>=0.11.4)"]
@@ -407,6 +407,7 @@ python-versions = "*"
 [package.dependencies]
 attrs = ">=17.4.0"
 pyrsistent = ">=0.14.0"
+setuptools = "*"
 six = ">=1.11.0"
 
 [package.extras]
@@ -432,7 +433,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 [package.extras]
 cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
-htmlsoup = ["beautifulsoup4"]
+htmlsoup = ["BeautifulSoup4"]
 source = ["Cython (>=0.29.7)"]
 
 [[package]]
@@ -469,7 +470,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "openapi-core"
-version = "0.14.2"
+version = "0.14.5"
 description = "client-side and server-side support for the OpenAPI Specification v3"
 category = "main"
 optional = false
@@ -481,16 +482,16 @@ dictpath = "*"
 isodate = "*"
 lazy-object-proxy = "*"
 more-itertools = "*"
-openapi-schema-validator = "*"
-openapi-spec-validator = "*"
+openapi-schema-validator = "<0.3.0"
+openapi-spec-validator = "<0.5.0"
 parse = "*"
 six = "*"
 werkzeug = "*"
 
 [package.extras]
-django = ["django (>=2.2)"]
-flask = ["flask"]
-requests = ["requests"]
+django = ["django (<2.0)", "django (>=2.2)"]
+flask = ["flask", "flask (<2.0.0)"]
+requests = ["requests", "requests (<2.28.0)"]
 
 [[package]]
 name = "openapi-schema-validator"
@@ -520,6 +521,7 @@ python-versions = ">=3.7.0,<4.0.0"
 jsonschema = ">=3.2.0,<5.0.0"
 openapi-schema-validator = ">=0.2.0,<0.3.0"
 PyYAML = ">=5.1"
+setuptools = "*"
 
 [package.extras]
 requests = ["requests"]
@@ -682,7 +684,7 @@ python-versions = ">=3.6"
 cffi = ">=1.4.1"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5)", "sphinx-rtd-theme"]
+docs = ["sphinx (>=1.6.5)", "sphinx_rtd_theme"]
 tests = ["hypothesis (>=3.27.0)", "pytest (>=3.2.1,!=3.3.0)"]
 
 [[package]]
@@ -848,6 +850,19 @@ description = "Python helper for Semantic Versioning (http://semver.org/)"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "setuptools"
+version = "65.3.0"
+description = "Easily download, build, install, upgrade, and uninstall Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
+testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "mock", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
+testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
 name = "six"
@@ -1018,7 +1033,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f7af1c7c5a04d86c5e2d9a118718187513f037b661ce66321e308b5e12b7ec56"
+content-hash = "86ad00aa7596f125db221e01eb592e01df81cbf1e4ee9ec20d7e8d01350a338c"
 
 [metadata.files]
 aiohttp = [
@@ -1601,9 +1616,9 @@ multidict = [
     {file = "multidict-5.2.0.tar.gz", hash = "sha256:0dd1c93edb444b33ba2274b66f63def8a327d607c6c790772f448a53b6ea59ce"},
 ]
 openapi-core = [
-    {file = "openapi-core-0.14.2.tar.gz", hash = "sha256:62ad93c8114ce6025f25b004ff0f3674eea8bc4ae920c726e98921fdbe41b4f3"},
-    {file = "openapi_core-0.14.2-py2-none-any.whl", hash = "sha256:3426b5ae551a04f7d7a3a625ca600bff157affb4eb691d36412997f6a9ac6898"},
-    {file = "openapi_core-0.14.2-py3-none-any.whl", hash = "sha256:05e100cfb25b4c68d2f647b3f204da26630d79df02d5e0aacae2bcc1915a2796"},
+    {file = "openapi-core-0.14.5.tar.gz", hash = "sha256:4b1dd7a21a9545f8a3a932240e2cc9a53f564d080f462d0f8953eb272b77df0c"},
+    {file = "openapi_core-0.14.5-py2-none-any.whl", hash = "sha256:0b404e301c60f6c3b6083d5de8e05a418142e21ef56d41a5178b552e53a18c62"},
+    {file = "openapi_core-0.14.5-py3-none-any.whl", hash = "sha256:4311693801e6551f99293c0f4be5f91f45e9d50c5578c57f09a2a17e06e4e3df"},
 ]
 openapi-schema-validator = [
     {file = "openapi-schema-validator-0.2.3.tar.gz", hash = "sha256:2c64907728c3ef78e23711c8840a423f0b241588c9ed929855e4b2d1bb0cf5f2"},
@@ -1864,6 +1879,10 @@ selenium = [
 semver = [
     {file = "semver-2.13.0-py2.py3-none-any.whl", hash = "sha256:ced8b23dceb22134307c1b8abfa523da14198793d9787ac838e70e29e77458d4"},
     {file = "semver-2.13.0.tar.gz", hash = "sha256:fa0fe2722ee1c3f57eac478820c3a5ae2f624af8264cbdf9000c980ff7f75e3f"},
+]
+setuptools = [
+    {file = "setuptools-65.3.0-py3-none-any.whl", hash = "sha256:2e24e0bec025f035a2e72cdd1961119f557d78ad331bb00ff82efb2ab8da8e82"},
+    {file = "setuptools-65.3.0.tar.gz", hash = "sha256:7732871f4f7fa58fb6bdcaeadb0161b2bd046c85905dbaa066bdcbcc81953b57"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},

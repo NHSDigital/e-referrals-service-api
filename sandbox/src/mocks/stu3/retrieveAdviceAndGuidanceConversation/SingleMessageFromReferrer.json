@@ -17,7 +17,7 @@
   ],
   "entry": [
     {
-      "fullUrl": "_baseUrl_/FHIR/STU3/Communication/70000",
+      "fullUrl": "_baseUrl_/STU3/Communication/70000",
       "resource": {
         "id": "70000",
         "meta": {
@@ -88,7 +88,7 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/FHIR/STU3/PractitionerRole/103264992985.R69.REFERRING-CLINICIAN",
+      "fullUrl": "_baseUrl_/STU3/PractitionerRole/103264992985.R69.REFERRING-CLINICIAN",
       "resource": {
         "id": "103264992985.R69.REFERRING-CLINICIAN",
         "meta": {

@@ -12,12 +12,12 @@
     "link": [
         {
             "relation": "self",
-            "url": "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2"
+            "url": "_baseUrl_/R4/HealthcareService?_id=1,2"
         }
     ],
     "entry": [
         {
-            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/1",
+            "fullUrl": "_baseUrl_/R4/HealthcareService/1",
             "resource": {
                 "id": "1",
                 "meta": {
@@ -43,7 +43,7 @@
             }
         },
         {
-            "fullUrl": "_baseUrl_/FHIR/R4/HealthcareService/2",
+            "fullUrl": "_baseUrl_/R4/HealthcareService/2",
             "resource": {
                 "id": "2",
                 "meta": {

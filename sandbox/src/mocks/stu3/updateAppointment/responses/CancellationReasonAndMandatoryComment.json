@@ -14,7 +14,7 @@
     {
       "coding": [
         {
-          "system": "https://ers-api:445/ers-api/STU3/v1/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+          "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
           "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER"
         }
       ]

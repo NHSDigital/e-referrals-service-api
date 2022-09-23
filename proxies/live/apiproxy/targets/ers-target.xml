@@ -77,6 +77,8 @@
                     <Name>RaiseFault.403Forbidden</Name>
                     <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
                 </Step> <Step>
+                    <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
+                </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-user-id-header-user-restricted</Name>
                 </Step> <Step>
                     <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
@@ -126,6 +128,8 @@
                 </Step> <Step>
                     <Name>RaiseFault.403Forbidden</Name>
                     <Condition>(request.header.x-ers-user-id)</Condition>
+                </Step> <Step>
+                    <Name>AssignMessage.Set.x-ers-access-mode-header-app-restricted</Name>
                 </Step> <Step>
                     <Name>AssignMessage.Set.nhsd-ers-ods-code-header-app-restricted</Name>
                 </Step> <Step>

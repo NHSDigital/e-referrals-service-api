@@ -9,11 +9,13 @@ _HEADER_BASE_URL = "x-ers-network-baseurl"
 _HEADER_USER_ID = "x-ers-user-id"
 _HEADER_REQUEST_ID = "x-request-id"
 _HEADER_ASID = "xapi_asid"
+_HEADER_ACCESS_MODE = "x-ers-access-mode"
 
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
 _AUTHORISED_APPLICATION = "AUTHORISED_APPLICATION"
+_EXPECTED_ACCESS_MODE = "application-restricted"
 
 
 @pytest.mark.integration_test
@@ -172,3 +174,4 @@ class TestAppRestricted:
         assert target_request_headers[_HEADER_ASID] == asid
         assert target_request_headers[_HEADER_USER_ID] == app_restricted_user_id
         assert target_request_headers[_HEADER_BASE_URL] == service_url
+        assert target_request_headers[_HEADER_ACCESS_MODE] == _EXPECTED_ACCESS_MODE

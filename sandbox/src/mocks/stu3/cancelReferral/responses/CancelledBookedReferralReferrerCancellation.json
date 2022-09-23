@@ -69,7 +69,7 @@
                             {
                                 "url": "reason",
                                 "valueCoding": {
-                                    "system": "_baseUrl_/FHIR/STU3/CodeSystem/REQUEST-CANCELLATION-REASON",
+                                    "system": "_baseUrl_/STU3/CodeSystem/REQUEST-CANCELLATION-REASON",
                                     "code": "REFERRER_CANCELLATION",
                                     "display": "Other - Referrer request cancellation"
                                 }
@@ -101,7 +101,7 @@
                             {
                                 "name": "specialty",
                                 "valueCoding": {
-                                    "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY",
+                                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                                     "code": "CARDIOLOGY"
                                 }
                             },
@@ -201,7 +201,7 @@
                 "specialty": {
                     "coding": [
                         {
-                            "system": "_baseUrl_/FHIR/STU3/CodeSystem/SPECIALTY",
+                            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
                             "code": "CARDIOLOGY",
                             "display": "Cardiology"
                         }
@@ -236,7 +236,7 @@
                 "reason": [
                     {
                       "coding": [{
-                        "system": "_baseUrl_/FHIR/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+                        "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
                         "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER"
                       }]
                     }

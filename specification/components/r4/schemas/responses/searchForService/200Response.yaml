@@ -62,7 +62,7 @@ content:
                 example: 'self'
               url:
                 type: string
-                example: "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2"
+                example: "_baseUrl_/R4/HealthcareService?_id=1,2"
         entry:
           type: array
           description: |
@@ -79,7 +79,7 @@ content:
             properties:
               fullUrl:
                 type: string
-                example: "_baseUrl_/FHIR/R4/HealthcareService/1"
+                example: "_baseUrl_/R4/HealthcareService/1"
               resource:
                 $ref: ../../eRS-HealthcareService.yaml
               search:

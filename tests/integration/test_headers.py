@@ -10,12 +10,14 @@ _HEADER_BASE_URL = "x-ers-network-baseurl"
 _HEADER_USER_ID = "x-ers-user-id"
 _HEADER_REQUEST_ID = "x-request-id"
 _HEADER_ASID = "xapi_asid"
+_HEADER_ACCESS_MODE = "x-ers-access-mode"
 
 _EXPECTED_REFERRAL_ID = "000000040032"
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
 _EXPECTED_FILENAME = "mysuperfilename.txt"
 _EXPECTED_COMM_RULE_ORG = "R100"
 _EXPECTED_OBO_USER_ID = "0123456789000"
+_EXPECTED_ACCESS_MODE = "user-restricted"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
 
@@ -100,6 +102,7 @@ class TestHeaders:
         assert target_request_headers[_HEADER_ASID] == asid
         assert target_request_headers[_HEADER_USER_ID] == referring_clinician.user_id
         assert target_request_headers[_HEADER_BASE_URL] == service_url
+        assert target_request_headers[_HEADER_ACCESS_MODE] == _EXPECTED_ACCESS_MODE
 
     @pytest.mark.asyncio
     async def test_headers_on_refdata_response(

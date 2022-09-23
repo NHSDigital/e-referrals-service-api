@@ -1,0 +1,9 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Set.x-ers-access-mode-header-app-restricted">
+    <Set>
+        <Headers>
+            <Header name="x-ers-access-mode">application-restricted</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
+</AssignMessage>

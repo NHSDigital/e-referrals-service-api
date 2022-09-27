@@ -1,0 +1,13 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "filename",
+            "valueString": "example.pdf"
+        },
+        {
+            "name": "fileSize",
+            "valueUnsignedInt": 10485760
+        }
+    ]
+}

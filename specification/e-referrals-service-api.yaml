@@ -3699,6 +3699,17 @@ paths:
         - $ref: 'components/r4/schemas/headers/request/OdsCode.yaml'
         - $ref: 'components/r4/schemas/headers/request/OnBehalfOfUserID.yaml'
         - $ref: 'components/r4/schemas/path/ServiceRequestId.yaml'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: 'components/r4/schemas/eRS-GenerateUploadUri-Request-Parameters.yaml'
+            examples:
+              generate-upload-uri:
+                summary: Request presigned URL for file `example.pdf` with 10485760 bytes (10 MiB)
+                value:
+                  $ref: 'components/r4/examples/requestUploadUri/requests/RequestExample.json'
       responses:
         '200':
           $ref: 'components/r4/schemas/responses/requestUploadUri/200Response.yaml'
@@ -3712,6 +3723,8 @@ paths:
           $ref: 'components/r4/schemas/responses/R4-NotFound.yaml'
         '406':
           $ref: 'components/r4/schemas/responses/R4-NotAcceptable.yaml'
+        '422':
+          $ref: 'components/r4/schemas/responses/requestUploadUri/422Response.yaml'
         '429':
           $ref: 'components/r4/schemas/responses/R4-TooManyRequests.yaml'
         '500':

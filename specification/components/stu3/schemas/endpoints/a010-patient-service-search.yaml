@@ -1,0 +1,77 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to find services that meet the referral needs of a patient.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+  
+  You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
+
+  ## Use case
+  As an authenticated user
+
+  I need to find services I can refer the patient to
+
+  So that I can offer the patient appropriate services that meet their referral needs
+
+  ## Related endpoints
+  Once you have identified appropriate services for the patient you can either:
+    - create a referral by choosing a shortlist of bookable services using [[HYPERLINK_A011]], or
+    - refer the patient directly to a triage service using [[HYPERLINK_A021]]
+summary: A010 - Patient service search
+operationId: a010-patient-service-search
+parameters:
+  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-PatientServiceSearch-Parameters.yaml'
+      examples:
+        rc-minimal:
+          summary: Referring Clinician minimal search
+          value:
+            $ref: '../../examples/patientServiceSearch/requests/RcMinimal.json'
+        rc-search-by-clinical-term:
+          summary: Referring Clinician search by clinical term
+          value:
+            $ref: '../../examples/patientServiceSearch/requests/RcSearchByClinicalTerm.json'
+        rc-search-by-named-clinician:
+          summary: Referring Clinician search by named clinician
+          value:
+            $ref: '../../examples/patientServiceSearch/requests/RcSearchByNamedClinician.json'
+        rca-with-iwt:
+          summary: Referring Clinician Admin search
+          value:
+            $ref: '../../examples/patientServiceSearch/requests/RcaWithIWT.json'
+responses:
+  '200':
+    $ref: '../responses/patientServiceSearch/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/patientServiceSearch/ErrorOutcome.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

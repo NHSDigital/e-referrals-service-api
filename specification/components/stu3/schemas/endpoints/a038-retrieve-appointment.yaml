@@ -1,0 +1,113 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to retrieve the current version of an appointment. An appointment is made to a service so a patient can be seen or for the referral to be reviewed, prior to care.
+
+  A referral may, or may not, have an appointment and an appointment will always relate to a specific referral.
+
+  It is possible to have more than one appointment during the life of the referral, but never concurrent appointments. This endpoint only returns the current appointment and does not support historic views.
+
+  The outcome of a referral review can be recorded on an appointment. Cancellation or maintenance of an appointment (such as the intent to cancel the current appointment and book another one later) are recorded against the current appointment.
+
+  e-RS currently supports a number of appointment scenarios:
+
+    - Where a booking has been made to a directly-bookable service (DBS)
+    - Where a deferred booking is made when a slot could not be found at a directly-bookable service. In this case, the service "books" the appointment
+    - Where a booking has been made to a indirectly-bookable service (IBS)
+    - Where a review is required by a triage service
+    - Where a review has been conducted by a triage service
+    - Where a service has rejected, or accepted an appointment
+    - Where an appointment has been cancelled, and no further action is possible
+    - Where an appointment is currently cancelled, but a future appointment may be made by a service later
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of a referral in order to retrieve details of an appointment that it relates to.
+
+  Note: e-RS only supports the retrieval of the most recent version of Appointment. You cannot retrieve earlier versions.
+
+  ## Use case
+
+  As an authenticated user
+
+  I want to read details of an appointment
+
+  So that I can decide what further action may be needed.
+
+  ## Related endpoints
+  Note that in some cases below, an appointment forms part of the referral returned.
+
+  You can always retrieve the current version of an existing appointment via [[HYPERLINK_A005]].
+
+  When successfully accepting an appointment, the accepted appointment is returned via [[HYPERLINK_A013]].
+
+  When successfully rejecting an appointment, the rejected appointment is returned via [[HYPERLINK_A014]].
+
+  When booking or deferring an appointment, the appointment is returned via [[HYPERLINK_A016]].
+
+  When sending an appointment to a service to review, an appointment is returned via [[HYPERLINK_A021]]. In this case the "appointment" is to review a referral.
+
+  When changing a shortlist and sending an instruction to a service to review, an appointment is returned via [[HYPERLINK_A032]] indicating an "appointment" to review a referral.
+
+  When successfully cancelling an appointment, to action it later, the cancelled appointment is returned via [[HYPERLINK_A022]].
+
+  When converting an advice and guidance to a referral, if the referral has an appointment, it will be returned via [[HYPERLINK_A027]].
+
+  Having successfully reviewed a referral, details of that review are shown on the appointment returned via [[HYPERLINK_A028]].
+
+  You will need the appointment version when using [[HYPERLINK_A034]], which can be obtained from [[HYPERLINK_A038]].
+
+  If an appointment is cancelled as part of [[HYPERLINK_A036]], an appointment will be returned as part of a successful response.
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment
+
+  | Scenario                                                                                                  | Request                 |
+  | --------------------------------------------------------------------------------------------------------- | ----------------------- |
+  | `Appointment` booked to directly-bookable service                                                         | `appointmentId`=`70000` |
+  | `Appointment` booked to indirectly-bookable service                                                       | `appointmentId`=`70001` |
+  | `Appointment` deferred to service provider for booking                                                    | `appointmentId`=`70002` |
+  | `Appointment` sent for triage                                                                             | `appointmentId`=`70003` |
+  | `Appointment` triage response (Record Triage Outcome)                                                     | `appointmentId`=`70004` |
+  | `Appointment` Cancel Appointment, Action Later                                                            | `appointmentId`=`70005` |
+  | `Appointment` cancelled                                                                                   | `appointmentId`=`70006` |
+  | `Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service     | `appointmentId`=`70007` |
+
+summary: A038 - Retrieve appointment
+operationId: a038-retrieve-appointment
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/AppointmentId.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAppointment/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/retrieveAppointment/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

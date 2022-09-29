@@ -1,0 +1,85 @@
+security:
+  - bearerAuth: [ ]
+description: |
+  ## Overview
+  Use this endpoint to retrieve the advice and guidance conversation between the referring organisation 
+  and service providing organisation.
+
+  A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. For service provider users, 
+  you may have identified the UBRN via [[HYPERLINK_A023]].
+
+  You need to use [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. 
+  This will importantly include the latest version of the request which must be used.
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to retrieve the conversation that is present on an advice and guidance request
+
+  So that I can review the conversation and potentially contribute further to it.
+
+  ## Important note
+
+  The conversation returned includes links to any attachments associated with the conversation.
+
+  ## Related endpoints
+
+  After using this endpoint:
+    - Use [[HYPERLINK_A006]] to retrieve any attachments associated with the advice and guidance request.
+    - (For service provider users) Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information.
+    - (For service provider users) Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so.
+
+  Use [[HYPERLINK_A043]] to generate a PDF file overview relating to an advice and guidance request.
+
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                       | Request                                                   |
+  | -------------------------------------------------------------- | --------------------------------------------------------- |
+  | Single message from referrer                                   | `based-on`=`CommunicationRequest/000000070000/_history/1` |
+  | One message each way                                           | `based-on`=`CommunicationRequest/000000070000/_history/2` |
+  | Attachment present in each direction                           | `based-on`=`CommunicationRequest/000000070001/_history/6` |
+  | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
+  | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
+
+summary: A025 - Retrieve advice and guidance conversation
+operationId: a025-retrieve-advice-and-guidance-conversation
+parameters:
+  - $ref: '../queryParameters/BasedOn.yaml'
+  - $ref: '../queryParameters/Include-Communication.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAdviceAndGuidanceConversation/200Response.yaml'
+  '400':
+    $ref: '../responses/retrieveAdviceAndGuidanceConversation/400Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFoundVersioned.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

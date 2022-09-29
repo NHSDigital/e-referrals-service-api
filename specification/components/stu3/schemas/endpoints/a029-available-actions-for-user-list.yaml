@@ -1,0 +1,88 @@
+security:
+  - bearerAuth: [ ]
+description: |
+  ## Overview
+  This endpoint allows an authenticated e-RS user to check ahead of performing an action, 
+  whether or not the action is permitted. This endpoint performs a search for available and 
+  supported actions that can be *currently* performed, by the *current* e-RS user on a *specific* 
+  referral. When a permitted action is returned, the e-RS user could immediately attempt to 
+  perform a permitted action.
+
+  You SHOULD NOT cache the list of available user actions returned because this endpoint 
+  gives the *current* actions for the *current* e-RS user, for the referral in context and is therefore, 
+  transient; a future call for a different e-RS user, referral, or at a different point in time, 
+  might result in a different set of actions, leading to potential failure flows.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You should obtain a `Unique Booking Reference Number` (UBRN) before using this endpoint, as the current UBRN version is required.
+
+  ## Use case
+
+  As an authenticated user
+
+  I want to know what actions I might currently perform on a referral prior to attempting to do so
+
+  So that I can review my options, and do not try to persist a prohibited action
+
+  ## Related endpoints
+
+  To retrieve pertinent details relating to a referral:
+    - Use [[HYPERLINK_A005]] to retrieve the details of the referral, UBRN and UBRN version.
+
+  Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
+    - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
+    - Use [[HYPERLINK_A016]] to Book, or if unable, Defer, an appointment to a specific service on the current shortlist.
+    - Use [[HYPERLINK_A031]] to change the shortlist of bookable services on an existing referral.
+    - Use [[HYPERLINK_A032]] to change the shortlist to a single triage service and refer the patient directly to that triage service.
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                            | Request                                                                                  |
+  | --------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+  | No "action" is available                            | `focus`=`ReferralRequest/000000070000/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Record Review Outcome" is available                | `focus`=`ReferralRequest/000000070001/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Create Appointment" is available                   | `focus`=`ReferralRequest/000000070002/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Change Shortlist" is available                     | `focus`=`ReferralRequest/000000070003/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Change Shortlist and Send for Triage" is available | `focus`=`ReferralRequest/000000070004/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Cancel Referral" is available                      | `focus`=`ReferralRequest/000000070005/_history/6`, `intent`=`proposal`, `status`=`ready` |
+  | "Cancel Directly Booked Appointment" is available   | `focus`=`ReferralRequest/000000070006/_history/6`, `intent`=`proposal`, `status`=`ready` |
+
+
+summary: A029 - Available actions for user list
+operationId: a029-available-actions-for-user-list
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../queryParameters/Focus.yaml'
+  - $ref: '../queryParameters/Intent.yaml'
+  - $ref: '../queryParameters/TaskStatus.yaml'
+responses:
+  '200':
+    $ref: '../responses/availableActionsForUserList/200Response.yaml'
+  '400':
+    $ref: '../responses/availableActionsForUserList/400Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

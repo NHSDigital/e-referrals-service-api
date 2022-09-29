@@ -1,0 +1,78 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  Use this endpoint to retrieve a file that is attached to a referral or advice request.
+
+  ## Supported security patterns
+  - Application-restricted access
+  - Healthcare worker, user-restricted access
+
+
+  ## Pre-requisites
+  ### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application.
+
+  ### Healthcare worker, user-restricted access
+  In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You need to have retrieved the referral via [[HYPERLINK_A005]] to obtain the URLs for its attachments.
+
+  ## Important note
+
+  A referral pathway in e-RS can be made up of more than one UBRN. 
+  For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
+  and the service decides to onward refer to a more specialist knee miniscus service (UBRN #2). 
+  This would result in two UBRNs for the referral pathway in this example (but there could be more related UBRNs if onward referred multiple times).
+
+  As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. 
+  You can do this using the following endpoints:
+
+    - [[HYPERLINK_A007]]
+    - A006 - Retrieve Attachment
+
+  Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
+  
+  ## Use case
+
+  As an authenticated user
+
+  I need to retrieve a clinical attachment associated with a referral
+
+  So that I can assess its content and decide what further action may be needed.
+
+  ## Related endpoints
+  
+  You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
+
+summary: A006 - Retrieve attachment
+operationId: a006-retrieve-attachment
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+  - $ref: '../pathParameters/AttachmentLogicalID.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAttachment/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/retrieveAttachment/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

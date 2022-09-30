@@ -13,10 +13,10 @@ properties:
   parameter:
     type: array
     description: |
-      | Field                             | Cardinality | Description                                                        |
-      | --------------------------------- | ----------- | ------------------------------------------------------------------ |
-      | `filename`                        | `1..1`      | The name of the file, including extension (e.g. `filename.txt`).   |
-      | `fileSize`                        | `1..1`      | The size of the file in `bytes` (e.g. `10485760`, which is 10MiB). |
+      | Field      | Cardinality | Max Value (Subject to change) | Description                                                        |
+      | -----------| ----------- | ----------------------------- | ------------------------------------------------------------------ |
+      | `filename` | `1..1`      | 255 characters                | The name of the file, including extension (e.g. `filename.txt`).   |
+      | `fileSize` | `1..1`      | 104857600 bytes (100MiB)      | The size of the file in `bytes` (e.g. `10485760`, which is 10MiB). |
     items:
       anyOf:
         - title: filename

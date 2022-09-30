@@ -1,39 +1,5 @@
 
-const fs = require('fs')
-const lodash = require('lodash')
-
-function mapExampleResponse(request, exampleResponseMap) {
-
-  if (request && request.payload) {
-    for (const [requestBodyPath, response] of Object.entries(exampleResponseMap)) {
-      try {
-        const exampleRequestBody = JSON.parse(fs.readFileSync(requestBodyPath))
-        var requestBody = request.payload;
-
-        if ('object' != (typeof requestBody)) {
-          requestBody = JSON.parse(request.payload)
-        }
-
-        if (lodash.isEqual(requestBody, exampleRequestBody)) {
-          return response;
-        }
-      } catch (err) {
-        console.error(err)
-        throw err
-      }
-    }
-  }
-
-  return null;
-}
-
-function mapExampleGetResponse(parameterValue, exampleResponseMap) {
-  for (const [requestParameter, responseBodyPath] of Object.entries(exampleResponseMap)) {
-    if (parameterValue === requestParameter) {
-      return responseBodyPath;
-    }
-  }
-}
+const mockResponseUtils = require('../../mockResponseUtils')
 
 module.exports = {
 
@@ -51,7 +17,7 @@ module.exports = {
 
     const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
 
-    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
+    return mockResponseUtils.mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 
@@ -67,7 +33,7 @@ module.exports = {
 
     const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
 
-    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
+    return mockResponseUtils.mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 
@@ -86,7 +52,7 @@ module.exports = {
 
     const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
 
-    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
+    return mockResponseUtils.mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
 
   },
 
@@ -101,7 +67,7 @@ module.exports = {
       'PRIORITY': 'stu3/getCodeSystem/responses/PriorityCodeSystem.json'
     };
 
-    return mapExampleGetResponse(request, exampleResponseMap);
+    return mockResponseUtils.mapExampleGetResponse(request, exampleResponseMap);
 
   },
 
@@ -215,7 +181,7 @@ module.exports = {
     const ubrn = request.params.ubrn;
     // Scenario 1 - Add clinical information for first time (single file)
     if (ubrn === '000000070000') {
-      return mapExampleResponse(request, { 'src/mocks/stu3/maintainReferralLetter/requests/SingleDocumentReference.json': 'stu3/maintainReferralLetter/responses/ReferralRequestWithSingleDocumentReference.json' })
+      return mockResponseUtils.mapExampleResponse(request, { 'src/mocks/stu3/maintainReferralLetter/requests/SingleDocumentReference.json': 'stu3/maintainReferralLetter/responses/ReferralRequestWithSingleDocumentReference.json' })
     }
 
     // Scenario 2 - Add clinical information for first time (two files)
@@ -226,7 +192,7 @@ module.exports = {
         'src/mocks/stu3/maintainReferralLetter/requests/UpdateClinicalInfo.json': 'stu3/maintainReferralLetter/responses/ReferralRequestWithUpdatedDocumentReferences.json'
       };
 
-      return mapExampleResponse(request, responseMap)
+      return mockResponseUtils.mapExampleResponse(request, responseMap)
     }
 
     return {}
@@ -242,7 +208,7 @@ module.exports = {
       'src/mocks/stu3/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json': 'stu3/bookOrDeferAppointment/responses/DeferralBookingAttemptProblem.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -254,7 +220,7 @@ module.exports = {
           'src/mocks/stu3/updateAppointment/requests/CancellationReasonOnlyCommentMandatory.json': {responsePath: 'stu3/updateAppointment/responses/CancellationReasonOnlyCommentMandatory.json', responseCode: 422},
           'src/mocks/stu3/updateAppointment/requests/CancellationInvalidReason.json': {responsePath: 'stu3/updateAppointment/responses/CancellationInvalidReason.json', responseCode: 422}
     }
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForRetrieveClinicalInformation: function () {
@@ -277,7 +243,7 @@ module.exports = {
       'src/mocks/stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json': 'stu3/retrieveWorklist/responses/LettersOutstanding.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -287,7 +253,7 @@ module.exports = {
       'src/mocks/stu3/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json': 'stu3/retrieveAdviceAndGuidanceWorklist/responses/AdviceAndGuidanceRequests.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -347,7 +313,7 @@ module.exports = {
       'src/mocks/stu3/sendAdviceAndGuidanceResponse/requests/AttachmentIncluded.json': 'stu3/sendAdviceAndGuidanceResponse/responses/AttachmentIncluded.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -358,7 +324,7 @@ module.exports = {
       'src/mocks/stu3/convertAdviceAndGuidanceToReferral/requests/WithAttachments.json': 'stu3/convertAdviceAndGuidanceToReferral/responses/WithAttachments.json',
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -370,7 +336,7 @@ module.exports = {
       'src/mocks/stu3/recordTriageOutcome/requests/AttachmentIncluded.json': 'stu3/recordTriageOutcome/responses/AttachmentIncluded.json',
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -396,7 +362,7 @@ module.exports = {
       'src/mocks/stu3/cancelReferral/requests/IntendPrivateWithComment.json': 'stu3/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
   },
 
   getResponseForRejectReferral: function (request) {
@@ -405,7 +371,7 @@ module.exports = {
       'src/mocks/stu3/rejectReferral/requests/BasicExampleDbs.json': 'stu3/rejectReferral/responses/ExampleResponseDbs.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
   },
 
   getResponseForAvailableActionsForUserList: function (request) {
@@ -452,7 +418,7 @@ module.exports = {
       'src/mocks/stu3/cancelAppointmentActionLater/requests/MinimalExampleIBS.json': 'stu3/cancelAppointmentActionLater/responses/MinimalExampleIBS.json',
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
 
 
   },
@@ -463,7 +429,7 @@ module.exports = {
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mockResponseUtils.mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForChangeShortlistAndSendForTriage: function (request) {
@@ -471,7 +437,7 @@ module.exports = {
         'src/mocks/stu3/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'stu3/changeShortlistAndSendForTriage/responses/MinimalRequest.json'
       }
 
-      return mapExampleResponse(request, responseMap)
+      return mockResponseUtils.mapExampleResponse(request, responseMap)
   },
 
   getExampleResponseForRetrieveAppointment: function (request) {

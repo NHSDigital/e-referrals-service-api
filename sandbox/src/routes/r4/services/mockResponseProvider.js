@@ -1,3 +1,5 @@
+const mockResponseUtils = require('../../mockResponseUtils')
+
 module.exports = {
 
   getExampleResponseForRetrieveBusinessFunctions: function () {
@@ -63,7 +65,10 @@ module.exports = {
   getExampleResponseForRequestUploadUri: function (request) {
     const id = request.params.id
     if (id === 'r.f6dc823a-e673-4f74-9edc-a49525edd2a5') {
-      return 'r4/requestUploadUri/responses/ResponseExample.json'
+      var responseMap = {
+        'src/mocks/r4/requestUploadUri/requests/RequestExample.json': 'r4/requestUploadUri/responses/ResponseExample.json'
+      }
+      return mockResponseUtils.mapExampleResponse(request, responseMap)
     }
   }
 }

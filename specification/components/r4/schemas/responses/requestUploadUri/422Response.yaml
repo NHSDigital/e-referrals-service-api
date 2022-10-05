@@ -1,10 +1,10 @@
 description: |
   Where status code 422 (Unprocessible Entity) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
   Check diagnostics property for specific information regarding the error.
-  
-  | issue.details.coding.code | issue.code   | Description                                                     |
-  | ------------------------- | ------------ | --------------------------------------------------------------- |
-  | REC_UNPROCESSABLE_ENTITY  | required     | The request's body is invalid or a provided value is incorrect. |
+
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                     |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | --------------------------------------------------------------- |
+  | REC_UNPROCESSABLE_ENTITY  | required   | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The request's body is invalid or a provided value is incorrect. |
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
@@ -17,4 +17,4 @@ content:
     schema:
       $ref: '../../NHSDigital-OperationOutcome.yaml'
     example:
-      $ref: '../../../examples/NHSDigital-OperationOutcome.json'
+      $ref: '../../../examples/NHSDigital-OperationOutcome-422.json'

@@ -83,6 +83,7 @@ extends:
       service_name: "${{ variables.service_name }}-fix"
       short_service_name: "${{ variables.short_service_name }}-fix"
       service_base_path: "${{ variables.service_base_path }}-fix"
+      enable_status_monitoring: false
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
         ALLOW_ECHO_TARGET: true

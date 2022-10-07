@@ -122,8 +122,6 @@ extends:
           smoke_tests: true
       depends_on:
       - ers_sa_release
-    - environment: manual-approval
-      stage_name: manual_approval_nft2
     - environment: internal-qa-sandbox
       proxy_path: sandbox
       depends_on:

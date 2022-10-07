@@ -126,6 +126,7 @@ extends:
       stage_name: manual_approval_nft2
     - environment: ref
       stage_name: ers_nft2_release
+      enable_status_monitoring: false
       post_deploy:
       - template: templates/run-tests.yml
         parameters:

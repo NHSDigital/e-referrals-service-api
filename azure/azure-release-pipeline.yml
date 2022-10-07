@@ -124,15 +124,6 @@ extends:
       - ers_sa_release
     - environment: manual-approval
       stage_name: manual_approval_nft2
-    - environment: ref
-      stage_name: ers_nft2_release
-      enable_status_monitoring: false
-      post_deploy:
-      - template: templates/run-tests.yml
-        parameters:
-          smoke_tests: true
-      depends_on:
-      - manual_approval_nft2
     - environment: internal-qa-sandbox
       proxy_path: sandbox
       depends_on:

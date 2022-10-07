@@ -16,8 +16,6 @@ APIGEE_ENVIRONMENTS:
   name: internal-qa
 - display_name: Internal QA Sandbox
   name: internal-qa-sandbox
-- display_name: Reference
-  name: ref
 - display_name: Sandbox
   name: sandbox
 - name: prod

@@ -83,6 +83,7 @@ extends:
       service_name: "${{ variables.service_name }}-fix"
       short_service_name: "${{ variables.short_service_name }}-fix"
       service_base_path: "${{ variables.service_base_path }}-fix"
+      enable_status_monitoring: false
       jinja_templates:
         ERS_TARGET_SERVER: e-referrals-service-api--fix
         ALLOW_ECHO_TARGET: true
@@ -121,16 +122,6 @@ extends:
           smoke_tests: true
       depends_on:
       - ers_sa_release
-    - environment: manual-approval
-      stage_name: manual_approval_nft2
-    - environment: ref
-      stage_name: ers_nft2_release
-      post_deploy:
-      - template: templates/run-tests.yml
-        parameters:
-          smoke_tests: true
-      depends_on:
-      - manual_approval_nft2
     - environment: internal-qa-sandbox
       proxy_path: sandbox
       depends_on:

@@ -1,0 +1,92 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to retrieve a list of reference data codes along with the user-friendly display values used in the e-RS Professional Application.
+
+  ## Supported security patterns
+  - Application-restricted, unattended access
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  ### Application-restricted access 
+  In order to use this endpoint you must be an authenticated e-RS calling application.
+
+  ### Healthcare worker, user-restricted access
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  ## Use case
+  As an authenticated user or application
+
+  I need to retrieve e-RS reference data
+
+  So I can use it with other endpoints or display the reference data in a user-friendly format to my users.
+  
+  ## Related endpoints
+  Reference data may be needed for other endpoints, for example when including Specialty and Clinic Type reference data to:
+  - find services that meet the referral needs of a patient using [[HYPERLINK_A010]], and
+  - create a referral using [[HYPERLINK_A011]] or [[HYPERLINK_A021]]
+
+  You can use the Priority reference data to calculate when a patient can expect to be contacted by the service. 
+
+  This is important because when a patient's appointment is deferred to a service to book, the patient may be informed of the date by which they can expect to be contacted. 
+  Similarly, in the case of a triage service, a letter may inform the patient of the date by which they can expect to be contacted.
+
+  You can calculate this date by:
+
+  1. Obtaining the current priority of the referral (via [[HYPERLINK_A005]]) and its associated "deferToProviderContactDays" (for deferred-to services) or "triageContactDays" (for triage services). These represent the number of "working days" and do not include weekends
+  2. Obtaining the datetime of the appointment resource, e.g. "created" : "2021-05-06T11:21:45.652Z"
+  3. Adding the "working days" to the datetime of the appointment resource
+  
+    For example:
+
+  1. Given a referral with a priority of `TWO_WEEK_WAIT` and a "deferToProviderContactDays" of "2" for priority `TWO_WEEK_WAIT`
+  2. If the appointment was created on Monday 03/01/2022 for a deferred-to service 
+  3. The calculated date when a patient can expect to be contacted by the service would be on or before 05/01/2022
+
+  Note that the "deferToProviderContactDays" and "triageContactDays" values are dynamic, and may change independently from one another, so the above calculation is for illustration purposes only.
+
+  You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using [[HYPERLINK_A005]] and [[HYPERLINK_A038]].
+  
+  Documentation for other endpoints will reference this endpoint, where specific reference data is required.
+  
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                  | Request                                                 | Response                                  |
+  | --------------------------------------------------------- | ------------------------------------------------------- | ----------------------------------------- |
+  | Retrieve speciality reference data                        | `codeSystemType`=`SPECIALTY`                            | Specialty details                         |
+  | Retrieve clinic type reference data                       | `codeSystemType`=`CLINIC-TYPE`                          | Clinic type details                       |
+  | Retrieve appointment cancellation reason reference data   | `codeSystemType`=`APPOINTMENT-CANCELLATION-REASON`      | Appointment reason type details           |
+  | Retrieve referral cancellation reason reference data      | `codeSystemType`=`REFERRAL-CANCELLATION-REASON`         | ReferralRequest reason type details       |
+  | Retrieve appointment non-attendance reason reference data | `codeSystemType`=`APPOINTMENT-NON-ATTENDANCE-REASON`    | Appointment non-attendance reason details |
+  | Retrieve priority reference data                          | `codeSystemType`=`PRIORITY`                             | Priority details                          |
+
+summary: A004 - Retrieve reference data
+operationId: a004-retrieve-reference-data
+parameters:
+  - $ref: '../pathParameters/CodeSystemType.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/getCodeSystem/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

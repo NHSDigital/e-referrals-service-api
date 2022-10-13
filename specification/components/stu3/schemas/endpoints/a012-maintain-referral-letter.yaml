@@ -1,0 +1,135 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+  
+  All new files to be associated with a referral must be uploaded first using [[HYPERLINK_A020]] and then linked to the referral using this endpoint.
+
+  ## Important information about using this endpoint
+  
+  This endpoint can be used to associate attachments to a referral that has no existing referral letter attachments. 
+  In this case you must upload the file first using [[HYPERLINK_A020]] and then associate it to the referral using this endpoint.
+
+  You can also use this endpoint to modify the *set* of referral letter attachments already associated with a referral. 
+  In this case, you must post all referral letter attachments you wish to be (finally) associated to the referral, 
+  including any that were already associated. In other words, this endpoint replaces the set of referral letter 
+  attachments previously associated - with those specified in your latest request. 
+  As such, it is imperative that this call references all the attachments the user wishes to keep, every time it is called.
+
+  Below are three example scenarios which clarify the behaviour of the endpoint when referral attachments are already present on the referral:
+
+  1. Let us consider a referral that has two referral letter attachments associated (say "A.pdf" and "B.pdf"). If 
+  you wish to add an additional attachment (say "C.pdf"), you must upload the additional attachment 
+  "C.pdf" using [[HYPERLINK_A020]], and then associate attachments "A.pdf", "B.pdf" and "C.pdf" 
+  via this endpoint in a single request. That is, all three attachments "A.pdf", "B.pdf" and "C.pdf" 
+  must be included in the request to A012 - Maintain referral letter.
+  2. Let us consider a different referral that has two referral letter attachments (say "D.jpg" and "E.jpg") 
+  already associated, and you wish to remove one of them. Lets consider that you wish to remove "D.jpg". 
+  To do this, you would call A012 - Maintain referral letter specifying only "E.jpg" in your request. By omitting 
+  "D.jpg" from your request, e-RS will dis-associate attachment "D.jpg" from the referral and only attachment "E.jpg" 
+  will remain associated.
+  3. Let us now consider a referral that has four referral letter attachments associated (say "L.doc", "M.doc", "N.doc" 
+  and "O.doc"), and you wish to add some more files (say "P.doc" and "Q.doc") and remove some files (say "N.doc" 
+  and "O.doc"). To do this you must upload the additional attachment(s) ("N.doc" and "O.doc") 
+  using [[HYPERLINK_A020]]. Following that successful upload, you must then associate only all 
+  referral letter attachments the user wishes to keep (namely "L.doc", "M.doc", "P.doc" and "Q.doc") 
+  in a single request to A012 - Maintain referral letter. Attachments not included in the request 
+  (namely "N.doc" and "O.doc") will be dis-associated from the referral as a result.
+
+  As a developer or software supplier, please ensure your users are made aware or protected from this behaviour. 
+  For example, when a referring user wants to update the attachments on a referral, the user should be presented 
+  with the currently associated attachments so they can add and/or remove attachments as required.
+
+  Note: It is not permissible to remove *all* referral letter attachments leaving zero attachments associated. 
+  There must be at least one referral letter attachment associated.
+
+  ## Use case
+  As an authenticated user
+
+  I need to be able to manage referral letter attachments associated with a referral
+
+  So I can ensure the service provider has enough information to review/process the referral.
+
+
+  ## Related endpoints
+  Documents must be uploaded into the e-RS document store using [[HYPERLINK_A020]] before they can be associated 
+  with a referral.
+  
+  You can check to see what referral letter information has been added to a referral by using [[HYPERLINK_A005]], 
+  [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment:
+
+  | Scenario                                               | Request                                                 |
+  | ------------------------------------------------------ | ------------------------------------------------------- |
+  | Add clinical information for first time (single file)  | `ubrn`=`000000070000`, `body` as defined in example 1   |
+  | Add clinical information for first time (two files)    | `ubrn`=`000000070001`, `body` as defined in example 2   |
+  | Update clinical information                            | `ubrn`=`000000070001`, `body` as defined in example 3   |
+
+summary: A012 - Maintain referral letter
+operationId: a012-maintain-referral-letter
+parameters:
+  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-MaintainReferralLetter-Parameters.yaml'
+      examples:
+        single-file:
+          summary: 1 - Add clinical information (single file)
+          value:
+            $ref: '../../examples/maintainReferralLetter/requests/SingleDocumentReference.json'
+        two-files:
+          summary: 2 - Add clinical information (two files)
+          value:
+            $ref: '../../examples/maintainReferralLetter/requests/MultipleDocumentReferences.json'
+        update-files:
+          summary: 3 - Update clinical information (removing one file from example above)
+          value:
+            $ref: '../../examples/maintainReferralLetter/requests/UpdateClinicalInfo.json'
+responses:
+  '200':
+    $ref: '../responses/maintainReferralLetter/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '409':
+    $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/maintainReferralLetter/422Response.yaml'
+  '423':
+    $ref: '../responses/Locked.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

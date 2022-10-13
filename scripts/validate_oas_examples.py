@@ -28,9 +28,12 @@ SCRIPT_LOCATION = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_LOCATION, ".."))
 spec_path_json = os.path.join(REPO_ROOT, "build/e-referrals-service-api.json")
 spec_path_yaml = os.path.join(REPO_ROOT, "specification/e-referrals-service-api.yaml")
+spec_path = os.path.join(REPO_ROOT, "specification/")
+oas_spec_map = {}
+response_spec_keys_examples = ["content", "application/fhir+json", "examples"]
 
 # List containing http methods in OAS file
-http_methods = ["post", "put", "patch", "get"]
+http_methods = ["post", "put", "patch", "get", "head", "delete"]
 
 # List containing http success response codes
 http_success_codes = ["200", "201"]
@@ -50,6 +53,19 @@ with open(spec_path_yaml) as yaml_file:
 
 # List all endpoints
 all_endpoints_url = oas_spec_from_yaml["paths"].keys()
+
+for endpoint in all_endpoints_url:
+    all_http_methods = oas_spec_from_yaml["paths"][endpoint]
+    for http_method in all_http_methods:
+        endpoint_spec = oas_spec_from_yaml["paths"][endpoint][http_method]["$ref"]
+        try:
+            with open(os.path.join(spec_path, endpoint_spec), "r") as spec_yaml_file:
+                oas_spec_map[endpoint_spec] = safe_load(spec_yaml_file)
+        except FileNotFoundError:
+            msg = "Make Publish fails: The endpoint OAS file is missing "
+            print(msg, endpoint_spec)
+            raise
+
 
 # Create OpenAPICore Spec
 spec = create_spec(oas_spec)
@@ -91,16 +107,6 @@ def request_example_keys(endpoint, method):
     ]
 
 
-def response_example_keys(endpoint, method, success_code):
-    """
-    Returns tuple of lists with keys for accessing response examples in oas dictionary
-    """
-    return (
-        ["paths", endpoint, method, "responses", success_code, "$ref"],
-        ["content", "application/fhir+json", "examples"],
-    )
-
-
 def get_path_examples(keys_lst, spec=oas_spec_from_yaml):
     """
     Returns a list with the paths for the corresponding endpoint's examples
@@ -138,7 +144,9 @@ def get_success_code(endpoint, http_method):
     Returns HTTP success response code
     """
     endpoint_return_codes = list(
-        oas_spec_from_yaml["paths"][endpoint][http_method]["responses"].keys()
+        oas_spec_map.get(oas_spec_from_yaml["paths"][endpoint][http_method]["$ref"])[
+            "responses"
+        ].keys()
     )
     filtered_code = filter(lambda x: x in http_success_codes, endpoint_return_codes)
     return list(filtered_code)[0]
@@ -264,6 +272,30 @@ def validate_response_examples():
     print("JSON response examples are valid for each endpoint")
 
 
+def get_response_path(endpoint, http_method, success_code):
+    """
+    Retrieve the response json file URL
+    """
+    data = oas_spec_map.get(oas_spec_from_yaml["paths"][endpoint][http_method]["$ref"])
+    response_spec_path = data["responses"][success_code]["$ref"]
+    if not response_spec_path:
+        print(
+            "Error: Could not get oas specification for "
+            + endpoint
+            + " success response file"
+            + response_spec_path
+        )
+        exit(1)
+
+    example_path = (
+        "components/r4/schemas/"
+        if endpoint.startswith("/R4/")
+        else "components/stu3/schemas/"
+    )
+
+    return os.path.join(spec_path, response_spec_path.replace("../", example_path))
+
+
 def build_response_validation_data():
     """
     Builds list of dictionaries with info and response examples from relevant endpoints
@@ -273,17 +305,7 @@ def build_response_validation_data():
 
         http_method = get_http_method(endpoint)
         success_code = get_success_code(endpoint, http_method)
-        response_spec_keys, response_spec_keys_examples = response_example_keys(
-            endpoint, http_method, success_code
-        )
-        response_spec_path = deep_get(oas_spec_from_yaml, response_spec_keys)
-        if not response_spec_path:
-            print(
-                "Error: Could not get oas specification for "
-                + endpoint
-                + " success response"
-            )
-            exit(1)
+        response_spec_path = get_response_path(endpoint, http_method, success_code)
 
         # Open response example file
         with open(

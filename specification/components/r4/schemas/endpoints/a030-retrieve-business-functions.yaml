@@ -1,0 +1,114 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  Use this endpoint to retrieve a list of available e-RS roles (i.e. business functions) at each organisation where the user works.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+
+  In order to use this endpoint you must be an authenticated user
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to retrieve a list of authorised e-RS roles for organisations I work for
+
+  So I can choose the appropriate role and organisation to work under when performing tasks.
+
+  ## Related endpoints
+
+  You can then use the e-RS roles to perform specific tasks using other e-RS endpoints e.g. to satisfy Role and Organisation validation.
+
+  ### Role and Organisation Validation
+
+  The response from a successful call to [[HYPERLINK_A030]] represents a Practitioner Role Bundle. 
+  Each Practitioner Role represents an e-RS Role at a specific Organisation. 
+  
+  For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. 
+  This is accomplished by setting the values of the `NHSD-eRS-Business-Function` and `NHSD-End-User-Organisation-ODS` request headers. 
+  
+  The e-RS Role is supplied to the endpoint via the `NHSD-eRS-Business-Function` request header. 
+  
+  The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
+
+  The `entry` field in the response from [[HYPERLINK_A030]] is an array of PractitionerRole resources. An example of a PractitionerRole resource is: 
+  ```json
+  "resource": {
+    "id": "PractitionerRole-R69-000000000101",
+    "meta": {
+      "lastUpdated": "2021-05-24T16:09:32.252Z",
+      "profile": [
+        "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
+      ]
+    },
+    "resourceType": "PractitionerRole",
+    "practitioner": {
+      "identifier": {
+        "system": "https://fhir.nhs.uk/Id/sds-user-id",
+        "value": "000000000101"
+      }
+    },
+    "organization": {
+      "identifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    },
+    "code": [
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_DEFINER"
+          }
+        ]
+      },
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        ]
+      },
+      {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_ADMIN"
+          }
+        ]
+      }
+    ]
+  },
+  ```
+  Each PractitionerRole resource has a `code` field which is an array of codings. 
+  The authorised e-RS Roles for the authenticated user at a particular Organisation are represented by the `value` fields in the `https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1` code system. 
+  The `NHSD-eRS-Business-Function` request header value should be the `code` field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. `SERVICE_PROVIDER_CLINICIAN`.
+
+  Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system.
+  The `NHSD-End-User-Organisation-ODS` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource e.g. "R69".
+
+summary: A030 - Retrieve e-RS business functions
+operationId: a030-retrieve-business-functions
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveBusinessFunctions/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

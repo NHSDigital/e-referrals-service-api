@@ -1,0 +1,53 @@
+      security:
+        - bearerAuth: []
+      
+      description: |
+        ## Overview
+        
+        Use this endpoint to determine which e-RS users a `SERVICE_PROVIDER_CLINICIAN_ADMIN` is allowed to work "on-behalf-of".
+
+        Note: In e-RS, `SERVICE_PROVIDER_CLINICIAN_ADMIN` users always act "on-behalf-of" a `SERVICE_PROVIDER_CLINICIAN`. This endpoint specifically helps `SERVICE_PROVIDER_CLINICIAN_ADMIN` identify who they are allowed to log in as.
+
+        ## Supported security patterns
+        - Healthcare worker, user-restricted access
+
+        ## Pre-requisites
+        To use this endpoint, you must be an authenticated e-RS user and use one of the following e-RS roles depending on the query being invoked:
+
+        | Query                                                                | e-RS Role(s)                      |
+        | -------------------------------------------------------------------- | --------------------------------- |
+        | onBehalfOf                                                           | `SERVICE_PROVIDER_CLINICIAN_ADMIN` |
+
+        ## Use case
+
+        As an authenticated user who has the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role
+
+        I need to know which provider clinical users I am allowed to work “on-behalf-of” at my provider organisation
+
+        So I can log in as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user and complete tasks on behalf of a chosen `SERVICE_PROVIDER_CLINICIAN` user.
+
+        ## Related endpoints
+
+        To perform actions as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user, you must provide one of the returned Practitioner IDs, in the `NHSD-eRS-On-Behalf-Of-User-ID` header parameter, to indicate which `SERVICE_PROVIDER_CLINICIAN` the call is on-behalf-of.
+        
+      summary: A040 - Retrieve e-RS-specific practitioner information
+      operationId: a040-retrieve-practitioner-info
+      parameters:
+        - $ref: '../headers/request/BearerAuthorization.yaml'
+        - $ref: '../headers/request/CorrelationID.yaml'
+        - $ref: '../headers/request/OdsCode.yaml'
+        - $ref: '../headers/request/BusinessFunction.yaml'
+        - $ref: '../queryParameters/OboQuery.yaml'
+      responses:
+        '200':
+          $ref: '../responses/retrieveOboPractitioners/200Response.yaml'
+        '400':
+          $ref: '../responses/BadRequest.yaml'
+        '401':
+          $ref: '../responses/Unauthorized.yaml'
+        '403':
+          $ref: '../responses/Forbidden.yaml'
+        '429':
+          $ref: '../responses/TooManyRequests.yaml'
+        '500':
+          $ref: '../responses/InternalServerError.yaml'

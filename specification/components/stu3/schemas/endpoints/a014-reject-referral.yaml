@@ -1,0 +1,95 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
+  This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
+
+  Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+  
+  You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A014]] can only 
+  be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+  You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+  You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+  You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+  You need to use [[HYPERLINK_A004]] to retrieve a list of rejection reason reference data codes along with their user-friendly display names.  To find 
+  relevant rejection reasons, obtain reference data from `APPOINTMENT-CANCELLATION-REASON` and filter as follows:
+
+    - `appointmentBookingCancellationReasonType` must be `PROVIDER_REJECT`
+    - `effectiveFrom` must be in the past, and
+    - `effectiveTo` must not be in the past
+
+  ## Use cases
+  As an authenticated user
+
+  I need to reject an inbound referral back to the referrer after its review with an explanation of why
+
+  So that the referrer can address the reason for rejection and progress the referral appropriately.
+  
+summary: A014 - Reject referral
+operationId: a014-reject-referral
+parameters:
+  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-RejectReferral-Parameters.yaml'
+      examples:
+        basic-example-ibs:
+          summary: Basic example for IBS
+          value:
+            $ref: '../../examples/rejectReferral/requests/BasicExampleIbs.json'
+        basic-example-dbs:
+          summary: Basic example for DBS
+          value:
+            $ref: '../../examples/rejectReferral/requests/BasicExampleDbs.json'
+responses:
+  '200':
+    $ref: '../responses/rejectReferral/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '409':
+    $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/rejectReferral/422Response.yaml'
+  '423':
+    $ref: '../responses/Locked.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml' 
+  '504':
+    $ref: '../responses/rejectReferral/504Response.yaml'

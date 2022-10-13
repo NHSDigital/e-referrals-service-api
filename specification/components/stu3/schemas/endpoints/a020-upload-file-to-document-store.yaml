@@ -1,0 +1,87 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
+
+  | File type          | File extension(s)           |
+  | ------------------ | --------------------------- |
+  | Plain Text         | `.txt`                      |
+  | PDF                | `.pdf`                      |
+  | XML Text           | `.xml`                      |
+  | RTF Text           | `.rtf`, `.rtx`              |
+  | Basic Audio        | `.au`                       |
+  | MPEG audio layer 3 | `.mp3`                      |
+  | PNG Image          | `.png`                      | 
+  | GIF Image          | `.gif`                      |
+  | JPEG Image         | `.jpg,` `.jpe`, `.jpeg`     |
+  | TIFF Image         | `.tif`, `.tiff`             |
+  | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     |
+  | MSWORD             | `.doc`, `.docx`             |
+  | DICOM              | `.dcm`                      |
+
+  Currently, the maximum file size supported by e-RS is 5MB.
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to upload a referral letter or other clinical information file to e-RS
+
+  So that I can associate the file with an existing referral.
+
+  ## Important notes:
+
+  This endpoint **only** performs the file upload. The uploaded file is **not** associated with a referral until the file has been associated with a referral, for example using [[HYPERLINK_A012]].
+  
+  The resulting URL within e-RS for the uploaded file is returned in the 'Location' header of the response.
+
+  ## Related endpoints
+
+  You can associate the uploaded file with a specific referral using [[HYPERLINK_A012]].
+
+summary: A020 - Upload file to document store
+operationId: a020-upload-file-to-document-store
+parameters:
+  - $ref: '../headers/request/ContentTypeAttachmentsUpload.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/ErsFileName.yaml'
+  - $ref: '../headers/request/ErsReferralId.yaml'
+requestBody:
+  required: true
+  content:
+    $ref: '../file/FileContentTypeSchemaUpload.yaml'
+responses:
+  '201':
+    $ref: '../responses/uploadFileToDocumentStore/201Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/uploadFileToDocumentStore/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

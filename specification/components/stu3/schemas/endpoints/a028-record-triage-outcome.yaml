@@ -1,0 +1,118 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint, as a service provider, to record a triage outcome for the following referrals awaiting review:
+    - referrals sent into a triage service
+    - referrals deferred into a directly bookable service because of appointment slot unavailability
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+  
+  You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. 
+  [[HYPERLINK_A028]] can only be used for referrals sent into triage services, and not the referrals 
+  booked into bookable services.
+
+  You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Appointment Slot Issues' worklist. 
+  This provides a list of referrals that have been deferred into directly bookable services.
+
+    - Referrals from this worklist may already have been reviewed or may not have any referral clinical information associated, 
+    in which case [[HYPERLINK_A028]] cannot be used.
+    - [[HYPERLINK_A028]] can only be used for those referrals, on the 'Appointment Slot Issues' worklist, which are pending review.
+    - As such, you need to use [[HYPERLINK_A029]] to determine if [[HYPERLINK_A028]] is a permissible action.
+
+  You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+  You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+  You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+  If you want to include attachments with the triage outcome, you need to use [[HYPERLINK_A020]] so 
+  they are ready to be associated when this endpoint is called.
+
+  ## Use cases
+  As an authenticated user
+
+  I need to return the referral back to the referrer with some advice
+
+  So that I can progress the patient's care appropriately with the referrer.
+
+
+  As an authenticated user
+
+  I need to accept the referral and task my admin team to shortlist appropriate services for the patient
+
+  So that I can progress the patient's care along the most appropriate referral pathway.
+
+
+  ## Important notes
+
+    - The only outcomes that are supported by this endpoint are 'Return to referrer with advice' and 'Accept and refer/book later'. 'Refer/book now' is not supported.
+    - The triage comment text is mandatory. This comment provided will be sent to:
+      - The initial referrer when the 'Return to referrer with advice' triage outcome is chosen.
+      - An administrator at the receiving service provider when the 'Accept and refer/book later' outcome is chosen.
+    - The priority of the referral can be changed as part of recording the triage outcome
+    - When this endpoint is successfully used for recording an outcome of 'Accept and refer/book later', 
+    an entry will be added to the service providers Appointments For Booking worklist for the admin team to action the task. 
+    The provider admin team will only be able to progress the referral via the e-RS Professional Application user 
+    interface (e.g. shortlisting appropriate services for the patient).
+  
+summary: A028 - Record triage outcome
+operationId: a028-record-triage-outcome
+parameters:
+  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-RecordReviewOutcome-Parameters.yaml'
+      examples:
+        return-to-referrer-with-advice:
+          summary: Return to referrer with advice
+          value:
+            $ref: '../../examples/recordTriageOutcome/requests/ReturnToReferrerWithAdvice.json'
+        accept-refer-book-later:
+          summary: Accept refer book later
+          value:
+            $ref: '../../examples/recordTriageOutcome/requests/AcceptReferBookLater.json'
+        attachment-included:
+          summary: Attachment included
+          value:
+            $ref: '../../examples/recordTriageOutcome/requests/AttachmentIncluded.json'
+responses:
+  '200':
+    $ref: '../responses/recordTriageOutcome/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '409':
+    $ref: '../responses/Conflict.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/recordTriageOutcome/422Response.yaml'
+  '423':
+    $ref: '../responses/Locked.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

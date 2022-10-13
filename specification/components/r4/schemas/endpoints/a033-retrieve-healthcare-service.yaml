@@ -1,0 +1,60 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  A patient may have 0 to 20 services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical 
+  advice concerning a specific patient. Services have attributes that can be used to understand a services functionality, terms of use, and contact 
+  information. 
+  You can use this endpoint to obtain the current version and attributes of a single service.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+
+  You need to have identified one service ID in order to use this endpoint.
+
+  ## Use case
+  As an authenticated user
+  
+  I would like to be able to see current service information
+
+  So that I can trust that the service information is correct for my patient's referral
+
+  ## Related endpoints
+    -  You can retrieve service IDs on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least a single service.
+    -  You can check if a cached service has changed via [[HYPERLINK_A037]].
+    -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]].
+
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                                 | Service Id |
+  | ------------------------------------------------------------------------ | ---------- |
+  | `Service` and minimal attributes                                         | `1`        |
+  | `Service` and its attributes                                             | `2`        |
+summary: A033 - Retrieve healthcare service
+operationId: a033-retrieve-healthcare-service
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../pathParameters/ServiceId.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/getService/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

@@ -58,7 +58,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment) and [A007](#api-Default-a007-retrieve-clinical-information) | [Alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment), [A007](#api-Default-a007-retrieve-clinical-information), [A024](#api-Default-a024-retrieve-advice-and-guidance), [A025](#api-Default-a025-retrieve-advice-and-guidance-conversation) and [A043](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
     | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
 
     ##### Application-restricted, unattended access
@@ -98,17 +98,26 @@ info:
 
     ### Application-restricted, unattended access
 
-    This access mode is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status). We are onboarding Partners to use it.
 
-    - it is available for testing in the Alpha environment only
-    - we might make breaking changes
+    Please note that it can only be used:
+
+    - when authenticating a human user is not possible
+    - for endpoints that offer read-only functionality
+    - by ‘Provider Organisations’ (currently)
+    - for accessing endpoints [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment), [A007](#api-Default-a007-retrieve-clinical-information), [A024](#api-Default-a024-retrieve-advice-and-guidance), [A025](#api-Default-a025-retrieve-advice-and-guidance-conversation) and [A043](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf) (currently)
+
+    For more information, please see [Network access](#api-description__network-access).
 
     ### Healthcare worker, user-restricted access
 
-    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed using [[HYPERLINK_CIS2]]. 
-    There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
-    We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
-    our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
+    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status). We are onboarding Partners to use it.
+    
+    This access mode allows you to use [all endpoints](#api-endpoints) . A human user must be present and authenticated.
+    
+    For more information, please see Network access(#api-description__network-access).
+
+    ### Roadmap
 
     For the current e-RS roadmap see [the future of the NHS e-referral service](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap).
     
@@ -209,13 +218,13 @@ info:
 
     You need to get your software approved by us before it can go live. We call this process onboarding. 
 
-    Onboarding essentially involves connecting to the Path-to-Live (PTL) environments, assuring your solution and going live, in accordance with the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process). 
+    Onboarding essentially involves connecting to the e-RS FHIR API Integration (INT) environment, assuring your solution and going live, in accordance with the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process). 
    
     In order to pass through the onboarding process as efficiently as possible, it is worth planning ahead. 
     
     When following the general SCAL process, please note:
     
-    In step 1: to use this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and discuss your use case with us. You must also register with the API Management team via [https://digital.nhs.uk/developer/getting-started](https://digital.nhs.uk/developer/getting-started) to register your application. 
+    In step 1: to use this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and discuss your use case with us. You must also register with the API Management team via [https://digital.nhs.uk/developer/getting-started](https://digital.nhs.uk/developer/getting-started) to configure your application. 
    
     In step 2: to request a SCAL, please ensure you have discussed your solution with the Partners service via [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net), who will put you in touch with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) who are responsible for assurance of solutions that integrate with the e-RS FHIR API.
    
@@ -223,11 +232,11 @@ info:
     
     In step 11: when submitting your SCAL for review, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
     
-    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). You will need to have successfully passed witness testing with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) and obtained a Technical Conformance Certificate (TCC).
+    In step 12: to obtain a Connection Agreement, please liaise with [interop.mgmt@nhs.net](mailto:liveserviceonboarding@nhs.net). You will need to have successfully passed witness testing with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) and obtained a Technical Conformance Certificate (TCC).
     
-    In step 13: to obtain the End User Organisation Acceptable Use Policy, please liaise with [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net).
+    In step 13: to obtain the End User Organisation Acceptable Use Policy (EUOAUP), please liaise with [interop.mgmt@nhs.net](mailto:liveserviceonboarding@nhs.net).
     
-    In step 14: to request production access, send your completed SCAL and TCC to [interop.mgmt@nhs.net](mailto:interop.mgmt@nhs.net). To activate your application in production please [contact us](https://digital.nhs.uk/developer/help-and-support).
+    In step 14: following receipt, review and acceptance of your signed Connection Agreement, the e-RS FHIR API Partners team will contact you to facilitate production access for your application.
     
 
   contact:

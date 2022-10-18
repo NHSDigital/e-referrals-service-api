@@ -1,0 +1,104 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint, as a service provider, to task your admin team to rebook/redirect a referral that is booked 
+  into your bookable service and awaiting review.
+
+  Note: this will also cancel the current appointment.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+  
+  You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A022]] can 
+  only be used for referrals booked into bookable services, and not the referrals sent into triage services.
+
+  You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+  You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+  You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+  If you want to include attachments with the admin task, you need to use [[HYPERLINK_A020]] so they are 
+  ready to be associated when this endpoint is called.
+
+  ## Use cases
+  As an authenticated user
+
+  I need to task my admin team to rebook/redirect a referral I have reviewed (whilst also cancelling the current appointment)
+
+  So that I can progress the patient's care along the most appropriate referral pathway.
+  
+  ## Important notes
+    - The priority of the referral can be changed as part of this endpoint.
+    - A comment must be added to explain to the administrator what is required and can include optional attachments.
+    - The current appointment is cancelled as part of this endpoint. If the current appointment is booked to an indirectly
+      bookable service, you must indicate whether the appointment has been cancelled on the local provider system. 
+      If indicated as not cancelled, the referral will be added to the 'Indirectly Booked Appointments to Cancel in PAS' 
+      worklist to task the admin team to do so.
+    - When this endpoint is successfully used, an entry will be added to the service providers 'Appointments For Booking' 
+      worklist for the admin team to action the task. The provider admin team will only be able to progress the referral 
+      via the e-RS Professional Application user interface (e.g. shortlisting appropriate services for the patient).
+
+summary: A022 - Cancel appointment, action later
+operationId: a022-cancel-appointment-action-later
+parameters:
+  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-cancelAppointmentActionLater-Parameters.yaml'
+      examples:
+        basic-example-dbs:
+          summary: Basic example for DBS
+          value:
+            $ref: '../../examples/cancelAppointmentActionLater/requests/MinimalExampleDBS.json'
+        example-priority-change-and-attachments:
+          summary: Example for priority change and attachments
+          value:
+            $ref: '../../examples/cancelAppointmentActionLater/requests/PriorityChangeAndWithAttachmentsDBS.json'
+        basic-example-ibs:
+          summary: Basic example for IBS
+          value:
+            $ref: '../../examples/cancelAppointmentActionLater/requests/MinimalExampleIBS.json'
+responses:
+  '200':
+    $ref: '../responses/cancelAppointmentActionLater/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '409':
+    $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/cancelAppointmentActionLater/422Response.yaml'
+  '423':
+    $ref: '../responses/Locked.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

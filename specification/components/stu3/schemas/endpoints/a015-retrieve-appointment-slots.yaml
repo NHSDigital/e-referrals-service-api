@@ -1,0 +1,78 @@
+description: |
+  ## Overview
+  Use this endpoint to retrieve available appointment slots for a service.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+
+  You need to have identified a directly bookable `service` that is on the current referral shortlist. You can do this by using [[HYPERLINK_A005]].
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to retrieve a list of available appointment slots for a service
+
+  So that I can offer them to the patient for booking.
+
+  ## Important note
+  You need to provide the 'commissioning rule organisation' when calling A015 - Retrieve appointment slots to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
+  
+  ## Related endpoints
+
+  You can book an appointment to an available slot using [[HYPERLINK_A016]].
+
+  You can defer booking to a directly bookable service using [[HYPERLINK_A016]] but only in the following circumstances:
+    - when the service has no available slots
+    - when trying to book an appointment into a service, the slot advertised is no longer available
+    - when trying to book an appointment into a service, no response is received within message timeout period (currently 2 minutes)
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment:
+
+  | Scenario                               | Request Query Parameters                                                                                                                                          | Response                                                                |
+  | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+  | Minimum slot search                    | `schedule.actor:HealthcareService`=`12000`, `appointmentType`=`ROUTINE`, `_count`=`20`, `status`=`free`, `page`=`1`                                               | Illustrates minimum usage/parameters with concise, minimal response.    |
+  | Empty slot search response             | `schedule.actor:HealthcareService`=`10000`, `appointmentType`=`ROUTINE`, `_count`=`20`, `status`=`free`, `page`=`1`                                               | Illustrates how a 'no slots' response appears.                          |
+  | Multipage slot search (page 1)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates first page of multi-page response.                          |
+  | Multipage slot search (page 2)         | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`2`                                                | Illustrates second page of multi-page response.                         |
+  | Multipage slot search (invalid page 5) | `schedule.actor:HealthcareService`=`11000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`5`                                                | Illustrates error when page is outside of valid range.                  |
+  | Multi schedule response                | `schedule.actor:HealthcareService`=`13000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates response when there is >1 Schedule: one Schedule is for slots with no associated clinician and the other does have an associated clinician. |
+  | Slot clinician search                  | `schedule.actor:HealthcareService`=`14000`, `schedule.actor:Practitioner`=`921600556514`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | Illustrates search for clinician-specific slots                         |
+
+summary: A015 - Retrieve appointment slots
+operationId: a015-retrieve-appointment-slots
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/ErsCommRuleOrg.yaml'
+  - $ref: '../queryParameters/ServiceId.yaml'
+  - $ref: '../queryParameters/Priority.yaml'
+  - $ref: '../queryParameters/Status.yaml'
+  - $ref: '../queryParameters/PageSize.yaml'
+  - $ref: '../queryParameters/PageNumber.yaml'
+  - $ref: '../queryParameters/NamedClinician.yaml'
+  - $ref: '../queryParameters/Include.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAppointmentSlots/200Response.yaml'
+  '400':
+    $ref: '../responses/retrieveAppointmentSlots/ErrorOutcome.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

@@ -1,0 +1,68 @@
+security:
+  - bearerAuth: [ ]
+description: |
+  ## Overview
+
+  Use this endpoint to retrieve a specific version of an `Appointment`.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+
+  The pre-requisites for this endpoint are the same as for endpoint [[HYPERLINK_A038]].
+
+  Note: e-RS only supports the retrieval of the most recent version of an `Appointment`. You cannot retrieve earlier versions.
+
+  ## Use case
+
+  See [[HYPERLINK_A038]].
+
+  ## Related endpoints
+
+  See [[HYPERLINK_A038]].
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment
+
+  | Scenario                                                                                                  | Request                                |
+  | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+  | `Appointment` booked to directly-bookable service                                                         | `appointmentId`=`70000`, `version`=`5` |
+  | `Appointment` booked to indirectly-bookable service                                                       | `appointmentId`=`70001`, `version`=`5` |
+  | `Appointment` deferred to service provider for booking                                                    | `appointmentId`=`70002`, `version`=`5` |
+  | `Appointment` sent for triage                                                                             | `appointmentId`=`70003`, `version`=`5` |
+  | `Appointment` triage response (Record Triage Outcome)                                                     | `appointmentId`=`70004`, `version`=`5` |
+  | `Appointment` Cancel Appointment, Action Later                                                            | `appointmentId`=`70005`, `version`=`5` |
+  | `Appointment` cancelled                                                                                   | `appointmentId`=`70006`, `version`=`5` |
+  | `Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service     | `appointmentId`=`70007`, `version`=`5` |
+
+summary: A038 - Retrieve appointment (versioned)
+operationId: a038-retrieve-appointment-versioned
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/AppointmentId.yaml'
+  - $ref: '../pathParameters/Version.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAppointment/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/retrieveAppointment/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

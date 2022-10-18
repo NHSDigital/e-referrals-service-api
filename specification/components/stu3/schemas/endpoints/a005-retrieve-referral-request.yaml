@@ -1,0 +1,115 @@
+security:
+  - bearerAuth: [ ]
+description: |
+  ## Overview
+  Use this endpoint to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
+
+  During the lifecycle of a referral, the state of the referral may change multiple times. To help with understanding the state of a referral, we provide an "at a glance" summary of the referral as detailed below:
+
+  | Code returned via https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1 | Description                                                                                          |
+  | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+  | `APPT_CANCELLED_BY_PATIENT`                                               | The referral's most recent appointment was cancelled at the request of, or directly by, a patient    |
+  | `APPT_CANCELLED_BY_PROVIDER`                                              | The referral's most recent appointment was cancelled by the service provider                         |
+  | `ASSESSMENT_RESULT`                                                       | A service provider has reviewed and drafted, or submitted a clinical assessment for the referral     |
+  | `AWAITING_TRIAGE`                                                         | The triage referral is currently pending review with a service provider                              |
+  | `BOOKED`                                                                  | This referral's appointment indicates a date and time with a service                                 |
+  | `CANCELLED_REFERRAL`                                                      | The referral has been cancelled and cannot be progressed any further                                 |
+  | `DEFERRED_TO_PROVIDER`                                                    | The service provider will arrange the patient’s appointment                                          |
+  | `DID_NOT_ATTEND`                                                          | The patient did not attend their last appointment                                                    |
+  | `NOT_BOOKED`                                                              | The referral is currently not booked, there is currently no planned patient encounter                |
+  | `REJECTED`                                                                | The referral was rejected by a provider at their service                                             |
+  | `TRIAGE_RESPONSE`                                                         | A service has passed the referral back to the referrer, with advice                                  |
+  | `TRIAGED_PROVIDER_TO_ACTION`                                              | The service provider has recorded a review decision, with the intention of processing this referral  |
+
+  Some referral states may also have a `reason` and some reasons may also have a `comment`.  These are described below:
+
+  ## Reason
+  - The reason is always connected to the current state. This means the reason is likely to change each time the state changes. You cannot currently retrieve previous versions of a referral.
+  - This reason may have been selected by a clinician or automatically applied by the e-RS system at the time the state was persisted.
+  - A reason can be dynamic reference data, from any of the following sets of reference data: `APPOINTMENT-CANCELLATION-REASON`, `REFERRAL-CANCELLATION-REASON`, `APPOINTMENT-NON-ATTENDANCE-REASON`. These are retrievable from [[HYPERLINK_A004]].
+  - A reason may be static reference data.
+
+  ## Comments
+  - The comment is always connected to the current reason, and state. This means the comment is likely to change as the state changes.
+
+  ## Supported security patterns
+  - Application-restricted access
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  ### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application.
+
+  ### Healthcare worker, user-restricted access
+  In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to retrieve details of a referral.
+
+  ## Use case
+
+  As an authenticated user or application
+
+  I want to read details of a referral
+
+  So that I can decide what further action may be needed.
+
+  ## Related endpoints
+
+  You can retrieve attachments that are associated with the referral using [[HYPERLINK_A006]]
+
+  You can retrieve a clinical information summary for the referral using [[HYPERLINK_A007]]
+
+  You can search for services appropriate to a referral to form a shortlist using [[HYPERLINK_A010]]
+
+  If bookable services are on the shortlist of the referral, you can retrieve appointment slots for a service on the shortlist for a referral using [[HYPERLINK_A015]]
+
+  You can retrieve the patient letter appropriate to the referral using [[HYPERLINK_A019]]
+
+  You can retrieve reference data used in viewing a referral using [[HYPERLINK_A004]]
+
+  ## Sandbox test scenarios
+
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                                 | Request                 |
+  | ------------------------------------------------------------------------ | ----------------------- |
+  | Unbooked `ReferralRequest`                                               | `ubrn`=`000000070000`   |
+  | `ReferralRequest` booked to directly-bookable service                    | `ubrn`=`000000070001`   |
+  | `ReferralRequest` booked to indirectly-bookable service                  | `ubrn`=`000000070002`   |
+  | `ReferralRequest` deferred to service provider for booking               | `ubrn`=`000000070003`   |
+  | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
+  | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
+  | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`   |
+
+summary: A005 - Retrieve referral request
+operationId: a005-retrieve-referral-request
+parameters:
+  - $ref: '../pathParameters/Ubrn.yaml'
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveReferralRequest/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/retrieveReferralRequest/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

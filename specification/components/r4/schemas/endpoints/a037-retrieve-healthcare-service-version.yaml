@@ -1,0 +1,59 @@
+security:
+  - bearerAuth: []
+description: |
+  
+  A Patient may have 0 to 20 services associated with a single referral. 
+  A service is a place where a referrer can send a patient or obtain clinical advice concerning a specific patient.
+  
+  You can use this endpoint to obtain the current service's "version" held in e-RS, in order to compare to a locally cached version. 
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+
+  You need to have identified one service ID in order to use this endpoint.
+  
+  ## Use case
+  As an authenticated user
+
+  I would like to be able to see the current information about a service on my patients current shortlist
+
+  So that I can review and trust the information is still valid within the context of my patients needs
+  
+  ## Related endpoints
+    -  You can obtain Service IDs on a referral via [[HYPERLINK_A005]] as long as the referral has a shortlist containing at least one service.
+    -  You can retrieve a set of services and their attributes via [[HYPERLINK_A035]].
+    -  You can fetch the attributes of a single service via [[HYPERLINK_A033]].
+  
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                                 | Service Id |
+  | ------------------------------------------------------------------------ | ---------- |
+  |  Get `Service` Version                                                   | `1`        |
+
+summary: A037 - Retrieve healthcare service version
+operationId: a037-retrieve-healthcare-service-version
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../pathParameters/ServiceId.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveServiceVersion/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

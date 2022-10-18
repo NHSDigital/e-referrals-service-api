@@ -1,0 +1,75 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  Use this endpoint to generate a PDF file that summarises an advice and guidance request including the conversation. 
+  This endpoint cannot be used to obtain a PDF file for a referral request.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of an advice and guidance request.
+
+  ## Important note
+  As noted for the [[HYPERLINK_A007]] endpoint that applies to referrals rather than advice and guidance requests, 
+  a referral pathway in e-RS can be made up of more than one UBRN. As such, it is important that all clinical information is obtained from across all the related 
+  UBRNs in the pathway as referenced in [[HYPERLINK_A005]].
+
+  An advice and guidance request can only ever exist as a single entity with no related UBRNs *unless* the advice and guidance request is converted to a referral. 
+  This can be done via endpoint [[HYPERLINK_A027]]. When the conversion is complete, the advice and guidance request becomes a 
+  referral (retaining the same UBRN) and continues its existence as such. Meaning that it may gain related referrals.
+
+  The advice and guidance conversation that took place before such a conversion still forms part of the clinical information. 
+  This conversation *does* get included in the PDF file returned by [[HYPERLINK_A007]].
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to retrieve a PDF file overview of the advice and guidance request
+
+  So that I can assess its content and decide what further action may be needed.
+
+  ## Related endpoints
+  You can retrieve a PDF overview for an advice and guidance request that has been converted to a referral using [[HYPERLINK_A007]].
+
+  You can retrieve structured information about advice and guidance using [[HYPERLINK_A024]] and [[HYPERLINK_A025]].
+
+  You can retrieve a referral using [[HYPERLINK_A005]].
+
+  You can retrieve clinical attachments that are associated with a referral using [[HYPERLINK_A006]].
+
+summary: A043 - Retrieve advice and guidance overview PDF
+operationId: a043-retrieve-advice-and-guidance-overview-pdf
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/UbrnAdviceAndGuidance.yaml'
+responses:
+  '200':
+    $ref: '../responses/retrieveAdviceAndGuidanceOverviewPdf/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/retrieveAdviceAndGuidanceOverviewPdf/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

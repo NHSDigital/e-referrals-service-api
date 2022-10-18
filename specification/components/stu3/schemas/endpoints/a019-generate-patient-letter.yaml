@@ -1,0 +1,50 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  Use this endpoint to download a PDF format letter for the patient summarising the current state of their referral and any steps the patient may need to follow.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
+
+  ## Use case
+
+  As an authenticated user
+
+  I need to generate the patient letter including up-to-date details about their referral and any steps the patient may need to follow
+
+  So that I can pass it to the patient.
+
+summary: A019 - Generate patient letter
+operationId: a019-generate-patient-letter
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+responses:
+  '200':
+    $ref: '../responses/generatePatientLetter/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '422':
+    $ref: '../responses/generatePatientLetter/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

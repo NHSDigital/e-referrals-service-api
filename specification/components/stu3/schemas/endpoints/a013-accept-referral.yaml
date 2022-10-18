@@ -1,0 +1,65 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint, as a service provider, to accept a referral that is booked into your bookable service and awaiting review.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+  
+  You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
+  booked into bookable services, and not the referrals sent into triage services.
+
+  You need to use [[HYPERLINK_A005]] to retrieve the details for the referral.
+
+  You need to use [[HYPERLINK_A006]] to retrieve the clinical attachments for the referral.
+
+  You need to use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for the referral.
+
+  ## Use cases
+  As an authenticated user
+
+  I need to accept an inbound referral after its review
+
+  So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
+  
+summary: A013 - Accept referral
+operationId: a013-accept-referral
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../pathParameters/Ubrn.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
+responses:
+  '200':
+    $ref: '../responses/acceptReferral/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '409':
+    $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
+  '422':
+    $ref: '../responses/acceptReferral/422Response.yaml'
+  '423':
+    $ref: '../responses/Locked.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

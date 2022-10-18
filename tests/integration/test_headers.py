@@ -20,7 +20,7 @@ _EXPECTED_OBO_USER_ID = "0123456789000"
 _EXPECTED_ACCESS_MODE = "user-restricted"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
-_SEARCH_SERVICE_REQUEST_R4_URL = "/FHIR/R4/ServiceRequest"
+_SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
 
 
 @pytest.mark.integration_test
@@ -135,7 +135,7 @@ class TestHeaders:
             ("Bearer ", _SPECIALTY_REF_DATA_URL, False),
             (
                 "Bearer 99999999999999999999999999999999",
-                _SEARCH_SERVICE_REQUEST_R4_URL,
+                _SEARCH_HEALTHCARE_SERVICE_R4_URL,
                 True,
             ),
         ],

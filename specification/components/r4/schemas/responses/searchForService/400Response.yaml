@@ -2,9 +2,9 @@ description: |
   Where status code 400 (Bad Request) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below. 
   Check diagnostics property for specific information regarding the error.
 
-  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                  |
-  | ------------------------- | ---------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
-  | REC_BAD_REQUEST           | required   | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | Incorrect or missing expected value.                         |
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                                                                                       |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | REC_BAD_REQUEST           | invalid   | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | Incorrect or missing expected value. For example Service Id format is invalid or missing, Another scenario is requesting more than 20 service IDs |
 headers:
   X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'

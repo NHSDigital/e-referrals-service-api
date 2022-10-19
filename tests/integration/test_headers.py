@@ -170,7 +170,7 @@ class TestHeaders:
             assert len(response_data["issue"]) == 1
             issue = response_data["issue"][0]
             assert issue["severity"] == "error"
-            assert issue["code"] == "forbidden"
+            assert issue["code"] == "login"
             assert issue["diagnostics"].lower() == "invalid access token"
             assert len(issue["details"]["coding"]) == 1
             issue_details = issue["details"]["coding"][0]

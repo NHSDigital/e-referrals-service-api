@@ -115,7 +115,7 @@ info:
     
     This access mode allows you to use [all endpoints](#api-endpoints) . A human user must be present and authenticated.
     
-    For more information, please see Network access(#api-description__network-access).
+    For more information, please see [Network access](#api-description__network-access).
 
     ### Roadmap
 

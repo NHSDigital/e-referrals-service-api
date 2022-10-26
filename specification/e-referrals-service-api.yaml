@@ -98,15 +98,15 @@ info:
 
     ### Application-restricted, unattended access
 
-    This access mode is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+    This access mode is [in development](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses), meaning:
 
     - it is available for testing in the Alpha environment only
     - we might make breaking changes
 
     ### Healthcare worker, user-restricted access
 
-    The e-RS FHIR STU3 API is in [[HYPERLINK_BETA]] when accessed using [[HYPERLINK_CIS2]]. 
-    There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our beta. 
+    The e-RS FHIR STU3 API is [in production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) when accessed using [[HYPERLINK_CIS2]]. 
+    There is also one FHIR R4 endpoint, [[HYPERLINK_A030]] endpoint, as part of our in production, beta. 
     We plan to move more endpoints into the FHIR R4 standard in the future, as part of 
     our [roadmap](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap). 
 

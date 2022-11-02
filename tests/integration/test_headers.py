@@ -1,6 +1,6 @@
 import pytest
 import requests
-
+from requests import Response
 from data import RenamedHeader
 from asserts import assert_ok_response
 
@@ -45,6 +45,11 @@ class TestHeaders:
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(response, service_url, referring_clinician, asid)
+
+    def assert_ok_echo_response(
+        self, response: Response, service_url, referring_clinician, asid
+    ):
         assert (
             response.status_code == 200
         ), "Expected a 200 when accesing the api but got " + (str)(response.status_code)
@@ -103,6 +108,30 @@ class TestHeaders:
         assert target_request_headers[_HEADER_USER_ID] == referring_clinician.user_id
         assert target_request_headers[_HEADER_BASE_URL] == service_url
         assert target_request_headers[_HEADER_ACCESS_MODE] == _EXPECTED_ACCESS_MODE
+
+    @pytest.mark.asyncio
+    async def test_access_mode_header_overwritten_on_echo_target(
+        self, authenticate_user, service_url, referring_clinician, asid
+    ):
+        access_code = await authenticate_user(referring_clinician)
+
+        client_request_headers = {
+            _HEADER_ECHO: "",  # enable echo target
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
+            _HEADER_REQUEST_ID: "DUMMY-VALUE",
+            _HEADER_ACCESS_MODE: "unknown-access-mode",
+            RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+            RenamedHeader.BUSINESS_FUNCTION.original: referring_clinician.business_function,
+            RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
+            RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
+            RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+            RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+        }
+
+        # Make the API call
+        response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(response, service_url, referring_clinician, asid)
 
     @pytest.mark.asyncio
     async def test_headers_on_refdata_response(

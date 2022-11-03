@@ -58,8 +58,8 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment), [A007](#api-Default-a007-retrieve-clinical-information), [A024](#api-Default-a024-retrieve-advice-and-guidance), [A025](#api-Default-a025-retrieve-advice-and-guidance-conversation) and [A043](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
-    | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) |
+    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#api-Default-a004-retrieve-reference-data), [A005](#api-Default-a005-retrieve-referral-request), [A006](#api-Default-a006-retrieve-attachment), [A007](#api-Default-a007-retrieve-clinical-information), [A024](#api-Default-a024-retrieve-advice-and-guidance), [A025](#api-Default-a025-retrieve-advice-and-guidance-conversation) and [A043](#api-Default-a043-retrieve-advice-and-guidance-overview-pdf) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
+    | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
 
     ##### Application-restricted, unattended access
 
@@ -98,7 +98,7 @@ info:
 
     ### Application-restricted, unattended access
 
-    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status). We are onboarding Partners to use it.
+    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses). We are onboarding Partners to use it.
 
     Please note that it can only be used:
 
@@ -111,7 +111,7 @@ info:
 
     ### Healthcare worker, user-restricted access
 
-    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status). We are onboarding Partners to use it.
+    This access mode is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses). We are onboarding Partners to use it.
     
     This access mode allows you to use [all endpoints](#api-endpoints) . A human user must be present and authenticated.
     
@@ -201,7 +201,7 @@ info:
 
     ### Alpha testing
 
-    Our [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) environment:
+    Our [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) environment:
     -	is available for early developer testing of future functionality  
     -	may experience breaking changes or downtime without advance notice, but only if we cannot avoid it
     - can be accessed by contacting [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)

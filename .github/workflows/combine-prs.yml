@@ -14,12 +14,16 @@ on:
                 - 'sandbox-docker(deps):'
                 - 'github-actions(deps):'
                 default: 'npm(deps):'
+            jiraNumber:
+                description: 'Enter the Jira Number associated to these PRs'
+                required: true
             mustBeGreen:
+                type: boolean
                 description: 'Only combine PRs that are green (status is success)'
                 required: true
                 default: true
             combineBranchName:
-                description: 'Name of the branch to combine PRs into'
+                description: 'Base Name of the branch to combine PRs into'
                 required: true
                 default: 'combine-prs-branch'
             ignoreLabel:
@@ -49,6 +53,9 @@ jobs:
                       let branchesAndPRStrings = [];
                       let baseBranch = null;
                       let baseBranchSHA = null;
+                      let today = new Date();
+                      let fullBranchName=['${{ github.event.inputs.jiraNumber }}', '${{ github.event.inputs.combineBranchName }}', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join('-');
+                      let fullTitle=['${{ github.event.inputs.jiraNumber }}', '- Combine PRs for', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join(' ');
                       for (const pull of pulls) {
                         const branch = pull['head']['ref'];
                         const title = pull['title'];
@@ -120,7 +127,7 @@ jobs:
                         await github.rest.git.createRef({
                           owner: context.repo.owner,
                           repo: context.repo.repo,
-                          ref: 'refs/heads/' + '${{ github.event.inputs.combineBranchName }}',
+                          ref: 'refs/heads/' + fullBranchName,
                           sha: baseBranchSHA
                         });
                       } catch (error) {
@@ -136,7 +143,7 @@ jobs:
                           await github.rest.repos.merge({
                             owner: context.repo.owner,
                             repo: context.repo.repo,
-                            base: '${{ github.event.inputs.combineBranchName }}',
+                            base: fullBranchName,
                             head: branch,
                           });
                           console.log('Merged branch ' + branch);
@@ -157,8 +164,8 @@ jobs:
                       await github.rest.pulls.create({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        title: 'Combined PR',
-                        head: '${{ github.event.inputs.combineBranchName }}',
+                        title: fullTitle,
+                        head: fullBranchName,
                         base: baseBranch,
                         body: body
                       });

@@ -1,5 +1,5 @@
 description: |
-  Where status code 415 (Unsupported Media Type) is returned then an OperationOutcome will be included in the body, as detailed below. 
+  Where status code 415 (Unsupported Media Type) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below. 
   Check diagnostics property for specific information regarding the error.
   
   | issue.details.coding.code  | issue.code    | Coding System                                                      | Description                                                                                                   |

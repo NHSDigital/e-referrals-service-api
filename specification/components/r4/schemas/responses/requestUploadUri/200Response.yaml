@@ -1,4 +1,6 @@
-description: Parameters resource containg the upload URI (object store) and the file reference (eRS).
+description: | 
+  Parameters resource containg the upload URI (object store) and the file reference (eRS). 
+  The base resource URL: https://www.hl7.org/fhir/R4/parameters.html
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'

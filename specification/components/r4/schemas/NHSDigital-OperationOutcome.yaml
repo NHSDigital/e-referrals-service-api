@@ -1,4 +1,7 @@
 title: NHSDigital-OperationOutcome
+description: |
+  Operation outcomes are sets of error, warning and information messages that provide detailed information about the outcome of an attempted system operation. 
+  The canonical URL: https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome 
 type: object
 required:
   - resourceType

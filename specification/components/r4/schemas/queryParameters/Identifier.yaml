@@ -2,7 +2,7 @@ name: identifier
 in: query   
 description: |
   The Unique Booking Reference Number (UBRN) used to search for `ServiceRequest` resources.
-  The format follows that of a [token](https://www.hl7.org/fhir/search.html#token), with `code` (UBRN) being mandatory and `system` being optional.
+  The format follows that of a [token](https://www.hl7.org/fhir/r4/search.html#token), with `code` (UBRN) being mandatory and `system` being optional.
   In this case, the code system will be eRS UBRN (https://fhir.nhs.uk/Id/UBRN).
   - [parameter]=[code]
   - [parameter]=[system]|[code]

@@ -1,5 +1,6 @@
 import pytest
 import requests
+from requests import Response
 from data import RenamedHeader
 from asserts import assert_ok_response, assert_error_response
 
@@ -100,6 +101,18 @@ class TestAppRestricted:
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(
+            response, service_url, asid, app_restricted_ods_code, app_restricted_user_id
+        )
+
+    def assert_ok_echo_response(
+        self,
+        response: Response,
+        service_url,
+        asid,
+        app_restricted_ods_code,
+        app_restricted_user_id,
+    ):
         assert (
             response.status_code == 200
         ), "Expected a 200 when accesing the api but got " + (str)(response.status_code)
@@ -175,3 +188,25 @@ class TestAppRestricted:
         assert target_request_headers[_HEADER_USER_ID] == app_restricted_user_id
         assert target_request_headers[_HEADER_BASE_URL] == service_url
         assert target_request_headers[_HEADER_ACCESS_MODE] == _EXPECTED_ACCESS_MODE
+
+    def test_access_mode_header_overwritten_on_echo_target(
+        self,
+        app_restricted_access_code,
+        service_url,
+        asid,
+        app_restricted_ods_code,
+        app_restricted_user_id,
+    ):
+        client_request_headers = {
+            _HEADER_ECHO: "",  # enable echo target
+            _HEADER_AUTHORIZATION: "Bearer " + app_restricted_access_code,
+            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+            _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
+            _HEADER_ACCESS_MODE: "unknown-access-mode",
+        }
+
+        # Make the API call
+        response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(
+            response, service_url, asid, app_restricted_ods_code, app_restricted_user_id
+        )

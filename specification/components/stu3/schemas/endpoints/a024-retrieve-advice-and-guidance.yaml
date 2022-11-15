@@ -9,9 +9,19 @@ description: |
   The conversation can be retrieved via [[HYPERLINK_A025]].
 
   ## Supported security patterns
+  - Application-restricted access, unattended access
   - Healthcare worker, user-restricted access
 
   ## Pre-requisites
+
+  You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
+  For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
+   
+  ## Application-restricted access
+
+  In order to use this endpoint you must be an authenticated e-RS calling application.
+
+  ## Healthcare worker, user-restricted access
 
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
@@ -19,12 +29,9 @@ description: |
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
-  You need to use the `Unique Booking Reference Number` (UBRN) of the advice and guidance request. 
-  For service provider users, you may have identified the UBRN via [[HYPERLINK_A023]].
-
   ## Use case
 
-  As an authenticated user
+  As an authenticated user or application
 
   I need to retrieve the summary of an advice and guidance request
 
@@ -36,11 +43,19 @@ description: |
   convert the advice and guidance request into an appointment request. 
   If authorised, [[HYPERLINK_A027]] can be used to convert the advice and guidance request into an appointment request.
 
+  An advice and guidance request may have been converted to a referral (with the same UBRN), 
+  and in addition a referral pathway in e-RS can be made up of more than one UBRN. As such, 
+  it is important that all clinical information is obtained across all the related UBRNs in the pathway. 
+  These may be identified using [[HYPERLINK_A005]] and will be returned if the user is authorised to view this.
+
+  If the converted advice and guidance request is referred to a service outside of your organisation, 
+  the subsequent referral information may not be accessible due to existing data-access rules. However, 
+  the advice and guidance summary ([[HYPERLINK_A024]]), attachments ([[HYPERLINK_A006]]), advice and guidance conversation ([[HYPERLINK_A025]]) and 
+  clinical information ([[HYPERLINK_A043]]) which took place before such a conversion still forms part of the clinical information and can still be retrieved.
+
   ## Related endpoints
 
   After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
-
-  Use [[HYPERLINK_A043]] to generate a PDF file overview relating to an advice and guidance request.
 
   ## Sandbox test scenarios
 
@@ -56,9 +71,9 @@ operationId: a024-retrieve-advice-and-guidance
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
-  - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
-  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
 responses:
   '200':

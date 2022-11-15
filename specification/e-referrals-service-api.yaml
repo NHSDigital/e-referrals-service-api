@@ -122,6 +122,8 @@ info:
     This API is primarily [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest) 
     and based on [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standards for health care data exchange.
 
+    The e-RS FHIR R4 API is built against [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), where as e-RS FHIR STU3 API is built against a set of profiles called [CareConnect](https://nhsconnect.github.io/CareConnectAPI/)
+
     ## Network access
 
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).

@@ -8,12 +8,12 @@ on:
                 description: 'Branch title prefix to find combinable PRs based on'
                 required: true
                 options:
-                - 'npm(deps):'
-                - 'sandbox-npm(deps):'
-                - 'pip(deps):'
-                - 'sandbox-docker(deps):'
-                - 'github-actions(deps):'
-                default: 'npm(deps):'
+                - 'npm(deps)'
+                - 'sandbox-npm(deps)'
+                - 'pip(deps)'
+                - 'sandbox-docker(deps)'
+                - 'github-actions(deps)'
+                default: 'npm(deps)'
             jiraNumber:
                 description: 'Enter the Jira Number associated to these PRs'
                 required: true

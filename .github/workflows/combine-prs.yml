@@ -8,12 +8,12 @@ on:
                 description: 'Branch title prefix to find combinable PRs based on'
                 required: true
                 options:
-                - 'npm(deps)'
-                - 'sandbox-npm(deps)'
-                - 'pip(deps)'
-                - 'sandbox-docker(deps)'
-                - 'github-actions(deps)'
-                default: 'npm(deps)'
+                - 'npm'
+                - 'sandbox-npm'
+                - 'pip'
+                - 'sandbox-docker'
+                - 'github-actions'
+                default: 'npm'
             jiraNumber:
                 description: 'Enter the Jira Number associated to these PRs'
                 required: true
@@ -25,7 +25,7 @@ on:
             combineBranchName:
                 description: 'Base Name of the branch to combine PRs into'
                 required: true
-                default: 'combine-prs-branch'
+                default: 'combine-prs'
             ignoreLabel:
                 description: 'Exclude PRs with this label'
                 required: true
@@ -54,13 +54,14 @@ jobs:
                       let baseBranch = null;
                       let baseBranchSHA = null;
                       let today = new Date();
+                      let fullPrefix = '${{ github.event.inputs.titlePrefix }}' + '(deps):';
                       let fullBranchName=['${{ github.event.inputs.jiraNumber }}', '${{ github.event.inputs.combineBranchName }}', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join('-');
                       let fullTitle=['${{ github.event.inputs.jiraNumber }}', '- Combine PRs for', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join(' ');
                       for (const pull of pulls) {
                         const branch = pull['head']['ref'];
                         const title = pull['title'];
                         console.log('Pull for branch: ' + branch);
-                        if (title.startsWith('${{ github.event.inputs.titlePrefix }}')) {
+                        if (title.startsWith(fullPrefix)) {
                           console.log('Title matched prefix: ' + title);
                           let statusOK = true;
                           if(${{ github.event.inputs.mustBeGreen }}) {

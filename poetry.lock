@@ -896,8 +896,8 @@ python-versions = "*"
 
 [[package]]
 name = "texttable"
-version = "1.6.4"
-description = "module for creating simple ASCII tables"
+version = "1.6.5"
+description = "module to create simple ASCII tables"
 category = "dev"
 optional = false
 python-versions = "*"
@@ -1887,8 +1887,8 @@ sortedcontainers = [
     {file = "sortedcontainers-2.4.0.tar.gz", hash = "sha256:25caa5a06cc30b6b83d11423433f65d1f9d76c4c6a0c90e3379eaa43b9bfdb88"},
 ]
 texttable = [
-    {file = "texttable-1.6.4-py2.py3-none-any.whl", hash = "sha256:dd2b0eaebb2a9e167d1cefedab4700e5dcbdb076114eed30b58b97ed6b37d6f2"},
-    {file = "texttable-1.6.4.tar.gz", hash = "sha256:42ee7b9e15f7b225747c3fa08f43c5d6c83bc899f80ff9bae9319334824076e9"},
+    {file = "texttable-1.6.5-py2.py3-none-any.whl", hash = "sha256:a169c9a3598f2ef3721123c2951fdaa954dae4593a4adef0a855eb02955f83ff"},
+    {file = "texttable-1.6.5.tar.gz", hash = "sha256:fc3f763a89796ae03789a02343bd4e8fed9735935123b1bfb9537a5935852315"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},

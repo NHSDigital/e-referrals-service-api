@@ -5,6 +5,7 @@ on:
     workflow_dispatch:
         inputs:
             titlePrefix:
+                type: choice
                 description: 'Branch title prefix to find combinable PRs based on'
                 required: true
                 options:
@@ -54,14 +55,15 @@ jobs:
                       let baseBranch = null;
                       let baseBranchSHA = null;
                       let today = new Date();
-                      let fullPrefix = '${{ github.event.inputs.titlePrefix }}' + '(deps):';
+                      let fulldepsPrefix = '${{ github.event.inputs.titlePrefix }}' + '(deps):';
+                      let fulldevPrefix = '${{ github.event.inputs.titlePrefix }}' + '(deps-dev):';
                       let fullBranchName=['${{ github.event.inputs.jiraNumber }}', '${{ github.event.inputs.combineBranchName }}', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join('-');
                       let fullTitle=['${{ github.event.inputs.jiraNumber }}', '- Combine PRs for', '${{ github.event.inputs.titlePrefix }}', today.toISOString().split('T')[0]].join(' ');
                       for (const pull of pulls) {
                         const branch = pull['head']['ref'];
                         const title = pull['title'];
                         console.log('Pull for branch: ' + branch);
-                        if (title.startsWith(fullPrefix)) {
+                        if (title.startsWith(fulldepsPrefix) || title.startsWith(fulldevPrefix)) {
                           console.log('Title matched prefix: ' + title);
                           let statusOK = true;
                           if(${{ github.event.inputs.mustBeGreen }}) {

@@ -1,0 +1,106 @@
+description: Bundle resource containg the `ServiceRequest` resources associated to the supplied UBRN.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      type: object
+      required:
+        - id
+        - meta
+        - type
+        - timestamp
+        - total
+        - link
+      properties:
+        id:
+          type: string
+          example: '123e4567-e89b-12d3-a456-426614174000'
+        meta:
+          type: object
+          required:
+            - lastUpdated
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              example: '2021-08-04T14:35:00.000Z'
+        type:
+          type: string
+          enum:
+            - 'searchset'
+          example: 'searchset'
+        timestamp:
+          type: string
+          format: date-time
+          example: '2021-08-04T14:35:00.000Z'
+        total:
+          type: integer
+          example: 1
+        link:
+          type: array
+          items:
+            type: object
+            required:
+              - relation
+              - url
+            properties:
+              relation:
+                type: string
+                enum:
+                  - 'self'
+                example: 'self'
+              url:
+                type: string
+                example: '_baseUrl_/FHIR/R4/ServiceRequest?identifier=https://fhir.nhs.uk/Id/UBRN%7C000000070000'
+        entry:
+          type: array
+          description: |
+            | Field                  | Cardinality | Notes                                      |
+            | ---------------------- | ----------- | ------------------------------------------ |
+            | `ServiceRequest`       | `0..*`      |                                            |
+          items:
+            title: ServiceRequest
+            type: object
+            required:
+              - fullUrl
+              - resource
+              - search
+            properties:
+              fullUrl:
+                type: string
+                example: '_baseUrl_/FHIR/R4/ServiceRequest/r.123e4567-e89b-12d3-a456-426614174000'
+              resource:
+                $ref: '../../eRS-ServiceRequest.yaml'
+              search:
+                type: object
+                required:
+                  - mode
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                      - match
+                    example: 'match'
+    examples:
+      minimal-example-empty:
+        summary: An empty bundle might be returned when the search completes but matches no requests.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleEmpty.json'
+      minimal-example-referral:
+        summary: A response containing a single Request ID for a `ServiceRequest` of category `referral`.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleReferral.json'
+      minimal-example-advice:
+        summary: A response containing a single Request ID for a `ServiceRequest` of category `request`.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleAdvice.json'
+      complex-example-referral-and-advice:
+        summary: A response containing two Request IDs.
+        value:
+          $ref: '../../../examples/searchServiceRequest/responses/ResponseExampleReferralAndAdvice.json'

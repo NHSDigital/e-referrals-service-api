@@ -1,0 +1,33 @@
+title: Extension-Referral-State
+description: Extension to supply the e-RS representation of the state of the referral.
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-Referral'
+    example: 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-Referral'
+  extension:
+    type: array
+    minItems: 1
+    maxItems: 1
+    items:
+      type: object
+      required:
+        - url
+        - valueCode
+      properties:
+        url:
+          type: string
+          enum:
+            - sourceSystem
+          example: 'sourceSystem'
+        valueCode:
+          type: string
+          enum:
+            - ers
+          example: 'ers'
+       

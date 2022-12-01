@@ -1,0 +1,86 @@
+{
+  "id": "03f55377-33e0-4ad2-9ecc-0788342f24a1",
+  "meta": {
+    "versionId": "1"
+  },
+  "resourceType": "DocumentReference",
+  "type": {
+    "coding": [
+      {
+        "system": "https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType",
+        "code": "GUIDANCE_REQUEST",
+        "display": "Guidance Request"
+      }
+    ]
+  },
+  "status": "current",
+  "subject": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "content": [
+    {
+      "attachment": {
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-AttachedBy",
+            "valueReference": {
+              "identifier": {
+                "system": "https://fhir.nhs.uk/Id/sds-user-id",
+                "value": "987654321"
+              }
+            }
+          }
+        ],
+        "contentType": "application/pdf",
+        "url": "Binary/959724e3-8719-4ff3-ae37-5198c450e0f6",
+        "size": 18592,
+        "title": "upload.png",
+        "creation": "2022-01-31"
+      }
+    }
+  ],
+  "context": {
+    "related" : [
+      {
+        "type": "ServiceRequest",
+        "reference": "ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149"
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "PractitionerRole",
+      "id": "author",
+      "practitioner": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/sds-user-id",
+          "value": "103264992985"
+        },
+        "display": "DR AA BHATIA"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+          "value": "C81007"
+        },
+        "display": "VERNON STREET MEDICAL CTR"
+      },
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction",
+              "code": "REFERRING_CLINICIAN"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "author": {
+    "reference": "#author"
+  }
+}

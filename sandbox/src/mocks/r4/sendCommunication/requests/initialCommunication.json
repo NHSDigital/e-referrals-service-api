@@ -1,0 +1,42 @@
+{
+  "resourceType": "Communication",
+  "status": "completed",
+  "basedOn": [
+    {
+      "reference": "ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149"
+    }
+  ],
+  "subject": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/CodeSystem/eRS-CommunicationSentBy",
+          "code": "REQUESTER"
+        }
+      ]
+    }
+  ],
+  "recipient": [
+    {
+      "reference": "HealthcareService/54b0506d-49af-4245-9d40-d7d64902055e"
+    }
+    ],
+  "payload": [
+    {
+      "contentReference": {
+        "reference": "DocumentReference/6f693b93-fc6f-4aa1-955e-d9548b5a6a9a"
+      }
+    }
+  ],
+  "note": [
+    {
+      "text": "Please advise me on this patient who ...(information about patient)"
+    }
+  ]
+}

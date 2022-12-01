@@ -1,0 +1,38 @@
+{
+  "resourceType": "DocumentReference",
+  "type": {
+    "coding": [
+      {
+        "system": "https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType",
+        "code": "GUIDANCE_REQUEST",
+        "display": "Guidance Request"
+      }
+    ]
+  },
+  "status": "current",
+  "subject": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "content": [
+    {
+      "attachment": {
+        "contentType": "application/pdf",
+        "url": "Binary/959724e3-8719-4ff3-ae37-5198c450e0f6",
+        "size": 18592,
+        "title": "upload.png",
+        "creation": "2022-01-31"
+      }
+    }
+  ],
+  "context": {
+    "related" : [
+      {
+        "type": "ServiceRequest",
+        "reference": "ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149"
+      }
+    ]
+  }
+}

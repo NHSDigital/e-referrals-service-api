@@ -368,7 +368,10 @@ paths:
       $ref: 'components/r4/schemas/endpoints/a040-retrieve-practitioner-info.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
+      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
+  /R4/ServiceRequest:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0XX-create-update-service-request.yaml'
 components:
   securitySchemes:
     bearerAuth:

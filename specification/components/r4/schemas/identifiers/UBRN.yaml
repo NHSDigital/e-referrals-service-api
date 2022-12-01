@@ -1,0 +1,13 @@
+type: object
+required:
+  - system
+  - value
+properties:
+  system:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/Id/UBRN'
+    example: 'https://fhir.nhs.uk/Id/UBRN'
+  value:
+    type: string
+    example: '111111111112'

@@ -1,0 +1,174 @@
+title: eRS-ServiceRequestRequest
+description: 'A e-referral service request'
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - subject
+  - category
+  - code
+  - priority
+  - intent
+  - status
+  - identifier
+  - requester
+properties:
+  id:
+    type: string
+    example: 'a.832db7fa-ebdd-44b6-ab3b-8329c2d43149'
+  meta:
+    type: object
+    required:
+      - versionId
+    properties:
+      versionId:
+        type: string
+        example: '1'
+  resourceType:
+    type: string
+    enum:
+      - ServiceRequest
+    example: ServiceRequest
+  subject:
+    description: 'Patient the service is ordered for'
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        description: 'Reference to the patient'
+        required:
+          - system
+          - value
+        properties:
+          system:
+            type: string
+            enum:
+              - 'https://fhir.nhs.uk/Id/nhs-number'
+            example: 'https://fhir.nhs.uk/Id/nhs-number'
+          value:
+            type: string
+            example: '9912003888'
+  category:
+    description: Classification of the service
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/CodeSystem/message-category-servicerequest
+                example: 'https://fhir.nhs.uk/CodeSystem/message-category-servicerequest'
+              code:
+                type: string
+                enum:
+                  - request
+                example: 'request'
+  code:
+    description: What is being requested/ordered
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/CodeSystem/ServiceRequest-Code
+              example: 'https://fhir.nhs.uk/CodeSystem/ServiceRequest-Code'
+            code:
+              type: string
+              enum:
+                - advice-and-guidance
+              example: 'advice-and-guidance'
+  priority:
+    type: string
+    enum:
+      - routine
+      - urgent
+      - two_week_wait
+    example: routine
+  intent:
+    type: string
+    enum:
+      - order
+    example: order
+  status:
+    type: string
+    enum:
+      - draft
+    example: draft
+  extension:
+    type: array
+    nullable: false
+    description: |
+      | Field                                      | Cardinality | Notes                                                                                   |
+      | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
+      | Extension-eRS-ReferralState                | 1..1        | Details the current state of the service request                         |
+      | Extension-eRS-Referral                     | 0..1        | Details any eRs specific information                               |
+    items:
+      anyOf:
+        - $ref: 'extensions/Extension-eRS-ServiceRequest-State.yaml'
+        - $ref: 'extensions/Extension-eRS-Referral.yaml'
+  identifier:
+    type: array
+    items:
+      type: object
+      required:
+        - system
+        - value
+      properties:
+        system:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/Id/UBRN'
+          example: 'https://fhir.nhs.uk/Id/UBRN'
+        value:
+          type: string
+          example: '111111111112'
+  contained:
+    type: array
+    nullable: true
+    description: |
+      | Field                                   | Cardinality | Notes                                           |
+      | --------------------------------------- | ----------- | ----------------------------------------------- |
+      | `PractitionerRole`                      | `1..1`      | The Practitioner Role Deatials of the requester |
+    items:
+      anyOf:
+        - $ref: 'PractitionerRole.yaml'
+  requester:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        enum:
+          - '#requester'
+        example: '#requester'
+      
+  
+      
+        
+        
+      
+    

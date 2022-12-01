@@ -1,0 +1,97 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
+  "meta": {
+    "versionId": "5"
+  },
+  "subject": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "9912003888"
+    }
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/CodeSystem/message-category-servicerequest",
+          "code": "request"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.nhs.uk/CodeSystem/ServiceRequest-Code",
+        "code": "advice-and-guidance"
+      }
+    ]
+  },
+  "priority": "routine",
+  "intent": "order",
+  "status": "draft",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-Referral",
+      "extension": [
+        {
+          "url": "sourceSystem",
+          "valueCode": "ers"
+        }
+      ]
+    },
+    {
+      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceRequest-State",
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-ReferralState",
+            "code": "INCOMPLETE",
+            "display": "Incomplete"
+          }
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://fhir.nhs.uk/Id/UBRN",
+      "value": "111111111112"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "PractitionerRole",
+      "id": "requester",
+      "practitioner": {
+        "identifier": {
+          "system": "https://fhir.nhs.uk/Id/sds-user-id",
+          "value": "103264992985"
+        },
+        "display": "DR AA BHATIA"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+          "value": "C81007"
+        },
+        "display": "VERNON STREET MEDICAL CTR"
+      }
+    }
+  ],
+  "requester": {
+    "reference": "#requester"
+  },
+  "supportingInfo": [
+    {
+      "type": "QuestionnaireResponse",
+      "reference": "QuestionnaireResponse/d9d4cf80-3f9d-4435-9f3b-e6efb09ad654"
+    },
+    {
+      "type": "DocumentReference",
+      "reference": "DocumentReference/03f55377-33e0-4ad2-9ecc-0788342f24a1"
+    }
+  ]
+}

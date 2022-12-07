@@ -1,0 +1,20 @@
+title: Patient
+description: 'Patient that is the subject of the request'
+type: object
+required:
+  - identifier
+properties:
+  identifier:
+    description: 'Reference to the patient'
+    required:
+      - system
+      - value
+    properties:
+      system:
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/Id/nhs-number'
+        example: 'https://fhir.nhs.uk/Id/nhs-number'
+      value:
+        type: string
+        example: '9912003888'

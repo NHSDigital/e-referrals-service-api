@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "d9d4cf80-3f9d-4435-9f3b-e6efb09ad654",
   "meta": {
-    "versionId": "2"
+    "versionId": 2
   },
   "questionnaire": "https://fhir.nhs.uk/Questionnaire/ERS-ShortList",
   "basedOn":  [
@@ -14,7 +14,7 @@
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
       "value": "9912003888"
-    },
+    }
   },
   "status": "completed",
   "authored" : "2022-01-11T16:40:00+00:00",
@@ -24,7 +24,7 @@
       "id": "source",
       "practitioner": {
         "identifier": {
-          "system": "http://fhir.nhs.net/Id/sds-user-id",
+          "system": "https://fhir.nhs.uk/Id/sds-user-id",
           "value": "103264992985"
         },
         "display": "DR AA BHATIA"
@@ -40,7 +40,7 @@
         {
           "coding": [
             {
-              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction",
+              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
               "code": "REFERRING_CLINICIAN"
             }
           ]

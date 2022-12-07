@@ -4,8 +4,8 @@
     "coding": [
       {
         "system": "https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType",
-        "code": "GUIDANCE_REQUEST",
-        "display": "Guidance Request"
+        "code": "ADVICE_REQUEST",
+        "display": "Advice Request"
       }
     ]
   },

@@ -1,0 +1,116 @@
+title: eRS-DocumentReference
+description: 'A e-referral document reference request'
+type: object
+required:
+  - resourceType
+  - type
+  - status
+  - subject
+  - content
+  - context
+properties:
+  id:
+    type: string
+    example: '03f55377-33e0-4ad2-9ecc-0788342f24a1'
+  meta:
+    type: object
+    required:
+      - versionId
+    properties:
+      versionId:
+        type: integer
+        example: 6
+  resourceType:
+    type: string
+    enum:
+      - DocumentReference
+    example: DocumentReference
+  type:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType'
+              example: 'https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType'
+            code:
+              type: string
+              enum:
+                - PROVIDER
+                - REFERRER
+                - ADVICE_REQUEST
+                - GUIDANCE_RESPONSE
+              example: ADVICE_REQUEST
+            display:
+              type: string
+              example: 'Advice Request'
+            
+  status:
+    type: string
+    enum:
+      - current
+    example: 'current'
+  subject:
+    $ref: 'Patient.yaml'
+  content:
+    description: 'The attachment content'
+    type: array
+    items:
+      type: object
+      required:
+        - attachment
+      properties:
+        attachment:
+          $ref: Attachment.yaml
+  context:
+    type: object
+    required:
+      - related
+    properties:
+      related:
+        type: array
+        items:
+          type: object
+          required:
+            - type
+            - reference
+          properties:
+            type:
+              type: string
+              example: 'ServiceRequest'
+            reference:
+              type: string
+              example: 'ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149'
+  contained:
+    type: array
+    nullable: true
+    description: |
+      | Field                                   | Cardinality | Notes                                           |
+      | --------------------------------------- | ----------- | ----------------------------------------------- |
+      | `PractitionerRole`                      | `1..1`      | The Practitioner Role Deatials of the requester |
+    items:
+      anyOf:
+        - $ref: 'PractitionerRole.yaml'
+  author:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        enum:
+          - '#author'
+        example: '#author'
+      
+  
+  

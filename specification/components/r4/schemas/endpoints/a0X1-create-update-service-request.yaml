@@ -1,0 +1,27 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to create or update a Service Request
+  
+summary: A0X1 - Create or update a service request
+operationId: a0X1-create-update-service-request
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-ServiceRequest.yaml'
+      examples:
+        create-incomplete:
+          summary: Create incomplete advice and guidance
+          value:
+            $ref: '../../examples/createServiceRequest/requests/createIncomplete.json'
+responses:
+  '201':
+    $ref: '../responses/createUpdateServiceRequest/201Response.yaml'
+

@@ -2,8 +2,6 @@ title: eRS-ServiceRequestRequest
 description: 'A e-referral service request'
 type: object
 required:
-  - id
-  - meta
   - resourceType
   - subject
   - category
@@ -11,7 +9,6 @@ required:
   - priority
   - intent
   - status
-  - identifier
   - requester
 properties:
   id:
@@ -23,33 +20,15 @@ properties:
       - versionId
     properties:
       versionId:
-        type: string
-        example: '1'
+        type: integer
+        example: 1
   resourceType:
     type: string
     enum:
       - ServiceRequest
     example: ServiceRequest
   subject:
-    description: 'Patient the service is ordered for'
-    type: object
-    required:
-      - identifier
-    properties:
-      identifier:
-        description: 'Reference to the patient'
-        required:
-          - system
-          - value
-        properties:
-          system:
-            type: string
-            enum:
-              - 'https://fhir.nhs.uk/Id/nhs-number'
-            example: 'https://fhir.nhs.uk/Id/nhs-number'
-          value:
-            type: string
-            example: '9912003888'
+    $ref: 'Patient.yaml'
   category:
     description: Classification of the service
     type: array
@@ -121,14 +100,14 @@ properties:
     type: array
     nullable: false
     description: |
-      | Field                                      | Cardinality | Notes                                                                                   |
-      | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
-      | Extension-eRS-ReferralState                | 1..1        | Details the current state of the service request                         |
-      | Extension-eRS-Referral                     | 0..1        | Details any eRs specific information                               |
+      | Field                                         | Cardinality | Notes                                                                                   |
+      | --------------------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+      | Extension-eRS-ReferralState                   | 1..1        | Details the current state of the service request                         |
+      | Extension-eRS-ProviderConversionAuthorisation | 0..1        | Details whether provider can convert                             |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ServiceRequest-State.yaml'
-        - $ref: 'extensions/Extension-eRS-Referral.yaml'
+        - $ref: 'extensions/Extension-eRS-ProviderConversionAuthorisation.yaml'
   identifier:
     type: array
     items:

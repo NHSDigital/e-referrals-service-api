@@ -1,0 +1,133 @@
+title: eRS-Communication
+description: 'An A & G Communication'
+type: object
+required:
+  - resourceType
+  - status
+  - basedOn
+  - subject
+  - category
+  - recipient
+  - payload
+properties:
+  id:
+    type: string
+    example: 'cf8d99c4-b4b1-4ad3-b5b0-2381bee8c6e8'
+  meta:
+    type: object
+    required:
+      - versionId
+    properties:
+      versionId:
+        type: integer
+        example: 1
+  resourceType:
+    type: string
+    enum:
+      - Communication
+    example: Communication
+  subject:
+    $ref: 'Patient.yaml'
+  status:
+    type: string
+    enum:
+      - 'completed'
+    example: 'completed'
+  received:
+    type: string
+    format: date-time
+    example: '2021-04-22T08:30:00.000Z'
+  basedOn:
+    type: array
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149'
+  category:
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum:
+                  - 'https://fhir.nhs.uk/CodeSystem/eRS-CommunicationSentBy'
+                example : 'https://fhir.nhs.uk/CodeSystem/eRS-CommunicationSentBy'
+              code:
+                type: string
+                enum:
+                  - REQUESTER
+                  - RESPONDER
+                  - REFERRER_CLINICAL_INFORMATION_UPDATED
+                example: 'REQUESTER'
+  recipient:
+    type: array
+    items:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'HealthcareService/54b0506d-49af-4245-9d40-d7d64902055e'
+  payload:
+    type: array
+    items:
+      anyOf:
+        - description: 'attached document reference'
+          type: object
+          required:
+            - contentReference
+          properties:
+            contentReference:
+              type: object
+              required:
+                - reference
+              properties:
+                reference:
+                  type: string
+                  example: 'DocumentReference/6f693b93-fc6f-4aa1-955e-d9548b5a6a9a'
+        - description: 'Text of advice request'
+          type: object
+          required:
+            - contentString
+          properties:
+            contentString:
+              type: string
+              example: 'Please advise me on this patient who ...(information about patient)'
+  contained:
+    type: array
+    nullable: true
+    description: |
+      | Field                                   | Cardinality | Notes                                           |
+      | --------------------------------------- | ----------- | ----------------------------------------------- |
+      | `PractitionerRole`                      | `1..1`      | The Practitioner Role Deatials of the requester |
+    items:
+      anyOf:
+        - $ref: 'PractitionerRole.yaml'
+  sender:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        enum:
+          - '#sender'
+        example: '#sender'
+
+              

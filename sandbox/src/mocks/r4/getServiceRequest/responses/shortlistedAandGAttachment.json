@@ -33,15 +33,6 @@
   "status": "draft",
   "extension": [
     {
-      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-Referral",
-      "extension": [
-        {
-          "url": "sourceSystem",
-          "valueCode": "ers"
-        }
-      ]
-    },
-    {
       "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceRequest-State",
       "extension": [
         {
@@ -53,6 +44,18 @@
           }
         }
       ]
+    },
+    {
+      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-ProviderConversionAuthorisation",
+            "code": "NOT_AUTHORISED_TO_CONVERT",
+            "display": "Referrer has NOT allowed the Service Provider to convert the Advice and Guidance to a Referral"
+          }
+        ]
+      }
     }
   ],
   "identifier": [

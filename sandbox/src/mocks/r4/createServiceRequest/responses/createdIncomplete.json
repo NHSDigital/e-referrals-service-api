@@ -2,7 +2,7 @@
   "resourceType": "ServiceRequest",
   "id": "a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
   "meta": {
-    "versionId": "5"
+    "versionId": 5
   },
   "subject": {
     "identifier": {
@@ -33,15 +33,6 @@
   "status": "draft",
   "extension": [
     {
-      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-Referral",
-      "extension": [
-        {
-          "url": "sourceSystem",
-          "valueCode": "ers"
-        }
-      ]
-    },
-    {
       "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceRequest-State",
       "extension": [
         {
@@ -53,6 +44,18 @@
           }
         }
       ]
+    },
+    {
+      "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/eRS-ProviderConversionAuthorisation",
+            "code": "NOT_AUTHORISED_TO_CONVERT",
+            "display": "Referrer has NOT allowed the Service Provider to convert the Advice and Guidance to a Referral"
+          }
+        ]
+      }
     }
   ],
   "identifier": [

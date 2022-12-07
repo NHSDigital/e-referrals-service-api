@@ -1,0 +1,58 @@
+title: eRS-QuestionnaireResponse
+description: "A questionaire response"
+type: object
+required:
+  - resourceType
+  - subject
+  - questionnaire
+  - basedOn
+  - status
+  - authored
+  - item
+properties:
+  id:
+    type: string
+    example: 'd9d4cf80-3f9d-4435-9f3b-e6efb09ad654'
+  meta:
+    type: object
+    required:
+      - versionId
+    properties:
+      versionId:
+        type: integer
+        example: 1
+  resourceType:
+    type: string
+    enum:
+      - QuestionnaireResponse
+    example: QuestionnaireResponse
+  subject:
+    $ref: 'Patient.yaml'
+  questionnaire:
+    type: string
+    example: 'https://fhir.nhs.uk/Questionnaire/ERS-ShortList'
+  basedOn:
+    type: array
+    items:
+      type: object
+      required: 
+        - reference
+      properties:
+        reference:
+          type: string
+          example: 'ServiceRequest/a.832db7fa-ebdd-44b6-ab3b-8329c2d43149'
+  status:
+    type: string
+    enum:
+      - completed
+    example: 'completed'
+  authored:
+    type: string
+    format: date-time
+    example: '2021-04-22T08:30:00.000Z'
+  item:
+    type: array
+    items:
+      anyOf:
+        - $ref: 'linkItems/SearchCriteria.yaml'
+        - $ref: 'linkItems/Services.yaml'

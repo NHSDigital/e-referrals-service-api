@@ -371,7 +371,16 @@ paths:
       $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
   /R4/ServiceRequest:
     post:
-      $ref: 'components/r4/schemas/endpoints/a0XX-create-update-service-request.yaml'
+      $ref: 'components/r4/schemas/endpoints/a0X1-create-update-service-request.yaml'
+  /R4/DocumentReference:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X2-create-update-document-reference.yaml'
+  /R4/QuestionnaireResponse:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X3-create-update-questionnaire-response.yaml'
+  /R4/Communication:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X4-create-update-communication.yaml'
 components:
   securitySchemes:
     bearerAuth:

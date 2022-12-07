@@ -1,15 +1,15 @@
 {
   "id": "03f55377-33e0-4ad2-9ecc-0788342f24a1",
   "meta": {
-    "versionId": "1"
+    "versionId": 1
   },
   "resourceType": "DocumentReference",
   "type": {
     "coding": [
       {
         "system": "https://fhir.nhs.uk/CodeSystem/eRS-AttachmentType",
-        "code": "GUIDANCE_REQUEST",
-        "display": "Guidance Request"
+        "code": "ADVICE_REQUEST",
+        "display": "Advice Request"
       }
     ]
   },
@@ -23,6 +23,11 @@
   "content": [
     {
       "attachment": {
+        "contentType": "application/pdf",
+        "url": "Binary/959724e3-8719-4ff3-ae37-5198c450e0f6",
+        "size": 18592,
+        "title": "upload.png",
+        "creation": "2022-01-31",
         "extension": [
           {
             "url": "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-AttachedBy",
@@ -33,12 +38,7 @@
               }
             }
           }
-        ],
-        "contentType": "application/pdf",
-        "url": "Binary/959724e3-8719-4ff3-ae37-5198c450e0f6",
-        "size": 18592,
-        "title": "upload.png",
-        "creation": "2022-01-31"
+        ]
       }
     }
   ],
@@ -56,7 +56,7 @@
       "id": "author",
       "practitioner": {
         "identifier": {
-          "system": "http://fhir.nhs.net/Id/sds-user-id",
+          "system": "https://fhir.nhs.uk/Id/sds-user-id",
           "value": "103264992985"
         },
         "display": "DR AA BHATIA"
@@ -72,7 +72,7 @@
         {
           "coding": [
             {
-              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction",
+              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
               "code": "REFERRING_CLINICIAN"
             }
           ]

@@ -26,17 +26,15 @@
     {
       "reference": "HealthcareService/54b0506d-49af-4245-9d40-d7d64902055e"
     }
-    ],
+  ],
   "payload": [
     {
       "contentReference": {
         "reference": "DocumentReference/6f693b93-fc6f-4aa1-955e-d9548b5a6a9a"
       }
-    }
-  ],
-  "note": [
+    },
     {
-      "text": "Please advise me on this patient who ...(information about patient)"
+      "contentString": "Please advise me on this patient who ...(information about patient)"
     }
   ]
 }

@@ -1,0 +1,19 @@
+description: A document reference created response
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-Communication.yaml'
+    examples:
+      create-incomplete:
+        summary: Create auestionnaire response
+        value:
+          $ref: '../../../examples/sendCommunication/responses/initialCommunication.json'

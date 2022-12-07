@@ -1,0 +1,28 @@
+title: Attachment
+description: 'Attachment details'
+type: object
+required:
+  - url
+properties:
+  extension:
+    type: array
+    items:
+      $ref: 'extensions/Extension-eRS-AttachedBy.yaml'
+  contentType:
+    type: string
+    example: 'application/pdf'
+  url:
+    type: string
+    example: 'Binary/959724e3-8719-4ff3-ae37-5198c450e0f6'
+  size:
+    type: integer
+    example: 123
+  title:
+    type: string
+    example: 'upload.png'
+  creation:
+    type: string
+    format: date
+    example: '2021-04-22'
+    
+  

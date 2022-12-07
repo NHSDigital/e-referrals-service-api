@@ -3,10 +3,10 @@ security:
 description: |
   ## Overview
   
-  TBC: Use this endpoint to create or update a Service Request
+  TBC: Use this endpoint to create or update a Document Reference
   
-summary: A0XX - Create or update a service request
-operationId: a0XX-create-update-service-request
+summary: A0X2 - Create or update a document reference
+operationId: a0X2-create-update-document-reference
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
@@ -15,13 +15,13 @@ requestBody:
   content:
     application/fhir+json:
       schema:
-        $ref: '../eRS-ServiceRequestRequest.yaml'
+        $ref: '../eRS-DocumentReference.yaml'
       examples:
         create-incomplete:
           summary: Create incomplete advice and guidance
           value:
-            $ref: '../../examples/createServiceRequest/requests/createIncomplete.json'
+            $ref: '../../examples/createDocumentReference/requests/AdviceRequestAttachment.json'
 responses:
   '201':
-    $ref: '../responses/createUpdateServiceRequest/201Response.yaml'
+    $ref: '../responses/createUpdateDocumentReference/201Response.yaml'
 

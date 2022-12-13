@@ -95,6 +95,7 @@ properties:
     type: string
     enum:
       - draft
+      - active
     example: draft
   extension:
     type: array
@@ -144,6 +145,25 @@ properties:
         enum:
           - '#requester'
         example: '#requester'
+  supportingInfo:
+    type: array
+    items:
+      type: object
+      required:
+        - type
+        - reference
+      properties:
+        type: 
+          type: string
+          enum:
+            - 'QuestionnaireResponse'
+            - 'DocumentReference'
+            - 'Communication'
+          example: 'QuestionnaireResponse'
+        reference:
+          type: string
+          example: 'QuestionnaireResponse/d9d4cf80-3f9d-4435-9f3b-e6efb09ad654'
+      
       
   
       

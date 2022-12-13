@@ -1,0 +1,34 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to retrieve a Communication
+  
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                                 |  Communication Id   |
+  | ------------------------------------------------------------------------ | ------------------- |
+  | Initial Communication                                                    | `1`                 |
+summary: A0X6 - Retrieve communication
+operationId: a0X%-retrieve-communication
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../pathParameters/CommunicationUuid.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/getCommunication/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

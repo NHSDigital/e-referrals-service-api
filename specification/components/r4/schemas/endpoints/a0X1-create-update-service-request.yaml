@@ -10,6 +10,7 @@ operationId: a0X1-create-update-service-request
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
 requestBody:
   required: true
   content:

@@ -10,7 +10,7 @@
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
       "value": "9912003888"
-    },
+    }
   },
   "status" : "completed",
   "authored" : "2022-01-11T16:40:00+00:00",

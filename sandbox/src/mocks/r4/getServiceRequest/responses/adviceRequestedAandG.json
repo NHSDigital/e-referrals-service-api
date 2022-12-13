@@ -2,7 +2,7 @@
   "resourceType": "ServiceRequest",
   "id": "a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
   "meta": {
-    "versionId": "5"
+    "versionId": 5
   },
   "subject": {
     "identifier": {
@@ -81,7 +81,17 @@
           "value": "C81007"
         },
         "display": "VERNON STREET MEDICAL CTR"
-      }
+      },
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+              "code": "REFERRING_CLINICIAN"
+            }
+          ]
+        }
+      ]
     }
   ],
   "requester": {

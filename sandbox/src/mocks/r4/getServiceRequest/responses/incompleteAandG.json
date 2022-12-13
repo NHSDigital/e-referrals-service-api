@@ -2,7 +2,7 @@
   "resourceType": "ServiceRequest",
   "id": "a.832db7fa-ebdd-44b6-ab3b-8329c2d43149",
   "meta": {
-    "versionId": "5"
+    "versionId": 5
   },
   "subject": {
     "identifier": {
@@ -86,7 +86,7 @@
         {
           "coding": [
             {
-              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+              "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
               "code": "REFERRING_CLINICIAN"
             }
           ]

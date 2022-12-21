@@ -591,7 +591,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pip-licenses"
-version = "4.0.2"
+version = "4.0.3"
 description = "Dump the software license list of Python packages installed with pip."
 category = "dev"
 optional = false
@@ -1046,7 +1046,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "22b1a998d63ce639b4c0e635e580b7a67c4441301fdd26973d560623cac05934"
+content-hash = "9f8bee8447222867e1f5882260de0e9f87276bb2359468e2583603f11e19d798"
 
 [metadata.files]
 aiohttp = [
@@ -1707,8 +1707,8 @@ pathspec = [
     {file = "pathspec-0.10.3.tar.gz", hash = "sha256:56200de4077d9d0791465aa9095a01d421861e405b5096955051deefd697d6f6"},
 ]
 pip-licenses = [
-    {file = "pip-licenses-4.0.2.tar.gz", hash = "sha256:099911b9bf4709053f1fea2f5421c6692a82bb8885054043ae9222b07bf29b4e"},
-    {file = "pip_licenses-4.0.2-py3-none-any.whl", hash = "sha256:bcd89e9832dfad79e35bce0fe8ebc20706b50eea6fb43f70395ec927b800f367"},
+    {file = "pip-licenses-4.0.3.tar.gz", hash = "sha256:f57c064fa2044685348b72b7adf1e81fc9f87b9b56257b0bc14fe63d3346a56a"},
+    {file = "pip_licenses-4.0.3-py3-none-any.whl", hash = "sha256:2862c136b2aeb8791a5cd8ea6ca1eddda278502172155f68b4883da413186eaf"},
 ]
 platformdirs = [
     {file = "platformdirs-2.6.0-py3-none-any.whl", hash = "sha256:1a89a12377800c81983db6be069ec068eee989748799b946cce2a6e80dcc54ca"},

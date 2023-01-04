@@ -196,6 +196,10 @@ class TestHeaders:
             response_data = response.json()
             assert response_data["resourceType"] == "OperationOutcome"
             assert response_data["meta"]["lastUpdated"] is not None
+            assert (
+                response_data["meta"]["profile"][0]
+                == "https://www.hl7.org/fhir/R4/operationoutcome.html"
+            )
             assert len(response_data["issue"]) == 1
             issue = response_data["issue"][0]
             assert issue["severity"] == "error"

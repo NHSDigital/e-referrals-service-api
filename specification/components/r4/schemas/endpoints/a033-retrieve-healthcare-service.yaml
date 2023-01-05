@@ -54,6 +54,8 @@ responses:
     $ref: '../responses/Forbidden.yaml'
   '404':
     $ref: '../responses/NotFound.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
   '429':
     $ref: '../responses/TooManyRequests.yaml'
   '500':

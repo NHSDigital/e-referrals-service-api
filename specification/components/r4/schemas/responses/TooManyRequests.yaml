@@ -1,4 +1,11 @@
 description: |
+  Where status code 429 (Too Many Requests) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                                 | Description                        |
+  | ------------------------- | ---------- | ----------------------------------------------------------------------------- | ---------------------------------- |
+  | TOO_MANY_REQUESTS         | throttled  | [APIM Error Code](https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode) | The rate limit has been reached.   |
+
   The e-Referral service APIs limit the number of transactions you can make per unit of time.
   This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
 
@@ -21,3 +28,14 @@ description: |
     - Wait 2s and resend, but still receive a 429
     - Wait 4s, request is successful
     - Return to normal request cadence
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-429.json'

@@ -1,0 +1,47 @@
+type: object
+description: e-RS representation of the state of the ServiceRequest.
+required:
+  - url
+  - valueCoding
+properties:
+  url:
+    type: string
+    enum:
+      - 'state'
+    example: 'state'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system: 
+        type: string
+        enum:
+          - 'https://fhir.nhs.uk/CodeSystem/eRS-ReferralState'
+        example: 'https://fhir.nhs.uk/CodeSystem/eRS-ReferralState'
+      code:
+        type: string
+        enum:
+          - REJECTED 
+          - TRIAGE_RESPONSE
+          - AWAITING_TRIAGE
+          - NOT_BOOKED
+          - DEFER_TO_PROVIDER
+          - BOOKED
+          - APPOINTMENT_CANCELLED_BY_PATIENT
+          - APPOINTMENT_CANCELLED_BY_PROVIDER
+          - CARL
+          - ARBL
+          - CARBL_OR_ARL
+          - INCOMPLETE
+          - PROVIDER_RESPONSE_REQUIRED
+          - REFERRER_TO_SUBMIT_FURTHER_INFORMATION
+          - REFERRER_TO_REVIEW
+          - ENDED_CANCELLED
+          - ENDED_CLOSED
+          - ADVICE_CONVERTED
+          - TO_BE_CONVERTED
+        example: 'NOT_BOOKED'
+      display:
+        type: string

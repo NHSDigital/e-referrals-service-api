@@ -1,0 +1,34 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to retrieve a Document Reference
+  
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                      |  Document Reference Id   |
+  | ------------------------------------------------------------- | ------------------------ |
+  | Advice Request Attachment                                     | `1`                      |
+summary: A0X7 - Retrieve document reference
+operationId: a0X7-retrieve-document-reference
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../pathParameters/DocumentReferenceUuid.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/getDocumentReference/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

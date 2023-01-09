@@ -1,0 +1,21 @@
+description: A service Request
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  ETag:
+    $ref: '../../headers/response/ETag.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-ServiceRequest.yaml'
+    examples:
+      create-incomplete:
+        summary: Create incomplete advice and guidance
+        value:
+          $ref: '../../../examples/createServiceRequest/responses/createdIncomplete.json'
+
+  

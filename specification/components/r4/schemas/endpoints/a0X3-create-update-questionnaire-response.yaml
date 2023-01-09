@@ -1,0 +1,27 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to create or update a Questionnaire Response
+  
+summary: A0X3 - Create or update a questionnaire response
+operationId: a0X3-create-update-questionnaire-response
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-QuestionnaireResponse.yaml'
+      examples:
+        create-incomplete:
+          summary: Create incomplete advice and guidance
+          value:
+            $ref: '../../examples/sendQuestionnaireResponse/requests/basicQuestionnaireResponse.json'
+responses:
+  '201':
+    $ref: '../responses/createUpdateQuestionnaireResponse/201Response.yaml'
+

@@ -1,0 +1,9 @@
+name: uuid
+in: path
+description: |
+    The UUID of the document reference to be retrieved. It must be valid and relate to an existing  Document Reference otherwise a HTTP 404 response will be returned.
+required: true
+schema:
+  type: string
+  format: uuid
+  example: '03f55377-33e0-4ad2-9ecc-0788342f24a1'

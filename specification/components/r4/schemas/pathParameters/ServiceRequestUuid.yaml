@@ -1,0 +1,8 @@
+name: uuid
+in: path
+description: |
+    The UUID of the service request to be retrieved. It must be valid and relate to an existing  Service Request otherwise a HTTP 404 response will be returned.
+required: true
+schema:
+  type: string
+  example: 'a.832db7fa-ebdd-44b6-ab3b-8329c2d43149'

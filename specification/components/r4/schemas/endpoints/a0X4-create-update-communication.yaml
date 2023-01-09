@@ -1,0 +1,27 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to create or update a Communication
+  
+summary: A0X4 - Create or update a communication
+operationId: a0X4-create-update-communication
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-Communication.yaml'
+      examples:
+        create-incomplete:
+          summary: Create incomplete advice and guidance
+          value:
+            $ref: '../../examples/sendCommunication/requests/initialCommunication.json'
+responses:
+  '201':
+    $ref: '../responses/createUpdateCommunication/201Response.yaml'
+

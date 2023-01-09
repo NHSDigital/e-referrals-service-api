@@ -1,0 +1,61 @@
+title: Details of practitioner role
+type: object
+required:
+  - resourceType
+  - id
+  - practitioner
+  - organization
+  - code
+properties:
+  resourceType:
+    type: string
+    enum:
+      - PractitionerRole
+    example: 'PractitionerRole'
+  id:
+    type: string
+    example: 'requester'
+  practitioner:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: 'identifiers/UserId.yaml'
+      display:
+        type: string
+  organization:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: 'identifiers/Organisation.yaml'
+      display:
+        type: string
+  code:
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum:
+                  - 'https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1'
+                example: 'https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1'
+              code:
+                type: string
+                example: 'REFERRING_CLINICIAN'
+          
+    
+

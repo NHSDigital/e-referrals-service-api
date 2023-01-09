@@ -1,0 +1,39 @@
+title: Extension-eRS-ProviderConversionAuthorisation
+description: Extension to indicate whether the provider is authorised to convert 
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation
+    example: 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ProviderConversionAuthorisation'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/CodeSystem/eRS-ProviderConversionAuthorisation
+              example: 'https://fhir.nhs.uk/CodeSystem/eRS-ProviderConversionAuthorisation'
+            code:
+              type: string
+              enum:
+                - NOT_AUTHORISED_TO_CONVERT
+                - AUTHORISED_TO_CONVERT
+              example: 'NOT_AUTHORISED_TO_CONVERT'
+            display:
+              type: string
+              example: 'Referrer has NOT allowed the Service Provider to convert the Advice and Guidance to a Referral'

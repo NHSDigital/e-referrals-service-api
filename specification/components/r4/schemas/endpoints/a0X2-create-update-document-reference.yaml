@@ -1,0 +1,27 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to create or update a Document Reference
+  
+summary: A0X2 - Create or update a document reference
+operationId: a0X2-create-update-document-reference
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-DocumentReference.yaml'
+      examples:
+        create-incomplete:
+          summary: Create incomplete advice and guidance
+          value:
+            $ref: '../../examples/createDocumentReference/requests/AdviceRequestAttachment.json'
+responses:
+  '201':
+    $ref: '../responses/createUpdateDocumentReference/201Response.yaml'
+

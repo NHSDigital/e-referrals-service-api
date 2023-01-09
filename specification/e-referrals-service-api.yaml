@@ -253,6 +253,8 @@ info:
   license:
     name: MIT
 servers:
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-597/FHIR'
+    description: Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/referrals/FHIR'
@@ -368,7 +370,31 @@ paths:
       $ref: 'components/r4/schemas/endpoints/a040-retrieve-practitioner-info.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
+      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
+  /R4/ServiceRequest:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X1-create-update-service-request.yaml'
+  /R4/DocumentReference:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X2-create-update-document-reference.yaml'
+  /R4/QuestionnaireResponse:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X3-create-update-questionnaire-response.yaml'
+  /R4/Communication:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a0X4-create-update-communication.yaml'
+  /R4/ServiceRequest/{uuid}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a0X5-retrieve-service-request.yaml'
+  /R4/Communication/{uuid}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a0X6-retrieve-communication.yaml'
+  /R4/DocumentReference/{uuid}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a0X7-retrieve-document-reference.yaml'
+  /R4/QuestionnaireResponse/{uuid}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a0X8-retrieve-questionnaire-response.yaml'
 components:
   securitySchemes:
     bearerAuth:

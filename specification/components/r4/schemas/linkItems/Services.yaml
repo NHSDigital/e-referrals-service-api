@@ -1,0 +1,27 @@
+title: Services link item
+type: object
+required:
+  - linkId
+  - answer
+properties:
+  linkId:
+    type: string
+    enum:
+      - 'services'
+    example: 'services'
+  answer:
+    type: array
+    items:
+      type: object
+      required:
+        - valueReference
+      properties:
+        valueReference:
+          type: object
+          required:
+            - reference
+          properties:
+            reference:
+              type: string
+              example: 'HealthcareService/76de72bc-f001-49fa-84c6-af15a4fdb72c'
+  

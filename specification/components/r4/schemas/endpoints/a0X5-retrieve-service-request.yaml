@@ -1,0 +1,37 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  
+  TBC: Use this endpoint to retrieve a Service Request
+  
+  ## Sandbox test scenarios
+  You can test the following scenarios in our sandbox environment
+  
+  | Scenario                                                                 |  Service Request Id |
+  | ------------------------------------------------------------------------ | ------------------- |
+  | Advice Requested                                                         | `1`                 |
+  | Incomplete                                                               | `2`                 |
+  | Shortlisted Only                                                         | `3`                 |
+  | Shorlisted With Attachment                                               | `4`                 |
+summary: A0X5 - Retrieve service request
+operationId: a0X%-retrieve-service-request
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../pathParameters/ServiceRequestUuid.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+responses:
+  '200':
+    $ref: '../responses/getServiceRequest/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

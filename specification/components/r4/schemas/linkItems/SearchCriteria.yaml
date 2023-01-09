@@ -1,0 +1,22 @@
+title: Search Criteria link item
+type: object
+required:
+  - linkId
+  - answer
+properties:
+  linkId:
+    type: string
+    enum:
+      - 'searchCriteria'
+    example: 'searchCriteria'
+  answer:
+    type: array
+    items:
+      type: object
+      required:
+        - valueString
+      properties:
+        valueString:
+          type: string
+          example: 'HealthcareService?supportedSpecialty=general-medicine&supportedPriority=routine'
+  

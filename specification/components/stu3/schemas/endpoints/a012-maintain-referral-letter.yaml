@@ -31,19 +31,19 @@ description: |
   you wish to add an additional attachment (say "C.pdf"), you must upload the additional attachment 
   "C.pdf" using [[HYPERLINK_A020]], and then associate attachments "A.pdf", "B.pdf" and "C.pdf" 
   via this endpoint in a single request. That is, all three attachments "A.pdf", "B.pdf" and "C.pdf" 
-  must be included in the request to A012 - Maintain referral letter.
+  must be included in the request to [[HYPERLINK_A012]].
   2. Let us consider a different referral that has two referral letter attachments (say "D.jpg" and "E.jpg") 
-  already associated, and you wish to remove one of them. Lets consider that you wish to remove "D.jpg". 
-  To do this, you would call A012 - Maintain referral letter specifying only "E.jpg" in your request. By omitting 
-  "D.jpg" from your request, e-RS will dis-associate attachment "D.jpg" from the referral and only attachment "E.jpg" 
+  already associated, and you wish to remove one of them. Let us consider that you wish to remove "D.jpg". 
+  To do this, you would call [[HYPERLINK_A012]] specifying only "E.jpg" in your request. By omitting 
+  "D.jpg" from your request, e-RS will disassociate attachment "D.jpg" from the referral and only attachment "E.jpg" 
   will remain associated.
   3. Let us now consider a referral that has four referral letter attachments associated (say "L.doc", "M.doc", "N.doc" 
   and "O.doc"), and you wish to add some more files (say "P.doc" and "Q.doc") and remove some files (say "N.doc" 
   and "O.doc"). To do this you must upload the additional attachment(s) ("N.doc" and "O.doc") 
   using [[HYPERLINK_A020]]. Following that successful upload, you must then associate only all 
   referral letter attachments the user wishes to keep (namely "L.doc", "M.doc", "P.doc" and "Q.doc") 
-  in a single request to A012 - Maintain referral letter. Attachments not included in the request 
-  (namely "N.doc" and "O.doc") will be dis-associated from the referral as a result.
+  in a single request to [[HYPERLINK_A012]]. Attachments not included in the request 
+  (namely "N.doc" and "O.doc") will be disassociated from the referral as a result.
 
   As a developer or software supplier, please ensure your users are made aware or protected from this behaviour. 
   For example, when a referring user wants to update the attachments on a referral, the user should be presented 

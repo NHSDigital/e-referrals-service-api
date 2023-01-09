@@ -763,7 +763,7 @@ testing = ["async-generator (>=1.3)", "coverage", "hypothesis (>=5.7.1)"]
 
 [[package]]
 name = "pytest-check"
-version = "1.3.0"
+version = "2.0.0"
 description = "A pytest plugin that allows multiple failures per test."
 category = "main"
 optional = false
@@ -1046,7 +1046,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ca11b319917dbc8c226de54937940ba8183983c779ae86540342274704c4ebd6"
+content-hash = "58414d96b4a3bc0f11cd92a32c47876273469df9577c0de393850fc588929c61"
 
 [metadata.files]
 aiohttp = [
@@ -1818,8 +1818,8 @@ pytest-asyncio = [
     {file = "pytest_asyncio-0.14.0-py3-none-any.whl", hash = "sha256:2eae1e34f6c68fc0a9dc12d4bea190483843ff4708d24277c41568d6b6044f1d"},
 ]
 pytest-check = [
-    {file = "pytest-check-1.3.0.tar.gz", hash = "sha256:a387968d62525738cd9f36a528013316d7d915cf0ccf5be146a38e7fffa0bba9"},
-    {file = "pytest_check-1.3.0-py3-none-any.whl", hash = "sha256:87b9aa6dde0fff7968f7d703591c18f80d110c852affecf4d5be9fa75d9b1ef2"},
+    {file = "pytest-check-2.0.0.tar.gz", hash = "sha256:9e9c857a0cd0a4a81e53b19bb6499e11f38dc3a1865f8a86388b918700594576"},
+    {file = "pytest_check-2.0.0-py3-none-any.whl", hash = "sha256:fe1e6146725d4bfade87e6cc0a59fbefb9025b1c279ea639e63eef543813c51a"},
 ]
 pytest-docker = [
     {file = "pytest-docker-0.10.3.tar.gz", hash = "sha256:29a6a316508b0601f0085fbc45c9a54c7169f7213cac9ff906658186e3bcca23"},

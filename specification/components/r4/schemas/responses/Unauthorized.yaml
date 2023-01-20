@@ -1,1 +1,18 @@
-description: Unauthorized
+description: |
+  Where status code 401 (Unauthorized) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code       | Coding System                                                                 | Description                                                                                                                                                                              |
+  | ------------------------- | ---------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | ACCESS_DENIED             | login            | [APIM Error Code](https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode) | The request could not be authenticated due to either no credentials being provided or the provided credentials no longer being valid. Callers receiving this code should reauthenticate. |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-401.json'

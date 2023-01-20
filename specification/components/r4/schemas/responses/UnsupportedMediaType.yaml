@@ -1,5 +1,20 @@
-description: Unsupported Media Type
+description: |
+  Where status code 415 (Unsupported Media Type) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code  | issue.code    | Coding System                                                      | Description                                                                                                   |
+  | -------------------------- | ------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+  | REC_UNSUPPORTED_MEDIA_TYPE | not-supported | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The server refuses to accept the request because the payload format is in an unsupported format.              |
+headers:
+  x-correlation-id:
+    $ref: '../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
 content:
-  text/plain;charset=utf-8:
+  application/fhir+json:
     schema:
-      type: string
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-415.json'

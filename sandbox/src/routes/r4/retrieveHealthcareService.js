@@ -21,7 +21,7 @@ function retrieveHealthcareService(request, h) {
         }
     }
 
-    return h.file('../NotFoundOutcome.txt').code(404)
+    return h.file('NotFoundOutcome.txt').code(404)
 }
 
 

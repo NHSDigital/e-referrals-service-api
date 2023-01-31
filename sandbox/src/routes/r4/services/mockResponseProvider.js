@@ -20,8 +20,6 @@ module.exports = {
     if (serviceId == 2 && (!version || version == 1)) {
       return 'r4/getService/responses/sampleServiceWithFullAttributes.json'
     }
-
-    return null
   },
 
   getExampleResponseForSearchForHealthcareServices: function (request) {

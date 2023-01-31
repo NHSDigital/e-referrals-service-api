@@ -1,3 +1,5 @@
+security:
+  - bearerAuth: []
 description: |
   ## Overview
   Use this endpoint to retrieve available appointment slots for a service.
@@ -21,7 +23,7 @@ description: |
   So that I can offer them to the patient for booking.
 
   ## Important note
-  You need to provide the 'commissioning rule organisation' when calling A015 - Retrieve appointment slots to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
+  You need to provide the 'commissioning rule organisation' when calling [[HYPERLINK_A015]] to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
   
   ## Related endpoints
 

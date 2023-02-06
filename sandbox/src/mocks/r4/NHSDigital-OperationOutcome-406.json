@@ -1,0 +1,21 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2022-03-01T10:00:00.42Z"
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "not-supported",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/http-error-codes",
+            "code": "REC_NOT_ACCEPTABLE"
+          }
+        ]
+      },
+      "diagnostics": "Example diagnostics message."
+    }
+  ]
+}

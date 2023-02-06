@@ -1,5 +1,5 @@
 title: eRS-HealthcareService
-description: 'A e-referral service'
+description: 'A e-referral service. The canonical URL: https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService'
 type: object
 required:
   - id

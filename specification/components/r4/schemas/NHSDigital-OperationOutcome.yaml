@@ -1,0 +1,70 @@
+title: NHSDigital-OperationOutcome
+description: |
+  Operation outcomes are sets of error, warning and information messages that provide detailed information about the outcome of an attempted system operation. 
+  The canonical URL: https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome 
+type: object
+required:
+  - resourceType
+  - meta
+  - issue
+properties:
+  resourceType:
+    type: string
+    enum:
+      - OperationOutcome
+    example: 'OperationOutcome'
+  meta:
+    type: object
+    required:
+      - lastUpdated
+    properties:
+      lastUpdated:
+        type: string
+        format: date-time
+        example: '2021-08-04T14:35:00.000Z'
+  issue:
+    type: array
+    items:
+      type: object
+      required:
+        - severity
+        - code
+        - details
+      properties:
+        severity:
+          type: string
+          enum:
+            - fatal
+            - error
+            - warning
+            - information
+          example: 'error'
+        code:
+          type: string
+          example: 'required'
+        diagnostics:
+          type: string
+          example: "Incorrect or missing expected value."
+        details:
+          type: object
+          required:
+            - coding
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                required:
+                  - system
+                  - code
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
+                      - 'https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode'
+                      - 'https://fhir.nhs.uk/CodeSystem/ers-error-codes'
+                    example: 'https://fhir.nhs.uk/CodeSystem/http-error-codes'
+                  code:
+                    type: string
+                    example: 'REC_BAD_REQUEST'

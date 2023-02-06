@@ -37,7 +37,7 @@ description: |
   The Organisation is supplied to the endpoint via the `NHSD-End-User-Organisation-ODS` request header. 
 
   The `entry` field in the response from [[HYPERLINK_A030]] is an array of PractitionerRole resources. An example of a PractitionerRole resource is: 
-  ```json
+  ```
   "resource": {
     "id": "PractitionerRole-R69-000000000101",
     "meta": {

@@ -1,5 +1,14 @@
 <TargetEndpoint name="e-referrals-service-api-target">
     <FaultRules>
+        <FaultRule name="access_token_expired_fhir_r4">
+            <Step>
+                <Name>ExtractVariables.OAuthErrorFaultString</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OAuthPolicyOperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = true)</Condition>
+        </FaultRule>
         <FaultRule name="access_token_expired">
             <Step>
                 <Name>ExtractVariables.OAuthErrorFaultString</Name>
@@ -7,23 +16,41 @@
             <Step>
                 <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
             </Step>
-            <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+            <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = false)</Condition>
+        </FaultRule>
+        <FaultRule name="spike_arrest_fault_fhir_r4">
+            <Step>
+                <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
+            </Step>
+            <Condition>((ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true)) and (isFhirR4Path = true)</Condition>
+        </FaultRule>
+        <FaultRule name="quota_fault_fhir_r4">
+            <Step>
+                <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
+            </Step>
+            <Condition>((ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)) and (isFhirR4Path = true)</Condition>
         </FaultRule>
         <FaultRule name="spike_arrest_fault">
             <Step>
                 <Name>AssignMessage.SpikeArrestErrorResponse</Name>
             </Step>
-            <Condition>(ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true)</Condition>
+            <Condition>((ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = false)</Condition>
         </FaultRule>
         <FaultRule name="quota_fault">
             <Step>
                 <Name>AssignMessage.QuotaErrorResponse</Name>
             </Step>
-            <Condition>(ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)</Condition>
+            <Condition>((ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)) and (isFhirR4Path = false)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
         <Request>
+            <Step>
+                <Name>javascript.SetCurrentTimestamp</Name>
+            </Step>
+            <Step>
+                <Name>javascript.IsFhirR4Path</Name>
+            </Step>
             <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
             </Step>

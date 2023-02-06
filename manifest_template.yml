@@ -8,34 +8,46 @@
 APIGEE_ENVIRONMENTS:
 - display_name: Internal Development
   name: internal-dev
+  has_variants: true
+  variants:
+  - name: alpha
+  - name: rc
+  - name: fix
+  - name: ft01
+    service: fti
+  - name: ft04
+    service: ftiv
+  - name: ft05
+    service: ftv
+  - name: ft09
+    service: ftix
+  - name: ft22
+    service: ftxxii
 - display_name: Internal Development Sandbox
   name: internal-dev-sandbox
+  has_variants: false
 - display_name:  Integration Testing
   name: int
+  has_variants: false
 - display_name: Internal QA
   name: internal-qa
+  has_variants: false
 - display_name: Internal QA Sandbox
   name: internal-qa-sandbox
+  has_variants: false
 - display_name: Sandbox
   name: sandbox
+  has_variants: false
+- display_name: Dev
+  name: dev
+  has_variants: true
+  variants:
+  - name: dep
 - name: prod
   approval_type: manual
   display_name: Production
+  has_variants: false
 
-INTERNAL_DEV_VARIANTS:
-- name: alpha
-- name: rc
-- name: fix
-- name: ft01
-  service: fti
-- name: ft04
-  service: ftiv
-- name: ft05
-  service: ftv
-- name: ft09
-  service: ftix
-- name: ft22
-  service: ftxxii
 
 ACCESS_MODES:
   - name: healthcare-worker
@@ -66,10 +78,10 @@ apigee:
 {% set portal_visibility = ENV.portal_visibility | default(true) %}
 {% set TITLE = 'e-Referral Service' %}
 {% set NAME = 'e-referrals-service-api-' + ENV.name %}
-{% if ENV.name == 'internal-dev' %}
+{% if ENV.has_variants == 'true' %}
   - name: {{ ENV.name }}
     products:
-{% for VARIANT in INTERNAL_DEV_VARIANTS %}
+{% for VARIANT in ENV.variants %}
 {% for MODE in ACCESS_MODES %}
       - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         approvalType: {{ ENV.approval_type | default('auto') }}
@@ -98,7 +110,12 @@ apigee:
         proxies:
           - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
           - identity-service-{{ ENV.name }}
+          { % if ENV.name == 'dev' % }
+          - identity-service-dep-{{ ENV.name }}
+          { % endif % }
+          { % if ENV.name == 'internal-dev' % }
           - identity-service-mock-{{ ENV.name }}
+          { % endif % }
         scopes: {{ MODE.scopes }}
         quota: 600
         quotaInterval: 1
@@ -106,12 +123,12 @@ apigee:
 {% endfor %}
 {% endfor %}
     specs:
-{% for VARIANT in INTERNAL_DEV_VARIANTS %}
+{% for VARIANT in ENV.variants %}
       - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
         path: e-referrals-service-api.json
 {% endfor %}
     api_catalog:
-{% for VARIANT in INTERNAL_DEV_VARIANTS %}
+{% for VARIANT in ENV.variants %}
 {% for MODE in ACCESS_MODES %}
       - edgeAPIProductName: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
         anonAllowed: true

@@ -23,7 +23,7 @@ properties:
     properties:
       versionId:
         type: string
-        example: '3834a43e-8696-4e77-aea4-b4fa0b6ef29e'
+        example: '5'
   resourceType:
     type: string
     enum:

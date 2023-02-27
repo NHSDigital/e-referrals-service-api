@@ -1,10 +1,7 @@
 {
   "id": "85ca4b21-c327-47c1-9594-69dfc500ea7c",
   "meta": {
-    "lastUpdated": "2021-05-24T16:09:32.252Z",
-    "profile": [
-      "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
-    ]
+    "lastUpdated": "2021-05-24T16:09:32.252Z"
   },
   "resourceType": "Bundle",
   "type": "searchset",
@@ -22,10 +19,7 @@
       "resource": {
         "id": "PractitionerRole-R69-000000000101",
         "meta": {
-          "lastUpdated": "2021-05-24T16:09:32.252Z",
-          "profile": [
-            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
-          ]
+          "lastUpdated": "2021-05-24T16:09:32.252Z"
         },
         "resourceType": "PractitionerRole",
         "practitioner": {
@@ -76,10 +70,7 @@
       "resource": {
         "id": "PractitionerRole-R68-000000000101",
         "meta": {
-          "lastUpdated": "2021-05-24T16:09:32.252Z",
-          "profile": [
-            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
-          ]
+          "lastUpdated": "2021-05-24T16:09:32.252Z"
         },
         "resourceType": "PractitionerRole",
         "practitioner": {

@@ -41,10 +41,7 @@ description: |
   "resource": {
     "id": "PractitionerRole-R69-000000000101",
     "meta": {
-      "lastUpdated": "2021-05-24T16:09:32.252Z",
-      "profile": [
-        "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
-      ]
+      "lastUpdated": "2021-05-24T16:09:32.252Z"
     },
     "resourceType": "PractitionerRole",
     "practitioner": {

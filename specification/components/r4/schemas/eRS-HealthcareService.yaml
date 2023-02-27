@@ -14,16 +14,8 @@ properties:
   meta:
     type: object
     required:
-      - profile
       - versionId
     properties:
-      profile:
-        type: array
-        items:
-          type: string
-          enum:
-            - 'https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService'
-          example: 'https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService'
       versionId:
         type: string
         example: '1'

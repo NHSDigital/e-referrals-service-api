@@ -23,7 +23,8 @@ lint: copy-examples
 clean:
 	rm -rf build
 	rm -rf dist
-	rm -rf specification/components/examples
+	rm -rf specification/components/r4/examples
+	rm -rf specification/components/stu3/examples
 
 publish: clean copy-examples
 	mkdir -p build

@@ -2,10 +2,7 @@
     "id": "c529ff98-6729-4c18-8c3d-2ca1a9960fce",
     "resourceType": "Bundle",
     "meta": {
-        "lastUpdated": "2021-04-22T16:01:54.628+00:00",
-        "profile": [
-             "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
-        ]
+        "lastUpdated": "2021-04-22T16:01:54.628+00:00"
     },
     "type": "searchset",
     "total": 1,
@@ -23,8 +20,7 @@
                 "id": "111111111111",
                 "resourceType": "Practitioner",
                 "meta": {
-                    "lastUpdated": "2021-04-22T16:01:54.628+00:00",
-                    "profile": ["https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner"]
+                    "lastUpdated": "2021-04-22T16:01:54.628+00:00"
                 },
                 "identifier": {
                     "system": "https://fhir.nhs.uk/Id/sds-user-id",

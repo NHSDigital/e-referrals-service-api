@@ -1,5 +1,5 @@
 description: | 
-  Bundle resource containg the `ServiceRequest` resources associated to the supplied UBRN. 
+  Bundle resource containing the `ServiceRequest` resources associated to the supplied UBRN. 
   The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle
 headers:
   x-correlation-id:

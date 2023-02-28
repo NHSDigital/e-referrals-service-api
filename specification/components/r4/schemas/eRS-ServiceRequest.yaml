@@ -1,0 +1,136 @@
+title: eRS-ServiceRequest
+description: |
+  A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
+  The canonical URL: https://fhir.nhs.uk/StructureDefinition/NHSDigital-ServiceRequest
+type: object
+required:
+  - id
+  - meta
+  - resourceType
+  - identifier
+  - status
+  - intent
+  - category
+  - subject
+properties:
+  id:
+    type: string
+    example: 'r.832db7fa-ebdd-44b6-ab3b-8329c2d43149'
+  meta:
+    type: object
+    required:
+      - versionId
+    properties:
+      versionId:
+        type: string
+        example: '5'
+  resourceType:
+    type: string
+    enum:
+      - ServiceRequest
+    example: 'ServiceRequest'
+  identifier:
+    type: array
+    items:
+      type: object
+      required:
+        - system
+        - value
+      properties:
+        system:
+          type: string
+          enum:
+            - 'https://fhir.nhs.uk/Id/UBRN'
+          example: 'https://fhir.nhs.uk/Id/UBRN'
+        value:
+          type: string
+          example: '000000070000'
+  status:
+    type: string
+    description: |
+      Whilst a potential value to return is `draft`, we are not currently returning this value, but may choose to do so in the future.
+
+      | ServiceRequest.status | Description                                                                       |
+      |-----------------------|---------------------------------------------------------------------------------- |
+      | active                | The `ServiceRequest` is ready to be acted upon.                                   |
+      | completed             | The `ServiceRequest` has been fully performed and no further activity will occur. |
+      | draft                 | The `ServiceRequest` is incomplete and is not yet ready to be processed.          |
+      | revoked               | The `ServiceRequest` has been terminated and no further activity will occur.      |
+    enum:
+      - active
+      - completed
+      - draft
+      - revoked
+    example: 'active'
+  intent:
+    type: string
+    enum:
+      - order
+    example: 'order'
+  category:
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+            properties:
+              system:
+                type: string
+                enum:
+                  - 'https://fhir.nhs.uk/CodeSystem/message-category-servicerequest'
+              code:
+                type: string
+                enum:
+                  - referral
+                  - request
+                example: 'referral'
+  code:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - 'https://fhir.nhs.uk/CodeSystem/servicerequest-code'
+              example: 'https://fhir.nhs.uk/CodeSystem/servicerequest-code'
+            code:
+              type: string
+              enum:
+                - advice-and-guidance
+              example: 'advice-and-guidance'
+  subject:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        type: object
+        required:
+          - system
+          - value
+        properties:
+          system:
+            type: string
+            enum:
+              - 'https://fhir.nhs.uk/Id/nhs-number'
+            example: 'https://fhir.nhs.uk/Id/nhs-number'
+          value:
+            type: string
+            example: '9912003888'

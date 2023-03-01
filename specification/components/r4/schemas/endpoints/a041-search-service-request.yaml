@@ -3,6 +3,10 @@ security:
 description: |
   ## Overview
 
+  ***
+  **Warning:** This endpoint is part of a new suite of APIs currently in development. We currently advise against integrating with this endpoint as its definition may be subject to change. If you would still like to use this endpoint please contact us before you start integration.
+  ***
+
   The e-RS FHIR API represents an advice and guidance request and a referral in FHIR R4 as a ServiceRequest. This endpoint allows you to search for attributes about a ServiceRequest.
 
   At present the following is the only permitted use case for using this endpoint, but it is expected that additional use cases will be added as future needs are identified and prioritised.
@@ -25,11 +29,11 @@ description: |
 
   ## Important notes
 
-  When searching for a unique identifier for a ServiceRequest, it’s important to note that one UBRN can relate to both an advice and guidance request and a referral. In this case, the response could contain two unique identifiers: one relating to the advice and guidance request and one relating to the referral.
+  When searching for a unique identifier for a ServiceRequest, it's important to note that one UBRN can relate to both an advice and guidance request and a referral. In this case, the response could contain two unique identifiers: one relating to the advice and guidance request and one relating to the referral.
 
   ## Use case
 
-  As an authenticated user 
+  As an authenticated user
 
   I need the unique identifier for a given advice and guidance request or referral request
 

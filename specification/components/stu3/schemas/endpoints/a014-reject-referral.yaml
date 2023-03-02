@@ -3,7 +3,7 @@ security:
 description: |
   ## Overview
   Use this endpoint, as a service provider, to reject a referral that is booked into your bookable service and awaiting review. 
-  This returns the referral to the referrer with a mandatory user comment to explain why it has been rejected.
+  This returns the referral to the referrer with a mandatory rejection reason and optional user comment to explain why it has been rejected.
 
   Consider using [[HYPERLINK_A022]] instead if you wish to ask your admin team to get the patient into the most appropriate service.
 

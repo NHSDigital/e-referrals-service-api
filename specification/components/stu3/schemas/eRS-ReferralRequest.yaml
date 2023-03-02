@@ -60,6 +60,7 @@ properties:
       | `Extension-eRS-ReferralShortlist`          | `1..1`      |                                                                         |
       | `Extension-eRS-Commissioning-Rule-Org`     | `1..1`      |                                                                         |
       | `Extension-eRS-ReferralPriority`           | `1..1`      |                                                                         |
+      | `Extension-eRS-ReferralState`              | `1..1`      |                                                                         |
       | `Extension-eRS-Appointment`                | `0..1`      |                                                                         |
       | `Extension-eRS-ClinicalInfoFirstSubmitted` | `0..1`      |                                                                         |
       | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                                                         |

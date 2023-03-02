@@ -1,0 +1,8 @@
+name: id
+in: path
+description: |
+   An identifier that uniquely identifies a `ServiceRequest` resource.
+required: true
+schema:
+   type: string
+   example: 'r.f6dc823a-e673-4f74-9edc-a49525edd2a5'

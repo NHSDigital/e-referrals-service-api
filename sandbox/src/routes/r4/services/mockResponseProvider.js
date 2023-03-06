@@ -38,5 +38,32 @@ module.exports = {
     }
 
     return null
+  },
+
+  getExampleResponseForSearchServiceRequest: function (request) {
+    let ubrn;
+    const identifier = request.query.identifier;
+    
+    if (identifier.includes('|')) {
+      ubrn = identifier.split('|')[1]
+    }
+    else {
+      ubrn = identifier
+    }
+
+    if (ubrn === '000000070000') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleReferral.json'
+    }
+    else if (ubrn === '000000070001') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleAdvice.json'
+    }
+    else if (ubrn === '000000070002') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleReferralAndAdvice.json'
+    }
+    else if (ubrn === '000000070003') {
+      return 'r4/searchServiceRequest/responses/ResponseExampleEmpty.json'
+    }
+
+    return {}
   }
 }

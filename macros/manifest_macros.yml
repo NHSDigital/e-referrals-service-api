@@ -1,0 +1,60 @@
+{%- macro environment(ENV) -%}
+  - name: {{ ENV.name }}
+    products:
+{% endmacro %}
+
+{%- macro product(ENV, MODE, TITLE, product_name, display_name) -%}
+      - name: e-referrals-service-api-{{ product_name }}{{ MODE.nameSuffix }}
+        approvalType: {{ ENV.approval_type | default('auto') }}
+        attributes:
+          - name: access
+            value: public
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ product_name }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 1
+                  limit: 600
+                  timeunit: minute
+                spikeArrest:
+                  enabled: true
+                  ratelimit: 720pm
+        description: {{ MODE.description }}
+        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ display_name }} )
+        environments: [ {{ ENV.name }} ]
+        proxies:
+          - e-referrals-service-api-{{ product_name }}
+          - identity-service-{{ ENV.name }}
+{% if ENV.additional_proxies is defined %}
+{%  for proxy in ENV.additional_proxies %}
+          - {{ proxy }}
+{%  endfor %}
+{% endif %}
+        scopes: {{ MODE.scopes }}
+        quota: 600
+        quotaInterval: 1
+        quotaTimeUnit: minute
+{% endmacro %}
+
+{%- macro specs(product_name) -%}
+      - name: e-referrals-service-api-{{ product_name }}
+        path: e-referrals-service-api.json
+{%- endmacro %}
+
+{%- macro api_catalog(MODE, TITLE, product_name, display_name) -%}
+      - edgeAPIProductName: e-referrals-service-api-{{ product_name }}{{ MODE.nameSuffix }}
+        anonAllowed: true
+        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ display_name|lower }} environment
+        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
+        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ display_name }} )
+        visibility: true
+        specId: e-referrals-service-api-{{ product_name }}
+{% endmacro %}
+
+

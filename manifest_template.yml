@@ -54,6 +54,8 @@ ACCESS_MODES:
     requireCallbackUrl: false
     description: Application Restricted
 ---
+{% import 'manifest_template_macros.yml' as macros %}
+
 meta:
   api:
     name: e-referrals-service-api
@@ -62,128 +64,60 @@ meta:
   schema_version: 1
 apigee:
   environments:
-
 {% for ENV in APIGEE_ENVIRONMENTS %}
-{% set portal_visibility = ENV.portal_visibility | default(true) %}
-{% set TITLE = 'e-Referral Service' %}
-{% set NAME = 'e-referrals-service-api-' + ENV.name %}
-{% if ENV.name == 'internal-dev' or ENV.name == 'dev' %}
-  - name: {{ ENV.name }}
-    products:
-{% for VARIANT in ENV.variants %}
-{% for MODE in ACCESS_MODES %}
-      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
-        approvalType: {{ ENV.approval_type | default('auto') }}
-        attributes:
-          - name: access
-            value: public
-          - name: ratelimiting
-            value:
-              e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}:
-                quota:
-                  enabled: false
-                spikeArrest:
-                  enabled: false
-              app:
-                quota:
-                  enabled: true
-                  interval: 1
-                  limit: 600
-                  timeunit: minute
-                spikeArrest:
-                  enabled: true
-                  ratelimit: 720pm
-        description: {{ MODE.description }}
-        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
-        environments: [ {{ ENV.name }} ]
-        proxies:
-          - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-          - identity-service-{{ ENV.name }}
-{% if ENV.name == 'dev' %}
-          - identity-service-dep-{{ ENV.name }}
-{% endif %}
-{% if ENV.name == 'internal-dev' %}
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-        scopes: {{ MODE.scopes }}
-        quota: 600
-        quotaInterval: 1
-        quotaTimeUnit: minute
-{% endfor %}
-{% endfor %}
+{%  set TITLE = 'e-Referral Service' %}
+{%  set NAME = 'e-referrals-service-api-' + ENV.name %}
+
+  {{ macros.nameAndEnv(ENV) }}
+
+{%  if ENV.variants is defined %}
+{%      for VARIANT in ENV.variants %}
+{%          set productName = VARIANT.service | default(VARIANT.name) + '-' + ENV.name %}
+{%          set displayName = ENV.display_name + ' - ' + VARIANT.name %}
+{%          for MODE in ACCESS_MODES %}
+
+      {{ macros.product(ENV, MODE, TITLE, productName, displayName) }}
+
+{%          endfor %}
+{%      endfor %}
+
     specs:
-{% for VARIANT in ENV.variants %}
-      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-        path: e-referrals-service-api.json
-{% endfor %}
+{%      for VARIANT in ENV.variants %}
+{%          set productName = VARIANT.service | default(VARIANT.name) + '-' + ENV.name %}
+
+      {{ macros.specs(productName) }}
+
+{%      endfor %}
+
     api_catalog:
-{% for VARIANT in ENV.variants %}
-{% for MODE in ACCESS_MODES %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
-        anonAllowed: true
-        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} - {{ VARIANT.name }} environment
-        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
-        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
-        visibility: {{ portal_visibility }}
-        specId: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-{% endfor %}
-{% endfor %}
-{% else %}
-  - name: {{ ENV.name }}
-    products:
-{% for MODE in ACCESS_MODES %}
-      - name: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
-        approvalType: {{ ENV.approval_type | default('auto') }}
-        attributes:
-          - name: access
-            value: public
-          - name: ratelimiting
-            value:
-              e-referrals-service-api-{{ ENV.name }}:
-                quota:
-                  enabled: false
-                spikeArrest:
-                  enabled: false
-              app:
-                quota:
-                  enabled: true
-                  interval: 1
-                  limit: 600
-                  timeunit: minute
-                spikeArrest:
-                  enabled: true
-                  ratelimit: 720pm
-        description: {{ MODE.description }}
-        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
-        environments: [ {{ ENV.name }} ]
-        proxies:
-          - e-referrals-service-api-{{ ENV.name }}
-          - identity-service-{{ ENV.name }}
-{% if ENV.name == 'int' %}
-          - identity-service-int-no-smartcard
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-{% if ENV.name == 'internal-qa' %}
-          - identity-service-{{ ENV.name }}-int
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-        scopes: {{ MODE.scopes }}
-        quota: 600
-        quotaInterval: 1
-        quotaTimeUnit: minute
-{% endfor %}
+{%      for VARIANT in ENV.variants %}
+{%          set productName = VARIANT.service | default(VARIANT.name) + '-' + ENV.name %}
+{%          set displayName = ENV.display_name + ' - ' + VARIANT.name %}
+{%          set description = ENV.display_name|lower + ' - ' + VARIANT.name %}
+{%          for MODE in ACCESS_MODES %}
+
+      {{ macros.api_catalog(MODE, TITLE, productName, displayName, description) }}
+
+{%          endfor %}
+{%      endfor %}
+{%  else %}
+{%      set productName = ENV.name %}
+{%      set displayName = ENV.display_name %}
+{%      for MODE in ACCESS_MODES %}
+
+      {{ macros.product(ENV, MODE, TITLE, productName, displayName) }}
+
+{%      endfor %}
+
     specs:
-      - name: {{ NAME }}
-        path: e-referrals-service-api.json
+      {{ macros.specs(productName) }}
+
     api_catalog:
-{% for MODE in ACCESS_MODES %}
-      - edgeAPIProductName: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
-        anonAllowed: true
-        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} environment
-        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
-        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
-        visibility: {{ portal_visibility }}
-        specId: {{ NAME }}
-{% endfor %}
-{% endif %}
+{%      for MODE in ACCESS_MODES %}
+{%      set description = ENV.display_name|lower %}
+
+      {{ macros.api_catalog(MODE, TITLE, productName, displayName, description) }}
+
+{%      endfor %}
+{%  endif %}
 {% endfor %}

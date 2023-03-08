@@ -55,6 +55,7 @@ release: clean publish build-proxy
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
 	cp pyproject.toml dist/pyproject.toml
 	cp poetry.lock dist/poetry.lock
+	cp manifest_template_macros.yml dist/manifest_template_macros.yml
 
 test:
 	echo "TODO: add tests"

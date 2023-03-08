@@ -1,0 +1,69 @@
+{%- macro nameAndEnv(ENV) -%}
+  - name: {{ ENV.name }}
+    products:
+{% endmacro %}
+
+{%- macro product(ENV, MODE, TITLE, productName, displayName) -%}
+      - name: e-referrals-service-api-{{ productName }}{{ MODE.nameSuffix }}
+        approvalType: {{ ENV.approval_type | default('auto') }}
+        attributes:
+          - name: access
+            value: public
+          - name: ratelimiting
+            value:
+              e-referrals-service-api-{{ productName }}:
+                quota:
+                  enabled: false
+                spikeArrest:
+                  enabled: false
+              app:
+                quota:
+                  enabled: true
+                  interval: 1
+                  limit: 600
+                  timeunit: minute
+                spikeArrest:
+                  enabled: true
+                  ratelimit: 720pm
+        description: {{ MODE.description }}
+        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ displayName }} )
+        environments: [ {{ ENV.name }} ]
+        proxies:
+          - e-referrals-service-api-{{ productName }}
+          - identity-service-{{ ENV.name }}
+{% if ENV.name == 'dev' %}
+          - identity-service-dep-{{ ENV.name }}
+{% endif %}
+{% if ENV.name == 'internal-dev' %}
+          - identity-service-mock-{{ ENV.name }}
+{% endif %}
+{% if ENV.name == 'int' %}
+          - identity-service-int-no-smartcard
+          - identity-service-mock-{{ ENV.name }}
+{% endif %}
+{% if ENV.name == 'internal-qa' %}
+          - identity-service-{{ ENV.name }}-int
+          - identity-service-mock-{{ ENV.name }}
+{% endif %}
+        scopes: {{ MODE.scopes }}
+        quota: 600
+        quotaInterval: 1
+        quotaTimeUnit: minute
+{% endmacro %}
+
+{%- macro specs(productName) -%}
+      - name: e-referrals-service-api-{{ productName }}
+        path: e-referrals-service-api.json
+{%- endmacro %}
+
+{%- macro api_catalog(MODE, TITLE, productName, displayName, description) -%}
+      - edgeAPIProductName: e-referrals-service-api-{{ productName }}{{ MODE.nameSuffix }}
+        anonAllowed: true
+        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ description }} environment
+        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
+        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ displayName }} )
+        visibility: true
+        specId: e-referrals-service-api-{{ productName }}
+{% endmacro %}
+
+

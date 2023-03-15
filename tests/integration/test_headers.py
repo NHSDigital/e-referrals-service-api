@@ -15,6 +15,7 @@ _HEADER_ACCESS_MODE = "x-ers-access-mode"
 _EXPECTED_REFERRAL_ID = "000000040032"
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
 _EXPECTED_FILENAME = "mysuperfilename.txt"
+_EXPECTED_COMMA_FILENAME = "mysuper,filename.txt"
 _EXPECTED_COMM_RULE_ORG = "R100"
 _EXPECTED_OBO_USER_ID = "0123456789000"
 _EXPECTED_ACCESS_MODE = "user-restricted"
@@ -46,10 +47,42 @@ class TestHeaders:
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
-        self.assert_ok_echo_response(response, service_url, referring_clinician, asid)
+        self.assert_ok_echo_response(
+            response, service_url, referring_clinician, asid, _EXPECTED_FILENAME
+        )
+
+    @pytest.mark.asyncio
+    async def test_headers_containing_comma_on_echo_target(
+        self, authenticate_user, service_url, referring_clinician, asid
+    ):
+        access_code = await authenticate_user(referring_clinician)
+
+        client_request_headers = {
+            _HEADER_ECHO: "",  # enable echo target
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
+            _HEADER_REQUEST_ID: "DUMMY-VALUE",
+            RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+            RenamedHeader.BUSINESS_FUNCTION.original: referring_clinician.business_function,
+            RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
+            RenamedHeader.FILENAME.original: _EXPECTED_COMMA_FILENAME,
+            RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+            RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+        }
+
+        # Make the API call
+        response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(
+            response, service_url, referring_clinician, asid, _EXPECTED_COMMA_FILENAME
+        )
 
     def assert_ok_echo_response(
-        self, response: Response, service_url, referring_clinician, asid
+        self,
+        response: Response,
+        service_url,
+        referring_clinician,
+        asid,
+        expected_filename,
     ):
         assert (
             response.status_code == 200
@@ -94,7 +127,7 @@ class TestHeaders:
             == referring_clinician.org_code
         )
         assert (
-            target_request_headers[RenamedHeader.FILENAME.renamed] == _EXPECTED_FILENAME
+            target_request_headers[RenamedHeader.FILENAME.renamed] == expected_filename
         )
         assert (
             target_request_headers[RenamedHeader.COMM_RULE_ORG.renamed]
@@ -132,7 +165,9 @@ class TestHeaders:
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
-        self.assert_ok_echo_response(response, service_url, referring_clinician, asid)
+        self.assert_ok_echo_response(
+            response, service_url, referring_clinician, asid, _EXPECTED_FILENAME
+        )
 
     @pytest.mark.asyncio
     async def test_headers_on_refdata_response(

@@ -7,7 +7,6 @@ required:
 properties:
     url:
       type: string
-      # Need to confirm extension URL
       enum:
         - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact'
       example: 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact'

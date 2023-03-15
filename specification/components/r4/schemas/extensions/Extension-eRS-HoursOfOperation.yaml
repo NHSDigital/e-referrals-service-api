@@ -7,7 +7,6 @@ required:
 properties:
   url:
     type: string
-    # Need to confirm profile URLs
     enum:
       - 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation'
     example: 'https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation'

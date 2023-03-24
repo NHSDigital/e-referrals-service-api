@@ -1934,14 +1934,14 @@ sortedcontainers = "*"
 
 [[package]]
 name = "trio-websocket"
-version = "0.10.0"
+version = "0.10.2"
 description = "WebSocket library for Trio"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "trio-websocket-0.10.0.tar.gz", hash = "sha256:5a7a256cf45532a0e876b55c173f96228e95445869b6dfdb1556015de89796fa"},
-    {file = "trio_websocket-0.10.0-py3-none-any.whl", hash = "sha256:ae0a8bab4b0014510aca37fb67a6eaaa77e64aba372a7333845d2eb991989ae2"},
+    {file = "trio-websocket-0.10.2.tar.gz", hash = "sha256:af13e9393f9051111300287947ec595d601758ce3d165328e7d36325135a8d62"},
+    {file = "trio_websocket-0.10.2-py3-none-any.whl", hash = "sha256:0908435e4eecc49d830ae1c4d6c47b978a75f00594a2be2104d58b61a04cdb53"},
 ]
 
 [package.dependencies]

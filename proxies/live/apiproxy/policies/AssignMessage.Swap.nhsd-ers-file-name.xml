@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-file-name">
-  <Set>
-    <Headers>
-      <Header name="x-ers-xapi-meta-file_name">{message.header.nhsd-ers-file-name}</Header>
-    </Headers>
-  </Set>
-  <Remove>
-    <Headers>
-      <Header name="nhsd-ers-file-name"/>
-    </Headers>
-  </Remove>
-  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false"/>
+    <Set>
+        <Headers>
+            <Header name="x-ers-xapi-meta-file_name">{message.header.nhsd-ers-file-name.values.string}</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="nhsd-ers-file-name"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
 </AssignMessage>

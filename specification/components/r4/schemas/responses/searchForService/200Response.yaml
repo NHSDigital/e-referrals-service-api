@@ -1,4 +1,6 @@
-description: Response contains the results for the supplied search criteria.
+description: | 
+  Bundle resource containing the `eRS-HealthcareService` resources associated to the supplied search criteria. 
+  The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle 
 headers:
   X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
@@ -25,15 +27,12 @@ content:
         meta:
           type: object
           required:
-            - profile
+            - lastUpdated
           properties:
-            profile:
-              type: array
-              items:
-                type: string
-                enum:
-                  - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
-                example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
+            lastUpdated:
+              type: string
+              format: date-time
+              example: '2021-08-04T14:35:00.000Z'
         type:
           type: string
           enum:

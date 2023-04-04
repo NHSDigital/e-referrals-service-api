@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-ers-business-function">
-  <Set>
-    <Headers>
-      <Header name="x-ers-business-function">{message.header.nhsd-ers-business-function}</Header>
-    </Headers>
-  </Set>
-  <Remove>
-    <Headers>
-      <Header name="nhsd-ers-business-function"/>
-    </Headers>
-  </Remove>
-  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false"/>
+    <Set>
+        <Headers>
+            <Header name="x-ers-business-function">{message.header.nhsd-ers-business-function.values.string}</Header>
+        </Headers>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="nhsd-ers-business-function"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
 </AssignMessage>

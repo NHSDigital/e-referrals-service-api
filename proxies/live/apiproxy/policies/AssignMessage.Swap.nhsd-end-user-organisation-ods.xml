@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.nhsd-end-user-organisation-ods">
     <Set>
         <Headers>
-            <Header name="x-ers-ods-code">{message.header.nhsd-end-user-organisation-ods}</Header>
+            <Header name="x-ers-ods-code">{message.header.nhsd-end-user-organisation-ods.values.string}</Header>
         </Headers>
     </Set>
     <Remove>

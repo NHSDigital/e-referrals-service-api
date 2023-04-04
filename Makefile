@@ -23,7 +23,8 @@ lint: copy-examples
 clean:
 	rm -rf build
 	rm -rf dist
-	rm -rf specification/components/examples
+	rm -rf specification/components/r4/examples
+	rm -rf specification/components/stu3/examples
 
 publish: clean copy-examples
 	mkdir -p build
@@ -55,6 +56,7 @@ release: clean publish build-proxy
 	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
 	cp pyproject.toml dist/pyproject.toml
 	cp poetry.lock dist/poetry.lock
+	cp -R macros dist
 
 test:
 	echo "TODO: add tests"

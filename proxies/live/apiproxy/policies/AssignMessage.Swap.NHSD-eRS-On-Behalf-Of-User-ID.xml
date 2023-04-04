@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID">
     <Set>
         <Headers>
-            <Header name="x-ers-obo-user-id">{message.header.NHSD-eRS-On-Behalf-Of-User-ID}</Header>
+            <Header name="x-ers-obo-user-id">{message.header.NHSD-eRS-On-Behalf-Of-User-ID.values.string}</Header>
         </Headers>
     </Set>
     <Remove>

@@ -1,4 +1,6 @@
 title: Bundle resource containing On-Behalf-Of practitioners 
+description: | 
+  The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle 
 type: object
 required:
   - id
@@ -21,19 +23,11 @@ properties:
     type: object
     required: 
       - lastUpdated
-      - profile
     properties:
       lastUpdated:
         type: string
         format: date-time
         example: '2021-04-20T12:17:35.128Z'
-      profile:
-        type: array
-        items:
-          type: string
-          enum:
-            - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
-          example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
   type:
     type: string
     enum:
@@ -80,6 +74,7 @@ properties:
           example: 'Practitioner/111111111111'
         resource:
           type: object
+          description: 'A UKCore-Practitioner. The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
           required:
             - id
             - meta
@@ -98,21 +93,11 @@ properties:
               type: object
               required:
                 - lastUpdated
-                - profile
               properties:
                 lastUpdated:
                   type: string
                   format: date-time
                   example: '2021-04-20T12:17:35.128Z'
-                profile:
-                  type: array
-                  minItems: 1
-                  maxItems: 1
-                  items:
-                    type: string
-                    enum:
-                      - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
-                    example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Practitioner'
             identifier:
               type: object
               required:

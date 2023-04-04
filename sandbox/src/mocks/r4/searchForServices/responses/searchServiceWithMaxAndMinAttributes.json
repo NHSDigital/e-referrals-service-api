@@ -1,9 +1,7 @@
 {
     "id": "123e4567-e89b-12d3-a456-426614174001",
     "meta": {
-        "profile": [
-            "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle"
-        ]
+        "lastUpdated": "2022-03-01T10:00:00.42Z"
     },
     "resourceType": "Bundle",
     "type": "searchset",
@@ -21,10 +19,7 @@
             "resource": {
                 "id": "1",
                 "meta": {
-                    "versionId": "1",
-                    "profile": [
-                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
-                    ]
+                    "versionId": "1"
                 },
                 "language": "en",
                 "resourceType": "HealthcareService",
@@ -126,10 +121,7 @@
             "resource": {
                 "id": "2",
                 "meta": {
-                    "versionId": "1",
-                    "profile": [
-                        "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
-                    ]
+                    "versionId": "1"
                 },
                 "language": "en",
                 "resourceType": "HealthcareService",

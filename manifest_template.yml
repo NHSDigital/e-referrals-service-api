@@ -4,41 +4,76 @@
 #   $ cd /path/to/local/api-management-utils/ansible
 #   $ DIST_DIR=/path/to/this/repo make template-manifest
 #
+#   The only way to test changes in here is to run the deployment and regression test each environment.
+#   If making changes to this file,
+#   generate and save the full maninfest.yml file before making any changes
+#   to compare against your changed file.
 #
 APIGEE_ENVIRONMENTS:
-- display_name: Internal Development
-  name: internal-dev
+- name: internal-dev
+  additional_proxies:
+    - identity-service-mock-internal-dev
   variants:
-  - name: alpha
-  - name: rc
-  - name: fix
-  - name: ft01
-    service: fti
-  - name: ft04
-    service: ftiv
-  - name: ft05
-    service: ftv
-  - name: ft09
-    service: ftix
-  - name: ft22
-    service: ftxxii
-- display_name: Internal Development Sandbox
-  name: internal-dev-sandbox
-- display_name:  Integration Testing
-  name: int
-- display_name: Internal QA
-  name: internal-qa
-- display_name: Internal QA Sandbox
-  name: internal-qa-sandbox
-- display_name: Sandbox
-  name: sandbox
-- display_name: Dev
-  name: dev
+  - name: alpha-internal-dev
+    display_name: Internal Development - alpha
+  - name: rc-internal-dev
+    display_name: Internal Development - rc
+  - name: fix-internal-dev
+    display_name: Internal Development - fix
+  - name: fti-internal-dev
+    display_name: Internal Development - ft01
+  - name: ftiv-internal-dev
+    display_name: Internal Development - ft04
+  - name: ftv-internal-dev
+    display_name: Internal Development - ft05
+  - name: ftix-internal-dev
+    display_name: Internal Development - ft09
+  - name: ftxxii-internal-dev
+    display_name: Internal Development - ft22
+
+- name: internal-dev-sandbox
   variants:
-  - name: dep
+    - name: internal-dev-sandbox
+      display_name: Internal Development Sandbox
+
+- name: int
+  additional_proxies:
+    - identity-service-int-no-smartcard
+    - identity-service-mock-int
+  variants:
+    - name: int
+      display_name: Integration Testing
+
+- name: internal-qa
+  additional_proxies:
+    - identity-service-internal-qa-int
+    - identity-service-mock-internal-qa
+  variants:
+    - name: internal-qa
+      display_name: Internal QA
+
+- name: internal-qa-sandbox
+  variants:
+    - name: internal-qa-sandbox
+      display_name: Internal QA Sandbox
+
+- name: sandbox
+  variants:
+    - name: sandbox
+      display_name: Sandbox
+
+- name: dev
+  additional_proxies:
+    - identity-service-dep-dev
+  variants:
+  - name: dep-dev
+    display_name: Dev - dep
+
 - name: prod
   approval_type: manual
-  display_name: Production
+  variants:
+    - name: prod
+      display_name: Production
 
 ACCESS_MODES:
   - name: healthcare-worker
@@ -47,6 +82,7 @@ ACCESS_MODES:
     scopes: ['urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api']
     requireCallbackUrl: true
     description: User restricted
+
   - name: application-restricted
     nameSuffix: -application-restricted
     displayName: Application Restricted
@@ -54,6 +90,9 @@ ACCESS_MODES:
     requireCallbackUrl: false
     description: Application Restricted
 ---
+{% import 'macros/manifest_macros.yml' as macros %}
+{%  set TITLE = 'e-Referral Service' %}
+
 meta:
   api:
     name: e-referrals-service-api
@@ -62,128 +101,25 @@ meta:
   schema_version: 1
 apigee:
   environments:
-
 {% for ENV in APIGEE_ENVIRONMENTS %}
-{% set portal_visibility = ENV.portal_visibility | default(true) %}
-{% set TITLE = 'e-Referral Service' %}
-{% set NAME = 'e-referrals-service-api-' + ENV.name %}
-{% if ENV.name == 'internal-dev' or ENV.name == 'dev' %}
-  - name: {{ ENV.name }}
-    products:
-{% for VARIANT in ENV.variants %}
-{% for MODE in ACCESS_MODES %}
-      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
-        approvalType: {{ ENV.approval_type | default('auto') }}
-        attributes:
-          - name: access
-            value: public
-          - name: ratelimiting
-            value:
-              e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}:
-                quota:
-                  enabled: false
-                spikeArrest:
-                  enabled: false
-              app:
-                quota:
-                  enabled: true
-                  interval: 1
-                  limit: 600
-                  timeunit: minute
-                spikeArrest:
-                  enabled: true
-                  ratelimit: 720pm
-        description: {{ MODE.description }}
-        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
-        environments: [ {{ ENV.name }} ]
-        proxies:
-          - e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-          - identity-service-{{ ENV.name }}
-{% if ENV.name == 'dev' %}
-          - identity-service-dep-{{ ENV.name }}
-{% endif %}
-{% if ENV.name == 'internal-dev' %}
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-        scopes: {{ MODE.scopes }}
-        quota: 600
-        quotaInterval: 1
-        quotaTimeUnit: minute
-{% endfor %}
-{% endfor %}
+  {{ macros.environment(ENV) }}
+
+{%    for VARIANT in ENV.variants %}
+{%      for MODE in ACCESS_MODES %}
+      {{ macros.product(ENV, MODE, TITLE, VARIANT.name, VARIANT.display_name) }}
+{%      endfor %}
+{%    endfor %}
+
     specs:
-{% for VARIANT in ENV.variants %}
-      - name: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-        path: e-referrals-service-api.json
-{% endfor %}
+{%    for VARIANT in ENV.variants %}
+      {{ macros.specs(VARIANT.name) }}
+{%    endfor %}
+
     api_catalog:
-{% for VARIANT in ENV.variants %}
-{% for MODE in ACCESS_MODES %}
-      - edgeAPIProductName: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}{{ MODE.nameSuffix }}
-        anonAllowed: true
-        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} - {{ VARIANT.name }} environment
-        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
-        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} - {{ VARIANT.name }} )
-        visibility: {{ portal_visibility }}
-        specId: e-referrals-service-api-{{ VARIANT.service | default(VARIANT.name) }}-{{ ENV.name }}
-{% endfor %}
-{% endfor %}
-{% else %}
-  - name: {{ ENV.name }}
-    products:
-{% for MODE in ACCESS_MODES %}
-      - name: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
-        approvalType: {{ ENV.approval_type | default('auto') }}
-        attributes:
-          - name: access
-            value: public
-          - name: ratelimiting
-            value:
-              e-referrals-service-api-{{ ENV.name }}:
-                quota:
-                  enabled: false
-                spikeArrest:
-                  enabled: false
-              app:
-                quota:
-                  enabled: true
-                  interval: 1
-                  limit: 600
-                  timeunit: minute
-                spikeArrest:
-                  enabled: true
-                  ratelimit: 720pm
-        description: {{ MODE.description }}
-        displayName: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
-        environments: [ {{ ENV.name }} ]
-        proxies:
-          - e-referrals-service-api-{{ ENV.name }}
-          - identity-service-{{ ENV.name }}
-{% if ENV.name == 'int' %}
-          - identity-service-int-no-smartcard
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-{% if ENV.name == 'internal-qa' %}
-          - identity-service-{{ ENV.name }}-int
-          - identity-service-mock-{{ ENV.name }}
-{% endif %}
-        scopes: {{ MODE.scopes }}
-        quota: 600
-        quotaInterval: 1
-        quotaTimeUnit: minute
-{% endfor %}
-    specs:
-      - name: {{ NAME }}
-        path: e-referrals-service-api.json
-    api_catalog:
-{% for MODE in ACCESS_MODES %}
-      - edgeAPIProductName: e-referrals-service-api-{{ ENV.name }}{{ MODE.nameSuffix }}
-        anonAllowed: true
-        description: {{ TITLE }} FHIR API - {{ MODE.displayName|lower  }} access mode - {{ ENV.display_name|lower }} environment
-        requireCallbackUrl: {{ MODE.requireCallbackUrl  | default(true) }}
-        title: {{ TITLE }} - {{ MODE.displayName }} ( {{ ENV.display_name}} )
-        visibility: {{ portal_visibility }}
-        specId: {{ NAME }}
-{% endfor %}
-{% endif %}
+{%    for VARIANT in ENV.variants %}
+{%      for MODE in ACCESS_MODES %}
+      {{ macros.api_catalog(MODE, TITLE, VARIANT.name, VARIANT.display_name) }}
+{%      endfor %}
+{%    endfor %}
+
 {% endfor %}

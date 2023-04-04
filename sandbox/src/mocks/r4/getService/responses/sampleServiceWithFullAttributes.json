@@ -1,10 +1,7 @@
 {
     "id": "2",
     "meta": {
-        "versionId": "1",
-        "profile": [
-            "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService"
-        ]
+        "versionId": "1"
     },
     "language": "en",
     "resourceType": "HealthcareService",

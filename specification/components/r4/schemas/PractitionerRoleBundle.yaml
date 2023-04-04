@@ -1,4 +1,6 @@
 title: Bundle resource containing practitioner roles 
+description: | 
+  The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle 
 type: object
 required:
   - id
@@ -15,19 +17,11 @@ properties:
     type: object
     required: 
       - lastUpdated
-      - profile
     properties:
       lastUpdated:
         type: string
         format: date-time
         example: '2021-04-20T12:17:35.128Z'
-      profile:
-        type: array
-        items:
-          type: string
-          enum:
-            - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
-          example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle'
   resourceType:
     type: string
     enum:
@@ -85,6 +79,7 @@ properties:
               example: 'match'
         resource:
           type: object
+          description: 'A UKCore-Practitioner Role. The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole'
           required:
             - id
             - meta
@@ -100,19 +95,11 @@ properties:
               type: object
               required: 
                 - lastUpdated
-                - profile
               properties:
                 lastUpdated:
                   type: string
                   format: date-time
                   example: '2021-04-20T12:17:35.128Z'
-                profile:
-                  type: array
-                  items:
-                    type: string
-                    enum:
-                      - 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole'
-                    example: 'https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole'
             resourceType:
               type: string
               enum:

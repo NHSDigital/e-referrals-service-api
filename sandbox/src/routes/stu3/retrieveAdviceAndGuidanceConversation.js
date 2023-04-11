@@ -14,7 +14,7 @@ function retrieveAdviceAndGuidanceConversation(request, h) {
     return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json").etag(version, { weak: true })
   }
 
-  return h.file('SandboxErrorOutcome.json').code(400);
+  return h.file('STU3-SandboxErrorOutcome.json').code(400);
 }
 
 module.exports = [

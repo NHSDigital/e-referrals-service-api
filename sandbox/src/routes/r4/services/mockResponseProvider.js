@@ -64,6 +64,6 @@ module.exports = {
       return 'r4/searchServiceRequest/responses/ResponseExampleEmpty.json'
     }
 
-    return {}
+    return null
   }
 }

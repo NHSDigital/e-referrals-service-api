@@ -6,9 +6,9 @@ description: |
   | -------------------------- | ------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
   | REC_UNSUPPORTED_MEDIA_TYPE | not-supported | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The server refuses to accept the request because the payload format is in an unsupported format.              |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../headers/response/ContentTypeFhirJson.yaml'

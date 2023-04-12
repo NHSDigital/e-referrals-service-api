@@ -6,9 +6,9 @@ description: |
   | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
   | REC_SERVER_ERROR          | exception  | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The server encountered an unexpected condition that prevented it from fulfilling the request.  |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../headers/response/ContentTypeFhirJson.yaml'

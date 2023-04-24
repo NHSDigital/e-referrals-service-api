@@ -14,7 +14,7 @@ function retrieveAvailableActionsForUserList(request, h) {
     return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")
   }
 
-  return h.file('SandboxErrorOutcome.json').code(400);
+  return h.file('STU3-SandboxErrorOutcome.json').code(400);
 }
 
 module.exports = [

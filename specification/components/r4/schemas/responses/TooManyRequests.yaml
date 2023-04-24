@@ -29,7 +29,7 @@ description: |
     - Wait 4s, request is successful
     - Return to normal request cadence
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'
   Content-Type:
     $ref: '../headers/response/ContentTypeFhirJson.yaml'

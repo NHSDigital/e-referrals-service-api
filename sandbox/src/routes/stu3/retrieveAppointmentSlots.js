@@ -24,7 +24,7 @@ module.exports = [
       }
 
 
-      return h.file('SandboxErrorOutcome.json').code(400);
+      return h.file('STU3-SandboxErrorOutcome.json').code(400);
 
 
     }

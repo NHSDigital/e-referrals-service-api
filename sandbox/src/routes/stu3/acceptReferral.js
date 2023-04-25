@@ -23,7 +23,7 @@ module.exports = [
         return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json").etag("9", { weak: true })
       }
 
-      return h.file('SandboxErrorOutcome.json').code(422);
+      return h.file('STU3-SandboxErrorOutcome.json').code(422);
     }
   }
 ]

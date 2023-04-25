@@ -36,7 +36,7 @@ module.exports = [
         response.headers["Location"] = "Binary/att-70000-70000";
         return response
       } else {
-        return h.file('SandboxErrorOutcome.json').code(422);
+        return h.file('STU3-SandboxErrorOutcome.json').code(422);
       }
 
     }

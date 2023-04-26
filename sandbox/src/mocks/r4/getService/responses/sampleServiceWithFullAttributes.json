@@ -72,15 +72,17 @@
         }
     ],
     "name": "Direct SVC 1",
-    "type": {
-        "coding": [
-            {
-                "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
-                "code": "DAY_CASE",
-                "display": "Day Case"
-            }
-        ]
-    },
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+                    "code": "DAY_CASE",
+                    "display": "Day Case"
+                }
+            ]
+        }
+    ],
     "characteristic": [
         {
             "coding": [

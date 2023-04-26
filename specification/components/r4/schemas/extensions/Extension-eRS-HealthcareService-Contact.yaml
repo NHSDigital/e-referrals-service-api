@@ -16,7 +16,7 @@ properties:
         | Field                                      | Cardinality | Notes                                                                                   |
         | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
         | purpose                                    | 1..1        | Details who should be using the current contact method                                  |
-        | telecom                                    | 1..1        | Outlines the contact details to be used                                                 |
+        | telecom                                    | 1..*        | Outlines the contact details to be used                                                 |
       items:
         anyOf:
           - type: object

@@ -1,12 +1,21 @@
 import os
+import pytest
 
 from uuid import uuid4
-from time import time
 
-import pytest
-from api_test_utils.apigee_api_apps import ApigeeApiDeveloperApps
-from api_test_utils.apigee_api_products import ApigeeApiProducts
-from api_test_utils.oauth_helper import OauthHelper
+from pytest_nhsd_apim.identity_service import (
+    AuthorizationCodeConfig,
+    AuthorizationCodeAuthenticator,
+    ClientCredentialsConfig,
+    ClientCredentialsAuthenticator,
+)
+from pytest_nhsd_apim.apigee_apis import (
+    ApiProductsAPI,
+    ApigeeClient,
+    ApigeeNonProdCredentials,
+    DeveloperAppsAPI,
+)
+
 
 from data import Actor
 
@@ -20,21 +29,6 @@ def get_env(variable_name: str) -> str:
         if not var:
             raise RuntimeError(f"Variable is null, Check {variable_name}.")
         return var
-    except KeyError:
-        raise RuntimeError(f"Variable is not set, Check {variable_name}.")
-
-
-def get_env_file(variable_name: str) -> str:
-    """Returns an environment variable as path"""
-    try:
-        path = os.path.abspath(os.environ[variable_name])
-        if not path:
-            raise RuntimeError(f"Variable is null, Check {variable_name}.")
-        with open(path, "r") as f:
-            contents = f.read()
-        if not contents:
-            raise RuntimeError(f"Contents of file empty. Check {variable_name}.")
-        return contents
     except KeyError:
         raise RuntimeError(f"Variable is not set, Check {variable_name}.")
 
@@ -87,10 +81,10 @@ def referring_clinician(is_mocked_environment):
 
 
 @pytest.fixture(scope="session")
-def token_url():
+def oauth_url():
     oauth_proxy = get_env("OAUTH_PROXY")
     oauth_base_uri = get_env("OAUTH_BASE_URI")
-    return f"{oauth_base_uri}/{oauth_proxy}/token"
+    return f"{oauth_base_uri}/{oauth_proxy}"
 
 
 @pytest.fixture(scope="session")
@@ -103,104 +97,151 @@ def app_restricted_user_id(is_mocked_environment):
     return "000000000101" if is_mocked_environment else "555032000100"
 
 
+@pytest.fixture()
+def client():
+    config = ApigeeNonProdCredentials()
+    return ApigeeClient(config=config)
+
+
 @pytest.fixture
-async def user_restricted_product(make_product):
+async def user_restricted_product(client, make_product):
     # Setup
-    product = await make_product(
+    productName = await make_product(
         ["urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api"]
     )
 
-    print(f"product created: {product.name}")
-    yield product
+    print(f"product created: {productName}")
+    yield productName
 
     # Teardown
-    print(f"Cleanup product: {product.name}")
-    await product.destroy_product()
+    print(f"Cleanup product: {productName}")
+    product = ApiProductsAPI(client=client)
+    product.delete_product_by_name(product_name=productName)
 
 
 @pytest.fixture
-def make_product(environment, service_name):
+def make_product(client, environment, service_name):
     async def _make_product(product_scopes):
-        # Setup
-        product = ApigeeApiProducts()
-        await product.create_new_product()
+        product = ApiProductsAPI(client=client)
 
-        print(f"CREATED PRODUCT NAME: {product.name}")
-
-        # Update products allowed paths
         proxies = [f"identity-service-mock-{environment}"]
 
         if service_name is not None:
             proxies.append(service_name)
 
-        await product.update_proxies(proxies)
-        await product.update_scopes(scopes=product_scopes)
-        return product
+        product_name = f"apim-auto-{uuid4()}"
+        attributes = [
+            {"name": "access", "value": "public"},
+            {"name": "ratelimit", "value": "10ps"},
+        ]
+        body = {
+            "proxies": proxies,
+            "scopes": product_scopes,
+            "name": product_name,
+            "displayName": product_name,
+            "attributes": attributes,
+            "approvalType": "auto",
+            "environments": ["internal-dev"],
+            "quota": 500,
+            "quotaInterval": "1",
+            "quotaTimeUnit": "minute",
+        }
+        product.post_products(body=body)
+        return product_name
 
     return _make_product
 
 
 @pytest.fixture
-async def user_restricted_app(make_app, user_restricted_product, asid):
+async def user_restricted_app(client, make_app, user_restricted_product, asid):
     # Setup
     app = await make_app(user_restricted_product, {"asid": asid})
 
-    print(f"App created: {app.name}")
+    appName = app["name"]
+    print(f"App created: {appName}")
     yield app
 
     # Teardown
-    print(f"Cleanup app: {app.name}")
-    await app.destroy_app()
+    print(f"Cleanup app: {appName}")
+    app = DeveloperAppsAPI(client=client)
+    app.delete_app_by_name(email="apm-testing-internal-dev@nhs.net", app_name=appName)
 
 
 @pytest.fixture
-def make_app():
+def make_app(client):
     async def _make_app(product, custom_attributes):
         # Setup
-        app = ApigeeApiDeveloperApps()
-        await app.create_new_app()
+        devAppAPI = DeveloperAppsAPI(client=client)
+        app_name = f"apim-auto-{uuid4()}"
 
-        print(f"CREATED APP NAME: {app.name}")
+        attributes = [{"name": "DisplayName", "value": app_name}]
 
-        # Set ASID
-        await app.set_custom_attributes(custom_attributes)
+        for key, value in custom_attributes.items():
+            attributes.append({"name": key, "value": value})
+        body = {
+            "apiProducts": [product],
+            "attributes": attributes,
+            "name": app_name,
+            "scopes": [],
+            "status": "approved",
+            "callbackUrl": "http://example.com",
+        }
 
-        # Assign the new app to the product
-        await app.add_api_product([product.name])
+        app = devAppAPI.create_app(email="apm-testing-internal-dev@nhs.net", body=body)
+        print(f"CREATED APP NAME: {app_name}")
 
-        app.oauth = OauthHelper(app.client_id, app.client_secret, app.callback_url)
         return app
 
     return _make_app
 
 
 @pytest.fixture
-def authenticate_user(user_restricted_app):
+def authenticate_user(client, user_restricted_app, environment, oauth_url):
     async def _auth(actor: Actor):
         print(f"Attempting to authenticate: {actor}")
-        token_resp = user_restricted_app.oauth.get_authenticated_with_mock_auth(
-            actor.user_id
+
+        credentials = user_restricted_app["credentials"][0]
+
+        config = AuthorizationCodeConfig(
+            environment=environment,
+            identity_service_base_url=oauth_url,
+            client_id=credentials["consumerKey"],
+            client_secret=credentials["consumerSecret"],
+            scope="nhs-cis2",
+            login_form={"username": actor.user_id},
+            callback_url=user_restricted_app["callbackUrl"],
         )
-        print(f"user restricted resp: {token_resp}")
-        return token_resp["access_token"]
+        # 2. Pass the config to the Authenticator
+        authenticator = AuthorizationCodeAuthenticator(config=config)
+
+        # 3. Get your token
+        token_response = authenticator.get_token()
+        print(f"user restricted resp: {token_response}")
+        return token_response["access_token"]
 
     return _auth
 
 
 @pytest.fixture
-async def app_restricted_product(make_product):
+async def app_restricted_product(client, make_product):
     # Setup
-    product = await make_product(["urn:nhsd:apim:app:level3:e-referrals-service-api"])
+    productName = await make_product(
+        ["urn:nhsd:apim:app:level3:e-referrals-service-api"]
+    )
 
-    yield product
+    print(f"product created: {productName}")
+    yield productName
 
     # Teardown
-    print(f"Cleanup product: {product.name}")
-    await product.destroy_product()
+    print(f"Cleanup product: {productName}")
+    product = ApiProductsAPI(client=client)
+    product.delete_product_by_name(product_name=productName)
 
 
 @pytest.fixture
 async def app_restricted_app(
+    client,
+    jwt_public_key_url,
     make_app,
     app_restricted_product,
     asid,
@@ -214,46 +255,37 @@ async def app_restricted_app(
             "asid": asid,
             "app-restricted-ods-code": app_restricted_ods_code,
             "app-restricted-user-id": app_restricted_user_id,
-            "jwks-resource-url": __JWKS_RESOURCE_URL,
+            "jwks-resource-url": jwt_public_key_url,
         },
     )
+    appName = app["name"]
+    print(f"App created: {appName}")
 
     yield app
 
     # Teardown
-    print(f"Cleanup app: {app.name}")
-    await app.destroy_app()
+    print(f"Cleanup app: {appName}")
+    app = DeveloperAppsAPI(client=client)
+    app.delete_app_by_name(email="apm-testing-internal-dev@nhs.net", app_name=appName)
 
 
 @pytest.fixture
-async def app_restricted_access_code(app_restricted_app, token_url):
-    jwt = app_restricted_app.oauth.create_jwt(
-        **{
-            "kid": "test-1",
-            "claims": {
-                "sub": app_restricted_app.client_id,
-                "iss": app_restricted_app.client_id,
-                "jti": str(uuid4()),
-                "aud": token_url,
-                "exp": int(time()) + 60,
-            },
-        }
-    )
+async def app_restricted_access_code(
+    client, app_restricted_app, jwt_private_key_pem, environment, oauth_url
+):
+    credentials = app_restricted_app["credentials"][0]
 
-    resp = await app_restricted_app.oauth.get_token_response(
-        grant_type="client_credentials", _jwt=jwt
+    config = ClientCredentialsConfig(
+        environment=environment,
+        identity_service_base_url=oauth_url,
+        client_id=credentials["consumerKey"],
+        jwt_private_key=jwt_private_key_pem,
+        jwt_kid="test-1",
     )
-    if resp["status_code"] != 200:
-        message = "unable to get token"
-        raise RuntimeError(
-            f"\n{'*' * len(message)}\n"
-            f"MESSAGE: {message}\n"
-            f"URL: {resp.get('url')}\n"
-            f"STATUS CODE: {resp.get('status_code')}\n"
-            f"RESPONSE: {resp.get('body')}\n"
-            f"HEADERS: {resp.get('headers')}\n"
-            f"{'*' * len(message)}\n"
-        )
-    token_resp = resp["body"]
-    print(f"app restricted resp: {token_resp}")
-    return token_resp["access_token"]
+    # 2. Pass the config to the Authenticator
+    authenticator = ClientCredentialsAuthenticator(config=config)
+
+    # 3. Get your token
+    token_response = authenticator.get_token()
+    assert "access_token" in token_response
+    return token_response["access_token"]

@@ -6,9 +6,9 @@ description: |
   | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
   | REC_NOT_FOUND             | not-found  | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The supplied URL or Resource does not exist on the server. |
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../headers/response/ContentTypeFhirJson.yaml'

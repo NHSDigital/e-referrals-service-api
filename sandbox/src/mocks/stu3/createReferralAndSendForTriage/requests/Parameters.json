@@ -67,13 +67,6 @@
                 }
               },
               {
-                "name": "commissioningProvisioning",
-                "valueCoding": {
-                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
-                  "code": "ALL_AVAILABLE_FOR_BOOKING"
-                }
-              },
-              {
                 "name": "ageAndGenderAppropriate",
                 "valueBoolean": false
               }

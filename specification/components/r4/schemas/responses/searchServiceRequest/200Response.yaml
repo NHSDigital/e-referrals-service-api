@@ -2,9 +2,9 @@ description: |
   Bundle resource containing the `ServiceRequest` resources associated to the supplied UBRN. 
   The canonical URL: https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle
 headers:
-  x-correlation-id:
+  X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
-  x-request-id:
+  X-Request-ID:
     $ref: '../../headers/response/RequestID.yaml'
   Content-Type:
     $ref: '../../headers/response/ContentTypeFhirJson.yaml'

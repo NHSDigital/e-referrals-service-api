@@ -21,7 +21,7 @@ module.exports = [
       if (responsePath != null) {
         return h.file(responsePath, { etagMethod: false }).code(201).type("application/fhir+json").etag("1", { weak: true })
       } else {
-        return h.file('SandboxErrorOutcome.json').code(422);
+        return h.file('STU3-SandboxErrorOutcome.json').code(422);
       }
 
     }

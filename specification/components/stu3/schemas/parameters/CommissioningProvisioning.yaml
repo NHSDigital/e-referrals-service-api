@@ -28,4 +28,4 @@ properties:
           - ALL_SERVICES
           - LOCALLY_COMMISSIONABLE
           - NATIONALLY_AVAILABLE
-        example: LOCALLY_COMMISSIONABLE
+        example: ALL_AVAILABLE_FOR_BOOKING

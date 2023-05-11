@@ -30,7 +30,7 @@ gitpython = "^3.1.31"
 lxml = "^4.9.2"
 xmlformatter = "^0.2.4"
 pytest-check = "^2.1.4"
-requests = "^2.29.0"
+requests = "^2.30.0"
 openapi-core = "0.14.2"
 
 

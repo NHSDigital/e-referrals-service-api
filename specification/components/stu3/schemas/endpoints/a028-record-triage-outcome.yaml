@@ -65,7 +65,6 @@ description: |
 summary: A028 - Record triage outcome
 operationId: a028-record-triage-outcome
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

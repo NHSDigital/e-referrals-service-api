@@ -57,7 +57,6 @@ description: |
 summary: A027 - Convert advice and guidance request to referral
 operationId: a027-convert-a&g-to-referral
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

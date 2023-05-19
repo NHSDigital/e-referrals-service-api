@@ -39,7 +39,6 @@ description: |
 summary: A021 - Create referral and send for triage
 operationId: a021-create-referral-request-and-send-for-triage
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

@@ -88,7 +88,6 @@ description: |
 summary: A036 - Cancel referral
 operationId: a036-cancel-referral
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

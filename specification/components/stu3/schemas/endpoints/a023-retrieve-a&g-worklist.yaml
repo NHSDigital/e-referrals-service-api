@@ -42,7 +42,6 @@ description: |
 summary: A023 - Retrieve advice and guidance requests worklist
 operationId: a023-retrieve-a&g-worklist
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

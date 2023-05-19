@@ -42,7 +42,6 @@ description: |
 summary: A011 - Create referral
 operationId: a011-create-referral
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

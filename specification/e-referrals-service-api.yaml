@@ -281,54 +281,60 @@ servers:
   - url: 'https://api.service.nhs.uk/referrals/FHIR'
     description: 'Production environment. Not yet available.'
 paths:
-  /STU3/ReferralRequest/$ers.createReferral:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a011-create-referral.yaml'
-  /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a021-create-referral-request-and-send-for-triage.yaml'
-  /STU3/HealthcareService/$ers.searchHealthcareServicesForPatient:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a010-patient-service-search.yaml'
-  /STU3/CodeSystem/{codeSystemType}:    
+  /STU3/CodeSystem/{codeSystemType}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a004-retrieve-reference-data.yaml'
-  /STU3/Slot:
-    get:
-      $ref: 'components/stu3/schemas/endpoints/a015-retrieve-appointment-slots.yaml'
-  /R4/PractitionerRole:
-    get:
-      $ref: 'components/r4/schemas/endpoints/a030-retrieve-business-functions.yaml'
-  /STU3/Binary:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a020-upload-file-to-document-store.yaml'
-  /STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a019-generate-patient-letter.yaml'
-  /STU3/Binary/{attachmentLogicalID}:
-    get:
-      $ref: 'components/stu3/schemas/endpoints/a006-retrieve-attachment.yaml'
   /STU3/ReferralRequest/{ubrn}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a005-retrieve-referral-request.yaml'
   /STU3/ReferralRequest/{ubrn}/_history/{version}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a005-retrieve-referral-request-versioned.yaml'
-  /STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a012-maintain-referral-letter.yaml'
-  /STU3/Appointment:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a016-book-or-defer-appointment.yaml'
+  /STU3/Binary/{attachmentLogicalID}:
+    get:
+      $ref: 'components/stu3/schemas/endpoints/a006-retrieve-attachment.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a007-retrieve-clinical-information.yaml'
   /STU3/ReferralRequest/$ers.fetchworklist:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a008-retrieve-worklist.yaml'      
+      $ref: 'components/stu3/schemas/endpoints/a008-retrieve-worklist.yaml'
+  /STU3/HealthcareService/$ers.searchHealthcareServicesForPatient:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a010-patient-service-search.yaml'
+  /STU3/ReferralRequest/$ers.createReferral:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a011-create-referral.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a012-maintain-referral-letter.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a013-accept-referral.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a014-reject-referral.yaml'
+  /STU3/Slot:
+    get:
+      $ref: 'components/stu3/schemas/endpoints/a015-retrieve-appointment-slots.yaml'
+  /STU3/Appointment:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a016-book-or-defer-appointment.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a019-generate-patient-letter.yaml'
+  /STU3/Binary:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a020-upload-file-to-document-store.yaml'
+  /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a021-create-referral-request-and-send-for-triage.yaml'
+  /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a022-cancel-appointment-action-later.yaml'
   /STU3/CommunicationRequest/$ers.fetchworklist:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a023-retrieve-a&g-worklist.yaml'   
+      $ref: 'components/stu3/schemas/endpoints/a023-retrieve-a&g-worklist.yaml'
   /STU3/CommunicationRequest/{ubrn}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a024-retrieve-advice-and-guidance.yaml'
@@ -337,42 +343,33 @@ paths:
       $ref: 'components/stu3/schemas/endpoints/a024-retrieve-advice-and-guidance-versioned.yaml'
   /STU3/Communication:
     get:
-      $ref: 'components/stu3/schemas/endpoints/a025-retrieve-advice-and-guidance-conversation.yaml'   
+      $ref: 'components/stu3/schemas/endpoints/a025-retrieve-advice-and-guidance-conversation.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.sendCommunicationToRequester:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a026-send-a&g-response.yaml'   
+      $ref: 'components/stu3/schemas/endpoints/a026-send-a&g-response.yaml'
   /STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a027-convert-a&g-to-referral.yaml'   
+      $ref: 'components/stu3/schemas/endpoints/a027-convert-a&g-to-referral.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.recordReviewOutcome:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a028-record-triage-outcome.yaml'   
-  /STU3/ReferralRequest/{ubrn}/$ers.acceptReferral:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a013-accept-referral.yaml'   
-  /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a014-reject-referral.yaml'  
+      $ref: 'components/stu3/schemas/endpoints/a028-record-triage-outcome.yaml'
   /STU3/Task:
     get:
-      $ref: 'components/stu3/schemas/endpoints/a029-available-actions-for-user-list.yaml'  
-  /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a022-cancel-appointment-action-later.yaml' 
-  /R4/HealthcareService/{id}:
+      $ref: 'components/stu3/schemas/endpoints/a029-available-actions-for-user-list.yaml'
+  /R4/PractitionerRole:
     get:
-      $ref: 'components/r4/schemas/endpoints/a033-retrieve-healthcare-service.yaml'
-    head:
-      $ref: 'components/r4/schemas/endpoints/a037-retrieve-healthcare-service-version.yaml'
-  /R4/HealthcareService:
-    get:
-      $ref: 'components/r4/schemas/endpoints/a035-search-for-healthcare-services.yaml'
+      $ref: 'components/r4/schemas/endpoints/a030-retrieve-business-functions.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist:
     post:
       $ref: 'components/stu3/schemas/endpoints/a031-change-shortlist.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.changeShortlistAndSendForTriage:
     post:
       $ref: 'components/stu3/schemas/endpoints/a032-change-shortlist-and-send-for-triage.yaml'
+  /R4/HealthcareService/{id}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a033-retrieve-healthcare-service.yaml'
+    head:
+      $ref: 'components/r4/schemas/endpoints/a037-retrieve-healthcare-service-version.yaml'
   /STU3/Appointment/{id}:
     put:
       $ref: 'components/stu3/schemas/endpoints/a034-update-appointment.yaml'
@@ -381,18 +378,22 @@ paths:
   /STU3/Appointment/{id}/_history/{version}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a038-retrieve-appointment-versioned.yaml'
+  /R4/HealthcareService:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a035-search-for-healthcare-services.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.cancelReferral:
     post:
       $ref: 'components/stu3/schemas/endpoints/a036-cancel-referral.yaml'
   /R4/Practitioner:
     get:
       $ref: 'components/r4/schemas/endpoints/a040-retrieve-practitioner-info.yaml'
+  /R4/ServiceRequest:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
-  /R4/ServiceRequest:
-    get:
-      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'    
+
 components:
   securitySchemes:
     bearerAuth:

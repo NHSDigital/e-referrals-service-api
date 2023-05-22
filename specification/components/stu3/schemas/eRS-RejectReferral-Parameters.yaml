@@ -27,6 +27,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                             | Cardinality | Notes                                      |
       | --------------------------------- | ----------- | ------------------------------------------ |
       | `rejectionReason`                 | `1..1`      |  The reason why the referral is being rejected |

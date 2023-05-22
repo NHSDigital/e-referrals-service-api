@@ -177,6 +177,7 @@ properties:
   participant:
     type: array
     description: |
+      
       | Field                  | Cardinality | Notes                                      |
       | ---------------------- | ----------- | ------------------------------------------ |
       | `Patient`              | `1..1`      |                                            |

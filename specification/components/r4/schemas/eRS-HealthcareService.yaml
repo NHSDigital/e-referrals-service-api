@@ -119,28 +119,54 @@ properties:
         coding:
           type: array
           items:
-            type: object
-            required:
-              - system
-              - code
-              - display
-            properties:
-              system:
-                type: string
-                enum:
-                  - https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
-                example: https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
-              code:
-                type: string
-                # Might need to think about these codings given Appointment/Advice and Guidance/Triage requests aren't mentioned in the xAPI
-                enum:
-                  - BOOKABLE
-                  - REVIEW
-                  - ADVICE_AND_GUIDANCE
-                example: BOOKABLE
-              display:
-                enum:
-                  - Appointment Request
-                  - Triage Request
-                  - Advice and Guidance Request
-                example: Appointment Request
+            anyOf:
+              - type: object
+                title: eRS-RequestFlowType
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
+                    example: https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType
+                  code:
+                    type: string
+                    # Might need to think about these codings given Appointment/Advice and Guidance/Triage requests aren't mentioned in the xAPI
+                    enum:
+                      - BOOKABLE
+                      - REVIEW
+                      - ADVICE_AND_GUIDANCE
+                    example: BOOKABLE
+                  display:
+                    enum:
+                      - Appointment Request
+                      - Triage Request
+                      - Advice and Guidance Request
+                    example: Appointment Request
+              - type: object
+                title: eRS-BookableType
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/CodeSystem/eRS-BookableType
+                    example: https://fhir.nhs.uk/CodeSystem/eRS-BookableType
+                  code:
+                    type: string
+                    # Might need to think about these codings given Appointment/Advice and Guidance/Triage requests aren't mentioned in the xAPI
+                    enum:
+                      - DIRECTLY_BOOKABLE
+                      - INDIRECTLY_BOOKABLE
+                    example: DIRECTLY_BOOKABLE
+                  display:
+                    enum:
+                      - Directly Bookable
+                      - Indirectly Bookable
+                    example: Directly Bookable

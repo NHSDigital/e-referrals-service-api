@@ -92,6 +92,15 @@
                     "display": "Appointment Request"
                 }
             ]
+        },
+        {
+            "coding": [
+                {
+                    "system": "https://fhir.nhs.uk/CodeSystem/eRS-BookableType",
+                    "code": "DIRECTLY_BOOKABLE",
+                    "display": "Directly Bookable"
+                }
+            ]
         }
     ]
 }

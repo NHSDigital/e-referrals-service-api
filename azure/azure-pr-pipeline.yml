@@ -100,6 +100,8 @@ extends:
             smoke_tests: true
       - environment: manual-approval
         stage_name: manual_approval_ft09_pr
+        depends_on:
+          - ers_ft05_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-ftix
         short_service_name: ${{ variables.short_service_name }}-ftix

@@ -1367,14 +1367,14 @@ files = [
 
 [[package]]
 name = "pip-licenses"
-version = "4.3.1"
+version = "4.3.2"
 description = "Dump the software license list of Python packages installed with pip."
 category = "dev"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "pip-licenses-4.3.1.tar.gz", hash = "sha256:80236ae03036f0edccae57489de3932aa93984a7b552f4fd47399b08793918ff"},
-    {file = "pip_licenses-4.3.1-py3-none-any.whl", hash = "sha256:1e6652f7f3bd173e0a3551202e19518b21ac1d5ab1a2b54e08d96ee67146f9ca"},
+    {file = "pip-licenses-4.3.2.tar.gz", hash = "sha256:27ce33be185a009f3128ea59fe4c1490f4f4da5eb53ed951b87ef3c621b583f9"},
+    {file = "pip_licenses-4.3.2-py3-none-any.whl", hash = "sha256:3fede933c47e1f4bc5e91d7cfd1d9b9d4e37a3c03b2875352b12bbad41294cd6"},
 ]
 
 [package.dependencies]
@@ -1938,26 +1938,26 @@ wsproto = ">=0.14"
 
 [[package]]
 name = "typing-extensions"
-version = "4.6.0"
+version = "4.6.1"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.6.0-py3-none-any.whl", hash = "sha256:6ad00b63f849b7dcc313b70b6b304ed67b2b2963b3098a33efe18056b1a9a223"},
-    {file = "typing_extensions-4.6.0.tar.gz", hash = "sha256:ff6b238610c747e44c268aa4bb23c8c735d665a63726df3f9431ce707f2aa768"},
+    {file = "typing_extensions-4.6.1-py3-none-any.whl", hash = "sha256:6bac751f4789b135c43228e72de18637e9a6c29d12777023a703fd1a6858469f"},
+    {file = "typing_extensions-4.6.1.tar.gz", hash = "sha256:558bc0c4145f01e6405f4a5fdbd82050bd221b119f4bf72a961a1cfd471349d6"},
 ]
 
 [[package]]
 name = "urllib3"
-version = "1.26.15"
+version = "1.26.16"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 files = [
-    {file = "urllib3-1.26.15-py2.py3-none-any.whl", hash = "sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42"},
-    {file = "urllib3-1.26.15.tar.gz", hash = "sha256:8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305"},
+    {file = "urllib3-1.26.16-py2.py3-none-any.whl", hash = "sha256:8d36afa7616d8ab714608411b4a3b13e58f463aee519024578e062e141dce20f"},
+    {file = "urllib3-1.26.16.tar.gz", hash = "sha256:8f135f6502756bde6b2a9b28989df5fbe87c9970cecaa69041edcce7f0589b14"},
 ]
 
 [package.dependencies]
@@ -2130,4 +2130,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "23d167f7976121ada4dca809edf1cba04284e4d33dd9ebd617c17b6c28880c4d"
+content-hash = "11a4bfce6d6aaf4becf596f422e8afd8dfd181243ad090a864a72f583ac759c0"

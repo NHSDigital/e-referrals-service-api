@@ -70,6 +70,7 @@ parameters:
   - $ref: '../headers/request/BusinessFunction.yaml'
   - $ref: '../headers/request/OnBehalfOfUserID.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
   - $ref: '../pathParameters/Ubrn.yaml'
 requestBody:
   required: true

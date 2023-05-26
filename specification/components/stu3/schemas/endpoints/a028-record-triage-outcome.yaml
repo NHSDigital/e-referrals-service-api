@@ -106,6 +106,8 @@ responses:
     $ref: '../responses/NotAcceptable.yaml'
   '409':
     $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
   '415':
     $ref: '../responses/UnsupportedMediaType.yaml'
   '422':

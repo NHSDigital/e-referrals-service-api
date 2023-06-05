@@ -63,50 +63,52 @@ properties:
     example: 'Direct SVC 1'
     description: Name of the current HealthcareService within eRS
   type:
-    type: object
-    required:
-      - coding
-    properties:
-      coding:
-        type: array
-        items:
-          type: object
-          required:
-            - system
-            - code
-            - display
-          properties:
-            system:
-              type: string
-              enum:
-                - https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
-              example: https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
-            code:
-              type: string
-              enum:
-                - DAY_CASE
-                - FIRST_OUTPATIENT
-                - ASSESSMENT_SERVICE
-                - GPSI
-                - AHP_CLINIC
-                - DIAGNOSTIC
-                - NURSE_CLINIC
-                - OPHTHALMOLOGIST
-                - TELEPHONE_ASSESSMENT
-              example: DAY_CASE
-            display:
-              type: string
-              enum:
-                - Day Case
-                - First Outpatient
-                - Assessment Service
-                - GPSI
-                - AHP Clinic
-                - Diagnostic
-                - Nurse Clinic
-                - Ophthalmologist
-                - Telephone Assessment
-              example: Day Case
+    type: array
+    items:
+      type: object
+      required:
+        - coding
+      properties:
+        coding:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - code
+              - display
+            properties:
+              system:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
+                example: https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType
+              code:
+                type: string
+                enum:
+                  - DAY_CASE
+                  - FIRST_OUTPATIENT
+                  - ASSESSMENT_SERVICE
+                  - GPSI
+                  - AHP_CLINIC
+                  - DIAGNOSTIC
+                  - NURSE_CLINIC
+                  - OPHTHALMOLOGIST
+                  - TELEPHONE_ASSESSMENT
+                example: DAY_CASE
+              display:
+                type: string
+                enum:
+                  - Day Case
+                  - First Outpatient
+                  - Assessment Service
+                  - GPSI
+                  - AHP Clinic
+                  - Diagnostic
+                  - Nurse Clinic
+                  - Ophthalmologist
+                  - Telephone Assessment
+                example: Day Case
   characteristic:
     type: array
     items:

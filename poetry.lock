@@ -1633,14 +1633,14 @@ testing = ["async-generator (>=1.3)", "coverage", "hypothesis (>=5.7.1)"]
 
 [[package]]
 name = "pytest-check"
-version = "2.1.4"
+version = "2.1.5"
 description = "A pytest plugin that allows multiple failures per test."
 category = "main"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "pytest-check-2.1.4.tar.gz", hash = "sha256:01b37fd703da0fa667b7017af1f0460c744a85f1ee87675ee3e0f94acc3df172"},
-    {file = "pytest_check-2.1.4-py3-none-any.whl", hash = "sha256:0c15d8c01ce31a13b73eb875854d060aca6f6c529aa9dd9fa0bd690c744eb171"},
+    {file = "pytest_check-2.1.5-py3-none-any.whl", hash = "sha256:a56c707dacf385a779a2e21082811c0e9576329126a61fb984e522adb63ddd94"},
+    {file = "pytest_check-2.1.5.tar.gz", hash = "sha256:6b33742de9f3b4c68f57686020b234c26ac817f8e4794fc83beadbfc04d7c58f"},
 ]
 
 [package.dependencies]
@@ -2130,4 +2130,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "11a4bfce6d6aaf4becf596f422e8afd8dfd181243ad090a864a72f583ac759c0"
+content-hash = "0539c8cf5cf68dba4aa15378ed24f5ca947dd3ff755727678ff26376670288d1"

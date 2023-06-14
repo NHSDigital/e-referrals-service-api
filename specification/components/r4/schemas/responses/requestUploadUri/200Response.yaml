@@ -1,0 +1,66 @@
+description: Parameters resource containg the upload URI (object store) and the file reference (eRS).
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      type: object
+      required:
+        - resourceType
+        - parameter
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - Parameters
+          example: 'Parameters'
+        parameter:
+          type: array
+          description: |
+            | Field        | Cardinality | Notes                |
+            | ------------ | ----------- | -------------------- |
+            | `uploadUri`  | `1..1`      |                      |
+            | `reference`  | `1..1`      |                      | 
+          items:
+            oneOf:
+              - title: uploadUri
+                type: object
+                required:
+                  - name
+                  - valueUri
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - 'uploadUri'
+                    example: uploadUri
+                  valueUri:
+                    type: string
+                    example: "<preSignedUri>"
+              - title: reference
+                type: object
+                required:
+                  - name
+                  - valueUri
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - 'reference'
+                    example: reference
+                  valueUri:
+                    type: string
+                    example: "/Binary/ce2fbda9-7c18-46ab-ae04-5b08df61e0d4"
+          minItems: 2
+          maxItems: 2
+          uniqueItems: true
+    examples:
+      minimal-example:
+        summary: Generate oject store upload URI and eRS reference
+        value:
+          $ref: '../../../examples/requestUploadUri/responses/ResponseExample.json'

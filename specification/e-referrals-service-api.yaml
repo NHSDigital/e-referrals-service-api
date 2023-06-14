@@ -392,7 +392,13 @@ paths:
       $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
   /R4/ServiceRequest:
     get:
-      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'    
+      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
+  /R4/ServiceRequest/{id}/$ers.generateUploadURI:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a039-request-pre-signed-url-for-file-upload.yaml'
+  /R4/Binary/{id}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a042-request-pre-signed-url-for-file-download.yaml'
 components:
   securitySchemes:
     bearerAuth:

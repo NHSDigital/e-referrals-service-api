@@ -31,6 +31,7 @@ properties:
     type: array
     nullable: false
     description: |
+      
       | Field                                      | Cardinality | Notes                                                                                   |
       | ------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
       | Extension-eRS-HoursOfOperation             | 0..1        | Details the hours the current HealthcareService is operational                          |

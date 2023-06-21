@@ -27,6 +27,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                             | Cardinality | Notes                                      |
       | --------------------------------- | ----------- | ------------------------------------------ |
       | `listType`                        | `1..1`      |                                            |

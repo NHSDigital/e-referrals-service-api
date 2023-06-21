@@ -26,6 +26,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                             | Cardinality | Notes                                                                                    |
       | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
       | `Shortlist`                       | `1..1`      | Shortlist indicating the new service a referral should have shortlisted                 |

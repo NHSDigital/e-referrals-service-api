@@ -43,6 +43,7 @@ properties:
     maxItems: 1
     minItems: 1
     description: |
+      
       | Field                                      | Cardinality | Notes                                                                          |
       | ------------------------------------------ | ----------- | ------------------------------------------------------------------------------ |
       | `Extension-eRS-Shortlist-SearchCriteria`   | `1..1`      | The `SearchCriteria` used to retrieve the services included in the `Shortlist` |

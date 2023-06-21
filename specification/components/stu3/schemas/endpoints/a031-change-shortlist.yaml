@@ -48,7 +48,6 @@ description: |
 summary: A031 - Change shortlist
 operationId: a031-change-shortlist
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

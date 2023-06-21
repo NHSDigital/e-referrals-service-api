@@ -90,7 +90,6 @@ description: |
 summary: A008 - Retrieve referral worklist
 operationId: a008-retrieve-worklist
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

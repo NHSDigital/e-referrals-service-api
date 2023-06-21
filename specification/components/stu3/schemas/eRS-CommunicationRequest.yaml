@@ -41,6 +41,7 @@ properties:
     type: array
     nullable: true
     description: |
+      
       | Field                                   | Cardinality | Notes                                      |
       | --------------------------------------- | ----------- | ------------------------------------------ |
       | `eRS-Shortlist-List`                    | `1..1`      |                                            |
@@ -57,6 +58,7 @@ properties:
     type: array
     nullable: true
     description: |
+      
       | Field                                           | Cardinality | Notes                                      |
       | ----------------------------------------------- | ----------- | ------------------------------------------ |
       | `Extension-eRS-ReferralShortlist`               | `1..1`      |                                            |

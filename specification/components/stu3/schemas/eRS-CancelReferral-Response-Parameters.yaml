@@ -26,6 +26,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                             | Cardinality | Notes                                                                                    |
       | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
       | `updatedReferralRequest`          | `1..1`      | Cancelled Referral Request .                                                             |

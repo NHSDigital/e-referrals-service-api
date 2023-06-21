@@ -61,7 +61,7 @@ responses:
   '401':
     $ref: '../responses/Unauthorized.yaml'
   '403':
-    $ref: '../responses/Forbidden.yaml'
+    $ref: '../responses/ForbiddenOrNoLR.yaml'
   '404':
     $ref: '../responses/NotFound.yaml'
   '406':

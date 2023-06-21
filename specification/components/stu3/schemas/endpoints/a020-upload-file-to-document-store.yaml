@@ -56,7 +56,6 @@ description: |
 summary: A020 - Upload file to document store
 operationId: a020-upload-file-to-document-store
 parameters:
-  - $ref: '../headers/request/ContentTypeAttachmentsUpload.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

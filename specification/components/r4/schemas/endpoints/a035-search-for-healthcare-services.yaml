@@ -66,8 +66,6 @@ responses:
     $ref: '../responses/NotFound.yaml'
   '406':
     $ref: '../responses/NotAcceptable.yaml'
-  '415':
-    $ref: '../responses/UnsupportedMediaType.yaml'
   '429':
     $ref: '../responses/TooManyRequests.yaml'
   '500':

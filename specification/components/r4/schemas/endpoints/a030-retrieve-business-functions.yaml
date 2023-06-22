@@ -102,7 +102,7 @@ responses:
   '401':
     $ref: '../responses/Unauthorized.yaml'
   '403':
-    $ref: '../responses/ForbiddenOrNoLR.yaml'
+    $ref: '../responses/Forbidden.yaml'
   '406':
     $ref: '../responses/NotAcceptable.yaml'
   '429':

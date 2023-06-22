@@ -59,7 +59,7 @@ info:
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
     | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
-    | Healthcare worker, user-restricted access | [[HYPERLINK_CIS_AUTH_SHRT]]  | All [Endpoints](#api-endpoints) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
+    | Healthcare worker, user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All [Endpoints](#api-endpoints) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
 
     ##### Application-restricted, unattended access
 

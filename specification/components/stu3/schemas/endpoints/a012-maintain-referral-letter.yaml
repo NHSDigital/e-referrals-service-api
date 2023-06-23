@@ -80,7 +80,6 @@ description: |
 summary: A012 - Maintain referral letter
 operationId: a012-maintain-referral-letter
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

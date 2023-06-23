@@ -48,7 +48,6 @@ description: |
 summary: A022 - Cancel appointment, action later
 operationId: a022-cancel-appointment-action-later
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

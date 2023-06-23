@@ -13,6 +13,7 @@ properties:
   extension:
     type: array
     description: |
+      
       | Field                            | Cardinality | Notes                                      |
       | -------------------------------- | ----------- | ------------------------------------------ |
       | `SupportedAppointmentType`       | `0..1`      |                                            |

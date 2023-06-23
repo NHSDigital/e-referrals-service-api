@@ -26,6 +26,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                  | Cardinality | Notes                                      |
       | ---------------------- | ----------- | ------------------------------------------ |
       | `referralLetterFile`   | `1..*`      |                                            |

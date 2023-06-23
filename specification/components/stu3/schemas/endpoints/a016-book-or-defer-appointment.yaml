@@ -45,7 +45,6 @@ description: |
 summary: A016 - Book or defer appointment
 operationId: a016-book-or-defer-appointment
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

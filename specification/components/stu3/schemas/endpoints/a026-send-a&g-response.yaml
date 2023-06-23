@@ -44,7 +44,6 @@ description: |
 summary: A026 - Send advice and guidance response
 operationId: a026-send-a&g-response
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

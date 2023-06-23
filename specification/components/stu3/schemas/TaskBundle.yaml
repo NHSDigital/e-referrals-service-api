@@ -59,6 +59,7 @@ properties:
   entry:
     type: array
     description: |
+      
       | Field                   | Cardinality | Notes                                               |
       | ----------------------- | ----------- | --------------------------------------------------- |
       | `CareConnect-Task`      | `0..*`      |                                                     |

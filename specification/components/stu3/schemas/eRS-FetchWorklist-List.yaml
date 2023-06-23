@@ -24,6 +24,7 @@ properties:
   contained:
     type: array
     description: |
+      
       | Field                  | Cardinality | Notes                                                                           |
       | ---------------------- | ----------- | ------------------------------------------------------------------------------- |
       | `Practitioner`         | `0..*`      | This resource is only contained when fetching the Referrals for Review worklist |

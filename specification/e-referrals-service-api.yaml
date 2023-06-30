@@ -59,7 +59,7 @@ info:
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
     | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
-    | Healthcare worker, user-restricted access | [CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)  | All [Endpoints](#api-endpoints) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
+    | Healthcare worker, user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All [Endpoints](#api-endpoints) | [In production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) |
 
     ##### Application-restricted, unattended access
 
@@ -70,7 +70,7 @@ info:
 
     ##### Healthcare worker, user-restricted access
 
-    This access mode allows Partner applications to access e-RS FHIR API endpoints by authenticating users with [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2).
+    This access mode allows Partner applications to access e-RS FHIR API endpoints by authenticating users with [[HYPERLINK_CIS_AUTH_LONG]].
     
     This access mode must be used for writing changes (such as Create Referral).
 
@@ -179,7 +179,7 @@ info:
     The end user must be:
     - present
     - a healthcare worker
-    - strongly authenticated and authorised by [NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication/ways-to-authenticate-with-nhs-cis2)
+    - strongly authenticated and authorised by [[HYPERLINK_CIS_AUTH_LONG]]
 
     To use this access mode, use one of the following security patterns:
     - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)

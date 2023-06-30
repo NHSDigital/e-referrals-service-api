@@ -54,6 +54,8 @@ def main():
         "[[HYPERLINK_ERS_BUS_FUNCTIONS]]": "[e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)",
         "[[HYPERLINK_PERFORMANCE_TESTING]]": "[performance testing](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#performance-testing)",
         "[[HYPERLINK_CONTACT_US]]": "[contact us](https://digital.nhs.uk/developer/help-and-support)",
+        "[[HYPERLINK_CIS_AUTH_SHORT]]": "[CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication)",
+        "[[HYPERLINK_CIS_AUTH_LONG]]": "[NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication)",
     }
 
     data = sys.stdin.read()

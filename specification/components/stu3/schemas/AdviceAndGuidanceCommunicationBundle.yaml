@@ -65,6 +65,7 @@ properties:
   entry:
     type: array
     description: |
+      
       | Field                   | Cardinality | Notes                                               |
       | ----------------------- | ----------- | --------------------------------------------------- |
       | `CommunicationEntry`    | `1..*`      |                                                     |

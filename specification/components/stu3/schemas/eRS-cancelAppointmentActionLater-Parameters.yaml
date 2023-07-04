@@ -27,6 +27,7 @@ properties:
   parameter:
     type: array
     description: |
+      
       | Field                             | Cardinality | Notes                                                   |
       | --------------------------------- | ----------- | ------------------------------------------------------- |
       | `priority`                        | `0..1`      | Optionally updates the priority                         |

@@ -47,7 +47,6 @@ description: |
 summary: A032 - Change shortlist and send for triage
 operationId: a032-change-shortlist-and-send-for-triage
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'

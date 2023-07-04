@@ -65,12 +65,12 @@ description: |
 summary: A028 - Record triage outcome
 operationId: a028-record-triage-outcome
 parameters:
-  - $ref: '../headers/request/ContentTypeFhirJson.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'
   - $ref: '../headers/request/OnBehalfOfUserID.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/IfMatch.yaml'
   - $ref: '../pathParameters/Ubrn.yaml'
 requestBody:
   required: true
@@ -106,6 +106,8 @@ responses:
     $ref: '../responses/NotAcceptable.yaml'
   '409':
     $ref: '../responses/Conflict.yaml'
+  '412':
+    $ref: '../responses/PreconditionFailed.yaml'
   '415':
     $ref: '../responses/UnsupportedMediaType.yaml'
   '422':

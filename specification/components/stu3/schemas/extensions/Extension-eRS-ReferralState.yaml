@@ -13,6 +13,7 @@ properties:
   extension:
     type: array
     description: |
+      
       | Field                                      | Cardinality | Notes                                                                            |
       | ------------------------------------------ | ----------- | -------------------------------------------------------------------------------- |
       | `state`                                    | `1..1`      | Outlines the current state of the `ReferralRequest`                              |

@@ -111,6 +111,15 @@
                                 "display": "Appointment Request"
                             }
                         ]
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BookableType",
+                                "code": "INDIRECTLY_BOOKABLE",
+                                "display": "Indirectly Bookable"
+                            }
+                        ]
                     }
                 ]
             },
@@ -161,9 +170,9 @@
                     {
                         "coding": [
                             {
-                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
-                                "code": "REVIEW",
-                                "display": "Triage Request"
+                                "system": "https://fhir.nhs.uk/CodeSystem/eRS-BookableType",
+                                "code": "DIRECTLY_BOOKABLE",
+                                "display": "Directly Bookable"
                             }
                         ]
                     }

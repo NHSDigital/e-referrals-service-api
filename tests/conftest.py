@@ -19,8 +19,6 @@ from pytest_nhsd_apim.apigee_apis import (
 
 from data import Actor
 
-__JWKS_RESOURCE_URL = "https://raw.githubusercontent.com/NHSDigital/identity-service-jwks/main/jwks/internal-dev/9baed6f4-1361-4a8e-8531-1f8426e3aba8.json"
-
 
 def get_env(variable_name: str) -> str:
     """Returns an environment variable"""
@@ -169,15 +167,16 @@ async def user_restricted_app(client, make_app, user_restricted_product, asid):
 
 @pytest.fixture
 def make_app(client):
-    async def _make_app(product, custom_attributes):
+    async def _make_app(product, custom_attributes={}):
         # Setup
         devAppAPI = DeveloperAppsAPI(client=client)
         app_name = f"apim-auto-{uuid4()}"
 
-        attributes = [{"name": "DisplayName", "value": app_name}]
+        attributes = [
+            {"name": key, "value": value} for key, value in custom_attributes.items()
+        ]
+        attributes.append({"name": "DisplayName", "value": app_name})
 
-        for key, value in custom_attributes.items():
-            attributes.append({"name": key, "value": value})
         body = {
             "apiProducts": [product],
             "attributes": attributes,

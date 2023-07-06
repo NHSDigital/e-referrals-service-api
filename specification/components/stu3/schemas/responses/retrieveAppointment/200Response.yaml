@@ -14,34 +14,34 @@ content:
       $ref: '../../eRS-Appointment.yaml'
     examples:
       booked-dbs:
-        summary: '`Appointment` booked to directly-bookable service'
+        summary: "`Appointment` booked to directly-bookable service"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/BookedDBS.json'
       booked-ibs:
-        summary: '`Appointment` booked to indirectly-bookable service'
+        summary: "`Appointment` booked to indirectly-bookable service"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/BookedIBS.json'
       deferred-to-provider:
-        summary: '`Appointment` deferred to service provider for booking'
+        summary: "`Appointment` deferred to service provider for booking"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/AppointmentDeferral.json'
       deferred-to-triage:
-        summary: '`Appointment` sent for triage'
+        summary: "`Appointment` sent for triage"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/TriageDeferral.json'
       triage-response:
-        summary: '`Appointment` triage response (Record Triage Outcome)'
+        summary: "`Appointment` triage response (Record Triage Outcome)"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/TriageResponse.json'
       cancel-appointment-action-later:
-        summary: '`Appointment` Cancel Appointment, Action Later'
+        summary: "`Appointment` Cancel Appointment, Action Later"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/CAAL.json'
       cancelled:
-        summary: '`Appointment` cancelled'
+        summary: "`Appointment` cancelled"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/Cancelled.json'
       converted-and-booked:
-        summary: '`Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service'
+        summary: "`Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service"
         value:
           $ref: '../../../examples/retrieveAppointment/responses/AandGConvertedToDBS.json'

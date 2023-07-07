@@ -1,0 +1,6 @@
+extends:
+  - recommended
+rules:
+  no-invalid-media-type-examples:
+    severity: off
+  info-license-url: off

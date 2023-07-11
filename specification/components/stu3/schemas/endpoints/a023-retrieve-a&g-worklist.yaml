@@ -54,7 +54,7 @@ requestBody:
       schema:
         $ref: '../eRS-FetchWorklist-Parameters.yaml'
       examples:
-        a&g-requests:
+        aAndg-requests:
           summary: Advice and guidance requests
           value:
             $ref: '../../examples/retrieveAdviceAndGuidanceWorklist/requests/MinimalAdviceAndGuidanceRequests.json'

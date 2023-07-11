@@ -3,16 +3,16 @@
   "version": "0.0.1",
   "description": "OAS (Swagger v3) API Definition for Template API",
   "scripts": {
-    "lint-oas": "node_modules/.bin/speccy lint -s openapi-tags -s operation-tags specification/e-referrals-service-api.yaml --skip default-and-example-are-redundant",
-    "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/e-referrals-service-api.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py | poetry run python scripts/populate_placeholders.py > build/e-referrals-service-api.json",
-    "serve": "node_modules/.bin/speccy serve build/e-referrals-service-api.json",
+    "lint-oas": "redocly lint specification/e-referrals-service-api.yaml",
+    "publish": "mkdir -p build && redocly bundle specification/e-referrals-service-api.yaml --dereferenced --remove-unused-components --ext json | poetry run python scripts/set_version.py | poetry run python scripts/populate_placeholders.py > build/e-referrals-service-api.json",
+    "serve": "redocly preview-docs -p 5000 build/e-referrals-service-api.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
   },
   "author": "NHS Digital",
   "license": "MIT",
   "homepage": "https://github.com/NHSDigital/e-referrals-service-api",
   "dependencies": {
-    "speccy": "^0.11.0"
+    "@redocly/cli": "^1.0.0-beta.130"
   },
   "devDependencies": {
     "apigeetool": "^0.16.1",

@@ -14,6 +14,6 @@ content:
       $ref: '../../eRS-ReferralRequest.yaml'
     examples:
       withClinicalInformation:
-        summary: '`ReferralRequest` with clinical information (2 files)'
+        summary: "`ReferralRequest` with clinical information (2 files)"
         value:
           $ref: '../../../examples/maintainReferralLetter/responses/ReferralRequestWithMultipleDocumentReferences.json'

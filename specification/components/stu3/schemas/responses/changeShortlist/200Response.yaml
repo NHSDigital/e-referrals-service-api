@@ -23,4 +23,9 @@ content:
           description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
           value:
             $ref: '../../../examples/changeShortlist/responses/UnbookedReferralMultipleServices.json'
+      unbookedReferralRequestMixedShortlist:
+        summary: Unbooked ReferralRequest with Mixed Services
+        description: Changing the shortlist of an unbooked `ReferralRequest` (bookable and triage service shortlist)
+        value:
+          $ref: '../../../examples/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
 

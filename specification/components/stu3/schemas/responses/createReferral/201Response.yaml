@@ -21,3 +21,7 @@ content:
         summary: Example with twenty services
         value:
           $ref: '../../../examples/createReferral/responses/ReferralRequestTwentyServices.json'
+      referral-request-mixed-shortlist:
+        summary: Example with a shortlist containing bookable and triage services
+        value:
+          $ref: '../../../examples/createReferral/responses/ReferralRequestMixedShortlist.json'

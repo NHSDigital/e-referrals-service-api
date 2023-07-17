@@ -42,7 +42,8 @@ module.exports = {
 
     var responseMapForRC = {
       'src/mocks/stu3/createReferral/requests/MinimalRequest.json': 'stu3/createReferral/responses/ReferralRequest.json',
-      'src/mocks/stu3/createReferral/requests/RequestTwentyServices.json': 'stu3/createReferral/responses/ReferralRequestTwentyServices.json'
+      'src/mocks/stu3/createReferral/requests/RequestTwentyServices.json': 'stu3/createReferral/responses/ReferralRequestTwentyServices.json',
+      'src/mocks/stu3/createReferral/requests/RequestMixedShortlist.json': 'stu3/createReferral/responses/ReferralRequestMixedShortlist.json'
     };
 
     var responseMapForRCA = {
@@ -460,7 +461,8 @@ module.exports = {
   getExampleResponseForChangeShortlist: function (request) {
     var responseMap = {
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferral.json': 'stu3/changeShortlist/responses/UnbookedReferral.json',
-      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json'
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json',
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
     }
 
     return mapExampleResponse(request, responseMap)

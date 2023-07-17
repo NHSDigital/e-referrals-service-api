@@ -42,7 +42,8 @@ module.exports = {
 
     var responseMapForRC = {
       'src/mocks/stu3/createReferral/requests/MinimalRequest.json': 'stu3/createReferral/responses/ReferralRequest.json',
-      'src/mocks/stu3/createReferral/requests/RequestTwentyServices.json': 'stu3/createReferral/responses/ReferralRequestTwentyServices.json'
+      'src/mocks/stu3/createReferral/requests/RequestTwentyServices.json': 'stu3/createReferral/responses/ReferralRequestTwentyServices.json',
+      'src/mocks/stu3/createReferral/requests/RequestMixedShortlist.json': 'stu3/createReferral/responses/ReferralRequestMixedShortlist.json'
     };
 
     var responseMapForRCA = {

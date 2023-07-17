@@ -68,7 +68,7 @@ requestBody:
           value:
             $ref: '../../examples/createReferral/requests/RequestTwentyServices.json'
         rc-request-body-mixed-shortlist:
-          summary: Referring Clinician - request body using multi-service shortlist
+          summary: Referring Clinician - request body using mixed service shortlist
           value:
             $ref: '../../examples/createReferral/requests/RequestMixedShortlist.json'
         create-referral-parameters-twenty-services:

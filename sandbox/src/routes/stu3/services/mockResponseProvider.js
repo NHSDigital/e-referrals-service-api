@@ -461,7 +461,8 @@ module.exports = {
   getExampleResponseForChangeShortlist: function (request) {
     var responseMap = {
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferral.json': 'stu3/changeShortlist/responses/UnbookedReferral.json',
-      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json'
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json',
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
     }
 
     return mapExampleResponse(request, responseMap)

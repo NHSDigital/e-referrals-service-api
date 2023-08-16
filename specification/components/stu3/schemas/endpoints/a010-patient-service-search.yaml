@@ -24,7 +24,7 @@ description: |
   ## Related endpoints
   Once you have identified appropriate services for the patient you can either:
     - create a referral by choosing a shortlist of bookable services using [[HYPERLINK_A011]], or
-    - refer the patient directly to a triage service using [[HYPERLINK_A021]]
+    - refer the patient to a triage service using [[HYPERLINK_A011]] to create the referral and then send the referral to a triage service by using [[HYPERLINK_A016]]
 summary: A010 - Patient service search
 operationId: a010-patient-service-search
 parameters:

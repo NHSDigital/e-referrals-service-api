@@ -238,6 +238,7 @@ module.exports = {
     var responseMap = {
       'src/mocks/stu3/bookOrDeferAppointment/requests/MinimalBooking.json': 'stu3/bookOrDeferAppointment/responses/MinimalBooking.json',
       'src/mocks/stu3/bookOrDeferAppointment/requests/MinimalDeferral.json': 'stu3/bookOrDeferAppointment/responses/MinimalDeferral.json',
+      'src/mocks/stu3/bookOrDeferAppointment/requests/TriageDeferral.json': 'stu3/bookOrDeferAppointment/responses/TriageDeferral.json',
       'src/mocks/stu3/bookOrDeferAppointment/requests/BookingWithNamedClinician.json': 'stu3/bookOrDeferAppointment/responses/BookingWithNamedClinician.json',
       'src/mocks/stu3/bookOrDeferAppointment/requests/DeferralWithSlotReference.json': 'stu3/bookOrDeferAppointment/responses/DeferralWithSlotReference.json',
       'src/mocks/stu3/bookOrDeferAppointment/requests/DeferralBookingAttemptProblem.json': 'stu3/bookOrDeferAppointment/responses/DeferralBookingAttemptProblem.json'

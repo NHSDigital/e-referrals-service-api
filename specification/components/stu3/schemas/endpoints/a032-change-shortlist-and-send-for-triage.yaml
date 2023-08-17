@@ -3,7 +3,7 @@ security:
   - bearerAuth: []
 description: |
   ## Overview
-  This endpoint has now been deprecated please use [[HYPERLINK_A032]] instead. 
+  **This endpoint has now been deprecated please use [[HYPERLINK_A031]] instead.**
   
   Use this endpoint to change the shortlist to a single triage service and refer the patient directly to that triage service.
 

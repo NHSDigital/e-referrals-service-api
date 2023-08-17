@@ -3,7 +3,7 @@ security:
   - bearerAuth: []
 description: |
   ## Overview
-  This endpoint has now been deprecated please use [[HYPERLINK_A011]] instead.
+  **This endpoint has now been deprecated please use [[HYPERLINK_A011]] instead.**
   
   Use this endpoint to refer the patient directly to a triage service.
 

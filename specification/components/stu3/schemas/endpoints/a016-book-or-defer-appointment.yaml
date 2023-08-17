@@ -14,7 +14,7 @@ description: |
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
 
-  You need to check if the service is directly bookable by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]].You can then offer the appropriate actions to authenticated users, i.e. the ability to book an appointment into a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, refer a patient into a triage service.
+  You need to check if the service is directly bookable, indirectly bookable, or triage by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]].You can then offer the appropriate actions to authenticated users, i.e. the ability to book an appointment into a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, refer a patient into a triage service.
   
   If the service is directly bookable, you need to retrieve available appointment slots for the service using [[HYPERLINK_A015]].
 
@@ -30,9 +30,9 @@ description: |
   ## Use case
   As an authenticated user
 
-  I need to either:
+  I need to ba able to:
     - Book an appointment to an available appointment slot for a a directly bookable service *or*
-    - Defer the booking responsibility to a directly bookable service if no appointment slot is available
+    - Defer the booking responsibility to a directly bookable service if no appointment slot is available *or*
     - Refer the patient to a triage service
 
   So I can progress my patient's care at that service.

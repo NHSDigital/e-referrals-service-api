@@ -14,8 +14,8 @@ description: |
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
 
-  You need to check if the service is directly bookable by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]].  
-  You can then offer the appropriate actions to authenticated users, i.e. the ability to book an appointment into a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, refer a patient into a triage service.
+  You need to check if the service is directly bookable by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]].You can then offer the appropriate actions to authenticated users, i.e. the ability to book an appointment into a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, refer a patient into a triage service.
+  
   If the service is directly bookable, you need to retrieve available appointment slots for the service using [[HYPERLINK_A015]].
 
   You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint. 
@@ -31,8 +31,8 @@ description: |
   As an authenticated user
 
   I need to either:
-    - book an appointment to an available appointment slot for a service *or*
-    - defer booking responsibility for the service to the service provider if a booking is not possible
+    - Book an appointment to an available appointment slot for a a directly bookable service *or*
+    - Defer the booking responsibility to a directly bookable service if no appointment slot is available
     - Refer the patient to a triage service
 
   So I can progress my patient's care at that service.
@@ -41,7 +41,7 @@ description: |
   You can generate a letter for the patient, summarising the current state of their referral and any steps 
   the patient may need to follow using [[HYPERLINK_A019]].
 
-  You can calculate the date when the patient will need to be contacted (by the service) using reference data from [[HYPERLINK_A004]].
+  Where deferring the booking responsibility to a directly bookable service, or referring the patient into a triage service, you can calculate the date when the patient can expect to be contacted (by the receiving service) using reference data from [[HYPERLINK_A004]].
 
 summary: A016 - Book or defer appointment
 operationId: a016-book-or-defer-appointment

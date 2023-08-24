@@ -118,7 +118,7 @@ info:
     - by ‘Provider Organisations’ (currently)
     - for accessing endpoints [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) (currently)
 
-    For more information, please see [Network access](#api-description--network-access).
+    For more information, please see [[HYPERLINK_NETWORK_ACCESS]].
 
     ### Healthcare worker, user-restricted access
 
@@ -126,7 +126,7 @@ info:
     
     This access mode allows you to use [all endpoints](#api-endpoints) . A human user must be present and authenticated.
     
-    For more information, please see [Network access](#api-description--network-access).
+    For more information, please see [[HYPERLINK_NETWORK_ACCESS]].
 
     ### Roadmap
 

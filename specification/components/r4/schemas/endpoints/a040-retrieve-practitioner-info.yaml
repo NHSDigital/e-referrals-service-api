@@ -36,7 +36,7 @@
         - $ref: '../headers/request/BearerAuthorization.yaml'
         - $ref: '../headers/request/CorrelationID.yaml'
         - $ref: '../headers/request/OdsCode.yaml'
-        - $ref: '../headers/request/BusinessFunction.yaml'
+        - $ref: '../headers/request/BusinessFunctionOBO.yaml'
         - $ref: '../queryParameters/OboQuery.yaml'
       responses:
         '200':

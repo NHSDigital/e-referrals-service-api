@@ -57,7 +57,7 @@ summary: A041 - Search for service requests
 operationId: a041-search-service-request
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/BusinessFunctionOBO.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/OnBehalfOfUserID.yaml'

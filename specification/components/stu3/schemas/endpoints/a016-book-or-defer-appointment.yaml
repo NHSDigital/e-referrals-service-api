@@ -12,9 +12,7 @@ description: |
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
 
-  You need to check if the service is directly bookable by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]].  
-  You can only book/defer into shortlisted services that are directly bookable currently.  
-  Note: In the future it will be possible to use this endpoint to defer into a shortlisted triage service.
+  You need to check if the service is directly bookable by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]]. You can only book/defer into shortlisted services that are directly bookable currently. Note: In the future it will be possible to use this endpoint to defer into a shortlisted triage service.
 
   If the service is directly bookable, you need to retrieve available appointment slots for the service using [[HYPERLINK_A015]].
 

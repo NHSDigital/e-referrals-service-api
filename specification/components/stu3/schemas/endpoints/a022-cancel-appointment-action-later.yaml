@@ -50,7 +50,7 @@ operationId: a022-cancel-appointment-action-later
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/BusinessFunctionOBO.yaml'
   - $ref: '../headers/request/OnBehalfOfUserID.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
   - $ref: '../pathParameters/Ubrn.yaml'

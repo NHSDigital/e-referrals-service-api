@@ -97,9 +97,6 @@ def request_example_keys(endpoint, method):
     Returns list with keys for accessing request examples in oas dictionary
     """
     return [
-        "paths",
-        endpoint,
-        method,
         "requestBody",
         "content",
         "application/fhir+json",
@@ -165,8 +162,14 @@ def validate_request_examples():
     # Validate request examples
     for endpoint in endpoints_and_examples_request:
         for example_req_path in endpoints_and_examples_request[endpoint]:
-
-            abs_path = os.path.join(REPO_ROOT, "specification", example_req_path)
+            example_path = (
+                "components/r4/" if endpoint.startswith("/R4/") else "components/stu3/"
+            )
+            abs_path = os.path.join(
+                REPO_ROOT,
+                "specification",
+                example_req_path.replace("../../", example_path),
+            )
             with open(abs_path, "r") as example_file:
                 example_request = load(example_file)
 
@@ -204,8 +207,11 @@ def build_request_validation_data():
     endpoints_request_examples = {}
     for endpoint in all_endpoints_url:
         http_method = get_http_method(endpoint)
+        data = oas_spec_map.get(
+            oas_spec_from_yaml["paths"][endpoint][http_method]["$ref"]
+        )
         example_keys = request_example_keys(endpoint, http_method)
-        path_examples = get_path_examples(example_keys)
+        path_examples = get_path_examples(example_keys, data)
         endpoints_request_examples[endpoint] = path_examples
     return endpoints_request_examples
 
@@ -224,7 +230,6 @@ def validate_response_examples():
     # Validate response for each endpoint
     for endpoint_dict in endpoints_and_examples_response:
         for example_res_path in endpoint_dict["examples"]:
-
             # Process response example file path
             args = list(filter(lambda x: x != "..", example_res_path.split("/")))
 
@@ -302,7 +307,6 @@ def build_response_validation_data():
     """
     endpoints_response_examples = []
     for endpoint in all_endpoints_url:
-
         http_method = get_http_method(endpoint)
         success_code = get_success_code(endpoint, http_method)
         response_spec_path = get_response_path(endpoint, http_method, success_code)

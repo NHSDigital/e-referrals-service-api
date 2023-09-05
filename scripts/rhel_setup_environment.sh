@@ -24,7 +24,7 @@ BASHSTAMP="# APIM_DEV-VM"
 #Adding pyenv configuration to .bash_profile
 echo "Adding pyenv configuration to .bash_profile ..."
 if ! grep -Fxq "$BASHSTAMP" $HOME/.bash_profile ; then
-cat <<EOF >> $HOME/.bash_profile 
+cat <<EOF >> $HOME/.bash_profile
 
 $BASHSTAMP
 if ! grep -Fxq "$BASHSTAMP" $HOME/.bashrc ; then
@@ -82,7 +82,7 @@ fi
 echo "Installing python 3.8.12 with pyenv ..."
 if pyenv versions | grep -Fq "3.8.12" ; then
     echo "Pyenv has already got Python 3.8.12 installed."
-else 
+else
     if pyenv install 3.8.12 ; then
         echo "Pyenv installed Python 3.8.12 successfully."
     else
@@ -96,7 +96,7 @@ fi
 echo "Creating Apigee environment with Python 3.8.12 ..."
 if pyenv versions | grep -q ".*apigee" ; then
     echo "A Python virtualenv named 'apigee' already exists."
-else 
+else
     if pyenv virtualenv 3.8.12 apigee ; then
         echo "A Python 3.8.12 virtualenv named 'apigee' was created."
     else
@@ -140,7 +140,7 @@ fi
 echo "Installing poetry ..."
 if poetry -V 2> /dev/null ; then
     echo "Poetry is already installed on apigee environment."
-else 
+else
     if pip install poetry==1.5.1 ; then
         echo "Poetry was installed on apigee environment."
     else

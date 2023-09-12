@@ -141,7 +141,7 @@ echo "Installing poetry ..."
 if poetry -V 2> /dev/null ; then
     echo "Poetry is already installed on apigee environment."
 else 
-    if pip install poetry ; then
+    if pip install poetry==1.5.1 ; then
         echo "Poetry was installed on apigee environment."
     else
         echo "Poetry was NOT installed on apigee environment."

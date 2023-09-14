@@ -79,4 +79,15 @@ clean-environment:
 		echo "Environment not Mac or RHEL"; \
 	fi
 
-.PHONY: setup-environment clean-environment sandbox
+start-container:
+	@echo "Attempting to start build container.."
+	$(MAKE) -C docker/build-container run sourceRoot=${PWD}
+
+install-container:
+	@echo "Installing dependencies within build container..."
+	$(MAKE) -C docker/build-container install
+
+bash:
+	$(MAKE) -C docker/build-container bash
+	
+.PHONY: setup-environment clean-environment sandbox start-container install-container bash

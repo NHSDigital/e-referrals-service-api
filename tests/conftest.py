@@ -1,5 +1,6 @@
 import os
 import pytest
+import pytest_asyncio
 
 from uuid import uuid4
 
@@ -101,7 +102,7 @@ def client():
     return ApigeeClient(config=config)
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def user_restricted_product(client, make_product):
     # Setup
     productName = await make_product(
@@ -150,7 +151,7 @@ def make_product(client, environment, service_name):
     return _make_product
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def user_restricted_app(client, make_app, user_restricted_product, asid):
     # Setup
     app = await make_app(user_restricted_product, {"asid": asid})
@@ -221,7 +222,7 @@ def authenticate_user(client, user_restricted_app, environment, oauth_url):
     return _auth
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def app_restricted_product(client, make_product):
     # Setup
     productName = await make_product(
@@ -237,7 +238,7 @@ async def app_restricted_product(client, make_product):
     product.delete_product_by_name(product_name=productName)
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def app_restricted_app(
     client,
     jwt_public_key_url,
@@ -269,7 +270,7 @@ async def app_restricted_app(
 
 
 @pytest.fixture
-async def app_restricted_access_code(
+def app_restricted_access_code(
     client, app_restricted_app, jwt_private_key_pem, environment, oauth_url
 ):
     credentials = app_restricted_app["credentials"][0]

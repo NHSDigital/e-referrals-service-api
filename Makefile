@@ -1,41 +1,25 @@
 SHELL=/bin/bash -euo pipefail
 
-install: install-node install-poetry install-hooks
-
-install-poetry:
-	poetry install
-
-install-node:
-	npm install
-	cd sandbox && npm install
+install: start-container install-hooks
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
 	chmod u+x .git/hooks/pre-commit
 
 lint: copy-examples
-	npm run lint-oas
-	cd sandbox && make lint
-	poetry run python scripts/xml_validator.py
-	poetry run flake8 **/*.py
-	@printf "\nLinting passed.\n\n"
+	$(MAKE) -C docker/build-container lint
 
 clean:
-	rm -rf build
-	rm -rf dist
-	rm -rf specification/components/r4/examples
-	rm -rf specification/components/stu3/examples
+	$(MAKE) -C docker/build-container clean
 
 publish: clean copy-examples
-	mkdir -p build
-	npm run publish 2> /dev/null
-	poetry run python scripts/validate_oas_examples.py
+	$(MAKE) -C docker/build-container publish
 
 copy-examples:
-	scripts/copy_examples_from_sandbox.sh
+	$(MAKE) -C docker/build-container copy-examples
 
 serve:
-	npm run serve
+	$(MAKE) -C docker/build-container serve
 
 check-licenses:
 	npm run check-licenses
@@ -82,12 +66,20 @@ clean-environment:
 start-container:
 	@echo "Attempting to start build container.."
 	$(MAKE) -C docker/build-container run sourceRoot=${PWD}
+	$(MAKE) -C docker/build-container install
+
 
 install-container:
 	@echo "Installing dependencies within build container..."
 	$(MAKE) -C docker/build-container install
 
+remove-container:
+	$(MAKE) -C docker/build-container clear
+
 bash:
 	$(MAKE) -C docker/build-container bash
-	
-.PHONY: setup-environment clean-environment sandbox start-container install-container bash
+
+python:
+	$(MAKE) -C docker/build-container python
+
+.PHONY: setup-environment clean-environment sandbox start-container install-container bash python

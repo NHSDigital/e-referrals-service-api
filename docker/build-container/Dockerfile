@@ -19,6 +19,9 @@ RUN pip install -r ./resources/requirements.txt
 
 WORKDIR /usr/local/ers/referrals
 
+# Expose port used by redocly for documentation preview.
+EXPOSE 5000
+
 # As the git repository is being added by a bind mount need to add this configuration so that git will trust the repository within the container.
 RUN git config --global --add safe.directory /usr/local/ers/referrals
 

@@ -20,7 +20,9 @@ run: build
 #	Remove the container locally if it already exists, otherwise continue.
 	@docker container rm ${containerName} || true
 #	Start the container, binding the local git repository to support builds and githook functionality.
-	@docker run -d -v ${sourceRoot}:/usr/local/ers/referrals --name ${containerName} ${imageName}
+	@docker run -d -v ${sourceRoot}:/usr/local/ers/referrals \
+		-p 127.0.0.1:9001:9001 \
+		--name ${containerName} ${imageName}
 	@echo "Container up and running."
 
 .PHONY: clear

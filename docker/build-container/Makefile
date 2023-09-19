@@ -3,6 +3,14 @@ SHELL=/bin/bash -euo pipefail
 containerName := ers-apim-referrals-build
 imageName := ers-apim-referrals-build-image
 
+#	Add additional docker args as required.
+ifdef ${environment}
+	dockerArgs := ${dockerArgs} -e ENVIRONMENT=${environment}
+endif
+ifdef ${serviceBasePath}
+	dockerArgs := ${dockerArgs} -e SERVICE_BASE_PATH=${serviceBasePath}
+endif
+
 .PHONY: build
 build:
 	@echo "Building container: ${containerName}"
@@ -18,7 +26,8 @@ run: build
 #	Start the container, binding the local git repository to support builds and githook functionality.
 	@docker run -d -v ${sourceRoot}:/usr/local/ers/referrals \
 		-p 127.0.0.1:9001:9001 \
-		--name ${containerName} ${imageName}
+		--network=${network} \
+		${dockerArgs} --name ${containerName} ${imageName}
 	@echo "Container up and running."
 
 .PHONY: clear
@@ -29,6 +38,8 @@ clear:
 #	Remove the container locally if it already exists, otherwise continue.
 	@docker container rm ${containerName} || true
 	@echo "Container removed."
+	@echo "Removing image..."
+	@docker rmi ${imageName} || true
 	
 .PHONY: bash
 bash:

@@ -1,6 +1,7 @@
 SHELL=/bin/bash -euo pipefail
 
 containerName := ers-apim-referrals-build
+networkName := ers-apim-referrals-network
 
 # Detect if we should be running commands within the container by looking to see if the container is running locally.
 USING_CONTAINER := $(shell docker container inspect -f '{{.State.Running}}' $(containerName))
@@ -127,8 +128,8 @@ release: clean publish build-proxy
 	cp poetry.lock dist/poetry.lock
 	cp -R macros dist
 
-sandbox: publish
-	$(MAKE) -C sandbox/ build run
+sandbox: create-docker-network publish
+	$(MAKE) -C sandbox/ build run network=${networkName}
 
 setup-environment:
 	@if [ -e /usr/bin/yum ]; then \
@@ -148,12 +149,24 @@ clean-environment:
 		echo "Environment not Mac or RHEL"; \
 	fi
 
-start-container:
+create-docker-network:
+	@echo "Starting docker network ${networkName}...."
+	@docker network create -d bridge ${networkName} || true
+	@echo "${networkName} started."
+
+start-container: create-docker-network
 	@echo "Attempting to start build container.."
-	$(MAKE) -C docker/build-container run sourceRoot=${PWD}
+	$(MAKE) -C docker/build-container run sourceRoot=${PWD} network=${networkName}
+#	As USING_CONTAINER is computed when the make file is initially executed where the container won't have been running we need to 
+#	run these make targets setting USING_CONTAINER to true for these targets to execute properly.
 	make USING_CONTAINER=true install-poetry install-npm
 
 remove-container:
 	$(MAKE) -C docker/build-container clear
 
-.PHONY: setup-environment clean-environment sandbox start-container remove-container stop-container bash python
+remove-docker-network:
+	@echo "Removing docker network ${networkName}..."
+	@docker network rm ${networkName}
+	@echo "${networkName} removed."
+
+.PHONY: setup-environment clean-environment sandbox start-container remove-container stop-container bash python create-docker-network

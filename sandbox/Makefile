@@ -1,20 +1,29 @@
 SHELL=/bin/bash -euo pipefail
 
+containerName := e-referrals-service-api-sandbox
+imageName := e-referrals-service-api-sandbox
+
 .PHONY: install lint build run clean
 
 install:
-	 npm install
+	@npm install
 
 lint:
-	npm run lint-js
+	@npm run lint-js
 
 build:
-	docker build -t e-referrals-service-api-sandbox .
+	@docker build -t ${imageName} .
 
 run:
-	docker run -p 9000:9000 e-referrals-service-api-sandbox:latest
-
+# 	Attempt to kill the container if it is currently running, otherwise continue.
+	@docker kill ${containerName} || true 
+#	Remove the container locally if it already exists, otherwise continue.
+	@docker container rm ${containerName} || true
+	@docker run -d --network=${network} -p 9000:9000 --name ${containerName} ${imageName}
 clean:
-	docker stop $$(docker ps -a | awk '$$2 ~ /e-referrals-service-api-sandbox/ {print $$1}') || /bin/true
-	docker rm $$(docker ps -a | awk '$$2 ~ /e-referrals-service-api-sandbox/ {print $$1}') || /bin/true
-	docker rmi e-referrals-service-api-sandbox || /bin/true
+# 	Attempt to kill the container if it is currently running, otherwise continue.
+	@docker kill ${containerName} || true 
+#	Remove the container locally if it already exists, otherwise continue.
+	@docker container rm ${containerName} || true
+#	Remove the image if it exists, otherwise continue.
+	@docker rmi ${imageName} || true

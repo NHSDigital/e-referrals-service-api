@@ -13,7 +13,11 @@ from utils import HttpMethod
 @pytest.fixture(scope="session")
 def sandbox_url(environment, service_url) -> str:
     """Provides an overload for the standard service_url fixture to support running the sandbox against a local deployment"""
-    return "http://127.0.0.1:9000" if environment == "local" else service_url
+    return (
+        "http://e-referrals-service-api-sandbox:9000"
+        if environment == "local"
+        else service_url
+    )
 
 
 @pytest.fixture(scope="session")

@@ -93,7 +93,11 @@ class SandboxTest:
         correlation_id = "test"
         default_headers.update({RenamedHeader.CORRELATION_ID.original: correlation_id})
 
-        response = call_endpoint(authorised_actors[0], headers=default_headers,)
+        response = call_endpoint(
+            authorised_actors[0],
+            headers=default_headers,
+        )
+
         with check:
             assert (
                 response.headers[RenamedHeader.CORRELATION_ID.original]
@@ -103,6 +107,9 @@ class SandboxTest:
                 f"Actual Correlation ID = {response.headers[RenamedHeader.CORRELATION_ID.original]}\n"
                 f"Expected Correlation ID = {correlation_id}"
             )
+            assert (
+                response.status_code // 100 == 2
+            ), f"Unsuccessful response returned. {response.status_code}"
 
     @pytest.fixture
     def call_endpoint_url_with_request(
@@ -144,7 +151,10 @@ class SandboxTest:
         http_method: HttpMethod,
     ) -> Callable[[Actor, Dict[str, str], Dict[str, str]], Response]:
         return lambda actor, params, headers={}: send_rest_request(
-            http_method, endpoint_url.format(**params), actor, headers=headers,
+            http_method,
+            endpoint_url.format(**params),
+            actor,
+            headers=headers,
         )
 
     @pytest.fixture
@@ -156,5 +166,9 @@ class SandboxTest:
         http_method: HttpMethod,
     ) -> Callable[[Actor, Dict[str, str]], Response]:
         return lambda actor, queryParams={}, headers={}: send_rest_request(
-            http_method, endpoint_url, actor, headers=headers, params=queryParams,
+            http_method,
+            endpoint_url,
+            actor,
+            headers=headers,
+            params=queryParams,
         )

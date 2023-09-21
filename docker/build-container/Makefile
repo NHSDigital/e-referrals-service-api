@@ -35,7 +35,7 @@ clear:
 	@echo "Clearing down and removing build container. container: ${containerName}"
 # 	Attempt to kill the container if it is currently running, otherwise continue.
 	@docker kill ${containerName} || true 
-#	Remove the container locally if it already exists, otherwise continue.
+#	Remove the container locally if it exists, otherwise continue.
 	@docker container rm ${containerName} || true
 	@echo "Container removed."
 	@echo "Removing image..."

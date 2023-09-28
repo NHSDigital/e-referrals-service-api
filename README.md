@@ -14,6 +14,12 @@ Consumers of the API will find developer documentation on the [NHS Digital Devel
 ## Contributing
 Contributions to this project are welcome from anyone, providing that they conform to the [guidelines for contribution](https://github.com/NHSDigital/e-referrals-service-api/blob/master/CONTRIBUTING.md) and the [community code of conduct](https://github.com/NHSDigital/e-referrals-service-api/blob/master/CODE_OF_CONDUCT.md).
 
+New branches and pull requests should always be created from the **develop** branch.
+
+All Pull Requests **must** be approved and merged only by one of the members of the [e-RS team](https://github.com/orgs/NHSDigital/teams/e-referrals).
+
+Merging to the **master** branch is part of our release process and should only ever be done by one of the members of the [e-RS team](https://github.com/orgs/NHSDigital/teams/e-referrals).
+
 ### Licensing
 This code is dual licensed under the MIT license and the OGL (Open Government License). Any new work added to this repository must conform to the conditions of these licenses. In particular this means that this project may not depend on GPL-licensed or AGPL-licensed libraries, as these would violate the terms of those libraries' licenses.
 
@@ -78,11 +84,11 @@ Each API and team is unique. We encourage you to use a `test/` folder in the roo
 
  * [**openapi-yaml-mode**](https://github.com/esc-emacs/openapi-yaml-mode) provides syntax highlighting, completion, and path help
 
-### Speccy
+### Redocly CLI
 
-> [Speccy](http://speccy.io/) *A handy toolkit for OpenAPI, with a linter to enforce quality rules, documentation rendering, and resolution.*
+> [Redocly CLI](https://redocly.com/redocly-cli) *Bring versatile OpenAPI validation, linting & bundling to your command line (and VS Code!) with this open-source Swiss knife.*
 
-Speccy does the lifting for the following npm scripts:
+Redocly CLI does the lifting for the following npm scripts:
 
  * `test` -- Lints the definition
  * `publish` -- Outputs the specification as a **single file** into the `build/` directory

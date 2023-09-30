@@ -15,7 +15,6 @@ _generic_headers = {
     "connection": "keep-alive",
     "transfer-encoding": "chunked",
     "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
-    "strict-transport-security": "max-age=864000; includeSubDomains",
 }
 
 _generic_file_headers = {
@@ -26,7 +25,6 @@ _generic_file_headers = {
     "accept-ranges": "bytes",
     "connection": "keep-alive",
     "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
-    "strict-transport-security": "max-age=864000; includeSubDomains",
 }
 
 _generic_upload_headers = {
@@ -37,7 +35,6 @@ _generic_upload_headers = {
     "connection": "keep-alive",
     "content-length": "0",
     "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
-    "strict-transport-security": "max-age=864000; includeSubDomains",
 }
 
 # Headers which should be ignored from validation. This should only be used when the value of a header cannot be accurately be predicted.
@@ -45,7 +42,7 @@ _generic_upload_headers = {
 _ignored_headers = ["Date", "last-modified"]
 
 # Headers which should be excluded from validation entirely.
-_excluded_headers = ["Keep-Alive"]
+_excluded_headers = ["Keep-Alive", "Strict-Transport-Security"]
 
 _HEADER_REQUEST_ID = "x-request-id"
 _HEADER_ERS_TRANSACTION_ID = "X_ERS_TRANSACTION_ID"
@@ -100,7 +97,12 @@ def assert_headers(
     """
 
     actual_headers = _lower_keys(
-        dict(filter(_filter_header, response.headers.items(),))
+        dict(
+            filter(
+                _filter_header,
+                response.headers.items(),
+            )
+        )
     )
 
     expected_headers = dict(generic_headers)
@@ -151,7 +153,12 @@ def assert_upload_response_headers(
     """
 
     actual_headers = _lower_keys(
-        dict(filter(_filter_header, response.headers.items(),))
+        dict(
+            filter(
+                _filter_header,
+                response.headers.items(),
+            )
+        )
     )
 
     expected_headers = dict(_generic_upload_headers)

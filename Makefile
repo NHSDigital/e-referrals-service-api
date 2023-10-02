@@ -1,17 +1,79 @@
 SHELL=/bin/bash -euo pipefail
 
-install: install-node install-poetry install-hooks
+containerName := ers-apim-referrals-build
+networkName := ers-apim-referrals-network
+
+# Detect if we should be running commands within the container by looking to see if the container is running locally.
+USING_CONTAINER := $(shell docker container inspect -f '{{.State.Running}}' $(containerName))
+# Whether or not docker commands should be executed with an interactive shell. Can be overridden by supplying INTERACTIVE_SHELL=false when running commands.
+INTERACTIVE_SHELL := true
+
+# Manage working within container and outside the container.
+ifeq ($(USING_CONTAINER),true)
+
+# Either run commands interactively or not depending on INTERACTIVE_SHELL (defaults to true).
+ifeq ($(INTERACTIVE_SHELL),true)
+
+define dexec
+	@docker exec -it $(containerName) sh -c "$1"
+endef
+
+else
+
+define dexec
+	@docker exec $(containerName) $1
+endef
+
+endif
+
+# Routes targets to the container where they can be exected as normal.
+define dmake
+	@echo "Running $1 within container..."
+	$(call dexec,make $1)
+	@echo "$1 completed successfully within container."
+endef
+
+install-poetry:
+	$(call dmake,install-poetry)
+
+install-npm:
+	$(call dmake,install-npm)
+
+lint:
+	$(call dmake,lint)
+
+format-changes:
+	$(call dmake,format-changes)
+
+clean:
+	$(call dmake,clean)
+
+publish:
+	$(call dmake,publish)
+
+copy-examples:
+	$(call dmake,copy-examples)
+
+serve:
+	$(call dmake,serve)
+
+bash:
+	$(MAKE) -C docker/build-container bash
+
+stop-container:
+	$(MAKE) -C docker/build-container stop
+
+python: install-poetry ##D Opens a python interpreter within Poetry's virtual environment.
+	$(MAKE) -C docker/build-container python
+
+else
 
 install-poetry:
 	poetry install
 
-install-node:
+install-npm:
 	npm install
 	cd sandbox && npm install
-
-install-hooks:
-	cp scripts/pre-commit .git/hooks/pre-commit
-	chmod u+x .git/hooks/pre-commit
 
 lint: copy-examples
 	npm run lint-oas
@@ -19,6 +81,9 @@ lint: copy-examples
 	poetry run python scripts/xml_validator.py
 	poetry run flake8 **/*.py
 	@printf "\nLinting passed.\n\n"
+
+format-changes:
+	scripts/format_changes.sh
 
 clean:
 	rm -rf build
@@ -34,15 +99,20 @@ publish: clean copy-examples
 copy-examples:
 	scripts/copy_examples_from_sandbox.sh
 
-serve:
+serve: publish
 	npm run serve
+
+endif
+
+install: install-poetry install-npm install-hooks
+
+install-hooks:
+	cp scripts/pre-commit .git/hooks/pre-commit
+	chmod u+x .git/hooks/pre-commit
 
 check-licenses:
 	npm run check-licenses
 	scripts/check_python_licenses.sh
-
-sandbox: publish
-	$(MAKE) -C sandbox/ build run
 
 build-proxy:
 	scripts/build_proxy.sh
@@ -58,8 +128,8 @@ release: clean publish build-proxy
 	cp poetry.lock dist/poetry.lock
 	cp -R macros dist
 
-test:
-	echo "TODO: add tests"
+sandbox: create-docker-network publish
+	$(MAKE) -C sandbox/ build run network=${networkName}
 
 setup-environment:
 	@if [ -e /usr/bin/yum ]; then \
@@ -79,4 +149,24 @@ clean-environment:
 		echo "Environment not Mac or RHEL"; \
 	fi
 
-.PHONY: setup-environment clean-environment sandbox
+create-docker-network:
+	@echo "Starting docker network ${networkName}...."
+	@docker network create -d bridge ${networkName} || true
+	@echo "${networkName} started."
+
+start-container: create-docker-network
+	@echo "Attempting to start build container.."
+	$(MAKE) -C docker/build-container run sourceRoot=${PWD} network=${networkName}
+#	As USING_CONTAINER is computed when the make file is initially executed where the container won't have been running we need to 
+#	run these make targets setting USING_CONTAINER to true for these targets to execute properly.
+	make USING_CONTAINER=true install-poetry install-npm
+
+remove-container:
+	$(MAKE) -C docker/build-container clear
+
+remove-docker-network:
+	@echo "Removing docker network ${networkName}..."
+	@docker network rm ${networkName}
+	@echo "${networkName} removed."
+
+.PHONY: setup-environment clean-environment sandbox start-container remove-container stop-container bash python create-docker-network

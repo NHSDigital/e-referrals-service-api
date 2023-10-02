@@ -90,7 +90,9 @@ class TestGetReferralWorklist(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "stu3/cancelReferral/requests/ReferrerCancellation.json", headers,
+            actor,
+            "stu3/retrieveWorklist/requests/MinimalReferralsForReview.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)

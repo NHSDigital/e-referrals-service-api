@@ -1113,13 +1113,13 @@ testing = ["coverage (>=6.2)", "flaky (>=3.5.0)", "hypothesis (>=5.7.1)", "mypy 
 
 [[package]]
 name = "pytest-check"
-version = "2.2.1"
+version = "2.2.2"
 description = "A pytest plugin that allows multiple failures per test."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pytest_check-2.2.1-py3-none-any.whl", hash = "sha256:1cb9688d0ce3919dc9818fe287dd17e36daefb0d13e4e67702f536c5920101ee"},
-    {file = "pytest_check-2.2.1.tar.gz", hash = "sha256:deb37f881dfa0d5e246f2996238aef745a7900d7b3523a741605772b8a2c4952"},
+    {file = "pytest_check-2.2.2-py3-none-any.whl", hash = "sha256:c51dd795e3a054734f6f779c5a3691985bd455007f9643eff0c2e743aff36552"},
+    {file = "pytest_check-2.2.2.tar.gz", hash = "sha256:7ae7e99e90f127d3d02d29c02a8b2d95b5a87db3d30dccd169e9fd66c44fdbe8"},
 ]
 
 [package.dependencies]
@@ -1380,4 +1380,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "dedf897438bb9ad46e50a9c7c584a0bfa5968ea5f3c1c71f9f3dd744b7096ada"
+content-hash = "32ef8a759cfd0f35a66205c01cb9f9313c95c36d49ef0055f92450e00772b144"

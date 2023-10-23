@@ -1,1 +1,6 @@
-description: Locked - resource is locked
+description: |
+  The NHS e-Referral Service (e-RS) implements pessimistic locking functionality in order to prevent multiple users/systems attempting to update the same resource at the same time.
+
+  The e-RS API automatically acquires the lock on the behalf of the caller, within the scope of the request. When an endpoint call is received to update a resource, that resource will be locked for the duration of the request.
+
+  API callers should not attempt to make simultaneous requests to update the same resource. Any attempt to do so will result in a 423 (Locked) response. If a 423 response is received, then another system/user may be in the process of updating the resource. It will be necessary to fetch the resource again and re-try the request at a later time.

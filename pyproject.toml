@@ -15,7 +15,6 @@ authors = [
 readme = 'README.md'
 
 repository = "https://github.com/NHSDigital/e-referrals-service-api"
-homepage = ""
 
 keywords = ["healthcare", "uk", "nhs"] #TODO add additional keywords
 

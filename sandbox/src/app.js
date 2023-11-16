@@ -5,12 +5,15 @@ const process = require('process')
 const routes = require('./routes')
 
 const addCommonHeaders = function (request, response) {
-  if (response.headers) {
-    if (request.headers["x-correlation-id"]) {
-      response.headers["X-Correlation-ID"] = request.headers["x-correlation-id"]
-    }
-    response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
+  // if a response doesn't include any headers provide an empty object to allow for the common headers to be appended.
+  if (!response.headers) {
+    response.headers = {}
   }
+
+  if (request.headers["x-correlation-id"]) {
+    response.headers["X-Correlation-ID"] = request.headers["x-correlation-id"]
+  }
+  response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
 }
 
 const preResponse = function (request, h) {

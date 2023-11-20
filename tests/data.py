@@ -29,6 +29,13 @@ class Actor(Enum):
             return None
         return self.value[3]
 
+    def is_referrer(self):
+        return self.business_function in [
+            "REFERRING_CLINICIAN",
+            "REFERRING_CLINICIAN_ADMIN",
+            "REFERRING_ADMIN",
+        ]
+
 
 class RenamedHeader(Enum):
     CORRELATION_ID = ("x-correlation-id", "nhsd-correlation-id")

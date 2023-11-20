@@ -64,19 +64,27 @@ test:
 setup-environment:
 	@if [ -e /usr/bin/yum ]; then \
 		scripts/rhel_setup_environment.sh; \
+	elif [ -e /opt/homebrew/bin/brew ]; then \
+		scripts/macos_setup_environment.sh; \
 	elif [ -e /usr/local/bin/brew ]; then \
-		echo "TODO is Mac"; \
+		echo "Intel based Macs are not currently supported."; \
+	elif [ -e /usr/bin/apt ]; then \
+		scripts/ubuntu_setup_environment.sh; \
 	else \
-		echo "Environment not Mac or RHEL"; \
+		echo "Environment not Mac or RHEL or Ubuntu"; \
 	fi
 
 clean-environment:
 	@if [ -e /usr/bin/yum ]; then \
 		scripts/rhel_clean_environment.sh; \
+	elif [ -e /opt/homebrew/bin/brew ]; then \
+		scripts/macos_clean_environment.sh; \
 	elif [ -e /usr/local/bin/brew ]; then \
-		echo "TODO is Mac"; \
+		echo "Intel based Macs are not currently supported."; \
+	elif [ -e /usr/bin/apt ]; then \
+    	scripts/ubuntu_clean_environment.sh; \
 	else \
-		echo "Environment not Mac or RHEL"; \
+		echo "Environment not Mac or RHEL or Ubuntu"; \
 	fi
 
 .PHONY: setup-environment clean-environment sandbox

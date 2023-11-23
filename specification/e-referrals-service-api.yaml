@@ -150,7 +150,7 @@ info:
 
     ### FHIR R4
 
-    The e-RS FHIR R4 API is built alongside the [NHS Digital FHIR Implementation Guide](https://simplifier.net/guide/nhsdigital?version=current), which is built on top of [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core). The canonical URLs listed in the schema can be resolved with [https://simplifier.net/resolve](https://simplifier.net/resolve).
+    The e-RS FHIR R4 API is built alongside the [NHS England FHIR Implementation Guide](https://simplifier.net/guide/nhsdigital?version=2.8.0), which is built on top of [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core). The canonical URLs listed in the schema can be resolved with [https://simplifier.net/resolve](https://simplifier.net/resolve).
 
     ## Network access
 

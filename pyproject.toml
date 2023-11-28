@@ -26,11 +26,11 @@ docopt = "^0.6.2"
 jsonpath-rw = "^1.4.0"
 semver = "^3.0.2"
 gitpython = "^3.1.40"
-lxml = "^4.7.1"
+lxml = "^4.9.1"
 xmlformatter = "^0.2.4"
 pytest-check = "^2.2.2"
-requests = "^2.27.1"
-openapi-core = "0.17.1"
+requests = "^2.31.0"
+openapi-core = "^0.18.2"
 
 
 [tool.poetry.dev-dependencies]
@@ -40,7 +40,7 @@ pip-licenses = "^4.3.3"
 jinja2 = "^3.1.2"
 pytest = "^6.1.2"
 pytest-asyncio = "^0.20.3"
-pytest-nhsd-apim = "^3.3.5"
+pytest-nhsd-apim = "^3.3.9"
 
 [tool.poetry.scripts]
 

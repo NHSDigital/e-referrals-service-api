@@ -48,13 +48,13 @@ tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "p
 
 [[package]]
 name = "authlib"
-version = "0.15.5"
+version = "0.15.6"
 description = "The ultimate Python library in building OAuth and OpenID Connect servers."
 optional = false
 python-versions = "*"
 files = [
-    {file = "Authlib-0.15.5-py2.py3-none-any.whl", hash = "sha256:ecf4a7a9f2508c0bb07e93a752dd3c495cfaffc20e864ef0ffc95e3f40d2abaf"},
-    {file = "Authlib-0.15.5.tar.gz", hash = "sha256:b83cf6360c8e92b0e9df0d1f32d675790bcc4e3c03977499b1eed24dcdef4252"},
+    {file = "Authlib-0.15.6-py2.py3-none-any.whl", hash = "sha256:6de4508ba8125e438a35bcd910d55df7087dccd3dd8517095c2bd9853c372ec1"},
+    {file = "Authlib-0.15.6.tar.gz", hash = "sha256:2988fdf7d0a5c416f5a37ca4b1e7cee360094940229bc97909aed25880326c72"},
 ]
 
 [package.dependencies]

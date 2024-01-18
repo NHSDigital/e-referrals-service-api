@@ -48,13 +48,13 @@ tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "p
 
 [[package]]
 name = "authlib"
-version = "0.15.5"
+version = "0.15.6"
 description = "The ultimate Python library in building OAuth and OpenID Connect servers."
 optional = false
 python-versions = "*"
 files = [
-    {file = "Authlib-0.15.5-py2.py3-none-any.whl", hash = "sha256:ecf4a7a9f2508c0bb07e93a752dd3c495cfaffc20e864ef0ffc95e3f40d2abaf"},
-    {file = "Authlib-0.15.5.tar.gz", hash = "sha256:b83cf6360c8e92b0e9df0d1f32d675790bcc4e3c03977499b1eed24dcdef4252"},
+    {file = "Authlib-0.15.6-py2.py3-none-any.whl", hash = "sha256:6de4508ba8125e438a35bcd910d55df7087dccd3dd8517095c2bd9853c372ec1"},
+    {file = "Authlib-0.15.6.tar.gz", hash = "sha256:2988fdf7d0a5c416f5a37ca4b1e7cee360094940229bc97909aed25880326c72"},
 ]
 
 [package.dependencies]
@@ -509,13 +509,13 @@ six = "*"
 
 [[package]]
 name = "jsonschema"
-version = "4.20.0"
+version = "4.21.0"
 description = "An implementation of JSON Schema validation for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "jsonschema-4.20.0-py3-none-any.whl", hash = "sha256:ed6231f0429ecf966f5bc8dfef245998220549cbbcf140f913b7464c52c3b6b3"},
-    {file = "jsonschema-4.20.0.tar.gz", hash = "sha256:4f614fd46d8d61258610998997743ec5492a648b33cf478c1ddc23ed4598a5fa"},
+    {file = "jsonschema-4.21.0-py3-none-any.whl", hash = "sha256:70a09719d375c0a2874571b363c8a24be7df8071b80c9aa76bc4551e7297c63c"},
+    {file = "jsonschema-4.21.0.tar.gz", hash = "sha256:3ba18e27f7491ea4a1b22edce00fb820eec968d397feb3f9cb61d5894bb38167"},
 ]
 
 [package.dependencies]
@@ -1620,12 +1620,13 @@ test = ["pytest (>=3.0.0)"]
 
 [[package]]
 name = "xmlformatter"
-version = "0.2.4"
+version = "0.2.6"
 description = "Format and compress XML documents"
 optional = false
 python-versions = "*"
 files = [
-    {file = "xmlformatter-0.2.4.tar.gz", hash = "sha256:6d93c4bc04cffb1d4cf6eb9d9034018e9b264e4554269e7da67539ba4bff03f5"},
+    {file = "xmlformatter-0.2.6-py3-none-any.whl", hash = "sha256:d0cb194c3f72f142cc4c6e5d9244e8e43fc13fc4023f0d639d831ba239e5a916"},
+    {file = "xmlformatter-0.2.6.tar.gz", hash = "sha256:9b63fffa375045cfcb5966fc7d276c33b798b77c4581d590df0d4db3afb6c6e5"},
 ]
 
 [[package]]
@@ -1646,4 +1647,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "4b9d40cb17cdb58f64f18e801d317d637997688c28ffc73f360bf0f0f4bac881"
+content-hash = "3ed1c7a2539729c910b1720073a9814d04cc970df225db21c1e8b0e5ba4d349e"

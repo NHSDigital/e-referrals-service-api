@@ -1,10 +1,12 @@
-FROM node:16.14.2-alpine3.14
+FROM node:21.6.0-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
 
+ENV npm_config_cache ./.npm
 RUN npm install --only=production
+
 
 COPY src ./src
 RUN chmod -R a+x /app

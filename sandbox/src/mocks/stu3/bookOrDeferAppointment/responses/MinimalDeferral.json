@@ -22,6 +22,7 @@
   ],
   "description": "e-Referral Appointment",
   "created": "2021-06-30T13:58:47.940+00:00",
+  "comment": "There are no slots",
   "incomingReferral": [
     {
       "reference": "ReferralRequest/000000070000/_history/8"

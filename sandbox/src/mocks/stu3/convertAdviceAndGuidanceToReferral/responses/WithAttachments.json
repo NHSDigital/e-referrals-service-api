@@ -77,7 +77,7 @@
 			"valueString": "Book patient to 'xxx' service to include attached file as referral letter"
 		}
 	]
-     }
+    }
   ],
   "contained": [
     {
@@ -132,6 +132,44 @@
         ]
       },
       "resourceType": "List",
+      "contained": [
+        {
+            "resourceType": "Parameters",
+            "meta": {
+                "profile": [
+                    "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+                ]
+            },
+            "id": "ServiceSearchCriteria-1",
+            "parameter": [
+                {
+                    "name": "priority",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+                        "code": "ROUTINE"
+                    }
+                },
+                {
+                    "name": "specialty",
+                    "valueCoding": {
+                        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+                        "code": "CARDIOLOGY"
+                    }
+                },
+                {
+                    "name": "clinicType",
+                    "valueCoding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+                        "code": "HEART_FAILURE"
+                    }
+                },
+                {
+                    "name": "ageAndGenderAppropriate",
+                    "valueBoolean": false
+                }
+            ]
+        }
+      ],
       "extension": [
         {
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",

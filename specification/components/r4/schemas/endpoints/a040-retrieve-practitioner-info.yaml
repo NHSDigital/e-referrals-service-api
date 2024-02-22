@@ -22,7 +22,7 @@
 
         As an authenticated user who has the `SERVICE_PROVIDER_CLINICIAN_ADMIN` role
 
-        I need to know which provider clinical users I am allowed to work “on-behalf-of” at my provider organisation
+        I need to know which provider clinical users I am allowed to work "on-behalf-of" at my provider organisation
 
         So I can log in as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user and complete tasks on behalf of a chosen `SERVICE_PROVIDER_CLINICIAN` user.
 

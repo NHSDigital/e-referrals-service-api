@@ -49,7 +49,7 @@ def main():
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#overview--onboarding)",
         "[[HYPERLINK_NETWORK_ACCESS]]": "[Network access](#overview--network-access)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",
-        "[[HYPERLINK_BETA]]": "[beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",
+        "[[HYPERLINK_PRODUCTION]]": "[In production](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses)",
         "[[HYPERLINK_PDS]]": "[Personal Demographic Service (PDS)](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir)",
         "[[HYPERLINK_CIS2]]": "[CIS2](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)",
         "[[HYPERLINK_ERS_BUS_FUNCTIONS]]": "[e-RS Business Functions](https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1)",

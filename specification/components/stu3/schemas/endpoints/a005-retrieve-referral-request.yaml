@@ -14,7 +14,7 @@ description: |
   | `AWAITING_TRIAGE`                                                         | The triage referral is currently pending review with a service provider                              |
   | `BOOKED`                                                                  | This referral's appointment indicates a date and time with a service                                 |
   | `CANCELLED_REFERRAL`                                                      | The referral has been cancelled and cannot be progressed any further                                 |
-  | `DEFERRED_TO_PROVIDER`                                                    | The service provider will arrange the patient’s appointment                                          |
+  | `DEFERRED_TO_PROVIDER`                                                    | The service provider will arrange the patient's appointment                                          |
   | `DID_NOT_ATTEND`                                                          | The patient did not attend their last appointment                                                    |
   | `NOT_BOOKED`                                                              | The referral is currently not booked, there is currently no planned patient encounter                |
   | `REJECTED`                                                                | The referral was rejected by a provider at their service                                             |

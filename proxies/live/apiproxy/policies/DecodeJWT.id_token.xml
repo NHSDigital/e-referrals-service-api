@@ -1,0 +1,3 @@
+<DecodeJWT name="DecodeJWT.id_token">
+    <Source>accesstoken.id_token</Source>
+</DecodeJWT>

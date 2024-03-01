@@ -138,6 +138,10 @@
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
+                    <Name>DecodeJWT.id_token</Name>
+                </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
+                </Step><Step>
                     <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
             The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
                     <Name>AssignMessage.Swap.CorrelationHeader</Name>

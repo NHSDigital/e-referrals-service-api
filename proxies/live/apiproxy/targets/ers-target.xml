@@ -113,6 +113,14 @@
                     <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
                 </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
+                </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                </Step><Step>
+                    <Name>DecodeJWT-id-token</Name>
+                </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-acr-header</Name>
+                </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
                 </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript async="false" continueOnError="false" enabled="true" name="javascript.IsBinaryPath" timeLimit="200">
-    <DisplayName>javascript.IsBinaryPath</DisplayName>
-    <Properties/>
-    <ResourceURL>jsc://IsBinaryPath.js</ResourceURL>
-</Javascript>

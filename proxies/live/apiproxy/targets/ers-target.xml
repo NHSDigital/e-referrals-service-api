@@ -22,25 +22,25 @@
             <Step>
                 <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
             </Step>
-            <Condition>((ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true)) and (isFhirR4Path = true)</Condition>
+            <Condition>(ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = true)</Condition>
         </FaultRule>
         <FaultRule name="quota_fault_fhir_r4">
             <Step>
                 <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
             </Step>
-            <Condition>((ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)) and (isFhirR4Path = true)</Condition>
+            <Condition>(ratelimit.QuotaPerApp.failed = true) and (isFhirR4Path = true)</Condition>
         </FaultRule>
         <FaultRule name="spike_arrest_fault">
             <Step>
                 <Name>AssignMessage.SpikeArrestErrorResponse</Name>
             </Step>
-            <Condition>((ratelimit.SpikeArrest.Binary.failed = true) or (ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = false)</Condition>
+            <Condition>(ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = false)</Condition>
         </FaultRule>
         <FaultRule name="quota_fault">
             <Step>
                 <Name>AssignMessage.QuotaErrorResponse</Name>
             </Step>
-            <Condition>((ratelimit.Quota.Binary.failed = true) or (ratelimit.QuotaPerApp.failed = true)) and (isFhirR4Path = false)</Condition>
+            <Condition>(ratelimit.QuotaPerApp.failed = true) and (isFhirR4Path = false)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
@@ -62,20 +62,6 @@
             </Step>
             <Step>
                 <Name>AssignMessage.AddBaseUrlHeader</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.SetBinaryRateLimitIdentifier</Name>
-            </Step>
-            <Step>
-                <Name>javascript.IsBinaryPath</Name>
-            </Step>
-            <Step>
-                <Condition>(isBinaryPath = true)</Condition>
-                <Name>SpikeArrest.Binary</Name>
-            </Step>
-            <Step>
-                <Condition>(isBinaryPath = true)</Condition>
-                <Name>Quota.Binary</Name>
             </Step>
             <Step>
                 <Name>FlowCallout.ApplyRateLimiting</Name>

@@ -3,7 +3,6 @@ description: |
   This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
 
   Our standard rate limit for the production environment is 10 requests per second per application.
-  APIs associated with the "Binary" resource are further restricted to 2 requests per second per application.
   If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
 
   Our path-to-live environments have very low rate limits.

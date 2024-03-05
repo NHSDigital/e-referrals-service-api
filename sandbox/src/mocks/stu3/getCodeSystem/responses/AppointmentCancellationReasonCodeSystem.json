@@ -14,7 +14,7 @@
   "date": "2022-01-21T13:28:30.188Z",
   "publisher": "e-Referral Service",
   "description": "e-RS Appointment Cancellation Reason",
-  "copyright": "Copyright © 2016 HL7 UK",
+  "copyright": "Copyright (c) 2016 HL7 UK",
   "caseSensitive": true,
   "content": "complete",
   "property": [

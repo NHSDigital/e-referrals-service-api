@@ -1,6 +1,0 @@
-<AssignMessage enabled="true" name="AssignMessage.SetBinaryRateLimitIdentifier">
-    <AssignVariable>
-        <Name>binaryRateLimitIdentifier</Name>
-        <Template>{developer.app.id}-binary</Template>
-    </AssignVariable>
-</AssignMessage>

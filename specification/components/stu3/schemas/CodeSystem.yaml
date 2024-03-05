@@ -73,7 +73,7 @@ properties:
     example: 'e-RS Specialty'
   copyright:
     type: string
-    example: 'Copyright © 2016 HL7 UK'
+    example: 'Copyright (c) 2016 HL7 UK'
   content:
     type: string
     enum:

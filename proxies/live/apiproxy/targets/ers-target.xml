@@ -138,7 +138,7 @@
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
-                    <Name>DecodeJWT.id_token</Name>
+                    <Name>DecodeJWT-id-token</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
                 </Step><Step>

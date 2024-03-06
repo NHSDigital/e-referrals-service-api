@@ -41,9 +41,8 @@ description: |
 
   Below is a list of actions that could be returned by calling [[HYPERLINK_A029]]
     - Use [[HYPERLINK_A028]] to record a review outcome based on the available clinical information and attachments.
-    - Use [[HYPERLINK_A016]] to Book, or if unable, Defer, an appointment to a specific service on the current shortlist.
+    - Use [[HYPERLINK_A016]] to Book, or if unable, Defer, an appointment to a specific service on the current shortlist, or to make a triage deferral by sending an appointment to a triage service.
     - Use [[HYPERLINK_A031]] to change the shortlist of bookable services on an existing referral.
-    - Use [[HYPERLINK_A032]] to change the shortlist to a single triage service and refer the patient directly to that triage service.
 
   ## Sandbox test scenarios
 

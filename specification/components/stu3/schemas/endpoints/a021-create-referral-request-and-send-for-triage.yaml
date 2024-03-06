@@ -1,7 +1,10 @@
+deprecated: true
 security:
   - bearerAuth: []
 description: |
   ## Overview
+  **This endpoint has now been deprecated please use [[HYPERLINK_A011]] instead.**
+  
   Use this endpoint to refer the patient directly to a triage service.
 
   Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services please use [[HYPERLINK_A011]].
@@ -36,7 +39,7 @@ description: |
 
   You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
-summary: A021 - Create referral and send for triage
+summary: A021 - Create referral and send for triage (deprecated)
 operationId: a021-create-referral-request-and-send-for-triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'

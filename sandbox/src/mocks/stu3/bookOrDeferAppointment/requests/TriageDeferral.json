@@ -1,0 +1,48 @@
+{
+  "id": "appointment",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
+      "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
+    ]
+  },
+  "language": "en",
+  "resourceType": "Appointment",
+  "status": "proposed",
+  "reason": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+          "code": "TRIAGE"
+        }
+      ]
+    }
+  ],
+  "description": "e-Referral Appointment",
+  "incomingReferral": [
+    {
+      "reference": "ReferralRequest/000000070000/_history/6"
+    }
+  ],
+  "participant": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/ers-service",
+          "value": "50001"
+        }
+      },
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "identifier": {
+          "system": "http://fhir.nhs.net/Id/nhs-number",
+          "value": "9912003888"
+        }
+      },
+      "status": "accepted"
+    }
+  ]
+}

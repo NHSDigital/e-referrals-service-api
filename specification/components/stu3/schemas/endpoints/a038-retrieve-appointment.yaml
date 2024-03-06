@@ -54,10 +54,10 @@ description: |
 
   When booking or deferring an appointment, the appointment is returned via [[HYPERLINK_A016]].
 
-  When sending an appointment to a service to review, an appointment is returned via [[HYPERLINK_A021]]. In this case the "appointment" is to review a referral.
-
-  When changing a shortlist and sending an instruction to a service to review, an appointment is returned via [[HYPERLINK_A032]] indicating an "appointment" to review a referral.
-
+  When sending an appointment to a service to review, an appointment is firstly created via [[HYPERLINK_A011]] and then [[HYPERLINK_A016]] is used to send the appointment to a triage service.
+  
+  When changing a shortlist, firstly this needs to be done via [[HYPERLINK_A31]] and then [[HYPERLINK_A016]] will need to be used to refer the patient to a triage service, which will send an instruction to a service to review.
+  
   When successfully cancelling an appointment, to action it later, the cancelled appointment is returned via [[HYPERLINK_A022]].
 
   When converting an advice and guidance to a referral, if the referral has an appointment, it will be returned via [[HYPERLINK_A027]].

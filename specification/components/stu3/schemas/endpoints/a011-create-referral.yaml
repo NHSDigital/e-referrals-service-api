@@ -2,12 +2,16 @@ security:
   - bearerAuth: []
 description: |
   ## Overview
-  Use this endpoint to create a referral by choosing a shortlist of bookable services.
-
-  Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A021]].
+  Use this endpoint to create a referral by choosing a shortlist of bookable services and/or triage services.
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  
+  ## Important notes when creating a referral
+  The maximum amount of services allowed on a given shortlist is 20.
+  
+  The act of shortlisting alone will not result in a referral being sent/booked to any of the shortlisted services (even if only one service is shortlisted). 
+  Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
 
   ## Pre-requisites
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -21,7 +25,7 @@ description: |
   ## Use case
   As an authenticated user
 
-  I need to create a shortlist of bookable services
+  I need to create a shortlist of bookable services and/or triage services
 
   So I can initiate my patients referral pathway, allowing the patient to book into one of the shortlisted services.
 
@@ -31,7 +35,9 @@ description: |
   using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
   patient may need to follow (e.g. appointment booking instructions).
 
-  You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
+  You can book an appointment for the patient into a shortlisted directly bookable service using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
+  
+  You can send the referral into a shortlisted triage service using [[HYPERLINK_A016]]. 
 
   For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
@@ -61,6 +67,10 @@ requestBody:
           summary: Referring Clinician - request body using multi-service shortlist
           value:
             $ref: '../../examples/createReferral/requests/RequestTwentyServices.json'
+        rc-request-body-mixed-shortlist:
+          summary: Referring Clinician - request body using mixed service shortlist
+          value:
+            $ref: '../../examples/createReferral/requests/RequestMixedShortlist.json'
         create-referral-parameters-twenty-services:
           summary: Referring Clinician Admin - minimum request body
           value:

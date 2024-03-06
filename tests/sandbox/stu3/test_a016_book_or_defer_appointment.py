@@ -28,6 +28,10 @@ class TestBookOrDeferAppointment(SandboxTest):
             "stu3/bookOrDeferAppointment/responses/MinimalDeferral.json",
         ),
         (
+            "stu3/bookOrDeferAppointment/requests/TriageDeferral.json",
+            "stu3/bookOrDeferAppointment/responses/TriageDeferral.json",
+        ),
+        (
             "stu3/bookOrDeferAppointment/requests/BookingWithNamedClinician.json",
             "stu3/bookOrDeferAppointment/responses/BookingWithNamedClinician.json",
         ),
@@ -65,7 +69,9 @@ class TestBookOrDeferAppointment(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "stu3/bookOrDeferAppointment/requests/MinimalBooking.json", headers,
+            actor,
+            "stu3/bookOrDeferAppointment/requests/MinimalBooking.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -87,5 +93,8 @@ class TestBookOrDeferAppointment(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"1"',},
+            actual_response,
+            additional={
+                "etag": 'W/"1"',
+            },
         )

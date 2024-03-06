@@ -138,6 +138,10 @@
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
+                    <Name>AssignMessage.Set.x-ers-acr-header</Name>
+                </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                </Step><Step>
                     <Name>DecodeJWT-id-token</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>

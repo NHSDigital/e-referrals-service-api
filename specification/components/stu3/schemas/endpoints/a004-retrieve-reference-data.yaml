@@ -29,7 +29,7 @@ description: |
   ## Related endpoints
   Reference data may be needed for other endpoints, for example when including Specialty and Clinic Type reference data to:
   - find services that meet the referral needs of a patient using [[HYPERLINK_A010]], and
-  - create a referral using [[HYPERLINK_A011]] or [[HYPERLINK_A021]]
+  - create a referral using [[HYPERLINK_A011]]
 
   You can use the Priority reference data to calculate when a patient can expect to be contacted by the service. 
 

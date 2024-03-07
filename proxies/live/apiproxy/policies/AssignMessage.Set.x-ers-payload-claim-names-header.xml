@@ -1,0 +1,9 @@
+<AssignMessage continueOnError="false" name="AssignMessage.Set.x-ers-payload-claim-names-header">
+    <Set>
+        <Headers>
+            <Header name="x-ers-payload-claim-names">{jwt.DecodeJWT-id-token.payload-claim-names}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
+</AssignMessage>

@@ -47,7 +47,7 @@ description: |
 
   You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
-summary: A032 - Change shortlist and send for triage
+summary: A032 - Change shortlist and send for triage (deprecated)
 operationId: a032-change-shortlist-and-send-for-triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'

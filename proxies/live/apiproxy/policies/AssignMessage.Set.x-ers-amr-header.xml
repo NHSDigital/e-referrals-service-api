@@ -1,10 +1,9 @@
 <AssignMessage continueOnError="false" name="AssignMessage.Set.x-ers-amr-header">
     <Set>
         <Headers>
-            <!--            <Header name="x-ers-amr">{accesstoken.id_token-amr}</Header>-->
-            <Header name="x-ers-amr">{jwt.DecodeJWT-id-token.decoded.claim.amr}</Header>
+            <Header name="x-ers-amr">{accesstoken.id_token-amr}</Header>
         </Headers>
     </Set>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <AssignTo createNew="false"/>
 </AssignMessage>

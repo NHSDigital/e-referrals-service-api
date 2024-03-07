@@ -140,11 +140,13 @@
                 </Step> {% endif %} <Step>
                     <Name>AssignMessage.Set.x-ers-acr-header</Name>
                 </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                </Step><Step>
                     <Name>DecodeJWT-id-token</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-payload-claim-names-header</Name>
                 </Step><Step>
-                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                    <Name>AssignMessage.Set.x-ers-amr-jwt-header</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-amr-notdecoded-header</Name>
                 </Step><Step>

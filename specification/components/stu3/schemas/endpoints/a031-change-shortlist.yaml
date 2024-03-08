@@ -2,9 +2,17 @@ security:
   - bearerAuth: []
 description: |
   ## Overview
-  Use this endpoint to change the shortlist of bookable services on an existing referral.
+  Use this endpoint to change the shortlist of bookable and/or triage services on an existing referral.
 
-  Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use [[HYPERLINK_A032]].
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+  
+  ## Important notes when changing a shortlist
+  
+  The maximum amount of services allowed on a given shortlist is 20.
+  
+  The act of changing a shortlist alone will not result in a referral being sent/booked to any of the shortlisted services (even if only one service is shortlisted). 
+  Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
 
   A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
 
@@ -18,9 +26,6 @@ description: |
 
   You can view additional requirements on a referral via the e-RS web application or by fetching [[HYPERLINK_A005]].
 
-  ## Supported security patterns
-  - Healthcare worker, user-restricted access
-
   ## Pre-requisites
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
   - `REFERRING_CLINICIAN`
@@ -33,15 +38,17 @@ description: |
   ## Use case
   As an authenticated user
 
-  I need to change the shortlist of bookable services on an existing referral
+  I need to change the shortlist of bookable services and/or triage services on an existing referral
 
   So that I can adequately manage my patients referral pathway, allowing the patient to book into an appropriate service.
 
   ## Related endpoints
   To allow the patient to book their appointment in their own time, you can generate a letter for the patient by using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the patient may need to follow (e.g. appointment booking instructions).
 
-  You can book an appointment for the patient by using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
+  You can book an appointment for the patient into a shortlisted directly bookable service using [[HYPERLINK_A015]] and [[HYPERLINK_A016]].
 
+  You can send the referral into a shortlisted triage service using [[HYPERLINK_A016]].
+  
   For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
   You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
@@ -71,6 +78,11 @@ requestBody:
           description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
           value:
             $ref: '../../examples/changeShortlist/requests/UnbookedReferralMultipleServices.json'
+        unbookedReferralRequestMixedShortlist:
+          summary: Unbooked ReferralRequest with Bookable and Triage Services
+          description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
+          value:
+            $ref: '../../examples/changeShortlist/requests/UnbookedReferralMixedShortlist.json'
 responses:
   '200':
     $ref: '../responses/changeShortlist/200Response.yaml'

@@ -21,10 +21,18 @@ content:
         summary: Minimum deferral
         value:
           $ref: '../../../examples/bookOrDeferAppointment/responses/MinimalDeferral.json'
+      triage-deferral:
+        summary: Triage deferral
+        value:
+          $ref: '../../../examples/bookOrDeferAppointment/responses/TriageDeferral.json'
       booking-with-named-clinician:
         summary: Booking with named clinician
         value:
           $ref: '../../../examples/bookOrDeferAppointment/responses/BookingWithNamedClinician.json'
+      deferral-with-slot-reference:
+        summary: Deferral with slot reference
+        value:
+          $ref: '../../../examples/bookOrDeferAppointment/responses/DeferralWithSlotReference.json'
       deferral-booking-attempt-problem:
         summary: Deferral booking attempt problem
         value:

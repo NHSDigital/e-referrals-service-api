@@ -52,11 +52,7 @@ description: |
 
   When successfully rejecting an appointment, the rejected appointment is returned via [[HYPERLINK_A014]].
 
-  When booking or deferring an appointment, the appointment is returned via [[HYPERLINK_A016]].
-
-  When sending an appointment to a service to review, an appointment is returned via [[HYPERLINK_A021]]. In this case the "appointment" is to review a referral.
-
-  When changing a shortlist and sending an instruction to a service to review, an appointment is returned via [[HYPERLINK_A032]] indicating an "appointment" to review a referral.
+  When booking an appointment to a directly bookable service, deferring the booking responsibility to a directly bookable service, or referring a patient into a triage service, an "appointment" is returned via [[HYPERLINK_A016]].
 
   When successfully cancelling an appointment, to action it later, the cancelled appointment is returned via [[HYPERLINK_A022]].
 

@@ -1,7 +1,10 @@
+deprecated: true
 security:
   - bearerAuth: []
 description: |
   ## Overview
+  **This endpoint has now been deprecated please use [[HYPERLINK_A031]] instead.**
+  
   Use this endpoint to change the shortlist to a single triage service and refer the patient directly to that triage service.
 
   Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services on an existing referral please use [[HYPERLINK_A031]].
@@ -44,7 +47,7 @@ description: |
 
   You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
-summary: A032 - Change shortlist and send for triage
+summary: A032 - Change shortlist and send for triage (deprecated)
 operationId: a032-change-shortlist-and-send-for-triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'

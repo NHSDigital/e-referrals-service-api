@@ -4,6 +4,6 @@
             <Header name="x-ers-acr">{accesstoken.id_token-acr}</Header>
         </Headers>
     </Set>
-    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false"/>
 </AssignMessage>

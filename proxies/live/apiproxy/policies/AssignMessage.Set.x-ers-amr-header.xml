@@ -4,6 +4,6 @@
             <Header name="x-ers-amr">{accesstoken.id_token-amr}</Header>
         </Headers>
     </Set>
-    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false"/>
 </AssignMessage>

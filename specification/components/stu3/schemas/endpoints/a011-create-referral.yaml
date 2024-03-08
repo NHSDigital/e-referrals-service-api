@@ -31,7 +31,7 @@ description: |
 
   ## Related endpoints
 
-  To allow the patient to book their appointment in their own time, you can generate a letter for the patient by 
+  To allow the patient to progress their referral in their own time, you can generate a letter for the patient by 
   using [[HYPERLINK_A019]]. The letter summarises the current state of the referral and any steps the 
   patient may need to follow (e.g. appointment booking instructions).
 

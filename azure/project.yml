@@ -3,5 +3,5 @@ variables:
   short_service_name: ers
   service_base_path: referrals
   product_display_name: e-Referrals-Service
-  product_description: The NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS). See https://developer.nhs.uk/apis/e-Referrals/index.html
+  product_description: The NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS). See https://digital.nhs.uk/developer/api-catalogue/e-referral-service-fhir
   spec_file: e-referrals-service-api.json

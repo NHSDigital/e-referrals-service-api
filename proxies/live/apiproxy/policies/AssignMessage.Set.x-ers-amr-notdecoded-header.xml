@@ -1,0 +1,9 @@
+<AssignMessage continueOnError="false" name="AssignMessage.Set.x-ers-amr-notdecoded-header">
+    <Set>
+        <Headers>
+            <Header name="x-ers-amr-notdecoded">{jwt.DecodeJWT-id-token.claim.amr}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
+</AssignMessage>

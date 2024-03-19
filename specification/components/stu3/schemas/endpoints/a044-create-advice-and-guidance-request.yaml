@@ -1,0 +1,69 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to create an Advice and Guidance request by choosing a shortlist of a single Advice and Guidance service.
+
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+
+  ## Important notes when creating an Advice and Guidance request.
+  The maximum number of services allowed on a given shortlist is 1.
+
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+  
+  You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
+
+  You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
+
+  ## Use case
+  As an authenticated user
+
+  I need to request some advice from a given service
+
+  So I can either initiate my patients referral pathway, or provide recommended treatment.
+
+  ## Related endpoints
+  Providers are able to respond to an Advice and Guidance request via [[HYPERLINK_A026]] or convert the Advice and Guidance request into a Referral via [[HYPERLINK_A027]].
+
+
+summary: A044 - Create Advice and Guidance Request
+operationId: a044-create-advice-and-guidance-request
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-CreateAdviceAndGuidance-Request-Parameters.yaml'
+      examples:
+        initial-example:
+          summary: Example Advice creation
+          value:
+            $ref: '../../examples/createAdviceAndGuidance/requests/ExampleAdviceAndGuidance.json'
+responses:
+  '200':
+    $ref: '../responses/createAdviceAndGuidance/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/CreateReferralErrorOutcome.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

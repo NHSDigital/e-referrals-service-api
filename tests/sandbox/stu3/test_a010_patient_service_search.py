@@ -35,6 +35,11 @@ class TestPatientServiceSearch(SandboxTest):
             "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
         (
+            Actor.RC,
+            "stu3/patientServiceSearch/requests/RcSearchForAdviceService.json",
+            "stu3/patientServiceSearch/responses/AdviceServiceSearch.json",
+        ),
+        (
             Actor.RCA,
             "stu3/patientServiceSearch/requests/RcaWithIWT.json",
             "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
@@ -65,7 +70,9 @@ class TestPatientServiceSearch(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, self._request_path(actor), headers,
+            actor,
+            self._request_path(actor),
+            headers,
         )
 
     @pytest.mark.parametrize("actor, requestJson, response", testdata)
@@ -84,7 +91,9 @@ class TestPatientServiceSearch(SandboxTest):
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
-        asserts.assert_json_response_headers(actual_response,)
+        asserts.assert_json_response_headers(
+            actual_response,
+        )
 
     def _request_path(self, actor: Actor) -> str:
         path = (

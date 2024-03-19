@@ -1,0 +1,41 @@
+security:
+  - bearerAuth: []
+description: |
+  To be added
+summary: A044 - Create Advice
+operationId: a044-create-advice
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/OdsCode.yaml'
+  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+requestBody:
+  required: true
+  content:
+    application/fhir+json:
+      schema:
+        $ref: '../eRS-CreateAdvice-Request-Parameters.yaml'
+      examples:
+        initial-example:
+          summary: Example Advice creation
+          value:
+            $ref: '../../examples/createAdvice/requests/ExampleAdvice.json'
+responses:
+  '200':
+    $ref: '../responses/createAdvice/200Response.yaml'
+  '400':
+    $ref: '../responses/BadRequest.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/Forbidden.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/CreateReferralErrorOutcome.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

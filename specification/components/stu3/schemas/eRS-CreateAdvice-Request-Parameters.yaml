@@ -1,0 +1,43 @@
+title: eRS-CreateAdvice-Request-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+    example: 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Request-Parameters-1
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Request-Parameters-1'
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                                                                                                                        |
+      | --------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+      | `patient`                         | `1..1`      | The patient the Advice request relates to.                                                                                                   |
+      | `providerConversionAuthorisation` | `1..1`      | A flag detailing whether or not the provider who deals with this advice request is authorised to convert this Advice Request into a Referral |
+      | `shortlist`                       | `1..1`      | A list of services where the Advice Request should be sent to. Note currently only shortlists with a single Service included are supported.  |
+      | `guidance`                        | `1..1`      | An initial message outlining the request.                                                                                                    |
+      | `guidanceAttachmentFile`          | `0..*`      | A set of attachments to be included with the initial request.                                                                                |
+    items:
+      anyOf:
+        - $ref: 'parameters/Patient.yaml'
+        - $ref: 'parameters/ProviderConversionAuthorisation.yaml'
+        - $ref: 'parameters/Shortlist.yaml'
+        - $ref: 'parameters/Guidance.yaml'
+        - $ref: 'parameters/GuidanceAttachmentFile.yaml'

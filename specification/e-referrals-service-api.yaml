@@ -392,7 +392,10 @@ paths:
       $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
+      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
+  /STU3/CommunicationRequest/$ers.createAdvice:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a044-create-advice.yaml'
 
 components:
   securitySchemes:

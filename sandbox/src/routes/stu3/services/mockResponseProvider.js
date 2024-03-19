@@ -522,5 +522,13 @@ module.exports = {
       }
 
       return {}
+    },
+
+  getExampleResponseForCreateAdvice: function (request) {
+    const responseMap = {
+      'src/mocks/stu3/createAdvice/requests/ExampleAdvice.json': 'stu3/createAdvice/responses/ExampleAdvice.json'
     }
+
+    return mapExampleResponse(request, responseMap)
+  }
 }

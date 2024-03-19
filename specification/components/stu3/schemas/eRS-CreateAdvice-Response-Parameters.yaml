@@ -1,0 +1,63 @@
+title: eRS-CreateAdvice-Response-Parameters
+type: object
+required:
+  - resourceType
+  - meta
+  - parameter
+properties:
+  resourceType:
+    type: string
+    enum:
+      - 'Parameters'
+  meta:
+    type: object
+    required:
+      - profile
+    properties:
+      profile:
+        type: array
+        items:
+          type: string
+          enum:
+            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Response-Parameters-1
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Response-Parameters-1'
+        minItems: 1
+        maxItems: 1
+  parameter:
+    type: array
+    description: |
+      | Field                             | Cardinality | Notes                                                        |
+      | --------------------------------- | ----------- | -------------------------------------------------------------|
+      | `createdCommunicationRequest`     | `1..1`      | The created Advice Request summary resource.                 |
+      | `createdCommunication`            | `1..1`      | The created initial request message within the conversation. |
+    items:
+      anyOf:
+        - title: createdCommunicationRequest
+          description: The created Advice Request summary resource.
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - createdCommunicationRequest
+              example: 'createdCommunicationRequest'
+            resource:
+              $ref: 'eRS-CommunicationRequest.yaml'
+        - title: createdCommunication
+          description: The created initial request message within the conversation.
+          type: object
+          required:
+            - name
+            - resource
+          properties:
+            name:
+              type: string
+              enum:
+                - createdCommunication
+              example: 'createdCommunication'
+            resource:
+              $ref: 'eRS-Communication.yaml'
+          

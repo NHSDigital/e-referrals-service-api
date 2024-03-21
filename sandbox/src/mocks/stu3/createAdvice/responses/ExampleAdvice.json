@@ -228,6 +228,7 @@
         "resourceType": "Communication",
         "contained": [
           {
+            "id": "DocumentReference-70003",
             "meta": {
               "profile": [
                 "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
@@ -289,7 +290,7 @@
           {
             "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-Communication-Requester-1",
             "valueReference": {
-              "reference": "PractitionerRole/103264992985.R69.REFERRING-CLINICIAN"
+              "reference": "#PractitionerRole.103264992985.R69.REFERRING-CLINICIAN"
             }
           }
         ],
@@ -330,11 +331,18 @@
             {
               "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-PractitionerRole-Reference-1",
               "valueReference": {
-                "reference": "PractitionerRole/103264992985.R69.REFERRING-CLINICIAN"
+                "reference": "#PractitionerRole.103264992985.R69.REFERRING-CLINICIAN"
               }
             }
           ]
         },
+        "payload": [
+          {
+            "contentReference": {
+              "reference": "#DocumentReference-70003"
+            }
+          }
+        ],
         "note": [
           {
             "text": "Guidance text"

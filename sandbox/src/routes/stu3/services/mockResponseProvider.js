@@ -78,7 +78,8 @@ module.exports = {
     var responseMapForRC = {
       'src/mocks/stu3/patientServiceSearch/requests/RcMinimal.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json',
       'src/mocks/stu3/patientServiceSearch/requests/RcSearchByClinicalTerm.json': 'stu3/patientServiceSearch/responses/EmptyResponse.json',
-      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json',
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchForAdviceService.json': 'stu3/patientServiceSearch/responses/AdviceServiceSearch.json'
     };
 
     var responseMapForRCA = {

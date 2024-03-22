@@ -1,5 +1,5 @@
-title: guidanceAttachmentFile
-description: Parameter to supply an attachment file
+title: requestAttachmentFile
+description: Parameter to supply an attachment alongside a request
 type: object
 required:
   - name
@@ -8,8 +8,8 @@ properties:
   name:
     type: string
     enum:
-      - guidanceAttachmentFile
-    example: 'guidanceAttachmentFile'
+      - requestAttachmentFile
+    example: 'requestAttachmentFile'
   resource:
     title: DocumentReference
     description: 'A reference to a document'
@@ -58,8 +58,8 @@ properties:
                 code:
                   type: string
                   enum:
-                    - GUIDANCE_RESPONSE
-                  example: GUIDANCE_RESPONSE
+                    - ADVICE_REQUEST
+                  example: ADVICE_REQUEST
       status:
         type: string
         enum:

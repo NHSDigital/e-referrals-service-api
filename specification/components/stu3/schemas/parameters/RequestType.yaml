@@ -28,5 +28,5 @@ properties:
         type: string
         enum:
           - APPOINTMENT_REQUEST
-          - ADVICE_AND_GUIDANCE
+          - ADVICE_AND_GUIDANCE_REQUEST
         example: 'APPOINTMENT_REQUEST'

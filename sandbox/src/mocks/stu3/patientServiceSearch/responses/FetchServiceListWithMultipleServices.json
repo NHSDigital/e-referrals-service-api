@@ -351,6 +351,17 @@
                     }
                   ]
                 }
+              },
+              {
+                "url": "supportedRequestFlowType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestFlowType-1",
+                      "code": "ADVICE_AND_GUIDANCE_REQUEST"
+                    }
+                  ]
+                }
               }
             ],
             "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSummaryView-1"

@@ -78,7 +78,8 @@ module.exports = {
     var responseMapForRC = {
       'src/mocks/stu3/patientServiceSearch/requests/RcMinimal.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json',
       'src/mocks/stu3/patientServiceSearch/requests/RcSearchByClinicalTerm.json': 'stu3/patientServiceSearch/responses/EmptyResponse.json',
-      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json',
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchForAdviceService.json': 'stu3/patientServiceSearch/responses/AdviceServiceSearch.json'
     };
 
     var responseMapForRCA = {
@@ -522,5 +523,13 @@ module.exports = {
       }
 
       return {}
+    },
+
+  getExampleResponseForCreateAdvice: function (request) {
+    const responseMap = {
+      'src/mocks/stu3/createAdvice/requests/ExampleAdvice.json': 'stu3/createAdvice/responses/ExampleAdvice.json'
     }
+
+    return mapExampleResponse(request, responseMap)
+  }
 }

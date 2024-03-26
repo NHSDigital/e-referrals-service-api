@@ -1,0 +1,17 @@
+description: An Advice Request created within e-RS.
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-CreateAdvice-Response-Parameters.yaml'
+    examples:
+      initial-example:
+        summary: Example Advice creation
+        value:
+          $ref: '../../../examples/createAdvice/responses/ExampleAdvice.json'

@@ -1,0 +1,29 @@
+title: ProviderConversionAuthorisation
+description: Parameter to define the Provider's conversion authorisation
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - providerConversionAuthorisation
+    example: 'providerConversionAuthorisation'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ProviderConversionAuthorisation-1
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ProviderConversionAuthorisation-1'
+      code:
+        type: string
+        enum:
+          - AUTHORISED_TO_CONVERT
+          - NOT_AUTHORISED_TO_CONVERT
+        example: 'AUTHORISED_TO_CONVERT'

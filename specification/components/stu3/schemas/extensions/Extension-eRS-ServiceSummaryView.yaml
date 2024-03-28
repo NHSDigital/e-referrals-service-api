@@ -26,7 +26,7 @@ properties:
       | `Exclusions`                     | `0..1`      |                                            |
       | `SuggestedInvestigations`        | `0..1`      |                                            |
       | `ConditionsTreated`              | `0..1`      |                                            |
-      | `GenderTreated`                  | `1..1`      |                                            |
+      | `GenderTreated`                  | `1..1`      | Sex treated. Content in the e-RS Professional Application has changed to replace 'Gender' with 'Sex'. This represents the data better and uses inclusive language. |
       | `AdditionalRequirementSupported` | `0..3`      |                                            |
       | `ReferralLetterRequired`         | `1..1`      |                                            |
       | `Specialty`                      | `1..1`      |                                            |
@@ -370,7 +370,7 @@ properties:
                         - MONTHS
                       example: 'YEARS'
         - title: GenderTreated
-          description: Gender treated
+          description: Sex treated
           type: object
           required:
             - url

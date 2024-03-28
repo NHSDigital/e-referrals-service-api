@@ -1,5 +1,5 @@
 title: AgeAndGenderAppropriate
-description: Details the age and gender appropriate flag detailed in a search criteria
+description: Details the age and sex appropriate flag used in a search criteria. Content in the e-RS Professional Application has changed to replace 'Gender' with 'Sex'. This represents the data better and uses inclusive language.
 type: object
 required:
   - name

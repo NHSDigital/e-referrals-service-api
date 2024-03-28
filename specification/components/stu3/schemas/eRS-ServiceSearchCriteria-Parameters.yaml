@@ -41,7 +41,7 @@ properties:
       | `DistanceLimit`                         | `0..1`      |                                                                                             |
       | `ClinicalTerm`                          | `0..1`      |                                                                                             |
       | `NamedClinician`                        | `0..1`      |                                                                                             |
-      | `AgeAndGenderAppropriate`               | `1..1`      |                                                                                             |
+      | `AgeAndGenderAppropriate`               | `1..1`      | Details the age and sex appropriate flag used in a search criteria. Content in the e-RS Professional Application has changed to replace 'Gender' with 'Sex'. This represents the data better and uses inclusive language. |
       | `CommissioningProvisioning`             | `0..1`      | This filter parameter is no longer supported as an input. If provided it will be ignored and a value of `ALL_AVAILABLE_FOR_BOOKING` used. Stored historical values will continue to be returned for output.                                                                                 |
       | `Organisation`                          | `0..1`      | This parameter is not included in the response when retrieving the service search criteria. |
       | `Place`                                 | `0..1`      | Only supported in read mode, search by `place` is not possible currently.                   |

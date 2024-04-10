@@ -20,6 +20,7 @@
     }
   ],
   "description": "e-Referral Appointment",
+  "comment": "There are no slots",
   "incomingReferral": [
     {
       "reference": "ReferralRequest/000000070000/_history/6"

@@ -79,7 +79,7 @@
             "name": "intentionToAddReferralLetter",
             "valueCoding": {
                 "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1",
-                "code": "NEED_TO_ADD_LATER"
+                "code": "NOT_INTENDING_TO_ADD"
             }
         },
         {

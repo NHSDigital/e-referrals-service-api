@@ -1,4 +1,4 @@
-description: An Advice Request created within e-RS.
+description: An Advice And Guidance Request created within e-RS.
 headers:
   X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'
@@ -9,9 +9,9 @@ headers:
 content:
   application/fhir+json:
     schema:
-      $ref: '../../eRS-CreateAdvice-Response-Parameters.yaml'
+      $ref: '../../eRS-CreateAdviceAndGuidance-Response-Parameters.yaml'
     examples:
       initial-example:
-        summary: Example Advice creation
+        summary: Example Advice And Guidance creation
         value:
-          $ref: '../../../examples/createAdvice/responses/ExampleAdvice.json'
+          $ref: '../../../examples/createAdviceAndGuidance/responses/ExampleAdviceAndGuidance.json'

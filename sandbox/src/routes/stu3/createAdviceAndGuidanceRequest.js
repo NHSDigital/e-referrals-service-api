@@ -8,7 +8,7 @@ module.exports = [
      */
   {
     method: 'POST',
-    path: '/FHIR/STU3/CommunicationRequest/$ers.createAdvice',
+    path: '/FHIR/STU3/CommunicationRequest/$ers.createAdviceAndGuidance',
     handler: (request, h) => {
       const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {

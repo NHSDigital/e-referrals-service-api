@@ -1,4 +1,4 @@
-title: eRS-CreateAdvice-Request-Parameters
+title: eRS-CreateAdviceAndGuidance-Request-Parameters
 type: object
 required:
   - resourceType
@@ -20,8 +20,8 @@ properties:
         items:
           type: string
           enum:
-            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Request-Parameters-1
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Request-Parameters-1'
+            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdviceAndGuidance-Request-Parameters-1
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdviceAndGuidance-Request-Parameters-1'
         minItems: 1
         maxItems: 1
   parameter:

@@ -19,8 +19,8 @@ properties:
         items:
           type: string
           enum:
-            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Response-Parameters-1
-          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdvice-Response-Parameters-1'
+            - https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdviceAndGuidance-Response-Parameters-1
+          example: 'https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateAdviceAndGuidance-Response-Parameters-1'
         minItems: 1
         maxItems: 1
   parameter:
@@ -28,8 +28,8 @@ properties:
     description: |
       | Field                             | Cardinality | Notes                                                        |
       | --------------------------------- | ----------- | -------------------------------------------------------------|
-      | `createdCommunicationRequest`     | `1..1`      | The created Advice Request summary resource.                 |
-      | `createdCommunication`            | `1..1`      | The created initial request message within the conversation. |
+      | `createdCommunicationRequest`     | `1..1`      | The created Advice And Guidance Request summary resource.                 |
+      | `createdCommunication`            | `1..1`      | The created Initial Request message within the conversation. |
     items:
       anyOf:
         - title: createdCommunicationRequest

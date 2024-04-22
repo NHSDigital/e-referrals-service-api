@@ -527,7 +527,7 @@ module.exports = {
 
   getExampleResponseForCreateAdvice: function (request) {
     const responseMap = {
-      'src/mocks/stu3/createAdvice/requests/ExampleAdvice.json': 'stu3/createAdvice/responses/ExampleAdvice.json'
+      'src/mocks/stu3/createAdviceAndGuidance/requests/ExampleAdviceAndGuidance.json': 'stu3/createAdviceAndGuidance/responses/ExampleAdviceAndGuidance.json'
     }
 
     return mapExampleResponse(request, responseMap)

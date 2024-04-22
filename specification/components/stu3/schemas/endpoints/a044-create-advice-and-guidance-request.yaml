@@ -30,8 +30,8 @@ description: |
   Providers are able to respond to an Advice and Guidance request via [[HYPERLINK_A026]] or convert the Advice and Guidance request into a Referral via [[HYPERLINK_A027]].
 
 
-summary: A044 - Create Advice
-operationId: a044-create-advice
+summary: A044 - Create Advice and Guidance Request
+operationId: a044-create-advice-and-guidance-request
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'
@@ -42,15 +42,15 @@ requestBody:
   content:
     application/fhir+json:
       schema:
-        $ref: '../eRS-CreateAdvice-Request-Parameters.yaml'
+        $ref: '../eRS-CreateAdviceAndGuidance-Request-Parameters.yaml'
       examples:
         initial-example:
           summary: Example Advice creation
           value:
-            $ref: '../../examples/createAdvice/requests/ExampleAdvice.json'
+            $ref: '../../examples/createAdviceAndGuidance/requests/ExampleAdviceAndGuidance.json'
 responses:
   '200':
-    $ref: '../responses/createAdvice/200Response.yaml'
+    $ref: '../responses/createAdviceAndGuidance/200Response.yaml'
   '400':
     $ref: '../responses/BadRequest.yaml'
   '401':

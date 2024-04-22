@@ -13,18 +13,18 @@ authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
 
 
 @pytest.mark.sandbox
-class TestCreateAdvice(SandboxTest):
+class TestCreateAdviceAndGuidance(SandboxTest):
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
     ]
 
-    request_path = "stu3/createAdvice/requests/ExampleAdvice.json"
+    request_path = "stu3/createAdviceAndGuidance/requests/ExampleAdviceAndGuidance.json"
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/CommunicationRequest/$ers.createAdvice"
+        return "FHIR/STU3/CommunicationRequest/$ers.createAdviceAndGuidance"
 
     @pytest.fixture
     def http_method(self) -> HttpMethod:
@@ -58,7 +58,9 @@ class TestCreateAdvice(SandboxTest):
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
     ):
-        expected_response = load_json("stu3/createAdvice/responses/ExampleAdvice.json")
+        expected_response = load_json(
+            "stu3/createAdviceAndGuidance/responses/ExampleAdviceAndGuidance.json"
+        )
         actual_response = call_endpoint_url_with_request(actor, self.request_path)
 
         asserts.assert_status_code(200, actual_response.status_code)

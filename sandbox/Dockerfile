@@ -11,7 +11,7 @@ RUN npm install --only=production
 COPY src ./src
 RUN chmod -R a+x /app
 
-USER nobody
+USER node
 
 EXPOSE 9000
 

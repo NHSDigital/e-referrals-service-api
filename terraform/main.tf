@@ -22,5 +22,5 @@ module "e-referrals-service-api" {
   namespace                = var.namespace
   make_api_product         = !(length(regexall("sandbox", var.apigee_environment)) > 0)
   api_product_display_name = length(var.namespace) > 0 ? "e-referrals-service-api${var.namespace}" : "e-Referrals-Service"
-  api_product_description  = "The NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS). See https://developer.nhs.uk/apis/e-Referrals/index.html"
+  api_product_description  = "The NHS e-RS vision is to enable local innovation and adoption of paperless referrals. To support this vision NHS Digital have created a set of APIs which provide a well-defined, simple to use data interface to the NHS e-Referral Service (e-RS). See https://digital.nhs.uk/developer/api-catalogue/e-referral-service-fhir"
 }

@@ -11,6 +11,9 @@ _HEADER_USER_ID = "x-ers-user-id"
 _HEADER_REQUEST_ID = "x-request-id"
 _HEADER_ASID = "xapi_asid"
 _HEADER_ACCESS_MODE = "x-ers-access-mode"
+_HEADER_ACR = "x-ers-acr"
+_HEADER_AMR = "x-ers-amr"
+_HEADER_ID_ASSURANCE_LEVEL = "x-ers-id-assurance-level"
 
 _EXPECTED_REFERRAL_ID = "000000040032"
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
@@ -19,6 +22,9 @@ _EXPECTED_COMMA_FILENAME = "mysuper,filename.txt"
 _EXPECTED_COMM_RULE_ORG = "R100"
 _EXPECTED_OBO_USER_ID = "0123456789000"
 _EXPECTED_ACCESS_MODE = "user-restricted"
+_EXPECTED_ACR = "AAL3_ANY"
+_EXPECTED_AMR = "[N3_SMARTCARD]"
+_EXPECTED_ID_ASSURANCE_LEVEL = "3"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
 _SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
@@ -142,6 +148,15 @@ class TestHeaders:
         assert target_request_headers[_HEADER_USER_ID] == referring_clinician.user_id
         assert target_request_headers[_HEADER_BASE_URL] == service_url
         assert target_request_headers[_HEADER_ACCESS_MODE] == _EXPECTED_ACCESS_MODE
+        assert target_request_headers[_HEADER_ACR] == _EXPECTED_ACR
+        assert target_request_headers[_HEADER_AMR] == _EXPECTED_AMR
+
+        # TODO: Uncomment IAL assert when APIM's CIS2 mock starts returning it
+
+    #         assert (
+    #             target_request_headers[_HEADER_ID_ASSURANCE_LEVEL]
+    #             == _EXPECTED_ID_ASSURANCE_LEVEL
+    #         )
 
     @pytest.mark.asyncio
     async def test_access_mode_header_overwritten_on_echo_target(

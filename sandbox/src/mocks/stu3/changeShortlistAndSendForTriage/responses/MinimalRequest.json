@@ -56,6 +56,22 @@
                         }
                     },
                     {
+                        "valueCoding": {
+                            "code": "INTERPRETER",
+                            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdditionalRequirementType-1",
+                            "display": "Interpreter"
+                        },
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1"
+                    },
+                    {
+                        "valueDateTime": "2021-10-01T12:51:16.848Z",
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1"
+                    },
+                    {
+                        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoLastUpdated-1",
+                        "valueDateTime": "2021-10-02T14:06:15.622Z"
+                    },
+                    {
                         "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1",
                         "extension": [
                             {
@@ -200,6 +216,50 @@
                                 "status": "accepted"
                             }
                         ]
+                    },
+                    {
+                        "indexed": "2021-10-01T12:51:16.848Z",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+                            ]
+                        },
+                        "description": "Description for TXT File",
+                        "id": "DocumentReference-70000",
+                        "type": {
+                            "coding": [
+                                {
+                                    "code": "REFERRER",
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+                                    "display": "Referrer"
+                                }
+                            ]
+                        },
+                        "content": [
+                            {
+                                "attachment": {
+                                    "extension": [
+                                        {
+                                            "valueReference": {
+                                                "identifier": {
+                                                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                                                    "value": "103264992985"
+                                                }
+                                            },
+                                            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1"
+                                        }
+                                    ],
+                                    "size": 4,
+                                    "id": "70000",
+                                    "title": "sample-txt-attachment-2.0.0.txt",
+                                    "contentType": "text/plain",
+                                    "url": "Binary/att-70000-70000",
+                                    "creation": "2021-10-13"
+                                }
+                            }
+                        ],
+                        "resourceType": "DocumentReference",
+                        "status": "current"
                     }
                 ],
                 "status": "active",
@@ -218,7 +278,11 @@
                         "value": "9912003888"
                     }
                 },
-                "supportingInfo": [],
+                "supportingInfo": [
+                    {
+                        "reference": "#DocumentReference-70000"
+                    }
+                ],
                 "intent": "plan"
             }
         },

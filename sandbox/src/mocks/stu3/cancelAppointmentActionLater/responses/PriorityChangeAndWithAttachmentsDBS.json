@@ -89,7 +89,7 @@
 					"name": "priority",
 					"valueCoding": {
 						"system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
-						"code": "URGENT"
+						"code": "ROUTINE"
 					}
 				},
 				{

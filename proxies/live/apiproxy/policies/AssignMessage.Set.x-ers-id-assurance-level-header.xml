@@ -1,7 +1,7 @@
 <AssignMessage continueOnError="true" name="AssignMessage.Set.x-ers-id-assurance-level-header">
     <Set>
         <Headers>
-            <Header name="x-ers-id-assurance-level">{jwt.DecodeJWT-id-token.decoded.claim.id_assurance_level}</Header>
+            <Header name="x-ers-id-assurance-level">{accesstoken.id_token-id-assurance-level}</Header>
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

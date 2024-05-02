@@ -1,0 +1,14 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeVariablesPreR4">
+    <AssignVariable>
+        <Name>op_outcome_fhir_profile</Name>
+        <Value>https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_system</Name>
+        <Value>https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_code</Name>
+        <Value>NO_ACCESS</Value>
+    </AssignVariable>
+</AssignMessage>

@@ -12,7 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGetReferralRequestVersioned(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -22,9 +29,18 @@ class TestGetReferralRequestVersioned(SandboxTest):
     ]
 
     testdata = [
-        ("000000070000", "stu3/retrieveReferralRequest/responses/Unbooked.json",),
-        ("000000070001", "stu3/retrieveReferralRequest/responses/BookedDBS.json",),
-        ("000000070002", "stu3/retrieveReferralRequest/responses/BookedIBS.json",),
+        (
+            "000000070000",
+            "stu3/retrieveReferralRequest/responses/Unbooked.json",
+        ),
+        (
+            "000000070001",
+            "stu3/retrieveReferralRequest/responses/BookedDBS.json",
+        ),
+        (
+            "000000070002",
+            "stu3/retrieveReferralRequest/responses/BookedIBS.json",
+        ),
         (
             "000000070003",
             "stu3/retrieveReferralRequest/responses/DeferredToProvider.json",
@@ -91,5 +107,8 @@ class TestGetReferralRequestVersioned(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"5"',},
+            actual_response,
+            additional={
+                "etag": 'W/"5"',
+            },
         )

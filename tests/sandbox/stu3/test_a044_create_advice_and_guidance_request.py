@@ -9,7 +9,7 @@ from SandboxTest import SandboxTest
 from data import Actor
 from utils import HttpMethod
 
-authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
+authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RC_INSUFFICIENT_IAL, Actor.RCA]
 
 
 @pytest.mark.sandbox

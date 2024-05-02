@@ -15,6 +15,7 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
     authorised_actor_data = [
         Actor.RC,
         Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
         Actor.RCA,
     ]
 
@@ -122,7 +123,8 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self,
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_query(
             actor,
@@ -153,4 +155,6 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
         asserts.assert_status_code(responseCode, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(actual_response,)
+        asserts.assert_json_response_headers(
+            actual_response,
+        )

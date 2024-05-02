@@ -12,7 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGetAppointment(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -22,13 +29,31 @@ class TestGetAppointment(SandboxTest):
     ]
 
     testdata = [
-        ("70000", "stu3/retrieveAppointment/responses/BookedDBS.json",),
-        ("70001", "stu3/retrieveAppointment/responses/BookedIBS.json",),
-        ("70002", "stu3/retrieveAppointment/responses/AppointmentDeferral.json",),
-        ("70003", "stu3/retrieveAppointment/responses/TriageDeferral.json",),
-        ("70004", "stu3/retrieveAppointment/responses/TriageResponse.json",),
+        (
+            "70000",
+            "stu3/retrieveAppointment/responses/BookedDBS.json",
+        ),
+        (
+            "70001",
+            "stu3/retrieveAppointment/responses/BookedIBS.json",
+        ),
+        (
+            "70002",
+            "stu3/retrieveAppointment/responses/AppointmentDeferral.json",
+        ),
+        (
+            "70003",
+            "stu3/retrieveAppointment/responses/TriageDeferral.json",
+        ),
+        (
+            "70004",
+            "stu3/retrieveAppointment/responses/TriageResponse.json",
+        ),
         ("70005", "stu3/retrieveAppointment/responses/CAAL.json"),
-        ("70006", "stu3/retrieveAppointment/responses/Cancelled.json",),
+        (
+            "70006",
+            "stu3/retrieveAppointment/responses/Cancelled.json",
+        ),
         ("70007", "stu3/retrieveAppointment/responses/AandGConvertedToDBS.json"),
     ]
 
@@ -80,5 +105,8 @@ class TestGetAppointment(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"5"',},
+            actual_response,
+            additional={
+                "etag": 'W/"5"',
+            },
         )

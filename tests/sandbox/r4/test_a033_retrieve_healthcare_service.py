@@ -12,7 +12,12 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestRetrieveHealthcareService(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.RCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -20,8 +25,14 @@ class TestRetrieveHealthcareService(SandboxTest):
     ]
 
     testdata = [
-        ("1", "r4/getService/responses/sampleServiceWithMinimumAttributes.json",),
-        ("2", "r4/getService/responses/sampleServiceWithFullAttributes.json",),
+        (
+            "1",
+            "r4/getService/responses/sampleServiceWithMinimumAttributes.json",
+        ),
+        (
+            "2",
+            "r4/getService/responses/sampleServiceWithFullAttributes.json",
+        ),
     ]
 
     @pytest.fixture
@@ -70,5 +81,8 @@ class TestRetrieveHealthcareService(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"1"',},
+            actual_response,
+            additional={
+                "etag": 'W/"1"',
+            },
         )

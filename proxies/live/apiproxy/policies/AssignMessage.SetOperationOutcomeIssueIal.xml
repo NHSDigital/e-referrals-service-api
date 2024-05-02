@@ -1,0 +1,10 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeIssueIal">
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>forbidden</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>We couldn't verify your identity. Contact your local Registration Authority or IT department for help.</Value>
+    </AssignVariable>
+</AssignMessage>

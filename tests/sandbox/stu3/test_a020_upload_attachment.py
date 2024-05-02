@@ -17,6 +17,7 @@ class TestUploadAttachment(SandboxTest):
         Actor.SPCA,
         Actor.RC,
         Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
         Actor.RCA,
     ]
 

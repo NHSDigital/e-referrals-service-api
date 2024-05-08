@@ -3,7 +3,7 @@ description: Date and time of the pathway start
 type: object
 required:
   - url
-  - valueDateTime
+  - valueInstant
 properties:
   url:
     type: string

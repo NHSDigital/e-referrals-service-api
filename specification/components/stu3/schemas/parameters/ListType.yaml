@@ -20,10 +20,11 @@ properties:
           minItems: 1
           maxItems: 1
           description: |
+            
             | Field                            | Cardinality | Notes                                  |
             | -------------------------------- | ----------- | -------------------------------------- |
             | `eRS-ReferralListSelector`       | `0..1`      |                                        |
-            | `eRS-CommunicationListSelector`  | `0..1`      |                                        | 
+            | `eRS-CommunicationListSelector`  | `0..1`      |                                        |
           items:
             anyOf:
               - title: eRS-ReferralListSelector

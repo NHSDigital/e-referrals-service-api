@@ -22,21 +22,6 @@
       ]
     },
     {
-      "id": "Patient-9462979626",
-      "meta": {
-        "profile": [
-          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Patient-1"
-        ]
-      },
-      "resourceType": "Patient",
-      "identifier": [
-        {
-          "system": "http://fhir.nhs.net/Id/nhs-number",
-          "value": "9462979626"
-        }
-      ]
-    },
-    {
       "id": "Patient-1000000001",
       "meta": {
         "profile": [
@@ -55,91 +40,6 @@
   "status": "current",
   "mode": "snapshot",
   "entry": [
-    {
-      "extension": [
-        {
-          "extension": [
-            {
-              "url": "priority",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
-                    "code": "ROUTINE"
-                  }
-                ]
-              }
-            },
-            {
-              "url": "specialty",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
-                    "code": "CARDIOLOGY"
-                  }
-                ]
-              }
-            },
-            {
-              "url": "patient",
-              "valueReference": {
-                "reference": "#Patient-9462979626"
-              }
-            },
-            {
-              "url": "eReferralPathwayStart",
-              "valueDateTime": "2021-09-03T14:09:15.297Z"
-            },
-            {
-              "url": "clinicalInfoPrinted",
-              "valueBoolean": false
-            },
-            {
-              "url": "requestContextStatus",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-RequestContextStatus-1",
-                    "code": "NEVER_REVIEWED",
-                    "display": "Never Reviewed"
-                  }
-                ]
-              }
-            },
-            {
-              "url": "clinicalInfoFirstSubmitted",
-              "valueDateTime": "2021-09-03T14:09:15.297Z"
-            },
-            {
-              "url": "referralType",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralType-1",
-                    "code": "TRIAGE_DEFERRAL"
-                  }
-                ]
-              }
-            },
-            {
-              "url": "service",
-              "valueReference": {
-                "identifier": {
-                  "system": "http://fhir.nhs.net/Id/ers-service",
-                  "value": "11012"
-                },
-                "display": "Excellent Cardiology Business Service 12"
-              }
-            }
-          ],
-          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"
-        }
-      ],
-      "item": {
-        "reference": "ReferralRequest/000000070002"
-      }
-    },
     {
       "extension": [
         {

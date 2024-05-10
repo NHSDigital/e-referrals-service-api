@@ -59,7 +59,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker,<br/>user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access

@@ -89,7 +89,7 @@ responses:
   '415':
     $ref: '../responses/UnsupportedMediaType.yaml'
   '422':
-    $ref: '../responses/CreateReferralErrorOutcome.yaml'
+    $ref: '../responses/CreateRequestErrorOutcome.yaml'
   '429':
     $ref: '../responses/TooManyRequests.yaml'
   '500':

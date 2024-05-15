@@ -242,7 +242,11 @@
             "content": [
               {
                 "attachment": {
-                  "url": "Binary/att-70000-70003"
+                  "contentType": "text/plain",
+                  "url": "Binary/e1015896-92f4-4073-ad3c-5f30fca76448",
+                  "size": 23,
+                  "title": "advice_attachment.txt",
+                  "creation": "2024-05-22"
                 }
               }
             ]

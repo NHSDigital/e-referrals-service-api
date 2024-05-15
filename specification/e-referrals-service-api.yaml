@@ -26,6 +26,7 @@ info:
       -	upload and manage a patient letter or attachments, linking them to a referral
       -	retrieve appointment slots and book appointments
       -	defer a booking to a provider if an appointment slot is unavailable
+      - create a new advice and guidance request
 
     **As a secondary care provider, you can:**
 

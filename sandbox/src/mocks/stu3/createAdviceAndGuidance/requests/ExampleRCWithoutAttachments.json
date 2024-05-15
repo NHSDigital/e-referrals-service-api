@@ -17,7 +17,7 @@
             "name": "providerConversionAuthorisation",
             "valueCoding": {
                 "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ProviderConversionAuthorisation-1",
-                "code": "AUTHORISED_TO_CONVERT"
+                "code": "NOT_AUTHORISED_TO_CONVERT"
             }
         },
         {
@@ -92,42 +92,6 @@
         {
             "name": "request",
             "valueString": "Request text."
-        },
-        {
-            "name": "requestAttachmentFile",
-            "resource": {
-              "meta": {
-                "profile": [
-                  "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
-                ]
-              },
-              "resourceType": "DocumentReference",
-              "type": {
-                "coding": [
-                  {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
-                    "code": "ADVICE_REQUEST"
-                  }
-                ]
-              },
-              "status": "current",
-              "indexed": "2021-09-29T13:22:35.335000+00:00",
-              "description": "Treatment Specification",
-              "content": [
-                {
-                  "attachment": {
-                    "url": "Binary/att-70000-70003"
-                  }
-                }
-              ]
-            }
-        },
-        {
-            "name": "referringClinician",
-            "valueIdentifier": {
-                "system": "http://fhir.nhs.net/Id/sds-user-id",
-                "value": "021600556514"
-              }
         }
     ]
 }

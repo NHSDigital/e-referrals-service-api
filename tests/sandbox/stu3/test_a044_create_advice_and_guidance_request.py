@@ -20,7 +20,14 @@ class TestCreateAdviceAndGuidance(SandboxTest):
         "REFERRING_CLINICIAN_ADMIN",
     ]
 
-    request_path = "stu3/createAdviceAndGuidance/requests/ExampleAdviceAndGuidance.json"
+    allowed_requests_with_responses = {
+        "stu3/createAdviceAndGuidance/requests/ExampleRCAWithAttachments.json": "stu3/createAdviceAndGuidance/responses/ExampleRCAWithAttachments.json",
+        "stu3/createAdviceAndGuidance/requests/ExampleRCWithoutAttachments.json": "stu3/createAdviceAndGuidance/responses/ExampleRCWithoutAttachments.json",
+    }
+
+    request_path = (
+        "stu3/createAdviceAndGuidance/requests/ExampleRCAWithAttachments.json"
+    )
 
     @pytest.fixture
     def endpoint_url(self) -> str:
@@ -50,6 +57,13 @@ class TestCreateAdviceAndGuidance(SandboxTest):
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
+    @pytest.mark.parametrize(
+        "request_path, response_path",
+        [
+            (request_path, response_path)
+            for request_path, response_path in allowed_requests_with_responses.items()
+        ],
+    )
     def test_success(
         self,
         call_endpoint_url_with_request: Callable[
@@ -57,11 +71,11 @@ class TestCreateAdviceAndGuidance(SandboxTest):
         ],
         load_json: Callable[[str], Dict[str, str]],
         actor: Actor,
+        request_path: str,
+        response_path: str,
     ):
-        expected_response = load_json(
-            "stu3/createAdviceAndGuidance/responses/ExampleAdviceAndGuidance.json"
-        )
-        actual_response = call_endpoint_url_with_request(actor, self.request_path)
+        expected_response = load_json(response_path)
+        actual_response = call_endpoint_url_with_request(actor, request_path)
 
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)

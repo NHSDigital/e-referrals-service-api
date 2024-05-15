@@ -9,7 +9,10 @@ description: |
   Note:  If you want to convert an advice and guidance request into a referral, 
   and provide a final guidance response back to the referrer at the same time, please 
   use [[HYPERLINK_A027]] instead. This option is only permissible 
-  if the referrer has authorised the provider to convert the advice and guidance request into a referral. 
+  if the referrer has authorised the provider to convert the advice and guidance request into a referral.
+
+  Whilst a document can be uploaded via [[HYPERLINK_A020]] without a `NHSD-eRS-Referral-ID`, only documents that have a `NHSD-eRS-Referral-ID` can be associated using this end point. 
+  An attempt to associate a document without a `NHSD-eRS-Referral-ID` will return an error response of 422 - `INAPPROPRIATE_VALUE`.
   
   ## Supported security patterns
   - Healthcare worker, user-restricted access

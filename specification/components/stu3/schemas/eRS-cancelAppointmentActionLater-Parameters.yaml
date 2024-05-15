@@ -36,7 +36,7 @@ properties:
       | `providerAttachmentFile`          | `0..*`      |                                                         |
     items:
       anyOf:
-        - title: priority
+        - title: priority 
           description: Parameter to supply a priority
           type: object
           required:
@@ -171,5 +171,5 @@ properties:
                         properties:
                           url:
                             type: string
-                            example: 'Binary/att-70000-70000'
+                            example: 'Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5'
 

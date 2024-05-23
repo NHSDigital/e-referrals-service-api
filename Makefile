@@ -61,6 +61,9 @@ release: clean publish build-proxy
 test:
 	echo "TODO: add tests"
 
+sandbox-tests:
+	ENVIRONMENT=local SERVICE_BASE_PATH=localhost poetry run pytest -v tests/sandbox
+
 setup-environment:
 	@if [ -e /usr/bin/yum ]; then \
 		scripts/rhel_setup_environment.sh; \
@@ -87,4 +90,4 @@ clean-environment:
 		echo "Environment not Mac or RHEL or Ubuntu"; \
 	fi
 
-.PHONY: setup-environment clean-environment sandbox
+.PHONY: setup-environment clean-environment sandbox sandbox-tests

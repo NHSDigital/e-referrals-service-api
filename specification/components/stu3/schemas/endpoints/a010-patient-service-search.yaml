@@ -50,6 +50,10 @@ requestBody:
           summary: Referring Clinician search by named clinician
           value:
             $ref: '../../examples/patientServiceSearch/requests/RcSearchByNamedClinician.json'
+        rc-search-for-advice-service:
+          summary: Referring Clinician search for services supporting Advice Requests
+          value:
+            $ref: '../../examples/patientServiceSearch/requests/RcSearchForAdviceService.json'
         rca-with-iwt:
           summary: Referring Clinician Admin search
           value:

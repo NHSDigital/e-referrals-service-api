@@ -32,6 +32,7 @@ const changeShortlistAndSendForTriage = require('./stu3/changeShortlistAndSendFo
 const cancelReferral = require('./stu3/cancelReferral')
 const retrieveAppointment = require('./stu3/retrieveAppointment')
 const retrieveAdviceAndGuidanceOverviewPdf = require('./stu3/retrieveAdviceAndGuidanceOverviewPdf')
+const createAdviceAndGuidance = require('./stu3/createAdviceAndGuidanceRequest')
 
 /**
  * FHIR R4 Version
@@ -78,7 +79,8 @@ const routes = [].concat(
   cancelReferral,
   retrieveAppointment,
   retrieveAdviceAndGuidanceOverviewPdf,
-  searchServiceRequest
+  searchServiceRequest,
+  createAdviceAndGuidance
 )
 
 module.exports = routes

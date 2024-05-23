@@ -29,6 +29,11 @@ class TestGetAttachment(SandboxTest):
             "stu3/retrieveAttachment/responses/example_attachment.pdf",
             "example_attachment.pdf",
         ),
+        (
+            "c5d2d200-7613-4a69-9c5f-1bb68e04b8d8",
+            "stu3/retrieveAttachment/responses/example_attachment.pdf",
+            "example_attachment.pdf",
+        ),
     ]
 
     @pytest.fixture

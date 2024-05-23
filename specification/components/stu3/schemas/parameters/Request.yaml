@@ -1,0 +1,15 @@
+title: request
+description: Parameter to supply a request
+type: object
+required:
+  - name
+  - valueString
+properties:
+  name:
+    type: string
+    enum:
+      - request
+    example: 'request'
+  valueString:
+    type: string
+    example: "Please provide some advice around this case."

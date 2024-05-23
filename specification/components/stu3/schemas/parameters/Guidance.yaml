@@ -1,0 +1,15 @@
+title: guidance
+description: Parameter to supply the guidance
+type: object
+required:
+  - name
+  - valueString
+properties:
+  name:
+    type: string
+    enum:
+      - guidance
+    example: 'guidance'
+  valueString:
+    type: string
+    example: 'Please perform test B and send me back the results'

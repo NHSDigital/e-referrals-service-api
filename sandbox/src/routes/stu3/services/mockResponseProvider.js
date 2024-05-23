@@ -78,7 +78,8 @@ module.exports = {
     var responseMapForRC = {
       'src/mocks/stu3/patientServiceSearch/requests/RcMinimal.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json',
       'src/mocks/stu3/patientServiceSearch/requests/RcSearchByClinicalTerm.json': 'stu3/patientServiceSearch/responses/EmptyResponse.json',
-      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchByNamedClinician.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json',
+      'src/mocks/stu3/patientServiceSearch/requests/RcSearchForAdviceService.json': 'stu3/patientServiceSearch/responses/AdviceServiceSearch.json'
     };
 
     var responseMapForRCA = {
@@ -164,8 +165,17 @@ module.exports = {
 
   getExampleResponseForRetrieveAttachment: function (request) {
 
-    if (request.params.attachmentLogicalID && request.params.attachmentLogicalID.startsWith('att-')) {
-      return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+    const attachmentId = request.params.attachmentLogicalID
+
+    if (attachmentId) {
+      
+      if (attachmentId.startsWith('att-')) {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+      }
+      
+      if (attachmentId === 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8') {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+      }
     }
 
   },
@@ -522,5 +532,14 @@ module.exports = {
       }
 
       return {}
+    },
+
+  getExampleResponseForCreateAdvice: function (request) {
+    const responseMap = {
+      'src/mocks/stu3/createAdviceAndGuidance/requests/ExampleRCAWithAttachments.json': 'stu3/createAdviceAndGuidance/responses/ExampleRCAWithAttachments.json',
+      'src/mocks/stu3/createAdviceAndGuidance/requests/ExampleRCWithoutAttachments.json': 'stu3/createAdviceAndGuidance/responses/ExampleRCWithoutAttachments.json'
     }
+
+    return mapExampleResponse(request, responseMap)
+  }
 }

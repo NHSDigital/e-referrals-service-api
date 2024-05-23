@@ -26,6 +26,7 @@ info:
       -	upload and manage a patient letter or attachments, linking them to a referral
       -	retrieve appointment slots and book appointments
       -	defer a booking to a provider if an appointment slot is unavailable
+      - create a new advice and guidance request
 
     **As a secondary care provider, you can:**
 
@@ -392,7 +393,10 @@ paths:
       $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
-      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'    
+      $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
+  /STU3/CommunicationRequest/$ers.createAdviceAndGuidance:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a044-create-advice-and-guidance-request.yaml'
 
 components:
   securitySchemes:

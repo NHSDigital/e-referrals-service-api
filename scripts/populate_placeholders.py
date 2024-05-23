@@ -46,6 +46,7 @@ def main():
         "[[HYPERLINK_A040]]": "[A040 - Retrieve e-RS-Specific Practitioner Information](#get-/R4/Practitioner)",
         "[[HYPERLINK_A041]]": "[A041 - Search for service requests](#get-/R4/ServiceRequest)",
         "[[HYPERLINK_A043]]": "[A043 - Retrieve advice and guidance overview PDF](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI)",
+        "[[HYPERLINK_A044]]": "[A044 - Create advice and guidance request](#post-/STU3/CommunicationRequest/$ers.createAdviceAndGuidance)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#overview--onboarding)",
         "[[HYPERLINK_NETWORK_ACCESS]]": "[Network access](#overview--network-access)",
         "[[HYPERLINK_STABLE]]": "[stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)",

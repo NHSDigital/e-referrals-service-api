@@ -33,7 +33,7 @@ module.exports = [
       // Simply checking if file content is provided along with filename and ubrn header
       if (request.payload && request.payload.length != 0 && filename && ubrn) {
         const response = h.response("").code(201)
-        response.headers["Location"] = "Binary/att-70000-70000";
+        response.headers["Location"] = "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5";
         return response
       } else {
         return h.file('STU3-SandboxErrorOutcome.json').code(422);

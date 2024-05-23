@@ -31,4 +31,8 @@ content:
         summary: Empty result list
         value:
           $ref: '../../../examples/patientServiceSearch/responses/EmptyResponse.json'
+      fetch-advice-services:
+        summary: With advice service
+        value:
+          $ref: '../../../examples/patientServiceSearch/responses/AdviceServiceSearch.json'
 

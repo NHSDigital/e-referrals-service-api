@@ -4,6 +4,9 @@ description: |
   ## Overview
   Use this endpoint to manage the set of 'referral letter' attachments associated with an existing referral, including adding or removing attachments from a referral.
 
+  Whilst a document can be uploaded via [[HYPERLINK_A020]] without a `NHSD-eRS-Referral-ID`, only documents that have a `NHSD-eRS-Referral-ID` can be associated using this end point. 
+  An attempt to associate a document without a `NHSD-eRS-Referral-ID` will return an error response of 422 - `INAPPROPRIATE_VALUE`.
+
   ## Supported security patterns
   - Healthcare worker, user-restricted access
 

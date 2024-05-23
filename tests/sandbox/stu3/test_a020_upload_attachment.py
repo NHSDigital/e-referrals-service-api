@@ -89,7 +89,11 @@ class TestUploadAttachment(SandboxTest):
         http_method: HttpMethod,
     ) -> Callable[[Actor, str], Response]:
         return lambda actor, file, headers={}: send_rest_request(
-            http_method, endpoint_url, actor, headers=headers, data=load_file(file),
+            http_method,
+            endpoint_url,
+            actor,
+            headers=headers,
+            data=load_file(file),
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -113,5 +117,8 @@ class TestUploadAttachment(SandboxTest):
         asserts.assert_status_code(201, actual_response.status_code)
 
         asserts.assert_upload_response_headers(
-            actual_response, additional={"Location": "Binary/att-70000-70000",}
+            actual_response,
+            additional={
+                "Location": "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5",
+            },
         )

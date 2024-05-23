@@ -187,5 +187,5 @@ properties:
                         properties:
                           url:
                             type: string
-                            example: 'Binary/att-70000-70000'
+                            example: 'Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5'
 

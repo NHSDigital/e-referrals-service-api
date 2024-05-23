@@ -171,10 +171,12 @@ def validate_request_examples():
     endpoints_and_examples_request = build_request_validation_data()
 
     file_count = 0
+    print("Validating request examples.")
     # Validate request examples
     for endpoint in endpoints_and_examples_request:
         file_count += len(endpoints_and_examples_request[endpoint])
         for example_req_path in endpoints_and_examples_request[endpoint]:
+            print(f"Validating: {example_req_path}")
             abspath_example = absolute_path(example_req_path, endpoint)
 
             with open(abspath_example, "r") as example_file:
@@ -266,10 +268,13 @@ def validate_response_examples():
 
     file_count = 0
 
+    print("Validating example responses.")
+
     # Validate response for each endpoint
     for endpoint_dict in endpoints_and_examples_response:
         file_count += len(endpoint_dict)
         for example_res_path in endpoint_dict["examples"]:
+            print(f"Validating: {example_res_path}")
             # Process response example file path
             abspath_example = absolute_path(example_res_path, endpoint_dict["path"])
 

@@ -3,7 +3,7 @@ security:
 description: |
   ## Overview
   
-  Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral.
+  Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral, an advice and guidance request or an advice and guidance response.
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
@@ -41,17 +41,27 @@ description: |
 
   I need to upload a referral letter or other clinical information file to e-RS
 
-  So that I can associate the file with an existing referral.
+  So that I can associate the file with an existing referral or advice and guidance request.
 
-  ## Important notes:
+  ## Important notes
 
-  This endpoint **only** performs the file upload. The uploaded file is **not** associated with a referral until the file has been associated with a referral, for example using [[HYPERLINK_A012]].
+  This endpoint **only** performs the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [[HYPERLINK_A012]].
   
   The resulting URL within e-RS for the uploaded file is returned in the 'Location' header of the response.
 
+  Request header `NHSD-eRS-Referral-ID` - the ID (typically the UBRN) of the referral which the documents are intended for - is non-mandatory, but must be provided if this file is to be attached to an existing request.
+
   ## Related endpoints
 
-  You can associate the uploaded file with a specific referral using [[HYPERLINK_A012]].
+  You can associate the uploaded file with a specific referral using:
+    - [[HYPERLINK_A012]]
+    - [[HYPERLINK_A022]]
+    - [[HYPERLINK_A028]]
+
+  You can associate the uploaded file with a specific advice and guidance request using:
+    - [[HYPERLINK_A044]]
+    - [[HYPERLINK_A026]]
+    - [[HYPERLINK_A027]]
 
 summary: A020 - Upload file to document store
 operationId: a020-upload-file-to-document-store

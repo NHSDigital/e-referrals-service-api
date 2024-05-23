@@ -193,7 +193,7 @@ properties:
                         properties:
                           url:
                             type: string
-                            example: 'Binary/att-70000-70001'
+                            example: 'Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5'
         - title: reviewAttachmentFile
           description: Parameter to supply a reviewAttachmentFile
           type: object
@@ -285,5 +285,5 @@ properties:
                         properties:
                           url:
                             type: string
-                            example: 'Binary/att-70000-70002'
+                            example: 'Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5'
 

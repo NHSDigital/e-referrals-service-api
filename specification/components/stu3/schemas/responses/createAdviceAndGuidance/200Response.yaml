@@ -1,0 +1,21 @@
+description: An Advice And Guidance Request created within e-RS.
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../eRS-CreateAdviceAndGuidance-Response-Parameters.yaml'
+    examples:
+      rca-with-attachments:
+          summary: Example created by RCA with attachments authorising the provider to convert to a referral request.
+          value:
+            $ref: '../../../examples/createAdviceAndGuidance/responses/ExampleRCAWithAttachments.json'
+      rc-without-attachments:
+          summary: Example created by RC without attachments not authorising the provider to convert to a referral request.
+          value:
+            $ref: '../../../examples/createAdviceAndGuidance/responses/ExampleRCWithoutAttachments.json'

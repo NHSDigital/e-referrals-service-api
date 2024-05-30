@@ -82,6 +82,32 @@ class TestHeaders:
             response, service_url, referring_clinician, asid, _EXPECTED_COMMA_FILENAME
         )
 
+    @pytest.mark.asyncio
+    @pytest.mark.nhsd_apim_authorization(access="healthcare_worker", level="aal2")
+    async def test_aal2_access(
+        self, authenticate_user, service_url, referring_clinician, asid
+    ):
+        access_code = await authenticate_user(referring_clinician)
+
+        client_request_headers = {
+            _HEADER_ECHO: "",  # enable echo target
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
+            _HEADER_REQUEST_ID: "DUMMY-VALUE",
+            RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+            RenamedHeader.BUSINESS_FUNCTION.original: referring_clinician.business_function,
+            RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
+            RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
+            RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+            RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+        }
+
+        # Make the API call
+        response = requests.get(service_url, headers=client_request_headers)
+        self.assert_ok_echo_response(
+            response, service_url, referring_clinician, asid, _EXPECTED_FILENAME
+        )
+
     def assert_ok_echo_response(
         self,
         response: Response,

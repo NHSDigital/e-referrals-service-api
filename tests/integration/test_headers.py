@@ -83,11 +83,10 @@ class TestHeaders:
         )
 
     @pytest.mark.asyncio
-    @pytest.mark.nhsd_apim_authorization(access="healthcare_worker", level="aal2")
     async def test_aal2_access(
         self, authenticate_user, service_url, referring_clinician, asid
     ):
-        access_code = await authenticate_user(referring_clinician)
+        access_code = await authenticate_user(referring_clinician, aal="aal2")
 
         client_request_headers = {
             _HEADER_ECHO: "",  # enable echo target
@@ -109,11 +108,10 @@ class TestHeaders:
         )
 
     @pytest.mark.asyncio
-    @pytest.mark.nhsd_apim_authorization(access="healthcare_worker", level="aal1")
     async def test_access_insufficient_aal(
         self, authenticate_user, service_url, referring_clinician, asid
     ):
-        access_code = await authenticate_user(referring_clinician)
+        access_code = await authenticate_user(referring_clinician, aal="aal1")
 
         client_request_headers = {
             _HEADER_ECHO: "",  # enable echo target

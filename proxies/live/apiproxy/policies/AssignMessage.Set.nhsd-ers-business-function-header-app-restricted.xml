@@ -1,7 +1,13 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Set.nhsd-ers-business-function-header-app-restricted">
+    <AssignVariable>
+        <Name>business-function-header-value</Name>
+        <Ref>app.app-restricted-business-function</Ref>
+        <Value>PROVIDER_AUTHORISED_APPLICATION</Value>
+        <!-- default value in case variable above is not defined -->
+    </AssignVariable>
     <Set>
         <Headers>
-            <Header name="x-ers-business-function">AUTHORISED_APPLICATION</Header>
+            <Header name="x-ers-business-function">{business-function-header-value}</Header>
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>

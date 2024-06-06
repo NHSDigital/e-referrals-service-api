@@ -46,8 +46,10 @@ description: |
 
   [[HYPERLINK_A025]] to retrieve the advice and guidance conversation.
 
-summary: A044 - Create advice and guidance request
+summary: Create advice and guidance request (A044, FHIR STU3)
 operationId: a044-create-advice-and-guidance-request
+tags:
+  - Request advice
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

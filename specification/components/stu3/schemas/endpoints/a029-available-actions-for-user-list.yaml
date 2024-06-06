@@ -59,8 +59,12 @@ description: |
   | "Cancel Directly Booked Appointment" is available   | `focus`=`ReferralRequest/000000070006/_history/6`, `intent`=`proposal`, `status`=`ready` |
 
 
-summary: A029 - Available actions for user list
+summary: Available actions for user (A029, FHIR STU3)
 operationId: a029-available-actions-for-user-list
+tags:
+  - Change appointment
+  - Manage referral
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

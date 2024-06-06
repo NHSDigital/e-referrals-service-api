@@ -45,8 +45,10 @@ description: |
 
   You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
 
-summary: A011 - Create referral
+summary: Create referral (A011, FHIR STU3)
 operationId: a011-create-referral
+tags:
+  - Refer patient
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

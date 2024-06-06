@@ -91,8 +91,10 @@ description: |
   Each PractitionerRole resource also has an `organization` field which has an identifier in the `https://fhir.nhs.uk/Id/ods-organization-code` code system.
   The `NHSD-End-User-Organisation-ODS` request header value should be the `value` field value from the organization identifier in the PractitionerRole resource e.g. "R69".
 
-summary: A030 - Retrieve e-RS business functions
+summary: Retrieve user business functions (A030, FHIR R4)
 operationId: a030-retrieve-business-functions
+tags:
+  - Retrieve user information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'

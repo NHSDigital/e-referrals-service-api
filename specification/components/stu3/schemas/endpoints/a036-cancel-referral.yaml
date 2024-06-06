@@ -85,8 +85,10 @@ description: |
   | Cancelled Appointment and Referral                                       | Referrer Cancellation             |
   | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No Longer Required      |
   | Cancelled Referral with Existing Review Outcome                          | Intend Private With Comment       |
-summary: A036 - Cancel referral
+summary: Cancel referral (A036, FHIR STU3)
 operationId: a036-cancel-referral
+tags:
+  - Manage referral
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

@@ -73,8 +73,10 @@ description: |
   | Multi-way conversation                                         | `based-on`=`CommunicationRequest/000000070002/_history/1` |
   | Attachment uploaded from RCS before A&G creation               | `based-on`=`CommunicationRequest/000000070003/_history/7` | 
 
-summary: A025 - Retrieve advice and guidance conversation
+summary: Retrieve advice and guidance conversation (A025, FHIR STU3)
 operationId: a025-retrieve-advice-and-guidance-conversation
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../queryParameters/BasedOn.yaml'
   - $ref: '../queryParameters/Include-Communication.yaml'

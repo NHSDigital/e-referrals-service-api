@@ -43,8 +43,11 @@ description: |
 
   Where deferring the booking responsibility to a directly bookable service, or referring the patient into a triage service, you can calculate the date when the patient can expect to be contacted (by the receiving service) using reference data from [[HYPERLINK_A004]].
 
-summary: A016 - Book or defer appointment
+summary: Book or defer appointment (A016, FHIR STU3)
 operationId: a016-book-or-defer-appointment
+tags:
+  - Arrange appointment
+  - Arrange triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

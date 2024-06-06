@@ -80,8 +80,12 @@ description: |
   | Add clinical information for first time (two files)    | `ubrn`=`000000070001`, `body` as defined in example 2   |
   | Update clinical information                            | `ubrn`=`000000070001`, `body` as defined in example 3   |
 
-summary: A012 - Maintain referral letter
+summary: Maintain referral letter (A012, FHIR STU3)
 operationId: a012-maintain-referral-letter
+tags:
+  - Refer patient
+  - Arrange appointment
+  - Arrange triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

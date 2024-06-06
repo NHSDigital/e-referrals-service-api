@@ -39,8 +39,10 @@ description: |
 
   You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
-summary: A021 - Create referral and send for triage (deprecated)
+summary: Create referral and send for triage (A021, FHIR STU3) [deprecated]
 operationId: a021-create-referral-request-and-send-for-triage
+tags:
+  - Refer patient
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

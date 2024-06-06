@@ -28,8 +28,10 @@ description: |
 
   So that I can confirm the patient's referral is appropriate for the current service and booked appointment date/time.
   
-summary: A013 - Accept referral
+summary: Accept referral (A013, FHIR STU3)
 operationId: a013-accept-referral
+tags:
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

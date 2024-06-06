@@ -10,9 +10,6 @@ description: |
   Worklists provide lists of referral/advice requests that meet certain criteria, 
   typically where a user needs to be aware of something important, or to undertake an action, in order to avoid delays to patient care.
 
-  ## Supported security patterns
-  - Healthcare worker, user-restricted access
-
   ## Referring Organisations
   Referring organisations can currently access the following referral related worklists:
     - The 'Letters Outstanding' worklist contains referrals which require a referral letter to be added.
@@ -22,7 +19,10 @@ description: |
   
   Filters can be used in requests for service provider organisation worklists, however, filters cannot be used in requests for referring organisation worklists.
 
-  ### Pre-requisites
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+  
+  ## Pre-requisites
   In order to use this endpoint and retrieve the referring organisation worklists, you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
@@ -53,12 +53,31 @@ description: |
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  - Application-restricted, unattended access
 
   ## Pre-requisites
+  
+  ### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+
+  Supported Worklists:
+  - Referrals for Review
+  
+  The Service filter is mandatory when using this security pattern.
+  
+  This endpoint must only be used to retrieve the worklist for a given service up to two times per day. If this does not meet your requirements, please [[HYPERLINK_CONTACT_US]] to discuss your use case.
+  
+  If a worklist response exceeds 10MB, a successful response will not be returned. This is due to the size limitation on the APIM platform.
+  
+  ### User-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_ADMIN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  Supported Worklists:
+    - Referrals for Review
+    - Appointment Slot Issues
 
   If a worklist response exceeds 10MB, a successful response will not be returned. This is due to the size limitation on the APIM platform.
   
@@ -91,8 +110,8 @@ summary: A008 - Retrieve referral worklist
 operationId: a008-retrieve-worklist
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
-  - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/BusinessFunctionOBO.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
   - $ref: '../headers/request/OnBehalfOfUserID.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
 requestBody:
@@ -118,6 +137,10 @@ requestBody:
           summary: Filter by clinician
           value:
             $ref: '../../examples/retrieveWorklist/requests/FilteringByClinician.json'
+        filtered-by-service:
+          summary: Filter by service
+          value:
+            $ref: '../../examples/retrieveWorklist/requests/FilteredByService.json'
         rejected-triage-responses:
           summary: Rejected Triage Responses
           value:

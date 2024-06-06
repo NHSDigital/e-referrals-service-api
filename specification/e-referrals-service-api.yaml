@@ -281,13 +281,43 @@ servers:
     description: Integration test environment.
   - url: 'https://api.service.nhs.uk/referrals/FHIR'
     description: 'Production environment. Not yet available.'
+tags:
+  - name: Retrieve user information
+    x-tag-expanded: false
+  - name: Refer patient
+    x-tag-expanded: false
+  - name: Arrange appointment
+    x-tag-expanded: false
+  - name: Arrange triage
+    x-tag-expanded: false
+  - name: Request advice
+    x-tag-expanded: false
+  - name: Retrieve healthcare service information
+    x-tag-expanded: false
+  - name: Change appointment
+    x-tag-expanded: false
+  - name: Manage referral
+    x-tag-expanded: false
+  - name: Retrieve clinical information
+    x-tag-expanded: false
+  - name: Review referral requests
+    x-tag-expanded: false
+  - name: Review advice and guidance requests
+    x-tag-expanded: false
+    
 paths:
   /STU3/CodeSystem/{codeSystemType}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a004-retrieve-reference-data.yaml'
+  /STU3/ReferralRequest/$ers.fetchworklist:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a008-retrieve-worklist.yaml'
   /STU3/ReferralRequest/{ubrn}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a005-retrieve-referral-request.yaml'
+  /STU3/Task:
+    get:
+      $ref: 'components/stu3/schemas/endpoints/a029-available-actions-for-user-list.yaml'
   /STU3/ReferralRequest/{ubrn}/_history/{version}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a005-retrieve-referral-request-versioned.yaml'
@@ -297,15 +327,24 @@ paths:
   /STU3/ReferralRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a007-retrieve-clinical-information.yaml'
-  /STU3/ReferralRequest/$ers.fetchworklist:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a008-retrieve-worklist.yaml'
   /STU3/HealthcareService/$ers.searchHealthcareServicesForPatient:
     post:
       $ref: 'components/stu3/schemas/endpoints/a010-patient-service-search.yaml'
   /STU3/ReferralRequest/$ers.createReferral:
     post:
       $ref: 'components/stu3/schemas/endpoints/a011-create-referral.yaml'
+  /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a021-create-referral-request-and-send-for-triage.yaml'
+  /STU3/Slot:
+    get:
+      $ref: 'components/stu3/schemas/endpoints/a015-retrieve-appointment-slots.yaml'
+  /STU3/Appointment:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a016-book-or-defer-appointment.yaml'
+  /STU3/Binary:
+    post:
+      $ref: 'components/stu3/schemas/endpoints/a020-upload-file-to-document-store.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.maintainReferralLetter:
     post:
       $ref: 'components/stu3/schemas/endpoints/a012-maintain-referral-letter.yaml'
@@ -315,21 +354,9 @@ paths:
   /STU3/ReferralRequest/{ubrn}/$ers.rejectReferral:
     post:
       $ref: 'components/stu3/schemas/endpoints/a014-reject-referral.yaml'
-  /STU3/Slot:
-    get:
-      $ref: 'components/stu3/schemas/endpoints/a015-retrieve-appointment-slots.yaml'
-  /STU3/Appointment:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a016-book-or-defer-appointment.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.generatePatientLetter:
     post:
       $ref: 'components/stu3/schemas/endpoints/a019-generate-patient-letter.yaml'
-  /STU3/Binary:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a020-upload-file-to-document-store.yaml'
-  /STU3/ReferralRequest/$ers.createReferralAndSendForTriage:
-    post:
-      $ref: 'components/stu3/schemas/endpoints/a021-create-referral-request-and-send-for-triage.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.cancelAppointmentActionLater:
     post:
       $ref: 'components/stu3/schemas/endpoints/a022-cancel-appointment-action-later.yaml'
@@ -354,9 +381,6 @@ paths:
   /STU3/ReferralRequest/{ubrn}/$ers.recordReviewOutcome:
     post:
       $ref: 'components/stu3/schemas/endpoints/a028-record-triage-outcome.yaml'
-  /STU3/Task:
-    get:
-      $ref: 'components/stu3/schemas/endpoints/a029-available-actions-for-user-list.yaml'
   /R4/PractitionerRole:
     get:
       $ref: 'components/r4/schemas/endpoints/a030-retrieve-business-functions.yaml'
@@ -388,15 +412,15 @@ paths:
   /R4/Practitioner:
     get:
       $ref: 'components/r4/schemas/endpoints/a040-retrieve-practitioner-info.yaml'
-  /R4/ServiceRequest:
-    get:
-      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
   /STU3/CommunicationRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a043-retrieve-advice-and-guidance-overview-pdf.yaml'
   /STU3/CommunicationRequest/$ers.createAdviceAndGuidance:
     post:
       $ref: 'components/stu3/schemas/endpoints/a044-create-advice-and-guidance-request.yaml'
+  /R4/ServiceRequest:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
 
 components:
   securitySchemes:

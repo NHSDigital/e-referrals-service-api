@@ -23,8 +23,12 @@ description: |
 
   So that I can pass it to the patient.
 
-summary: A019 - Generate patient letter
+summary: Generate patient letter (A019, FHIR STU3)
 operationId: a019-generate-patient-letter
+tags:
+  - Refer patient
+  - Arrange appointment
+  - Arrange triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

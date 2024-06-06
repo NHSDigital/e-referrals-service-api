@@ -24,8 +24,10 @@ description: |
   ## Related endpoints
   Once you have identified appropriate services for the patient you can create a referral by choosing a shortlist of bookable and/or triage services using [[HYPERLINK_A011]]. You may then subsequently be able to use [[HYPERLINK_A016]] to book an appointment to a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, or refer a patient into a triage service.
 
-summary: A010 - Patient service search
+summary: Patient service search (A010, FHIR STU3)
 operationId: a010-patient-service-search
+tags:
+  - Refer patient
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

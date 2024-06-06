@@ -66,8 +66,10 @@ description: |
   | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
   | Attachment file reference present                                        | `ubrn`=`000000070001`   |
 
-summary: A024 - Retrieve advice and guidance request summary
+summary: Retrieve advice and guidance request summary (A024, FHIR STU3)
 operationId: a024-retrieve-advice-and-guidance
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'

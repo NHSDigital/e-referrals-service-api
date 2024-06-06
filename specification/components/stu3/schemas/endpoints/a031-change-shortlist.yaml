@@ -52,8 +52,10 @@ description: |
   For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
   You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
-summary: A031 - Change shortlist
+summary: Retrieve user business functions (A030, FHIR R4)
 operationId: a031-change-shortlist
+tags:
+  - Manage referral
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

@@ -8,9 +8,14 @@ description: |
   You can use this endpoint to obtain the current service's "version" held in e-RS, in order to compare to a locally cached version. 
 
   ## Supported security patterns
+  - Application-restricted, unattended access
   - Healthcare worker, user-restricted access
 
   ## Pre-requisites
+  ### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Referring Organisation.
+  
+  ### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
@@ -41,8 +46,8 @@ operationId: a037-retrieve-healthcare-service-version
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../pathParameters/ServiceId.yaml'
-  - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
 responses:
   '200':

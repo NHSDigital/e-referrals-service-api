@@ -59,7 +59,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted, unattended access | [Signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)    | [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A008](#post-/STU3/ReferralRequest/$ers.fetchworklist), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication), [A033](#get-/R4/HealthcareService/-id-), [A035](#get-/R4/HealthcareService), [A037](#head-/R4/HealthcareService/-id-) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker, user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access
@@ -116,8 +116,8 @@ info:
 
     - when authenticating a human user is not possible
     - for endpoints that offer read-only functionality
-    - by 'Provider Organisations' (currently)
-    - for accessing endpoints [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) (currently)
+    - by 'Provider Organisations' or 'Referrer Organisations'
+    - for accessing endpoints [A004](#get-/STU3/CodeSystem/-codeSystemType-), [A005](#get-/STU3/ReferralRequest/-ubrn-), [A006](#get-/STU3/Binary/-attachmentLogicalID-), [A007](#post-/STU3/ReferralRequest/-ubrn-/$ers.generateCRI), [A008](#post-/STU3/ReferralRequest/$ers.fetchworklist), [A024](#get-/STU3/CommunicationRequest/-ubrn-), [A025](#get-/STU3/Communication), [A033](#get-/R4/HealthcareService/-id-), [A035](#get-/R4/HealthcareService), [A037](#head-/R4/HealthcareService/-id-) and [A043](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI) (currently)
 
     For more information, please see [[HYPERLINK_NETWORK_ACCESS]].
 

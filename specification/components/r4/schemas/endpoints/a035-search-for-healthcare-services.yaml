@@ -8,9 +8,14 @@ description: |
   You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call. 
 
   ## Supported security patterns
+  - Application-restricted, unattended access
   - Healthcare worker, user-restricted access
 
   ## Pre-requisites
+  ### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Referring Organisation.
+  
+  ### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
@@ -42,8 +47,8 @@ summary: A035 - Search for healthcare services
 operationId: a035-search-for-healthcare-services
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
-  - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
   - in: query
     name: _id

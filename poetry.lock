@@ -791,13 +791,13 @@ files = [
 
 [[package]]
 name = "more-itertools"
-version = "10.2.0"
+version = "10.3.0"
 description = "More routines for operating on iterables, beyond itertools"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "more-itertools-10.2.0.tar.gz", hash = "sha256:8fccb480c43d3e99a00087634c06dd02b0d50fbf088b380de5a41a015ec239e1"},
-    {file = "more_itertools-10.2.0-py3-none-any.whl", hash = "sha256:686b06abe565edfab151cb8fd385a05651e1fdf8f0a14191e4439283421f8684"},
+    {file = "more-itertools-10.3.0.tar.gz", hash = "sha256:e5d93ef411224fbcef366a6e8ddc4c5781bc6359d43412a65dd5964e46111463"},
+    {file = "more_itertools-10.3.0-py3-none-any.whl", hash = "sha256:ea6a02e24a9161e51faad17a8782b92a0df82c12c1c8886fec7f0c3fa1a1b320"},
 ]
 
 [[package]]
@@ -813,13 +813,13 @@ files = [
 
 [[package]]
 name = "openapi-core"
-version = "0.19.1"
+version = "0.19.2"
 description = "client-side and server-side support for the OpenAPI Specification v3"
 optional = false
 python-versions = "<4.0.0,>=3.8.0"
 files = [
-    {file = "openapi_core-0.19.1-py3-none-any.whl", hash = "sha256:a1eeb93d2a7e41a8c34ccebd55b180d1f73c5dddffbad657315746e955283cfc"},
-    {file = "openapi_core-0.19.1.tar.gz", hash = "sha256:3facc2c87b7e9fb9909ae72bfb0b7cad20954e23fb4ef04dc5559197dee87597"},
+    {file = "openapi_core-0.19.2-py3-none-any.whl", hash = "sha256:b05f81031cc5b14f3a90b02f955d2ec756ccd5fba4f4e80bc4362520dac679a4"},
+    {file = "openapi_core-0.19.2.tar.gz", hash = "sha256:db4e13dd3162d861d9485ae804f350586d9fd1d72808cdb264d6993d9b5ede3f"},
 ]
 
 [package.dependencies]
@@ -877,13 +877,13 @@ openapi-schema-validator = ">=0.6.0,<0.7.0"
 
 [[package]]
 name = "packaging"
-version = "24.0"
+version = "24.1"
 description = "Core utilities for Python packages"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
-    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+    {file = "packaging-24.1-py3-none-any.whl", hash = "sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124"},
+    {file = "packaging-24.1.tar.gz", hash = "sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"},
 ]
 
 [[package]]
@@ -1529,13 +1529,13 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.12.1"
+version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.12.1-py3-none-any.whl", hash = "sha256:6024b58b69089e5a89c347397254e35f1bf02a907728ec7fee9bf0fe837d203a"},
-    {file = "typing_extensions-4.12.1.tar.gz", hash = "sha256:915f5e35ff76f56588223f15fdd5938f9a1cf9195c0de25130c627e4d597f6d1"},
+    {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
+    {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
 
 [[package]]
@@ -1625,4 +1625,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "c5f9321575f6f65cba6d7822d7aa8f668508b3c4568c917bd2258a70b824d7aa"
+content-hash = "c46974d7c473955d92745459bc830355d2bddbdfd4f1ab0eb4899ffe48c02f4d"

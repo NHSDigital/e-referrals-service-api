@@ -1,4 +1,4 @@
-FROM node:18.3.0-alpine3.14
+FROM node:23.10.0-alpine
 
 ENV npm_config_cache=/home/node/app/.npm
 

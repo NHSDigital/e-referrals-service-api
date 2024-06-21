@@ -35,6 +35,7 @@ properties:
       | `Shortlist`                       | `1..1`      |                                            |
       | `IntentionToAddReferralLetter`    | `1..1`      |                                            | 
       | `FirstReminderLetterFollowUpDays` | `1..1`      |                                            | 
+      | `EReferralPathwayStart`           | `0..1`      |                                            | 
     items:
       anyOf:
         - $ref: 'parameters/Patient.yaml'
@@ -42,3 +43,4 @@ properties:
         - $ref: 'parameters/Shortlist.yaml'
         - $ref: 'parameters/IntentionToAddReferralLetter.yaml'
         - $ref: 'parameters/FirstReminderLetterFollowUpDays.yaml'
+        - $ref: 'parameters/EReferralPathwayStart.yaml'

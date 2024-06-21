@@ -68,6 +68,8 @@ properties:
       | `Extension-eRS-ClinicalInfoLastUpdated`    | `0..1`      |                                                                         |
       | `Extension-eRS-Appointment-Reference`      | `0..1`      |                                                                         |
       | `Extension-eRS-AdditionalRequirement`      | `0..3`      | Outlines that this `ReferralRequest` requires an additional requirement |
+      | `Extension-eRS-eReferralPathwayStart`      | `0..1`      |                                                                         |
+
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
@@ -79,6 +81,8 @@ properties:
         - $ref: 'extensions/Extension-eRS-ClinicalInfoLastUpdated.yaml'
         - $ref: 'extensions/Extension-eRS-Appointment-Reference.yaml'
         - $ref: 'extensions/Extension-eRS-AdditionalRequirement.yaml'
+        - $ref: 'extensions/Extension-eRS-eReferralPathwayStart.yaml'
+
   status:
     type: string
     enum:

@@ -58,6 +58,8 @@ def main():
         "[[HYPERLINK_CONTACT_US]]": "[contact us](https://digital.nhs.uk/developer/help-and-support)",
         "[[HYPERLINK_CIS_AUTH_SHORT]]": "[CIS2](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication)",
         "[[HYPERLINK_CIS_AUTH_LONG]]": "[NHS Care Identity Service 2 (CIS2)](https://digital.nhs.uk/services/identity-and-access-management/nhs-care-identity-service-2/care-identity-authentication)",
+        "[[HYPERLINK_RTT_RULES]]": "[national RTT rules](https://www.gov.uk/government/publications/right-to-start-consultant-led-treatment-within-18-weeks)",
+        "[[HYPERLINK_PATHWAY_START]]": "[here](https://digital.nhs.uk/services/e-referral-service/document-library/pathway-start)",
     }
 
     data = sys.stdin.read()

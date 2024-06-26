@@ -5,7 +5,13 @@
                 <Name>ExtractVariables.OAuthErrorFaultString</Name>
             </Step>
             <Step>
-                <Name>AssignMessage.OAuthPolicyOperationOutcomeErrorResponse</Name>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
             </Step>
             <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = true)</Condition>
         </FaultRule>
@@ -41,6 +47,23 @@
                 <Name>AssignMessage.QuotaErrorResponse</Name>
             </Step>
             <Condition>(ratelimit.QuotaPerApp.failed = true) and (isFhirR4Path = false)</Condition>
+        </FaultRule>
+        <FaultRule name="insufficient_ial">
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeIssueIal</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.401InsufficientIal.failed = true)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
@@ -114,13 +137,14 @@
                 </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
                 </Step><Step>
-                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
-                </Step><Step>
-                    <Name>DecodeJWT-id-token</Name>
-                </Step><Step>
                     <Name>AssignMessage.Set.x-ers-acr-header</Name>
                 </Step><Step>
+                    <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                </Step><Step>
                     <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
+                </Step><Step>
+                    <Condition>(request.header.x-ers-id-assurance-level LesserThan 3)</Condition>
+                    <Name>RaiseFault.401InsufficientIal</Name>
                 </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
@@ -140,7 +164,7 @@
         </Flow>
         <Flow name="app-restricted-flow">
             <Condition>(accesstoken.auth_type == "app")</Condition>
-            <Request><!-- reject if headers that are overriden as part of app rectricted call are provided--><Step>
+            <Request><!-- reject if headers that are overriden as part of app restricted call are provided--><Step>
                     <Name>RaiseFault.403Forbidden</Name>
                     <Condition>(request.header.x-ers-ods-code)</Condition>
                 </Step> <Step>

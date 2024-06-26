@@ -1,0 +1,14 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeVariablesR4">
+    <AssignVariable>
+        <Name>op_outcome_fhir_profile</Name>
+        <Value>https://www.hl7.org/fhir/R4/operationoutcome.html</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_system</Name>
+        <Value>https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_code</Name>
+        <Value>ACCESS_DENIED</Value>
+    </AssignVariable>
+</AssignMessage>

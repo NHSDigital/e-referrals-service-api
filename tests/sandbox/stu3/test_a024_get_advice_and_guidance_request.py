@@ -13,7 +13,14 @@ from utils import HttpMethod
 @pytest.mark.sandbox
 class TestGetAdviceAndGuidanceRequest(SandboxTest):
 
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -79,5 +86,8 @@ class TestGetAdviceAndGuidanceRequest(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"5"',},
+            actual_response,
+            additional={
+                "etag": 'W/"5"',
+            },
         )

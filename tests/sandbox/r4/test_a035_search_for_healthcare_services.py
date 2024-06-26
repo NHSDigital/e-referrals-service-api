@@ -12,7 +12,12 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestSearchForHealthcareServices(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.RCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -28,7 +33,10 @@ class TestSearchForHealthcareServices(SandboxTest):
             "3,4",
             "r4/searchForServices/responses/searchServiceWithMaxAndMinAttributes.json",
         ),
-        ("5,6", "r4/searchForServices/responses/searchServiceWithEmptyResponse.json",),
+        (
+            "5,6",
+            "r4/searchForServices/responses/searchServiceWithEmptyResponse.json",
+        ),
     ]
 
     @pytest.fixture
@@ -49,10 +57,13 @@ class TestSearchForHealthcareServices(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self,
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_query(
-            actor, {"_id": "1,2"}, headers,
+            actor,
+            {"_id": "1,2"},
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -71,4 +82,6 @@ class TestSearchForHealthcareServices(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(actual_response,)
+        asserts.assert_json_response_headers(
+            actual_response,
+        )

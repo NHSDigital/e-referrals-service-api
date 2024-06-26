@@ -12,7 +12,12 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestCancelReferral(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.RCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -70,7 +75,9 @@ class TestCancelReferral(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "stu3/cancelReferral/requests/ReferrerCancellation.json", headers,
+            actor,
+            "stu3/cancelReferral/requests/ReferrerCancellation.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)

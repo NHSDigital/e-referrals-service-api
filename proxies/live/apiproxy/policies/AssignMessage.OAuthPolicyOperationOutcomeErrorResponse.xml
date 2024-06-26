@@ -1,8 +1,0 @@
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.OAuthPolicyOperationOutcomeErrorResponse">
-    <Set>
-        <StatusCode>401</StatusCode>
-        <Payload contentType="application/fhir+json" variablePrefix="%" variableSuffix="#">{ "resourceType": "OperationOutcome", "meta": { "lastUpdated": "%current_timestamp#", "profile" : [ "https://www.hl7.org/fhir/R4/operationoutcome.html" ] }, "issue": [ { "severity": "error", "code": "login", "details": { "coding": [ { "system": "https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode", "code": "ACCESS_DENIED" } ] }, "diagnostics": "%faultstring#" } ] }</Payload>
-    </Set>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
-</AssignMessage>

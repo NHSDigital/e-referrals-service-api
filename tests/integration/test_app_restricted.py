@@ -115,7 +115,9 @@ class TestAppRestricted:
     ):
         assert (
             response.status_code == 200
-        ), "Expected a 200 when accesing the api but got " + (str)(response.status_code)
+        ), "Expected a 200 when accessing the api but got " + (str)(
+            response.status_code
+        )
 
         # Verify the response headers
         client_response_headers = response.headers

@@ -12,7 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGetCodesystem(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -22,8 +29,14 @@ class TestGetCodesystem(SandboxTest):
     ]
 
     testdata = [
-        ("SPECIALTY", "stu3/getCodeSystem/responses/SpecialtyCodeSystem.json",),
-        ("CLINIC-TYPE", "stu3/getCodeSystem/responses/ClinicTypeCodeSystem.json",),
+        (
+            "SPECIALTY",
+            "stu3/getCodeSystem/responses/SpecialtyCodeSystem.json",
+        ),
+        (
+            "CLINIC-TYPE",
+            "stu3/getCodeSystem/responses/ClinicTypeCodeSystem.json",
+        ),
         (
             "APPOINTMENT-CANCELLATION-REASON",
             "stu3/getCodeSystem/responses/AppointmentCancellationReasonCodeSystem.json",

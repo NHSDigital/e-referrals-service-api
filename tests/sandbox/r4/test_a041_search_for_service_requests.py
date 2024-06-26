@@ -12,7 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestSearchForServiceRequests(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -58,10 +65,13 @@ class TestSearchForServiceRequests(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self,
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_query(
-            actor, {"identifier": "000000070000"}, headers,
+            actor,
+            {"identifier": "000000070000"},
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -82,4 +92,6 @@ class TestSearchForServiceRequests(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(actual_response,)
+        asserts.assert_json_response_headers(
+            actual_response,
+        )

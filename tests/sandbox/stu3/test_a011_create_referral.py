@@ -11,7 +11,12 @@ from requests import Response
 
 @pytest.mark.sandbox
 class TestCreateReferral(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.RCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -60,7 +65,9 @@ class TestCreateReferral(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, self._request_path(actor), headers,
+            actor,
+            self._request_path(actor),
+            headers,
         )
 
     @pytest.mark.parametrize("actor, requestJson, response", testdata)
@@ -80,7 +87,10 @@ class TestCreateReferral(SandboxTest):
         asserts.assert_status_code(201, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"1"',},
+            actual_response,
+            additional={
+                "etag": 'W/"1"',
+            },
         )
 
     def _request_path(self, actor: Actor) -> str:

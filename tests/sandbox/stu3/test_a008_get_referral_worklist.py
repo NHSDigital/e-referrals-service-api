@@ -15,6 +15,7 @@ class TestGetReferralWorklist(SandboxTest):
     authorised_actor_data = [
         Actor.RC,
         Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
         Actor.RCA,
         Actor.RA,
         Actor.SPC,
@@ -91,9 +92,11 @@ class TestGetReferralWorklist(SandboxTest):
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
             actor,
-            "stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json"
-            if actor.is_referrer()
-            else "stu3/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json",
+            (
+                "stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json"
+                if actor.is_referrer()
+                else "stu3/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json"
+            ),
             headers,
         )
 

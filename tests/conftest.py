@@ -80,6 +80,11 @@ def referring_clinician(is_mocked_environment):
 
 
 @pytest.fixture(scope="session")
+def referring_clinician_insufficient_ial():
+    return Actor.RC_INSUFFICIENT_IAL
+
+
+@pytest.fixture(scope="session")
 def oauth_url():
     oauth_proxy = get_env("OAUTH_PROXY")
     oauth_base_uri = get_env("OAUTH_BASE_URI")

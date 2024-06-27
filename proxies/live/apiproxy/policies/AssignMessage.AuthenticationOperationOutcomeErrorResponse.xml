@@ -1,0 +1,8 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AuthenticationOperationOutcomeErrorResponse">
+    <Set>
+        <StatusCode>401</StatusCode>
+        <Payload contentType="application/fhir+json" variablePrefix="%" variableSuffix="#">{ "resourceType": "OperationOutcome", "meta": { "lastUpdated": "%current_timestamp#", "profile" : [ "%op_outcome_fhir_profile#" ] }, "issue": [ { "severity": "error", "code": "%op_outcome_issue_code#", "details": { "coding": [ { "system": "%op_outcome_issue_details_coding_system#", "code": "%op_outcome_issue_details_coding_code#" } ] }, "diagnostics": "%faultstring#" } ] }</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

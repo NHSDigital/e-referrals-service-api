@@ -187,7 +187,7 @@ def assert_ok_response(response: Response, expected_correlation_id: int):
     # Verify the status
     assert (
         response.status_code == 200
-    ), "Expected a 200 when accesing the api but got " + (str)(response.status_code)
+    ), "Expected a 200 when accessing the api but got " + (str)(response.status_code)
 
     # Verify the response headers
     client_response_headers = response.headers
@@ -209,7 +209,7 @@ def assert_error_response(
     assert response.status_code == expected_status_code, (
         "Expected a "
         + expected_status_code
-        + " when accesing the api but got "
+        + " when accessing the api but got "
         + (str)(response.status_code)
     )
 

@@ -17,6 +17,7 @@ class TestRetrieveERSBusinessFunctions(SandboxTest):
         Actor.SPCA,
         Actor.SPA,
         Actor.RC,
+        Actor.RC_INSUFFICIENT_IAL,
         Actor.RC_DEV,
         Actor.RCA,
         Actor.RA,
@@ -42,10 +43,13 @@ class TestRetrieveERSBusinessFunctions(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self,
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_query(
-            actor, {}, headers,
+            actor,
+            {},
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -63,4 +67,6 @@ class TestRetrieveERSBusinessFunctions(SandboxTest):
         asserts.assert_status_code(200, actual_response.status_code)
         asserts.assert_response(expected_response, actual_response)
 
-        asserts.assert_json_response_headers(actual_response,)
+        asserts.assert_json_response_headers(
+            actual_response,
+        )

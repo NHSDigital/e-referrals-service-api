@@ -2,14 +2,21 @@ from enum import Enum
 
 
 class Actor(Enum):
-    # User ID, org code, business function, OBO User ID
-    RC = ("555031999105", "D82106", "REFERRING_CLINICIAN")
-    RCA = ("555031998104", "D82106", "REFERRING_CLINICIAN_ADMIN")
-    RA = ("555031998103", "D82106", "REFERRING_ADMIN")
-    SPC = ("555032006106", "RCD", "SERVICE_PROVIDER_CLINICIAN")
-    SPA = ("555032006103", "RCD", "SERVICE_PROVIDER_ADMIN")
-    SPCA = ("555031998104", "RCD", "SERVICE_PROVIDER_CLINICIAN_ADMIN", "555031999105")
-    RC_DEV = ("021600556514", "R69", "REFERRING_CLINICIAN")
+    # User ID, org code, business function, IAL, OBO User ID
+    RC = ("555032000100", "D82106", "REFERRING_CLINICIAN", "3")
+    RCA = ("555031998104", "D82106", "REFERRING_CLINICIAN_ADMIN", "3")
+    RA = ("555031998103", "D82106", "REFERRING_ADMIN", "3")
+    SPC = ("555032006106", "RCD", "SERVICE_PROVIDER_CLINICIAN", "3")
+    SPA = ("555032006103", "RCD", "SERVICE_PROVIDER_ADMIN", "3")
+    SPCA = (
+        "555031998104",
+        "RCD",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
+        "3",
+        "555031999105",
+    )
+    RC_DEV = ("021600556514", "R69", "REFERRING_CLINICIAN", "3")
+    RC_INSUFFICIENT_IAL = ("555031999105", "D82106", "REFERRING_CLINICIAN", "2")
 
     @property
     def user_id(self):
@@ -24,10 +31,14 @@ class Actor(Enum):
         return self.value[2]
 
     @property
-    def obo_user_id(self):
-        if len(self.value) < 4:
-            return None
+    def id_assurance_level(self):
         return self.value[3]
+
+    @property
+    def obo_user_id(self):
+        if len(self.value) < 5:
+            return None
+        return self.value[4]
 
     def is_referrer(self):
         return self.business_function in [

@@ -12,7 +12,14 @@ from utils import HttpMethod
 
 @pytest.mark.sandbox
 class TestGetAdviceAndGuidanceConversation(SandboxTest):
-    authorised_actor_data = [Actor.RC, Actor.RCA, Actor.RC_DEV, Actor.SPC, Actor.SPCA]
+    authorised_actor_data = [
+        Actor.RC,
+        Actor.RCA,
+        Actor.RC_DEV,
+        Actor.RC_INSUFFICIENT_IAL,
+        Actor.SPC,
+        Actor.SPCA,
+    ]
 
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
@@ -67,7 +74,8 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
 
     @pytest.fixture
     def call_endpoint(
-        self, call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
+        self,
+        call_endpoint_url_with_query: Callable[[Actor, Dict[str, str]], Response],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_query(
             actor,
@@ -93,5 +101,8 @@ class TestGetAdviceAndGuidanceConversation(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": etag,},
+            actual_response,
+            additional={
+                "etag": etag,
+            },
         )

@@ -1,0 +1,6 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeIssueCodeLogin">
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>login</Value>
+    </AssignVariable>
+</AssignMessage>

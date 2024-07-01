@@ -320,13 +320,6 @@
     }
   ],
   "status": "active",
-  "specialty" : {
-    "coding" : [ {
-      "code" : "CARDIOLOGY",
-      "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
-      "display" : "Cardiology"
-    } ]
-  },
   "subject": {
     "identifier": {
       "system": "http://fhir.nhs.net/Id/nhs-number",

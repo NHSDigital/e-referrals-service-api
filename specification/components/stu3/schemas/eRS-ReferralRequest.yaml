@@ -7,7 +7,6 @@ required:
   - contained
   - extension
   - status
-  - specialty
   - subject
   - supportingInfo
   - intent

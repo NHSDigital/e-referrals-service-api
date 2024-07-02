@@ -57,8 +57,10 @@ description: |
 
   You can use [[HYPERLINK_A007]] to retrieve the clinical information summary PDF for a referral.
   
-summary: A027 - Convert advice and guidance request to referral
+summary: Convert advice and guidance request to referral (A027, FHIR STU3)
 operationId: a027-convert-a&g-to-referral
+tags:
+  - Review advice and guidance requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

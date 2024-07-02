@@ -54,8 +54,10 @@ description: |
 
   You can retrieve clinical attachments that are associated with a referral using [[HYPERLINK_A006]].
 
-summary: A043 - Retrieve advice and guidance overview PDF
+summary: Retrieve advice and guidance overview PDF (A043, FHIR STU3)
 operationId: a043-retrieve-advice-and-guidance-overview-pdf
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'

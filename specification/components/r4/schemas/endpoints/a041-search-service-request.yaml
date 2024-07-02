@@ -53,8 +53,10 @@ description: |
   | A response containing a single Request ID for a `ServiceRequest` of category `request`  | `000000070001` |
   | A response containing two Request IDs                                                   | `000000070002` |
   | A response containing an empty bundle                                                   | `000000070003` |
-summary: A041 - Search for service requests
+summary: Search for service requests (A041, FHIR R4)
 operationId: a041-search-service-request
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/BusinessFunctionOBO.yaml'

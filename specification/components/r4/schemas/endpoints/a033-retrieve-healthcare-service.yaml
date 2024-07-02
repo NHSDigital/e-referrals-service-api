@@ -37,8 +37,10 @@ description: |
   | ------------------------------------------------------------------------ | ---------- |
   | `Service` and minimal attributes                                         | `1`        |
   | `Service` and its attributes                                             | `2`        |
-summary: A033 - Retrieve healthcare service
+summary: Retrieve healthcare service (A033, FHIR R4)
 operationId: a033-retrieve-healthcare-service
+tags:
+  - Retrieve healthcare service information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../pathParameters/ServiceId.yaml'

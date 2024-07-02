@@ -87,8 +87,11 @@ description: |
   For service providing organisations reviewing referrals that have been deferred to provider on the 'Appointment slot issues' worklist:
     - Use [[HYPERLINK_A028]] to record the triage outcome based on the available clinical information and attachments
 
-summary: A008 - Retrieve referral worklist
+summary: Retrieve referral worklist (A008, FHIR STU3)
 operationId: a008-retrieve-worklist
+tags:
+  - Retrieve clinical information
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

@@ -38,8 +38,10 @@ description: |
   | Search for multiple service max and min attributes                                                            | `3`,`4`    |
   | Search for multiple service, where the service IDs are formatted correctly, but none of the service IDs match | `5`,`6`    |
 
-summary: A035 - Search for healthcare services
+summary: Search for healthcare services (A035, FHIR R4)
 operationId: a035-search-for-healthcare-services
+tags:
+  - Retrieve healthcare service information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

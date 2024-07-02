@@ -48,8 +48,10 @@ description: |
   | Multi schedule response                | `schedule.actor:HealthcareService`=`13000`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`                                                | Illustrates response when there is >1 Schedule: one Schedule is for slots with no associated clinician and the other does have an associated clinician. |
   | Slot clinician search                  | `schedule.actor:HealthcareService`=`14000`, `schedule.actor:Practitioner`=`921600556514`, `appointmentType`=`ROUTINE`, `_count`=`5`, `status`=`free`, `page`=`1`  | Illustrates search for clinician-specific slots                         |
 
-summary: A015 - Retrieve appointment slots
+summary: Retrieve appointment slots (A015, FHIR STU3)
 operationId: a015-retrieve-appointment-slots
+tags:
+  - Arrange appointment
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

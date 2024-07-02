@@ -48,8 +48,10 @@ description: |
       worklist for the admin team to action the task. The provider admin team will only be able to progress the referral 
       via the e-RS Professional Application user interface (e.g. shortlisting appropriate services for the patient).
 
-summary: A022 - Cancel appointment, action later
+summary: Cancel appointment, action later (A022, FHIR STU3)
 operationId: a022-cancel-appointment-action-later
+tags:
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

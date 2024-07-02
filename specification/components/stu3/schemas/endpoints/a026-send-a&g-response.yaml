@@ -44,8 +44,10 @@ description: |
 
   You can use [[HYPERLINK_A025]] to retrieve the latest conversation within the advice and guidance request.
   
-summary: A026 - Send advice and guidance response
+summary: Send advice and guidance response (A026, FHIR STU3)
 operationId: a026-send-a&g-response
+tags:
+  - Review advice and guidance requests
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'

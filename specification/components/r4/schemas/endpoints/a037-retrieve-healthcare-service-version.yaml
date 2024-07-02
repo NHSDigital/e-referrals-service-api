@@ -36,8 +36,10 @@ description: |
   | ------------------------------------------------------------------------ | ---------- |
   |  Get `Service` Version                                                   | `1`        |
 
-summary: A037 - Retrieve healthcare service version
+summary: Retrieve healthcare service version (A037, FHIR R4)
 operationId: a037-retrieve-healthcare-service-version
+tags:
+  - Retrieve healthcare service information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../pathParameters/ServiceId.yaml'

@@ -79,8 +79,10 @@ description: |
   | `Appointment` cancelled                                                                                   | `appointmentId`=`70006` |
   | `Appointment` converted from an Advice and Guidance Request and booked to a directly-bookable service     | `appointmentId`=`70007` |
 
-summary: A038 - Retrieve appointment
+summary: Retrieve appointment (A038, FHIR STU3)
 operationId: a038-retrieve-appointment
+tags:
+  - Change appointment
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

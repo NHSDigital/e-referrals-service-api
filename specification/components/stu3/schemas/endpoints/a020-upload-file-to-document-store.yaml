@@ -63,8 +63,13 @@ description: |
     - [[HYPERLINK_A026]]
     - [[HYPERLINK_A027]]
 
-summary: A020 - Upload file to document store
+summary: Upload file to document store (A020, FHIR STU3)
 operationId: a020-upload-file-to-document-store
+tags:
+  - Refer patient
+  - Request advice
+  - Arrange appointment
+  - Arrange triage
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

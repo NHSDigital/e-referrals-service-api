@@ -86,6 +86,30 @@ properties:
       - cancelled
       - completed
     example: 'active'
+  specialty:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        maxItems: 1
+        minItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              example: '_baseUrl_/STU3/CodeSystem/SPECIALTY'
+            code:
+              type: string
+              example: 'CARDIOLOGY'
+            display:
+              type: string
+              example: 'Cardiology'
   subject:
     type: object
     required:

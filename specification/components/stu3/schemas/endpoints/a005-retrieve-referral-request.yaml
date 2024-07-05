@@ -85,8 +85,10 @@ description: |
   | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
   | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`   |
 
-summary: A005 - Retrieve referral request
+summary: Retrieve referral request (A005, FHIR STU3)
 operationId: a005-retrieve-referral-request
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'

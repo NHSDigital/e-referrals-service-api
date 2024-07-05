@@ -50,8 +50,10 @@ description: |
   
   You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
 
-summary: A006 - Retrieve attachment
+summary: Retrieve attachment (A006, FHIR STU3)
 operationId: a006-retrieve-attachment
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'

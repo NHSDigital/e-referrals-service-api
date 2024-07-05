@@ -45,8 +45,10 @@ description: |
   ## Related endpoints
   You can retrieve clinical attachments that are associated with a referral using [[HYPERLINK_A006]].
 
-summary: A007 - Retrieve clinical information
+summary: Retrieve clinical information (A007, FHIR STU3)
 operationId: a007-retrieve-clinical-information
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'

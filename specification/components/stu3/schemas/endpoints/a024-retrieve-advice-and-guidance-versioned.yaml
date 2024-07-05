@@ -35,8 +35,10 @@ description: |
   | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
   | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
 
-summary: A024 - Retrieve advice and guidance request summary (versioned)
+summary: Retrieve advice and guidance request summary (versioned) (A024, FHIR STU3)
 operationId: a024-retrieve-advice-and-guidance-versioned
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../pathParameters/Version.yaml'

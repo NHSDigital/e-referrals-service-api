@@ -66,8 +66,11 @@ description: |
   | Retrieve appointment non-attendance reason reference data | `codeSystemType`=`APPOINTMENT-NON-ATTENDANCE-REASON`    | Appointment non-attendance reason details |
   | Retrieve priority reference data                          | `codeSystemType`=`PRIORITY`                             | Priority details                          |
 
-summary: A004 - Retrieve reference data
+summary: Retrieve reference data (A004, FHIR STU3)
 operationId: a004-retrieve-reference-data
+tags:
+  - Refer patient
+  - Request advice
 parameters:
   - $ref: '../pathParameters/CodeSystemType.yaml'
   - $ref: '../headers/request/BearerAuthorization.yaml'

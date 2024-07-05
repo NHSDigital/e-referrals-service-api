@@ -65,8 +65,10 @@ description: |
     The provider admin team will only be able to progress the referral via the e-RS Professional Application user 
     interface (e.g. shortlisting appropriate services for the patient).
   
-summary: A028 - Record triage outcome
+summary: Record triage outcome (A028, FHIR STU3)
 operationId: a028-record-triage-outcome
+tags:
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

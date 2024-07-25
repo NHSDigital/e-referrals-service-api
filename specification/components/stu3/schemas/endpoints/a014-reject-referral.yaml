@@ -38,8 +38,10 @@ description: |
 
   So that the referrer can address the reason for rejection and progress the referral appropriately.
   
-summary: A014 - Reject referral
+summary: Reject referral (A014, FHIR STU3)
 operationId: a014-reject-referral
+tags:
+  - Review referral requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

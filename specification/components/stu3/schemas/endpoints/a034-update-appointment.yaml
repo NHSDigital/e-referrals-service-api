@@ -49,8 +49,10 @@ description: |
 
   You can use [[HYPERLINK_A031]] after updating an appointment, to create a new shortlist of services. After changing a shortlist, you may be able to [[HYPERLINK_A016]]. 
 
-summary: A034 - Update appointment
+summary: Update appointment (A034, FHIR STU3)
 operationId: a034-update-appointment
+tags:
+  - Change appointment
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

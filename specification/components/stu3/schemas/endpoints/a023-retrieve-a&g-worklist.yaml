@@ -39,8 +39,10 @@ description: |
     - Use [[HYPERLINK_A026]] to respond to the referrer supplying advice or requesting further information
     - Use [[HYPERLINK_A027]] to convert the advice and guidance request into a referral. This is only possible if the referrer has authorised the provider to do so
     - Use [[HYPERLINK_A043]] to generate a PDF file overview relating to an advice and guidance request
-summary: A023 - Retrieve advice and guidance requests worklist
+summary: Retrieve advice and guidance requests worklist (A023, FHIR STU3)
 operationId: a023-retrieve-a&g-worklist
+tags:
+  - Review advice and guidance requests
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
   - $ref: '../headers/request/OdsCode.yaml'

@@ -36,8 +36,10 @@ description: |
   | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`, `version`=`5`  |
   | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`, `version`=`5`  |
 
-summary: A005 - Retrieve referral request (versioned)
+summary: Retrieve referral request (versioned) (A005, FHIR STU3)
 operationId: a005-retrieve-referral-request-versioned
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../pathParameters/Ubrn.yaml'
   - $ref: '../pathParameters/Version.yaml'

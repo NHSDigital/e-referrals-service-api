@@ -143,10 +143,10 @@ properties:
                     example: BOOKABLE
                   display:
                     enum:
-                      - Appointment Request
-                      - Triage Request
-                      - Advice and Guidance Request
-                    example: Appointment Request
+                      - A service which supports a patient appointment
+                      - A service that reviews referrals, without the support or need for any appointment with the patient to be made
+                      - A service which can discuss the patient and receive guidance rather than a patient attending an appointment
+                    example: A service which supports a patient appointment
               - type: object
                 title: eRS-BookableType
                 required:

@@ -89,7 +89,7 @@
                 {
                     "system": "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
                     "code": "BOOKABLE",
-                    "display": "Appointment Request"
+                    "display": "A service which supports a patient appointment"
                 }
             ]
         },

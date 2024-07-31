@@ -25,6 +25,10 @@
       "valueDateTime": "2021-10-13T12:51:16.848Z"
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-eReferralPathwayStart-1",
+      "valueInstant": "2024-05-01T09:55:00.000Z"
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
       "valueCodeableConcept": {
         "coding": [

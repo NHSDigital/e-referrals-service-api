@@ -25,6 +25,10 @@
       "valueDateTime": "2021-10-26T10:03:32.637Z"
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-eReferralPathwayStart-1",
+      "valueInstant": "2024-05-01T09:55:00.000Z"
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
       "valueCodeableConcept": {
         "coding": [
@@ -63,7 +67,7 @@
         {
           "url": "reason",
           "valueCoding": {
-            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
+            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
             "code": "OTHER",
             "display": "Other"
           }
@@ -167,7 +171,7 @@
       "reason": [
 				{
 				  "coding": [{
-            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON", 
+            "system": "_baseurl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
             "code": "OTHER",
             "display": "Other"
 				  }]

@@ -21,6 +21,10 @@
       }
     },
     {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-eReferralPathwayStart-1",
+      "valueInstant": "2024-05-08T09:54:23.167Z"
+    },
+    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
       "valueCodeableConcept": {
         "coding": [

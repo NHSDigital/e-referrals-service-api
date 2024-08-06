@@ -828,7 +828,7 @@ properties:
                                           example: INTEND_PRIVATE
                                         display:
                                           type: string
-                                          example: Patient intends to go private
+                                          example: Patient will go to a private clinic
               - title: 'Extension-eRS-AwaitingBooking-WorklistItem'
                 type: object
                 required:

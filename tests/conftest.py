@@ -101,6 +101,14 @@ def app_restricted_user_id(is_mocked_environment):
     return "000000000101" if is_mocked_environment else "555032000100"
 
 
+@pytest.fixture(
+    scope="session",
+    params=["PROVIDER_AUTHORISED_APPLICATION", "REFERRER_AUTHORISED_APPLICATION"],
+)
+def app_restricted_business_function(request):
+    return request.param
+
+
 @pytest.fixture()
 def client():
     config = ApigeeNonProdCredentials()
@@ -252,6 +260,7 @@ async def app_restricted_app(
     asid,
     app_restricted_ods_code,
     app_restricted_user_id,
+    app_restricted_business_function,
 ):
     # Setup
     app = await make_app(
@@ -260,6 +269,7 @@ async def app_restricted_app(
             "asid": asid,
             "app-restricted-ods-code": app_restricted_ods_code,
             "app-restricted-user-id": app_restricted_user_id,
+            "app-restricted-business-function": app_restricted_business_function,
             "jwks-resource-url": jwt_public_key_url,
         },
     )

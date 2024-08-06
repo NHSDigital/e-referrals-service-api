@@ -19,7 +19,7 @@ description: |
    
   ## Application-restricted access
 
-  In order to use this endpoint you must be an authenticated e-RS calling application.
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
 
   ## Healthcare worker, user-restricted access
 

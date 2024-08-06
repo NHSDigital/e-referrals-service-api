@@ -59,7 +59,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker,<br/>user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access
@@ -116,14 +116,18 @@ info:
 
     - when authenticating a human user is not possible
     - for endpoints that offer read-only functionality
-    - by 'Provider Organisations' (currently)
+    - by 'Provider Organisations' or 'Referrer Organisations'
     - for accessing endpoints 
       - [[HYPERLINK_A004]]
       - [[HYPERLINK_A005]]
       - [[HYPERLINK_A006]]
       - [[HYPERLINK_A007]]
+      - [[HYPERLINK_A008]]
       - [[HYPERLINK_A024]]
       - [[HYPERLINK_A025]]
+      - [[HYPERLINK_A033]]
+      - [[HYPERLINK_A035]]
+      - [[HYPERLINK_A037]]
       - [[HYPERLINK_A043]]
 
     For more information, please see [[HYPERLINK_NETWORK_ACCESS]].

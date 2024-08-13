@@ -1,6 +1,7 @@
 import pytest
 
 from functools import wraps
+from asyncio import iscoroutinefunction
 
 from data import Actor
 from conftest import get_env
@@ -31,17 +32,32 @@ def user_restricated_access(user: Actor = None):
     _user: Actor = user if type(user) == Actor else _DEFAULT_USER
 
     def decorator(func):
-        @pytest.mark.nhsd_apim_authorization(
-            {
-                "access": "healthcare_worker",
-                "level": "3",
-                "login_form": {"username": _user.user_id},
-            }
-        )
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            return func(*args, **kwargs)
+        # if the decorated function is async, return an async function.
+        if iscoroutinefunction(func):
 
-        return wrapper
+            @pytest.mark.nhsd_apim_authorization(
+                {
+                    "access": "healthcare_worker",
+                    "level": "3",
+                    "login_form": {"username": _user.user_id},
+                }
+            )
+            async def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+
+        else:
+
+            @pytest.mark.nhsd_apim_authorization(
+                {
+                    "access": "healthcare_worker",
+                    "level": "3",
+                    "login_form": {"username": _user.user_id},
+                }
+            )
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+
+        # use functools.wraps to maintain the function details of the decorated function on the result.
+        return wraps(func)(wrapper)
 
     return decorator

@@ -3,6 +3,7 @@ import requests
 from requests import Response
 from data import RenamedHeader
 from asserts import assert_ok_response
+from utils import user_restricated_access
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target
@@ -32,14 +33,13 @@ _SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
 @pytest.mark.integration_test
 class TestHeaders:
     @pytest.mark.asyncio
+    @user_restricated_access
     async def test_headers_on_echo_target(
-        self, authenticate_user, service_url, referring_clinician, asid
+        self, nhsd_apim_auth_headers, service_url, referring_clinician, asid
     ):
-        access_code = await authenticate_user(referring_clinician)
 
-        client_request_headers = {
+        client_request_headers = nhsd_apim_auth_headers + {
             _HEADER_ECHO: "",  # enable echo target
-            _HEADER_AUTHORIZATION: "Bearer " + access_code,
             _HEADER_REQUEST_ID: "DUMMY-VALUE",
             RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
             RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,

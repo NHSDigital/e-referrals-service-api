@@ -43,7 +43,7 @@ def user_restricated_access(user: Actor = None):
                 }
             )
             async def wrapper(*args, **kwargs):
-                return func(*args, **kwargs)
+                return await func(*args, **kwargs)
 
         else:
 

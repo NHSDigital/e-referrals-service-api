@@ -18,7 +18,7 @@ def _calculate_default_user() -> Actor:
 _DEFAULT_USER: Actor = _calculate_default_user()
 
 
-def user_restricated_access(user: Actor):
+def user_restricated_access(user: Actor = None):
     """
     Decorator indicating that a given function should be authenticated with User Restricted access with a supplied user.
     This will lead to a fixture named 'nhsd_apim_auth_headers' being provided to the function as a dictionary, including the headers required to authenticate as the supplied user.
@@ -26,7 +26,9 @@ def user_restricated_access(user: Actor):
     :param User: An Actor indicating the user to authenticate as. If no user is provided _DEFAULT_USER will be used instead.
     """
 
-    _user: Actor = user if user else _DEFAULT_USER
+    # Need to check that the provided user both exists and is of type Actor as non-parameterised decorators in python are pass with the wrapped
+    # function as their first argument.
+    _user: Actor = user if type(user) == Actor else _DEFAULT_USER
 
     def decorator(func):
         @pytest.mark.nhsd_apim_authorization(
@@ -38,7 +40,7 @@ def user_restricated_access(user: Actor):
         )
         @wraps(func)
         def wrapper(*args, **kwargs):
-            return func(args, kwargs)
+            return func(*args, **kwargs)
 
         return wrapper
 

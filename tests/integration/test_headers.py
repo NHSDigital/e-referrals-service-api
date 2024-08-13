@@ -3,7 +3,7 @@ import requests
 from requests import Response
 from data import RenamedHeader
 from asserts import assert_ok_response
-from utils import user_restricated_access
+from decorators import user_restricated_access
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target

@@ -27,7 +27,7 @@ def user_restricated_access(user: Actor = None):
     :param User: An Actor indicating the user to authenticate as. If no user is provided _DEFAULT_USER will be used instead.
     """
 
-    # Need to check that the provided user both exists and is of type Actor as non-parameterised decorators in python are pass with the wrapped
+    # Need to check that the provided user both exists and is of type Actor as non-parameterised decorators in python are passed the wrapped
     # function as their first argument.
     _user: Actor = user if type(user) == Actor else _DEFAULT_USER
 

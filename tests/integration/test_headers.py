@@ -32,7 +32,7 @@ _SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
 
 @pytest.mark.integration_test
 class TestHeaders:
-    @pytest.mark.asyncio
+
     @user_restricated_access
     async def test_headers_on_echo_target(
         self, nhsd_apim_auth_headers, service_url, referring_clinician, asid
@@ -55,6 +55,8 @@ class TestHeaders:
         self.assert_ok_echo_response(
             response, service_url, referring_clinician, asid, _EXPECTED_FILENAME
         )
+
+        assert 1 == 2
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(

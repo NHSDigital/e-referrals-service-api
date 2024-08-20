@@ -12,10 +12,11 @@ module.exports = [
         maxBytes: 5242880, //5MB
         parse: false,
         // https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-9016 lists currently supported file types
-        allow: ['text/plain', 'application/pdf', 'text/xml', 'text/rtf',
+        allow: ['text/plain', 'application/pdf', 'text/xml', 'application/xml', 'text/rtf', 'application/rtf',
           'audio/basic', 'audio/mpeg', 'image/png', 'image/gif', 'image/jpeg',
           'image/tiff', 'video/mpeg', 'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/dicom']
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/dicom',
+          'message/rfc822']
       }
     },
     handler: (request, h) => {

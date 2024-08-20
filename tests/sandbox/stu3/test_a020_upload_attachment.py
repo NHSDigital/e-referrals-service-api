@@ -32,7 +32,9 @@ class TestUploadAttachment(SandboxTest):
         "text/plain",
         "application/pdf",
         "text/xml",
+        "application/xml",
         "text/rtf",
+        "application/rtf",
         "audio/basic",
         "audio/mpeg",
         "image/png",
@@ -43,6 +45,7 @@ class TestUploadAttachment(SandboxTest):
         "application/msword",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         "application/dicom",
+        "message/rfc822",
     ]
 
     @pytest.fixture

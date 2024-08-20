@@ -8,7 +8,13 @@ application/pdf:
 text/xml:
   schema:
     $ref: 'StringBinarySchema.yaml'
+application/xml:
+  schema:
+    $ref: 'StringBinarySchema.yaml'
 text/rtf:
+  schema:
+    $ref: 'StringBinarySchema.yaml'
+application/rtf:
   schema:
     $ref: 'StringBinarySchema.yaml'
 audio/basic:
@@ -39,5 +45,8 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document:
   schema:
     $ref: 'StringBinarySchema.yaml'
 application/dicom:
+  schema:
+    $ref: 'StringBinarySchema.yaml'
+message/rfc822:
   schema:
     $ref: 'StringBinarySchema.yaml'

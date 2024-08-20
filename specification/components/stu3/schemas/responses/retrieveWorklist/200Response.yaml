@@ -27,6 +27,10 @@ content:
         summary: Filtered by clinician
         value:
           $ref: '../../../examples/retrieveWorklist/responses/FilteredByClinician.json'
+      filtered-by-service:
+        summary: Filtered by service
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/FilteredByService.json'
       rejected-triage-responses:
         summary: Rejected Triage / Response
         value:

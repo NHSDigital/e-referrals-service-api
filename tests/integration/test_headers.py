@@ -34,6 +34,7 @@ _SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
 class TestHeaders:
 
     @user_restricated_access
+    @pytest.mark.asyncio
     async def test_headers_on_echo_target(
         self, nhsd_apim_auth_headers, service_url, referring_clinician, asid
     ):

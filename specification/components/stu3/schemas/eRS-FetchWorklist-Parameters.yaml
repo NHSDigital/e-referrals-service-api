@@ -31,7 +31,7 @@ properties:
       | Field                             | Cardinality | Notes                                      |
       | --------------------------------- | ----------- | ------------------------------------------ |
       | `listType`                        | `1..1`      |                                            |
-      | `service`                         | `0..1`      |                                            |
+      | `service`                         | `0..1`      | Mandatory for the application-restricted security pattern |
       | `specialtyAssignedIndicator`      | `0..1`      |                                            |
       | `specialty`                       | `0..1`      |                                            | 
       | `location`                        | `0..1`      |                                            | 

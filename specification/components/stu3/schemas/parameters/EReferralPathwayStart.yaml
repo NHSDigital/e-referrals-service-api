@@ -1,0 +1,16 @@
+title: EReferralPathwayStart
+description: Parameter to supply the pathway start date
+type: object
+required:
+  - name
+  - valueInstant
+properties:
+  name:
+    type: string
+    enum:
+      - eReferralPathwayStart
+    example: 'eReferralPathwayStart'
+  valueInstant:
+    type: string
+    format: date-time
+    example: '2021-04-20T12:17:35.128Z'

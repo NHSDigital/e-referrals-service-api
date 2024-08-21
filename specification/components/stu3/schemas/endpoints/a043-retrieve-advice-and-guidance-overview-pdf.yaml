@@ -15,7 +15,7 @@ description: |
   You need to use the `Unique Booking Reference Number` (UBRN) of an advice and guidance request.
 
   ## Application-restricted access
-  In order to use this endpoint you must be an authenticated e-RS calling application.
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
   
   ## Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:

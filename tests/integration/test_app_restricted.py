@@ -15,7 +15,8 @@ _HEADER_ACCESS_MODE = "x-ers-access-mode"
 _EXPECTED_CORRELATION_ID = "123123-123123-123123-123123"
 
 _SPECIALTY_REF_DATA_URL = "/FHIR/STU3/CodeSystem/SPECIALTY"
-_AUTHORISED_APPLICATION = "AUTHORISED_APPLICATION"
+_PROVIDER_AUTHORISED_APPLICATION = "PROVIDER_AUTHORISED_APPLICATION"
+_REFERRER_AUTHORISED_APPLICATION = "REFERRER_AUTHORISED_APPLICATION"
 _EXPECTED_ACCESS_MODE = "application-restricted"
 
 
@@ -27,11 +28,11 @@ class TestAppRestricted:
     ):
         access_code = await authenticate_user(referring_clinician)
 
-        # attempt to use AUTHORISED_APPLICATION with an RC
+        # attempt to use REFERRER_AUTHORISED_APPLICATION with an RC
         client_request_headers = {
             _HEADER_AUTHORIZATION: "Bearer " + access_code,
             RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
-            RenamedHeader.BUSINESS_FUNCTION.original: _AUTHORISED_APPLICATION,
+            RenamedHeader.BUSINESS_FUNCTION.original: _REFERRER_AUTHORISED_APPLICATION,
             RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
             _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
         }
@@ -63,7 +64,8 @@ class TestAppRestricted:
         "header,value",
         [
             (RenamedHeader.ODS_CODE.renamed, "ABC"),
-            (RenamedHeader.BUSINESS_FUNCTION.renamed, _AUTHORISED_APPLICATION),
+            (RenamedHeader.BUSINESS_FUNCTION.renamed, _PROVIDER_AUTHORISED_APPLICATION),
+            (RenamedHeader.BUSINESS_FUNCTION.renamed, _REFERRER_AUTHORISED_APPLICATION),
             (_HEADER_USER_ID, "1"),
         ],
     )
@@ -91,6 +93,7 @@ class TestAppRestricted:
         asid,
         app_restricted_ods_code,
         app_restricted_user_id,
+        app_restricted_business_function,
     ):
         client_request_headers = {
             _HEADER_ECHO: "",  # enable echo target
@@ -102,7 +105,12 @@ class TestAppRestricted:
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
         self.assert_ok_echo_response(
-            response, service_url, asid, app_restricted_ods_code, app_restricted_user_id
+            response,
+            service_url,
+            asid,
+            app_restricted_ods_code,
+            app_restricted_user_id,
+            app_restricted_business_function,
         )
 
     def assert_ok_echo_response(
@@ -112,6 +120,7 @@ class TestAppRestricted:
         asid,
         app_restricted_ods_code,
         app_restricted_user_id,
+        app_restricted_business_function,
     ):
         assert (
             response.status_code == 200
@@ -180,7 +189,7 @@ class TestAppRestricted:
         )
         assert (
             target_request_headers[RenamedHeader.BUSINESS_FUNCTION.renamed]
-            == _AUTHORISED_APPLICATION
+            == app_restricted_business_function
         )
         assert (
             target_request_headers[RenamedHeader.ODS_CODE.renamed]
@@ -198,6 +207,7 @@ class TestAppRestricted:
         asid,
         app_restricted_ods_code,
         app_restricted_user_id,
+        app_restricted_business_function,
     ):
         client_request_headers = {
             _HEADER_ECHO: "",  # enable echo target
@@ -210,5 +220,10 @@ class TestAppRestricted:
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)
         self.assert_ok_echo_response(
-            response, service_url, asid, app_restricted_ods_code, app_restricted_user_id
+            response,
+            service_url,
+            asid,
+            app_restricted_ods_code,
+            app_restricted_user_id,
+            app_restricted_business_function,
         )

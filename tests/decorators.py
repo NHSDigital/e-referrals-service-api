@@ -31,7 +31,7 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
     def decorator(func):
         kwargs = {
             "access": "healthcare_worker",
-            "level": "3",
+            "level": "aal3",
             "login_form": {"username": user.user_id},
         }
 

@@ -30,7 +30,7 @@
 
         To perform actions as a `SERVICE_PROVIDER_CLINICIAN_ADMIN` user, you must provide one of the returned Practitioner IDs, in the `NHSD-eRS-On-Behalf-Of-User-ID` header parameter, to indicate which `SERVICE_PROVIDER_CLINICIAN` the call is on-behalf-of.
         
-      summary: Retrieve “on-behalf-of” practitioner user information (A040, FHIR R4)
+      summary: Retrieve "on-behalf-of" practitioner user information (A040, FHIR R4)
       operationId: a040-retrieve-practitioner-info
       tags:
         - Retrieve user information

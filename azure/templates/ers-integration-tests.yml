@@ -7,6 +7,7 @@ steps:
       export OAUTH_PROXY="oauth2-mock"
       export OAUTH_BASE_URI="https://$(ENVIRONMENT).api.service.nhs.uk"
       export JWT_PRIVATE_KEY_ABSOLUTE_PATH="$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)"
+      export API_NAME="$(SERVICE_NAME)"
       
       poetry run pytest -v tests/integration --junitxml=tests/ers-test-integration-report.xml
     displayName: Run eRS integration tests

@@ -1,7 +1,7 @@
 import pytest
 import requests
 from requests import Response
-from data import RenamedHeader
+from data import RenamedHeader, Actor
 from asserts import assert_ok_response
 from decorators import user_restricated_access
 

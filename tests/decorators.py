@@ -29,18 +29,18 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
     """
 
     def decorator(func):
-        kwargs = {
+        auth_args = {
             "access": "healthcare_worker",
             "level": "aal3",
             "login_form": {"username": user.user_id},
         }
 
-        @pytest.mark.nhsd_apim_authorization(kwargs)
+        @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
             return await func(*args, **kwargs)
 
-        @pytest.mark.nhsd_apim_authorization(kwargs)
+        @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         def wrapper(*args, **kwargs):
             return func(*args, **kwargs)

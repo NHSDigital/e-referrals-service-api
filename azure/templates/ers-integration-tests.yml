@@ -8,7 +8,7 @@ steps:
       export OAUTH_BASE_URI="https://$(ENVIRONMENT).api.service.nhs.uk"
       export JWT_PRIVATE_KEY_ABSOLUTE_PATH="$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)"
       
-      poetry run pytest -v tests/integration --junitxml=tests/ers-test-integration-report.xml --api-name=e-referrals-service-api --proxy-name=$(FULLY_QUALIFIED_SERVICE_NAME)-healthcare-worker
+      poetry run pytest -v tests/integration --junitxml=tests/ers-test-integration-report.xml --api-name=e-referrals-service-api --proxy-name=$(FULLY_QUALIFIED_SERVICE_NAME)
     displayName: Run eRS integration tests
     workingDirectory: "$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)"
   - task: PublishTestResults@2

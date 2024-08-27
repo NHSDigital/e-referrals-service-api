@@ -4,7 +4,6 @@ import pytest_asyncio
 
 from uuid import uuid4
 
-import pytest_nhsd_apim.apigee_edge
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
     AuthorizationCodeAuthenticator,
@@ -20,6 +19,11 @@ from pytest_nhsd_apim.apigee_apis import (
 
 
 from data import Actor
+
+
+def _create_apigee_client():
+    config = ApigeeNonProdCredentials()
+    return ApigeeClient(config=config)
 
 
 def get_env(variable_name: str) -> str:
@@ -112,8 +116,7 @@ def app_restricted_business_function(request):
 
 @pytest.fixture()
 def client():
-    config = ApigeeNonProdCredentials()
-    return ApigeeClient(config=config)
+    return _create_apigee_client()
 
 
 @pytest_asyncio.fixture
@@ -309,12 +312,7 @@ def app_restricted_access_code(
 
 @pytest.fixture(scope="session")
 def _create_test_app(
-    _apigee_app_base_url,
-    _apigee_app_base_url_no_dev,
-    _apigee_edge_session,
-    jwt_public_key_url,
-    nhsd_apim_pre_create_app,
-    _test_app_id,
+    _create_test_app,
     asid,
 ):
     """
@@ -323,16 +321,9 @@ def _create_test_app(
     append the ASID required.
     """
 
-    created_app = pytest_nhsd_apim.apigee_edge._create_test_app(
-        _apigee_app_base_url,
-        _apigee_app_base_url_no_dev,
-        _apigee_edge_session,
-        jwt_public_key_url,
-        nhsd_apim_pre_create_app,
-        _test_app_id,
-    )
+    created_app = _create_test_app
 
-    api = DeveloperAppsAPI(client=client())
+    api = DeveloperAppsAPI(client=_create_apigee_client())
 
     # Update the attributes of the created application to add in the ASID attribute.
     modified_attributes = dict(created_app["attributes"][0], **{"asid": asid})

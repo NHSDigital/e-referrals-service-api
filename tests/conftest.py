@@ -1,6 +1,7 @@
 import os
 import pytest
 import pytest_asyncio
+import warnings
 
 from uuid import uuid4
 
@@ -321,7 +322,10 @@ def _create_test_app(
     append the ASID required.
     """
 
+    warnings.warn("invoking custom create test app.")
+
     created_app = _create_test_app
+    warnings.warn(f"created app={created_app}")
 
     api = DeveloperAppsAPI(client=_create_apigee_client())
 
@@ -330,10 +334,10 @@ def _create_test_app(
 
     created_app["attributes"] = [modified_attributes]
 
-    api.put_app_by_name(
+    warnings.warn(f"updated app={created_app}")
+
+    return api.put_app_by_name(
         email="apm-testing-internal-dev@nhs.net",
         app_name=created_app["name"],
         body=created_app,
     )
-
-    return created_app

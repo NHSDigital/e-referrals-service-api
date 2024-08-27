@@ -4,6 +4,7 @@ import pytest_asyncio
 
 from uuid import uuid4
 
+import pytest_nhsd_apim.apigee_edge
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
     AuthorizationCodeAuthenticator,
@@ -304,3 +305,45 @@ def app_restricted_access_code(
     token_response = authenticator.get_token()
     assert "access_token" in token_response
     return token_response["access_token"]
+
+
+@pytest.fixture(scope="session")
+def _create_test_app(
+    _apigee_app_base_url,
+    _apigee_app_base_url_no_dev,
+    _apigee_edge_session,
+    jwt_public_key_url,
+    nhsd_apim_pre_create_app,
+    _test_app_id,
+    client,
+    asid,
+):
+    """
+    This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to update any created app with the ASID currently being utilised.
+    This is required as the private fixture does not publicise the attributes it associates with any created application, so instead we need to modify the created application to
+    append the ASID required.
+    """
+
+    created_app = pytest_nhsd_apim.apigee_edge._create_test_app(
+        _apigee_app_base_url,
+        _apigee_app_base_url_no_dev,
+        _apigee_edge_session,
+        jwt_public_key_url,
+        nhsd_apim_pre_create_app,
+        _test_app_id,
+    )
+
+    api = DeveloperAppsAPI(client=client)
+
+    # Update the attributes of the created application to add in the ASID attribute.
+    modified_attributes = dict(created_app["attributes"][0], **{"asid": asid})
+
+    created_app["attributes"] = [modified_attributes]
+
+    api.put_app_by_name(
+        email="apm-testing-internal-dev@nhs.net",
+        app_name=created_app["name"],
+        body=created_app,
+    )
+
+    return created_app

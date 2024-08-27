@@ -315,7 +315,6 @@ def _create_test_app(
     jwt_public_key_url,
     nhsd_apim_pre_create_app,
     _test_app_id,
-    client,
     asid,
 ):
     """
@@ -333,7 +332,7 @@ def _create_test_app(
         _test_app_id,
     )
 
-    api = DeveloperAppsAPI(client=client)
+    api = DeveloperAppsAPI(client=client())
 
     # Update the attributes of the created application to add in the ASID attribute.
     modified_attributes = dict(created_app["attributes"][0], **{"asid": asid})

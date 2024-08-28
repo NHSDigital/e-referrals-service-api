@@ -330,7 +330,7 @@ def _create_test_app(
     api = DeveloperAppsAPI(client=_create_apigee_client())
 
     # Update the attributes of the created application to add in the ASID attribute.
-    modified_attributes = created_app["attributes"] + [{"key": "asid", "value": asid}]
+    modified_attributes = created_app["attributes"] + [{"name": "asid", "value": asid}]
 
     created_app["attributes"] = modified_attributes
 

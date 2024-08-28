@@ -3,6 +3,8 @@ import requests
 from requests import Response
 from data import RenamedHeader
 from asserts import assert_ok_response, assert_error_response
+from decorators import app_restricted_access
+from state import ApplicationRestrictedType
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target
@@ -86,21 +88,24 @@ class TestAppRestricted:
 
         assert_error_response(response, _EXPECTED_CORRELATION_ID, 403)
 
+    @app_restricted_access(types=list(ApplicationRestrictedType))
     def test_headers_on_echo_target(
         self,
-        app_restricted_access_code,
+        nhsd_apim_auth_headers,
         service_url,
         asid,
         app_restricted_ods_code,
         app_restricted_user_id,
         app_restricted_business_function,
     ):
-        client_request_headers = {
-            _HEADER_ECHO: "",  # enable echo target
-            _HEADER_AUTHORIZATION: "Bearer " + app_restricted_access_code,
-            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
-            _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
-        }
+        client_request_headers = dict(
+            nhsd_apim_auth_headers,
+            **{
+                _HEADER_ECHO: "",  # enable echo target
+                RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+                _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
+            },
+        )
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)

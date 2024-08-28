@@ -20,6 +20,7 @@ from pytest_nhsd_apim.apigee_apis import (
 
 
 from data import Actor
+from state import current_authentication_context
 
 
 def _create_apigee_client():
@@ -330,7 +331,12 @@ def _create_test_app(
     api = DeveloperAppsAPI(client=_create_apigee_client())
 
     # Update the attributes of the created application to add in the ASID attribute.
-    modified_attributes = created_app["attributes"] + [{"name": "asid", "value": asid}]
+    additional_attribtues = [
+        {"name": key, "value": value}
+        for key, value in current_authentication_context().app_attributes
+    ]
+
+    modified_attributes = created_app["attributes"] + additional_attribtues
 
     created_app["attributes"] = modified_attributes
 

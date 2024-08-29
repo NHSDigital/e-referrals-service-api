@@ -301,7 +301,7 @@ def app_restricted_access_code(
     return token_response["access_token"]
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def _create_test_app(
     _create_test_app,
     asid,

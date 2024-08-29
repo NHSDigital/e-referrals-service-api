@@ -27,11 +27,6 @@ def _calculate_default_app_restricted_user_id() -> str:
     return "000000000101" if _is_mocked_environment() else "555032000100"
 
 
-_DEFAULT_ASID: str = _calculate_default_asid()
-_DEFAULT_APP_RESTRICTED_ODS_CODE: str = _calculate_default_app_restricted_ods_code()
-_DEFAULT_APP_RESTRICTED_USER_ID: str = _calculate_default_app_restricted_user_id()
-
-
 class ApplicationRestrictedType(Enum):
     REFERRER = "REFERRER_APPLICATION_RESTRICTED"
     PROVIDER = "PROVIDER_APPLICATION_RESTRICTED"
@@ -55,11 +50,13 @@ class AuthenticationConfig:
         return dict(self._app_attributes)
 
     @staticmethod
-    def user_restricted_config(asid: str = _DEFAULT_ASID) -> "AuthenticationConfig":
+    def user_restricted_config(
+        asid: str = _calculate_default_asid(),
+    ) -> "AuthenticationConfig":
         """
         Create a AuthenticationConfig object detaililng that authentication should be completed using User Restricted based authentication.
 
-        :param asid: a string detailing the ASID value to be associated with the app used for authentication. Defaults to _DEFAULT_ASID.
+        :param asid: a string detailing the ASID value to be associated with the app used for authentication. Defaults to the result of _calculate_default_asid().
         :returns: a new AuthenticationConfig object configured for User Restricted access.
         """
 
@@ -68,17 +65,17 @@ class AuthenticationConfig:
     @staticmethod
     def application_restricted_config(
         type: ApplicationRestrictedType,
-        user_id: str = _DEFAULT_APP_RESTRICTED_USER_ID,
-        ods_code: str = _DEFAULT_APP_RESTRICTED_ODS_CODE,
-        asid: str = _DEFAULT_ASID,
+        user_id: str = _calculate_default_app_restricted_user_id(),
+        ods_code: str = _calculate_default_app_restricted_ods_code(),
+        asid: str = _calculate_default_asid(),
     ) -> "AuthenticationConfig":
         """
         Create a AuthenticationConfig object detailing that authentication should be completed using Application Restricted based authentication.
 
         :param type: a ApplicationRestrictedType detailing the type of Application Restricted access to be utilised.
-        :param user_id: the user ID to be associated with the app used for authentication. Defaults to _DEFAULT_APP_RESTRICTED_USER_ID.
-        :param ods_code: the ODS code to be associated with the app used for authentication. Defaults to _DEFAULT_APP_RESTRICTED_ODS_CODE.
-        :param asid: a string detailing the ASID value to be associated with the app used for authentication. Defaults to _DEFAULT_ASID.
+        :param user_id: the user ID to be associated with the app used for authentication. Defaults to the result of _calculate_default_app_restricted_user_id().
+        :param ods_code: the ODS code to be associated with the app used for authentication. Defaults to the result of _calculate_default_app_restricted_ods_code().
+        :param asid: a string detailing the ASID value to be associated with the app used for authentication. Defaults to the result of _calculate_default_asid().
 
         :returns: a new AuthenticationConfig object configured for Application Restricted access.
         """

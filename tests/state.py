@@ -41,7 +41,7 @@ class AuthenticationConfig:
         self._app_attributes = app_attributes
 
     @property
-    def app_attributes(self) -> dict[str, str]:
+    def app_attributes(self) -> Dict[str, str]:
         """
         Any attributes that should be included against the application used for authentication within Apigee.
         """

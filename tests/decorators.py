@@ -3,7 +3,7 @@ import pytest
 import state
 
 from functools import wraps
-from typing import Callable
+from typing import Callable, List
 from asyncio import iscoroutinefunction
 
 from data import Actor
@@ -61,7 +61,7 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
     return decorator(function) if function else decorator
 
 
-def app_restricted_access(types: list[state.ApplicationRestrictedType]):
+def app_restricted_access(types: List[state.ApplicationRestrictedType]):
     """
     Decorator indicating that the given function should be authenticated with Application Restricted access with a list of set types.
     This will lead to a fixture named 'nhsd_apim_auth_headers' being provided to the function as a dictionary, including the headers required to authenticate as the default application.

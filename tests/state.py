@@ -51,7 +51,7 @@ class AuthenticationConfig:
 
     @staticmethod
     def user_restricted_config(
-        asid: str = _calculate_default_asid(),
+        asid: str,
     ) -> "AuthenticationConfig":
         """
         Create a AuthenticationConfig object detaililng that authentication should be completed using User Restricted based authentication.
@@ -60,14 +60,16 @@ class AuthenticationConfig:
         :returns: a new AuthenticationConfig object configured for User Restricted access.
         """
 
-        return AuthenticationConfig(app_attributes={"asid": asid})
+        # Not using a default value here to prevent this function from being exeucted when this method is not required (when running the standard smoke tests for example).
+        _asid = asid if asid else _calculate_default_asid()
+        return AuthenticationConfig(app_attributes={"asid": _asid})
 
     @staticmethod
     def application_restricted_config(
         type: ApplicationRestrictedType,
-        user_id: str = _calculate_default_app_restricted_user_id(),
-        ods_code: str = _calculate_default_app_restricted_ods_code(),
-        asid: str = _calculate_default_asid(),
+        user_id: str,
+        ods_code: str,
+        asid: str,
     ) -> "AuthenticationConfig":
         """
         Create a AuthenticationConfig object detailing that authentication should be completed using Application Restricted based authentication.
@@ -80,6 +82,13 @@ class AuthenticationConfig:
         :returns: a new AuthenticationConfig object configured for Application Restricted access.
         """
 
+        # Not using default values here to prevent these functions from being exeucted when this method is not required (when running the standard smoke tests for example).
+        _user_id = user_id if user_id else _calculate_default_app_restricted_user_id()
+        _ods_code = (
+            ods_code if ods_code else _calculate_default_app_restricted_ods_code()
+        )
+        _asid = asid if asid else _calculate_default_asid()
+
         if type not in ApplicationRestrictedType:
             raise ValueError(
                 f"Provided type not supported. Supported_business_functions={list(ApplicationRestrictedType)} provided_type={type}"
@@ -87,10 +96,10 @@ class AuthenticationConfig:
 
         return AuthenticationConfig(
             app_attributes={
-                "asid": asid,
+                "asid": _asid,
                 "app-restricted-business-function": type.value,
-                "app-restricted-ods-code": ods_code,
-                "app-restricted-user-id": user_id,
+                "app-restricted-ods-code": _ods_code,
+                "app-restricted-user-id": _user_id,
             }
         )
 

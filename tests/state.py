@@ -2,7 +2,7 @@ from typing import Dict
 from enum import Enum
 from contextlib import contextmanager
 
-from conftest import get_env
+from utils import get_env
 
 
 def _is_mocked_environment() -> bool:

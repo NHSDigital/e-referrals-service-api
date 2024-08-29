@@ -1,9 +1,9 @@
-import os
 import pytest
 import pytest_asyncio
 import warnings
 
 from uuid import uuid4
+from utils import get_env
 
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
@@ -26,17 +26,6 @@ from state import current_authentication_context
 def _create_apigee_client():
     config = ApigeeNonProdCredentials()
     return ApigeeClient(config=config)
-
-
-def get_env(variable_name: str) -> str:
-    """Returns an environment variable"""
-    try:
-        var = os.environ[variable_name]
-        if not var:
-            raise RuntimeError(f"Variable is null, Check {variable_name}.")
-        return var
-    except KeyError:
-        raise RuntimeError(f"Variable is not set, Check {variable_name}.")
 
 
 @pytest.fixture(scope="session")

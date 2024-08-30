@@ -35,6 +35,13 @@ description: |
   ## Supported security patterns
   - Application-restricted access
   - Healthcare worker, user-restricted access
+  
+  ## Important notes when receiving an e-Referral Pathway Start Date
+  The e-Referral Pathway Start Date is a derived value of when the Referral To Treatment (RTT) clock starts. Find out how e-RS derives the pathway start date [[HYPERLINK_PATHWAY_START]].
+  
+  If a referral was created with an alternate pathway start date, then this will be available in the referral request response.
+  
+  Service providers must always ensure the correct start date is recorded in line with [[HYPERLINK_RTT_RULES]].
 
   ## Pre-requisites
   ### Application-restricted access

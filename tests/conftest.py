@@ -21,6 +21,8 @@ from pytest_nhsd_apim.apigee_apis import (
 
 from data import Actor
 
+_TEST_APP = None
+
 
 def _create_apigee_client():
     config = ApigeeNonProdCredentials()
@@ -300,24 +302,24 @@ def app_restricted_access_code(
     return token_response["access_token"]
 
 
-@pytest.fixture(scope="session")
-def _create_test_app(
+@pytest.fixture
+def _pre_authentication(
     request,
-    _create_test_app,
     asid,
     app_restricted_ods_code,
     app_restricted_user_id,
     app_restricted_business_function,
 ):
     """
-    This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to update any created app with the ASID currently being utilised.
-    This is required as the private fixture does not publicise the attributes it associates with any created application, so instead we need to modify the created application to
-    append the ASID required.
+    Fixture adding custom attributes to the application created by the pytest_nhsd_apim module's fixtures. This is required as custom attributes are not publically exposed by the module itself.
     """
 
     warnings.warn("invoking custom create test app.")
 
-    created_app = _create_test_app
+    created_app = _TEST_APP
+    if not created_app:
+        raise ValueError("No app has been initialised.")
+
     warnings.warn(f"created app={created_app}")
 
     api = DeveloperAppsAPI(client=_create_apigee_client())
@@ -329,7 +331,7 @@ def _create_test_app(
         )
 
     # Update the attributes of the created application to add in the ASID attribute.
-    additional_attribtues = [{"name": "asid", "value": asid}]
+    additional_attributes = [{"name": "asid", "value": asid}]
 
     if marker.args and marker.args[0]:
         type = marker.args[0]
@@ -339,7 +341,7 @@ def _create_test_app(
         raise ValueError("No type provided with pytest.mark.authentication_type marker")
 
     if type == "app-restricted":
-        additional_attribtues = additional_attribtues + [
+        additional_attributes = additional_attributes + [
             {"name": "app-restricted-ods-code", "value": app_restricted_ods_code},
             {"name": "app-restricted-user-id", "value": app_restricted_user_id},
             {
@@ -348,7 +350,7 @@ def _create_test_app(
             },
         ]
 
-    modified_attributes = created_app["attributes"] + additional_attribtues
+    modified_attributes = created_app["attributes"] + additional_attributes
     created_app["attributes"] = modified_attributes
 
     warnings.warn(f"updated app={created_app}")
@@ -358,3 +360,35 @@ def _create_test_app(
         app_name=created_app["name"],
         body=created_app,
     )
+
+
+@pytest.fixture(scope="session")
+def _create_test_app(_create_test_app):
+    """
+    This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to capture the created app so that it can be later updated.
+    """
+
+    _TEST_APP = _create_test_app
+    return _TEST_APP
+
+
+@pytest.fixture
+def get_access_token_via_user_restricted_flow_separate_auth(
+    _pre_authentication, get_access_token_via_user_restricted_flow_separate_auth
+):
+    """
+    Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
+    """
+
+    return get_access_token_via_user_restricted_flow_separate_auth
+
+
+@pytest.fixture
+def get_access_token_via_signed_jwt_flow(
+    _pre_authentication, get_access_token_via_signed_jwt_flow
+):
+    """
+    Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
+    """
+
+    return get_access_token_via_signed_jwt_flow

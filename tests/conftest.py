@@ -20,7 +20,6 @@ from pytest_nhsd_apim.apigee_apis import (
 
 
 from data import Actor
-from state import current_authentication_context
 
 
 def _create_apigee_client():
@@ -301,10 +300,14 @@ def app_restricted_access_code(
     return token_response["access_token"]
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def _create_test_app(
+    request,
     _create_test_app,
     asid,
+    app_restricted_ods_code,
+    app_restricted_user_id,
+    app_restricted_business_function,
 ):
     """
     This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to update any created app with the ASID currently being utilised.
@@ -319,14 +322,33 @@ def _create_test_app(
 
     api = DeveloperAppsAPI(client=_create_apigee_client())
 
+    marker = request.node.get_closest_marker("authentication_type")
+    if not marker:
+        raise ValueError(
+            "No pytest.mark.authentication_type included with request. Have you used the user_restricted_access or app_restricted_access decorators?"
+        )
+
     # Update the attributes of the created application to add in the ASID attribute.
-    additional_attribtues = [
-        {"name": key, "value": value}
-        for key, value in current_authentication_context().app_attributes
-    ]
+    additional_attribtues = [{"name": "asid", "value": asid}]
+
+    if marker.args and marker.args[0]:
+        type = marker.args[0]
+    elif marker.kwargs and marker.kwargs["type"]:
+        type = marker.kwargs["type"]
+    else:
+        raise ValueError("No type provided with pytest.mark.authentication_type marker")
+
+    if type == "app-restricted":
+        additional_attribtues = additional_attribtues + [
+            {"name": "app-restricted-ods-code", "value": app_restricted_ods_code},
+            {"name": "app-restricted-user-id", "value": app_restricted_user_id},
+            {
+                "name": "app-restricted-business-function",
+                "value": app_restricted_business_function,
+            },
+        ]
 
     modified_attributes = created_app["attributes"] + additional_attribtues
-
     created_app["attributes"] = modified_attributes
 
     warnings.warn(f"updated app={created_app}")

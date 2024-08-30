@@ -7,7 +7,7 @@ from typing import Callable, List
 from asyncio import iscoroutinefunction
 
 from data import Actor
-from conftest import get_env
+from utils import get_env
 
 
 def _calculate_default_user() -> Actor:
@@ -37,21 +37,17 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
             "login_form": {"username": user.user_id},
         }
 
+        @pytest.mark.authentication_type("user-restricted")
         @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
-            with state.authentication_context(
-                state.AuthenticationConfig.user_restricted_config()
-            ):
-                return await func(*args, **kwargs)
+            return await func(*args, **kwargs)
 
+        @pytest.mark.authentication_type("user-restricted")
         @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         def wrapper(*args, **kwargs):
-            with state.authentication_context(
-                state.AuthenticationConfig.user_restricted_config()
-            ):
-                return func(*args, **kwargs)
+            return func(*args, **kwargs)
 
         # if the decorated function is async, return an async function, else return a synchronous version.
         return async_wrapper if iscoroutinefunction(func) else wrapper
@@ -72,23 +68,19 @@ def app_restricted_access(types: List[state.ApplicationRestrictedType]):
     def decorator(func):
         auth_args = {"access": "application", "level": "level3"}
 
+        @pytest.mark.authentication_type("app-restricted")
         @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
             for type in types:
-                with state.authentication_context(
-                    state.AuthenticationConfig.application_restricted_config(type=type)
-                ):
-                    return await func(*args, **kwargs)
+                return await func(*args, **kwargs)
 
+        @pytest.mark.authentication_type("app-restricted")
         @pytest.mark.nhsd_apim_authorization(auth_args)
         @wraps(func)
         def wrapper(*args, **kwargs):
             for type in types:
-                with state.authentication_context(
-                    state.AuthenticationConfig.application_restricted_config(type=type)
-                ):
-                    return func(*args, **kwargs)
+                return func(*args, **kwargs)
 
         # if the decorated function is async, return an async function as a decorator, otherwise use a synchronous decorator.
         return async_wrapper if iscoroutinefunction(func) else wrapper

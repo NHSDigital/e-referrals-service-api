@@ -13,6 +13,21 @@ description: |
   The act of shortlisting alone will not result in a referral being sent/booked to any of the shortlisted services (even if only one service is shortlisted). 
   Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
 
+  ## Important notes when sending an e-Referral Pathway Start Date
+  The e-Referral Pathway Start Date is a derived value of when the Referral To Treatment (RTT) clock starts. Find out how e-RS derives the pathway start date [[HYPERLINK_PATHWAY_START]].
+  
+  You can supply an optional, alternate pathway start date when creating a referral.
+  
+  This may be because steps, such as reviews, take place early in your business process. Which means the clock started earlier than when the e-RS referral is created. 
+  Providing an alternate pathway start date ensures the correct date is recorded and used in other systems.
+
+  When provided, the pathway start date must be:
+    - in the past
+    - no longer than 365 days ago
+    - calculated in line with [[HYPERLINK_RTT_RULES]]
+  
+  This also overrides any e-RS derived date.
+  
   ## Pre-requisites
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`

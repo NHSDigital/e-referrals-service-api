@@ -314,7 +314,7 @@ def _pre_authentication(
     Fixture adding custom attributes to the application created by the pytest_nhsd_apim module's fixtures. This is required as custom attributes are not publically exposed by the module itself.
     """
 
-    warnings.warn("invoking custom create test app.")
+    warnings.warn("Pre authentication fixture:")
 
     created_app = _TEST_APP
     if not created_app:
@@ -368,6 +368,8 @@ def _create_test_app(_create_test_app):
     This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to capture the created app so that it can be later updated.
     """
 
+    warnings.warn("Invoked custom create test app.")
+
     _TEST_APP = _create_test_app
     return _TEST_APP
 
@@ -380,6 +382,7 @@ def get_access_token_via_user_restricted_flow_separate_auth(
     Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
     """
 
+    _pre_authentication
     return get_access_token_via_user_restricted_flow_separate_auth
 
 
@@ -391,4 +394,5 @@ def get_access_token_via_signed_jwt_flow(
     Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
     """
 
+    _pre_authentication
     return get_access_token_via_signed_jwt_flow

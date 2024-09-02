@@ -349,12 +349,21 @@ def _pre_authentication(
             },
         ]
 
-    modified_attributes = created_app["attributes"] + additional_attributes
+    original_attributes = created_app["attributes"]
+    modified_attributes = original_attributes + additional_attributes
     created_app["attributes"] = modified_attributes
 
     warnings.warn(f"updated app={created_app}")
 
-    return api.put_app_by_name(
+    yield api.put_app_by_name(
+        email="apm-testing-internal-dev@nhs.net",
+        app_name=created_app["name"],
+        body=created_app,
+    )
+
+    # Reset the app back to its original attributes so it can be updated by a subsequent test
+    created_app["attributes"] = original_attributes
+    api.put_app_by_name(
         email="apm-testing-internal-dev@nhs.net",
         app_name=created_app["name"],
         body=created_app,

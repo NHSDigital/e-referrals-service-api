@@ -21,8 +21,6 @@ from pytest_nhsd_apim.apigee_apis import (
 
 from data import Actor
 
-_TEST_APP = None
-
 
 def _create_apigee_client():
     config = ApigeeNonProdCredentials()
@@ -304,6 +302,7 @@ def app_restricted_access_code(
 
 @pytest.fixture
 def _pre_authentication(
+    _create_test_app,
     request,
     asid,
     app_restricted_ods_code,
@@ -316,7 +315,7 @@ def _pre_authentication(
 
     warnings.warn("Pre authentication fixture:")
 
-    created_app = _TEST_APP
+    created_app = _create_test_app
     if not created_app:
         raise ValueError("No app has been initialised.")
 
@@ -360,18 +359,6 @@ def _pre_authentication(
         app_name=created_app["name"],
         body=created_app,
     )
-
-
-@pytest.fixture(scope="session")
-def _create_test_app(_create_test_app):
-    """
-    This fixture is overriding a private fixture housed within the pytest_nhsd_apim module to capture the created app so that it can be later updated.
-    """
-
-    warnings.warn("Invoked custom create test app.")
-
-    _TEST_APP = _create_test_app
-    return _TEST_APP
 
 
 @pytest.fixture

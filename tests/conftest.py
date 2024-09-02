@@ -375,24 +375,5 @@ def _create_test_app(_create_test_app):
 
 
 @pytest.fixture
-def get_access_token_via_user_restricted_flow_separate_auth(
-    _pre_authentication, get_access_token_via_user_restricted_flow_separate_auth
-):
-    """
-    Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
-    """
-
-    _pre_authentication
-    return get_access_token_via_user_restricted_flow_separate_auth
-
-
-@pytest.fixture
-def get_access_token_via_signed_jwt_flow(
-    _pre_authentication, get_access_token_via_signed_jwt_flow
-):
-    """
-    Fixure overridding pytest_nhsd_apim module fixture with the same name to ensure that the _pre_authentication fixture is invoked before this fixture is executed.
-    """
-
-    _pre_authentication
-    return get_access_token_via_signed_jwt_flow
+def _nhsd_apim_auth_token_data(_pre_authentication, _nhsd_apim_auth_token_data):
+    return _nhsd_apim_auth_token_data

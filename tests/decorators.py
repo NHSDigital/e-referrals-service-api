@@ -33,6 +33,8 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
             "access": "healthcare_worker",
             "level": "aal3",
             "login_form": {"username": user.user_id},
+            # Force a token to always be created to ensure no app details are cached
+            "force_new_token": True,
         }
 
         @pytest.mark.authentication_type("user-restricted")
@@ -61,7 +63,12 @@ def app_restricted_access(func):
     This will lead to a fixture named 'nhsd_apim_auth_headers' being provided to the function as a dictionary, including the headers required to authenticate as the default application.
     """
 
-    auth_args = {"access": "application", "level": "level3"}
+    auth_args = {
+        "access": "application",
+        "level": "level3",
+        # Force a token to always be created to ensure no app details are cached
+        "force_new_token": True,
+    }
 
     @pytest.mark.authentication_type("app-restricted")
     @pytest.mark.nhsd_apim_authorization(auth_args)

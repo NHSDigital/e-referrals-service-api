@@ -1,13 +1,12 @@
-from typing import Callable, Dict, Iterable, List
-from urllib import response
+from typing import Callable, Dict, Iterable
 
 import pytest
-import asserts
+from tests import asserts
 
 from requests import Response
-from SandboxTest import SandboxTest
-from data import Actor
-from utils import HttpMethod
+from tests.sandbox.SandboxTest import SandboxTest
+from tests.data import Actor
+from tests.sandbox.utils import HttpMethod
 
 
 @pytest.mark.sandbox
@@ -53,7 +52,9 @@ class TestRejectReferral(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_request(
-            actor, "stu3/rejectReferral/requests/BasicExampleIbs.json", headers,
+            actor,
+            "stu3/rejectReferral/requests/BasicExampleIbs.json",
+            headers,
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
@@ -75,5 +76,8 @@ class TestRejectReferral(SandboxTest):
         asserts.assert_response(expected_response, actual_response)
 
         asserts.assert_json_response_headers(
-            actual_response, additional={"etag": 'W/"10"',},
+            actual_response,
+            additional={
+                "etag": 'W/"10"',
+            },
         )

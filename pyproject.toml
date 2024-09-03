@@ -45,4 +45,4 @@ pytest-nhsd-apim = "^3.4.2"
 [tool.poetry.scripts]
 
 [tool.pytest.ini_options]
-markers = ["smoke_test", "integration_test", "sandbox"]
+markers = ["smoke_test", "integration_test", "sandbox", "authentication_type"]

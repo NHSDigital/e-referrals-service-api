@@ -1,8 +1,9 @@
-import os
 import pytest
 import pytest_asyncio
+import warnings
 
 from uuid import uuid4
+from .utils import get_env
 
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
@@ -18,18 +19,12 @@ from pytest_nhsd_apim.apigee_apis import (
 )
 
 
-from data import Actor
+from .data import Actor
 
 
-def get_env(variable_name: str) -> str:
-    """Returns an environment variable"""
-    try:
-        var = os.environ[variable_name]
-        if not var:
-            raise RuntimeError(f"Variable is null, Check {variable_name}.")
-        return var
-    except KeyError:
-        raise RuntimeError(f"Variable is not set, Check {variable_name}.")
+def _create_apigee_client():
+    config = ApigeeNonProdCredentials()
+    return ApigeeClient(config=config)
 
 
 @pytest.fixture(scope="session")
@@ -102,7 +97,6 @@ def app_restricted_user_id(is_mocked_environment):
 
 
 @pytest.fixture(
-    scope="session",
     params=["PROVIDER_AUTHORISED_APPLICATION", "REFERRER_AUTHORISED_APPLICATION"],
 )
 def app_restricted_business_function(request):
@@ -111,8 +105,7 @@ def app_restricted_business_function(request):
 
 @pytest.fixture()
 def client():
-    config = ApigeeNonProdCredentials()
-    return ApigeeClient(config=config)
+    return _create_apigee_client()
 
 
 @pytest_asyncio.fixture
@@ -304,3 +297,82 @@ def app_restricted_access_code(
     token_response = authenticator.get_token()
     assert "access_token" in token_response
     return token_response["access_token"]
+
+
+@pytest.fixture
+def _pre_authentication(
+    _create_test_app,
+    request,
+    asid,
+    app_restricted_ods_code,
+    app_restricted_user_id,
+    app_restricted_business_function,
+):
+    """
+    Fixture adding custom attributes to the application created by the pytest_nhsd_apim module's fixtures. This is required as custom attributes are not publically exposed by the module itself.
+    """
+
+    warnings.warn("Pre authentication fixture:")
+
+    created_app = _create_test_app
+    if not created_app:
+        raise ValueError("No app has been initialised.")
+
+    warnings.warn(f"created app={created_app}")
+
+    api = DeveloperAppsAPI(client=_create_apigee_client())
+
+    marker = request.node.get_closest_marker("authentication_type")
+    if not marker:
+        raise ValueError(
+            "No pytest.mark.authentication_type included with request. Have you used the user_restricted_access or app_restricted_access decorators?"
+        )
+
+    # Update the attributes of the created application to add in the ASID attribute.
+    additional_attributes = [{"name": "asid", "value": asid}]
+
+    if marker.args and marker.args[0]:
+        type = marker.args[0]
+    elif marker.kwargs and marker.kwargs["type"]:
+        type = marker.kwargs["type"]
+    else:
+        raise ValueError("No type provided with pytest.mark.authentication_type marker")
+
+    if type == "app-restricted":
+        additional_attributes = additional_attributes + [
+            {"name": "app-restricted-ods-code", "value": app_restricted_ods_code},
+            {"name": "app-restricted-user-id", "value": app_restricted_user_id},
+            {
+                "name": "app-restricted-business-function",
+                "value": app_restricted_business_function,
+            },
+        ]
+
+    original_attributes = created_app["attributes"]
+    modified_attributes = original_attributes + additional_attributes
+    created_app["attributes"] = modified_attributes
+
+    warnings.warn(f"updated app={created_app}")
+
+    yield api.put_app_by_name(
+        email="apm-testing-internal-dev@nhs.net",
+        app_name=created_app["name"],
+        body=created_app,
+    )
+
+    # Reset the app back to its original attributes so it can be updated by a subsequent test
+    created_app["attributes"] = original_attributes
+    api.put_app_by_name(
+        email="apm-testing-internal-dev@nhs.net",
+        app_name=created_app["name"],
+        body=created_app,
+    )
+
+
+@pytest.fixture
+def _nhsd_apim_auth_token_data(_pre_authentication, _nhsd_apim_auth_token_data):
+    """
+    Override of the pytest_nhsd_apim _nhsd_apim_auth_token_data fixture to invoke _pre_authenication before being executed.
+    """
+
+    return _nhsd_apim_auth_token_data

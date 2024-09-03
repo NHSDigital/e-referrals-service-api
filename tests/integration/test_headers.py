@@ -1,8 +1,9 @@
 import pytest
 import requests
 from requests import Response
-from data import RenamedHeader
-from asserts import assert_ok_response
+from tests.data import RenamedHeader
+from tests.asserts import assert_ok_response
+from tests.decorators import user_restricated_access
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target
@@ -31,24 +32,27 @@ _SEARCH_HEALTHCARE_SERVICE_R4_URL = "/FHIR/R4/HealthcareService"
 
 @pytest.mark.integration_test
 class TestHeaders:
-    @pytest.mark.asyncio
-    async def test_headers_on_echo_target(
-        self, authenticate_user, service_url, referring_clinician, asid
-    ):
-        access_code = await authenticate_user(referring_clinician)
 
-        client_request_headers = {
-            _HEADER_ECHO: "",  # enable echo target
-            _HEADER_AUTHORIZATION: "Bearer " + access_code,
-            _HEADER_REQUEST_ID: "DUMMY-VALUE",
-            RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
-            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
-            RenamedHeader.BUSINESS_FUNCTION.original: referring_clinician.business_function,
-            RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
-            RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
-            RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
-            RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
-        }
+    @pytest.mark.asyncio
+    @user_restricated_access
+    async def test_headers_on_echo_target(
+        self, nhsd_apim_auth_headers, service_url, referring_clinician, asid
+    ):
+
+        client_request_headers = dict(
+            nhsd_apim_auth_headers,
+            **{
+                _HEADER_ECHO: "",  # enable echo target
+                _HEADER_REQUEST_ID: "DUMMY-VALUE",
+                RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+                RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+                RenamedHeader.BUSINESS_FUNCTION.original: referring_clinician.business_function,
+                RenamedHeader.ODS_CODE.original: referring_clinician.org_code,
+                RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
+                RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+                RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+            },
+        )
 
         # Make the API call
         response = requests.get(service_url, headers=client_request_headers)

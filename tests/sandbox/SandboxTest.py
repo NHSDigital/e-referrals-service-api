@@ -5,10 +5,10 @@ from requests import Response
 from pytest_check import check
 
 import pytest
-import asserts
+from tests import asserts
 
-from data import Actor, RenamedHeader
-from utils import HttpMethod
+from tests.data import Actor, RenamedHeader
+from .utils import HttpMethod
 
 
 @pytest.mark.sandbox

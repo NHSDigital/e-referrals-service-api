@@ -97,7 +97,6 @@ def app_restricted_user_id(is_mocked_environment):
 
 
 @pytest.fixture(
-    scope="session",
     params=["PROVIDER_AUTHORISED_APPLICATION", "REFERRER_AUTHORISED_APPLICATION"],
 )
 def app_restricted_business_function(request):
@@ -372,4 +371,8 @@ def _pre_authentication(
 
 @pytest.fixture
 def _nhsd_apim_auth_token_data(_pre_authentication, _nhsd_apim_auth_token_data):
+    """
+    Override of the pytest_nhsd_apim _nhsd_apim_auth_token_data fixture to invoke _pre_authenication before being executed.
+    """
+
     return _nhsd_apim_auth_token_data

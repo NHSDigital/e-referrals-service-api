@@ -55,28 +55,25 @@ def user_restricated_access(function: Callable = None, user: Actor = _DEFAULT_US
     return decorator(function) if function else decorator
 
 
-def app_restricted_access():
+def app_restricted_access(func):
     """
     Decorator indicating that the given function should be authenticated with Application Restricted access with a list of set types.
     This will lead to a fixture named 'nhsd_apim_auth_headers' being provided to the function as a dictionary, including the headers required to authenticate as the default application.
     """
 
-    def decorator(func):
-        auth_args = {"access": "application", "level": "level3"}
+    auth_args = {"access": "application", "level": "level3"}
 
-        @pytest.mark.authentication_type("app-restricted")
-        @pytest.mark.nhsd_apim_authorization(auth_args)
-        @wraps(func)
-        async def async_wrapper(*args, **kwargs):
-            return await func(*args, **kwargs)
+    @pytest.mark.authentication_type("app-restricted")
+    @pytest.mark.nhsd_apim_authorization(auth_args)
+    @wraps(func)
+    async def async_wrapper(*args, **kwargs):
+        return await func(*args, **kwargs)
 
-        @pytest.mark.authentication_type("app-restricted")
-        @pytest.mark.nhsd_apim_authorization(auth_args)
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            return func(*args, **kwargs)
+    @pytest.mark.authentication_type("app-restricted")
+    @pytest.mark.nhsd_apim_authorization(auth_args)
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
 
-        # if the decorated function is async, return an async function as a decorator, otherwise use a synchronous decorator.
-        return async_wrapper if iscoroutinefunction(func) else wrapper
-
-    return decorator
+    # if the decorated function is async, return an async function as a decorator, otherwise use a synchronous decorator.
+    return async_wrapper if iscoroutinefunction(func) else wrapper

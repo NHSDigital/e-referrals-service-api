@@ -1,13 +1,13 @@
 from typing import Callable, Dict, Iterable
 
 import pytest
-import asserts
+from tests import asserts
 
 from requests import Response
 
-from SandboxTest import SandboxTest
-from data import Actor
-from utils import HttpMethod
+from tests.sandbox.SandboxTest import SandboxTest
+from tests.data import Actor
+from tests.sandbox.utils import HttpMethod
 
 authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RC_INSUFFICIENT_IAL, Actor.RCA]
 

@@ -3,7 +3,7 @@ import pytest_asyncio
 import warnings
 
 from uuid import uuid4
-from utils import get_env
+from .utils import get_env
 
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
@@ -19,7 +19,7 @@ from pytest_nhsd_apim.apigee_apis import (
 )
 
 
-from data import Actor
+from .data import Actor
 
 
 def _create_apigee_client():

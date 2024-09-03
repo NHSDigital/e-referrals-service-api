@@ -2,7 +2,7 @@ import json
 from typing import Dict, Iterable
 from pytest_check import check
 from requests import Response
-from data import RenamedHeader
+from .data import RenamedHeader
 
 # Headers which are expected for all requests
 _generic_headers = {

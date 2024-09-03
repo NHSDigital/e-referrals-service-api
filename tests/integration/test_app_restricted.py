@@ -1,10 +1,9 @@
 import pytest
 import requests
 from requests import Response
-from data import RenamedHeader
-from asserts import assert_ok_response, assert_error_response
-from decorators import app_restricted_access
-from state import ApplicationRestrictedType
+from tests.data import RenamedHeader
+from tests.asserts import assert_ok_response, assert_error_response
+from tests.decorators import app_restricted_access
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target
@@ -88,7 +87,7 @@ class TestAppRestricted:
 
         assert_error_response(response, _EXPECTED_CORRELATION_ID, 403)
 
-    @app_restricted_access(types=list(ApplicationRestrictedType))
+    @app_restricted_access
     def test_headers_on_echo_target(
         self,
         nhsd_apim_auth_headers,

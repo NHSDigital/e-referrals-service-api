@@ -1,0 +1,14 @@
+title: CommissioningRuleOrganisation
+description: Parameter to supply a commissioning rule organisation
+type: object
+required:
+  - name
+  - valueIdentifier
+properties:
+  name:
+    type: string
+    enum:
+      - commissioningRuleOrganisation
+    example: 'commissioningRuleOrganisation'
+  valueIdentifier:
+    $ref: '../identifiers/Organisation.yaml'

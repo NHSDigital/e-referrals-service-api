@@ -59,7 +59,7 @@
                                 "valueCoding": {
                                     "system": "_baseUrl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
                                     "code": "INTEND_PRIVATE",
-                                    "display": "Intend to go private"
+                                    "display": "Patient will go to a private clinic"
                                 }
                             }
                         ]

@@ -59,7 +59,7 @@
                                 "valueCoding": {
                                     "system": "_baseUrl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
                                     "code": "PATIENT_REQUEST_CANCELLATION_OTHER",
-                                    "display": "Other reason"
+                                    "display": "Other"
                                 }
                             },
                             {

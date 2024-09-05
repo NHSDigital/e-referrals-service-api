@@ -482,7 +482,7 @@
     },
     {
       "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER",
-      "display": "Other reason",
+      "display": "Other",
       "property": [
         {
           "code": "effectiveFrom",

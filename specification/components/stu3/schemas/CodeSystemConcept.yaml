@@ -30,14 +30,14 @@ properties:
     title: Display value of the code system
     description: |
       
-      | Code System                           | Example Display Value         |
-      | ------------------------------------- | ----------------------------- |
-      | Specialty                             | Urology                       |
-      | Clinic Type                           | General Urology               |
-      | Appointment Cancellation Reason       | Inappropriate service         |
-      | Referral Cancellation Reason          | Intend to go private          |
-      | Appointment Non-attendance Reason     | Patient ill                   |
-      | Priority                              | Routine                       |
+      | Code System                           | Example Display Value               |
+      | ------------------------------------- | ----------------------------------- |
+      | Specialty                             | Urology                             |
+      | Clinic Type                           | General Urology                     |
+      | Appointment Cancellation Reason       | Inappropriate service               |
+      | Referral Cancellation Reason          | Patient will go to a private clinic |
+      | Appointment Non-attendance Reason     | Patient ill                         |
+      | Priority                              | Routine                             |
       
     type: string
   property:

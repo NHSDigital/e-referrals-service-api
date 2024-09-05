@@ -63,7 +63,7 @@
                                 "valueCoding": {
                                     "code": "TREATMENT_NO_LONGER_REQUIRED",
                                     "system": "_baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
-                                    "display": "Referral no longer required"
+                                    "display": "Referral no longer needed"
                                 }
                             },
                             {

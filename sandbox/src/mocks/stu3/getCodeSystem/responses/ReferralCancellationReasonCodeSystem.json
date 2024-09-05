@@ -124,7 +124,7 @@
     },
     {
       "code": "INTEND_PRIVATE",
-      "display": "Patient intends to go private",
+      "display": "Patient will go to a private clinic",
       "property": [
         {
           "code": "effectiveFrom",
@@ -274,7 +274,7 @@
     },
     {
       "code": "PATIENT_REQUEST_CANCELLATION_OTHER",
-      "display": "Other reason",
+      "display": "Other",
       "property": [
         {
           "code": "effectiveFrom",
@@ -313,7 +313,7 @@
     },
     {
       "code": "RAISED_IN_ERROR",
-      "display": "Referral raised in error",
+      "display": "Referral created by mistake",
       "property": [
         {
           "code": "effectiveFrom",
@@ -409,7 +409,7 @@
     },
     {
       "code": "TREATMENT_NO_LONGER_REQUIRED",
-      "display": "Referral no longer required",
+      "display": "Referral no longer needed",
       "property": [
         {
           "code": "effectiveFrom",
@@ -466,7 +466,7 @@
     },
     {
       "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER",
-      "display": "Other reason",
+      "display": "Other",
       "property": [
         {
           "code": "effectiveFrom",

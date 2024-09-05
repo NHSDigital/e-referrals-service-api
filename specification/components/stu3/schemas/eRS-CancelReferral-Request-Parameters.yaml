@@ -73,5 +73,5 @@ properties:
               example: 'cancellationComments'
             valueString:
               type: string
-              example: 'Patient intend to go private'
+              example: 'Patient will go to a private clinic'
 

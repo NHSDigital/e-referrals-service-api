@@ -1,32 +1,26 @@
-from typing import Callable, Dict, Iterable, List
-from urllib import response
+from typing import Callable, Dict, Iterable
 
 import pytest
-import asserts
+from tests import asserts
 
 from requests import Response
-from SandboxTest import SandboxTest
-from data import Actor, RenamedHeader
-from utils import HttpMethod
+from tests.sandbox.SandboxTest import SandboxTest
+from tests.data import Actor, RenamedHeader
+from tests.sandbox.utils import HttpMethod
 
 
 @pytest.mark.sandbox
 class TestUploadAttachment(SandboxTest):
-    authorised_actor_data = [
-        Actor.SPC,
-        Actor.SPCA,
-        Actor.RC,
-        Actor.RC_DEV,
-        Actor.RC_INSUFFICIENT_IAL,
-        Actor.RCA,
-    ]
-
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
         "SERVICE_PROVIDER_CLINICIAN",
         "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
+
+    authorised_actor_data = Actor.all(
+        required_business_functions=allowed_business_function_data
+    )
 
     testdata = [
         "text/plain",

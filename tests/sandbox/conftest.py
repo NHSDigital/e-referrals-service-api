@@ -1,13 +1,11 @@
-import os
-
 import pytest
 import json
 import requests
 
 from typing import Dict, Callable
 
-from data import Actor, RenamedHeader
-from utils import HttpMethod
+from tests.data import Actor, RenamedHeader
+from .utils import HttpMethod
 
 
 @pytest.fixture(scope="session")

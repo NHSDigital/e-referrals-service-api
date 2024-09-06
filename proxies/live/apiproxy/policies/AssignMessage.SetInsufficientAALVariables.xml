@@ -1,0 +1,10 @@
+<AssignMessage enabled="true" name="AssignMessage.SetInsufficientAALVariables">
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>The authentication method utilised is not currently supported. Contact your local Registration Authority or IT department for help.</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>aalError</Name>
+        <Value>true</Value>
+    </AssignVariable>
+</AssignMessage>

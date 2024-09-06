@@ -79,7 +79,7 @@ ACCESS_MODES:
   - name: healthcare-worker
     nameSuffix: -healthcare-worker
     displayName: Healthcare Worker
-    scopes: ['urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api']
+    scopes: ['urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api', 'urn:nhsd:apim:user-nhs-id:aal2:e-referrals-service-api']
     requireCallbackUrl: true
     description: User restricted
 

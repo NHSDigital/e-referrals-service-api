@@ -1,9 +1,0 @@
-<AssignMessage continueOnError="true" name="AssignMessage.Set.x-ers-acr-header">
-    <Set>
-        <Headers>
-            <Header name="x-ers-acr">{accesstoken.id_token-acr}</Header>
-        </Headers>
-    </Set>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false"/>
-</AssignMessage>

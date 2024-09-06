@@ -1,11 +1,15 @@
 <TargetEndpoint name="e-referrals-service-api-target">
     <FaultRules>
-        <FaultRule name="access_token_expired_fhir_r4">
+        <FaultRule name="access_token_error_fhir_r4">
             <Step>
                 <Name>ExtractVariables.OAuthErrorFaultString</Name>
             </Step>
             <Step>
                 <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetInsufficientAALVariables</Name>
+                <Condition>faultstring ~ "*OauthV2.VerifyAccessToken.scopeSet*"</Condition>
             </Step>
             <Step>
                 <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
@@ -15,12 +19,32 @@
             </Step>
             <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = true)</Condition>
         </FaultRule>
-        <FaultRule name="access_token_expired">
+        <FaultRule name="access_token_error">
             <Step>
                 <Name>ExtractVariables.OAuthErrorFaultString</Name>
             </Step>
             <Step>
+                <Name>AssignMessage.SetInsufficientAALVariables</Name>
+                <Condition>faultstring ~ "*OauthV2.VerifyAccessToken.scopeSet*"</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <Condition>aalError == true</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
+                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <Condition>aalError == true</Condition>
+            </Step>
+            <Step>
                 <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <Condition>aalError != true</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
+                <Condition>aalError = true</Condition>
             </Step>
             <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = false)</Condition>
         </FaultRule>
@@ -137,7 +161,7 @@
                 </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
                 </Step><Step>
-                    <Name>AssignMessage.Set.x-ers-acr-header</Name>
+                    <Name>AssignMessage.Set.x-ers-authentication-assurance-level-header</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-amr-header</Name>
                 </Step><Step>

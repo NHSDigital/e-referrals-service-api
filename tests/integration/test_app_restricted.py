@@ -1,8 +1,8 @@
 import pytest
 import requests
 from requests import Response
-from data import RenamedHeader
-from asserts import assert_ok_response, assert_error_response
+from tests.data import RenamedHeader
+from tests.asserts import assert_ok_response, assert_error_response
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target

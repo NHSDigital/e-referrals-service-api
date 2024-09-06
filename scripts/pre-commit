@@ -17,7 +17,7 @@ echo "XML files to format:"
 echo "$xmlFilesToFormat"
 for sourceFilePath in $xmlFilesToFormat
 do
-  poetry run xmlformat --indent 4 --eof-newline --overwrite --selfclose --infile "$(pwd)/$sourceFilePath"
+  poetry run xmlformat --indent 4 --eof-newline --overwrite --selfclose --infile "$(pwd)/$sourceFilePath" || echo "$(pwd)/$sourceFilePath" is invalid.
   git add $sourceFilePath
 done
 

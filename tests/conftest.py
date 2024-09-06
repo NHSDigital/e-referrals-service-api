@@ -1,8 +1,10 @@
 import os
 import pytest
 import pytest_asyncio
+import warnings
 
 from uuid import uuid4
+from typing import Collection, Callable, Generator, Dict
 
 from pytest_nhsd_apim.identity_service import (
     AuthorizationCodeConfig,
@@ -17,8 +19,10 @@ from pytest_nhsd_apim.apigee_apis import (
     DeveloperAppsAPI,
 )
 
+from contextlib import contextmanager
 
-from data import Actor
+
+from .data import Actor
 
 
 def get_env(variable_name: str) -> str:
@@ -119,7 +123,10 @@ def client():
 async def user_restricted_product(client, make_product):
     # Setup
     productName = await make_product(
-        ["urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api"]
+        [
+            "urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api",
+            "urn:nhsd:apim:user-nhs-id:aal2:e-referrals-service-api",
+        ]
     )
 
     print(f"product created: {productName}")
@@ -129,6 +136,34 @@ async def user_restricted_product(client, make_product):
     print(f"Cleanup product: {productName}")
     product = ApiProductsAPI(client=client)
     product.delete_product_by_name(product_name=productName)
+
+
+@pytest.fixture
+def update_user_restricted_product(
+    user_restricted_product, client: ApigeeClient
+) -> Callable[[Collection[str]], Generator[Dict[str, str], None, None]]:
+    @contextmanager
+    def _update_function(append_scopes: Collection[str]):
+        product_api = ApiProductsAPI(client=client)
+        product = product_api.get_product_by_name(product_name=user_restricted_product)
+
+        warnings.warn(f"Existing product = {product}")
+
+        existing_scopes = product["scopes"]
+        new_scopes = existing_scopes + append_scopes
+        product["scopes"] = new_scopes
+
+        warnings.warn(f"Updated product = {product}")
+
+        yield product_api.put_product_by_name(
+            product_name=product["name"], body=product
+        )
+
+        # reset the product once the context manager has been closed.
+        product["scopes"] = existing_scopes
+        product_api.put_product_by_name(product_name=product["name"], body=product)
+
+    return _update_function
 
 
 @pytest.fixture

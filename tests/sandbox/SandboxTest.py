@@ -5,10 +5,10 @@ from requests import Response
 from pytest_check import check
 
 import pytest
-import asserts
+from tests import asserts
 
-from data import Actor, RenamedHeader
-from utils import HttpMethod
+from tests.data import Actor, RenamedHeader, UserAuthenticationLevel
+from .utils import HttpMethod
 
 
 @pytest.mark.sandbox
@@ -32,7 +32,7 @@ class SandboxTest:
     def unauthorised_actors(
         self, authorised_actors: Iterable[Actor]
     ) -> Iterable[Actor]:
-        return filter(lambda x: not (x in authorised_actors), Actor)
+        return [actor for actor in Actor if actor not in authorised_actors]
 
     @pytest.fixture
     @abstractmethod

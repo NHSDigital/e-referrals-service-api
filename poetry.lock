@@ -1242,13 +1242,13 @@ pytest = ">=7.0.0"
 
 [[package]]
 name = "pytest-nhsd-apim"
-version = "3.4.2"
+version = "3.4.3"
 description = "Pytest plugin accessing NHSDigital's APIM proxies"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pytest_nhsd_apim-3.4.2-py3-none-any.whl", hash = "sha256:9540e96d0787846d448ae3313cbaf1c8a901716a20b3f20ea29be7e6ab570402"},
-    {file = "pytest_nhsd_apim-3.4.2.tar.gz", hash = "sha256:2166e80980389d76a338a7cf3b748cd5b0500efc4967ce7964c19ea51f2cc223"},
+    {file = "pytest_nhsd_apim-3.4.3-py3-none-any.whl", hash = "sha256:64c80626e529c19568bf517f7378a67886ae0ec93db3eb1fc97a5c7f45ffaae9"},
+    {file = "pytest_nhsd_apim-3.4.3.tar.gz", hash = "sha256:08f7d36516b83b85af64e3ab0c54e01e7156b8d7c18e1ddbaeb87b3155881190"},
 ]
 
 [package.dependencies]
@@ -1643,4 +1643,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "f980b0802687c3e95527a9fe3df83378a2ccf113bb204ceb6e666847a36d72a8"
+content-hash = "49515b1f4a95c5703bd4d72711270dcedc5ffc246f6d3e3ac143cb13bc25e5c8"

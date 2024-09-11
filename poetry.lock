@@ -828,13 +828,13 @@ files = [
 
 [[package]]
 name = "openapi-core"
-version = "0.19.3"
+version = "0.19.4"
 description = "client-side and server-side support for the OpenAPI Specification v3"
 optional = false
 python-versions = "<4.0.0,>=3.8.0"
 files = [
-    {file = "openapi_core-0.19.3-py3-none-any.whl", hash = "sha256:88c8be49b083a39923ada4c1269919ba119ab617c951f901757a054a483988b0"},
-    {file = "openapi_core-0.19.3.tar.gz", hash = "sha256:5db6479ecccf76c52422961dc42b411b7625a802087d847251fdd66f0392b095"},
+    {file = "openapi_core-0.19.4-py3-none-any.whl", hash = "sha256:38e8347b6ebeafe8d3beb588214ecf0171874bb65411e9d4efd23cb011687201"},
+    {file = "openapi_core-0.19.4.tar.gz", hash = "sha256:1150d9daa5e7b4cacfd7d7e097333dc89382d7d72703934128dcf8a1a4d0df49"},
 ]
 
 [package.dependencies]
@@ -854,7 +854,7 @@ falcon = ["falcon (>=3.0)"]
 fastapi = ["fastapi (>=0.111,<0.113)"]
 flask = ["flask"]
 requests = ["requests"]
-starlette = ["aioitertools (>=0.11.0,<0.12.0)", "starlette (>=0.26.1,<0.38.0)"]
+starlette = ["aioitertools (>=0.11.0,<0.12.0)", "starlette (>=0.26.1,<0.39.0)"]
 
 [[package]]
 name = "openapi-schema-validator"
@@ -1647,4 +1647,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "49515b1f4a95c5703bd4d72711270dcedc5ffc246f6d3e3ac143cb13bc25e5c8"
+content-hash = "f55ec990dc48fc2192228a8ee32dad226eea2032d43ce503cd53a5f4aab7bf3a"

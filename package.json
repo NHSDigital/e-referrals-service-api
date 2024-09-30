@@ -15,7 +15,7 @@
     "@redocly/cli": "^1.25.3"
   },
   "devDependencies": {
-    "apigeetool": "^0.16.4",
+    "apigeetool": "^0.16.5",
     "license-checker": "^25.0.1",
     "minimist": "^1.2.8"
   }

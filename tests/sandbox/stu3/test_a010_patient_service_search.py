@@ -49,6 +49,11 @@ class TestPatientServiceSearch(SandboxTest):
             "stu3/patientServiceSearch/requests/RcaWithIWT.json",
             "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
+        (
+            Actor.RC,
+            "stu3/patientServiceSearch/requests/RcSearchWithCommissioningRuleOrganisation.json",
+            "stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json",
+        ),
     ]
 
     @pytest.fixture

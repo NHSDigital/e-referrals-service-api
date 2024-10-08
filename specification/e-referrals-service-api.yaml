@@ -193,6 +193,10 @@ info:
     - a healthcare worker
     - strongly authenticated and authorised by [[HYPERLINK_CIS_AUTH_LONG]]
 
+    In order to successfully authenticate with CIS2, the NHS e-Referral Service requires end users to be authenticated to the following standards:
+      - an [Identity Assurance Level (IAL)](https://digital.nhs.uk/services/care-identity-service/applications-and-services/cis2-authentication/guidance-for-developers/detailed-guidance/scopes-and-claims#claims ) of IAL3
+      - an [Authenticator Assurance Level (AAL)](https://digital.nhs.uk/services/care-identity-service/applications-and-services/cis2-authentication/guidance-for-developers/detailed-guidance/acr-values#authentication-methods) of AAL2 or AAL3
+
     To use this access mode, use one of the following security patterns:
     - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
     - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)

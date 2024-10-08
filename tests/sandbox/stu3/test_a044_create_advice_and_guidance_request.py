@@ -1,15 +1,13 @@
 from typing import Callable, Dict, Iterable
 
 import pytest
-import asserts
+from tests import asserts
 
 from requests import Response
 
-from SandboxTest import SandboxTest
-from data import Actor
-from utils import HttpMethod
-
-authorised_actor_data = [Actor.RC, Actor.RC_DEV, Actor.RC_INSUFFICIENT_IAL, Actor.RCA]
+from tests.sandbox.SandboxTest import SandboxTest
+from tests.data import Actor
+from tests.sandbox.utils import HttpMethod
 
 
 @pytest.mark.sandbox
@@ -19,6 +17,10 @@ class TestCreateAdviceAndGuidance(SandboxTest):
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
     ]
+
+    authorised_actor_data = Actor.all(
+        required_business_functions=allowed_business_function_data
+    )
 
     allowed_requests_with_responses = {
         "stu3/createAdviceAndGuidance/requests/ExampleRCAWithAttachments.json": "stu3/createAdviceAndGuidance/responses/ExampleRCAWithAttachments.json",
@@ -39,7 +41,7 @@ class TestCreateAdviceAndGuidance(SandboxTest):
 
     @pytest.fixture
     def authorised_actors(self) -> Iterable[Actor]:
-        return authorised_actor_data
+        return TestCreateAdviceAndGuidance.authorised_actor_data
 
     @pytest.fixture
     def allowed_business_functions(self) -> Iterable[str]:

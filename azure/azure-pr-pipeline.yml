@@ -8,7 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
-      ref: refs/heads/edge
+      ref: refs/heads/master
       endpoint: NHSDigital
   pipelines:
     - pipeline: build_pipeline
@@ -33,6 +33,7 @@ extends:
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
     manual_approval_env: manual-approval-ptl
+    python_version: ${{ variables.python_version }}
     apigee_deployments:
       - environment: manual-approval
         stage_name: manual_approval_alpha_pr

@@ -2,7 +2,11 @@ import pytest
 import requests
 from requests import Response
 from tests.data import RenamedHeader
-from tests.asserts import assert_ok_response, assert_error_response
+from tests.asserts import (
+    assert_ok_response,
+    assert_error_response,
+    assert_error_response_with_body,
+)
 
 _HEADER_AUTHORIZATION = "Authorization"
 _HEADER_ECHO = "echo"  # enable echo target
@@ -42,7 +46,7 @@ class TestAppRestricted:
             f"{service_url}{_SPECIALTY_REF_DATA_URL}", headers=client_request_headers
         )
 
-        assert_error_response(response, _EXPECTED_CORRELATION_ID, 403)
+        assert_error_response_with_body(response, _EXPECTED_CORRELATION_ID, 403)
 
     def test_authorised_application_supported_for_app_restricted(
         self, app_restricted_access_code, service_url

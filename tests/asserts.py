@@ -225,3 +225,28 @@ def assert_error_response(
 
     for renamed_header in RenamedHeader:
         assert renamed_header.renamed not in client_response_headers
+
+
+def assert_error_response_with_body(
+    response: Response, expected_correlation_id: int, expected_status_code: int
+):
+    # Verify the status
+    assert response.status_code == expected_status_code, (
+        "Expected a "
+        + expected_status_code
+        + " when accessing the api but got "
+        + (str)(response.status_code)
+    )
+
+    assert len(response.content) > 0
+
+    # Verify the response headers
+    client_response_headers = response.headers
+
+    assert (
+        client_response_headers[RenamedHeader.CORRELATION_ID.original]
+        == expected_correlation_id
+    )
+
+    for renamed_header in RenamedHeader:
+        assert renamed_header.renamed not in client_response_headers

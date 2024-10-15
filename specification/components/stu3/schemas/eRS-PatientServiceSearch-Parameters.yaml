@@ -27,19 +27,21 @@ properties:
     type: array
     description: |
       
-      | Field                  | Cardinality | Notes                                      |
-      | ---------------------- | ----------- | ------------------------------------------ |
-      | `RequestType`          | `1..1`      |                                            |
-      | `SortBy`               | `1..1`      |                                            |
-      | `Patient`              | `1..1`      |                                            |
-      | `ReferringClinician`   | `0..1`      |                                            |
-      | `SearchCriteria`       | `1..1`      |                                            |
+      | Field                           | Cardinality | Notes                                                                                                                                                                                                                                                                                                                          |
+      | ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+      | `RequestType`                   | `1..1`      |                                                                                                                                                                                                                                                                                                                                |
+      | `SortBy`                        | `1..1`      |                                                                                                                                                                                                                                                                                                                                |
+      | `Patient`                       | `1..1`      |                                                                                                                                                                                                                                                                                                                                |
+      | `SearchCriteria`                | `1..1`      |                                                                                                                                                                                                                                                                                                                                |
+      | `ReferringClinician`            | `0..1`      |                                                                                                                                                                                                                                                                                                                                |
+      | `CommissioningRuleOrganisation` | `0..1`      | Required if searching for services for an existing Referral. This field should be provided using the returned Commissioning Rule Organisation already included on the Referral to ensure the services returned are valid. Note this field is not supported when searching with the `ADVICE_AND_GUIDANCE_REQUEST` request type. |
     items:
       anyOf:
         - $ref: 'parameters/RequestType.yaml'
         - $ref: 'parameters/SortBy.yaml'
         - $ref: 'parameters/Patient.yaml'
         - $ref: 'parameters/ReferringClinician.yaml'
+        - $ref: 'parameters/CommissioningRuleOrganisation.yaml'
         - title: SearchCriteria
           type: object
           required:

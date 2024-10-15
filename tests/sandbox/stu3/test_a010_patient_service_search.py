@@ -1,27 +1,24 @@
 from typing import Callable, Dict, Iterable
 
 import pytest
-import asserts
+from tests import asserts
 
-from SandboxTest import SandboxTest
-from data import Actor
-from utils import HttpMethod
+from tests.sandbox.SandboxTest import SandboxTest
+from tests.data import Actor
+from tests.sandbox.utils import HttpMethod
 from requests import Response
 
 
 @pytest.mark.sandbox
 class TestPatientServiceSearch(SandboxTest):
-    authorised_actor_data = [
-        Actor.RC,
-        Actor.RC_DEV,
-        Actor.RC_INSUFFICIENT_IAL,
-        Actor.RCA,
-    ]
-
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
     ]
+
+    authorised_actor_data = Actor.all(
+        required_business_functions=allowed_business_function_data
+    )
 
     testdata = [
         (
@@ -48,6 +45,11 @@ class TestPatientServiceSearch(SandboxTest):
             Actor.RCA,
             "stu3/patientServiceSearch/requests/RcaWithIWT.json",
             "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
+        ),
+        (
+            Actor.RC,
+            "stu3/patientServiceSearch/requests/RcSearchWithCommissioningRuleOrganisation.json",
+            "stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json",
         ),
     ]
 

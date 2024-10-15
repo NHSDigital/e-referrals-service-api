@@ -1,0 +1,9 @@
+<AssignMessage continueOnError="true" name="AssignMessage.Set.x-ers-authentication-assurance-level-header">
+    <Set>
+        <Headers>
+            <Header name="x-ers-authentication-assurance-level">{accesstoken.id_token-authentication_assurance_level}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false"/>
+</AssignMessage>

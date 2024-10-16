@@ -5,8 +5,8 @@ headers:
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
   Location:
-    description: The large file attachment location in the Object Store.
+    description: The attachment location in the object store.
     required: true
     schema:
       type: string
-      example: '<ObjectStoreURL>'
+      example: 'TODO Do we want to provide an example?'

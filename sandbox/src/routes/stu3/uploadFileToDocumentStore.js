@@ -1,4 +1,4 @@
-const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtils = require('../common/validationUtils')
 
 module.exports = [
   /**
@@ -22,7 +22,7 @@ module.exports = [
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
-      const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+      const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {
         return validationResult
       }
@@ -36,7 +36,7 @@ module.exports = [
         response.headers["Location"] = "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5";
         return response
       } else {
-        return h.file('STU3-SandboxErrorOutcome.json').code(422);
+        return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422);
       }
 
     }

@@ -1,10 +1,10 @@
 const mockResponseProvider = require('./services/mockResponseProvider')
-const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtils = require('../common/validationUtils')
 
 function searchServiceRequest(request, h) {
     const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
-    const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+    const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
     if (validationResult) {
         return validationResult
     }

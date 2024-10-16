@@ -22,23 +22,11 @@ class TestGetAttachment(SandboxTest):
         required_business_functions=allowed_business_function_data
     )
 
-    valid_test_data = [
-        (
-            "att-70000-70001",
-            "stu3/retrieveAttachment/responses/example_attachment.pdf",
-            "example_attachment.pdf",
-        ),
-        (
-            # Any arbitrary v4 UUID should work here
-            "f1b1b2b1-30db-48f9-8906-8b703adca5fb",
-            "stu3/retrieveAttachment/responses/example_attachment.pdf",
-            "example_attachment.pdf",
-        ),
-    ]
+    testdata = [("att-70000-70001"), ("c5d2d200-7613-4a69-9c5f-1bb68e04b8d8")]
 
     @pytest.fixture
     def endpoint_url(self) -> str:
-        return "FHIR/STU3/Binary/{attachmentLogicalID}"
+        return "FHIR/R4/Binary/{binaryId}"
 
     @pytest.fixture
     def http_method(self) -> HttpMethod:
@@ -60,47 +48,54 @@ class TestGetAttachment(SandboxTest):
         ],
     ) -> Callable[[Actor], Response]:
         return lambda actor, headers={}: call_endpoint_url_with_pathParams(
-            actor, {"attachmentLogicalID": "att-70000-70001"}, headers
+            actor, {"binaryId": "att-70000-70001"}, headers
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
-    @pytest.mark.parametrize("id,response, filename", valid_test_data)
+    @pytest.mark.parametrize("id", testdata)
     def test_success(
         self,
         call_endpoint_url_with_pathParams: Callable[
             [Actor, Dict[str, str], Dict[str, str]], Response
         ],
-        load_file: Callable[[str], bytes],
         actor: Actor,
-        id,
-        response,
-        filename,
+        id: str,
+        sandbox_url: str,
     ):
-        expected_response = load_file(response)
-        actual_response = call_endpoint_url_with_pathParams(
-            actor, {"attachmentLogicalID": id}
-        )
+        actual_response = call_endpoint_url_with_pathParams(actor, {"binaryId": id})
 
-        asserts.assert_status_code(200, actual_response.status_code)
-        asserts.assert_file_response(expected_response, actual_response)
+        asserts.assert_status_code(307, actual_response.status_code)
 
-        asserts.assert_file_response_headers(
+        expected_headers = {
+            "Location": sandbox_url
+            + "/ObjectStore/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f",
+            "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
+            "vary": "origin",
+            "cache-control": "no-cache",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
+        }
+
+        asserts.assert_response_headers(
             actual_response,
-            additional={
-                "content-disposition": "attachment; filename=" + filename,
-                "content-length": str(len(expected_response)),
-            },
+            expected_headers,
+            assert_content_length=True,
+            assert_ignored_headers=False,
         )
 
-    @pytest.mark.parametrize("actor", authorised_actor_data)
-    def test_failure_not_a_uuid(
+    def test_sandbox_error(
         self,
         call_endpoint_url_with_pathParams: Callable[
             [Actor, Dict[str, str], Dict[str, str]], Response
         ],
-        actor: Actor,
+        load_json: Callable[[str], Dict[str, str]],
     ):
-        response = call_endpoint_url_with_pathParams(
-            actor, {"attachmentLogicalID": "f1bb2b1-30db-48f9-8906-8b703adca5fb"}
+        expected_response = load_json("r4/R4-SandboxErrorOutcome.json")
+
+        actual_response = call_endpoint_url_with_pathParams(
+            Actor.RC, {"binaryId": "invalidBinaryId"}
         )
-        asserts.assert_status_code(422, response.status_code)
+
+        asserts.assert_status_code(400, actual_response.status_code)
+        asserts.assert_response(expected_response, actual_response)

@@ -1,6 +1,17 @@
+/**
+ * @file validationUtil.js
+ * @description Provides utility functions.
+ */
 
-module.exports = {
-  validateBusinessFunction: function (request, h, allowedBusinessFunctions) {
+function isValidUuid(string) {
+    return /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(string);
+  }
+
+function hasLegacyPrefix(string) {
+    return string.startsWith('att-');
+}
+
+function validateBusinessFunction(request, h, allowedBusinessFunctions) {
     const requestedBusinessFunction = request.headers["nhsd-ers-business-function"]
     const oboUserId = request.headers["nhsd-ers-on-behalf-of-user-id"]
 
@@ -13,7 +24,6 @@ module.exports = {
       if (requestedBusinessFunction === 'SERVICE_PROVIDER_CLINICIAN_ADMIN') {
         if (!oboUserId) {
           return h.response('SANDBOX_ERROR: When this endpoint is accessed using the e-RS SERVICE_PROVIDER_CLINICIAN_ADMIN Business Function then an On-Behalf-Of User ID must be provided').code(403)
-.code(403)
         }
       }
       else {
@@ -24,5 +34,10 @@ module.exports = {
     }
 
     return undefined;
-  }
 }
+
+module.exports = {
+    isValidUuid,
+    hasLegacyPrefix,
+    validateBusinessFunction
+};

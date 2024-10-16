@@ -38,12 +38,28 @@ def load_file(environment) -> Callable[[str], bytes]:
 
 @pytest.fixture
 def send_rest_request(
-    sandbox_url,
+    sandbox_url, environment
 ) -> Callable[[HttpMethod, str, Actor], requests.Response]:
     """Provides a method which encapsulates the logic of sending a REST call to the correct base URL"""
     return lambda method, url, actor, headers={}, **kwargs: _send_rest_request(
-        method, sandbox_url + "/" + url, actor, headers, **kwargs
+        method,
+        sandbox_url + "/" + url,
+        _process_headers(headers, environment, actor, sandbox_url),
+        **kwargs
     )
+
+
+def _process_headers(
+    headers: Dict[str, str], environment: str, actor: Actor, sandbox_url: str
+) -> Dict[str, str]:
+    if environment == "local":
+        headers.update({"x-ers-sandbox-baseurl": sandbox_url})
+
+    headers[RenamedHeader.BUSINESS_FUNCTION.original] = actor.business_function
+    if actor.obo_user_id != None:
+        headers[RenamedHeader.OBO_USER_ID.original] = actor.obo_user_id
+
+    return headers
 
 
 def _get_json(base_path: str, path: str) -> Dict[str, str]:
@@ -57,9 +73,6 @@ def _get_file(base_path: str, path: str) -> bytes:
 
 
 def _send_rest_request(
-    method: HttpMethod, url: str, actor: Actor, headers: Dict[str, str], **kwargs
+    method: HttpMethod, url: str, headers: Dict[str, str], **kwargs
 ) -> requests.Response:
-    headers[RenamedHeader.BUSINESS_FUNCTION.original] = actor.business_function
-    if actor.obo_user_id != None:
-        headers[RenamedHeader.OBO_USER_ID.original] = actor.obo_user_id
     return method(url, headers=headers, **kwargs)

@@ -1,5 +1,5 @@
 const mockResponseProvider = require('./services/mockResponseProvider')
-const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtils = require('../common/validationUtils')
 const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
 
 module.exports = [
@@ -10,7 +10,7 @@ module.exports = [
     method: 'POST',
     path: '/FHIR/STU3/CommunicationRequest/$ers.createAdviceAndGuidance',
     handler: (request, h) => {
-      const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+      const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {
         return validationResult
       }
@@ -20,7 +20,7 @@ module.exports = [
         return h.file(responsePath, { etagMethod: false }).code(200).type('application/fhir+json')
       }
 
-      return h.file('STU3-SandboxErrorOutcome.json').code(422)
+      return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422)
     }
   }
 ]

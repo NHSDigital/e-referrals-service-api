@@ -8,8 +8,9 @@ module.exports = [
     path: '/ObjectStore/RetrieveBinary/{fileDownloadUuid}',
     handler: (request, h) => {
 
+      console.log("Here's your attachment.")
       const uuid = request.params.fileDownloadUuid
-      const exampleResponsePath = 'retrieveAttachment/responses/example_attachment.pdf'
+      const exampleResponsePath = './example_attachment.pdf'
       const filename = 'example_attachment.pdf'
       const responseCode = 200
 

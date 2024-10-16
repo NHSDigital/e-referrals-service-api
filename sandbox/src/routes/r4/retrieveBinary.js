@@ -2,7 +2,7 @@ const businessFunctionValidator = require('../../services/businessFunctionValida
 
 module.exports = [
   /**
-   * Sandbox implementation for retrieveBinary A039 (R4) endpoint
+   * Sandbox implementation for retrieveBinary A042 (R4) endpoint
    */
   {
     method: 'GET',

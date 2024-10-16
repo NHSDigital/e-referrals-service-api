@@ -2,14 +2,16 @@ security:
   - bearerAuth: []
 description: |
   ### TODO Add later
-summary: A042 - Request pre-signed URL to download file from document store
+summary: Request pre-signed URL to download file from document store (A042, FHIR R4)
 operationId: a042-request-pre-signed-url-for-file-download
+tags:
+  - Retrieve clinical information
 parameters:
   - $ref: '../headers/request/BearerAuthorization.yaml'
-  - $ref: '../headers/request/BusinessFunction.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
-  - $ref: '../headers/request/OdsCode.yaml'
-  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
   - $ref: '../pathParameters/AttachmentUuid.yaml'
 responses:
   '307':
@@ -19,7 +21,7 @@ responses:
   '401':
     $ref: '../responses/Unauthorized.yaml'
   '403':
-    $ref: '../responses/Forbidden.yaml'
+    $ref: '../responses/ForbiddenOrNoLR.yaml'
   '404':
     $ref: '../responses/NotFound.yaml'
   '429':

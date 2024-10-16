@@ -1,8 +1,14 @@
 in: path
 name: id
 description: | 
-  Reference for an attachment, as provided in the response from [[HYPERLINK_A039]].
+  The identifier for the attachment.
 required: true
 schema:
   type: string
-  example: '704c3791-0873-45e9-9a04-b51996f8d93f'
+examples:
+  uuid-format:
+    value: 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8'
+    summary: ID of an attachment utilising UUID ID format.
+  legacy-format:
+    value: 'att-70000-70001'
+    summary: ID of an attachment utilising the legacy ID format.

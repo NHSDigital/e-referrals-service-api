@@ -16,7 +16,7 @@ module.exports = [
       }
 
       // this should never happen as we always get a valid response for this endpoint
-      return h.file('R4-SandboxErrorOutcome.json').code(400);
+      return h.file('./r4/R4-SandboxErrorOutcome.json').code(400);
 
 
     }

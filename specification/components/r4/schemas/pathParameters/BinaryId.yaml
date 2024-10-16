@@ -1,0 +1,14 @@
+in: path
+name: id
+description: | 
+  The identifier for the binary.
+required: true
+schema:
+  type: string
+examples:
+  uuid-format:
+    value: 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8'
+    summary: ID of an attachment utilising UUID ID format.
+  legacy-format:
+    value: 'att-70000-70001'
+    summary: ID of an attachment utilising the legacy ID format.

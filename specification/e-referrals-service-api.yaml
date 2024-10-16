@@ -427,7 +427,7 @@ paths:
       $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
   /R4/Binary/{id}:
     get:
-      $ref: 'components/r4/schemas/endpoints/a042-request-pre-signed-url-for-file-download.yaml'
+      $ref: 'components/r4/schemas/endpoints/a042-retrieve-attachment.yaml'
 components:
   securitySchemes:
     bearerAuth:

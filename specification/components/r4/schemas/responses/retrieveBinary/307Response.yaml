@@ -1,12 +1,11 @@
-description: Response redirects user agent to the large file attachment URL in the Object Store via the Location header.
+description: Response redirects user agent to a location (via the Location header) in the object store from which the Binary can be downloaded from.
 headers:
   x-correlation-id:
     $ref: '../../headers/response/CorrelationID.yaml'
   x-request-id:
     $ref: '../../headers/response/RequestID.yaml'
   Location:
-    description: The large file attachment location in the Object Store.
+    description: The attachment location in the object store.
     required: true
     schema:
       type: string
-      example: '<ObjectStoreURL>'

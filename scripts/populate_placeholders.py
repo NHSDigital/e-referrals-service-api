@@ -43,7 +43,7 @@ def main():
         "[[HYPERLINK_A038]]": "[Retrieve appointment (A038)](#get-/STU3/Appointment/-id-)",
         "[[HYPERLINK_A040]]": "[Retrieve “on-behalf-of” practitioner user information (A040)](#get-/R4/Practitioner)",
         "[[HYPERLINK_A041]]": "[Search for service requests (A041)](#get-/R4/ServiceRequest)",
-        "[[HYPERLINK_A042]]": "[Request pre-signed URL to download file from document store (A042)](#get-/R4/Binary/-id-)",
+        "[[HYPERLINK_A042]]": "[Retrieve attachment (A042)](#get-/R4/Binary/-id-)",
         "[[HYPERLINK_A043]]": "[Retrieve advice and guidance overview PDF (A043)](#post-/STU3/CommunicationRequest/-ubrn-/$ers.generateCRI)",
         "[[HYPERLINK_A044]]": "[Create advice and guidance request (A044)](#post-/STU3/CommunicationRequest/$ers.createAdviceAndGuidance)",
         "[[HYPERLINK_ONBOARDING]]": "[onboarding](#overview--onboarding)",

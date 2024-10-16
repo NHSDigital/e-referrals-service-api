@@ -4,16 +4,24 @@ const Inert = require('@hapi/inert')
 const process = require('process')
 const routes = require('./routes')
 
+/*
+The purpose of this logic is to mirror the transformations the API proxy currently applies to responses.
+This allows the sandbox to have the same behaviour locally.
+*/
 const addCommonHeaders = function (request, response) {
   // if a response doesn't include any headers provide an empty object to allow for the common headers to be appended.
   if (!response.headers) {
     response.headers = {}
   }
 
+  // API proxy always adds x-correlation-id to responses.
   if (request.headers["x-correlation-id"]) {
     response.headers["X-Correlation-ID"] = request.headers["x-correlation-id"]
   }
-  response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
+
+  if (!request.path.includes("/ObjectStore")) {
+    response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
+  }
 }
 
 const preResponse = function (request, h) {

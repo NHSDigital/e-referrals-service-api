@@ -42,8 +42,13 @@ const retrieveOboUsers = require('./r4/retrieveOboUsers')
 const retrieveHealthcareService = require('./r4/retrieveHealthcareService')
 const searchForHealthcareServices = require('./r4/searchForHealthcareServices')
 const searchServiceRequest = require('./r4/searchServiceRequest')
-const retrieveBinary = require('./r4/retrieveBinary')
-const retrieveBinaryHelper = require('./r4/retrieveBinaryHelper')
+const retrieveAttachmentR4 = require('./r4/retrieveAttachment')
+
+/**
+ * Services
+ */
+const objectStore = require('./objectStore')
+
 
 const routes = [].concat(
   getStatus,
@@ -83,8 +88,8 @@ const routes = [].concat(
   retrieveAdviceAndGuidanceOverviewPdf,
   searchServiceRequest,
   createAdviceAndGuidance,
-  retrieveBinary,
-  retrieveBinaryHelper
+  retrieveAttachmentR4,
+  objectStore
 )
 
 module.exports = routes

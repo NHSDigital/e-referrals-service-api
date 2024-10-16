@@ -1,5 +1,5 @@
 const mockResponseProvider = require('./services/mockResponseProvider')
-const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtils = require('../common/validationUtils')
 
 module.exports = [
   /**
@@ -12,7 +12,7 @@ module.exports = [
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
 
-      const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+      const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
       if (validationResult) {
         return validationResult
       }
@@ -22,7 +22,7 @@ module.exports = [
         return h.file(responsePath, { etagMethod: false }).code(responseCode).type("application/fhir+json").etag("5", { weak: true })
       }
 
-      return h.file('STU3-SandboxErrorOutcome.json').code(422);
+      return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422);
 
     }
   }

@@ -1,0 +1,12 @@
+description: Response redirects user agent to the large file attachment URL in the Object Store via the Location header.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Location:
+    description: The attachment location in the object store.
+    required: true
+    schema:
+      type: string
+      example: 'TODO Do we want to provide an example?'

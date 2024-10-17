@@ -33,6 +33,7 @@ extends:
     enable_status_monitoring: true
     manual_approval_env: manual-approval-ptl
     prod_producer_approval: true
+    python_version: ${{ variables.python_version }}
     apigee_deployments:
     - environment: manual-approval
       stage_name: ers_manual_approval_alpha

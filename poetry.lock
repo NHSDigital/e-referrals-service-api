@@ -1631,13 +1631,13 @@ test = ["pytest (>=3.0.0)"]
 
 [[package]]
 name = "xmlformatter"
-version = "0.2.6"
+version = "0.2.8"
 description = "Format and compress XML documents"
 optional = false
 python-versions = "*"
 files = [
-    {file = "xmlformatter-0.2.6-py3-none-any.whl", hash = "sha256:d0cb194c3f72f142cc4c6e5d9244e8e43fc13fc4023f0d639d831ba239e5a916"},
-    {file = "xmlformatter-0.2.6.tar.gz", hash = "sha256:9b63fffa375045cfcb5966fc7d276c33b798b77c4581d590df0d4db3afb6c6e5"},
+    {file = "xmlformatter-0.2.8-py3-none-any.whl", hash = "sha256:83c35ae024309712e3ac6f79b2a1106f9fc9708dde14810d71f9f7bfe6f85661"},
+    {file = "xmlformatter-0.2.8.tar.gz", hash = "sha256:ddc82e7cb4ff2669f54014e2eaf86b493d5e2da95b536f974f0a15f02763f64c"},
 ]
 
 [[package]]
@@ -1662,4 +1662,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "d70f92328bc964aff2aa8336eccc6e0c6ad65b19b2d2e3325b74eb79df672cfe"
+content-hash = "029708cd3e30e5f9a4164f58deefbf0f04cb5d64ca9db688cab3daac2279ab6a"

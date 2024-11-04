@@ -224,6 +224,22 @@
                     "value": "103264994981"
                   }
                 }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "AVAILABLE"
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+              },
+              {
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R68"
+                  }
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
               }
             ],
             "contentType": "application/pdf",
@@ -268,6 +284,22 @@
                     "value": "103264992985"
                   }
                 }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "PENDING"
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+              },
+              {
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R68"
+                  }
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
               }
             ],
             "contentType": "image/png",
@@ -312,6 +344,22 @@
                     "value": "103264994981"
                   }
                 }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "PENDING"
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+              },
+              {
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R68"
+                  }
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
               }
             ],
             "contentType": "application/pdf",
@@ -409,6 +457,22 @@
                     "value": "103264994981"
                   }
                 }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "AVAILABLE"
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+              },
+              {
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R68"
+                  }
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
               }
             ],
             "contentType": "application/pdf",
@@ -453,6 +517,22 @@
                     "value": "103264992985"
                   }
                 }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "PENDING"
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+              },
+              {
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R68"
+                  }
+                },
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
               }
             ],
             "contentType": "image/png",

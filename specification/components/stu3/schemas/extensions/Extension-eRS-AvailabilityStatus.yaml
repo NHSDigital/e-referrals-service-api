@@ -1,0 +1,30 @@
+title: Extension-eRS-AvailabilityStatus
+description: Extension to supply the Availability Status
+type: object
+required:
+  - url
+  - valueCoding
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1'
+      code:
+        type: string
+        enum:
+          - AVAILABLE
+          - PENDING
+          - THREATS_FOUND
+          - VALIDATION_FAILED
+        example: 'AVAILABLE'
+

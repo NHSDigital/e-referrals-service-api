@@ -1,0 +1,19 @@
+title: Extension-eRS-AttachedByOrganisation
+description: Extension to reference the ODS code of the organisation of the user that attached a file to a Referral or Communication Request.
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1'
+  valueReference:
+    type: object
+    required:
+      - identifier
+    properties:
+      identifier:
+        $ref: '../identifiers/Organisation.yaml'

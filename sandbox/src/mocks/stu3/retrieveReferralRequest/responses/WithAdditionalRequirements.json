@@ -187,7 +187,23 @@
                                         "value": "021600556514"
                                     }
                                 }
-                            }
+                            },
+                          {
+                            "valueCoding": {
+                              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                              "code": "AVAILABLE"
+                            },
+                            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1"
+                          },
+                          {
+                            "valueReference": {
+                              "identifier": {
+                                "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                                "value": "R68"
+                              }
+                            },
+                            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1"
+                          }
                         ],
                         "contentType": "application/pdf",
                         "url": "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5",

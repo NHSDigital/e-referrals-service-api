@@ -29,7 +29,7 @@ clean:
 publish: clean copy-examples
 	mkdir -p build
 	npm run publish 2> /dev/null
-	# poetry run python scripts/validate_oas_examples.py
+	poetry run python scripts/validate_oas_examples.py
 
 copy-examples:
 	scripts/copy_examples_from_sandbox.sh

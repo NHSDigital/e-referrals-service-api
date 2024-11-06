@@ -4,9 +4,10 @@ description: |
   
   | Error code                         | Description                                                                                                                  |
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-  | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again.                                              |
-  | INVALID_REQUEST_TYPE               | The `UBRN` provided exists in e-RS but does not correspond to an active request.                                            |
-  | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                          |
+  | FILE_SIZE_ERROR                    | The file requested is larger than 5MB (5242880 bytes) so cannot be retrieved via this endpoint. Files larger than 5MB can be downloaded via the [[HYPERLINK_A042]] endpoint or the e-RS web-based professional application. |
+  | PENDING                            | The file is being scanned and cannot be retrieved. Wait at least 5 minutes before checking its availability again.           |
+  | THREATS_FOUND                      | The file has been quarantined after detecting a threat and cannot be retrieved. Contact the organisation that uploaded the file to resolve the issue and get the information you need. Details of who uploaded the file can be retrieved via any endpoint that provides details of an attachment in the success response (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]] endpoints, for example) |
+  | VALIDATION_FAILED                  | The file has failed validation and cannot be retrieved. Contact the organisation that uploaded the file to resolve the issue and get the information you need. Details of who uploaded a file can be retrieved via any endpoint that provides details of an attachment in the success response (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]] endpoints, for example)<br>Validation can fail because the:<ul><li>content type of the file is not supported</li><li>content type of the file does not correlate with the file extension</li><li>file provided is too large and is not supported by e-RS. Note, this indicates that the file size is larger than the system supports as a whole, not the 5MB limit associated with this endpoint</ul>
 headers:
   X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'

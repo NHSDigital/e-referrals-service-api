@@ -11,8 +11,15 @@ description: |
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  - Application-restricted, unattended access
 
   ## Pre-requisites
+  ### Application-restricted, unattended access 
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+  
+  To access this endpoint in application-restricted, unattended mode, you will be required to submit your use case for review. The only use case currently permitted is for non-clinical provider actions.
+
+  ### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`

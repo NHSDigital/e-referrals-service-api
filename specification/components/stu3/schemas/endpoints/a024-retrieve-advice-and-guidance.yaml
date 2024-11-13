@@ -37,7 +37,7 @@ description: |
 
   So I can understand all of the relevant context for the request.
 
-  ## Important note
+  ## Important notes
 
   The summary includes an indicator of whether the referrer has authorised the providing organisation to 
   convert the advice and guidance request into an appointment request. 
@@ -53,6 +53,17 @@ description: |
   the advice and guidance summary ([[HYPERLINK_A024]]), attachments ([[HYPERLINK_A006]]), advice and guidance conversation ([[HYPERLINK_A025]]) and 
   clinical information ([[HYPERLINK_A043]]) which took place before such a conversion still forms part of the clinical information and can still be retrieved.
 
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or [[HYPERLINK_A006]] endpoint, the attachment must be available for download. Attachments are only made available once an uploaded file has been validated and successfully malware scanned. A request to retrieve an attachment that is not available for download will result in an error being returned. See [[HYPERLINK_A042]] for more information.
+
+  The availability status of an attachment can be retrieved via any endpoint that returns an eRS-AvailabilityStatus-1 code in the success response, including [[HYPERLINK_A024]]. The eRS-AvailabilityStatus-1 code can return one of four possible values, as detailed below.
+
+  | eRS-AvailabilityStatus-1 code | Description / Guidance                                                                                             |
+  |-------------------------------|--------------------------------------------------------------------------------------------------------------------|
+  | AVAILABLE	                    | The file is available for download.                                                                                |
+  | PENDING	                      | The file is being scanned and cannot be retrieved. Wait at least 5 minutes before checking its availability again. |
+  | THREATS_FOUND	                | The file has been quarantined after detecting a threat and cannot be retrieved.<br>Contact the organisation that uploaded the file to resolve the issue and get the information you need. Use the extensions returned via this endpoint: Extension-eRS-AttachedBy-1 and Extension-eRS-AttachedByOrganisation-1. |
+  | VALIDATION_FAILED             | The file has failed validation and cannot be retrieved.<br>Contact the organisation that uploaded the file to resolve the issue and get the information you need. Use the extensions returned via this endpoint: Extension-eRS-AttachedBy-1 and Extension-eRS-AttachedByOrganisation-1. Validation can fail because the:<ul><li>content type of the file is not supported</li><li>content type of the file does not correlate with the file extension</li><li>file provided is too large and is not supported by e-RS. Note, this indicates that the file size is larger than the system supports as a whole, not the 5MB limit associated with this endpoint</li></ul> |
+
   ## Related endpoints
 
   After using this endpoint, use [[HYPERLINK_A025]] to retrieve the Advice and Guidance conversation itself.
@@ -65,6 +76,8 @@ description: |
   | ------------------------------------------------------------------------ | ----------------------- |
   | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`   |
   | Attachment file reference present                                        | `ubrn`=`000000070001`   |
+  | Attachment files unavailable for download                                | `ubrn`=`000000070002`   |
+
 
 summary: Retrieve advice and guidance request summary (A024, FHIR STU3)
 operationId: a024-retrieve-advice-and-guidance

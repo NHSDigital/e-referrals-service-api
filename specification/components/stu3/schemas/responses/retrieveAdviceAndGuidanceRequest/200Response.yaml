@@ -21,3 +21,8 @@ content:
         summary: "`CommunicationRequest` with attachment file reference"
         value:
           $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json'
+      with-unavailable-attachments:
+        summary: "`CommunicationRequest` with attachments unavailable for download"
+        value:
+          $ref: '../../../examples/retrieveAdviceAndGuidanceRequest/responses/WithUnavailableAttachments.json'
+     

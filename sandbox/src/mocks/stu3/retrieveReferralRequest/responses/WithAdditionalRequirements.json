@@ -47,9 +47,9 @@
                 {
                     "url": "state",
                     "valueCoding": {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-                    "code": "BOOKED",
-                    "display": "Booked"
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+                        "code": "BOOKED",
+                        "display": "Booked"
                     }
                 }
             ]
@@ -180,11 +180,27 @@
                         "id": "80000",
                         "extension": [
                             {
+                                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
+                                "valueCoding": {
+                                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                                    "code": "AVAILABLE"
+                                }
+                            },
+                            {
                                 "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
                                 "valueReference": {
                                     "identifier": {
                                         "system": "http://fhir.nhs.net/Id/sds-user-id",
                                         "value": "021600556514"
+                                    }
+                                }
+                            },
+                            {
+                                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                                "valueReference": {
+                                    "identifier": {
+                                        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                                        "value": "R69"
                                     }
                                 }
                             }
@@ -200,13 +216,15 @@
         }
     ],
     "status": "active",
-    "specialty" : {
-        "coding" : [ {
-          "code" : "CARDIOLOGY",
-          "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
-          "display" : "Cardiology"
-        } ]
-      },
+    "specialty": {
+        "coding": [
+            {
+                "code": "CARDIOLOGY",
+                "system": "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+                "display": "Cardiology"
+            }
+        ]
+    },
     "subject": {
         "identifier": {
             "system": "http://fhir.nhs.net/Id/nhs-number",

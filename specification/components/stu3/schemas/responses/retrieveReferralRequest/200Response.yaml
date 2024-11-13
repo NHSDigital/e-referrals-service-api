@@ -41,3 +41,7 @@ content:
         summary: "`ReferralRequest` with additional requirements"
         value:
           $ref: '../../../examples/retrieveReferralRequest/responses/WithAdditionalRequirements.json'
+      with-unavailable-attachments:
+        summary: "Unbooked `ReferralRequest` with attachments unavailable for download"
+        value:
+          $ref: '../../../examples/retrieveReferralRequest/responses/WithUnavailableAttachments.json'

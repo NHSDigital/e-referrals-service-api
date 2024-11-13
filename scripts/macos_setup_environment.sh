@@ -40,34 +40,34 @@ echo "Installing python dependencies"
 brew update
 if brew install openssl readline sqlite3 zlib xz ; then
     echo "Python dependencies were installed successfully."
-else 
+else
     echo "Python dependencies were NOT installed correctly."
     exit 2
 fi
 
-# Installing python 3.8.12 with pyenv
-echo "Installing python 3.8.12 with pyenv ..."
-if pyenv versions | grep -Fq "3.8.12" ; then
-    echo "Pyenv has already got Python 3.8.12 installed."
+# Installing python 3.10.8 with pyenv
+echo "Installing python 3.10.8 with pyenv ..."
+if pyenv versions | grep -Fq "3.10.8" ; then
+    echo "Pyenv has already got Python 3.10.8 installed."
 else
-    if pyenv install 3.8.12 ; then
-        echo "Pyenv installed Python 3.8.12 successfully."
+    if pyenv install 3.10.8 ; then
+        echo "Pyenv installed Python 3.10.8 successfully."
     else
-        echo "Pyenv did NOT install Python 3.8.12 successfully."
+        echo "Pyenv did NOT install Python 3.10.8 successfully."
         exit 3
     fi
 fi
 
 
-# Creating Apigee environment with Python 3.8.12
-echo "Creating Apigee environment with Python 3.8.12 ..."
+# Creating Apigee environment with Python 3.10.8
+echo "Creating Apigee environment with Python 3.10.8 ..."
 if pyenv versions | grep -q ".*apigee" ; then
     echo "A Python virtualenv named 'apigee' already exists."
 else
-    if pyenv virtualenv 3.8.12 apigee ; then
-        echo "A Python 3.8.12 virtualenv named 'apigee' was created."
+    if pyenv virtualenv 3.10.8 apigee ; then
+        echo "A Python 3.10.8 virtualenv named 'apigee' was created."
     else
-        echo "A Python 3.8.12 virtualenv named 'apigee' was NOT created."
+        echo "A Python 3.10.8 virtualenv named 'apigee' was NOT created."
         exit 4
     fi
 fi
@@ -86,7 +86,7 @@ fi
 # Checking python version
 echo "Checking python version ..."
 version=$(python -V 2>&1)
-if [[ $version = 'Python 3.8.12' ]] ; then
+if [[ $version = 'Python 3.10.8' ]] ; then
     echo "Python version is correct."
 else
     echo "Python version is NOT correct."

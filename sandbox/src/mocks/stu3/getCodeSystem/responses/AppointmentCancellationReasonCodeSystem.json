@@ -603,7 +603,7 @@
     },
     {
       "code": "PATIENT_ILL",
-      "display": "Patient is ill",
+      "display": "Patient is sick",
       "property": [
         {
           "code": "effectiveFrom",

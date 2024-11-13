@@ -12,7 +12,7 @@
   "link": [
     {
       "relation": "self",
-      "url": "_baseUrl_/STU3/Communication?based-on=CommunicationRequest/000000070001/_history/6&_include=Communication:requester-practitionerrole:PractitionerRole&_include=Communication:sender-practitionerrole:PractionerRole&_include=Communication:content-reference:DocumentReference"
+      "url": "_baseUrl_/STU3/Communication?based-on=CommunicationRequest/000000070003/_history/2&_include=Communication:requester-practitionerrole:PractitionerRole&_include=Communication:sender-practitionerrole:PractionerRole&_include=Communication:content-reference:DocumentReference"
     }
   ],
   "entry": [
@@ -37,7 +37,7 @@
         ],
         "basedOn": [
           {
-            "reference": "CommunicationRequest/000000070001/_history/6"
+            "reference": "CommunicationRequest/000000070003/_history/2"
           }
         ],
         "status": "completed",
@@ -95,9 +95,9 @@
       }
     },
     {
-      "fullUrl": "_baseUrl_/STU3/Communication/70001",
+      "fullUrl": "_baseUrl_/STU3/Communication/70003",
       "resource": {
-        "id": "70001",
+        "id": "70003",
         "meta": {
           "versionId": "0",
           "profile": [
@@ -152,6 +152,11 @@
           {
             "contentReference": {
               "reference": "DocumentReference/70001"
+            }
+          },
+          {
+            "contentReference": {
+              "reference": "DocumentReference/70002"
             }
           }
         ],
@@ -270,7 +275,7 @@
                   "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
                   "valueCoding": {
                     "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
-                    "code": "AVAILABLE"
+                    "code": "PENDING"
                   }
                 },
                 {
@@ -345,7 +350,7 @@
                   "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
                   "valueCoding": {
                     "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
-                    "code": "AVAILABLE"
+                    "code": "THREATS_FOUND"
                   }
                 },
                 {
@@ -380,6 +385,81 @@
               "url": "Binary/719f6045-e791-4029-8e0f-1201c02b0a55",
               "size": 11,
               "title": "testXXXInfo.pdf",
+              "creation": "2021-09-24"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "_baseUrl_/STU3/DocumentReference/70002",
+      "resource": {
+        "id": "70002",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+          ]
+        },
+        "resourceType": "DocumentReference",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+              "code": "GUIDANCE_RESPONSE",
+              "display": "Guidance Response"
+            }
+          ]
+        },
+        "status": "current",
+        "indexed": "2021-09-24T11:21:00.000Z",
+        "description": "test xxx info",
+        "content": [
+          {
+            "attachment": {
+              "id": "70002",
+              "extension": [
+                {
+                  "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
+                  "valueCoding": {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                    "code": "VALIDATION_FAILED"
+                  }
+                },
+                {
+                  "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                  "valueReference": {
+                    "identifier": {
+                      "system": "http://fhir.nhs.net/Id/sds-user-id",
+                      "value": "103264994981"
+                    }
+                  }
+                },
+                {
+                  "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                  "valueReference": {
+                    "identifier": {
+                      "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                      "value": "R69"
+                    }
+                  }
+                },
+                {
+                  "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedOnBehalfOf-1",
+                  "valueReference": {
+                    "identifier": {
+                      "system": "http://fhir.nhs.net/Id/sds-user-id",
+                      "value": "004377014925"
+                    }
+                  }
+                }
+              ],
+              "contentType": "application/pdf",
+              "url": "Binary/874ef853-131a-48e9-8a0a-1417eaa79d8d",
+              "size": 11,
+              "title": "moreTestXXXInfo.pdf",
               "creation": "2021-09-24"
             }
           }

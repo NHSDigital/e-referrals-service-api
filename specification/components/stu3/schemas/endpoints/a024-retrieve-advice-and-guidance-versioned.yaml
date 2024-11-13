@@ -34,6 +34,7 @@ description: |
   | ------------------------------------------------------------------------ | ------------------------------------- |
   | Simple summary `CommunicationRequest`                                    | `ubrn`=`000000070000`, `version`=`5`  |
   | Attachment file reference present                                        | `ubrn`=`000000070001`, `version`=`5`  |
+  | `CommunicationRequest` with attachments unavailable for download         | `ubrn`=`000000070002`, `version`=`5`  |
 
 summary: Retrieve advice and guidance request summary (versioned) (A024, FHIR STU3)
 operationId: a024-retrieve-advice-and-guidance-versioned

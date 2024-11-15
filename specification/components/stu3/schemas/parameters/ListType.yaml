@@ -47,6 +47,7 @@ properties:
                      - ASSESSMENT_RETURNED_CANCELLED_DNA
                      - AWAITING_BOOKING
                      - LETTERS_OUTSTANDING
+                     - APPOINTMENTS_FOR_BOOKING
                     example: 'REFERRALS_FOR_REVIEW'
               - title: eRS-CommunicationListSelector
                 type: object

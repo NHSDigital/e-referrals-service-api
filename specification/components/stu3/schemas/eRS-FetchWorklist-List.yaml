@@ -144,6 +144,7 @@ properties:
             | `Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem` | `0..1`      | Type of worklist items depends on the worklist type requested |
             | `Extension-eRS-AwaitingBooking-WorklistItem`                | `0..1`      | Type of worklist items depends on the worklist type requested |
             | `Extension-eRS-LettersOutstanding-WorklistItem`             | `0..1`      | Type of worklist items depends on the worklist type requested |
+            | `Extension-eRS-AppointmentsForBooking-WorklistItem`         | `0..1`      | Type of worklist items depends on the worklist type requested |
           items:
             anyOf:
               - $ref: 'extensions/Extension-eRS-ReferralsforReview-WorkListItem.yaml'
@@ -153,4 +154,5 @@ properties:
               - $ref: 'extensions/Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem.yaml'
               - $ref: 'extensions/Extension-eRS-AwaitingBooking-WorklistItem.yaml'
               - $ref: 'extensions/Extension-eRS-LettersOutstanding-WorklistItem.yaml'
+              - $ref: 'extensions/Extension-eRS-AppointmentsForBooking-WorklistItem.yaml'
                 

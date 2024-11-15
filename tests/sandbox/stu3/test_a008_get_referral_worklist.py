@@ -57,6 +57,10 @@ class TestGetReferralWorklist(SandboxTest):
             "stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json",
             "stu3/retrieveWorklist/responses/LettersOutstanding.json",
         ),
+        (
+            "stu3/retrieveWorklist/requests/AppointmentsForBookingWithReason.json",
+            "stu3/retrieveWorklist/responses/AppointmentsForBooking.json",
+        ),
     ]
 
     @pytest.fixture

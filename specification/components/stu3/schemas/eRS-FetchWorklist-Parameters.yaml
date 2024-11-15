@@ -37,6 +37,8 @@ properties:
       | `location`                        | `0..1`      |                                            | 
       | `clinicianAssignedIndicator`      | `0..1`      |                                            | 
       | `clinician`                       | `0..1`      |                                            | 
+      | `bookingReason`                   | `0..*`      |                                            | 
+
     items:
       anyOf:
         - $ref: 'parameters/ListType.yaml'
@@ -46,3 +48,4 @@ properties:
         - $ref: 'parameters/Location.yaml'
         - $ref: 'parameters/ClinicianAssignedIndicator.yaml'
         - $ref: 'parameters/Clinician.yaml'
+        - $ref: 'parameters/BookingReasons.yaml'

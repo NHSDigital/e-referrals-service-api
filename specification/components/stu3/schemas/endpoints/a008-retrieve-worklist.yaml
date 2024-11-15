@@ -160,6 +160,10 @@ requestBody:
           summary: Letters Outstanding
           value:
             $ref: '../../examples/retrieveWorklist/requests/MinimalLettersOutstanding.json'
+        appointments-for-booking:
+          summary: Appointments For Booking
+          value:
+            $ref: '../../examples/retrieveWorklist/requests/AppointmentsForBookingWithReason.json'    
 responses:
   '200':
     $ref: '../responses/retrieveWorklist/200Response.yaml'

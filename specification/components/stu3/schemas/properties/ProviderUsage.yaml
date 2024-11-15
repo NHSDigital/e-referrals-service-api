@@ -1,0 +1,23 @@
+title: ProviderUsage
+description: This will only be returned when codeSystemType is REFERRAL-CANCELLATION-REASON
+type: object
+required:
+  - code
+  - uri
+  - type
+properties:
+  code:
+    type: string
+    enum:
+      - providerUsage
+    example: 'providerUsage'
+  uri:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#providerUsage'
+    example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#providerUsage'
+  type:
+    type: string
+    enum:
+      - Coding
+    example: 'Coding'

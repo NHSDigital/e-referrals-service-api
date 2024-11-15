@@ -1,0 +1,36 @@
+title: reason
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - reason
+    example: reason
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        items:
+          type: object
+          required:
+            - system
+            - code
+            - display
+          properties:
+            system:
+              type: string
+              enum:
+                - _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+              example: _baseurl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON
+            code:
+              type: string
+              example: INTEND_PRIVATE
+            display:
+              type: string
+              example: Patient will go to a private clinic

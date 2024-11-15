@@ -1,0 +1,15 @@
+title: clinicalInfoLastUpdated
+type: object
+required:
+  - url
+  - valueDateTime
+properties:
+  url:
+    type: string
+    enum:
+      - clinicalInfoLastUpdated
+    example: 'clinicalInfoLastUpdated'
+  valueDateTime:
+    type: string
+    format: date-time
+    example: '2021-09-03T10:44:42.764Z'

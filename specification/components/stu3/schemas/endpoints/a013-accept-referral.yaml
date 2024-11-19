@@ -12,6 +12,13 @@ description: |
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
   
+  ## Important notes
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code. 
+  
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.  
+  
   You need to use [[HYPERLINK_A008]] to retrieve the contents of the 'Referrals For Review' worklist. [[HYPERLINK_A013]] can only be used for referrals 
   booked into bookable services, and not the referrals sent into triage services.
 

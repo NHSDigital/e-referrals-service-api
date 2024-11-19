@@ -169,11 +169,11 @@ module.exports = {
     const attachmentId = request.params.attachmentLogicalID
 
     if (attachmentId) {
-      
+
       if (attachmentId.startsWith('att-')) {
         return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
       }
-      
+
       if (attachmentId === 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8') {
         return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
       }
@@ -229,7 +229,7 @@ module.exports = {
       return mapExampleResponse(request, responseMap)
     }
 
-    return {}
+    return {};
 
   },
 
@@ -264,7 +264,7 @@ module.exports = {
 
   getExampleResponseForRetrieveAdviceAndGuidanceOverviewPdf: function () {
     return { responsePath: 'stu3/retrieveAdviceAndGuidanceOverviewPdf/responses/000049146177_Advice_And_Guidance_20220610143044.pdf', filename: '000049146177_Advice_And_Guidance_20220610143044.pdf', responseCode: 200 }
-  },                      
+  },
 
   getExampleResponseForRetrieveWorklist: function (request) {
     var responseMap = {
@@ -328,7 +328,7 @@ module.exports = {
       'CommunicationRequest/000000070001/_history/6':
         { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/AttachmentPresentInEachDirection.json', responseCode: 200, version: 6 },
       // Scenario 4 -	Multi-way conversation
-      'CommunicationRequest/000000070002/_history/1': 
+      'CommunicationRequest/000000070002/_history/1':
         { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/MultiWayConversation.json', responseCode: 200, version: 6 },
       // Scenario 5 -	Attachment uploaded from RCS before A&G creation
       'CommunicationRequest/000000070003/_history/7':
@@ -383,7 +383,8 @@ module.exports = {
     if (ubrn === '000000070000') {
       return { responsePath: 'stu3/acceptReferral/responses/ExampleResponse.json', responseCode: 200 }
     }
-    return {}
+
+    return {};
 
   },
 
@@ -397,7 +398,7 @@ module.exports = {
       'src/mocks/stu3/cancelReferral/requests/IntendPrivateWithComment.json': 'stu3/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mapExampleResponse(request, responseMap);
   },
 
   getResponseForRejectReferral: function (request) {
@@ -462,7 +463,8 @@ module.exports = {
     var responseMap = {
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferral.json': 'stu3/changeShortlist/responses/UnbookedReferral.json',
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json',
-      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json',
+      'src/mocks/stu3/changeShortlist/requests/NonMixedShortlistWithDocument.json': 'stu3/changeShortlist/responses/NonMixedShortlistWithDocument.json'
     }
 
     return mapExampleResponse(request, responseMap)
@@ -473,7 +475,7 @@ module.exports = {
         'src/mocks/stu3/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'stu3/changeShortlistAndSendForTriage/responses/MinimalRequest.json'
       }
 
-      return mapExampleResponse(request, responseMap)
+      return mapExampleResponse(request, responseMap);
   },
 
   getExampleResponseForRetrieveAppointment: function (request) {

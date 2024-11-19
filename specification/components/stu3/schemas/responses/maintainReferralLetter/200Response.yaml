@@ -17,3 +17,8 @@ content:
         summary: "`ReferralRequest` with clinical information (2 files)"
         value:
           $ref: '../../../examples/maintainReferralLetter/responses/ReferralRequestWithMultipleDocumentReferences.json'
+      withClinicalInformationFirstTime:
+        summary: "`ReferralRequest` with clinical information (1 file)"
+        value:
+          $ref: '../../../examples/maintainReferralLetter/responses/ReferralRequestWithSingleDocumentReference.json'
+

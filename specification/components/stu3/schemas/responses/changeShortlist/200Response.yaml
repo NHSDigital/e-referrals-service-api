@@ -28,4 +28,9 @@ content:
         description: Changing the shortlist of an unbooked `ReferralRequest` (bookable and triage service shortlist)
         value:
           $ref: '../../../examples/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
+      nonMixedShortlistWithDocument:
+        summary: ReferralRequest with non Mixed service and Document Reference
+        description: Changing the shortlist of an `ReferralRequest` with document reference.
+        value:
+          $ref: '../../../examples/changeShortlist/responses/NonMixedShortlistWithDocument.json'
 

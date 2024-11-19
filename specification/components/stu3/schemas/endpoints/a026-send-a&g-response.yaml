@@ -27,6 +27,13 @@ description: |
   You need to use [[HYPERLINK_A025]] to retrieve the conversation within an advice and guidance request.
 
   If you want to include attachments with the response, you need to use [[HYPERLINK_A020]] so they are ready to be associated with the response.
+  
+  ## Important notes
+               
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download.
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
+               
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.
 
   ## Use case
   As an authenticated user

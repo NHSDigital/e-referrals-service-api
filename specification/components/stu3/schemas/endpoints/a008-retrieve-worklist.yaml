@@ -62,6 +62,7 @@ description: |
 
   Supported Worklists:
   - Referrals for Review
+  - Appointment Slot Issues
   
   The Service filter is mandatory when using this security pattern.
   

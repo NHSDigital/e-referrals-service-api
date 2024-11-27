@@ -15,6 +15,7 @@ description: |
   | BusinessFunction                         | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
   | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                   |
   | ReferrerUsage                            | REFERRAL-CANCELLATION-REASON                                   |
+  | ProviderUsage                            | REFERRAL-CANCELLATION-REASON                                   |
   | DeferToProviderContactDays               | PRIORITY                        |
   | TriageContactDays                        | PRIORITY                        |
   
@@ -31,5 +32,6 @@ items:
     - $ref: 'properties/BusinessFunction.yaml'
     - $ref: 'properties/CanCancelAppointment.yaml'
     - $ref: 'properties/ReferrerUsage.yaml'
+    - $ref: 'properties/ProviderUsage.yaml'
     - $ref: 'properties/DeferToProviderContactDays.yaml'
     - $ref: 'properties/TriageContactDays.yaml'

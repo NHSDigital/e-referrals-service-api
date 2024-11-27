@@ -1,0 +1,28 @@
+{
+  "resourceType": "Parameters",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-Parameters-1"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "listType",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralListSelector-1",
+            "code": "APPOINTMENTS_FOR_BOOKING"
+          }
+        ]
+      }
+    },
+    {
+      "name": "bookingReason",
+      "valueCoding": {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookingReason-1",
+        "code": "TRIAGE_TO_BE_BOOKED"
+      }
+    }
+  ]
+}

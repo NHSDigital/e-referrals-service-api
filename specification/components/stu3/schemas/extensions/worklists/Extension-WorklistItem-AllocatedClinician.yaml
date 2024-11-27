@@ -1,0 +1,19 @@
+title: allocatedClinician
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - allocatedClinician
+    example: 'allocatedClinician'
+  valueReference:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#Practitioner-021600556514'

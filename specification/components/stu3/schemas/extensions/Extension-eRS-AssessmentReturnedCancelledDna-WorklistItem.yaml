@@ -1,0 +1,35 @@
+title: 'Extension-eRS-AssessmentReturnedCancelledDna-WorklistItem'
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1'
+  extension:
+    description: |
+      | Field                          | Cardinality | Notes                                                                                                                                        |
+      | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+      | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                                            |
+      | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                                           |
+      | `referralCreated`              | `1..1`      | The Date and Time the `ReferralRequest` was initiated                                                                                        |
+      | `clinicalContext`              | `1..1`      | The clinical context for the `ReferralRequest`                                                                                               |
+      | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                                               |
+      | `referralLastUpdated`          | `1..1`      | The `dateTime` the `ReferralRequest` was last updated                                                                                        |
+      | `status`                       | `1..1`      | The status of the `ReferralRequest`                                                                                                          |
+      | `reason`                       | `0..1`      | The reason the `ReferralRequest` is on the Assessment Returned / Cancelled / DNA worklist, only included if `status` is `CANCELLED_REFERRAL` |
+    type: array
+    items:
+      anyOf:
+        - $ref: './worklists/Extension-WorklistItem-Patient.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Priority.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralCreated.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ClinicalContext.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Referrer.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralLastUpdated.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Status.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralCancellationReason.yaml'
+          

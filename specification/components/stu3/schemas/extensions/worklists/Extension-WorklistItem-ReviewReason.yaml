@@ -1,0 +1,39 @@
+title: reason
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - reason
+    example: 'reason'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1
+              example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1'
+            code:
+              type: string
+              enum:
+                - NO_SLOTS_AT_SERVICE
+                - SLOT_NOT_AVAILABLE
+                - BOOKING_ATTEMPT_PROBLEM
+                - TRIAGE
+              example: 'NO_SLOTS_AT_SERVICE'

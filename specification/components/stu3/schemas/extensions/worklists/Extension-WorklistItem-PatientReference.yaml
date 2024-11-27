@@ -1,0 +1,19 @@
+title: patient
+type: object
+required: 
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - patient
+    example: 'patient'
+  valueReference:
+    type: object
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        example: '#Patient-9462979626'

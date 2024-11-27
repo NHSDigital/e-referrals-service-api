@@ -1,0 +1,36 @@
+title: 'Extension-eRS-AppointmentsForBooking-WorklistItem'
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentsForBooking-WorkListItem-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentsForBooking-WorkListItem-1'
+  extension:
+    description: |
+      | Field                          | Cardinality | Notes                                                                                                                      |
+      | ------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- |
+      | `patient`                      | `1..1`      | The patient associated with the `ReferralRequest`                                                                          |
+      | `appointmentStart`             | `0..1`      | The current appointment start time                                          |
+      | `eReferralPathwayStart`        | `1..1`      | The start time of the referral pathway                                         |
+      | `referrer`                     | `1..1`      | The `Practitioner` who initially creates the `ReferralRequest`                                                             |
+      | `priority`                     | `1..1`      | The priority associated with the `ReferralRequest`                                                                         |
+      | `service`                      | `1..1`      | The Service Name of the deferred-to Service associated with the Appointment Request.                                      |
+      | `reason`                       | `1..1`      | Reason that Appointment requires booking |
+      | `specialty`                    | `1..1`      | The speciality of the current booking                                          |
+
+    type: array
+    items:
+      anyOf:
+        - $ref: './worklists/Extension-WorklistItem-Patient.yaml'
+        - $ref: './worklists/Extension-WorklistItem-AppointmentStart.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralPathwayStart.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Referrer.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Priority.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Service.yaml'
+        - $ref: './worklists/Extension-WorklistItem-BookingReason.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Specialty.yaml'
+          

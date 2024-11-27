@@ -65,6 +65,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -101,6 +115,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -119,6 +147,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -176,6 +218,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -194,6 +250,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -212,6 +282,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -230,6 +314,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },
@@ -404,6 +502,20 @@
         {
           "code": "canCancelAppointment",
           "valueBoolean": false
+        },
+        {
+          "code": "businessFunction",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+            "code": "SERVICE_PROVIDER_CLINICIAN"
+          }
+        },
+        {
+          "code": "providerUsage",
+          "valueCoding": {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+            "code": "END_TRIAGE"
+          }
         }
       ]
     },

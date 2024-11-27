@@ -1,0 +1,15 @@
+title: appointmentStart
+type: object
+required:
+  - url
+  - valueDateTime
+properties:
+  url:
+    type: string
+    enum:
+      - appointmentStart
+    example: 'appointmentStart'
+  valueDateTime:
+    type: string
+    format: date-time
+    example: '2021-09-02T14:15:00.000Z'

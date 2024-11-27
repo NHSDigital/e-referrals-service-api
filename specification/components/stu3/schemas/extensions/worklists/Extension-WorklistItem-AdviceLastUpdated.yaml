@@ -1,0 +1,15 @@
+title: adviceLastUpdated
+type: object
+required:
+  - url
+  - valueDateTime
+properties:
+  url:
+    type: string
+    enum:
+      - adviceLastUpdated
+    example: 'adviceLastUpdated'
+  valueDateTime:
+    type: string
+    format: date-time
+    example: '2021-09-01T14:26:18.314Z'

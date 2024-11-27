@@ -1,0 +1,38 @@
+title: Extension-eRS-AdviceAndGuidanceRequests-WorkListItem
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceAndGuidanceRequests-WorkListItem-1'
+  extension:
+    type: array
+    description: |
+      | Field                          | Cardinality | Notes                                      |
+      | ------------------------------ | ----------- | ------------------------------------------ |
+      | `priority`                     | `1..1`      |                                            |
+      | `specialty`                    | `1..1`      |                                            |
+      | `patient`                      | `1..1`      |                                            |
+      | `namedClinician`               | `0..1`      |                                            |
+      | `category`                     | `1..1`      |                                            |
+      | `adviceFirstRequested`         | `1..1`      |                                            |
+      | `adviceLastUpdated`            | `1..1`      |                                            |
+      | `referrer`                     | `1..1`      |                                            |
+      | `service`                      | `1..1`      |                                            |
+      | `clinicType`                   | `0..1`      |                                            |
+    items:
+      anyOf:
+        - $ref: './worklists/Extension-WorklistItem-Priority.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Specialty.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Patient.yaml'
+        - $ref: './worklists/Extension-WorklistItem-NamedClinician.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Category.yaml'
+        - $ref: './worklists/Extension-WorklistItem-AdviceFirstRequested.yaml'
+        - $ref: './worklists/Extension-WorklistItem-AdviceLastUpdated.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Referrer.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Service.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ClinicType.yaml'

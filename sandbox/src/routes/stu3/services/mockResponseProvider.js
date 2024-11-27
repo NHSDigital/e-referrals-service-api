@@ -169,11 +169,11 @@ module.exports = {
     const attachmentId = request.params.attachmentLogicalID
 
     if (attachmentId) {
-      
+
       if (attachmentId.startsWith('att-')) {
         return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
       }
-      
+
       if (attachmentId === 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8') {
         return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
       }
@@ -276,7 +276,7 @@ module.exports = {
 
   getExampleResponseForRetrieveAdviceAndGuidanceOverviewPdf: function () {
     return { responsePath: 'stu3/retrieveAdviceAndGuidanceOverviewPdf/responses/000049146177_Advice_And_Guidance_20220610143044.pdf', filename: '000049146177_Advice_And_Guidance_20220610143044.pdf', responseCode: 200 }
-  },                      
+  },
 
   getExampleResponseForRetrieveWorklist: function (request) {
     var responseMap = {
@@ -287,7 +287,8 @@ module.exports = {
       'src/mocks/stu3/retrieveWorklist/requests/MinimalRejectedTriageResponse.json': 'stu3/retrieveWorklist/responses/RejectedTriageResponse.json',
       'src/mocks/stu3/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json': 'stu3/retrieveWorklist/responses/AssessmentReturnedCancelledDna.json',
       'src/mocks/stu3/retrieveWorklist/requests/MinimalAwaitingBooking.json': 'stu3/retrieveWorklist/responses/AwaitingBooking.json',
-      'src/mocks/stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json': 'stu3/retrieveWorklist/responses/LettersOutstanding.json'
+      'src/mocks/stu3/retrieveWorklist/requests/MinimalLettersOutstanding.json': 'stu3/retrieveWorklist/responses/LettersOutstanding.json',
+      'src/mocks/stu3/retrieveWorklist/requests/AppointmentsForBookingWithReason.json': 'stu3/retrieveWorklist/responses/AppointmentsForBooking.json'
     }
 
     return mapExampleResponse(request, responseMap)

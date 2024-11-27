@@ -1,0 +1,15 @@
+title: patientContactExpected
+type: object
+required:
+  - url
+  - valueDate
+properties:
+  url:
+    type: string
+    enum:
+      - patientContactExpected
+    example: 'patientContactExpected'
+  valueDate:
+    type: string
+    format: date
+    example: '2021-09-07'

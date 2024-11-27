@@ -1,8 +1,10 @@
+deprecated: true
 security:
   - bearerAuth: []
 description: |
   ## Overview
-  
+   **This endpoint has now been deprecated please use [[HYPERLINK_A042]] instead.**
+
   Use this endpoint to retrieve a file that is attached to a referral or advice request.
 
   ## Supported security patterns
@@ -11,19 +13,31 @@ description: |
 
 
   ## Pre-requisites
-  ### Application-restricted access
-  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+  ### Authentication
+  #### Application-restricted access
+  In order to use this endpoint you must be an authenticated e-RS calling application.
 
-  ### Healthcare worker, user-restricted access
+  #### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
-  You need to have retrieved the referral via [[HYPERLINK_A005]] to obtain the URLs for its attachments.
+  ### Attachment availability
+  In order to use this endpoint, the attachment to be retrieved must be available for download. Attachments are only made available once an uploaded file has been validated and successfully scanned for malware. A request to retrieve an attachment that is not available for download will result in a 422 error being returned. See the Response section for further information.
 
-  ## Important note
+  The availability status of an attachment can be retrieved via any endpoint that provides details of an attachment in the success response. Details of the availability statuses that may be returned via these endpoints can be found in the specification for [[HYPERLINK_A005]].
+
+  Prior to retrieving an attachment, you will need to have retrieved the referral or advice request the attachment is associated with (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]], for example). Referrals and advice requests include resolvable URLs to the files currently attached to them, which can be used with this endpoint to retrieve the attachments themselves.
+
+  ### Maximum file size
+
+   The [[HYPERLINK_A006]] endpoint allows you to retrieve attachments up to a maximum file size of 5MB (5242880 bytes). Attempting to retrieve a file over this limit will lead to a 422 error being returned. See the Response section for further information. Due to this, prior to calling this endpoint, the size of the attachment being retrieved should first be validated so that this error can be avoided.
+
+  Files that are larger than 5MB can be downloaded via the [[HYPERLINK_A042]] endpoint or the e-RS web-based professional application.
+
+  ## Important notes
 
   A referral pathway in e-RS can be made up of more than one UBRN. 
   For example, a referral is booked and seen in a general knee clinical assessment service (UBRN #1), 
@@ -38,6 +52,8 @@ description: |
 
   Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
   
+  The [[HYPERLINK_A006]] endpoint allows you to retrieve attachments up to a maximum file size of 5MB (5242880 bytes), subject to the attachment being available for download. Attempts to retrieve an attachment that is not available, or exceeds the maximum file size, will lead to a 422 error being returned. See the Response section for further information.
+
   ## Use case
 
   As an authenticated user
@@ -50,7 +66,7 @@ description: |
   
   You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
 
-summary: Retrieve attachment (A006, FHIR STU3)
+summary: Retrieve attachment (A006, FHIR STU3) [deprecated]
 operationId: a006-retrieve-attachment
 tags:
   - Retrieve clinical information

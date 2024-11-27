@@ -15,9 +15,17 @@ description: |
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  - Application-restricted, unattended access
 
   ## Pre-requisites
+  ### Application-restricted, unattended access 
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
 
+  Supported action:
+    - Record Review Outcome
+  
+  ### Healthcare worker, user-restricted access
+  
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`

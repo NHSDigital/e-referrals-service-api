@@ -26,8 +26,8 @@ from json import load
 from json import dumps as json_dumps
 
 from openapi_core import Spec
-from openapi_core import validate_apicall_request
-from openapi_core import validate_apicall_response
+from openapi_core.app import OpenAPI
+from openapi_core.configurations import Config
 from openapi_core.contrib.requests import RequestsOpenAPIRequest
 from openapi_core.contrib.requests import RequestsOpenAPIResponse
 from openapi_core.validation.request.validators import V30RequestBodyValidator
@@ -172,6 +172,14 @@ def validate_request_examples():
 
     file_count = 0
     print("Validating request examples.")
+    config = Config(
+        server_base_url=None,
+        request_validator_cls=V30RequestBodyValidator,
+        extra_media_type_deserializers={"application/fhir+json": json_loads},
+    )
+
+    openApiSpec = OpenAPI(spec, config)
+
     # Validate request examples
     for endpoint in endpoints_and_examples_request:
         file_count += len(endpoints_and_examples_request[endpoint])
@@ -193,14 +201,7 @@ def validate_request_examples():
             # Validate request body
 
             try:
-                validate_apicall_request(
-                    oapi_req,
-                    spec=spec,
-                    cls=V30RequestBodyValidator,
-                    extra_media_type_deserializers={
-                        "application/fhir+json": json_loads
-                    },
-                )
+                openApiSpec.validate_apicall_request(oapi_req)
             except ValidateError as exc:
                 print("\nError: JSON data file with path " + abspath_example)
                 print(
@@ -269,6 +270,13 @@ def validate_response_examples():
     file_count = 0
 
     print("Validating example responses.")
+    config = Config(
+        server_base_url=None,
+        response_validator_cls=V30ResponseDataValidator,
+        extra_media_type_deserializers={"application/fhir+json": json_loads},
+    )
+
+    openApiSpec = OpenAPI(spec, config)
 
     # Validate response for each endpoint
     for endpoint_dict in endpoints_and_examples_response:
@@ -295,15 +303,7 @@ def validate_response_examples():
             )
             oapi_req = RequestsOpenAPIRequest(request)
             try:
-                validate_apicall_response(
-                    oapi_req,
-                    oapi_res,
-                    spec=spec,
-                    cls=V30ResponseDataValidator,
-                    extra_media_type_deserializers={
-                        "application/fhir+json": json_loads
-                    },
-                )
+                openApiSpec.validate_apicall_response(oapi_req, oapi_res)
             except ValidateError as exc:
                 print("\nError: JSON data file with path " + abspath_example)
                 print(

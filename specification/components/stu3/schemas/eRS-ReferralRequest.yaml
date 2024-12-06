@@ -10,6 +10,7 @@ required:
   - subject
   - supportingInfo
   - intent
+  - identifier
 properties:
   id:
     type: string
@@ -137,3 +138,18 @@ properties:
     enum: 
       - plan
     example: plan
+  identifier:
+    type: array
+    items:
+      type: object
+      required:
+        - system
+        - value
+      properties:
+        system:
+          enum:
+            - 'https://fhir.nhs.uk/Id/ers-request-id'
+          example: 'https://fhir.nhs.uk/Id/ers-request-id'
+        value:
+            type: string
+            example: 'r.832db7fa-ebdd-44b6-ab3b-8329c2d43149'

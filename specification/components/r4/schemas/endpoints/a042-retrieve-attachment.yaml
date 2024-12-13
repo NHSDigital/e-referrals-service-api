@@ -65,7 +65,7 @@ description: |
 
   Inline with the behaviour described in "Support for a temporary redirect", the sandbox will return a HTTP 307 temporary redirect. For simplicity, the temporary location will be static and never expire, unlike the live environment.
 
-  A successful response will always be returned, provided the Binary ID is in a valid format. The Availability Status of a file is not considered in the sandbox and a file will always be considered to be available for retrieval.
+  A successful response will always be returned, provided the Binary ID is in a valid format. The Availability Status of a file is not considered in the sandbox and a file will always be available for retrieval.
 
   Successful responses will always return the same example PDF file.
 
@@ -82,9 +82,9 @@ parameters:
   - $ref: '../pathParameters/BinaryId.yaml'
 responses:
   '307':
-    $ref: '../responses/retrieveBinary/307Response.yaml'
+    $ref: '../responses/retrieveAttachment/307Response.yaml'
   '400':
-    $ref: '../responses/retrieveBinary/400Response.yaml'
+    $ref: '../responses/retrieveAttachment/400Response.yaml'
   '401':
     $ref: '../responses/Unauthorized.yaml'
   '403':

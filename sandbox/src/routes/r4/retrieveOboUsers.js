@@ -12,7 +12,7 @@ module.exports = [
             // check that the query exists and is correct
             const query = request.query._query;
             if (query == undefined || query != "onBehalfOf") {
-                return h.file('./r4/R4-SandboxErrorOutcome.json').code(400);
+                return h.file('r4/R4-SandboxErrorOutcome.json').code(400);
             }
 
             if (request.headers["nhsd-ers-business-function"] !== "SERVICE_PROVIDER_CLINICIAN_ADMIN")
@@ -27,7 +27,7 @@ module.exports = [
             }
 
             // this should never happen as we always get a valid response for this endpoint
-            return h.file('./r4/R4-SandboxErrorOutcome.json').code(400);
+            return h.file('r4/R4-SandboxErrorOutcome.json').code(400);
 
 
         }

@@ -20,7 +20,7 @@ module.exports = [
 
       const responsePath = mockResponseProvider.getResponseForCancelReferral(request);
       if (!responsePath) {
-        return h.file('STU3-SandboxErrorOutcome.json').code(422);
+        return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422);
       }
 
       return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json")

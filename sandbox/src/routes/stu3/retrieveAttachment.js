@@ -26,7 +26,7 @@ module.exports = [
         }).code(responseCode);
       }
 
-      return h.file('STU3-SandboxErrorOutcome.json').code(422);
+      return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422);
     }
   }
 ]

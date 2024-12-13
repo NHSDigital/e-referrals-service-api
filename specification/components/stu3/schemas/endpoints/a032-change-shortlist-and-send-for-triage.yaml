@@ -32,6 +32,11 @@ description: |
   You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to use this endpoint.
 
   You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
+  
+  ## Important Notes
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code. 
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.
 
   ## Use case
   As an authenticated user

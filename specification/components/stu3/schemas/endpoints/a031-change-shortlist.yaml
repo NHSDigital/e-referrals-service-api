@@ -25,6 +25,11 @@ description: |
   If you are changing services to send the patient to a triage service, the triaging service will not support additional requirements but will need to consider if the patient has any additional requirements as part of their decision for future care.
 
   You can view additional requirements on a referral via the e-RS web application or by fetching [[HYPERLINK_A005]].
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
+  
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.
 
   ## Pre-requisites
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
@@ -85,6 +90,11 @@ requestBody:
           description: Changing the shortlist of an unbooked `ReferralRequest` (multiple services shortlist)
           value:
             $ref: '../../examples/changeShortlist/requests/UnbookedReferralMixedShortlist.json'
+        nonMixedShortlistWithDocument:
+          summary: ReferralRequest with non Mixed service and Document Reference
+          description: Changing the shortlist of an `ReferralRequest` with document reference.
+          value:
+            $ref: '../../examples/changeShortlist/requests/NonMixedShortlistWithDocument.json'
 responses:
   '200':
     $ref: '../responses/changeShortlist/200Response.yaml'

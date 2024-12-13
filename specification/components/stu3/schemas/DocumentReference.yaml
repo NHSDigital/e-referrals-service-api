@@ -114,24 +114,19 @@ properties:
               example: '2021-04-22'
             extension:
               type: array
-              minItems: 1
-              maxItems: 1
+              minItems: 3
+              maxItems: 4
+              description: |
+                
+                | Field                                   | Cardinality | Notes                                      |
+                | --------------------------------------- | ----------- | ------------------------------------------ |
+                | `eRS-AvailabilityStatus`                | `1..1`      |                                            |
+                | `eRS-AttachedBy`                        | `1..1`      |                                            |
+                | `eRS-AttachedByOrganisation`            | `1..1`      |                                            |
+                | `AttachedOnBehalfOf`                    | `0..1`      |                                            |
               items:
-                type: object
-                required:
-                  - url
-                  - valueReference
-                properties:
-                  url:
-                    type: string
-                    enum:
-                      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1'
-                    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1'
-                  valueReference:
-                    type: object
-                    required: 
-                      - identifier
-                    properties:
-                      identifier:
-                        $ref: identifiers/STU3_UserId.yaml
-
+                oneOf:
+                  - $ref: extensions/Extension-eRS-AvailabilityStatus.yaml
+                  - $ref: extensions/Extension-eRS-AttachedBy.yaml
+                  - $ref: extensions/Extension-eRS-AttachedByOrganisation.yaml
+                  - $ref: extensions/Extension-eRS-AttachedOnBehalfOf.yaml

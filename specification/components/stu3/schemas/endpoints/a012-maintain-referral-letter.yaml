@@ -17,7 +17,7 @@ description: |
   
   All new files to be associated with a referral must be uploaded first using [[HYPERLINK_A020]] and then linked to the referral using this endpoint.
 
-  ## Important information about using this endpoint
+  ## Important notes
   
   This endpoint can be used to associate attachments to a referral that has no existing referral letter attachments. 
   In this case you must upload the file first using [[HYPERLINK_A020]] and then associate it to the referral using this endpoint.
@@ -54,6 +54,11 @@ description: |
 
   Note: It is not permissible to remove *all* referral letter attachments leaving zero attachments associated. 
   There must be at least one referral letter attachment associated.
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code. 
+  
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.
 
   ## Use case
   As an authenticated user

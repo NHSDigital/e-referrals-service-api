@@ -57,6 +57,13 @@ description: |
 
   You need to use [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
 
+  ## Important notes
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
+  
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications. 
+
   ## Use case
   As an authenticated user
 

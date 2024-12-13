@@ -31,3 +31,7 @@ content:
         summary: Attachment uploaded from RCS
         value:
           $ref: '../../../examples/retrieveAdviceAndGuidanceConversation/AttachmentUploadedFromRCS.json'
+      unavailable-attachments:
+        summary: Attachment files unavailable for download
+        value:
+          $ref: '../../../examples/retrieveAdviceAndGuidanceConversation/UnavailableAttachments.json'

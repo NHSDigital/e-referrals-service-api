@@ -103,4 +103,4 @@ class TestGetAttachment(SandboxTest):
         response = call_endpoint_url_with_pathParams(
             actor, {"attachmentLogicalID": "f1bb2b1-30db-48f9-8906-8b703adca5fb"}
         )
-        asserts.assert_status_code(404, response.status_code)
+        asserts.assert_status_code(422, response.status_code)

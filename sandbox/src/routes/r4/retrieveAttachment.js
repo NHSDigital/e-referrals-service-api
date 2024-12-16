@@ -1,4 +1,5 @@
 const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtil = require('../common/validationUtil')
 
 module.exports = [
   /**
@@ -20,11 +21,8 @@ module.exports = [
       const url = request.url.href;
       const objectStore = "/ObjectStore/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f";
       const location = url.split('/FHIR')[0] + objectStore;
-      const uuidPattern = /^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-      const attPattern = /^att-\d+-\d+$/;
 
-
-      if ((uuidPattern.test(binaryId) || attPattern.test(binaryId)) && request.method === 'get') {
+      if ((validationUtil.hasLegacyPrefix(binaryId) || validationUtil.isValidUuid(binaryId)) && request.method === 'get') {
         const response = h.response().code(307);
         response.headers["Location"] = location;
         return response;

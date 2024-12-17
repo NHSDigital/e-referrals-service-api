@@ -18,9 +18,8 @@ module.exports = [
       }
 
       const binaryId = request.params.binaryId;
-      const url = request.url.href;
       const objectStore = "/ObjectStore/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f";
-      const location = url.split('/FHIR')[0] + objectStore;
+      const location = request.server.info.protocol + "://" + request.headers['host'] + objectStore;
 
       if ((validationUtil.hasLegacyPrefix(binaryId) || validationUtil.isValidUuid(binaryId)) && request.method === 'get') {
         const response = h.response().code(307);

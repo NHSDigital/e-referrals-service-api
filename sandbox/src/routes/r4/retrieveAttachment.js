@@ -11,16 +11,15 @@ module.exports = [
     handler: (request, h) => {
 
       const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"];
-
+      
       const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions);
       if (validationResult) {
         return validationResult;
       }
 
       const binaryId = request.params.binaryId;
-      const url = request.url.href;
       const objectStore = "/ObjectStore/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f";
-      const location = url.split('/FHIR')[0] + objectStore;
+      const location = request.headers['x-ers-sandbox-baseurl'] + objectStore;
 
       if ((validationUtil.hasLegacyPrefix(binaryId) || validationUtil.isValidUuid(binaryId)) && request.method === 'get') {
         const response = h.response().code(307);
@@ -29,7 +28,6 @@ module.exports = [
       } else {
         return h.file('r4/R4-SandboxErrorOutcome.json').code(400);
       }
-
     }
   }
 ]

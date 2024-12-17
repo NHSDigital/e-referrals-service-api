@@ -61,8 +61,15 @@ class TestGetAttachment(SandboxTest):
         actor: Actor,
         id: str,
         sandbox_url: str,
+        environment: str,
     ):
-        actual_response = call_endpoint_url_with_pathParams(actor, {"binaryId": id})
+        request_headers = (
+            {"x-ers-sandbox-baseurl": sandbox_url} if environment == "local" else {}
+        )
+
+        actual_response = call_endpoint_url_with_pathParams(
+            actor, {"binaryId": id}, request_headers
+        )
 
         asserts.assert_status_code(307, actual_response.status_code)
 

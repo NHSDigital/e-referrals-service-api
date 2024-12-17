@@ -5,8 +5,9 @@ from tests import asserts
 
 from requests import Response
 from tests.sandbox.SandboxTest import SandboxTest
-from tests.data import Actor
+from tests.data import Actor, RenamedHeader
 from tests.sandbox.utils import HttpMethod
+from pytest_check import check
 
 
 @pytest.mark.sandbox
@@ -65,9 +66,15 @@ class TestGetAttachment(SandboxTest):
         ],
         actor: Actor,
         id: str,
+        sandbox_url: str,
+        environment: str,
     ):
+        request_headers = (
+            {"x-ers-sandbox-baseurl": sandbox_url} if environment == "local" else {}
+        )
+
         actual_response = call_endpoint_url_with_pathParams(
-            actor, {"binaryId": id}, allow_redirects=True
+            actor, {"binaryId": id}, request_headers, allow_redirects=True
         )
 
         asserts.assert_status_code(200, actual_response.status_code)
@@ -76,7 +83,6 @@ class TestGetAttachment(SandboxTest):
             "content-disposition": """attachment; filename="=?UTF-8?Q?The_filenam=C3=A9.pdf?="; filename*=UTF-8''The%20filenam%C3%A9.pdf""",
             "content-type": "application/pdf",
             "content-length": "23681",
-            "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
             "vary": "origin",
             "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
             "cache-control": "no-cache",
@@ -90,3 +96,34 @@ class TestGetAttachment(SandboxTest):
             assert_content_length=True,
             assert_ignored_headers=False,
         )
+
+    def test_with_correlation_id(
+        self,
+        call_endpoint: Callable[[Actor], Response],
+        authorised_actors: Iterable[Actor],
+        default_headers: Dict[str, str],
+        sandbox_url: str,
+        environment: str,
+    ):
+        """
+        Overrides parent test. It's expected that following the redirection will result in a response from the object store without a correlation id.
+        """
+        request_headers = {RenamedHeader.CORRELATION_ID.original: "test"}
+
+        if environment == "local":
+            request_headers["x-ers-sandbox-baseurl"] = sandbox_url
+
+        response = call_endpoint(
+            authorised_actors[0],
+            headers=request_headers,
+        )
+
+        # Check that the response completed successfully.
+        assert (
+            response.status_code // 200 == 1
+        ), "Supplied request did not complete successfully."
+
+        with check:
+            assert (
+                RenamedHeader.CORRELATION_ID.original not in response.headers
+            ), "Object store expected not to return a correlation id."

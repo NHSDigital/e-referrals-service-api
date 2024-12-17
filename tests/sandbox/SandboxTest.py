@@ -7,7 +7,7 @@ from pytest_check import check
 import pytest
 from tests import asserts
 
-from tests.data import Actor, RenamedHeader, UserAuthenticationLevel
+from tests.data import Actor, RenamedHeader
 from .utils import HttpMethod
 
 

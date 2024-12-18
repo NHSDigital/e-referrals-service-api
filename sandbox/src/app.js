@@ -10,10 +10,12 @@ const addCommonHeaders = function (request, response) {
     response.headers = {}
   }
 
-  if (request.headers["x-correlation-id"]) {
-    response.headers["X-Correlation-ID"] = request.headers["x-correlation-id"]
+  if (!request.path.includes("ObjectStore")) {
+    if (request.headers["x-correlation-id"]) {
+      response.headers["X-Correlation-ID"] = request.headers["x-correlation-id"]
+    }
+    response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
   }
-  response.headers["X-Request-ID"] = '58621d65-d5ad-4c3a-959f-0438e355990e-1'
 }
 
 const preResponse = function (request, h) {

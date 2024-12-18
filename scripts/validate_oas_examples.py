@@ -48,7 +48,7 @@ response_spec_keys_examples = ["content", "application/fhir+json", "examples"]
 http_methods = ["post", "put", "patch", "get", "head", "delete"]
 
 # List containing http success response codes
-http_success_codes = ["200", "201"]
+http_success_codes = ["200", "201", "307"]
 
 # Open OAS JSON file
 try:
@@ -158,6 +158,7 @@ def get_success_code(endpoint, http_method):
         ].keys()
     )
     filtered_code = filter(lambda x: x in http_success_codes, endpoint_return_codes)
+
     return list(filtered_code)[0]
 
 

@@ -1,4 +1,4 @@
-
+const validationUtil = require('../../common/validationUtil')
 const fs = require('fs')
 const lodash = require('lodash')
 
@@ -166,19 +166,20 @@ module.exports = {
 
   getExampleResponseForRetrieveAttachment: function (request) {
 
-    const attachmentId = request.params.attachmentLogicalID
+    const attachmentId = request.params.attachmentLogicalID;
 
     if (attachmentId) {
 
-      if (attachmentId.startsWith('att-')) {
-        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+      if (validationUtil.hasLegacyPrefix(attachmentId)) {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 };
       }
-
-      if (attachmentId === 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8') {
-        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+      
+      if (validationUtil.isValidUuid(attachmentId)) {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 };
       }
     }
 
+    return {};
   },
 
   getExampleResponseForRetrieveReferralRequest: function (request) {

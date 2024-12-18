@@ -13,7 +13,6 @@ module.exports = {
       if (requestedBusinessFunction === 'SERVICE_PROVIDER_CLINICIAN_ADMIN') {
         if (!oboUserId) {
           return h.response('SANDBOX_ERROR: When this endpoint is accessed using the e-RS SERVICE_PROVIDER_CLINICIAN_ADMIN Business Function then an On-Behalf-Of User ID must be provided').code(403)
-.code(403)
         }
       }
       else {

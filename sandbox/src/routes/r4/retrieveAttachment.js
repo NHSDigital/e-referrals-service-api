@@ -19,7 +19,7 @@ module.exports = [
 
       const binaryId = request.params.binaryId;
       const objectStore = "/ObjectStore/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f";
-      const location = request.server.info.protocol + "://" + request.headers['host'] + objectStore;
+      const location = request.headers['x-ers-sandbox-baseurl'] + objectStore;
 
       if ((validationUtil.hasLegacyPrefix(binaryId) || validationUtil.isValidUuid(binaryId)) && request.method === 'get') {
         const response = h.response().code(307);

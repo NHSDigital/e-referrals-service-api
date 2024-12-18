@@ -65,6 +65,14 @@ description: |
   ## Related endpoints
   
   You can retrieve a clinical information summary for a referral using [[HYPERLINK_A007]].
+  
+  ## Sandbox test scenarios
+  
+  The sandbox for this endpoint is a simple implementation that only supports success cases.
+  
+  A successful response will always be returned, provided the Binary ID is in a valid format. The Availability Status of a file is not considered in the sandbox and a file will always be available for retrieval.
+  
+  Successful responses will always return the same example PDF file.
 
 summary: Retrieve attachment (A006, FHIR STU3) [deprecated]
 operationId: a006-retrieve-attachment

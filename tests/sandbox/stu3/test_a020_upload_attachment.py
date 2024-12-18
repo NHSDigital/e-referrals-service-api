@@ -111,9 +111,22 @@ class TestUploadAttachment(SandboxTest):
 
         asserts.assert_status_code(201, actual_response.status_code)
 
-        asserts.assert_upload_response_headers(
+        expected_headers = {
+            "content-type": "text/html; charset=utf-8",
+            "x-request-id": "58621d65-d5ad-4c3a-959f-0438e355990e-1",
+            "vary": "origin",
+            "cache-control": "no-cache",
+            "connection": "keep-alive",
+            "content-length": "0",
+            "access-control-expose-headers": "x-correlation-id,x-request-id,content-type,Location,ETag,Content-Disposition,Content-Length,Cache-Control",
+        }
+
+        asserts.assert_response_headers(
             actual_response,
+            expected_headers,
             additional={
                 "Location": "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5",
             },
+            assert_content_length=False,
+            assert_ignored_headers=False,
         )

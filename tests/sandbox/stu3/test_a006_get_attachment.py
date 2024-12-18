@@ -22,14 +22,15 @@ class TestGetAttachment(SandboxTest):
         required_business_functions=allowed_business_function_data
     )
 
-    testdata = [
+    valid_test_data = [
         (
             "att-70000-70001",
             "stu3/retrieveAttachment/responses/example_attachment.pdf",
             "example_attachment.pdf",
         ),
         (
-            "c5d2d200-7613-4a69-9c5f-1bb68e04b8d8",
+            # Any arbitrary v4 UUID should work here
+            "f1b1b2b1-30db-48f9-8906-8b703adca5fb",
             "stu3/retrieveAttachment/responses/example_attachment.pdf",
             "example_attachment.pdf",
         ),
@@ -63,7 +64,7 @@ class TestGetAttachment(SandboxTest):
         )
 
     @pytest.mark.parametrize("actor", authorised_actor_data)
-    @pytest.mark.parametrize("id,response, filename", testdata)
+    @pytest.mark.parametrize("id,response, filename", valid_test_data)
     def test_success(
         self,
         call_endpoint_url_with_pathParams: Callable[
@@ -90,3 +91,16 @@ class TestGetAttachment(SandboxTest):
                 "content-length": str(len(expected_response)),
             },
         )
+
+    @pytest.mark.parametrize("actor", authorised_actor_data)
+    def test_failure_not_a_uuid(
+        self,
+        call_endpoint_url_with_pathParams: Callable[
+            [Actor, Dict[str, str], Dict[str, str]], Response
+        ],
+        actor: Actor,
+    ):
+        response = call_endpoint_url_with_pathParams(
+            actor, {"attachmentLogicalID": "f1bb2b1-30db-48f9-8906-8b703adca5fb"}
+        )
+        asserts.assert_status_code(422, response.status_code)

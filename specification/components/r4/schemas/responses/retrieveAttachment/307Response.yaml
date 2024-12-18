@@ -1,0 +1,12 @@
+description: Response redirects the user agent to a location (via the Location header) in the object store from which the attachment can be downloaded from.
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Location:
+    description: The attachment location in the object store.
+    required: true
+    schema:
+      type: string
+      format: uri

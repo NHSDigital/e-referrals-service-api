@@ -1,0 +1,44 @@
+title: Extension-eRS-ReferralsforReview-WorkListItem
+type: object
+required:
+  - url
+  - extension
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1'
+  extension:
+    type: array
+    description: |
+      | Field                          | Cardinality | Notes                                      |
+      | ------------------------------ | ----------- | ------------------------------------------ |
+      | `priority`                     | `1..1`      |                                            |
+      | `specialty`                    | `1..1`      |                                            |
+      | `patient`                      | `1..1`      |                                            |
+      | `namedClinician`               | `0..1`      |                                            |
+      | `eReferralPathwayStart`        | `1..1`      |                                            |
+      | `clinicalInfoPrinted`          | `1..1`      |                                            |
+      | `requestContextStatus`         | `1..1`      |                                            |
+      | `clinicalInfoFirstSubmitted`   | `0..1`      |                                            |
+      | `clinicalInfoLastUpdated`      | `0..1`      |                                            |
+      | `referralType`                 | `0..1`      |                                            |
+      | `appointmentStart`             | `0..1`      |                                            |
+      | `allocatedClinician`           | `0..1`      |                                            |
+      | `service`                      | `1..1`      |                                            |
+    items:
+      anyOf:
+        - $ref: './worklists/Extension-WorklistItem-Priority.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Specialty.yaml'
+        - $ref: './worklists/Extension-WorklistItem-PatientReference.yaml'
+        - $ref: './worklists/Extension-WorklistItem-NamedClinicianReference.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralPathwayStart.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ClinicalInfoPrinted.yaml'
+        - $ref: './worklists/Extension-WorklistItem-RequestContextStatus.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ClinicalInfoFirstSubmitted.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ClinicalInfoLastUpdated.yaml'
+        - $ref: './worklists/Extension-WorklistItem-ReferralType.yaml'
+        - $ref: './worklists/Extension-WorklistItem-AppointmentStart.yaml'
+        - $ref: './worklists/Extension-WorklistItem-AllocatedClinician.yaml'
+        - $ref: './worklists/Extension-WorklistItem-Service.yaml'

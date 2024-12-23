@@ -47,3 +47,7 @@ content:
         summary: Letters Outstanding
         value:
           $ref: '../../../examples/retrieveWorklist/responses/LettersOutstanding.json'
+      appointments-for-booking:
+        summary: Appointments For Booking
+        value:
+          $ref: '../../../examples/retrieveWorklist/responses/AppointmentsForBooking.json'

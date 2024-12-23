@@ -1,0 +1,15 @@
+title: letterDue
+type: object
+required:
+  - url
+  - valueDate
+properties:
+  url:
+    type: string
+    enum:
+      - letterDue
+    example: letterDue
+  valueDate:
+    type: string
+    format: date
+    example: '2021-11-24'

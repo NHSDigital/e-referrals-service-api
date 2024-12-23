@@ -1,0 +1,39 @@
+title: clinicalInformationStatus
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - clinicalInformationStatus
+    example: 'clinicalInformationStatus'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1
+              example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicalInformationStatus-1'
+            code:
+              type: string
+              enum:
+                - PRESENT
+                - NOT_APPLICABLE
+                - NOT_DUE
+                - OVERDUE
+              example: 'NOT_DUE'

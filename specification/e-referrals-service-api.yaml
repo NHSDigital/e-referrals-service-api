@@ -290,6 +290,8 @@ info:
   license:
     name: MIT
 servers:
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/referrals-pr-1884/FHIR'
+    description: Sandbox environment.
   - url: 'https://sandbox.api.service.nhs.uk/referrals/FHIR'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/referrals/FHIR'

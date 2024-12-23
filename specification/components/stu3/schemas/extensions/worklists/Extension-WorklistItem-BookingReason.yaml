@@ -1,0 +1,45 @@
+title: reason
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - reason
+    example: 'reason'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookingReason-1
+              example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-BookingReason-1'
+            code:
+              type: string
+              enum:
+                - REBOOKING
+                - CANCELLED_APPOINTMENT_ADMIN_REBOOK
+                - CANCELLED_BY_PATIENT
+                - CANCELLED_BY_PROVIDER
+                - DEFERRED_TO_PROVIDER
+                - ONWARD_REFERRAL
+                - DNA
+                - TRIAGE_TO_BE_BOOKED
+                - TRIAGE_SEE_COMMENTS
+                - TRIAGE_ANG_CONVERTED_SEE_COMMENTS
+              example: 'TRIAGE_TO_BE_BOOKED'

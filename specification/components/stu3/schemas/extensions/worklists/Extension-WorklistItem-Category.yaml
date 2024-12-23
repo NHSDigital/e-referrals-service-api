@@ -1,0 +1,41 @@
+title: category
+type: object
+required:
+  - url
+  - valueCodeableConcept
+properties:
+  url:
+    type: string
+    enum:
+      - category
+    example: 'category'
+  valueCodeableConcept:
+    type: object
+    required:
+      - coding
+    properties:
+      coding:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          required:
+            - system
+            - code
+          properties:
+            system:
+              type: string
+              enum:
+                - https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1
+              example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceAndGuidanceStatus-1'
+            code:
+              type: string
+              enum:
+                - PROVIDER_RESPONSE_REQUIRED
+                - REFERRER_TO_SUBMIT_FURTHER_INFORMATION
+                - REFERRER_TO_REVIEW_RESPONSE
+                - CONVERSATION_ENDED_CANCELLED
+                - CONVERSATION_ENDED_CLOSED
+                - ADVICE_CONVERTED
+              example: 'PROVIDER_RESPONSE_REQUIRED'

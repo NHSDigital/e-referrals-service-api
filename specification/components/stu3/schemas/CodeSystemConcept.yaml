@@ -57,6 +57,7 @@ properties:
       | businessFunction                         | APPOINTMENT-CANCELLATION-REASON/REFERRAL-CANCELLATION-REASON |
       | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                 |
       | RequestCancellationReferrerUsage         | REFERRAL-CANCELLATION-REASON                                 |
+      | RequestCancellationProviderUsage         | REFERRAL-CANCELLATION-REASON                                 |
       | DeferToProviderContactDays               | PRIORITY                                                    |
       | TriageContactDays                        | PRIORITY                                                    |
       
@@ -74,5 +75,6 @@ properties:
         - $ref: 'codings/BusinessFunction.yaml'
         - $ref: 'codings/CanCancelAppointment.yaml'
         - $ref: 'codings/RequestCancellationReferrerUsage.yaml'
+        - $ref: 'codings/RequestCancellationProviderUsage.yaml'
         - $ref: 'codings/DeferToProviderContactDays.yaml'
         - $ref: 'codings/TriageContactDays.yaml'

@@ -272,6 +272,7 @@ module.exports = {
       'src/mocks/stu3/retrieveWorklist/requests/MinimalReferralsForReview.json': 'stu3/retrieveWorklist/responses/ReferralsForReview.json',
       'src/mocks/stu3/retrieveWorklist/requests/MinimalAppointmentSlotIssues.json': 'stu3/retrieveWorklist/responses/AppointmentSlotIssues.json',
       'src/mocks/stu3/retrieveWorklist/requests/FilteringBySpecialty.json': 'stu3/retrieveWorklist/responses/FilteredBySpecialty.json',
+      'src/mocks/stu3/retrieveWorklist/requests/FilteringByService.json': 'stu3/retrieveWorklist/responses/FilteredByService.json',
       'src/mocks/stu3/retrieveWorklist/requests/FilteringByClinician.json': 'stu3/retrieveWorklist/responses/FilteredByClinician.json',
       'src/mocks/stu3/retrieveWorklist/requests/MinimalRejectedTriageResponse.json': 'stu3/retrieveWorklist/responses/RejectedTriageResponse.json',
       'src/mocks/stu3/retrieveWorklist/requests/MinimalAssessmentReturnedCancelledDna.json': 'stu3/retrieveWorklist/responses/AssessmentReturnedCancelledDna.json',

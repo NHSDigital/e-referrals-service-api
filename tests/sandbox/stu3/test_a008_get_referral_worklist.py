@@ -42,6 +42,10 @@ class TestGetReferralWorklist(SandboxTest):
             "stu3/retrieveWorklist/responses/FilteredByClinician.json",
         ),
         (
+            "stu3/retrieveWorklist/requests/FilteringByService.json",
+            "stu3/retrieveWorklist/responses/FilteredByService.json",
+        ),
+        (
             "stu3/retrieveWorklist/requests/MinimalRejectedTriageResponse.json",
             "stu3/retrieveWorklist/responses/RejectedTriageResponse.json",
         ),

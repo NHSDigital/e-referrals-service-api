@@ -1,7 +1,7 @@
 {
-  "id": "000000070000",
+  "id": "000000070012",
   "meta": {
-    "versionId": "10",
+    "versionId": "5",
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
     ]
@@ -9,24 +9,8 @@
   "resourceType": "ReferralRequest",
   "extension": [
     {
-      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
-      "valueReference": {
-        "reference": "#appointment"
-      }
-    },
-    {
-      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1",
-      "valueReference": {
-        "reference": "Appointment/70009"
-      }
-    },
-    {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
-      "valueDateTime": "2021-10-07T15:00:18.561Z"
-    },
-    {
-      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-eReferralPathwayStart-1",
-      "valueInstant": "2024-05-01T09:55:00.000Z"
+      "valueDateTime": "2021-06-11T12:09:08.667Z"
     },
     {
       "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
@@ -35,7 +19,7 @@
           {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
             "code": "ROUTINE",
-            "display": "ROUTINE"
+            "display": "Routine"
           }
         ]
       }
@@ -60,21 +44,9 @@
           "url": "state",
           "valueCoding": {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
-            "code": "TRIAGED_PROVIDER_TO_ACTION",
-            "display": "Triaged - Provider To Action"
+            "code": "NOT_BOOKED",
+            "display": "Not Booked"
           }
-        },
-        {
-          "url": "reason",
-          "valueCoding": {
-            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
-            "code": "RETURN_TO_REFERRER_WITH_ADVICE",
-            "display": "Return to Referrer With Advice"
-          }
-        },
-        {
-          "url": "comments",
-          "valueString": "Condition not serious. See attached document"
         }
       ]
     }
@@ -147,68 +119,15 @@
           "item": {
             "identifier": {
               "system": "http://fhir.nhs.net/Id/ers-service",
-              "value": "11010"
+              "value": "11002"
             },
-            "display": "Excellent Cardiology Business Service"
+            "display": "Good Cardiology Business Service"
           }
         }
       ]
     },
     {
-      "id": "appointment",
-      "meta": {
-        "versionId": "2",
-        "profile": [
-          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
-          "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
-        ]
-      },
-      "language": "en",
-      "resourceType": "Appointment",
-      "status": "proposed",
-      "reason": [
-        {
-          "coding": [
-            {
-              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
-              "code": "RETURN_TO_REFERRER_WITH_ADVICE",
-              "display": "Return to Referrer With Advice"
-            }
-          ]
-        }
-      ],
-      "description": "e-Referral Appointment",
-      "created": "2021-10-07T15:00:19.711Z",
-      "comment": "Condition not serious. See attached document",
-      "incomingReferral": [
-        {
-          "reference": "ReferralRequest/000000070000/_history/10"
-        }
-      ],
-      "participant": [
-        {
-          "actor": {
-            "identifier": {
-              "system": "http://fhir.nhs.net/Id/ers-service",
-              "value": "11010"
-            },
-            "display": "Excellent Cardiology Business Service"
-          },
-          "status": "accepted"
-        },
-        {
-          "actor": {
-            "identifier": {
-              "system": "http://fhir.nhs.net/Id/nhs-number",
-              "value": "1000000001"
-            }
-          },
-          "status": "accepted"
-        }
-      ]
-    },
-    {
-      "id": "DocumentReference-70000",
+      "id": "DocumentReference-80000",
       "meta": {
         "profile": [
           "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
@@ -225,74 +144,20 @@
         ]
       },
       "status": "current",
-      "indexed": "2021-10-07T15:00:44.338Z",
-      "description": "upload png",
+      "indexed": "2021-06-11T12:09:09.459Z",
+      "description": "referralletter pdf",
       "content": [
         {
           "attachment": {
-            "id": "70000",
+            "id": "80000",
             "extension": [
               {
-                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
-                "valueReference": {
-                  "identifier": {
-                    "system": "http://fhir.nhs.net/Id/sds-user-id",
-                    "value": "103264992985"
-                  }
-                }
-              },
-              {
                 "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
-                "valueCoding":
-                {
+                "valueCoding": {
                   "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
                   "code": "PENDING"
                 }
               },
-              {
-                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
-                "valueReference": {
-                  "identifier": {
-                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
-                    "value": "R69"
-                  }
-                }
-              }
-            ],
-            "contentType": "image/png",
-            "url": "Binary/a7c98bb4-c0d0-4094-b26d-8dbd1677edc8",
-            "size": 6,
-            "title": "upload.png",
-            "creation": "2021-10-07"
-          }
-        }
-      ]
-    },
-    {
-      "id": "DocumentReference-70001",
-      "meta": {
-        "profile": [
-          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
-        ]
-      },
-      "resourceType": "DocumentReference",
-      "type": {
-        "coding": [
-          {
-            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
-            "code": "PROVIDER",
-            "display": "Provider"
-          }
-        ]
-      },
-      "status": "current",
-      "indexed": "2021-10-07T15:00:41.239Z",
-      "description": "Condition details",
-      "content": [
-        {
-          "attachment": {
-            "id": "70001",
-            "extension": [
               {
                 "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
                 "valueReference": {
@@ -303,11 +168,72 @@
                 }
               },
               {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R69"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedOnBehalfOf-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              }
+            ],
+            "contentType": "application/pdf",
+            "url": "Binary/19eb7224-dff3-4730-a5cb-67eac811f1a5",
+            "size": 6,
+            "title": "referralletter1.pdf",
+            "creation": "2021-06-11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-80001",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-06-11T12:09:09.459Z",
+      "description": "referralletter png",
+      "content": [
+        {
+          "attachment": {
+            "id": "80001",
+            "extension": [
+              {
                 "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
-                "valueCoding":
-                {
+                "valueCoding": {
                   "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
-                  "code": "AVAILABLE"
+                  "code": "THREATS_FOUND"
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
                 }
               },
               {
@@ -318,40 +244,112 @@
                     "value": "R69"
                   }
                 }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedOnBehalfOf-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
               }
             ],
-            "contentType": "application/pdf",
-            "url": "Binary/3816ca48-897a-4be0-907d-a4e830b4e213",
-            "size": 17,
-            "title": "ConditionDetails.pdf",
-            "creation": "2021-10-07"
+            "contentType": "image/png",
+            "url": "Binary/adda8c72-4a91-4dc7-a918-b6d12fb28085",
+            "size": 6,
+            "title": "referralletter2.png",
+            "creation": "2021-06-11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-80002",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "code": "REFERRER",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2021-06-11T12:09:09.459Z",
+      "description": "referralletter doc",
+      "content": [
+        {
+          "attachment": {
+            "id": "80002",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "VALIDATION_FAILED"
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R69"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedOnBehalfOf-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
+                  }
+                }
+              }
+            ],
+            "contentType": "application/msword",
+            "url": "Binary/9e554611-3378-425c-9cab-700b697e52d3",
+            "size": 6,
+            "title": "referralletter3.doc",
+            "creation": "2021-06-11"
           }
         }
       ]
     }
   ],
   "status": "active",
-  "specialty": {
-    "coding": [
-      {
-        "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY",
-        "code": "CARDIOLOGY",
-        "display": "Cardiology"
-      }
-    ]
-  },
   "subject": {
     "identifier": {
       "system": "http://fhir.nhs.net/Id/nhs-number",
-      "value": "1000000001"
+      "value": "9912003888"
     }
   },
   "supportingInfo": [
     {
-      "reference": "#DocumentReference-70001"
+      "reference": "#DocumentReference-80000"
     },
     {
-      "reference": "#DocumentReference-70000"
+      "reference": "#DocumentReference-80001"
+    },
+    {
+      "reference": "#DocumentReference-80002"
     }
   ],
   "intent": "plan"

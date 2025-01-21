@@ -114,7 +114,7 @@ properties:
               example: '2021-04-22'
             extension:
               type: array
-              minItems: 3
+              minItems: 2
               maxItems: 4
               description: |
                 
@@ -122,7 +122,7 @@ properties:
                 | --------------------------------------- | ----------- | ------------------------------------------ |
                 | `eRS-AvailabilityStatus`                | `1..1`      |                                            |
                 | `eRS-AttachedBy`                        | `1..1`      |                                            |
-                | `eRS-AttachedByOrganisation`            | `1..1`      |                                            |
+                | `eRS-AttachedByOrganisation`            | `0..1`      |                                            |
                 | `AttachedOnBehalfOf`                    | `0..1`      |                                            |
               items:
                 oneOf:

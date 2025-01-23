@@ -1,0 +1,217 @@
+{
+  "id": "000000070000",
+  "meta": {
+    "versionId": "9",
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"
+    ]
+  },
+  "resourceType": "ReferralRequest",
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ClinicalInfoFirstSubmitted-1",
+      "valueDateTime": "2024-11-21T11:08:22.299Z"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "code": "ROUTINE",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "display": "Routine"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+      "valueReference": {
+        "reference": "#shortlist"
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "state",
+          "valueCoding": {
+            "code": "NOT_BOOKED",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralState-1",
+            "display": "Not Booked"
+          }
+        }
+      ],
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralState-1"
+    },
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "id": "serviceSearchCriteria",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"
+        ]
+      },
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "priority",
+          "valueCoding": {
+            "code": "ROUTINE",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1"
+          }
+        },
+        {
+          "name": "specialty",
+          "valueCoding": {
+            "code": "CARDIOLOGY",
+            "system": "_baseUrl_/STU3/CodeSystem/SPECIALTY"
+          }
+        },
+        {
+          "name": "clinicType",
+          "valueCoding": {
+            "code": "HEART_FAILURE",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1"
+          }
+        },
+        {
+          "name": "ageAndGenderAppropriate",
+          "valueBoolean": false
+        },
+        {
+          "name": "commissioningProvisioning",
+          "valueCoding": {
+            "code": "ALL_AVAILABLE_FOR_BOOKING",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "shortlist",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"
+        ]
+      },
+      "resourceType": "List",
+      "extension": [
+        {
+          "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference": {
+            "reference": "#serviceSearchCriteria"
+          }
+        }
+      ],
+      "status": "current",
+      "mode": "snapshot",
+      "entry": [
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11004"
+            },
+            "display": "Cardiology Triage Business Service"
+          }
+        },
+        {
+          "item": {
+            "identifier": {
+              "system": "http://fhir.nhs.net/Id/ers-service",
+              "value": "11002"
+            },
+            "display": "Good Cardiology Business Service"
+          }
+        }
+      ]
+    },
+    {
+      "id": "DocumentReference-70000",
+      "meta": {
+        "profile": [
+          "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"
+        ]
+      },
+      "resourceType": "DocumentReference",
+      "type": {
+        "coding": [
+          {
+            "code": "REFERRER",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AttachmentType-1",
+            "display": "Referrer"
+          }
+        ]
+      },
+      "status": "current",
+      "indexed": "2024-11-21T11:08:24.956Z",
+      "description": "Description for TXT File",
+      "content": [
+        {
+          "attachment": {
+            "id": "70000",
+            "extension": [
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "103264992985"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
+                "valueCoding": {
+                  "code": "AVAILABLE",
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1"
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R69"
+                  }
+                }
+              }
+            ],
+            "contentType": "text/plain",
+            "url": "Binary/bb3db85f-21a1-4fa8-a490-6da6b06c0e06",
+            "size": 4,
+            "title": "sample-txt-attachment-2.0.0.txt",
+            "creation": "2024-11-21"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.nhs.net/Id/nhs-number",
+      "value": "1000000001"
+    }
+  },
+  "supportingInfo": [
+    {
+      "reference": "#DocumentReference-70000"
+    }
+  ],
+  "intent": "plan",
+  "identifier":[
+    {
+        "system":"https://fhir.nhs.uk/Id/ers-request-id",
+        "value":"r.c18c4ec4-7d0a-480e-8506-347e0ec228b0"
+    }
+  ]
+}

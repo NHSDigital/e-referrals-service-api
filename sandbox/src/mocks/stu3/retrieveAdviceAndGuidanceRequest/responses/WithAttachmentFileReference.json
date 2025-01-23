@@ -174,11 +174,36 @@
             "id": "70002",
             "extension": [
               {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AvailabilityStatus-1",
+                "valueCoding": {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailabilityStatus-1",
+                  "code": "AVAILABLE"
+                }
+              },
+              {
                 "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1",
                 "valueReference": {
                   "identifier": {
                     "system": "http://fhir.nhs.net/Id/sds-user-id",
                     "value": "103264992985"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedByOrganisation-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                    "value": "R69"
+                  }
+                }
+              },
+              {
+                "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedOnBehalfOf-1",
+                "valueReference": {
+                  "identifier": {
+                    "system": "http://fhir.nhs.net/Id/sds-user-id",
+                    "value": "021600556514"
                   }
                 }
               }
@@ -252,6 +277,12 @@
       "contentReference": {
         "reference": "#DocumentReference-70002"
       }
+    }
+  ],
+  "identifier":[
+    {
+        "system":"https://fhir.nhs.uk/Id/ers-request-id",
+        "value":"a.c18c4ec4-7d0a-480e-8506-347e0ec228b1"
     }
   ]
 }

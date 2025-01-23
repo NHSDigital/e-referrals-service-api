@@ -213,7 +213,13 @@
               }
             ]
           }
-        }
+        },
+        "identifier":[
+          {
+              "system":"https://fhir.nhs.uk/Id/ers-request-id",
+              "value":"a.c18c4ec4-7d0a-480e-8506-347e0ec228b0"
+          }
+        ]
       }
     },
     {

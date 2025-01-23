@@ -36,13 +36,6 @@ description: |
   - Application-restricted access
   - Healthcare worker, user-restricted access
   
-  ## Important notes when receiving an e-Referral Pathway Start Date
-  The e-Referral Pathway Start Date is a derived value of when the Referral To Treatment (RTT) clock starts. Find out how e-RS derives the pathway start date [[HYPERLINK_PATHWAY_START]].
-  
-  If a referral was created with an alternate pathway start date, then this will be available in the referral request response.
-  
-  Service providers must always ensure the correct start date is recorded in line with [[HYPERLINK_RTT_RULES]].
-
   ## Pre-requisites
   ### Application-restricted access
   In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
@@ -56,8 +49,30 @@ description: |
 
   You need to use the `Unique Booking Reference Number` (UBRN) of a referral request in order to retrieve details of a referral.
 
-  ## Use case
+  ## Important notes
+  ### Attachment availability
 
+   In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. Attachments are only made available once an uploaded file has been validated and successfully malware scanned. A request to retrieve an attachment that is not available for download will result in an error being returned. See [[HYPERLINK_A042]] for more information.
+
+  The availability status of an attachment can be retrieved via any endpoint that returns an eRS-AvailabilityStatus-1 code in the success response, including [[HYPERLINK_A005]]. The eRS-AvailabilityStatus-1 code can return one of four possible values, as detailed below.
+
+  | eRS-AvailabilityStatus-1 code | Description / Guidance                                                                                            |
+  |-------------------------------|-------------------------------------------------------------------------------------------------------------------|
+  | AVAILABLE                     | The file is available for download.                                                                               |
+  | PENDING                       | The file is being scanned and cannot be retrieved. Wait at least 5 minutes before checking its availability again |
+  | THREATS FOUND                 | The file has been quarantined after detecting a threat and cannot be retrieved.<br> Contact the organisation that uploaded the file to resolve the issue and get the information you need. Use the extensions returned via this endpoint: Extension-eRS-AttachedBy-1 and Extension-eRS-AttachedByOrganisation-1. |
+  | VALIDATION_FAILED             | The file has failed validation and cannot be retrieved.<br> Contact the organisation that uploaded the file to resolve the issue and get the information you need. Use the extensions returned via this endpoint: Extension-eRS-AttachedBy-1 and Extension-eRS-AttachedByOrganisation-1. Validation can fail because the: <ul><li>content type of the file is not supported</li><li>content type of the file does not correlate with the file extension</li><li>file provided is too large and is not supported by e-RS.</li></ul> |
+
+  ### Receiving an e-Referral Pathway Start Date
+   
+  The e-Referral Pathway Start Date is a derived value of when the Referral To Treatment (RTT) clock starts. Find out how e-RS derives the pathway start date [[HYPERLINK_PATHWAY_START]].
+  
+  If a referral was created with an alternate pathway start date, then this will be available in the referral request response.
+  
+  Service providers must always ensure the correct start date is recorded in line with [[HYPERLINK_RTT_RULES]].
+
+  ## Use case
+ 
   As an authenticated user or application
 
   I want to read details of a referral
@@ -66,7 +81,7 @@ description: |
 
   ## Related endpoints
 
-  You can retrieve attachments that are associated with the referral using [[HYPERLINK_A006]]
+  You can retrieve attachments that are associated with the referral using [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]. Attachments can only be retrieved where the eRS-AvailabilityStatus-1 code returned is 'AVAILABLE'
 
   You can retrieve a clinical information summary for the referral using [[HYPERLINK_A007]]
 
@@ -91,6 +106,7 @@ description: |
   | `ReferralRequest` that was converted from an Advice and Guidance Request | `ubrn`=`000000070004`   |
   | `ReferralRequest` with related `ReferralRequest`                         | `ubrn`=`000000070005`   |
   | `ReferralRequest` with additional requirements listed                    | `ubrn`=`000000070011`   |
+  | `ReferralRequest` with attachments unavailable to download               | `ubrn`=`000000070012`   |   
 
 summary: Retrieve referral request (A005, FHIR STU3)
 operationId: a005-retrieve-referral-request

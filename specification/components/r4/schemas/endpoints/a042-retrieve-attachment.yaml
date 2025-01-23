@@ -1,0 +1,97 @@
+security:
+  - bearerAuth: []
+description: |
+  ## Overview
+  Use this endpoint to retrieve a file that is attached to a referral or advice request.
+
+  ## Supported security patterns
+  - Application-restricted, unattended access
+  - Healthcare worker, user-restricted access
+
+  ## Pre-requisites
+  ### Application-restricted, unattended access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+
+  ### Healthcare worker, user-restricted access
+  In order to use this endpoint you must be an authenticated e-RS user or application and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+
+  ### Attachment availability
+  To use this endpoint, the attachment must be available for download. Attachments are only available after successful validation and malware scans. A request to retrieve an attachment that is not available for download will result in a 400 error. See the Response HTTP 400 section for further information.
+  
+  The availability status of an attachment can be retrieved via any endpoint that provides details of an attachment in the success response. Details of the availability statuses that may be returned via these endpoints can be found in the specification for [[HYPERLINK_A005]].
+  
+  Prior to retrieving an attachment, you will need to have retrieved the referral or advice request the attachment is associated with (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]] endpoints, for example). Referrals and advice requests include resolvable URLs to the files currently attached to them, which can be used with this endpoint to retrieve the attachments themselves.
+  
+  ## Support for a temporary redirect
+  This endpoint makes use of a HTTP 307 temporary redirect. It redirects the caller to a temporary location from which the file contents can be downloaded directly.
+
+  The temporary location is only valid for a short period of time and should be used immediately. 
+
+  Callers of this endpoint must ensure they:
+    - follow this redirect to retrieve the file
+    - do not cache the temporary location
+    - generate a new redirect each time the file is downloaded
+
+  See the Response HTTP 307 section for further information.
+
+  ## Important notes
+  A referral pathway in e-RS can be made up of more than one UBRN. For example: a referral is booked and seen in a general knee clinical assessment service (UBRN #1), and the service decides to onward refer to a more specialist knee meniscus service (UBRN #2). This would result in two UBRNs for the referral pathway. There may be additional related UBRNs if there are multiple onward referrals.
+
+  As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. You can do this using the following endpoints:
+    - [[HYPERLINK_A006]]
+    - [[HYPERLINK_A007]]
+
+  Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
+
+  ## Use case 
+  As an authenticated user
+
+  I need to retrieve a clinical attachment associated with a referral or advice request
+
+  So that I can assess its content and decide what further action may be needed.
+
+  ## Related endpoints
+    - [[HYPERLINK_A005]] to retrieve details of a referral. This includes references to clinical attachments, related referrals and other important data.
+    - [[HYPERLINK_A024]] to retrieve the summary of an advice and guidance request. This endpoint provides important contextual information about the advice and guidance request (e.g. the service/specialty to which advice has been requested, etc).
+    - [[HYPERLINK_A025]] to retrieve the advice and guidance conversation between the referring organisation and service providing organisation.
+    - [[HYPERLINK_A007]] to generate a PDF file that summarises clinical information for a referral.
+
+  ## Sandbox test scenarios
+  The sandbox for this endpoint is a simple implementation that only supports success cases.
+
+  Inline with the behaviour described in "Support for a temporary redirect", the sandbox will return a HTTP 307 temporary redirect. For simplicity, the temporary location will be static and never expire, unlike the live environment.
+
+  A successful response will always be returned, provided the Binary ID is in a valid format. The Availability Status of a file is not considered in the sandbox and a file will always be available for retrieval.
+
+  Successful responses will always return the same example PDF file.
+
+summary: Retrieve attachment (A042, FHIR R4)
+operationId: a042-retrieve-attachment
+tags:
+  - Retrieve clinical information
+parameters:
+  - $ref: '../headers/request/BearerAuthorization.yaml'
+  - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/BusinessFunctionOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OdsCodeOnlyUserRestricted.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserIDOnlyUserRestricted.yaml'
+  - $ref: '../pathParameters/BinaryId.yaml'
+responses:
+  '307':
+    $ref: '../responses/retrieveAttachment/307Response.yaml'
+  '400':
+    $ref: '../responses/retrieveAttachment/400Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/ForbiddenOrNoLR.yaml'
+  '404':
+    $ref: '../responses/NotFound.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'

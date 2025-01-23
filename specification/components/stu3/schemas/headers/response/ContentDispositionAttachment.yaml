@@ -3,4 +3,4 @@ description: |
 required: true
 schema:
   type: string
-  example: 'attachment; filename="000000070000_Appointment_Confirmation_Summary_20210603121353"'
+  example: 'attachment; filename="000000070000_Appointment_Confirmation_Summary_20210603121353.pdf"'

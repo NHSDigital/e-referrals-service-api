@@ -106,6 +106,8 @@ responses:
   '500':
     $ref: '../responses/InternalServerError.yaml'
   '502':
-    $ref: '../responses/bookOrDeferAppointment/502Response.yaml'      
+    $ref: '../responses/bookOrDeferAppointment/502Response.yaml'
+  '503':
+    $ref: '../responses/ServiceUnavailable.yaml'
   '504':
     $ref: '../responses/bookOrDeferAppointment/504Response.yaml'

@@ -7,8 +7,12 @@
         <Response/>
     </PostFlow>
     <PreFlow name="PreFlow">
-        <Request/>
-        <Response></Response>
+        <Request>
+            <Step>
+                <Name>AssignMessage.AddBaseUrlHeader</Name>
+            </Step>
+        </Request>
+        <Response/>
     </PreFlow>
     <HTTPTargetConnection>{{ HOSTED_TARGET_CONNECTION }}</HTTPTargetConnection>
 </TargetEndpoint>

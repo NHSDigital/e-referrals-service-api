@@ -7,7 +7,7 @@ from pytest_check import check
 import pytest
 from tests import asserts
 
-from tests.data import Actor, RenamedHeader, UserAuthenticationLevel
+from tests.data import Actor, RenamedHeader
 from .utils import HttpMethod
 
 
@@ -152,11 +152,14 @@ class SandboxTest:
         endpoint_url: str,
         http_method: HttpMethod,
     ) -> Callable[[Actor, Dict[str, str], Dict[str, str]], Response]:
-        return lambda actor, params, headers={}: send_rest_request(
-            http_method,
-            endpoint_url.format(**params),
-            actor,
-            headers=headers,
+        return (
+            lambda actor, params, headers={}, allow_redirects=False: send_rest_request(
+                http_method,
+                endpoint_url.format(**params),
+                actor,
+                headers=headers,
+                allow_redirects=allow_redirects,
+            )
         )
 
     @pytest.fixture

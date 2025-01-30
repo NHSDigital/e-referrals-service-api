@@ -16,6 +16,11 @@ description: |
   ## Important notes
 
   The maximum number of services allowed on a given shortlist is 1.
+  
+  In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
+  The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code. 
+  
+  Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A024]], [[HYPERLINK_A025]] and [[HYPERLINK_A042]] specifications.
 
   ## Pre-requisites
   To use this endpoint, you must be an authenticated e-RS user and use one of the following e-RS roles:

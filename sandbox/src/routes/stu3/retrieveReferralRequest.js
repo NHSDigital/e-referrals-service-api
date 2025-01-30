@@ -1,10 +1,10 @@
 const mockResponseProvider = require('./services/mockResponseProvider')
-const businessFunctionValidator = require('../../services/businessFunctionValidator')
+const validationUtils = require('../common/validationUtils')
 
 function retrieveReferralRequest(request, h) {
   const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
-  const validationResult = businessFunctionValidator.validateBusinessFunction(request, h, allowedBusinessFunctions)
+  const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
   if (validationResult) {
     return validationResult
   }
@@ -14,7 +14,7 @@ function retrieveReferralRequest(request, h) {
     return h.file(responsePath, { etagMethod: false }).code(200).type("application/fhir+json").etag("5", { weak: true })
   }
 
-  return h.file('STU3-SandboxErrorOutcome.json').code(422);
+  return h.file('stu3/STU3-SandboxErrorOutcome.json').code(422);
 }
 
 module.exports = [

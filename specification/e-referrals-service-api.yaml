@@ -59,15 +59,15 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A028]]</li><li>[[HYPERLINK_A029]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker,<br/>user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access
 
     This access mode has been introduced to allow a Partner application which has been [registered with us](https://portal.developer.nhs.uk/create-a-developer-account) and [authenticated via signed JWT](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication) to interact with a subset of e-RS FHIR API endpoints in an unattended and read-only fashion.
     Application-restricted, unattended access should only be used when authenticating a human user (for example via smartcard) is not possible.
-    
-    Writing changes (such as Create Referral) are not supported via this access mode.
+
+    Write operations are currently only supported by [[HYPERLINK_A028]] for non-clinical use cases. You will be required to submit your use case for review when using this endpoint via application-restricted, unattended access.
 
     ##### Healthcare worker, user-restricted access
 
@@ -115,7 +115,6 @@ info:
     Please note that it can only be used:
 
     - when authenticating a human user is not possible
-    - for endpoints that offer read-only functionality
     - by 'Provider Organisations' or 'Referrer Organisations'
     - for accessing endpoints 
       - [[HYPERLINK_A004]]
@@ -125,6 +124,8 @@ info:
       - [[HYPERLINK_A008]]
       - [[HYPERLINK_A024]]
       - [[HYPERLINK_A025]]
+      - [[HYPERLINK_A028]]
+      - [[HYPERLINK_A029]]
       - [[HYPERLINK_A033]]
       - [[HYPERLINK_A035]]
       - [[HYPERLINK_A037]]
@@ -328,6 +329,9 @@ paths:
   /STU3/Binary/{attachmentLogicalID}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a006-retrieve-attachment.yaml'
+  /R4/Binary/{id}:
+    get:
+      $ref: 'components/r4/schemas/endpoints/a042-retrieve-attachment.yaml'
   /STU3/ReferralRequest/{ubrn}/$ers.generateCRI:
     post:
       $ref: 'components/stu3/schemas/endpoints/a007-retrieve-clinical-information.yaml'
@@ -425,7 +429,6 @@ paths:
   /R4/ServiceRequest:
     get:
       $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
-
 components:
   securitySchemes:
     bearerAuth:

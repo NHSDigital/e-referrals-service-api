@@ -1,0 +1,19 @@
+title: Extension-eRS-AttachedBy
+description: Extension to indicate the individual who attached a file within e-RS.
+type: object
+required:
+  - url
+  - valueReference
+properties:
+  url:
+    type: string
+    enum:
+      - 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1'
+    example: 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1'
+  valueReference:
+    type: object
+    required: 
+      - identifier
+    properties:
+      identifier:
+        $ref: ../identifiers/STU3_UserId.yaml

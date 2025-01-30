@@ -1,4 +1,4 @@
-
+const validationUtils = require('../../common/validationUtils')
 const fs = require('fs')
 const lodash = require('lodash')
 
@@ -166,61 +166,50 @@ module.exports = {
 
   getExampleResponseForRetrieveAttachment: function (request) {
 
-    const attachmentId = request.params.attachmentLogicalID
+    const attachmentId = request.params.attachmentLogicalID;
 
     if (attachmentId) {
-      
-      if (attachmentId.startsWith('att-')) {
-        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+
+      if (validationUtils.hasLegacyPrefix(attachmentId)) {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 };
       }
-      
-      if (attachmentId === 'c5d2d200-7613-4a69-9c5f-1bb68e04b8d8') {
-        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 }
+
+      if (validationUtils.isValidUuid(attachmentId)) {
+        return { responsePath: 'stu3/retrieveAttachment/responses/example_attachment.pdf', filename: 'example_attachment.pdf', responseCode: 200 };
       }
     }
 
+    return {};
   },
 
   getExampleResponseForRetrieveReferralRequest: function (request) {
     const ubrn = request.params.ubrn;
     const version = request.params.version
 
-    // Scenario 1 - Unbooked ReferralRequest
-    if (ubrn === '000000070000' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/Unbooked.json', responseCode: 200 }
+    if (version === undefined || version === '5') {
+        var json = {
+          // Scenario 1 - Unbooked ReferralRequest
+          '000000070000': 'stu3/retrieveReferralRequest/responses/Unbooked.json',
+          // Scenario 2 - ReferralRequest booked to directly-bookable service
+          '000000070001': 'stu3/retrieveReferralRequest/responses/BookedDBS.json',
+          // Scenario 3 - ReferralRequest booked to indirectly-bookable service
+          '000000070002': 'stu3/retrieveReferralRequest/responses/BookedIBS.json',
+          // Scenario 4 -	ReferralRequest deferred to service provider for booking
+          '000000070003': 'stu3/retrieveReferralRequest/responses/DeferredToProvider.json',
+          // Scenario 5 -	ReferralRequest that was converted from an Advice and Guidance Request
+          '000000070004': 'stu3/retrieveReferralRequest/responses/ConvertedFromAdviceAndGuidance.json',
+          // Scenario 6 -	ReferralRequest with related ReferralRequest
+          '000000070005': 'stu3/retrieveReferralRequest/responses/WithRelatedReferral.json',
+          // Scenario7 - ReferralRequest with additional requirements
+          '000000070011': 'stu3/retrieveReferralRequest/responses/WithAdditionalRequirements.json',
+          // Scenario 8 - ReferralRequest with attachments unavailable to download
+          '000000070012': 'stu3/retrieveReferralRequest/responses/WithUnavailableAttachments.json'
+        }[ubrn];
+        if (json) {
+          return {responsePath: json, responseCode: 200 };
+        }
     }
-
-    // Scenario 2 - ReferralRequest booked to directly-bookable service
-    if (ubrn === '000000070001' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/BookedDBS.json', responseCode: 200 }
-    }
-
-    // Scenario 3 - ReferralRequest booked to indirectly-bookable service
-    if (ubrn === '000000070002' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/BookedIBS.json', responseCode: 200 }
-    }
-
-    // Scenario 4 -	ReferralRequest deferred to service provider for booking
-    if (ubrn === '000000070003' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/DeferredToProvider.json', responseCode: 200 }
-    }
-
-    // Scenario 5 -	ReferralRequest that was converted from an Advice and Guidance Request
-    if (ubrn === '000000070004' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/ConvertedFromAdviceAndGuidance.json', responseCode: 200 }
-    }
-
-    // Scenario 6 -	ReferralRequest with related ReferralRequest
-    if (ubrn === '000000070005' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/WithRelatedReferral.json', responseCode: 200 }
-    }
-
-    // Scenario 7 - ReferralRequest with additional requirements
-    if (ubrn === '000000070011' && (!version || version === '5')) {
-      return { responsePath: 'stu3/retrieveReferralRequest/responses/WithAdditionalRequirements.json', responseCode: 200 }
-    }
-
-    return {}
+    return {};
   },
 
   getExampleResponseForMaintainReferralLetter: function (request) {
@@ -241,7 +230,7 @@ module.exports = {
       return mapExampleResponse(request, responseMap)
     }
 
-    return {}
+    return {};
 
   },
 
@@ -276,7 +265,7 @@ module.exports = {
 
   getExampleResponseForRetrieveAdviceAndGuidanceOverviewPdf: function () {
     return { responsePath: 'stu3/retrieveAdviceAndGuidanceOverviewPdf/responses/000049146177_Advice_And_Guidance_20220610143044.pdf', filename: '000049146177_Advice_And_Guidance_20220610143044.pdf', responseCode: 200 }
-  },                      
+  },
 
   getExampleResponseForRetrieveWorklist: function (request) {
     var responseMap = {
@@ -307,50 +296,50 @@ module.exports = {
 
   getResponseForRetrieveAdviceAndGuidanceRequest: function (request) {
     const ubrn = request.params.ubrn;
-    const version = request.params.version
+    const version = request.params.version;
 
-    // Scenario 1 - Minimum example
-    if (ubrn === '000000070000' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json', responseCode: 200 }
+    if (version === undefined || version === '5') {
+      var json = {
+        // Scenario 1 - Minimum example
+        '000000070000': 'stu3/retrieveAdviceAndGuidanceRequest/responses/MinimalExample.json',
+        // Scenario 2 - With attachment file reference
+        '000000070001': 'stu3/retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json',
+        // Scenario 3 - With attachements unavailable to download
+        '000000070002': 'stu3/retrieveAdviceAndGuidanceRequest/responses/WithUnavailableAttachments.json'
+      }[ubrn];
+      if (json) {
+        return { responsePath: json, responseCode: 200 };
+      }
     }
 
-    // Scenario 2 - With attachment file reference
-    if (ubrn === '000000070001' && (version === undefined || version === '5')) {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceRequest/responses/WithAttachmentFileReference.json', responseCode: 200 }
-    }
-
-    return {}
+    return {};
   },
 
   getResponseForRetrieveAdviceAndGuidanceConversation: function (request) {
-    const basedOn = request.query["based-on"]
+    const basedOn = request.query["based-on"];
 
-    // Scenario 1 - Single message from referrer
-    if (basedOn === 'CommunicationRequest/000000070000/_history/1') {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/SingleMessageFromReferrer.json', responseCode: 200, version: 1 }
-    }
+    const json = {
+      // Scenario 1 - Single message from referrer
+      'CommunicationRequest/000000070000/_history/1':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/SingleMessageFromReferrer.json', responseCode: 200, version: 1 },
+      // Scenario 2 - One message each way
+      'CommunicationRequest/000000070000/_history/2':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/OneMessageEachWay.json', responseCode: 200, version: 2 },
+      // Scenario 3 - Attachment present in each direction
+      'CommunicationRequest/000000070001/_history/6':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/AttachmentPresentInEachDirection.json', responseCode: 200, version: 6 },
+      // Scenario 4 -	Multi-way conversation
+      'CommunicationRequest/000000070002/_history/1':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/MultiWayConversation.json', responseCode: 200, version: 6 },
+      // Scenario 5 -	Attachment uploaded from RCS before A&G creation
+      'CommunicationRequest/000000070003/_history/7':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/AttachmentUploadedFromRCS.json', responseCode: 200, version: 7 },
+      // Scenario 6 - Attachment files unavailable for download
+        'CommunicationRequest/000000070004/_history/3':
+        { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/UnavailableAttachments.json', responseCode: 200, version: 3 }
+    }[basedOn];
 
-    // Scenario 2 - One message each way
-    if (basedOn === 'CommunicationRequest/000000070000/_history/2') {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/OneMessageEachWay.json', responseCode: 200, version: 2 }
-    }
-
-    // Scenario 3 - Attachment present in each direction
-    if (basedOn === 'CommunicationRequest/000000070001/_history/6') {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/AttachmentPresentInEachDirection.json', responseCode: 200, version: 6 }
-    }
-
-    // Scenario 4 -	Multi-way conversation
-    if (basedOn === 'CommunicationRequest/000000070002/_history/1') {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/MultiWayConversation.json', responseCode: 200, version: 6 }
-    }
-
-    // Scenario 5 -	Attachment uploaded from RCS before A&G creation
-    if (basedOn === 'CommunicationRequest/000000070003/_history/7') {
-      return { responsePath: 'stu3/retrieveAdviceAndGuidanceConversation/AttachmentUploadedFromRCS.json', responseCode: 200, version: 7 }
-    }
-
-    return {}
+    return json || {};
   },
 
   getResponseForSendAdviceAndGuidanceResponse: function (request) {
@@ -395,7 +384,8 @@ module.exports = {
     if (ubrn === '000000070000') {
       return { responsePath: 'stu3/acceptReferral/responses/ExampleResponse.json', responseCode: 200 }
     }
-    return {}
+
+    return {};
 
   },
 
@@ -409,7 +399,7 @@ module.exports = {
       'src/mocks/stu3/cancelReferral/requests/IntendPrivateWithComment.json': 'stu3/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
     }
 
-    return mapExampleResponse(request, responseMap)
+    return mapExampleResponse(request, responseMap);
   },
 
   getResponseForRejectReferral: function (request) {
@@ -474,7 +464,8 @@ module.exports = {
     var responseMap = {
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferral.json': 'stu3/changeShortlist/responses/UnbookedReferral.json',
       'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMultipleServices.json': 'stu3/changeShortlist/responses/UnbookedReferralMultipleServices.json',
-      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json'
+      'src/mocks/stu3/changeShortlist/requests/UnbookedReferralMixedShortlist.json': 'stu3/changeShortlist/responses/UnbookedReferralMixedShortlist.json',
+      'src/mocks/stu3/changeShortlist/requests/NonMixedShortlistWithDocument.json': 'stu3/changeShortlist/responses/NonMixedShortlistWithDocument.json'
     }
 
     return mapExampleResponse(request, responseMap)
@@ -485,7 +476,7 @@ module.exports = {
         'src/mocks/stu3/changeShortlistAndSendForTriage/requests/MinimalRequest.json': 'stu3/changeShortlistAndSendForTriage/responses/MinimalRequest.json'
       }
 
-      return mapExampleResponse(request, responseMap)
+      return mapExampleResponse(request, responseMap);
   },
 
   getExampleResponseForRetrieveAppointment: function (request) {

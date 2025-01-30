@@ -18,6 +18,7 @@ lint: copy-examples
 	cd sandbox && make lint
 	poetry run python scripts/xml_validator.py
 	poetry run flake8 **/*.py
+	poetry check
 	@printf "\nLinting passed.\n\n"
 
 clean:

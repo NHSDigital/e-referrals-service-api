@@ -1,0 +1,20 @@
+description: |
+  Where status code 504 (Gateway Timeout) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  In response to receiving this status code, it is recommended that clients retry at a later time.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                                    |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+  | REC_GATEWAY_TIMEOUT       | timeout    | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | A request to an internal component timed out whilst attempting to serve a response.            |
+headers:
+  X-Correlation-ID:
+    $ref: '../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/NHSDigital-OperationOutcome-504.json'

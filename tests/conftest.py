@@ -168,6 +168,41 @@ def update_user_restricted_product(
 
 
 @pytest.fixture
+def delete_user_restricted_app_attr(
+    user_restricted_app, client: ApigeeClient
+) -> Callable[[Collection[str]], Generator[Dict[str, str], None, None]]:
+    @contextmanager
+    def _update_function(attr):
+        app_api = DeveloperAppsAPI(client=client)
+        app = app_api.get_app_by_name(
+            email="apm-testing-internal-dev@nhs.net",
+            app_name=user_restricted_app["name"],
+        )
+
+        warnings.warn(f"Existing app = {app}")
+
+        existing_attributes = app_api.get_app_attributes(
+            email="apm-testing-internal-dev@nhs.net", app_name=app["name"]
+        )
+
+        yield app_api.delete_app_attribute_by_name(
+            email="apm-testing-internal-dev@nhs.net",
+            app_name=app["name"],
+            attribute_name=attr,
+        )
+
+        # reset the product once the context manager has been closed.
+
+        app_api.post_app_attributes(
+            email="apm-testing-internal-dev@nhs.net",
+            app_name=app["name"],
+            body=existing_attributes,
+        )
+
+    return _update_function
+
+
+@pytest.fixture
 def make_product(client, environment, service_name):
     async def _make_product(product_scopes):
         product = ApiProductsAPI(client=client)

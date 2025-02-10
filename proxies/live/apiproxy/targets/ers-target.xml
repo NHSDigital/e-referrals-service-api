@@ -15,7 +15,7 @@
                 <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
             </Step>
             <Step>
-                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
             </Step>
             <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = true)</Condition>
         </FaultRule>
@@ -43,7 +43,7 @@
                 <Condition>aalError != true</Condition>
             </Step>
             <Step>
-                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
                 <Condition>aalError = true</Condition>
             </Step>
             <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = false)</Condition>
@@ -85,9 +85,26 @@
                 <Name>AssignMessage.SetOperationOutcomeIssueIal</Name>
             </Step>
             <Step>
-                <Name>AssignMessage.AuthenticationOperationOutcomeErrorResponse</Name>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
             </Step>
             <Condition>(raisefault.RaiseFault.401InsufficientIal.failed = true)</Condition>
+        </FaultRule>
+        <FaultRule name="missing_asid">
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeMissingAsid</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.MissingAsid.failed = true)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
@@ -100,6 +117,10 @@
             </Step>
             <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>RaiseFault.MissingAsid</Name>
+                <Condition>(app.asid == null)</Condition>
             </Step>
             <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>

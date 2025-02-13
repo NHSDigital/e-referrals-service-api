@@ -1205,17 +1205,21 @@ testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
 
 [[package]]
 name = "pytest-check"
-version = "2.4.1"
+version = "2.5.0"
 description = "A pytest plugin that allows multiple failures per test."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pytest_check-2.4.1-py3-none-any.whl", hash = "sha256:74f38938183880d9921aeb85662437d2b13e1e053e1bed7d186d54613d3068c7"},
-    {file = "pytest_check-2.4.1.tar.gz", hash = "sha256:5224efcef059bf7f0cda253f8d0f62704b4819ff48c93f51c675aea6a014f650"},
+    {file = "pytest_check-2.5.0-py3-none-any.whl", hash = "sha256:5c90dfe92e5e5870b34c1ed7a648aef5c2dfb2273acfba77f35ca648219a33f3"},
+    {file = "pytest_check-2.5.0.tar.gz", hash = "sha256:3a6be8431c7720287958436d97a6b823eed5ae5ceb7da5572a0e4a9462feaf88"},
 ]
 
 [package.dependencies]
 pytest = ">=7.0.0"
+typing-extensions = {version = ">=4.12.2,<5", markers = "python_version < \"3.11\""}
+
+[package.extras]
+dev = ["build", "tox", "tox-uv"]
 
 [[package]]
 name = "pytest-nhsd-apim"
@@ -1636,4 +1640,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "7f115ccf5de1dc9f4752c7633faf13c5146bb89bd2894bfdc6c12cc7e7d41efe"
+content-hash = "12fbe8ba56e775b7f46c9363d699f51acd85a1d861372199f3602bf7e106b83a"

@@ -144,7 +144,7 @@ requestBody:
         filtered-by-service:
           summary: Filter by service
           value:
-            $ref: '../../examples/retrieveWorklist/requests/FilteredByService.json'
+            $ref: '../../examples/retrieveWorklist/requests/FilteringByService.json'
         rejected-triage-responses:
           summary: Rejected Triage Responses
           value:

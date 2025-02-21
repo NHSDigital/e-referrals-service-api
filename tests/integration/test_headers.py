@@ -517,3 +517,61 @@ class TestHeaders:
 
         for renamed_header in RenamedHeader:
             assert renamed_header.renamed not in client_response_headers
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize("user", [Actor.RC, Actor.AAL2_USER])
+    async def test_headers_on_echo_target_no_asid(
+        self,
+        authenticate_user,
+        service_url,
+        delete_user_restricted_app_attr,
+        user: Actor,
+    ):
+        with delete_user_restricted_app_attr("asid"):
+
+            access_code = await authenticate_user(user)
+
+            client_request_headers = {
+                _HEADER_ECHO: "",  # enable echo target
+                _HEADER_AUTHORIZATION: "Bearer " + access_code,
+                _HEADER_REQUEST_ID: "DUMMY-VALUE",
+                RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+                RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+                RenamedHeader.BUSINESS_FUNCTION.original: user.business_function,
+                RenamedHeader.ODS_CODE.original: user.org_code,
+                RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
+                RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+                RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+            }
+
+            # Make the API call
+            response = requests.get(service_url, headers=client_request_headers)
+            # Verify the status
+            assert (
+                response.status_code == 403
+            ), "Expected a 403 when accessing the api but got " + str(
+                response.status_code
+            )
+
+            response_data = response.json()
+            assert response_data["resourceType"] == "OperationOutcome"
+            assert response_data["meta"]["lastUpdated"] is not None
+            assert (
+                response_data["meta"]["profile"][0]
+                == "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+            )
+            assert len(response_data["issue"]) == 1
+            issue = response_data["issue"][0]
+            assert issue["severity"] == "error"
+            assert issue["code"] == "forbidden"
+            assert (
+                issue["diagnostics"]
+                == "We couldn't get an ASID from the configured app"
+            )
+            assert len(issue["details"]["coding"]) == 1
+            issue_details = issue["details"]["coding"][0]
+            assert (
+                issue_details["system"]
+                == "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1"
+            )
+            assert issue_details["code"] == "NO_ACCESS"

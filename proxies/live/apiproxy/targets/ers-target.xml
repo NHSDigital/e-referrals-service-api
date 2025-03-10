@@ -120,7 +120,7 @@
             </Step>
             <Step>
                 <Name>RaiseFault.MissingAsid</Name>
-                <Condition>(app.asid == null)</Condition>
+                <Condition>(app.asid == null) Or (app.asid == "")</Condition>
             </Step>
             <Step>
                 <Name>AssignMessage.PopulateAsidFromApp</Name>

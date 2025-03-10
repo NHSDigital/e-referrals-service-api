@@ -5,7 +5,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>faultstring</Name>
-        <Value>We couldn't get an ASID from the configured app</Value>
+        <Value>ASID is not configured in the application</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>status_code</Name>

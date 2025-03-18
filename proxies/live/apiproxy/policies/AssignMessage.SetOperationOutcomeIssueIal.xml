@@ -1,5 +1,9 @@
 <AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeIssueIal">
     <AssignVariable>
+        <Name>status_code</Name>
+        <Value>401</Value>
+    </AssignVariable>
+    <AssignVariable>
         <Name>op_outcome_issue_code</Name>
         <Value>forbidden</Value>
     </AssignVariable>

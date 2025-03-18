@@ -1,0 +1,14 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeMissingAsid">
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>forbidden</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>ASID is not configured in the application</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>status_code</Name>
+        <Value>403</Value>
+    </AssignVariable>
+</AssignMessage>

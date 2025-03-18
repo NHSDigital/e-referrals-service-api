@@ -4,7 +4,7 @@ description: |
   
   | issue.details.coding.code | issue.code       | Coding System                                                                 | Description                                                                                                                                                                              |
   | ------------------------- | ---------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | ACCESS_DENIED             | login            | [APIM Error Code](https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode) | The request could not be authenticated due to either no credentials being provided or the provided credentials no longer being valid. Callers receiving this code should reauthenticate. |
+  | ACCESS_DENIED             | <ul><li>login</li><li>forbidden</li></ul> | [APIM Error Code](https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode) | The request could not be authenticated due to either no credentials being provided or the provided credentials no longer being valid. Callers receiving this code should reauthenticate. |
 headers:
   X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'

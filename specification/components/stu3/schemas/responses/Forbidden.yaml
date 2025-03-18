@@ -2,9 +2,10 @@ description: |
   Where status code 403 (Forbidden) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below.
   Check diagnostics property for specific information regarding the error.
   
-  | Error code                         | Description                                                                                                                 |
-  | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-  | FORBIDDEN                          | Access Forbidden.                                                               |
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                        |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+  | FORBIDDEN                 | forbidden  | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes)   | A call attempts to access or operate upon a resource without proper authorisation. |
+  | NO_ACCESS                 | forbidden  | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes)   | The request could not be authenticated due to insufficient credentials being provided. |
 headers:
   X-Correlation-ID:
     $ref: '../headers/response/CorrelationID.yaml'

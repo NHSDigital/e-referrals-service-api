@@ -30,7 +30,7 @@ lxml = "^4.9.4"
 xmlformatter = "^0.2.8"
 pytest-check = "^2.5.1"
 requests = "^2.32.3"
-openapi-core = "^0.19.4"
+openapi-core = "^0.19.5"
 
 
 [tool.poetry.group.dev.dependencies]

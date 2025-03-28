@@ -163,5 +163,7 @@ responses:
     $ref: '../responses/InternalServerError.yaml'
   '502':
     $ref: '../responses/cancelReferral/502Response.yaml'
+  '503':
+    $ref: '../responses/ServiceUnavailable.yaml'
   '504':
     $ref: '../responses/cancelReferral/504Response.yaml'

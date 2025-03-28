@@ -112,5 +112,7 @@ responses:
     $ref: '../responses/InternalServerError.yaml'
   '502':
     $ref: '../responses/updateAppointment/502Response.yaml'
+  '503':
+    $ref: '../responses/ServiceUnavailable.yaml'
   '504':
     $ref: '../responses/updateAppointment/504Response.yaml'

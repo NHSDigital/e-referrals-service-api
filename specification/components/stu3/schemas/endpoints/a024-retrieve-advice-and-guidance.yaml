@@ -109,3 +109,5 @@ responses:
     $ref: '../responses/TooManyRequests.yaml'
   '500':
     $ref: '../responses/InternalServerError.yaml'
+  '503':
+    $ref: '../responses/ServiceUnavailable.yaml'

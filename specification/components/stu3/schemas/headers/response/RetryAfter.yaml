@@ -1,0 +1,6 @@
+description: |
+  Defines a period (in seconds) after which the client should attempt their request again.
+required: false
+schema:
+  type: string
+  example: '120'

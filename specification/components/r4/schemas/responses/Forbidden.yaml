@@ -5,6 +5,7 @@ description: |
   | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                        |
   | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
   | REC_FORBIDDEN             | forbidden  | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | A call attempts to access or operate upon a resource without proper authorisation. |
+  | ACCESS_DENIED             | forbidden  | [APIM Error Code](https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode) | The request could not be authenticated due to insufficient credentials being provided. |
 
 headers:
   X-Correlation-ID:

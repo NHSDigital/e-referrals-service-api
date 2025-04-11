@@ -22,14 +22,14 @@ tests-mypy = ["mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" a
 
 [[package]]
 name = "authlib"
-version = "1.5.1"
+version = "1.5.2"
 description = "The ultimate Python library in building OAuth and OpenID Connect servers and clients."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "authlib-1.5.1-py2.py3-none-any.whl", hash = "sha256:8408861cbd9b4ea2ff759b00b6f02fd7d81ac5a56d0b2b22c08606c6049aae11"},
-    {file = "authlib-1.5.1.tar.gz", hash = "sha256:5cbc85ecb0667312c1cdc2f9095680bb735883b123fb509fde1e65b1c5df972e"},
+    {file = "authlib-1.5.2-py2.py3-none-any.whl", hash = "sha256:8804dd4402ac5e4a0435ac49e0b6e19e395357cfa632a3f624dcb4f6df13b4b1"},
+    {file = "authlib-1.5.2.tar.gz", hash = "sha256:fe85ec7e50c5f86f1e2603518bb3b4f632985eb4a355e52256530790e326c512"},
 ]
 
 [package.dependencies]
@@ -1174,14 +1174,14 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pyflakes"
-version = "3.3.1"
+version = "3.3.2"
 description = "passive checker of Python programs"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "pyflakes-3.3.1-py2.py3-none-any.whl", hash = "sha256:af4d63344d478524956e9950a9ae11da51414622479b8c148647fe9722e96837"},
-    {file = "pyflakes-3.3.1.tar.gz", hash = "sha256:8752eee11d4ef3a4be642d774863047864b47406cba906fabf8dd892cf98d5b3"},
+    {file = "pyflakes-3.3.2-py2.py3-none-any.whl", hash = "sha256:5039c8339cbb1944045f4ee5466908906180f13cc99cc9949348d10f82a5c32a"},
+    {file = "pyflakes-3.3.2.tar.gz", hash = "sha256:6dfd61d87b97fba5dcfaaf781171ac16be16453be6d816147989e7f6e6a9576b"},
 ]
 
 [[package]]
@@ -1261,14 +1261,14 @@ testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
 
 [[package]]
 name = "pytest-check"
-version = "2.5.1"
+version = "2.5.3"
 description = "A pytest plugin that allows multiple failures per test."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pytest_check-2.5.1-py3-none-any.whl", hash = "sha256:b61daca3883c60aa5db47b7dcf3a196ba1ba866abb19866d16a8c0722d49440b"},
-    {file = "pytest_check-2.5.1.tar.gz", hash = "sha256:b47c531eb9c6ea62c6456d88dacf0b7f12ec6bde519bb5ef854af10f37ba1140"},
+    {file = "pytest_check-2.5.3-py3-none-any.whl", hash = "sha256:354685dfa63e714a20aa62b61c4d30d5acfa30891319df9046f59af653c3b9ba"},
+    {file = "pytest_check-2.5.3.tar.gz", hash = "sha256:2357d7df77c395d30c0c4957724fdfce1a75ea8bc9eb2308c0ffe56f62ac70ca"},
 ]
 
 [package.dependencies]
@@ -1638,14 +1638,14 @@ markers = {main = "python_version < \"3.11\""}
 
 [[package]]
 name = "typing-extensions"
-version = "4.12.2"
+version = "4.13.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 groups = ["main", "dev"]
 files = [
-    {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
-    {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
+    {file = "typing_extensions-4.13.2-py3-none-any.whl", hash = "sha256:a439e7c04b49fec3e5d3e2beaa21755cadbbdc391694e28ccdd36ca4a1408f8c"},
+    {file = "typing_extensions-4.13.2.tar.gz", hash = "sha256:e6c81219bd689f51865d9e372991c540bda33a0379d5573cddb9a3a23f7caaef"},
 ]
 
 [[package]]
@@ -1726,4 +1726,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "c4c04bdc6b433cdf1cc5ed5ae23cca00f46ea482830376f27754af3de5e6e301"
+content-hash = "dca832dc29aa69ee9519181140231cbccc9194e9e69f9b3f6f8db2f8678de594"

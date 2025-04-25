@@ -1,6 +1,7 @@
 description: |
   Where status code 504 (Gateway Timeout) is returned then an eRS-OperationOutcome-1 will be included in the body. 
   Check diagnostics property for specific information regarding the error.
+  In response to receiving this status code, it is recommended that clients retry at a later time.
 
   | Error code                         | Description                                                                                                                  |
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |

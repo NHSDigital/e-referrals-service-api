@@ -1,1 +1,20 @@
-description: Unauthorized
+description: |
+  Where status code 401 (Unauthorised) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                        |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+  | NO_ACCESS                 | <ul><li>login</li><li>forbidden</li></ul>  | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes)   | The request could not be authenticated due to either no credentials being provided or the provided credentials no longer being valid. Callers receiving this code should reauthenticate. |
+headers:
+  X-Correlation-ID:
+    $ref: '../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../STU3-OperationOutcome.yaml'
+    example:
+      $ref: '../../examples/STU3-Unauthorised.json'

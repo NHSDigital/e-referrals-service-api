@@ -317,7 +317,7 @@ def make_app(client):
 
 @pytest.fixture
 def authenticate_user(client, user_restricted_app, environment, oauth_url):
-    async def _auth(actor: Actor):
+    async def _auth(actor: Actor, aal: str = "aal3"):
         print(f"Attempting to authenticate: {actor}")
 
         credentials = user_restricted_app["credentials"][0]
@@ -328,7 +328,7 @@ def authenticate_user(client, user_restricted_app, environment, oauth_url):
             client_id=credentials["consumerKey"],
             client_secret=credentials["consumerSecret"],
             scope="nhs-cis2",
-            login_form={"username": actor.user_id},
+            login_form={"username": actor.user_id, "level": aal},
             callback_url=user_restricted_app["callbackUrl"],
         )
         # 2. Pass the config to the Authenticator

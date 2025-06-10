@@ -36,23 +36,6 @@ extends:
     python_version: ${{ variables.python_version }}
     apigee_deployments:
       - environment: manual-approval
-        stage_name: manual_approval_alpha_pr
-      - environment: internal-dev
-        service_name: ${{ variables.service_name }}-alpha
-        short_service_name: ${{ variables.short_service_name }}-alpha
-        service_base_path: ${{ variables.service_base_path }}-alpha
-        stage_name: ers_alpha_pr
-        jinja_templates:
-          ERS_TARGET_SERVER: e-referrals-service-api--alpha
-          ALLOW_ECHO_TARGET: true
-        post_deploy:
-        - template: templates/run-tests.yml
-          parameters:
-            integration_tests: true
-            smoke_tests: true
-        depends_on:
-        - manual_approval_alpha_pr
-      - environment: manual-approval
         stage_name: manual_approval_ft01_pr
       - environment: internal-dev
         service_name: ${{ variables.service_name }}-fti

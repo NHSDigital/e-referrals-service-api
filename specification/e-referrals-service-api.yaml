@@ -226,7 +226,6 @@ info:
     | Environment       | Base URL                                                               |
     | ----------------- | ---------------------------------------------------------------------- |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/referrals/FHIR` |
-    | Alpha             | See Alpha testing section below |
     | Integration test  | `https://int.api.service.nhs.uk/referrals/FHIR` |
     | Production        | `https://api.service.nhs.uk/referrals/FHIR` |
 
@@ -241,13 +240,6 @@ info:
     Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
 
     The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
-
-    ### Alpha testing
-
-    Our [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) environment:
-    -	is available for early developer testing of future functionality  
-    -	may experience breaking changes or downtime without advance notice, but only if we cannot avoid it
-    - can be accessed by contacting [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
 
     ### Integration testing
 

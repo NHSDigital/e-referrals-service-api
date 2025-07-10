@@ -28,13 +28,13 @@ properties:
     type: array
     description: |
       
-      | Field                             | Cardinality | Notes                                      |
-      | --------------------------------- | ----------- | ------------------------------------------ |
-      | `guidanceOutcome`                 | `1..1`      |                                            |
+      | Field                             | Cardinality | Notes                                                                                |
+      | --------------------------------- | ----------- | ------------------------------------------------------------------------------------ |
+      | `guidanceOutcome`                 | `1..1`      |                                                                                      |
       | `guidanceIntendedRecommendation`  | `0..1`      | Conditionally Mandatory if guidanceOutcome value is `RETURN_TO_REFERRER_WITH_ADVICE` |
-      | `guidance`                        | `1..1`      |                                            |
-      | `updatedPriority`                 | `1..1`      |                                            | 
-      | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text | 
+      | `guidance`                        | `1..1`      | Mandatory guidance response. Maximum 8000 characters.                                |
+      | `updatedPriority`                 | `1..1`      |                                                                                      | 
+      | `guidanceAttachmentFile`          | `0..*`      | Property defining files to be included with the supplied `guidance` text             | 
     items:
       anyOf:
         - title: guidanceOutcome

@@ -1,0 +1,18 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListR4">
+    <AssignVariable>
+        <Name>status_code</Name>
+        <Value>403</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>security</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>Unauthorised ODS code provided in NHSD-End-User-Organisation-ODS header</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_code</Name>
+        <Value>ACCESS_DENIED</Value>
+    </AssignVariable>
+</AssignMessage>

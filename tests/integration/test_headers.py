@@ -32,7 +32,11 @@ class TestHeaders:
     @pytest.mark.asyncio
     @pytest.mark.parametrize("user", [Actor.RC, Actor.AAL2_USER])
     async def test_headers_on_echo_target(
-        self, authenticate_user, service_url, user: Actor, asid
+        self,
+        authenticate_user,
+        service_url,
+        user: Actor,
+        asid,
     ):
         access_code = await authenticate_user(user)
 
@@ -475,7 +479,7 @@ class TestHeaders:
             assert renamed_header.renamed not in client_response_headers
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize("service_name", [(None)])
+    @pytest.mark.parametrize("service_name", [None])
     async def test_access_code_not_supported(
         self, referring_clinician, authenticate_user, service_url
     ):

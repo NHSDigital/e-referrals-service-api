@@ -106,6 +106,69 @@
             </Step>
             <Condition>(raisefault.RaiseFault.MissingAsid.failed = true)</Condition>
         </FaultRule>
+        <FaultRule name="ods_header_not_in_partner_list_error">
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListPreR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 403)</Condition>
+        </FaultRule>
+        <FaultRule name="ods_header_missing_error">
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeODSHeaderMissingPreR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeODSHeaderMissingR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 400)</Condition>
+        </FaultRule>
+        <FaultRule name="euo_allowlist_internal_error">
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.InternalServerError</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeServiceError</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 500)</Condition>
+        </FaultRule>
     </FaultRules>
     <PreFlow>
         <Request>
@@ -117,6 +180,15 @@
             </Step>
             <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
+            </Step>
+            <!-- https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-86126 Single ASID Per Connecting Party. Only for user-restricted, excludes Practitioner Role endpoint which should be accessible without -->
+            <Step>
+                <Name>FlowCallout.ExtendedAttributes</Name>
+                <Condition>(accesstoken.auth_type == "user") and (proxy.pathsuffix != "/FHIR/R4/PractitionerRole")</Condition>
+            </Step>
+            <Step>
+                <Name>FlowCallout.EUOAllowlistVerify</Name>
+                <Condition>(accesstoken.auth_type == "user") and (proxy.pathsuffix != "/FHIR/R4/PractitionerRole")</Condition>
             </Step>
             <Step>
                 <Name>RaiseFault.MissingAsid</Name>
@@ -157,29 +229,29 @@
             <Request><!--AUTHORISED_APPLICATION business function is not supported in user restricted flow --><Step>
                     <Name>RaiseFault.403Forbidden</Name>
                     <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Set.x-ers-user-id-header-user-restricted</Name>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
                     <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
                     <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
                     <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
                     <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
                     <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
                     <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
-                </Step> <Step>
+                </Step><Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-authentication-assurance-level-header</Name>
@@ -187,17 +259,17 @@
                     <Name>AssignMessage.Set.x-ers-amr-header</Name>
                 </Step><Step>
                     <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Condition>(request.header.x-ers-id-assurance-level LesserThan 3)</Condition>
                     <Name>RaiseFault.401InsufficientIal</Name>
                 </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
-                </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
+                </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %}<Step>
                     <Name>AssignMessage.SetTruststore</Name>
                     <!--Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
                     <Condition>(isEchoCall != true )</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>

@@ -16,23 +16,31 @@ APIGEE_ENVIRONMENTS:
   variants:
   - name: rc-internal-dev
     display_name: Internal Development - rc
+    euo_allowlist_required: false
   - name: fix-internal-dev
     display_name: Internal Development - fix
+    euo_allowlist_required: false
   - name: fti-internal-dev
     display_name: Internal Development - ft01
+    euo_allowlist_required: false
   - name: ftiv-internal-dev
     display_name: Internal Development - ft04
+    euo_allowlist_required: false
   - name: ftv-internal-dev
     display_name: Internal Development - ft05
+    euo_allowlist_required: false
   - name: ftix-internal-dev
     display_name: Internal Development - ft09
+    euo_allowlist_required: false
   - name: ftxxii-internal-dev
     display_name: Internal Development - ft22
+    euo_allowlist_required: false
 
 - name: internal-dev-sandbox
   variants:
     - name: internal-dev-sandbox
       display_name: Internal Development Sandbox
+      euo_allowlist_required: false
 
 - name: int
   additional_proxies:
@@ -41,6 +49,7 @@ APIGEE_ENVIRONMENTS:
   variants:
     - name: int
       display_name: Integration Testing
+      euo_allowlist_required: false
 
 - name: internal-qa
   additional_proxies:
@@ -49,16 +58,19 @@ APIGEE_ENVIRONMENTS:
   variants:
     - name: internal-qa
       display_name: Internal QA
+      euo_allowlist_required: false
 
 - name: internal-qa-sandbox
   variants:
     - name: internal-qa-sandbox
       display_name: Internal QA Sandbox
+      euo_allowlist_required: false
 
 - name: sandbox
   variants:
     - name: sandbox
       display_name: Sandbox
+      euo_allowlist_required: false
 
 - name: dev
   additional_proxies:
@@ -66,12 +78,14 @@ APIGEE_ENVIRONMENTS:
   variants:
   - name: dep-dev
     display_name: Dev - dep
+    euo_allowlist_required: false
 
 - name: prod
   approval_type: manual
   variants:
     - name: prod
       display_name: Production
+      euo_allowlist_required: false
 
 ACCESS_MODES:
   - name: healthcare-worker
@@ -104,7 +118,7 @@ apigee:
 
 {%    for VARIANT in ENV.variants %}
 {%      for MODE in ACCESS_MODES %}
-      {{ macros.product(ENV, MODE, TITLE, VARIANT.name, VARIANT.display_name) }}
+      {{ macros.product(ENV, MODE, TITLE, VARIANT.name, VARIANT.display_name, VARIANT.euo_allowlist_required) }}
 {%      endfor %}
 {%    endfor %}
 

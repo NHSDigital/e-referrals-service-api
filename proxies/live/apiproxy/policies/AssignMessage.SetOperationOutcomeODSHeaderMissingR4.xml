@@ -1,0 +1,19 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeODSHeaderMissingR4">
+    <AssignVariable>
+        <Name>status_code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>required</Value>
+    </AssignVariable>
+    <!-- Overrides OutcomeVariablesR4-->
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_code</Name>
+        <Value>MISSING_HEADER</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>Missing or Empty NHSD-End-User-Organisation-ODS header.</Value>
+    </AssignVariable>
+</AssignMessage>

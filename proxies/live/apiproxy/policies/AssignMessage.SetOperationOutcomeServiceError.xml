@@ -1,0 +1,19 @@
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeServiceError">
+    <AssignVariable>
+        <Name>status_code</Name>
+        <Value>500</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>op_outcome_issue_code</Name>
+        <Value>exception</Value>
+    </AssignVariable>
+    <!-- Overrides OutcomeVariablesR4-->
+    <AssignVariable>
+        <Name>op_outcome_issue_details_coding_code</Name>
+        <Value>SERVICE_ERROR</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>faultstring</Name>
+        <Value>Internal Server Error</Value>
+    </AssignVariable>
+</AssignMessage>

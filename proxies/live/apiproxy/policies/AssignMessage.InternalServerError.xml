@@ -1,0 +1,7 @@
+<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.InternalServerError">
+    <DisplayName>AssignMessage.InternalServerError</DisplayName>
+    <Remove>
+        <Payload>Internal Server Error</Payload>
+    </Remove>
+    <AssignTo createNew="false" type="response"/>
+</AssignMessage>

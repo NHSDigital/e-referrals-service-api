@@ -9,11 +9,11 @@
 
 # For version files that are updated by dependabot we have a cut down list
 
-/sandbox/Dockerfile @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/sandbox/package.json @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/sandbox/package-lock.json @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/package.json @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/package-lock.json @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/poetry.lock @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/poetry.toml @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
-/pyproject.toml @nhsd-david-wass @adamoldfield-nhs @nhsd-jack-wainwright
+/sandbox/Dockerfile @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/sandbox/package.json @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/sandbox/package-lock.json @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/package.json @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/package-lock.json @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/poetry.lock @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/poetry.toml @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/pyproject.toml @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley

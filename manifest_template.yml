@@ -14,8 +14,6 @@ APIGEE_ENVIRONMENTS:
   additional_proxies:
     - identity-service-mock-internal-dev
   variants:
-  - name: alpha-internal-dev
-    display_name: Internal Development - alpha
   - name: rc-internal-dev
     display_name: Internal Development - rc
   - name: fix-internal-dev

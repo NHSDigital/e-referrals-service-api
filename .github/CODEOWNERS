@@ -9,11 +9,11 @@
 
 # For version files that are updated by dependabot we have a cut down list
 
-/sandbox/Dockerfile @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/sandbox/package.json @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/sandbox/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/package.json @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/poetry.lock @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/poetry.toml @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
-/pyproject.toml @daniel-mcadam-nhs @kevinmason-nhs @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/sandbox/Dockerfile @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/sandbox/package.json @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/sandbox/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/package.json @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/poetry.lock @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/poetry.toml @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley
+/pyproject.toml @daniel-mcadam-nhs @kevinmason-nhs @sudhanshu-arya1 @adamoldfield-nhs @nhsd-jack-wainwright @nhsd-sw @nhsd-dm @nhsd-andrew-tuley

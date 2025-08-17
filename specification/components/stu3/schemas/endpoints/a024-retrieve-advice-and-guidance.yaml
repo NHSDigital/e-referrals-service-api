@@ -8,6 +8,10 @@ description: |
   This does not include the actual advice and guidance conversation between the referrer and the service provider. 
   The conversation can be retrieved via [[HYPERLINK_A025]].
 
+  An advice request can include file attachments and structured clinical data added via an integrated primary care system. These must be retrieved via [[HYPERLINK_A042]] and [[HYPERLINK_A043]], respectively.
+
+  [Read](https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings/e-referral-service/retrieve-clinical-referral-information-as-a-service-provider) our building healthcare software guide for detailed information.
+
   ## Supported security patterns
   - Application-restricted access, unattended access
   - Healthcare worker, user-restricted access

@@ -27,6 +27,12 @@ description: |
     - when trying to book an appointment into a service, the slot advertised is no longer available *or*
     - when trying to book an appointment into a service, no response is received within the message timeout period (currently 2 minutes)
 
+  ## Important note when booking slots
+
+  When appointment slots are booked using this endpoint, it may be necessary to provide the named clinician details. This is because slots can be setup with or without a named clinician. Your integrated application must support both scenarios.
+
+  When booking a slot using [[HYPERLINK_A016]], the named clinician details must be added to the “Appointment.partcipant” list. As shown in the “Booking with named clinician” example.
+
   ## Use case
   As an authenticated user
 
@@ -43,6 +49,11 @@ description: |
 
   Where deferring the booking responsibility to a directly bookable service, or referring the patient into a triage service, you can calculate the date when the patient can expect to be contacted (by the receiving service) using reference data from [[HYPERLINK_A004]].
 
+    ## Known Issues
+
+  1. The Participant.type attribute is being mapped as a single type for this endpoint. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  2. The participant of an Appointment references a value set. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be a coding system. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  
 summary: Book or defer appointment (A016, FHIR STU3)
 operationId: a016-book-or-defer-appointment
 tags:

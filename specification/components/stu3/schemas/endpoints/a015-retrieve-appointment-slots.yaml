@@ -24,6 +24,10 @@ description: |
 
   ## Important note
   You need to provide the 'commissioning rule organisation' when calling [[HYPERLINK_A015]] to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
+
+  When slots are retrieved using this endpoint, they can include slots with or without a named clinician associated with them. Your integrated application must support both scenarios.
+
+  Slots with a named clinician will have an additional "actor" which defines the SDS User ID of the clinician, this will be on the Schedule associated to the Slot.
   
   ## Related endpoints
 
@@ -33,6 +37,9 @@ description: |
     - when the service has no available slots
     - when trying to book an appointment into a service, the slot advertised is no longer available
     - when trying to book an appointment into a service, no response is received within message timeout period (currently 2 minutes)
+
+  ## Known Issues
+  This endpoint is using the :Practitioner search parameter. The "schedule.actor" search parameter is incorrectly using the ":Practitioner" modifier. As per the [FHIR standard](https://hl7.org/fhir/R4/) the ":identifier" modifier should be used when searching to indicate that an Identifer is used rather than a literal, relative, internal or absolute reference. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
 
   ## Sandbox test scenarios
 

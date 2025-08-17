@@ -7,6 +7,10 @@ description: |
 
   A 'conversation' takes the form of the messages between a referrer (seeking advice) and a provider or specialist. Messages can include attachments.
 
+  A conversation takes the form of messages between a referrer (seeking advice) and a provider or specialist. Messages can include file attachments. These must be retrieved via [[HYPERLINK_A042]]
+
+  [Read](https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings/e-referral-service/retrieve-clinical-referral-information-as-a-service-provider) our building healthcare software guide for detailed information.
+
   ## Supported security patterns
   - Application-restricted access, unattended access
   - Healthcare worker, user-restricted access

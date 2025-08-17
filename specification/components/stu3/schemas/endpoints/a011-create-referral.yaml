@@ -12,6 +12,9 @@ description: |
   
   The act of shortlisting alone will not result in a referral being sent/booked to any of the shortlisted services (even if only one service is shortlisted). 
   Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
+  A shortlist of a single triage service should be avoided as this relies on the patient to progress the referral, potentially leading to a delay to care. Especially if the referral priority is 2WW or Urgent.
+
+  Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
 
   ## Important notes when sending an e-Referral Pathway Start Date
   The e-Referral Pathway Start Date is a derived value of when the Referral To Treatment (RTT) clock starts. Find out how e-RS derives the pathway start date [[HYPERLINK_PATHWAY_START]].
@@ -59,6 +62,11 @@ description: |
   You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
 
   You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using [[HYPERLINK_A019]].
+
+  ## Known Issues
+
+  1. The Participant.type attribute is being mapped as a single type for this endpoint. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  2. The participant of an Appointment references a value set. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be a coding system. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
 
 summary: Create referral (A011, FHIR STU3)
 operationId: a011-create-referral

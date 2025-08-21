@@ -135,5 +135,4 @@ properties:
         text:
           type: string
           example: 'Example content...'
-  
-
+          description: 'Maximum 8000 characters.'

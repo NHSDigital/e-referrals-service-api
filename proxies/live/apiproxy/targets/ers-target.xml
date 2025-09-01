@@ -106,6 +106,23 @@
             </Step>
             <Condition>(raisefault.RaiseFault.MissingAsid.failed = true)</Condition>
         </FaultRule>
+        <FaultRule name="invalid_business_function">
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = false)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetOperationOutcomeInvalidBusinessFunction</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.InvalidBusinessFunction.failed = true)</Condition>
+        </FaultRule>
     </FaultRules>
     <PreFlow>
         <Request>
@@ -154,9 +171,9 @@
     <Flows>
         <Flow name="user-restricted-flow">
             <Condition>(accesstoken.auth_type == "user")</Condition>
-            <Request><!--AUTHORISED_APPLICATION business function is not supported in user restricted flow --><Step>
-                    <Name>RaiseFault.403Forbidden</Name>
-                    <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
+            <Request><!--AUTHORISED_APPLICATION business functions are not supported in user restricted flow --><Step>
+                    <Name>RaiseFault.InvalidBusinessFunction</Name>
+                    <Condition>(request.header.nhsd-ers-business-function == "PROVIDER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "REFERRER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
                 </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
                 </Step> <Step>

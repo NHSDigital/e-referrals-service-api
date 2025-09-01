@@ -4,6 +4,10 @@
         <Value>401</Value>
     </AssignVariable>
     <AssignVariable>
+        <Name>reason_phrase</Name>
+        <Value>Unauthorized</Value>
+    </AssignVariable>
+    <AssignVariable>
         <Name>op_outcome_issue_code</Name>
         <Value>forbidden</Value>
     </AssignVariable>

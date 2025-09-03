@@ -35,6 +35,9 @@ description: |
     -  You can check if a cached service has changed via [[HYPERLINK_A037]].
     -  You can retrieve the attributes of an entire shortlist of services (1-20) via [[HYPERLINK_A035]].
 
+  ## Known Issues
+  The HealthcareService.type attribute is being returned as a singular object by this endpoint. As per the [FHIR standard](https://hl7.org/fhir/R4/), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+
   ## Sandbox test scenarios
   You can test the following scenarios in our sandbox environment
   

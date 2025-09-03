@@ -74,7 +74,12 @@ description: |
     - In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
     The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
       - Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications.
-  
+
+  ## Known Issues
+
+  1. The Participant.type attribute is being mapped as a single type for this endpoint. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  2. The participant of an Appointment references a value set. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be a coding system. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+
 summary: Record triage outcome (A028, FHIR STU3)
 operationId: a028-record-triage-outcome
 tags:

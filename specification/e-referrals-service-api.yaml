@@ -17,6 +17,8 @@ info:
     ## Overview
     Use this API to create paperless referrals from primary to secondary care with the [e-Referral Service (e-RS)](https://digital.nhs.uk/services/e-referral-service).
 
+    For an overview of how you can plan and prepare for your integration with e-RS, see our [API onboarding guide](https://digital.nhs.uk/services/e-referral-service/api).
+
     **As a primary care referrer, you can:**
 
       -	create a new e-referral
@@ -52,6 +54,23 @@ info:
       -	worklists for Advice and Guidance (A&G) requests
       -	conversation histories for Advice and Guidance (A&G) requests
 
+    <section class="nhsd-m-emphasis-box nhsd-m-emphasis-box--important nhsd-!t-margin-bottom-6" aria-label="Important Information">
+        <div class="nhsd-a-box nhsd-a-box--border-yellow">
+            <div class="nhsd-m-emphasis-box__image-box">
+                <figure class="nhsd-a-image">
+                    <picture class="nhsd-a-image__picture">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxNDAgMTQwOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgeD0iMHB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB5PSIwcHgiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtkaXNwbGF5Om5vbmU7fQoJLnN0MXtkaXNwbGF5OmlubGluZTtmaWxsOiMyMzFmMjA7fQoJLnN0MntmaWxsOiMyMzFmMjA7fQoJLnN0M3tmaWxsOm5vbmU7c3Ryb2tlOiMyMzFmMjA7c3Ryb2tlLXdpZHRoOjEuOTI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEwO30KCS5zdDR7ZmlsbDojMjMxZjIwO30KCS5zdDV7ZmlsbDojMjMxZjIwO30KCS5zdDZ7ZmlsbDpub25lO3N0cm9rZTojMjMxZjIwO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1taXRlcmxpbWl0OjEwO30KPC9zdHlsZT4KPGcgY2xhc3M9InN0MCI+Cgk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzAsNi45NWw1NCwzMS41djYzLjExbC01NCwzMS41bC01NC0zMS41VjM4LjQ1TDcwLDYuOTUgTTcwLDBMMTAsMzV2NzBsNjAsMzVsNjAtMzVWMzVMNzAsMEw3MCwweiIvPgo8L2c+CjxnPgoJPHBhdGggY2xhc3M9InN0MiIgZD0iTTEwOS44NiwzOS44NXY1NUg4NS43Yy0zLjA2LDAtNS4xNCwzLjA2LTcuMDgsNWgtMTcuNWMtMS45NC0xLjk0LTQuMDMtNS03LjA4LTVIMjkuODd2LTU1aDI1ICAgYzUuMjgsMCwxMC44MywxLjMyLDE1LDQuNzljNC4xNy0zLjQ3LDkuNzItNC43OSwxNS00Ljc5SDEwOS44NnogTTY0Ljg2LDU0Ljg1YzAtMy44OS03LjIyLTUtMTAtNWgtMTV2MzVoMTMuNzUgICBjNS42MiwwLDcuNTcsMC42OSwxMS4yNSw1VjU0Ljg1eiBNOTkuODYsNDkuODVoLTE1Yy0yLjc4LDAtMTAsMS4xMS0xMCw1djM1YzMuNjgtNC4zMSw1LjYyLTUsMTEuMjUtNWgxMy43NVY0OS44NXoiLz4KPC9nPgo8L3N2Zz4K" alt="" style="object-fit:fill">
+                    </picture>
+                </figure>
+            </div>
+            <div class="nhsd-m-emphasis-box__content-box" style="align-self: center;">
+                <div data-uipath="website.contentblock.emphasis.content" class="nhsd-t-word-break">
+                    <p class="nhsd-t-body" style="margin: 0rem;">To discover the most common use cases, see our&nbsp;<a
+                            href="https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings/e-referral-service" onkeyup="return vjsu.onKeyUp(event)" class="nhsd-a-link">Building Healthcare Software guides</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     ### Access modes
     
@@ -59,7 +78,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A006]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A013]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A028]]</li><li>[[HYPERLINK_A029]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A013]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A028]]</li><li>[[HYPERLINK_A029]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A042]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker,<br/>user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access
@@ -83,27 +102,12 @@ info:
 
     You can use this API if you are a software developer wishing to interact with the e-referrals service (e-RS) data, for use in a professional, clinical setting. 
 
-    To use this API:
+    To use this API you must:
 
-      -	you must have justification for doing so
-      -	you must register with the [e-RS Partners Service](https://developer-test.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html)
-      -	as an e-RS Partner, we offer you guidance and support for onboarding via the e-RS Partners Service which can be contacted via emailing [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net)
-      -	you must [assure](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html) your solution before we grant access to live data
-      -	clinical safety remains your responsibility (and the responsibility of your end user organisations), as laid out in the NHS e-RS Integration API [compliance approach](https://developer.nhs.uk/apis/e-Referrals/assure_compliance_approach.html)
-
-    See the [[HYPERLINK_ONBOARDING]] section below for more information.
-
-    <section class="nhsd-m-emphasis-box nhsd-m-emphasis-box--important nhsd-!t-margin-bottom-6" aria-label="Important Information">
-        <div class="nhsd-a-box nhsd-a-box--border-yellow">                <div class="nhsd-m-emphasis-box__image-box">
-                    <figure class="nhsd-a-image">
-                        <picture class="nhsd-a-image__picture">
-                                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxNDAgMTQwOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgeD0iMHB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB5PSIwcHgiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtkaXNwbGF5Om5vbmU7fQoJLnN0MXtkaXNwbGF5OmlubGluZTtmaWxsOiMyMzFmMjA7fQoJLnN0MntmaWxsOiMyMzFmMjA7fQoJLnN0M3tmaWxsOm5vbmU7c3Ryb2tlOiMyMzFmMjA7c3Ryb2tlLXdpZHRoOjEuOTI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEwO30KCS5zdDR7ZmlsbDojMjMxZjIwO30KCS5zdDV7ZmlsbDojMjMxZjIwO30KCS5zdDZ7ZmlsbDpub25lO3N0cm9rZTojMjMxZjIwO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1taXRlcmxpbWl0OjEwO30KPC9zdHlsZT4KPGcgY2xhc3M9InN0MCI+Cgk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzAsNi45NWw1NCwzMS41djYzLjExbC01NCwzMS41bC01NC0zMS41VjM4LjQ1TDcwLDYuOTUgTTcwLDBMMTAsMzV2NzBsNjAsMzVsNjAtMzVWMzVMNzAsMEw3MCwweiIvPgo8L2c+CjxnPgoJPHBhdGggY2xhc3M9InN0MiIgZD0iTTEwOS44NiwzOS44NXY1NUg4NS43Yy0zLjA2LDAtNS4xNCwzLjA2LTcuMDgsNWgtMTcuNWMtMS45NC0xLjk0LTQuMDMtNS03LjA4LTVIMjkuODd2LTU1aDI1ICAgYzUuMjgsMCwxMC44MywxLjMyLDE1LDQuNzljNC4xNy0zLjQ3LDkuNzItNC43OSwxNS00Ljc5SDEwOS44NnogTTY0Ljg2LDU0Ljg1YzAtMy44OS03LjIyLTUtMTAtNWgtMTV2MzVoMTMuNzUgICBjNS42MiwwLDcuNTcsMC42OSwxMS4yNSw1VjU0Ljg1eiBNOTkuODYsNDkuODVoLTE1Yy0yLjc4LDAtMTAsMS4xMS0xMCw1djM1YzMuNjgtNC4zMSw1LjYyLTUsMTEuMjUtNWgxMy43NVY0OS44NXoiLz4KPC9nPgo8L3N2Zz4K" alt="" style="object-fit:fill">
-                        </picture>
-                    </figure>
-                </div>            <div class="nhsd-m-emphasis-box__content-box">
-                    <div data-uipath="website.contentblock.emphasis.content" class="nhsd-t-word-break"><p class="nhsd-t-body">For a non-technical overview of how to build software that deals with referrals and bookings, see&nbsp;<a onclick="logGoogleAnalyticsEvent('Link click','General','/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings');" href="https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings" onkeyup="return vjsu.onKeyUp(event)" class="nhsd-a-link">Building healthcare software - referrals and bookings</a>.</p></div>            </div>
-        </div>
-    </section>
+      -	have justification for doing so
+      -	[register with us](https://digital.nhs.uk/services/e-referral-service/api/integration-process/stage-1-design#1-8-register-with-us)
+      -	ensure you have a [valid use case](https://digital.nhs.uk/services/e-referral-service/api/integration-process/stage-1-design#1-2-validate-your-use-case) before you go too far with your development
+      -	[assure](https://digital.nhs.uk/services/e-referral-service/api/integration-process/stage-3-assure) your solution before we grant access to live data
 
     ## Related APIs
 
@@ -112,43 +116,27 @@ info:
 
     ## API status and roadmap
 
+    ### This API has two access modes:
+      - Application-restricted, unattended access
+      - Healthcare worker, user-restricted access
+
     ### Application-restricted, unattended access
 
-    This access mode is [[HYPERLINK_PRODUCTION]]. We are onboarding Partners to use it.
-
-    Please note that it can only be used:
-
-    - when authenticating a human user is not possible
-    - by 'Provider Organisations' or 'Referrer Organisations'
-    - for accessing endpoints 
-      - [[HYPERLINK_A004]]
-      - [[HYPERLINK_A005]]
-      - [[HYPERLINK_A006]]
-      - [[HYPERLINK_A007]]
-      - [[HYPERLINK_A008]]
-      - [[HYPERLINK_A013]]
-      - [[HYPERLINK_A024]]
-      - [[HYPERLINK_A025]]
-      - [[HYPERLINK_A028]]
-      - [[HYPERLINK_A029]]
-      - [[HYPERLINK_A033]]
-      - [[HYPERLINK_A035]]
-      - [[HYPERLINK_A037]]
-      - [[HYPERLINK_A043]]
-
-    For more information, please see [[HYPERLINK_NETWORK_ACCESS]].
-
+    This access mode is [[HYPERLINK_PRODUCTION]], meaning:
+      - we avoid making routine [breaking changes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/sunsetting-policy#breaking-changes), except in exceptional circumstances
+      - if we need to deprecate an endpoint, we will give advance notice on our [board](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/deprecation-notices). Our [sunsetting page](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/sunsetting-policy) details our deprecation and retirement policy.
+      
     ### Healthcare worker, user-restricted access
 
-    This access mode is [[HYPERLINK_PRODUCTION]]. We are onboarding Partners to use it.
-    
-    This access mode allows you to use all endpoints. A human user must be present and authenticated.
-    
-    For more information, please see [[HYPERLINK_NETWORK_ACCESS]].
+    This access mode is [[HYPERLINK_PRODUCTION]], meaning:
+      - we avoid making routine [breaking changes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/sunsetting-policy#breaking-changes), except in exceptional circumstances
+      - if we need to deprecate an endpoint, we will give advance notice on our [board](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/deprecation-notices). Our [sunsetting page](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/sunsetting-policy) details our deprecation and retirement policy.
 
     ### Roadmap
 
-    For the current e-RS roadmap see [the future of the NHS e-referral service](https://digital.nhs.uk/services/e-referral-service/the-future-of-the-nhs-e-referral-service#future-service-roadmap).
+    Visit our [roadmap page](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/roadmap) for details of what we are working on.
+
+    To suggest, comment or vote on features for this API, see our [interactive product backlog](https://portal.productboard.com/qhpkcqgctqtk3ujk8jyoajp8/tabs/4-new-requests).
     
     ## Service level
     This API is a gold service, meaning it is operational and supported 24 hours a day, 365 days a year.
@@ -180,12 +168,18 @@ info:
 
 
     ## Security and authorisation
+    
+    This API has two access modes:
+    - Application-restricted, unattended access
+    - Healthcare worker, user-restricted access
 
     ### Application-restricted, unattended access
 
     This access mode is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate the calling application but not the end user.
     
     You can only use this access mode when authenticating a human user (for example via smartcard) is not possible.
+
+    Write operations are currently only supported by [[HYPERLINK_A028]] for non-clinical use cases. You will be required to submit your use case for review when using this endpoint via application-restricted, unattended access.
     
     To use this access mode, use the following security pattern:
     - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
@@ -206,6 +200,10 @@ info:
     To use this access mode, use one of the following security patterns:
     - [user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-combined-authentication-and-authorisation)
     - [user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-cis2-separate-authentication-and-authorisation)
+
+    We strongly recommend the use of <b>separate</b> authentication and authorisation. This mode will provide you access to the healthcare workers identity, allowing you to reuse it across multiple applications such as PDS.
+
+    You can [learn more](https://digital.nhs.uk/services/e-referral-service/api/integration-process/stage-1.4---select-your-authentication-level#1-access-modes) about each access mode option on our onboarding guide.
     
     #### Role and Organisation Validation
     For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. 
@@ -251,27 +249,9 @@ info:
 
     ## Onboarding
 
-    You need to get your software approved by us before it can go live. We call this process onboarding. 
+    You need to get your software approved by us before you can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it's worth planning well ahead.
 
-    Onboarding essentially involves connecting to the e-RS FHIR API Integration (INT) environment, assuring your solution and going live, in accordance with the [Supplier Conformance Assessment List (SCAL) process](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process). 
-   
-    In order to pass through the onboarding process as efficiently as possible, it is worth planning ahead. 
-    
-    When following the general SCAL process, please note:
-    
-    In step 1: to use this API, you need to register with [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net) using [Partner Registration](https://developer.nhs.uk/apis/e-Referrals/getstarted_partner_registration.html) and discuss your use case with us. You must also register with the API Management team via [https://digital.nhs.uk/developer/getting-started](https://digital.nhs.uk/developer/getting-started) to configure your application. 
-   
-    In step 2: to request a SCAL, please ensure you have discussed your solution with the Partners service via [nhserspartners@nhs.net](mailto:nhserspartners@nhs.net), who will put you in touch with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) who are responsible for assurance of solutions that integrate with the e-RS FHIR API.
-   
-    In step 8: to organise witness testing of your solution, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
-    
-    In step 11: when submitting your SCAL for review, please liaise with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net).
-    
-    In step 12: to obtain a Connection Agreement, please liaise with [liveserviceonboarding@nhs.net](mailto:liveserviceonboarding@nhs.net). You will need to have successfully passed witness testing with [ersapi.assurance@nhs.net](mailto:ersapi.assurance@nhs.net) and obtained a Technical Conformance Certificate (TCC).
-    
-    In step 13: to obtain the End User Organisation Acceptable Use Policy (EUOAUP), please liaise with [liveserviceonboarding@nhs.net](mailto:liveserviceonboarding@nhs.net).
-    
-    In step 14: following receipt, review and acceptance of your signed Connection Agreement, the e-RS FHIR API Partners team will contact you to facilitate production access for your application.
+    We use the Supplier Conformance Assessment List (SCAL) process. [Learn more](https://digital.nhs.uk/services/e-referral-service/api/integration-process/stage-1-design#1-7-learn-how-to-onboard) about onboarding.
     
     ## Errors
     We use standard HTTP status codes to show whether an API request succeeded or not. They are usually in the range:

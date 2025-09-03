@@ -42,6 +42,20 @@ description: |
 
   So that I can review my options, and do not try to persist a prohibited action
 
+  ## Important information about using this endpoint
+
+  This endpoint can be used to check permitted actions on a referral. Only a select number of results will be returned for which a corresponding action can be performed via the API. Not all actions are currently supported.
+
+  As a referrer, the actions returned can include:
+    - Cancel Directly Booked Appointment 
+    - Cancel Referral
+    - Create Appointment
+    - Change Shortlist
+    - Change Shortlist and Send for Triage
+
+  As a service provider, the only action returned will be:
+    - Record Review Outcome 
+
   ## Related endpoints
 
   To retrieve pertinent details relating to a referral:

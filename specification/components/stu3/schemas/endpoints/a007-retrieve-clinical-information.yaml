@@ -5,6 +5,10 @@ description: |
   
   Use this endpoint to generate a PDF file that summarises clinical information for a referral.
 
+  This does not include files attached to a referral or advice request. These must be retrieved via [[HYPERLINK_A042]]
+
+  [Read](https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings/e-referral-service/retrieve-clinical-referral-information-as-a-service-provider) our building healthcare software guide for detailed information.
+
   ## Supported security patterns
   - Application-restricted access
   - Healthcare worker, user-restricted access

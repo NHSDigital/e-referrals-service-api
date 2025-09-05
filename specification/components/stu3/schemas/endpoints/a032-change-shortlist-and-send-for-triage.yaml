@@ -52,6 +52,11 @@ description: |
 
   You can calculate the date when the patient will need to be contacted (by the triage service) using reference data from [[HYPERLINK_A004]].
 
+  ## Known Issues
+  
+  1. The Participant.type attribute is being mapped as a single type for this endpoint. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  2. The participant of an Appointment references a value set. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be a coding system. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+
 summary: Change shortlist and send for triage (A032, FHIR STU3) [deprecated]
 operationId: a032-change-shortlist-and-send-for-triage
 tags:

@@ -4,6 +4,15 @@ description: |
   ## Overview
   Use this endpoint to retrieve a file that is attached to a referral or advice request.
 
+  Referral information can also include:
+    - Structured clinical information added by an integrated primary care system
+    - Service provider activity
+    - Advice and guidance conversation
+
+  This additional clinical information must be retrieved via [[HYPERLINK_A007]]
+
+  [Read](https://digital.nhs.uk/developer/guides-and-documentation/building-healthcare-software/referrals-and-bookings/e-referral-service/retrieve-clinical-referral-information-as-a-service-provider) our building healthcare software guide for detailed information.
+
   ## Supported security patterns
   - Application-restricted, unattended access
   - Healthcare worker, user-restricted access

@@ -46,7 +46,42 @@ class TestAppRestricted:
             f"{service_url}{_SPECIALTY_REF_DATA_URL}", headers=client_request_headers
         )
 
-        assert_error_response_with_body(response, _EXPECTED_CORRELATION_ID, 403)
+        assert response.status_code == 403, (
+            "Expected 403 response when calling the endpoint. But instead received a "
+            + response.status_code
+        )
+
+        assert (
+            response.headers[RenamedHeader.CORRELATION_ID.original]
+            == _EXPECTED_CORRELATION_ID
+        )
+
+        for renamed_header in RenamedHeader:
+            assert renamed_header.renamed not in response.headers
+
+        # Verify the OperationOutcome payload
+        response_data = response.json()
+        assert response_data["resourceType"] == "OperationOutcome"
+        assert response_data["meta"]["lastUpdated"] is not None
+        assert len(response_data["meta"]["profile"]) == 1
+        assert (
+            response_data["meta"]["profile"][0]
+            == "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+        )
+        assert len(response_data["issue"]) == 1
+        issue = response_data["issue"][0]
+        assert issue["severity"] == "error"
+        assert issue["code"] == "forbidden"
+        assert issue["diagnostics"] == (
+            "User does not have the required Business Function at the specified Organisation."
+        )
+        assert len(issue["details"]["coding"]) == 1
+        issue_details = issue["details"]["coding"][0]
+        assert (
+            issue_details["system"]
+            == "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1"
+        )
+        assert issue_details["code"] == "NO_ACCESS"
 
     def test_authorised_application_supported_for_app_restricted(
         self, app_restricted_access_code, service_url

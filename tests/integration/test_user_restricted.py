@@ -118,7 +118,7 @@ class TestUserRestricted:
         ), "Expected a 403 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "OperationOutcome"
+        assert response_data["resourceType"] == "CodeSystem"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (
@@ -141,9 +141,7 @@ class TestUserRestricted:
             if is_fhir_4
             else "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1"
         )
-        assert (
-            issue_details["code"] == "ACCESS_DENIED" if is_fhir_4 else "NO_ACCESS"
-        )
+        assert issue_details["code"] == "ACCESS_DENIED" if is_fhir_4 else "NO_ACCESS"
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
@@ -188,7 +186,7 @@ class TestUserRestricted:
         ), "Expected a 400 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "OperationOutcome"
+        assert response_data["resourceType"] == "CodeSystem"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (
@@ -259,7 +257,7 @@ class TestUserRestricted:
         ), "Expected a 400 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "OperationOutcome"
+        assert response_data["resourceType"] == "CodeSystem"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (

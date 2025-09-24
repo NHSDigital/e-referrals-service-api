@@ -118,7 +118,7 @@ class TestUserRestricted:
         ), "Expected a 403 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "CodeSystem"
+        assert response_data["resourceType"] == "OperationOutcome"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (
@@ -186,7 +186,7 @@ class TestUserRestricted:
         ), "Expected a 400 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "CodeSystem"
+        assert response_data["resourceType"] == "OperationOutcome"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (
@@ -257,7 +257,7 @@ class TestUserRestricted:
         ), "Expected a 400 when accessing the api but got " + str(response.status_code)
         # Verify the OperationOutcome payload
         response_data = response.json()
-        assert response_data["resourceType"] == "CodeSystem"
+        assert response_data["resourceType"] == "OperationOutcome"
         assert response_data["meta"]["lastUpdated"] is not None
         assert len(response_data["meta"]["profile"]) == 1
         assert response_data["meta"]["profile"][0] == (

@@ -29,17 +29,373 @@
             </Step>
             <Step>
                 <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
-                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
                 <Condition>aalError == true</Condition>
             </Step>
             <Step>
                 <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
-                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
                 <Condition>aalError == true</Condition>
             </Step>
+            <TargetEndpoint name="e-referrals-service-api-target">
+                <FaultRules>
+                    <FaultRule name="access_token_error_fhir_r4">
+                        <Step>
+                            <Name>ExtractVariables.OAuthErrorFaultString</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetInsufficientAALVariables</Name>
+                            <Condition>faultstring ~ "*OauthV2.VerifyAccessToken.scopeSet*"</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = true)</Condition>
+                    </FaultRule>
+                    <FaultRule name="access_token_error">
+                        <Step>
+                            <Name>ExtractVariables.OAuthErrorFaultString</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetInsufficientAALVariables</Name>
+                            <Condition>faultstring ~ "*OauthV2.VerifyAccessToken.scopeSet*"</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                            <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
+                            <Condition>aalError == true</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeIssueCodeLogin</Name>
+                            <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
+                            <Condition>aalError == true</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+                            <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
+                            <Condition>aalError != true</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                            <Condition>aalError = true</Condition>
+                        </Step>
+                        <Condition>(oauthV2.OauthV2.VerifyAccessToken.failed = true) and (isFhirR4Path = false)</Condition>
+                    </FaultRule>
+                    <FaultRule name="spike_arrest_fault_fhir_r4">
+                        <Step>
+                            <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
+                        </Step>
+                        <Condition>(ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = true)</Condition>
+                    </FaultRule>
+                    <FaultRule name="quota_fault_fhir_r4">
+                        <Step>
+                            <Name>AssignMessage.RatelimitOperationOutcomeResponse</Name>
+                        </Step>
+                        <Condition>(ratelimit.QuotaPerApp.failed = true) and (isFhirR4Path = true)</Condition>
+                    </FaultRule>
+                    <FaultRule name="spike_arrest_fault">
+                        <Step>
+                            <Name>AssignMessage.SpikeArrestErrorResponse</Name>
+                        </Step>
+                        <Condition>(ratelimit.SpikeArrestPerApp.failed = true) and (isFhirR4Path = false)</Condition>
+                    </FaultRule>
+                    <FaultRule name="quota_fault">
+                        <Step>
+                            <Name>AssignMessage.QuotaErrorResponse</Name>
+                        </Step>
+                        <Condition>(ratelimit.QuotaPerApp.failed = true) and (isFhirR4Path = false)</Condition>
+                    </FaultRule>
+                    <FaultRule name="insufficient_ial">
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeIssueIal</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(raisefault.RaiseFault.401InsufficientIal.failed = true)</Condition>
+                    </FaultRule>
+                    <FaultRule name="missing_asid">
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetOperationOutcomeMissingAsid</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(raisefault.RaiseFault.MissingAsid.failed = true)</Condition>
+                    </FaultRule>
+                    <FaultRule name="ods_header_not_in_partner_list_error">
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListR4</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 403)</Condition>
+                    </FaultRule>
+                    <FaultRule name="ods_header_missing_error">
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeODSHeaderMissingPreR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeODSHeaderMissingR4</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 400)</Condition>
+                    </FaultRule>
+                    <FaultRule name="euo_allowlist_internal_error">
+                        <Step>
+                            <Condition>(isFhirR4Path = false)</Condition>
+                            <Name>AssignMessage.InternalServerError</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.SetOperationOutcomeServiceError</Name>
+                        </Step>
+                        <Step>
+                            <Condition>(isFhirR4Path = true)</Condition>
+                            <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+                        </Step>
+                        <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 500)</Condition>
+                    </FaultRule>
+                </FaultRules>
+                <PreFlow>
+                    <Request>
+                        <Step>
+                            <Name>javascript.SetCurrentTimestamp</Name>
+                        </Step>
+                        <Step>
+                            <Name>javascript.IsFhirR4Path</Name>
+                        </Step>
+                        <Step>
+                            <Name>OauthV2.VerifyAccessToken</Name>
+                        </Step>
+                        <!--  https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-86126 Single ASID Per Connecting Party. Only for user-restricted, excludes Practitioner Role endpoint which should be accessible without  -->
+                        <Step>
+                            <Name>FlowCallout.ExtendedAttributes</Name>
+                            <Condition>(accesstoken.auth_type == "user") and (proxy.pathsuffix != "/FHIR/R4/PractitionerRole")</Condition>
+                        </Step>
+                        <Step>
+                            <Name>FlowCallout.EUOAllowlistVerify</Name>
+                            <Condition>(accesstoken.auth_type == "user") and (proxy.pathsuffix != "/FHIR/R4/PractitionerRole")</Condition>
+                        </Step>
+                        <Step>
+                            <Name>RaiseFault.MissingAsid</Name>
+                            <Condition>(app.asid == null) Or (app.asid == "")</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.PopulateAsidFromApp</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.SetAsidHeader</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.AddBaseUrlHeader</Name>
+                        </Step>
+                        <Step>
+                            <Name>FlowCallout.ApplyRateLimiting</Name>
+                        </Step>
+                    </Request>
+                    <Response>
+                        <!--  Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
+                               to response on non success status code e.g. 200/201, Take care when updating these steps -->
+                        <Step>
+                            <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.Swap.TransactionID</Name>
+                            <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
+                        </Step>
+                        <Step>
+                            <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
+                            <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
+                        </Step>
+                    </Response>
+                </PreFlow>
+                <Flows>
+                    <Flow name="user-restricted-flow">
+                        <Condition>(accesstoken.auth_type == "user")</Condition>
+                        <Request><!-- AUTHORISED_APPLICATION business function is not supported in user restricted flow  --><Step>
+                                <Name>RaiseFault.403Forbidden</Name>
+                                <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-user-id-header-user-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
+                                <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
+                                <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
+                                <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
+                                <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
+                                <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
+                                <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Remove.x-request-id-header</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-authentication-assurance-level-header</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-amr-header</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
+                            </Step> <Step>
+                                <Condition>(request.header.x-ers-id-assurance-level LesserThan 3)</Condition>
+                                <Name>RaiseFault.401InsufficientIal</Name>
+                            </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
+                                <Name>AssignMessage.SetEchoTarget</Name>
+                                <Condition>(request.header.echo)</Condition>
+                            </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
+                                <Name>AssignMessage.SetTruststore</Name>
+                                <!-- Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
+                                <Condition>(isEchoCall != true )</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.SetEchoTruststore</Name>
+                                <Condition>(isEchoCall == true)</Condition>
+                            </Step> {% endif %} <Step>
+                                <!-- This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+                                        The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend.  -->
+                                <Name>AssignMessage.Swap.CorrelationHeader</Name>
+                            </Step></Request>
+                        <Response/>
+                    </Flow>
+                    <Flow name="app-restricted-flow">
+                        <Condition>(accesstoken.auth_type == "app")</Condition>
+                        <Request><!--  reject if headers that are overriden as part of app restricted call are provided --><Step>
+                                <Name>RaiseFault.403Forbidden</Name>
+                                <Condition>(request.header.x-ers-ods-code)</Condition>
+                            </Step> <Step>
+                                <Name>RaiseFault.403Forbidden</Name>
+                                <Condition>(request.header.x-ers-business-function)</Condition>
+                            </Step> <Step>
+                                <Name>RaiseFault.403Forbidden</Name>
+                                <Condition>(request.header.x-ers-user-id)</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-access-mode-header-app-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.nhsd-ers-ods-code-header-app-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.nhsd-ers-business-function-header-app-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Set.x-ers-user-id-header-app-restricted</Name>
+                            </Step> <Step>
+                                <Name>AssignMessage.Remove.x-request-id-header</Name>
+                            </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
+                                <Name>AssignMessage.SetEchoTarget</Name>
+                                <Condition>(request.header.echo)</Condition>
+                            </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
+                                <Name>AssignMessage.SetTruststore</Name>
+                                <!-- Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
+                                <Condition>(isEchoCall != true )</Condition>
+                            </Step> <Step>
+                                <Name>AssignMessage.SetEchoTruststore</Name>
+                                <Condition>(isEchoCall == true)</Condition>
+                            </Step> {% endif %} <Step>
+                                <!-- This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+                                        The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend.  -->
+                                <Name>AssignMessage.Swap.CorrelationHeader</Name>
+                            </Step></Request>
+                        <Response/>
+                    </Flow>
+                    <!--  Something went wrong as one of the above flows should have triggered, this flow should never trigger in normal operation -->
+                    <Flow name="undefined-flow">
+                        <Request>
+                            <Step>
+                                <Name>RaiseFault.403Forbidden</Name>
+                            </Step>
+                        </Request>
+                        <Response/>
+                    </Flow>
+                </Flows>
+                <HTTPTargetConnection>
+                    <SSLInfo>{% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <TrustStore>{truststore}</TrustStore> {% endif %} <Enabled>true</Enabled></SSLInfo>
+                    <LoadBalancer>
+                        <Server name="{{ ERS_TARGET_SERVER | default('e-referrals-service-api') }}"/>
+                    </LoadBalancer>
+                    <Path>/ers-api</Path>
+                    <Properties>
+                        <Property name="supports.http10">true</Property>
+                        <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
+                        <Property name="retain.queryparams">apikey</Property>
+                        <Property name="io.timeout.millis">180000</Property>
+                    </Properties>
+                </HTTPTargetConnection>
+                <DefaultFaultRule>
+                    <Step>
+                        <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
+                    </Step>
+                    <Step>
+                        <Name>AssignMessage.Swap.TransactionID</Name>
+                        <Condition>(response.header.x_ers_transaction_id ~~ ".+")</Condition>
+                    </Step>
+                    <Step>
+                        <Name>AssignMessage.Remove.nhsd-correlation-id-header</Name>
+                        <Condition>(response.header.nhsd-correlation-id ~~ ".+")</Condition>
+                    </Step>
+                </DefaultFaultRule>
+            </TargetEndpoint>
             <Step>
                 <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-                <!--Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                <!-- Condition is implemented this way around to account for aalError being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
                 <Condition>aalError != true</Condition>
             </Step>
             <Step>
@@ -132,6 +488,18 @@
                 <Condition>(isFhirR4Path = false)</Condition>
                 <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListPreR4</Name>
             </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
+            </Step>
+            <Step>
+                <Condition>(isFhirR4Path = true)</Condition>
+                <Name>AssignMessage.SetOperationOutcomeODSHeaderValueNotInPartnerListR4</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
+            </Step>
+            <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 403)</Condition>
         </FaultRule>
         <FaultRule name="ods_header_missing_error">
             <Step>
@@ -172,31 +540,7 @@
                 <Condition>(isFhirR4Path = true)</Condition>
                 <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
             </Step>
-            <Step>
-                <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 500)</Condition>
-                <Name>AssignMessage.SetOperationOutcomeInvalidBusinessFunction</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
-            </Step>
-            <Condition>(raisefault.RaiseFault.InvalidBusinessFunction.failed = true)</Condition>
-        </FaultRule>
-        <FaultRule name="invalid_business_function">
-            <Step>
-                <Condition>(isFhirR4Path = true)</Condition>
-                <Name>AssignMessage.SetOperationOutcomeVariablesR4</Name>
-            </Step>
-            <Step>
-                <Condition>(isFhirR4Path = false)</Condition>
-                <Name>AssignMessage.SetOperationOutcomeVariablesPreR4</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.SetOperationOutcomeInvalidBusinessFunction</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.OperationOutcomeErrorResponse</Name>
-            </Step>
-            <Condition>(raisefault.RaiseFault.InvalidBusinessFunction.failed = true)</Condition>
+            <Condition>(raisefault.RaiseFault.CheckAllowlistFailed.failed = true) and (validation.statusCode = 500)</Condition>
         </FaultRule>
     </FaultRules>
     <PreFlow>
@@ -210,7 +554,7 @@
             <Step>
                 <Name>OauthV2.VerifyAccessToken</Name>
             </Step>
-            <!-- https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-86126 Single ASID Per Connecting Party. Only for user-restricted, excludes Practitioner Role endpoint which should be accessible without -->
+            <!--  https://nhsd-jira.digital.nhs.uk/browse/ERSSUP-86126 Single ASID Per Connecting Party. Only for user-restricted, excludes Practitioner Role endpoint which should be accessible without  -->
             <Step>
                 <Name>FlowCallout.ExtendedAttributes</Name>
                 <Condition>(accesstoken.auth_type == "user") and (proxy.pathsuffix != "/FHIR/R4/PractitionerRole")</Condition>
@@ -237,8 +581,8 @@
             </Step>
         </Request>
         <Response>
-            <!-- Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
-           to response on non success status code e.g. 200/201, Take care when updating these steps-->
+            <!--  Any steps that apply to response might have to be duplicated in DefaultFaultRule section so that they also apply
+                       to response on non success status code e.g. 200/201, Take care when updating these steps -->
             <Step>
                 <Name>AssignMessage.SetFlagCustomHeaderXRequestId</Name>
             </Step>
@@ -255,62 +599,62 @@
     <Flows>
         <Flow name="user-restricted-flow">
             <Condition>(accesstoken.auth_type == "user")</Condition>
-            <Request><!--AUTHORISED_APPLICATION business functions are not supported in user restricted flow --><Step>
-                    <Name>RaiseFault.InvalidBusinessFunction</Name>
-                    <Condition>(request.header.nhsd-ers-business-function == "PROVIDER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "REFERRER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
+            <Request><!-- AUTHORISED_APPLICATION business function is not supported in user restricted flow  --><Step>
+                    <Name>RaiseFault.403Forbidden</Name>
+                    <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
                 </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-user-id-header-user-restricted</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.NHSD-eRS-On-Behalf-Of-User-ID</Name>
                     <Condition>(request.header.NHSD-eRS-On-Behalf-Of-User-ID ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.nhsd-end-user-organisation-ods</Name>
                     <Condition>(request.header.nhsd-end-user-organisation-ods ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.nhsd-ers-business-function</Name>
                     <Condition>(request.header.nhsd-ers-business-function ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.nhsd-ers-comm-rule-org</Name>
                     <Condition>(request.header.nhsd-ers-comm-rule-org ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.nhsd-ers-file-name</Name>
                     <Condition>(request.header.nhsd-ers-file-name ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Swap.nhsd-ers-referral-id</Name>
                     <Condition>(request.header.nhsd-ers-referral-id ~~ ".+")</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-authentication-assurance-level-header</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-amr-header</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-id-assurance-level-header</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Condition>(request.header.x-ers-id-assurance-level LesserThan 3)</Condition>
                     <Name>RaiseFault.401InsufficientIal</Name>
-                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
+                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
                 </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
                     <Name>AssignMessage.SetTruststore</Name>
-                    <!--Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                    <!-- Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
                     <Condition>(isEchoCall != true )</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
-                    <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
-            The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
+                    <!-- This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+                                The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend.  -->
                     <Name>AssignMessage.Swap.CorrelationHeader</Name>
                 </Step></Request>
             <Response/>
         </Flow>
         <Flow name="app-restricted-flow">
             <Condition>(accesstoken.auth_type == "app")</Condition>
-            <Request><!-- reject if headers that are overriden as part of app restricted call are provided--><Step>
+            <Request><!--  reject if headers that are overriden as part of app restricted call are provided --><Step>
                     <Name>RaiseFault.403Forbidden</Name>
                     <Condition>(request.header.x-ers-ods-code)</Condition>
                 </Step> <Step>
@@ -327,26 +671,26 @@
                     <Name>AssignMessage.Set.nhsd-ers-business-function-header-app-restricted</Name>
                 </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-user-id-header-app-restricted</Name>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.Remove.x-request-id-header</Name>
-                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %}<Step>
+                </Step> {% if ALLOW_ECHO_TARGET | default(false) == true %} <Step>
                     <Name>AssignMessage.SetEchoTarget</Name>
                     <Condition>(request.header.echo)</Condition>
                 </Step> {% endif %} {% if '--ft-' in (ERS_TARGET_SERVER | default('e-referrals-service-api')) %} <Step>
                     <Name>AssignMessage.SetTruststore</Name>
-                    <!--Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements)-->
+                    <!-- Condition is implemented this way around to account for isEchoCall being null (https://docs.apigee.com/api-platform/reference/conditions-reference#behaviorofnulloperandsinconditionalstatements) -->
                     <Condition>(isEchoCall != true )</Condition>
-                </Step><Step>
+                </Step> <Step>
                     <Name>AssignMessage.SetEchoTruststore</Name>
                     <Condition>(isEchoCall == true)</Condition>
                 </Step> {% endif %} <Step>
-                    <!--This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
-            The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend. -->
+                    <!-- This should always be the last Step - as it is just before the message is sent - so the initial request stays intact for as long as possible.
+                                The Swapping of the Request Headers converts X-Correlation-ID to NHSD-Correlation-ID before sending to backend.  -->
                     <Name>AssignMessage.Swap.CorrelationHeader</Name>
                 </Step></Request>
             <Response/>
         </Flow>
-        <!-- Something went wrong as one of the above flows should have triggered, this flow should never trigger in normal operation-->
+        <!--  Something went wrong as one of the above flows should have triggered, this flow should never trigger in normal operation -->
         <Flow name="undefined-flow">
             <Request>
                 <Step>

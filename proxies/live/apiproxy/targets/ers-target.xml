@@ -244,8 +244,8 @@
         <Flow name="user-restricted-flow">
             <Condition>(accesstoken.auth_type == "user")</Condition>
             <Request><!-- AUTHORISED_APPLICATION business function is not supported in user restricted flow  --><Step>
-                    <Name>RaiseFault.403Forbidden</Name>
-                    <Condition>(request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
+                    <Name>RaiseFault.InvalidBusinessFunction</Name>
+                    <Condition>(request.header.nhsd-ers-business-function == "PROVIDER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "REFERRER_AUTHORISED_APPLICATION") or (request.header.nhsd-ers-business-function == "AUTHORISED_APPLICATION")</Condition>
                 </Step> <Step>
                     <Name>AssignMessage.Set.x-ers-access-mode-header-user-restricted</Name>
                 </Step> <Step>

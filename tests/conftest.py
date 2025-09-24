@@ -2,6 +2,7 @@ import os
 import pytest
 import pytest_asyncio
 import warnings
+import json
 
 from uuid import uuid4
 from typing import Collection, Callable, Generator, Dict
@@ -80,6 +81,12 @@ def asid(is_mocked_environment):
 
 
 @pytest.fixture(scope="session")
+def apim_app_flow_vars(allowListodsCode=None):
+    if allowListodsCode is not None:
+        return {"ers": {"allowListodsCode": allowListodsCode}}
+
+
+@pytest.fixture(scope="session")
 def referring_clinician(is_mocked_environment):
     return Actor.RC_DEV if is_mocked_environment else Actor.RC
 
@@ -127,7 +134,8 @@ async def user_restricted_product(client, make_product):
         [
             "urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api",
             "urn:nhsd:apim:user-nhs-id:aal2:e-referrals-service-api",
-        ]
+        ],
+        additional_attributes=[{"name": "EUOAllowlistRequired", "value": "false"}],
     )
 
     print(f"product created: {productName}")
@@ -240,7 +248,7 @@ def update_user_restricted_app_attr(
 
 @pytest.fixture
 def make_product(client, environment, service_name):
-    async def _make_product(product_scopes):
+    async def _make_product(product_scopes, additional_attributes=None):
         product = ApiProductsAPI(client=client)
 
         proxies = [f"identity-service-mock-{environment}"]
@@ -253,6 +261,10 @@ def make_product(client, environment, service_name):
             {"name": "access", "value": "public"},
             {"name": "ratelimit", "value": "10ps"},
         ]
+
+        if additional_attributes is not None:
+            attributes.extend(additional_attributes)
+
         body = {
             "proxies": proxies,
             "scopes": product_scopes,
@@ -272,9 +284,18 @@ def make_product(client, environment, service_name):
 
 
 @pytest_asyncio.fixture
-async def user_restricted_app(client, make_app, user_restricted_product, asid):
+async def user_restricted_app(
+    client, make_app, user_restricted_product, asid, apim_app_flow_vars
+):
     # Setup
-    app = await make_app(user_restricted_product, {"asid": asid})
+    if apim_app_flow_vars is not None:
+        odslist = json.dumps({"ers": {"allowListodsCode": apim_app_flow_vars}})
+        app = await make_app(
+            user_restricted_product,
+            {"asid": asid, "apim-app-flow-vars": odslist},
+        )
+    else:
+        app = await make_app(user_restricted_product, {"asid": asid})
 
     appName = app["name"]
     print(f"App created: {appName}")
@@ -297,6 +318,7 @@ def make_app(client):
             {"name": key, "value": value} for key, value in custom_attributes.items()
         ]
         attributes.append({"name": "DisplayName", "value": app_name})
+        print(f"App attributes: {attributes}")
 
         body = {
             "apiProducts": [product],

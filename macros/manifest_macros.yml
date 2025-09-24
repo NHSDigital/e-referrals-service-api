@@ -3,12 +3,14 @@
     products:
 {% endmacro %}
 
-{%- macro product(ENV, MODE, TITLE, product_name, display_name) -%}
+{%- macro product(ENV, MODE, TITLE, product_name, display_name, euo_allowlist_required) -%}
       - name: e-referrals-service-api-{{ product_name }}{{ MODE.nameSuffix }}
         approvalType: {{ ENV.approval_type | default('auto') }}
         attributes:
           - name: access
             value: public
+          - name: EUOAllowlistRequired
+            value: {{ euo_allowlist_required }}
           - name: ratelimiting
             value:
               e-referrals-service-api-{{ product_name }}:

@@ -32,7 +32,11 @@ class TestHeaders:
     @pytest.mark.asyncio
     @pytest.mark.parametrize("user", [Actor.RC, Actor.AAL2_USER])
     async def test_headers_on_echo_target(
-        self, authenticate_user, service_url, user: Actor, asid
+        self,
+        authenticate_user,
+        service_url,
+        user: Actor,
+        asid,
     ):
         access_code = await authenticate_user(user)
 

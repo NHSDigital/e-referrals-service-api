@@ -12,6 +12,8 @@ description: |
   The maximum amount of services allowed on a given shortlist is 20.
   
   The act of changing a shortlist alone will not result in a referral being sent/booked to any of the shortlisted services (even if only one service is shortlisted). 
+  A shortlist of a single triage service should be avoided as this relies on the patient to progress the referral, potentially leading to a delay to care. Especially if the referral priority is 2WW or Urgent.
+  
   Use [[HYPERLINK_A016]] if there is a need to support the sending/booking of the referral into a shortlisted service.
 
   A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
@@ -57,6 +59,12 @@ description: |
   For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using [[HYPERLINK_A012]].
 
   You can check to see what referral letter information has already been added to a referral by using [[HYPERLINK_A005]], [[HYPERLINK_A007]], and [[HYPERLINK_A006]] endpoints where necessary.
+
+  ## Known Issues
+  
+  1. The Participant.type attribute is being mapped as a single type for this endpoint. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be an array. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+  2. The participant of an Appointment references a value set. As per the Appointment [FHIR profile](https://hl7.org/fhir/STU3/appointment-definitions.html#Appointment.participant.type), this attribute should be a coding system. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.
+
 summary: Change shortlist (A031, FHIR STU3)
 operationId: a031-change-shortlist
 tags:

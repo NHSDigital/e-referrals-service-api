@@ -32,7 +32,11 @@ class TestHeaders:
     @pytest.mark.asyncio
     @pytest.mark.parametrize("user", [Actor.RC, Actor.AAL2_USER])
     async def test_headers_on_echo_target(
-        self, authenticate_user, service_url, user: Actor, asid
+        self,
+        authenticate_user,
+        service_url,
+        user: Actor,
+        asid,
     ):
         access_code = await authenticate_user(user)
 
@@ -72,6 +76,78 @@ class TestHeaders:
             expected_aal,
             expected_amr,
         )
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        "business_function,endpoint_url,is_r4",
+        [
+            ("PROVIDER_AUTHORISED_APPLICATION", "", False),
+            ("REFERRER_AUTHORISED_APPLICATION", "", False),
+            ("AUTHORISED_APPLICATION", "", False),
+            ("PROVIDER_AUTHORISED_APPLICATION", "/FHIR/STU3/", False),
+            ("REFERRER_AUTHORISED_APPLICATION", "/FHIR/STU3/", False),
+            ("AUTHORISED_APPLICATION", "/FHIR/STU3/", False),
+            ("PROVIDER_AUTHORISED_APPLICATION", "/FHIR/R4/", True),
+            ("REFERRER_AUTHORISED_APPLICATION", "/FHIR/R4/", True),
+            ("AUTHORISED_APPLICATION", "/FHIR/R4/", True),
+        ],
+    )
+    async def test_headers_on_echo_target_with_app_restricted_business_function(
+        self, business_function, endpoint_url, is_r4, authenticate_user, service_url
+    ):
+        user = Actor.RC
+        access_code = await authenticate_user(user)
+        client_request_headers = {
+            _HEADER_ECHO: "",  # enable echo target
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
+            _HEADER_REQUEST_ID: "DUMMY-VALUE",
+            RenamedHeader.REFERRAL_ID.original: _EXPECTED_REFERRAL_ID,
+            RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
+            RenamedHeader.BUSINESS_FUNCTION.original: business_function,
+            RenamedHeader.ODS_CODE.original: user.org_code,
+            RenamedHeader.FILENAME.original: _EXPECTED_FILENAME,
+            RenamedHeader.COMM_RULE_ORG.original: _EXPECTED_COMM_RULE_ORG,
+            RenamedHeader.OBO_USER_ID.original: _EXPECTED_OBO_USER_ID,
+        }
+
+        # Make the API call
+        response = requests.get(
+            service_url + endpoint_url, headers=client_request_headers
+        )
+
+        assert response.status_code == 403, (
+            "Expected a 403 response when attempting to call the endpoint, but instead received a "
+            + str(response.status_code)
+        )
+
+        assert response.reason == "Forbidden"
+
+        # Verify the OperationOutcome payload
+        response_data = response.json()
+        assert response_data["resourceType"] == "OperationOutcome"
+        assert response_data["meta"]["lastUpdated"] is not None
+        assert len(response_data["meta"]["profile"]) == 1
+        assert response_data["meta"]["profile"][0] == (
+            "https://www.hl7.org/fhir/R4/operationoutcome.html"
+            if is_r4
+            else "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1"
+        )
+        assert len(response_data["issue"]) == 1
+        issue = response_data["issue"][0]
+        assert issue["severity"] == "error"
+        assert issue["code"] == "forbidden"
+        assert issue["diagnostics"] == (
+            "User does not have the required Business Function at the specified Organisation."
+        )
+        assert len(issue["details"]["coding"]) == 1
+        issue_details = issue["details"]["coding"][0]
+        assert (
+            issue_details["system"]
+            == "https://fhir.nhs.uk/CodeSystem/NHSD-API-ErrorOrWarningCode"
+            if is_r4
+            else "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1"
+        )
+        assert issue_details["code"] == "ACCESS_DENIED" if is_r4 else "NO_ACCESS"
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
@@ -438,6 +514,8 @@ class TestHeaders:
             response.status_code
         )
 
+        assert response.reason == "Unauthorized"
+
         if not is_operation_outcome:
             assert len(response.content) == 0
         else:
@@ -475,7 +553,7 @@ class TestHeaders:
             assert renamed_header.renamed not in client_response_headers
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize("service_name", [(None)])
+    @pytest.mark.parametrize("service_name", [None])
     async def test_access_code_not_supported(
         self, referring_clinician, authenticate_user, service_url
     ):

@@ -1,11 +1,11 @@
-<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeMissingAsid">
+<AssignMessage enabled="true" name="AssignMessage.SetOperationOutcomeInvalidBusinessFunction">
     <AssignVariable>
         <Name>op_outcome_issue_code</Name>
         <Value>forbidden</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>faultstring</Name>
-        <Value>ASID is not configured in the application</Value>
+        <Value>User does not have the required Business Function at the specified Organisation.</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>status_code</Name>

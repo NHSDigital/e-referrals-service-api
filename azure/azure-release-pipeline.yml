@@ -37,7 +37,7 @@ extends:
     apigee_deployments:
     - environment: manual-approval
       stage_name: ers_manual_approval_rc
-    - environment: internal-qa #changed to point internal-qa.
+    - environment: internal-qa #changed to point internal-qa may need to change back.
       stage_name: ers_rc_release
       service_name: "${{ variables.service_name }}-rc"
       short_service_name: "${{ variables.short_service_name }}-rc"

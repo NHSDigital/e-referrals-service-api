@@ -60,14 +60,13 @@ def service_url(environment, service_base_path):
         http_base = "https://"
        # commented this out for testing  base_url = f"{http_base}{environment}.api.service.nhs.uk"
         base_url = f"{http_base}.internal-qa.api.service.nhs.uk"
-
     return f"{base_url}/{service_base_path}"
 
 
 @pytest.fixture(scope="session")
 def is_mocked_environment(environment, service_base_path):
-    return environment == "internal-dev" and "ft" in service_base_path
-
+    return environment == "internal-qa" and "ft" in service_base_path
+# changed the environment variable to internal-qa from internal-dev
 
 @pytest.fixture(scope="session")
 def status_endpoint_api_key():

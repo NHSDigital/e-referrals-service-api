@@ -58,7 +58,8 @@ def service_url(environment, service_base_path):
         base_url = "https://api.service.nhs.uk"
     else:
         http_base = "https://"
-        base_url = f"{http_base}{environment}.api.service.nhs.uk"
+       # commented this out for testing  base_url = f"{http_base}{environment}.api.service.nhs.uk"
+        base_url = f"{http_base}.internal-qa.api.service.nhs.uk"
 
     return f"{base_url}/{service_base_path}"
 

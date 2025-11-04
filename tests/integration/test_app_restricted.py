@@ -84,13 +84,15 @@ class TestAppRestricted:
         assert issue_details["code"] == "NO_ACCESS"
 
     def test_authorised_application_supported_for_app_restricted(
-        self, app_restricted_access_code, service_url
+        self, access_code, service_url
     ):
         client_request_headers = {
-            _HEADER_AUTHORIZATION: "Bearer " + app_restricted_access_code,
+            _HEADER_AUTHORIZATION: "Bearer " + access_code,
             RenamedHeader.CORRELATION_ID.original: _EXPECTED_CORRELATION_ID,
             _HEADER_REQUEST_ID: "DUMMY",  # this must be less than 10 characters
         }
+        
+        # changed to access_code from app_restricted_access_code
 
         # Make the API call
         response = requests.get(

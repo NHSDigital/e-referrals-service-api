@@ -45,11 +45,9 @@ description: |
 
   ## Service Providing Organisations
   Service provider organisations can currently access the following referral related worklists:
-    - The 'Referrals for Review' worklist contains booked and RAS (triage) referrals that require review by the service provider organisation
+    - The 'Referrals for Review' worklist contains booked and RAS (triage) referrals that require review by the service provider organisation. The version of each referral in the worklist will also be returned. Note that the version can change due to admin/clinical changes as well as internal e-RS processes.
     - The 'Appointment Slot Issues' worklist contains referrals which have been 'deferred to provider' because of a lack of appointment availability (e.g. no appointment slots). 
     The referrals need to be reviewed and if appropriate booked into a service at the service provider organisation.
-  
-  There are currently no referral related worklists available for referring organisations.
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access

@@ -121,6 +121,10 @@
                   }
                 ]
               }
+            },
+            {
+              "url": "referralRequestVersion",
+              "valueInteger": 9
             }
           ],
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"
@@ -216,6 +220,10 @@
                 },
                 "display": "Excellent Cardiology Business Service 12"
               }
+            },
+            {
+              "url": "referralRequestVersion",
+              "valueInteger": 9
             }
           ],
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"

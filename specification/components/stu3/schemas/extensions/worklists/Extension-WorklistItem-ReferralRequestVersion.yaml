@@ -1,0 +1,14 @@
+title: referralRequestVersion
+type: object
+required:
+  - url
+  - valueInteger
+properties:
+  url:
+    type: string
+    enum:
+      - referralRequestVersion
+    example: referralRequestVersion
+  valueInteger:
+    type: integer
+    example: 0

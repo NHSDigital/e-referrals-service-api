@@ -130,6 +130,10 @@
                 },
                 "display": "Another Excellent Cardiology Business Service 13"
               }
+            },
+            {
+              "url": "referralRequestVersion",
+              "valueInteger": 12
             }
           ],
           "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralsforReview-WorkListItem-1"

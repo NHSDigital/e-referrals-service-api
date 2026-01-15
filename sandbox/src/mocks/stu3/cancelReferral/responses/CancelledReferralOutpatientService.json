@@ -182,9 +182,21 @@
                         },
                         "language": "en",
                         "resourceType": "Appointment",
-                        "status": "cancelled",
+                        "status": "proposed",
+                        "reason": [
+                            {
+                                "coding": [
+                                    {
+                                      "code": "ACCEPT_REFER_BOOK_LATER",
+                                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewOutcome-1",
+                                      "display": "Accept Refer Book Later"
+                                    }
+                                ]
+                            }
+                        ],
                         "description": "e-Referral Appointment",
                         "created": "2021-05-06T11:21:45.652Z",
+                        "comment": "Outcome",
                         "incomingReferral": [
                             {
                                 "reference": "ReferralRequest/000000070000/_history/4"
@@ -252,59 +264,6 @@
                     {
                         "system":"https://fhir.nhs.uk/Id/ers-request-id",
                         "value":"r.c18c4ec4-7d0a-480e-8506-347e0ec228b0"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "updatedAppointment",
-            "resource": {
-                "id": "70001",
-                "meta": {
-                    "versionId": "1",
-                    "profile": [
-                        "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1",
-                        "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"
-                    ]
-                },
-                "language": "en",
-                "resourceType": "Appointment",
-                "status": "cancelled",
-                "description": "e-Referral Appointment",
-                "created": "2021-05-06T11:21:45.652Z",
-                "reason": [
-                    {
-                      "coding": [{
-                        "system": "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
-                        "code": "PATIENT_APPOINTMENT_CANCELLATION_OTHER"
-                      }]
-                    }
-                ],
-                "comment": "Intend Private Comment",
-                "incomingReferral": [
-                    {
-                        "reference": "ReferralRequest/000000070000/_history/4"
-                    }
-                ],
-                "participant": [
-                    {
-                        "actor": {
-                            "identifier": {
-                                "system": "http://fhir.nhs.net/Id/ers-service",
-                                "value": "11004"
-                            },
-                            "display": "Cardiology Business Service"
-                        },
-                        "status": "accepted"
-                    },
-                    {
-                        "actor": {
-                            "identifier": {
-                                "system": "http://fhir.nhs.net/Id/nhs-number",
-                                "value": "9912003888"
-                            }
-                        },
-                        "status": "accepted"
                     }
                 ]
             }

@@ -14,8 +14,15 @@ description: |
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  - Application-restricted, unattended access
 
   ## Pre-requisites
+  ### Application-restricted, unattended access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+
+  To access this endpoint in application-restricted, unattended mode, you will be required to submit your use case for review. The only use case currently permitted is for non-clinical provider actions.
+
+  ### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
   - `REFERRING_CLINICIAN`
   - `REFERRING_CLINICIAN_ADMIN`
@@ -48,7 +55,7 @@ description: |
 
     * `referrerUsage` must be `CANCEL_REFERRAL`, and
 
-    * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN`   *(depending which authenticated user will be performing the action), and
+    * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
 
     * `canCancelAppointment` could be true or false, and
 
@@ -82,7 +89,7 @@ description: |
 
     * `appointmentRequestCancellationReasonType` must be `PROVIDER` and `PATIENT`, and
   
-    * `canCancelAppointment` must be true, and
+    * `canCancelAppointment` could be true or false, and
 
     * `effectiveFrom` must be in the past, and 
 
@@ -104,7 +111,7 @@ description: |
 
   You need to use [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
 
-  ## Important notes
+  ## Important note when retrieving attachments
   
   In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
   The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
@@ -115,9 +122,9 @@ description: |
 
   When cancelling a referral as a Service Provider Clinician:
 
-    * If the referral is in the “Triaged - Provider to action” state, the cancellation reason must be an Appointment Request End Triage Reason type.
+    * If the referral is in the **"Triaged - Provider to action"** state, the cancellation reason must be an **Appointment Request End Triage Reason** type.
 
-    * If the referral is not in that state, the cancellation reason must be a Provider Appointment Request Cancellation Reason or Patient Appointment Request Cancellation Reason type.
+    * If the referral is **not** in that state, the cancellation reason must be a **Provider Appointment Request Cancellation Reason** or **Patient Appointment Request Cancellation Reason** type.
 
   ## Use case
   As an authenticated user

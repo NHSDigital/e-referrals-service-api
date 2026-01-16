@@ -54,7 +54,7 @@ description: |
     - Change Shortlist
     - Change Shortlist and Send for Triage
 
-  As a service provider, the only action returned will be:
+  As a service provider, the actions returned can include:
     - Record Review Outcome
     - Cancel Referral
 

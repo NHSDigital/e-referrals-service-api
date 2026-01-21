@@ -25,6 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          find . -type d -name ".venv" -exec rm -rf {} + || true
           poetry env remove --all || true
           poetry install
 

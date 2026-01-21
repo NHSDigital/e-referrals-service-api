@@ -11,7 +11,6 @@ tests/functional/test_env/
 .idea
 .DS_Store
 venv
-.venv
 .direnv
 .#*
 

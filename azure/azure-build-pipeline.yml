@@ -23,13 +23,6 @@ resources:
 variables:
   - template: project.yml
 
-jobs:
-    - job: SetupPython
-      steps:
-          -   task: UsePythonVersion@0
-              inputs:
-                  versionSpec: ${{ variables.python_version }}
-
 
 extends:
   template: azure/common/apigee-build.yml@common

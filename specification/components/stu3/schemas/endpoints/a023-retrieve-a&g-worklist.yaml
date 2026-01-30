@@ -8,7 +8,8 @@ description: |
   or to undertake an action, in order to avoid delays to patient care.
   
   Service provider organisations can retrieve the contents of their 'Advice and guidance requests' worklist using 
-  this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning.
+  this endpoint. This worklist contains advice and guidance requests the provider has received and which need actioning. The version of each advice 
+  request in the worklist will also be returned. Note that the version can change due to admin/clinical changes as well as internal e-RS processes.
 
   There are currently no advice and guidance related worklists available for referring organisations.
 

@@ -23,6 +23,7 @@ description: |
 
   Supported action:
     - Record Review Outcome
+    - Cancel Referral
   
   ### Healthcare worker, user-restricted access
   
@@ -53,8 +54,9 @@ description: |
     - Change Shortlist
     - Change Shortlist and Send for Triage
 
-  As a service provider, the only action returned will be:
-    - Record Review Outcome 
+  As a service provider, the actions returned can include:
+    - Record Review Outcome
+    - Cancel Referral
 
   ## Related endpoints
 

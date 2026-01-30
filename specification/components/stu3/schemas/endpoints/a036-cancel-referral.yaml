@@ -14,18 +14,27 @@ description: |
 
   ## Supported security patterns
   - Healthcare worker, user-restricted access
+  - Application-restricted, unattended access
 
   ## Pre-requisites
+  ### Application-restricted, unattended access
+  In order to use this endpoint you must be an authenticated e-RS calling application, working in the context of a Service Provider Organisation.
+
+  To access this endpoint in application-restricted, unattended mode, you will be required to submit your use case for review. The only use case currently permitted is for non-clinical provider actions.
+
+  ### Healthcare worker, user-restricted access
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
   - `REFERRING_CLINICIAN`
   - `REFERRING_CLINICIAN_ADMIN`
+  - `SERVICE_PROVIDER_CLINICIAN`
+  - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
   You must use [[HYPERLINK_A004]] to retrieve a list of reference data, which detail the reason the cancellation is being performed. You can only use reference data from the set `REFERRAL-CANCELLATION-REASON`.
 
 
   To find out which reference data from this set can be used, the following filters can be used depending on the cancellation scenario:
 
-  ***1. I want to cancel the referral and the current appointment***
+  ***1. I want to cancel the referral and the current appointment as a Referrer***
 
   * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
 
@@ -40,29 +49,82 @@ description: |
     * if provided, `effectiveTo` must **not** be in the past
 
 
-  ***2. I want to cancel a referral, for which there is no current appointment***
+  ***2. I want to cancel a referral, for which there is no current appointment as a Referrer***
 
   * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
 
     * `referrerUsage` must be `CANCEL_REFERRAL`, and
 
-    * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN`   *(depending which authenticated user will be performing the action), and
+    * `businessFunction` must be `REFERRING_CLINICIAN` or `REFERRING_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
 
     * `canCancelAppointment` could be true or false, and
 
     * `effectiveFrom` must be in the past, and
 
     * if provided, `effectiveTo` must **not** be in the past
+  
+  ***3. I want to cancel the referral and the current appointment as a Service Provider***
 
+  * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+
+    * `referrerUsage` must be `CANCEL_REFERRAL`, and
+
+    * `businessFunction` must be `SERVICE_PROVIDER_CLINICIAN` or `SERVICE_PROVIDER_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
+
+    * `appointmentRequestCancellationReasonType` must be `PROVIDER` and `PATIENT`, and
+  
+    * `canCancelAppointment` must be true, and
+
+    * `effectiveFrom` must be in the past, and 
+
+    * `effectiveTo` must **not** be in the past
+
+  ***4. I want to cancel a referral, for which there is no current appointment as a Service Provider***
+  
+  * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+
+    * `referrerUsage` must be `CANCEL_REFERRAL`, and
+
+    * `businessFunction` must be `SERVICE_PROVIDER_CLINICIAN` or `SERVICE_PROVIDER_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
+
+    * `appointmentRequestCancellationReasonType` must be `PROVIDER` and `PATIENT`, and
+  
+    * `canCancelAppointment` could be true or false, and
+
+    * `effectiveFrom` must be in the past, and 
+
+    * `effectiveTo` must **not** be in the past
+  
+  ***5. I want to cancel the triage referral as a Service Provider***
+  
+  * Obtain reference data from `REFERRAL-CANCELLATION-REASON` and filter:
+
+    * `referrerUsage` must be `CANCEL_REFERRAL`, and
+
+    * `businessFunction` must be `SERVICE_PROVIDER_CLINICIAN` or `SERVICE_PROVIDER_CLINICIAN_ADMIN` (depending which authenticated user will be performing the action), and
+
+    * `appointmentRequestCancellationReasonType` must be `PROVIDER_TRIAGE`, and
+
+    * `effectiveFrom` must be in the past, and 
+
+    * `effectiveTo` must **not** be in the past
 
   You need to use [[HYPERLINK_A005]] to retrieve details of the referral in order to make this clinical decision.
 
-  ## Important notes
+  ## Important note when retrieving attachments
   
   In order to retrieve an attachment using the [[HYPERLINK_A042]] (or deprecated [[HYPERLINK_A006]]) endpoint, the attachment must be available for download. 
   The availability status of attachments associated with a referral are returned via this endpoint as a eRS-AvailabilityStatus-1 code.
   
   Further details on attachment availability status and eRS-AvailabilityStatus-1 codes can be found in the [[HYPERLINK_A005]] and [[HYPERLINK_A042]] specifications. 
+
+  ## Important notes when providing an appointment request cancellation reason
+
+  When cancelling a referral as a Service Provider Clinician:
+
+    * If the referral is in the **"Triaged - Provider to action"** state, the cancellation reason must be an **Appointment Request End Triage Reason** type.
+
+    * If the referral is **not** in that state, the cancellation reason must be a **Provider Appointment Request Cancellation Reason** or **Patient Appointment Request Cancellation Reason** type.
 
   ## Use case
   As an authenticated user
@@ -89,14 +151,16 @@ description: |
 
   You can test the following scenarios in our sandbox environment:
 
-  | Scenario                                                                 | Request details                   |
-  | ------------------------------------------------------------------------ | --------------------------------- |
-  | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment    |
-  | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment |
-  | Cancelled Referral                                                       | Raised in Error                   |
-  | Cancelled Appointment and Referral                                       | Referrer Cancellation             |
-  | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No Longer Required      |
-  | Cancelled Referral with Existing Review Outcome                          | Intend Private With Comment       |
+  | Scenario                                                                 | Request details                       |
+  | ------------------------------------------------------------------------ | ------------------------------------- |
+  | Reason for Cancellation without Comment (Comment Not Mandatory)          | Intend Private With No Comment        |
+  | Reason for Cancellation with Comment (Comment Mandatory)                 | Patient Cancellation With Comment     |
+  | Cancelled Referral                                                       | Raised in Error                       |
+  | Cancelled Appointment and Referral                                       | Referrer Cancellation                 |
+  | Cancelled Referral After Prior Appointment Cancellation                  | Treatment No Longer Required          |
+  | Cancelled Referral with Existing Review Outcome                          | Intend Private With Comment           |
+  | Cancelled Referral (Provider) without Comment (Comment Not Mandatory)    | Provider Cancellation With No Comment |
+  | Cancelled Referral with Triage Response                                  | Provider Cancellation via End Triage  |
 summary: Cancel referral (A036, FHIR STU3)
 operationId: a036-cancel-referral
 tags:
@@ -139,6 +203,14 @@ requestBody:
           summary: Cancelled Referral with Existing Review Outcome
           value:
             $ref: '../../examples/cancelReferral/requests/IntendPrivateWithComment.json'
+        cancel-referral-provider-without-comment:
+          summary: Cancelled Referral (Provider) without Comment (Comment Not Mandatory)
+          value:
+            $ref: '../../examples/cancelReferral/requests/bookedOutsideCabWithoutComment.json'
+        cancel-referral-with-triage-response:
+          summary: Cancelled Referral with Triage Response
+          value:
+            $ref: '../../examples/cancelReferral/requests/outpatientService.json'
 responses:
   '200':
     $ref: '../responses/cancelReferral/200Response.yaml'

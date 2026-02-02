@@ -13,6 +13,7 @@ description: |
   | Usage                                    | APPOINTMENT-CANCELLATION-REASON                               |
   | CommentIsMandatory                       | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
   | BusinessFunction                         | APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON |
+  | AppointmentRequestCancellationReasonType | REFERRAL-CANCELLATION-REASON                                   |
   | CanCancelAppointment                     | REFERRAL-CANCELLATION-REASON                                   |
   | ReferrerUsage                            | REFERRAL-CANCELLATION-REASON                                   |
   | DeferToProviderContactDays               | PRIORITY                        |
@@ -29,6 +30,7 @@ items:
     - $ref: 'properties/Usage.yaml'
     - $ref: 'properties/CommentIsMandatory.yaml'
     - $ref: 'properties/BusinessFunction.yaml'
+    - $ref: 'properties/AppointmentRequestCancellationReasonType.yaml'
     - $ref: 'properties/CanCancelAppointment.yaml'
     - $ref: 'properties/ReferrerUsage.yaml'
     - $ref: 'properties/DeferToProviderContactDays.yaml'

@@ -326,7 +326,7 @@ def make_app(client):
             "name": app_name,
             "scopes": [],
             "status": "approved",
-            "callbackUrl": "https://google.com/callback",
+            "callbackUrl": "https://example.com/callback",
         }
 
         app = devAppAPI.create_app(email="apm-testing-internal-dev@nhs.net", body=body)

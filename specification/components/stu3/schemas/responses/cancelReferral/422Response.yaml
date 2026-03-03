@@ -9,6 +9,7 @@ description: |
   | PATIENT_ERROR                      | An error occurred while retrieving the requested patient. Do not attempt again.                                              |
   | NO_RELATIONSHIP                    | The user does not have a legitimate relationship with the request.                                                           |
   | UNABLE_TO_CANCEL_APPOINTMENT       | System is unable to cancel the appointment. |
+  | INAPPROPRIATE_VALUE	               | A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided.  |
 headers:
   X-Correlation-ID:
     $ref: '../../headers/response/CorrelationID.yaml'

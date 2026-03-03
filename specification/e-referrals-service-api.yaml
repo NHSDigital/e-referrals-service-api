@@ -39,6 +39,7 @@ info:
       -	accept or reject a referral request
       -	retrieve Advice & Guidance (A&G) conversations and send responses
       -	convert Advice & Guidance (A&G) conversations into a referral
+      - cancel a referral
 
     **You cannot use this API to:**
 
@@ -78,7 +79,7 @@ info:
 
     | Access mode                   | Authentication via    | Functions               | Availability                    |
     | ----------------------------- | -------------------------- | ----------------------- | ------------------------------- |
-    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A013]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A028]]</li><li>[[HYPERLINK_A029]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A042]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
+    | Application-restricted,<br/>unattended access | [[HYPERLINK_SIGNED_JWT]]   | <ul><li>[[HYPERLINK_A004]]</li><li>[[HYPERLINK_A005]]</li><li>[[HYPERLINK_A007]]</li><li>[[HYPERLINK_A008]]</li><li>[[HYPERLINK_A013]]</li><li>[[HYPERLINK_A024]]</li><li>[[HYPERLINK_A025]]</li><li>[[HYPERLINK_A028]]</li><li>[[HYPERLINK_A029]]</li><li>[[HYPERLINK_A033]]</li><li>[[HYPERLINK_A035]]</li><li>[[HYPERLINK_A036]]</li><li>[[HYPERLINK_A037]]</li><li>[[HYPERLINK_A042]]</li><li>[[HYPERLINK_A043]]</li></ul> | [[HYPERLINK_PRODUCTION]] |
     | Healthcare worker,<br/>user-restricted access | [[HYPERLINK_CIS_AUTH_SHORT]]  | All Endpoints | [[HYPERLINK_PRODUCTION]] |
 
     ##### Application-restricted, unattended access
@@ -89,8 +90,9 @@ info:
     Write operations are currently supported for specific use cases via:
     - [[HYPERLINK_A028]]
     - [[HYPERLINK_A013]]
+    - [[HYPERLINK_A036]]
 
-    You will be required to submit your use case for review when using this endpoint via application-restricted, unattended access.
+    You will be required to submit your use case for review when using these endpoints via application-restricted, unattended access.
 
     ##### Healthcare worker, user-restricted access
 

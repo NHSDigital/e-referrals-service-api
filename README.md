@@ -35,7 +35,7 @@ The contents of this repository are protected by Crown Copyright (C).
 ### Environment setup
 Currently, automation for setting up the right environment is only available for machines based on RedHatEnterpriseLinux (RHEL).
 Running the following will ensure your environment is ready for development.
-It will install [pyenv](https://github.com/pyenv/pyenv), Python 3.10.8 and its dependencies (yum), create a virtual environment (named apigee), and ensure poetry is installed under it.
+It will install [pyenv](https://github.com/pyenv/pyenv), Python 3.13 and its dependencies (yum), create a virtual environment (named apigee), and ensure poetry is installed under it.
 ```
 $ make setup-environment
 ```

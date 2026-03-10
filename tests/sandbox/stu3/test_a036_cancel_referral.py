@@ -14,6 +14,8 @@ class TestCancelReferral(SandboxTest):
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
 
     authorised_actor_data = Actor.all(

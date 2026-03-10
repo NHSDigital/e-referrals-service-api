@@ -1,5 +1,5 @@
 [project]
-python = "^3.10"
+python = "^3.13"
 name = "e-referrals-service-api"
 version = "0.0.1-alpha"
 description = "TODO"
@@ -20,7 +20,7 @@ package-mode = false
 
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.13"
 pyyaml = "^6.0"
 docopt = "^0.6.2"
 jsonpath-rw = "^1.4.0"

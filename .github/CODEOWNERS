@@ -9,11 +9,11 @@
 
 # For version files that are updated by dependabot we have a cut down list
 
-/sandbox/Dockerfile @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/sandbox/package.json @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/sandbox/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/package.json @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/poetry.lock @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/poetry.toml @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
-/pyproject.toml @daniel-mcadam-nhs @kevinmason-nhs @balalsaleh-nhs
+/sandbox/Dockerfile @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/sandbox/package.json @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/sandbox/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/package.json @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/package-lock.json @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/poetry.lock @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/poetry.toml @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2
+/pyproject.toml @daniel-mcadam-nhs @kevinmason-nhs @EdwardWills-nhs @georgeCraftReferrals @csaw-nhs @petkopetkov2

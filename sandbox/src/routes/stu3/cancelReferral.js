@@ -10,7 +10,7 @@ module.exports = [
     path: '/FHIR/STU3/ReferralRequest/{ubrn}/$ers.cancelReferral',
     handler: (request, h) => {
 
-      const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN"]
+      const allowedBusinessFunctions = ["REFERRING_CLINICIAN", "REFERRING_CLINICIAN_ADMIN", "SERVICE_PROVIDER_CLINICIAN", "SERVICE_PROVIDER_CLINICIAN_ADMIN"]
 
       const validationResult = validationUtils.validateBusinessFunction(request, h, allowedBusinessFunctions)
 

@@ -50,7 +50,7 @@ echo "Installing python 3.13 with pyenv ..."
 if pyenv versions | grep -Fq "3.13" ; then
     echo "Pyenv has already got Python 3.13 installed."
 else
-    if pyenv install 3.10 ; then
+    if pyenv install 3.13 ; then
         echo "Pyenv installed Python 3.13 successfully."
     else
         echo "Pyenv did NOT install Python 3.13 successfully."

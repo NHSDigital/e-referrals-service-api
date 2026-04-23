@@ -134,7 +134,6 @@ async def user_restricted_product(client, make_product):
             "urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api",
             "urn:nhsd:apim:user-nhs-id:aal2:e-referrals-service-api",
         ],
-        additional_attributes=[{"name": "EUOAllowlistRequired", "value": "true"}],
     )
 
     print(f"product created: {productName}")
@@ -287,14 +286,13 @@ async def user_restricted_app(
     client, make_app, user_restricted_product, asid, apim_app_flow_vars
 ):
     # Setup
+    app_attrs = {"asid": asid}
     if apim_app_flow_vars is not None:
         odslist = json.dumps({"ers": {"allowListodsCode": apim_app_flow_vars}})
-        app = await make_app(
-            user_restricted_product,
-            {"asid": asid, "apim-app-flow-vars": odslist},
-        )
-    else:
-        app = await make_app(user_restricted_product, {"asid": asid})
+        app_attrs["apim-app-flow-vars"] = odslist
+        app_attrs["EUOAllowlistRequired"] = "true"
+
+    app = await make_app(user_restricted_product, app_attrs)
 
     appName = app["name"]
     print(f"App created: {appName}")

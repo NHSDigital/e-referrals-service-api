@@ -135,7 +135,7 @@ async def user_restricted_product(client, make_product):
             "urn:nhsd:apim:user-nhs-id:aal3:e-referrals-service-api",
             "urn:nhsd:apim:user-nhs-id:aal2:e-referrals-service-api",
         ],
-        additional_attributes=[{"name": "EUOAllowlistRequired", "value": "false"}],
+        additional_attributes=[{"name": "EUOAllowlistRequired", "value": "true"}],
     )
 
     print(f"product created: {productName}")

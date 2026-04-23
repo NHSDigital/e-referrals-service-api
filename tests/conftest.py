@@ -80,10 +80,9 @@ def asid(is_mocked_environment):
     )
 
 
-@pytest.fixture(scope="session")
-def apim_app_flow_vars(allowListodsCode=None):
-    if allowListodsCode is not None:
-        return {"ers": {"allowListodsCode": allowListodsCode}}
+@pytest.fixture
+def apim_app_flow_vars(request):
+    return getattr(request, "param", None)
 
 
 @pytest.fixture(scope="session")

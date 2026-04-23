@@ -32,12 +32,13 @@ class TestUserRestricted:
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
-        "endpoint_url, is_fhir_4, user, apim_app_flow_vars ",
+        "endpoint_url, is_fhir_4, user, apim_app_flow_vars",
         [
             ("", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/R4/", True, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/STU3/", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
         ],
+        indirect=["apim_app_flow_vars"],
     )
     async def test_user_restricted_valid_ods_code(
         self,
@@ -76,12 +77,13 @@ class TestUserRestricted:
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
-        "endpoint_url, is_fhir_4, user ,apim_app_flow_vars",
+        "endpoint_url, is_fhir_4, user, apim_app_flow_vars",
         [
             ("", False, Actor.RC_DEV, ["invalid_code"]),
             ("/FHIR/R4/", True, Actor.RC_DEV, ["invalid_code"]),
             ("/FHIR/STU3/", False, Actor.RC_DEV, ["invalid_code"]),
         ],
+        indirect=["apim_app_flow_vars"],
     )
     async def test_user_restricted_invalid_ods_code(
         self,
@@ -145,12 +147,13 @@ class TestUserRestricted:
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
-        "endpoint_url, is_fhir_4, user ,apim_app_flow_vars",
+        "endpoint_url, is_fhir_4, user, apim_app_flow_vars",
         [
             ("", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/R4/", True, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/STU3/", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
         ],
+        indirect=["apim_app_flow_vars"],
     )
     async def test_user_restricted_missing_ods_header(
         self,
@@ -215,12 +218,13 @@ class TestUserRestricted:
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
-        "endpoint_url, is_fhir_4, user ,apim_app_flow_vars",
+        "endpoint_url, is_fhir_4, user, apim_app_flow_vars",
         [
             ("", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/R4/", True, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
             ("/FHIR/STU3/", False, Actor.RC_DEV, [Actor.RC_DEV.org_code]),
         ],
+        indirect=["apim_app_flow_vars"],
     )
     async def test_user_restricted_missing_ods_code(
         self,

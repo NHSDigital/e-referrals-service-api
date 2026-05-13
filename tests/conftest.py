@@ -110,7 +110,7 @@ def app_restricted_ods_code(is_mocked_environment):
 
 @pytest.fixture(scope="session")
 def app_restricted_user_id(is_mocked_environment):
-    return "000000000101" if is_mocked_environment else "555032000100"
+    return "000000000101" if is_mocked_environment else "555073103100"
 
 
 @pytest.fixture(
@@ -326,7 +326,7 @@ def make_app(client):
             "name": app_name,
             "scopes": [],
             "status": "approved",
-            "callbackUrl": "https://example.org/callback",
+            "callbackUrl": "https://google.com/callback",
         }
 
         app = devAppAPI.create_app(email="apm-testing-internal-dev@nhs.net", body=body)

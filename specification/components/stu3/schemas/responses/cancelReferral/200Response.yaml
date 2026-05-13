@@ -35,3 +35,11 @@ content:
         summary: Cancelled Referral with Existing Review Outcome with Reason 'Patient will go to a private clinic'
         value:
           $ref: '../../../examples/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
+      cancelled-referral-provider-booked-outside:
+        summary: Cancelled Referral without Booking with Reason 'Patient booked outside NHS e-Referral Service' without Comment (Comment Not Mandatory)'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralBookedOutsideCabWithoutComment.json'
+      cancelled-referral-provider-triaged-and-sent-to-outpatient-service:
+        summary: Cancelled Referral with Triage Response with Reason 'Sent to outpatient service not available in this system' with Comment (Comment Mandatory)'
+        value:
+          $ref: '../../../examples/cancelReferral/responses/CancelledReferralOutpatientService.json'

@@ -14,10 +14,10 @@
   "dependencies": {
     "@hapi/hapi": "^21.4.4",
     "@hapi/inert": "^7.1.0",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
     "eslint": "^9.25.1",
-    "globals": "^16.5.0"
+    "globals": "^17.0.0"
   }
 }

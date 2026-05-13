@@ -12,10 +12,13 @@
   "license": "MIT",
   "homepage": "https://github.com/NHSDigital/e-referrals-service-api",
   "dependencies": {
-    "@redocly/cli": "^1.34.5"
+    "@redocly/cli": "^2.25.3"
   },
   "devDependencies": {
     "license-checker": "^25.0.1",
     "minimist": "^1.2.8"
+  },
+  "overrides": {
+    "handlebars": "^4.7.9"
   }
 }

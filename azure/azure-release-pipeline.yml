@@ -100,6 +100,21 @@ extends:
       depends_on:
       - ers_manual_approval_int
     - environment: manual-approval
+      stage_name: ers_manual_approval_testdev
+    - environment: internal-dev
+      stage_name: ers_testdev_release
+      service_name: "${{ variables.service_name }}-testdev"
+      short_service_name: "${{ variables.short_service_name }}-testdev"
+      service_base_path: "${{ variables.service_base_path }}-testdev"
+      jinja_templates:
+        ERS_TARGET_SERVER: e-referrals-service-api--testdev
+      post_deploy:
+      - template: templates/run-tests.yml
+        parameters:
+          smoke_tests: true
+      depends_on:
+      - ers_manual_approval_testdev
+    - environment: manual-approval
       stage_name: ers_manual_approval_dep
     - environment: dev
       stage_name: ers_dep_release

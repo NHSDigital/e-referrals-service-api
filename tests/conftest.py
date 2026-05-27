@@ -2,7 +2,6 @@ import os
 import pytest
 import pytest_asyncio
 import warnings
-import json
 
 from uuid import uuid4
 from typing import Collection, Callable, Generator, Dict
@@ -78,12 +77,6 @@ def asid(is_mocked_environment):
     return (
         get_env("ERS_MOCK_ASID") if is_mocked_environment else get_env("ERS_TEST_ASID")
     )
-
-
-@pytest.fixture(scope="session")
-def apim_app_flow_vars(allowListodsCode=None):
-    if allowListodsCode is not None:
-        return {"ers": {"allowListodsCode": allowListodsCode}}
 
 
 @pytest.fixture(scope="session")
@@ -284,18 +277,9 @@ def make_product(client, environment, service_name):
 
 
 @pytest_asyncio.fixture
-async def user_restricted_app(
-    client, make_app, user_restricted_product, asid, apim_app_flow_vars
-):
+async def user_restricted_app(client, make_app, user_restricted_product, asid):
     # Setup
-    if apim_app_flow_vars is not None:
-        odslist = json.dumps({"ers": {"allowListodsCode": apim_app_flow_vars}})
-        app = await make_app(
-            user_restricted_product,
-            {"asid": asid, "apim-app-flow-vars": odslist},
-        )
-    else:
-        app = await make_app(user_restricted_product, {"asid": asid})
+    app = await make_app(user_restricted_product, {"asid": asid})
 
     appName = app["name"]
     print(f"App created: {appName}")

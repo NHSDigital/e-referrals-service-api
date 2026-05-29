@@ -397,7 +397,9 @@ module.exports = {
       'src/mocks/stu3/cancelReferral/requests/RaisedInError.json': 'stu3/cancelReferral/responses/CancelledReferralRaisedInError.json',
       'src/mocks/stu3/cancelReferral/requests/ReferrerCancellation.json': 'stu3/cancelReferral/responses/CancelledBookedReferralReferrerCancellation.json',
       'src/mocks/stu3/cancelReferral/requests/NoLongerRequired.json': 'stu3/cancelReferral/responses/CancelledReferralWithCancelledBookingNoLongerRequired.json',
-      'src/mocks/stu3/cancelReferral/requests/IntendPrivateWithComment.json': 'stu3/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json'
+      'src/mocks/stu3/cancelReferral/requests/IntendPrivateWithComment.json': 'stu3/cancelReferral/responses/CancelledReferralResolvedDeferralIntendPrivateWithComment.json',
+      'src/mocks/stu3/cancelReferral/requests/bookedOutsideCabWithoutComment.json': 'stu3/cancelReferral/responses/CancelledReferralBookedOutsideCabWithoutComment.json',
+      'src/mocks/stu3/cancelReferral/requests/outpatientService.json': 'stu3/cancelReferral/responses/CancelledReferralOutpatientService.json'
     }
 
     return mapExampleResponse(request, responseMap);

@@ -101,7 +101,7 @@ responses:
   '404':
     $ref: '../responses/NotFound.yaml'
   '422':
-    $ref: '../responses/NotFound.yaml'
+    $ref: '../responses/retrieveAttachment/422Response.yaml'
   '429':
     $ref: '../responses/TooManyRequests.yaml'
   '500':

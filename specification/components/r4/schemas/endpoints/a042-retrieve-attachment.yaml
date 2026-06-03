@@ -100,6 +100,8 @@ responses:
     $ref: '../responses/ForbiddenOrNoLR.yaml'
   '404':
     $ref: '../responses/NotFound.yaml'
+  '422':
+    $ref: '../responses/NotFound.yaml'
   '429':
     $ref: '../responses/TooManyRequests.yaml'
   '500':

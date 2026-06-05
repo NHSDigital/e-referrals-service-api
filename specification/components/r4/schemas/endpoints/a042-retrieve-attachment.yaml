@@ -29,7 +29,7 @@ description: |
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
   ### Attachment availability
-  To use this endpoint, the attachment must be available for download. Attachments are only available after successful validation and malware scans. A request to retrieve an attachment that is not available for download will result in a 400 error. See the Response HTTP 400 section for further information.
+  To use this endpoint, the attachment must be available for download. Attachments are only available after successful validation and malware scans. A request to retrieve an attachment that is not available for download will result in a 422 error. See the Response HTTP 422 section for further information.
   
   The availability status of an attachment can be retrieved via any endpoint that provides details of an attachment in the success response. Details of the availability statuses that may be returned via these endpoints can be found in the specification for [[HYPERLINK_A005]].
   

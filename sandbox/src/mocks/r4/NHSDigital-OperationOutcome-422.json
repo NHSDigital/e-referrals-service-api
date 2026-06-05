@@ -10,7 +10,7 @@
       "details": {
         "coding": [
           {
-            "system": "https://fhir.nhs.uk/CodeSystem/http-error-codes",
+            "system": "https://fhir.nhs.uk/CodeSystem/ers-error-codes",
             "code": "PENDING"
           }
         ]

@@ -1,5 +1,5 @@
 description: |
-  Where status code 422 (Unprocessable Content) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Where status code 422 (Unprocessable Entity) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
   Check diagnostics property for specific information regarding the error.
   
   | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                                                                                                                                   |

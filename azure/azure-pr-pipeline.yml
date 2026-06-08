@@ -129,8 +129,8 @@ extends:
         post_deploy:
         - template: templates/run-tests.yml
           parameters:
-          integration_tests: true
-          smoke_tests: true
+            integration_tests: true
+            smoke_tests: true
         depends_on:
         - manual_approval_testdev_pr
       - environment: internal-dev-sandbox

@@ -2,7 +2,6 @@ import os
 import pytest
 import pytest_asyncio
 import warnings
-import json
 
 from uuid import uuid4
 from typing import Collection, Callable, Generator, Dict
@@ -81,12 +80,6 @@ def asid(is_mocked_environment):
 
 
 @pytest.fixture(scope="session")
-def apim_app_flow_vars(allowListodsCode=None):
-    if allowListodsCode is not None:
-        return {"ers": {"allowListodsCode": allowListodsCode}}
-
-
-@pytest.fixture(scope="session")
 def referring_clinician(is_mocked_environment):
     return Actor.RC_DEV if is_mocked_environment else Actor.RC
 
@@ -110,7 +103,7 @@ def app_restricted_ods_code(is_mocked_environment):
 
 @pytest.fixture(scope="session")
 def app_restricted_user_id(is_mocked_environment):
-    return "000000000101" if is_mocked_environment else "555032000100"
+    return "000000000101" if is_mocked_environment else "555073103100"
 
 
 @pytest.fixture(
@@ -284,18 +277,9 @@ def make_product(client, environment, service_name):
 
 
 @pytest_asyncio.fixture
-async def user_restricted_app(
-    client, make_app, user_restricted_product, asid, apim_app_flow_vars
-):
+async def user_restricted_app(client, make_app, user_restricted_product, asid):
     # Setup
-    if apim_app_flow_vars is not None:
-        odslist = json.dumps({"ers": {"allowListodsCode": apim_app_flow_vars}})
-        app = await make_app(
-            user_restricted_product,
-            {"asid": asid, "apim-app-flow-vars": odslist},
-        )
-    else:
-        app = await make_app(user_restricted_product, {"asid": asid})
+    app = await make_app(user_restricted_product, {"asid": asid})
 
     appName = app["name"]
     print(f"App created: {appName}")

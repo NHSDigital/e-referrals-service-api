@@ -15,7 +15,7 @@ class UserAuthenticationLevel(Enum):
 class Actor(Enum):
     # User ID, org code, business function, IAL, AAL, OBO User ID (optional)
     RC = (
-        "555032000100",
+        "555073103100",
         "D82106",
         "REFERRING_CLINICIAN",
         "3",

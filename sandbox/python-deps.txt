@@ -1,0 +1,161 @@
+black 26.3.1 The uncompromising code formatter.
+├── click >=8.0.0
+│   └── colorama * 
+├── mypy-extensions >=0.4.3
+├── packaging >=22.0
+├── pathspec >=1.0.0
+├── platformdirs >=2
+└── pytokens >=0.4.0,<0.5.0
+docopt 0.6.2 Pythonic argument parser, that will make you smile
+flake8 7.3.0 the modular source code checker: pep8 pyflakes and co
+├── mccabe >=0.7.0,<0.8.0
+├── pycodestyle >=2.14.0,<2.15.0
+└── pyflakes >=3.4.0,<3.5.0
+gitpython 3.1.45 GitPython is a Python library used to interact with Git repositories
+└── gitdb >=4.0.1,<5
+    └── smmap >=3.0.1,<6 
+jinja2 3.1.6 A very fast and expressive template engine.
+└── markupsafe >=2.0
+jsonpath-rw 1.4.0 A robust and significantly extended implementation of JSONPath for Python, with a clear AST for metaprogramming.
+├── decorator *
+├── ply *
+└── six *
+lxml 5.4.0 Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.
+openapi-core 0.19.5 client-side and server-side support for the OpenAPI Specification v3
+├── isodate *
+├── jsonschema >=4.18.0,<5.0.0
+│   ├── attrs >=22.2.0 
+│   ├── jsonschema-specifications >=2023.3.6 
+│   │   └── referencing >=0.31.0 
+│   │       ├── attrs >=22.2.0 (circular dependency aborted here)
+│   │       └── rpds-py >=0.7.0 
+│   ├── referencing >=0.28.4 (circular dependency aborted here)
+│   └── rpds-py >=0.7.1 (circular dependency aborted here)
+├── jsonschema-path >=0.3.1,<0.4.0
+│   ├── pathable >=0.4.1,<0.5.0 
+│   ├── pyyaml >=5.1 
+│   ├── referencing <0.37.0 
+│   │   ├── attrs >=22.2.0 
+│   │   └── rpds-py >=0.7.0 
+│   └── requests >=2.31.0,<3.0.0 
+│       ├── certifi >=2017.4.17 
+│       ├── charset-normalizer >=2,<4 
+│       ├── idna >=2.5,<4 
+│       └── urllib3 >=1.21.1,<3 
+├── more-itertools *
+├── openapi-schema-validator >=0.6.0,<0.7.0
+│   ├── jsonschema >=4.19.1,<5.0.0 
+│   │   ├── attrs >=22.2.0 
+│   │   ├── jsonschema-specifications >=2023.3.6 
+│   │   │   └── referencing >=0.31.0 
+│   │   │       ├── attrs >=22.2.0 (circular dependency aborted here)
+│   │   │       └── rpds-py >=0.7.0 
+│   │   ├── referencing >=0.28.4 (circular dependency aborted here)
+│   │   └── rpds-py >=0.7.1 (circular dependency aborted here)
+│   ├── jsonschema-specifications >=2023.5.2 (circular dependency aborted here)
+│   └── rfc3339-validator * 
+│       └── six * 
+├── openapi-spec-validator >=0.7.1,<0.8.0
+│   ├── jsonschema >=4.18.0,<5.0.0 
+│   │   ├── attrs >=22.2.0 
+│   │   ├── jsonschema-specifications >=2023.3.6 
+│   │   │   └── referencing >=0.31.0 
+│   │   │       ├── attrs >=22.2.0 (circular dependency aborted here)
+│   │   │       └── rpds-py >=0.7.0 
+│   │   ├── referencing >=0.28.4 (circular dependency aborted here)
+│   │   └── rpds-py >=0.7.1 (circular dependency aborted here)
+│   ├── jsonschema-path >=0.3.1,<0.4.0 
+│   │   ├── pathable >=0.4.1,<0.5.0 
+│   │   ├── pyyaml >=5.1 
+│   │   ├── referencing <0.37.0 (circular dependency aborted here)
+│   │   └── requests >=2.31.0,<3.0.0 
+│   │       ├── certifi >=2017.4.17 
+│   │       ├── charset-normalizer >=2,<4 
+│   │       ├── idna >=2.5,<4 
+│   │       └── urllib3 >=1.21.1,<3 
+│   ├── lazy-object-proxy >=1.7.1,<2.0.0 
+│   └── openapi-schema-validator >=0.6.0,<0.7.0 
+│       ├── jsonschema >=4.19.1,<5.0.0 (circular dependency aborted here)
+│       ├── jsonschema-specifications >=2023.5.2 (circular dependency aborted here)
+│       └── rfc3339-validator * 
+│           └── six * 
+├── parse *
+├── typing-extensions >=4.8.0,<5.0.0
+└── werkzeug <3.1.2
+    └── markupsafe >=2.1.1 
+pip-licenses 5.5.0 Dump the software license list of Python packages installed with pip.
+└── prettytable >=3.12.0
+    └── wcwidth * 
+pytest 8.4.2 pytest: simple powerful testing with Python
+├── colorama >=0.4
+├── iniconfig >=1
+├── packaging >=20
+├── pluggy >=1.5,<2
+└── pygments >=2.7.2
+pytest-asyncio 1.3.0 Pytest support for asyncio
+└── pytest >=8.2,<10
+    ├── colorama >=0.4 
+    ├── iniconfig >=1 
+    ├── packaging >=20 
+    ├── pluggy >=1.5,<2 
+    └── pygments >=2.7.2 
+pytest-check 2.6.2 A pytest plugin that allows multiple failures per test.
+└── pytest >=7.0.0
+    ├── colorama >=0.4 
+    ├── iniconfig >=1 
+    ├── packaging >=20 
+    ├── pluggy >=1.5,<2 
+    └── pygments >=2.7.2 
+pytest-nhsd-apim 5.0.15 Pytest plugin accessing NHSDigital's APIM proxies
+├── authlib >=1.6.1,<2.0.0
+│   └── cryptography * 
+│       └── cffi >=2.0.0 
+│           └── pycparser * 
+├── cryptography >44.0.1
+│   └── cffi >=2.0.0 
+│       └── pycparser * 
+├── lxml >=5.3.1,<6.0.0
+├── pycryptodome >=3.20.0,<4.0.0
+├── pydantic >=2.9.2,<3.0.0
+│   ├── annotated-types >=0.6.0 
+│   ├── pydantic-core 2.41.5 
+│   │   └── typing-extensions >=4.14.1 
+│   ├── typing-extensions >=4.14.1 (circular dependency aborted here)
+│   └── typing-inspection >=0.4.2 
+│       └── typing-extensions >=4.12.0 (circular dependency aborted here)
+├── pydantic-settings >=2.2.1,<3.0.0
+│   ├── pydantic >=2.7.0 
+│   │   ├── annotated-types >=0.6.0 
+│   │   ├── pydantic-core 2.41.5 
+│   │   │   └── typing-extensions >=4.14.1 
+│   │   ├── typing-extensions >=4.14.1 (circular dependency aborted here)
+│   │   └── typing-inspection >=0.4.2 
+│   │       └── typing-extensions >=4.12.0 (circular dependency aborted here)
+│   ├── python-dotenv >=0.21.0 
+│   └── typing-inspection >=0.4.0 (circular dependency aborted here)
+├── pyjwt >=2.8.0,<3.0.0
+├── pyotp >=2.9.0,<3.0.0
+├── pytest >=8.2.0,<9.0.0
+│   ├── colorama >=0.4 
+│   ├── iniconfig >=1 
+│   ├── packaging >=20 
+│   ├── pluggy >=1.5,<2 
+│   └── pygments >=2.7.2 
+├── requests >=2.32.0,<3.0.0
+│   ├── certifi >=2017.4.17 
+│   ├── charset-normalizer >=2,<4 
+│   ├── idna >=2.5,<4 
+│   └── urllib3 >=1.21.1,<3 
+├── setuptools >=80.0.1,<81.0.0
+├── toml >=0.10.2,<0.11.0
+├── typing-extensions >=4.12.2,<5.0.0
+├── urllib3 >=2.6.1,<3.0.0
+└── wheel >=0.37.1,<0.45.0
+pyyaml 6.0.3 YAML parser and emitter for Python
+requests 2.32.5 Python HTTP for Humans.
+├── certifi >=2017.4.17
+├── charset-normalizer >=2,<4
+├── idna >=2.5,<4
+└── urllib3 >=1.21.1,<3
+semver 3.0.4 Python helper for Semantic Versioning (https://semver.org)
+xmlformatter 0.2.8 Format and compress XML documents

@@ -81,7 +81,49 @@ parameters:
 requestBody:
   required: true
   content:
-    $ref: '../file/FileContentTypeSchemaUpload.yaml'
+    text/plain:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+      example: 'This is some example text.'
+    application/pdf:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    text/xml:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    text/rtf:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    audio/basic:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    audio/mpeg:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    image/png:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    image/gif:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    image/jpeg:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    image/tiff:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    video/mpeg:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    application/msword:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
+    application/dicom:
+      schema:
+        $ref: '../file/StringBinarySchema.yaml'
 responses:
   '201':
     $ref: '../responses/uploadFileToDocumentStore/201Response.yaml'

@@ -3,5 +3,4 @@ extends:
 rules:
   no-invalid-media-type-examples:
     severity: off
-  info-license-url: off
   tag-description: off

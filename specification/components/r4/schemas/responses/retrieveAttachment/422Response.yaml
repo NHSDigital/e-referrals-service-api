@@ -1,0 +1,22 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+  
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description                                                                                                                                                                                   |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | PENDING                   | invalid    | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes) | The file is being scanned and cannot be retrieved. Wait at least 5 minutes before checking its availability again.                                                                            |
+  | THREATS_FOUND             | invalid    | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes) | The file has been quarantined after detecting a threat and cannot be retrieved. Contact the organisation that uploaded the file to resolve the issue and get the information you need. Details of who uploaded the file can be retrieved via any endpoint that provides details of an attachment in the success response (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]] endpoints, for example)|
+  | VALIDATION_FAILED         | invalid    | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes) | The file has failed validation and cannot be retrieved. Contact the organisation that uploaded the file to resolve the issue and get the information you need. Details of who uploaded a file can be retrieved via any endpoint that provides details of an attachment in the success response (via the [[HYPERLINK_A005]] or [[HYPERLINK_A024]] endpoints, for example)<br>Validation can fail because the:<ul><li>content type of the file is not supported</li><li>content type of the file does not correlate with the file extension</li><li>file provided is too large and is not supported by e-RS. Note, this indicates that the file size is larger than the system supports as a whole, not the 5MB limit associated with this endpoint</ul> |
+headers:
+  x-correlation-id:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  x-request-id:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/NHSDigital-OperationOutcome-422.json'

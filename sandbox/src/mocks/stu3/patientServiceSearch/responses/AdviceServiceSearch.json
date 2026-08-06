@@ -90,6 +90,9 @@
                             {
                                 "url": "referralLetterRequired",
                                 "valueBoolean": false
+                            }, {
+                                "url": "singlePointOfAccess",
+                                "valueBoolean": false
                             },
                             {
                                 "url": "location",

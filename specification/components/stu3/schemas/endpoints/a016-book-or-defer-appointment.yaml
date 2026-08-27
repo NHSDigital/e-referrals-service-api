@@ -13,12 +13,18 @@ description: |
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
   You need to check if the service is directly bookable, indirectly bookable, or triage by either using [[HYPERLINK_A033]] or [[HYPERLINK_A035]]. You can then offer appropriate actions to authenticated users, i.e. the ability to book an appointment into a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, refer a patient into a triage service.
   
   If the service is directly bookable, you need to retrieve available appointment slots for the service using [[HYPERLINK_A015]].
 
-  You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint. 
+  You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint.
+  
+  If `businessFunction` is `SERVICE_PROVIDER_CLINICIAN` or `SERVICE_PROVIDER_CLINICIAN_ADMIN`, the referral must be in the "Triaged - Provider To Action" state (i.e. it has been redirected to your organisation and is awaiting booking, deferral, or triage). Calling this endpoint as a Service Provider Clinician when the referral is not in this state will return a `422` error with error code `INVALID_REQUEST_STATE`.
+  
+  Where a `SERVICE_PROVIDER_CLINICIAN_ADMIN` (SPCA) is acting on behalf of a `SERVICE_PROVIDER_CLINICIAN` (SPC), the on behalf of user ID must be that of an appropriate SPC. You can use endpoint [[HYPERLINK_A040]] to determine which e-RS users a `SERVICE_PROVIDER_CLINICIAN_ADMIN` is allowed to work "on-behalf-of".
 
   ## Important note when deferring to provider
   
@@ -64,6 +70,7 @@ parameters:
   - $ref: '../headers/request/OdsCode.yaml'
   - $ref: '../headers/request/BusinessFunction.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
 requestBody:
   required: true
   content:

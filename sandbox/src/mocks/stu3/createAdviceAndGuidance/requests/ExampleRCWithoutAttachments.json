@@ -21,6 +21,13 @@
             }
         },
         {
+            "name": "adviceRequestClinicalIntent",
+            "valueCoding": {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceRequestClinicalIntent-1",
+                "code": "CONFIRM_REFERRAL_NEEDED"
+            }
+        },
+        {
             "name": "shortlist",
             "resource": {
                 "meta": {

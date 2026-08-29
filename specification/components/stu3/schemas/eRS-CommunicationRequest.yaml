@@ -65,12 +65,14 @@ properties:
       | `Extension-eRS-ReferralShortlist`               | `1..1`      |                                            |
       | `Extension-eRS-ReferralPriority`                | `1..1`      |                                            |
       | `Extension-eRS-ProviderConversionAuthorisation` | `1..1`      |                                            |
+      | `Extension-eRS-AdviceRequestClinicalIntent`     | `1..1`      |                                            |
       | `Extension-eRS-Specialty`                       | `1..1`      |                                            |
     items:
       anyOf:
         - $ref: 'extensions/Extension-eRS-ReferralShortlist.yaml'
         - $ref: 'extensions/Extension-eRS-ReferralPriority.yaml'
         - $ref: 'extensions/Extension-eRS-ProviderConversionAuthorisation.yaml'
+        - $ref: 'extensions/Extension-eRS-AdviceRequestClinicalIntent.yaml'
         - $ref: 'extensions/Extension-eRS-Specialty.yaml'
   status:
     type: string

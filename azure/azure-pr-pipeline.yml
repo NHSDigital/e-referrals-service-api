@@ -116,6 +116,23 @@ extends:
             smoke_tests: true
         depends_on:
         - manual_approval_ft22_pr
+      - environment: manual-approval
+        stage_name: manual_approval_testdev_pr
+      - environment: internal-dev
+        service_name: ${{ variables.service_name }}-testdev
+        short_service_name: ${{ variables.short_service_name }}-testdev
+        service_base_path: ${{ variables.service_base_path }}-testdev
+        stage_name: ers_testdev_pr
+        jinja_templates:
+          ERS_TARGET_SERVER: e-referrals-service-api--testdev
+          ALLOW_ECHO_TARGET: true
+        post_deploy:
+        - template: templates/run-tests.yml
+          parameters:
+            integration_tests: true
+            smoke_tests: true
+        depends_on:
+        - manual_approval_testdev_pr
       - environment: internal-dev-sandbox
         proxy_path: sandbox
         post_deploy:

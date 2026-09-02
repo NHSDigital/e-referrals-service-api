@@ -55,3 +55,28 @@ properties:
               example: 'searchCriteria'
             resource:
               $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+        - title: Ubrn
+          description: The UBRN of the referral request (required for SERVICES_PROVIDER_CLINICIAN and SERVICES_PROVIDER_CLINICIAN_ADMIN).
+          type: object
+          required:
+            - name
+            - valueIdentifier
+          properties:
+            name:
+              type: string
+              enum:
+                - ubrn
+            valueIdentifier:
+              type: object
+              required:
+                - system
+                - value
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/Id/ers-request-id'
+                  example: 'https://fhir.nhs.uk/Id/ers-request-id'
+                value:
+                  type: string
+                  example: '000000070000'

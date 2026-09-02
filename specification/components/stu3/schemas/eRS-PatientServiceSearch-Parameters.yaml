@@ -35,6 +35,7 @@ properties:
       | `SearchCriteria`                | `1..1`      |                                                                                                                                                                                                                                                                                                                                |
       | `ReferringClinician`            | `0..1`      |                                                                                                                                                                                                                                                                                                                                |
       | `CommissioningRuleOrganisation` | `0..1`      | Required if searching for services for an existing Referral. This field should be provided using the returned Commissioning Rule Organisation already included on the Referral to ensure the services returned are valid. Note this field is not supported when searching with the `ADVICE_AND_GUIDANCE_REQUEST` request type. |
+      | `Ubrn`                          | `0..1`      | Mandatory for `SERVICE_PROVIDER_CLINICIAN` and `SERVICE_PROVIDER_CLINICIAN_ADMIN` requests. This parameter is ignored for `REFERRING_CLINICIAN` and `REFERRING_CLINICIAN_ADMIN` requests. |
     items:
       anyOf:
         - $ref: 'parameters/RequestType.yaml'
@@ -55,3 +56,28 @@ properties:
               example: 'searchCriteria'
             resource:
               $ref: 'eRS-ServiceSearchCriteria-Parameters.yaml'
+        - title: Ubrn
+          description: The UBRN of the referral request (required for SERVICE_PROVIDER_CLINICIAN and SERVICE_PROVIDER_CLINICIAN_ADMIN).
+          type: object
+          required:
+            - name
+            - valueIdentifier
+          properties:
+            name:
+              type: string
+              enum:
+                - ubrn
+            valueIdentifier:
+              type: object
+              required:
+                - system
+                - value
+              properties:
+                system:
+                  type: string
+                  enum:
+                    - 'https://fhir.nhs.uk/Id/ers-request-id'
+                  example: 'https://fhir.nhs.uk/Id/ers-request-id'
+                value:
+                  type: string
+                  example: '000000070000'

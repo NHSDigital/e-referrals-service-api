@@ -16,7 +16,7 @@ description: |
   
   You need to have identified a `patient`, for example via [[HYPERLINK_PDS]].
   
-  Where a `SERVICE_PROVIDER_CLINICIAN_ADMIN` (SPCA) is acting on behalf of a `SERVICE_PROVIDER_CLINICIAN` (SPC), the on behalf of user ID must be that of an appropriate SPC. You can use endpoint [[HYPERLINK_A040]] to determine which e-RS users a `SERVICE_PROVIDER_CLINICIAN_ADMIN` is allowed to work "on-behalf-of".
+  Where a `SERVICE_PROVIDER_CLINICIAN_ADMIN`  (SPCA) is acting on behalf of a `SERVICE_PROVIDER_CLINICIAN` (SPC), the on behalf of user ID must be that of an appropriate SPC. You can use endpoint [[HYPERLINK_A040]] to determine which e-RS users a `SERVICE_PROVIDER_CLINICIAN_ADMIN` is allowed to work "on-behalf-of".
 
   ## Use case
   As an authenticated user

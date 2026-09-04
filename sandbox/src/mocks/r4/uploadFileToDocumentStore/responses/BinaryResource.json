@@ -1,0 +1,15 @@
+{
+  "id": "d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f",
+  "resourceType": "Binary",
+  "meta": {
+    "lastUpdated": "2026-09-04T09:40:04.656Z"
+  },
+  "identifier": [
+    {
+      "system": "https://fhir.nhs.uk/Id/ers-binary-id",
+      "value": "d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f"
+    }
+  ],
+  "contentType": "text/plain"
+}
+

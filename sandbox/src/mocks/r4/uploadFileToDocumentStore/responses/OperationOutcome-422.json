@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2026-09-04T10:15:30.000Z",
+    "profile": [
+      "https://www.hl7.org/fhir/R4/operationoutcome.html"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "required",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/ers-error-codes",
+            "code": "MISSING_VALUE"
+          }
+        ]
+      },
+      "diagnostics": "Missing required header: NHSD-eRS-File-Name"
+    }
+  ]
+}

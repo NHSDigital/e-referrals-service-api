@@ -1,0 +1,18 @@
+allOf:
+  - $ref: './NHSDigital-OperationOutcome.yaml'
+  - type: object
+    properties:
+      meta:
+        type: object
+        required:
+          - lastUpdated
+          - profile
+        properties:
+          profile:
+            type: array
+            minItems: 1
+            items:
+              type: string
+              enum:
+                - 'https://www.hl7.org/fhir/R4/operationoutcome.html'
+

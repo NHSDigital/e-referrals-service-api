@@ -462,6 +462,21 @@ properties:
             valueBoolean:
               type: boolean
               example: true
+        - title: SinglePointOfAccess
+          description: Indicates whether the Service is a Single Point of Access (SPoA)
+          type: object
+          required:
+            - url
+            - valueBoolean
+          properties:
+            url:
+              type: string
+              enum:
+                - singlePointOfAccess
+              example: 'singlePointOfAccess'
+            valueBoolean:
+              type: boolean
+              example: true
         - title: Specialty
           description: The specialty supported by the Service
           type: object

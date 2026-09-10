@@ -33,9 +33,11 @@ description: |
 
   ### Maximum file size
 
-   The [[HYPERLINK_A006]] endpoint allows you to retrieve attachments up to a maximum file size of 5MB (5242880 bytes). Attempting to retrieve a file over this limit will lead to a 422 error being returned. See the Response section for further information. Due to this, prior to calling this endpoint, the size of the attachment being retrieved should first be validated so that this error can be avoided.
+  The [[HYPERLINK_A006]] endpoint allows you to retrieve attachments up to a maximum file size of 5MB (5242880 bytes).
 
-  Files that are larger than 5MB can be downloaded via the [[HYPERLINK_A042]] endpoint or the e-RS web-based professional application.
+  Use the DocumentReference.content.attachment.size resource to check the file is not larger than 5MB. The resource is returned in the success response for any endpoint that provides details of an attachment. For example: [[HYPERLINK_A005]] for referrals and [[HYPERLINK_A024]] for advice and guidance requests. Attempting to retrieve a file over this limit will lead to a 422 error being returned. See the Response section for further information. Due to this, prior to calling this endpoint, the size of the attachment being retrieved should first be validated so that this error can be avoided.
+
+  When a file larger than 5MB is encountered, your solution must provide a means for users to access it. This can be achieved either by implementing the [[HYPERLINK_A042]] endpoint, or by directing users to manually download the file through the e-RS web-based professional application.
 
   ## Important notes
 

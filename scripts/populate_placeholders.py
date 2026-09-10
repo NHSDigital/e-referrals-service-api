@@ -5,6 +5,7 @@ set_version.py
 Reads an openapi spec on stdin and substitutes placeholders with values stored in dictionary,
 then prints it on stdout.
 """
+
 import sys
 
 
@@ -41,6 +42,7 @@ def main():
         "[[HYPERLINK_A036]]": "[Cancel referral (A036)](#post-/STU3/ReferralRequest/-ubrn-/$ers.cancelReferral)",
         "[[HYPERLINK_A037]]": "[Retrieve healthcare service version (A037)](#head-/R4/HealthcareService/-id-)",
         "[[HYPERLINK_A038]]": "[Retrieve appointment (A038)](#get-/STU3/Appointment/-id-)",
+        "[[HYPERLINK_A039]]": "[Upload file to document store (A039)](#post-/R4/Binary)",
         "[[HYPERLINK_A040]]": "[Retrieve “on-behalf-of” practitioner user information (A040)](#get-/R4/Practitioner)",
         "[[HYPERLINK_A041]]": "[Search for service requests (A041)](#get-/R4/ServiceRequest)",
         "[[HYPERLINK_A042]]": "[Retrieve attachment (A042)](#get-/R4/Binary/-id-)",

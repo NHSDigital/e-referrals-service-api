@@ -1,0 +1,214 @@
+security:
+  -
+    bearerAuth: []
+
+description: |
+  ## Overview
+  
+  Use this endpoint to initiate the upload of a file containing clinical information to e-RS ready to be associated with a referral, an advice and guidance request or an advice and guidance response.
+  
+   This end point supersedes A020 and should be used for any new work. 
+  
+  ## Supported security patterns
+  - Healthcare worker, user-restricted access
+  
+  ## Pre-requisites
+  In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+    - `REFERRING_CLINICIAN`
+    - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
+  
+  You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
+  
+  | File type          | File extension(s)           | MIME Type                                                                    |
+  | ------------------ | --------------------------- | ---------------------------------------------------------------------------- |
+  | Plain Text         | `.txt`                      | `text/plain`                                                                 |
+  | PDF                | `.pdf`                      | `application/pdf`                                                            |
+  | XML Text           | `.xml`                      | `text/xml`                                                                   |
+  | RTF Text           | `.rtf`, `.rtx`              | `text/rtf`                                                                   |
+  | Basic Audio        | `.au`                       | `audio/basic`                                                                |
+  | MPEG audio layer 3 | `.mp3`                      | `audio/mpeg`                                                                 |
+  | PNG Image          | `.png`                      | `image/png`                                                                  |
+  | GIF Image          | `.gif`                      | `image/gif`                                                                  |
+  | JPEG Image         | `.jpg`, `.jpe`, `.jpeg`     | `image/jpeg`                                                                 |
+  | TIFF Image         | `.tif`, `.tiff`             | `image/tiff`                                                                 |
+  | MPEG Video         | `.mpg`, `.mpeg`, `.mpe`     | `video/mpeg`                                                                 |
+  | MSWORD             | `.doc`, `.docx`             | `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+  | DICOM              | `.dcm`                      | `application/dicom`                                                          |
+  
+  Currently, the maximum file size supported by e-RS is 5MB. This will be increasing to 100MB inline with the roadmap.
+  
+  ## Use case
+  
+  As an authenticated user
+  
+  I need to upload a referral letter or other clinical information file to e-RS
+  
+  So that I can associate the file with an existing referral or advice and guidance request.
+  
+  ## Important notes
+  
+  This endpoint **only** initiates the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [Maintain referral letter (A012)](#post-/STU3/ReferralRequest/-ubrn-/$ers.maintainReferralLetter).
+  
+  The file will not immediately be available for download, it must pass a malware scan first. The file can be associated with referrals during this period, but will have an `AvailabilityStatus` of `Pending` until the scan is complete. 
+  
+  Request header `NHSD-eRS-Referral-ID` - the ID (typically the UBRN) of the referral which the documents are intended for - is non-mandatory, but must be provided if this file is to be attached to an existing request.
+  
+  ## Support for a temporary redirect
+  
+  This end point will respond with a 200 code as it returns a body. Note that it behaves like a temporary redirect. The response will contain a `Location` header, which is the URL where the file should be uploaded to and a `Binary` resource in the body, which will contain the Binary Id used to reference the file when using other end points.
+  
+  The temporary location is only valid for a short period of time and should be used immediately. 
+  
+  Callers of this endpoint must ensure they:
+    - perform a PUT to this location to upload the file
+    - do not cache the temporary location
+    - do not attempt to re-use the temporary location
+    - supply a file size header (when calling A039) that EXACTLY matches the size of the file uploaded
+
+  When performing the PUT operation the following headers are required:
+   - `Content-Type` - this should be the same value that was provided in the `NHSD-eRS-File-MIME-Type` header when calling A039
+   - `Content-Disposition` - this should contain the value returned in the `Content-Disposition` header of the A039 response
+   - `Content-Length` - this should be the exact length of the file in bytes and must be the same as the value provided in the `NHSD-eRS-File-Size header` when calling A039.
+  
+  See the Response HTTP 200 section for further information.
+  
+  ## Related endpoints
+  
+  You can associate the uploaded file with a specific referral using:
+    - [Maintain referral letter (A012)](#post-/STU3/ReferralRequest/-ubrn-/$ers.maintainReferralLetter)
+    - [Cancel appointment, action later (A022)](#post-/STU3/ReferralRequest/-ubrn-/$ers.cancelAppointmentActionLater)
+    - [Record triage outcome (A028)](#post-/STU3/ReferralRequest/-ubrn-/$ers.recordReviewOutcome)
+  
+  You can associate the uploaded file with a specific advice and guidance request using:
+    - [Create advice and guidance request (A044)](#post-/STU3/CommunicationRequest/$ers.createAdviceAndGuidance)
+    - [Send advice and guidance response (A026)](#post-/STU3/CommunicationRequest/-ubrn-/$ers.sendCommunicationToRequester)
+    - [Convert advice and guidance request to referral (A027)](#post-/STU3/ReferralRequest/$ers.createFromCommunicationRequestActionLater)
+summary: 'Upload file to document store (A039, FHIR R4)'
+operationId: 'a039-upload-file-to-document-store'
+tags:
+  - 'Refer patient'
+  - 'Request advice'
+  - 'Arrange appointment'
+  - 'Arrange triage'
+parameters:
+  -
+    in: 'header'
+    name: 'Authorization'
+    description: |
+      An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+      
+      Required in all environments except sandbox.
+    required: true
+    schema:
+      type: 'string'
+      pattern: '^Bearer\s+.+$'
+      example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+  -
+    in: 'header'
+    name: 'NHSD-End-User-Organisation-ODS'
+    description: |
+      The ODS code of the caller's Organisation
+    required: true
+    schema:
+      type: 'string'
+      example: 'R69'
+  -
+    in: 'header'
+    name: 'NHSD-eRS-Business-Function'
+    description: |
+      The e-RS Business Function of the caller
+    required: true
+    schema:
+      type: 'string'
+      enum:
+        - 'REFERRING_CLINICIAN'
+        - 'REFERRING_CLINICIAN_ADMIN'
+        - 'SERVICE_PROVIDER_CLINICIAN_ADMIN'
+        - 'SERVICE_PROVIDER_CLINICIAN'
+      example: 'SERVICE_PROVIDER_CLINICIAN_ADMIN'
+  -
+    in: 'header'
+    name: 'NHSD-eRS-On-Behalf-Of-User-ID'
+    description: |
+      The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO). 
+      
+      "On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC). 
+      
+      Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.  
+    required: false
+    schema:
+      type: 'string'
+      example: '021600556514'
+  -
+    in: 'header'
+    name: 'X-Correlation-ID'
+    description: |
+      Arbitrary string value provided by API Consumer
+      
+      Tends to be unique, but does not have to be
+      
+      Returned, unchanged, in the response
+    required: false
+    schema:
+      type: 'string'
+      example: '11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA'
+  -
+    in: 'header'
+    name: 'NHSD-eRS-File-Name'
+    description: |
+      The name of file being uploaded, including the extension
+    required: true
+    schema:
+      type: 'string'
+      example: 'test.txt'
+  -
+    in: 'header'
+    name: 'NHSD-eRS-File-Size'
+    description: |
+      The size of file being uploaded, in bytes
+    required: true
+    schema:
+      type: 'integer'
+      minimum: 1
+      maximum: 5242880
+      format: 'int32'
+      example: 1024
+  -
+    in: 'header'
+    name: 'NHSD-eRS-File-MIME-Type'
+    description: |
+      The mime type of file being uploaded, must be one from the list of supported types above
+    required: true
+    schema:
+      type: 'string'
+      example: 'text/plain'
+  -
+    in: 'header'
+    name: 'NHSD-eRS-Referral-ID'
+    description: |
+      The ID (typically the UBRN) of the referral which the documents are intended for. This must be provided if this file is to be attached to an existing request.
+    required: false
+    schema:
+      type: 'string'
+      example: '000000070000'
+responses:
+  '200':
+    $ref: '../responses/uploadFileToDocumentStore/200Response.yaml'
+  '401':
+    $ref: '../responses/Unauthorized.yaml'
+  '403':
+    $ref: '../responses/ForbiddenOrNoLR.yaml'
+  '406':
+    $ref: '../responses/NotAcceptable.yaml'
+  '415':
+    $ref: '../responses/UnsupportedMediaType.yaml'
+  '422':
+    $ref: '../responses/uploadFileToDocumentStore/422Response.yaml'
+  '429':
+    $ref: '../responses/TooManyRequests.yaml'
+  '500':
+    $ref: '../responses/InternalServerError.yaml'
+  '503':
+    $ref: '../responses/ServiceUnavailable.yaml'

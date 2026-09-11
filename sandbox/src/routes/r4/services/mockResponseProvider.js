@@ -1,3 +1,31 @@
+const OBJECT_STORE_FILE_ID = 'd497bbe3-f88b-45f1-b3d4-9c563e4c0f5f'
+const DEFAULT_UPLOAD_FILENAME = 'upload.bin'
+
+function stripTrailingSlash(url) {
+  return url.replace(/\/+$/, '')
+}
+
+function getObjectStoreLocation(request) {
+  const explicitBaseUrl = request.headers['x-ers-sandbox-baseurl']
+  const baseUrl = typeof explicitBaseUrl === 'string' && explicitBaseUrl.trim()
+    ? stripTrailingSlash(explicitBaseUrl.trim())
+    : stripTrailingSlash(request.server.info.uri)
+
+  return `${baseUrl}/ObjectStore/${OBJECT_STORE_FILE_ID}`
+}
+
+function createContentDisposition(fileNameHeaderValue) {
+  const inputFileName = String(fileNameHeaderValue || '').replace(/[\r\n]/g, '').trim()
+  const utf8Filename = inputFileName || DEFAULT_UPLOAD_FILENAME
+  const asciiFallback = utf8Filename
+    .replace(/[^\x20-\x7E]/g, '_')
+    .replace(/["\\]/g, '_')
+  const safeFallback = asciiFallback || DEFAULT_UPLOAD_FILENAME
+  const encodedFilename = encodeURIComponent(utf8Filename)
+
+  return `attachment; filename="${safeFallback}"; filename*=UTF-8''${encodedFilename}`
+}
+
 module.exports = {
 
   getExampleResponseForRetrieveBusinessFunctions: function () {
@@ -43,7 +71,7 @@ module.exports = {
   getExampleResponseForSearchServiceRequest: function (request) {
     let ubrn;
     const identifier = request.query.identifier;
-    
+
     if (identifier.includes('|')) {
       ubrn = identifier.split('|')[1]
     }
@@ -62,6 +90,23 @@ module.exports = {
     }
     else if (ubrn === '000000070003') {
       return 'r4/searchServiceRequest/responses/ResponseExampleEmpty.json'
+    }
+
+    return null
+  },
+
+  getExampleResponseForUploadFileToDocumentStore: function (request) {
+    const filename = request.headers['nhsd-ers-file-name']
+    const fileSize = request.headers['nhsd-ers-file-size']
+    const fileMimeType = request.headers['nhsd-ers-file-mime-type']
+
+    if (filename && fileSize && fileMimeType) {
+      return {
+        responsePath: 'r4/uploadFileToDocumentStore/responses/BinaryResource.json',
+        responseCode: 200,
+        location: getObjectStoreLocation(request),
+        contentDisposition: createContentDisposition(filename)
+      }
     }
 
     return null

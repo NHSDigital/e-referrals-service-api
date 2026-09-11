@@ -36,7 +36,7 @@ const init = async () => {
     routes: {
       cors: {
         origin: ["*"],
-        headers: ['origin', 'x-requested-with', 'x-correlation-id', 'accept', 'content-type', 'nhsd-session-urid', 'nhsd-end-user-organisation-ods', 'nhsd-ers-business-function', 'authorization', 'nhsd-ers-comm-rule-org', 'nhsd-ers-file-name', 'nhsd-ers-referral-id', 'if-match', 'nhsd-ers-on-behalf-of-user-id'],
+        headers: ['origin', 'x-requested-with', 'x-correlation-id', 'accept', 'content-type', 'nhsd-session-urid', 'nhsd-end-user-organisation-ods', 'nhsd-ers-business-function', 'authorization', 'nhsd-ers-comm-rule-org', 'nhsd-ers-file-name', 'nhsd-ers-file-size', 'nhsd-ers-file-mime-type', 'nhsd-ers-referral-id', 'if-match', 'nhsd-ers-on-behalf-of-user-id'],
         exposedHeaders: ['x-correlation-id', 'x-request-id', 'content-type', 'Location', 'ETag', 'Content-Disposition', 'Content-Length', 'Cache-Control'],
         maxAge: 3628800,
         credentials: false

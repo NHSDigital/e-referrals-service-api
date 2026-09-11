@@ -7,8 +7,6 @@ description: |
   
   Use this endpoint to initiate the upload of a file containing clinical information to e-RS ready to be associated with a referral, an advice and guidance request or an advice and guidance response.
   
-   This end point supersedes A020 and should be used for any new work. 
-  
   ## Supported security patterns
   - Healthcare worker, user-restricted access
   
@@ -37,7 +35,7 @@ description: |
   | MSWORD             | `.doc`, `.docx`             | `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
   | DICOM              | `.dcm`                      | `application/dicom`                                                          |
   
-  Currently, the maximum file size supported by e-RS is 5MB. This will be increasing to 100MB inline with the roadmap.
+  Currently, the maximum file size supported by e-RS is 5MB. This will be increasing to 100MB in the October 2026 (16.9) release.
   
   ## Use case
   
@@ -65,12 +63,12 @@ description: |
     - perform a PUT to this location to upload the file
     - do not cache the temporary location
     - do not attempt to re-use the temporary location
-    - supply a file size header (when calling A039) that EXACTLY matches the size of the file uploaded
+    - supply a file size header that exactly matches the size of the file uploaded
 
   When performing the PUT operation the following headers are required:
-   - `Content-Type` - this should be the same value that was provided in the `NHSD-eRS-File-MIME-Type` header when calling A039
-   - `Content-Disposition` - this should contain the value returned in the `Content-Disposition` header of the A039 response
-   - `Content-Length` - this should be the exact length of the file in bytes and must be the same as the value provided in the `NHSD-eRS-File-Size header` when calling A039.
+   - `Content-Type` - this should be the same value that was provided in the `NHSD-eRS-File-MIME-Type` header
+   - `Content-Disposition` - this should contain the value returned in the `Content-Disposition` header of the response
+   - `Content-Length` - this should be the exact length of the file in bytes and must be the same as the value provided in the `NHSD-eRS-File-Size header`
   
   See the Response HTTP 200 section for further information.
   

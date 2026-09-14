@@ -43,6 +43,7 @@ const retrieveHealthcareService = require('./r4/retrieveHealthcareService')
 const searchForHealthcareServices = require('./r4/searchForHealthcareServices')
 const searchServiceRequest = require('./r4/searchServiceRequest')
 const retrieveAttachmentR4 = require('./r4/retrieveAttachment')
+const uploadFileToDocumentStoreR4 = require('./r4/uploadFileToDocumentStore')
 
 /**
  * Services
@@ -89,6 +90,7 @@ const routes = [].concat(
   searchServiceRequest,
   createAdviceAndGuidance,
   retrieveAttachmentR4,
+  uploadFileToDocumentStoreR4,
   objectStore
 )
 

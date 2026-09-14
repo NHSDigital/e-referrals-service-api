@@ -290,6 +290,9 @@ tags:
   - name: Review advice and guidance requests
     
 paths:
+  /R4/Binary:
+    post:
+      $ref: 'components/r4/schemas/endpoints/a039-upload-file-to-document-store.yaml'
   /STU3/CodeSystem/{codeSystemType}:
     get:
       $ref: 'components/stu3/schemas/endpoints/a004-retrieve-reference-data.yaml'

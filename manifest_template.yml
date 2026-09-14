@@ -35,6 +35,9 @@ APIGEE_ENVIRONMENTS:
   - name: ftxxii-internal-dev
     display_name: Internal Development - ft22
     euo_allowlist_required: false
+  - name: testdev-internal-dev
+    display_name: Internal Development - testdev
+    euo_allowlist_required: false
 
 - name: internal-dev-sandbox
   variants:

@@ -1,0 +1,81 @@
+description: Response body is a `Binary` resource containing binary id for the file to be uploaded. The file should be uploaded via a PUT to the uri returned in the Location header.
+headers:
+  x-correlation-id:
+    description: |
+      The X-Correlation-ID from the request header, if supplied, mirrored back.
+    required: false
+    schema:
+      type: string
+      example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+  x-request-id:
+    description: |
+      The e-RS transaction id
+    required: false
+    schema:
+      type: string
+      example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+  Location:
+    description: Location in the object store where the file should be uploaded to
+    required: true
+    schema:
+      type: string
+      format: uri
+      example: https://s3.amazonaws.com/nhs-example-bucket/patientfile.txt?X-Amz-Algorithm=AWS4-HMAC...
+  Content-Disposition:
+    description: |
+      Content-Disposition to be supplied in the PUT operation when uploading the file
+    required: true
+    schema:
+      type: string
+      example: attachment; filename="upload.txt"; filename*=UTF-8''upload.txt
+content:
+  application/fhir+json:
+    schema:
+      title: Binary resource
+      description: A FHIR Binary resource containing binary identifier and metadata.
+      type: object
+      required:
+        - resourceType
+        - contentType
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f
+        resourceType:
+          type: string
+          enum:
+            - Binary
+          example: Binary
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              example: 2026-09-04T09:40:04.656Z
+        identifier:
+          type: array
+          items:
+            type: object
+            required:
+              - system
+              - value
+            properties:
+              system:
+                type: string
+                enum:
+                  - https://fhir.nhs.uk/Id/ers-binary-id
+                example: https://fhir.nhs.uk/Id/ers-binary-id
+              value:
+                type: string
+                example: d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f
+        contentType:
+          type: string
+          example: text/plain
+    examples:
+      example-response-body:
+        summary: Example response body
+        value:
+          $ref: '../../../examples/uploadFileToDocumentStore/responses/BinaryResource.json'
+

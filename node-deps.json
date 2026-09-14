@@ -311,21 +311,21 @@
               }
             },
             "@hapi/wreck": {
-              "version": "18.1.0",
-              "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-18.1.0.tgz",
-              "overridden": false,
-              "dependencies": {
-                "@hapi/boom": {
-                  "version": "10.0.1"
-                },
-                "@hapi/bourne": {
-                  "version": "3.0.0"
-                },
-                "@hapi/hoek": {
-                  "version": "11.0.7"
-                }
-              }
-            }
+               "version": "18.1.2",
+               "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-18.1.2.tgz",
+               "overridden": false,
+               "dependencies": {
+                 "@hapi/boom": {
+                   "version": "10.0.1"
+                 },
+                 "@hapi/bourne": {
+                   "version": "3.0.0"
+                 },
+                 "@hapi/hoek": {
+                   "version": "11.0.7"
+                 }
+               }
+             }
           }
         },
         "@hapi/teamwork": {

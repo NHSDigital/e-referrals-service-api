@@ -30,7 +30,7 @@ lxml = "^6.1.0"
 xmlformatter = "^0.2.8"
 pytest-check = "^2.6.2"
 requests = "^2.32.5"
-openapi-core = "^0.20.0"
+openapi-core = "^0.23.1"
 werkzeug = ">=3.1.6"
 
 

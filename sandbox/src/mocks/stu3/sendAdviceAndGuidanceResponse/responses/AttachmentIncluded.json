@@ -39,6 +39,14 @@
             }
           },
           {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AdviceRequestClinicalIntent-1",
+            "valueCoding": {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceRequestClinicalIntent-1",
+              "code": "CONFIRM_REFERRAL_NEEDED",
+              "display": "Advice to confirm whether a referral is needed"
+            }
+          },
+          {
             "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
             "valueReference": {
               "reference": "#shortlist"

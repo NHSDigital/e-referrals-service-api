@@ -51,8 +51,8 @@ description: |
   A referral pathway in e-RS can be made up of more than one UBRN. For example: a referral is booked and seen in a general knee clinical assessment service (UBRN #1), and the service decides to onward refer to a more specialist knee meniscus service (UBRN #2). This would result in two UBRNs for the referral pathway. There may be additional related UBRNs if there are multiple onward referrals.
 
   As such, it is important that all clinical information is obtained from across all the related UBRNs referenced in [[HYPERLINK_A005]]. You can do this using the following endpoints:
-    - [[HYPERLINK_A006]]
     - [[HYPERLINK_A007]]
+    - [[HYPERLINK_A042]]
 
   Note: It is possible that the initial UBRN may be the only one in the referral pathway to have clinical information and/or attachments associated.
 

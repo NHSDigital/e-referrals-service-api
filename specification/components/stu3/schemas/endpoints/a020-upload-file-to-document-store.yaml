@@ -1,7 +1,9 @@
+deprecated: true
 security:
   - bearerAuth: []
 description: |
   ## Overview
+   **This endpoint has now been deprecated please use [[HYPERLINK_A039]] instead.**
   
   Use this endpoint to upload a file containing clinical information to e-RS ready to be associated with a referral, an advice and guidance request or an advice and guidance response.
 

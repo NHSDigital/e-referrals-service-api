@@ -1,0 +1,39 @@
+title: AdviceRequestClinicalIntent
+description: |
+  Parameter to define the clinical intent of the Advice Request
+
+  | Code                        | Description                                                     |
+  | --------------------------- | --------------------------------------------------------------- |
+  | `MANAGE_IN_PRIMARY_CARE`    | Advice to support management in primary care                    |
+  | `CONFIRM_REFERRAL_NEEDED`   | Advice to confirm whether a referral is needed                  |
+  | `INTERIM_AWAITING_REFERRAL` | Interim clinical advice while waiting for a referral appointment |
+  | `EXISTING_HOSPITAL_PATIENT` | Advice for an existing hospital patient                         |
+type: object
+required:
+  - name
+  - valueCoding
+properties:
+  name:
+    type: string
+    enum:
+      - adviceRequestClinicalIntent
+    example: 'adviceRequestClinicalIntent'
+  valueCoding:
+    type: object
+    required:
+      - system
+      - code
+    properties:
+      system:
+        type: string
+        enum:
+          - https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceRequestClinicalIntent-1
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/eRS-AdviceRequestClinicalIntent-1'
+      code:
+        type: string
+        enum:
+          - MANAGE_IN_PRIMARY_CARE
+          - CONFIRM_REFERRAL_NEEDED
+          - INTERIM_AWAITING_REFERRAL
+          - EXISTING_HOSPITAL_PATIENT
+        example: 'CONFIRM_REFERRAL_NEEDED'

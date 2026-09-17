@@ -9,7 +9,7 @@ description: |
   | INVALID_CODE                       | The input provided for a field is not one of the defined legal values. |
   | MISSING_PARAMETER                  | Indicates missing mandatory FHIR search parameter. |
   | MISSING_HEADER                     | Indicates missing mandatory HTTP header. |
-  | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed. |
+  | INVALID_STATE                      | Indicates that the referenced item is not in the correct state for the request to be processed. This applies when: <br> - the referral is not in the `NOT_BOOKED` state; <br> - (`SERVICE_PROVIDER_CLINICIAN`/`SERVICE_PROVIDER_CLINICIAN_ADMIN` only) the referral's current holding service is not of type `TRIAGE`. |
   | SERVICE_UNAVAILABLE                | Indicates that a service is no longer available. |
 headers:
   X-Correlation-ID:

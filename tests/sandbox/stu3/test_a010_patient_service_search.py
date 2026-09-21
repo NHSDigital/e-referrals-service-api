@@ -14,6 +14,8 @@ class TestPatientServiceSearch(SandboxTest):
     allowed_business_function_data = [
         "REFERRING_CLINICIAN",
         "REFERRING_CLINICIAN_ADMIN",
+        "SERVICE_PROVIDER_CLINICIAN",
+        "SERVICE_PROVIDER_CLINICIAN_ADMIN",
     ]
 
     authorised_actor_data = Actor.all(
@@ -50,6 +52,16 @@ class TestPatientServiceSearch(SandboxTest):
             Actor.RC,
             "stu3/patientServiceSearch/requests/RcSearchWithCommissioningRuleOrganisation.json",
             "stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json",
+        ),
+        (
+            Actor.SPC,
+            "stu3/patientServiceSearch/requests/SpcMinimal.json",
+            "stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json",
+        ),
+        (
+            Actor.SPCA,
+            "stu3/patientServiceSearch/requests/SpcaWithIWT.json",
+            "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
     ]
 
@@ -103,9 +115,11 @@ class TestPatientServiceSearch(SandboxTest):
         )
 
     def _request_path(self, actor: Actor) -> str:
-        path = (
-            "stu3/patientServiceSearch/requests/RcaWithIWT.json"
-            if actor == Actor.RCA
-            else "stu3/patientServiceSearch/requests/RcMinimal.json"
+        request_paths = {
+            Actor.RCA: "stu3/patientServiceSearch/requests/RcaWithIWT.json",
+            Actor.SPC: "stu3/patientServiceSearch/requests/SpcMinimal.json",
+            Actor.SPCA: "stu3/patientServiceSearch/requests/SpcaWithIWT.json",
+        }
+        return request_paths.get(
+            actor, "stu3/patientServiceSearch/requests/RcMinimal.json"
         )
-        return path

@@ -87,9 +87,32 @@ module.exports = {
       'src/mocks/stu3/patientServiceSearch/requests/RcaWithIWT.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
     };
 
-    const isRCBusinessRole = request.headers["nhsd-ers-business-function"] === 'REFERRING_CLINICIAN'
+    var responseMapForSPC = {
+      'src/mocks/stu3/patientServiceSearch/requests/SpcMinimal.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithMultipleServices.json'
+    };
 
-    return mapExampleResponse(request, isRCBusinessRole ? responseMapForRC : responseMapForRCA);
+    var responseMapForSPCA = {
+      'src/mocks/stu3/patientServiceSearch/requests/SpcaWithIWT.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+    };
+
+    const businessFunction = request.headers["nhsd-ers-business-function"]
+
+    var responseMap
+    switch (businessFunction) {
+      case 'REFERRING_CLINICIAN':
+        responseMap = responseMapForRC
+        break
+      case 'SERVICE_PROVIDER_CLINICIAN':
+        responseMap = responseMapForSPC
+        break
+      case 'SERVICE_PROVIDER_CLINICIAN_ADMIN':
+        responseMap = responseMapForSPCA
+        break
+      default:
+        responseMap = responseMapForRCA
+    }
+
+    return mapExampleResponse(request, responseMap);
 
   },
 

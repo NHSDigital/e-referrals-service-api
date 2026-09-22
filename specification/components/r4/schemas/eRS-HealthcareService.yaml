@@ -171,3 +171,24 @@ properties:
                       - Directly Bookable
                       - Indirectly Bookable
                     example: Directly Bookable
+              - type: object
+                title: eRS-ServiceAccessType
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    enum:
+                      - https://fhir.nhs.uk/CodeSystem/eRS-ServiceAccessType
+                    example: https://fhir.nhs.uk/CodeSystem/eRS-ServiceAccessType
+                  code:
+                    type: string
+                    enum:
+                      - SINGLE_POINT_OF_ACCESS
+                    example: SINGLE_POINT_OF_ACCESS
+                  display:
+                    enum:
+                      - Single point of access
+                    example: Single point of access

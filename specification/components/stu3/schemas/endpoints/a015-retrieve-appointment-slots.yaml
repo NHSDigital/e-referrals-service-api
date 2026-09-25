@@ -4,6 +4,9 @@ description: |
   ## Overview
   Use this endpoint to retrieve available appointment slots for a service.
 
+  Service provider clinicians can also use this endpoint, but only to retrieve slots for the purpose of redirecting a referral to another directly bookable service. This is only permitted when all of the following conditions are met:
+    - the referral's current holding service is of type `TRIAGE`
+  
   ## Supported security patterns
   - Healthcare worker, user-restricted access
 
@@ -11,6 +14,8 @@ description: |
   In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
     - `REFERRING_CLINICIAN`
     - `REFERRING_CLINICIAN_ADMIN`
+    - `SERVICE_PROVIDER_CLINICIAN`
+    - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
   You need to have identified a directly bookable `service` that is on the current referral shortlist. You can do this by using [[HYPERLINK_A005]].
 
@@ -21,6 +26,8 @@ description: |
   I need to retrieve a list of available appointment slots for a service
 
   So that I can offer them to the patient for booking.
+
+  As a service provider clinician (`SERVICE_PROVIDER_CLINICIAN`/`SERVICE_PROVIDER_CLINICIAN_ADMIN`)
 
   ## Important note
   You need to provide the 'commissioning rule organisation' when calling [[HYPERLINK_A015]] to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
@@ -65,6 +72,7 @@ parameters:
   - $ref: '../headers/request/BusinessFunction.yaml'
   - $ref: '../headers/request/CorrelationID.yaml'
   - $ref: '../headers/request/ErsCommRuleOrg.yaml'
+  - $ref: '../headers/request/OnBehalfOfUserID.yaml'
   - $ref: '../queryParameters/ServiceId.yaml'
   - $ref: '../queryParameters/Priority.yaml'
   - $ref: '../queryParameters/Status.yaml'

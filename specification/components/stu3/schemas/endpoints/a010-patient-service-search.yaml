@@ -77,10 +77,6 @@ requestBody:
           summary: Service Provider Clinician minimal search
           value:
             $ref: '../../examples/patientServiceSearch/requests/SpcMinimal.json'
-        spca-with-iwt:
-          summary: Service Provider Clinician Admin search
-          value:
-            $ref: '../../examples/patientServiceSearch/requests/SpcaWithIWT.json'
 responses:
   '200':
     $ref: '../responses/patientServiceSearch/200Response.yaml'

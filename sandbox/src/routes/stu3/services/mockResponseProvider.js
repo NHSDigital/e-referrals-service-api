@@ -92,7 +92,7 @@ module.exports = {
     };
 
     var responseMapForSPCA = {
-      'src/mocks/stu3/patientServiceSearch/requests/SpcaWithIWT.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
+      'src/mocks/stu3/patientServiceSearch/requests/SpcMinimal.json': 'stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json'
     };
 
     const businessFunction = request.headers["nhsd-ers-business-function"]

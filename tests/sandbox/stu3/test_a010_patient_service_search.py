@@ -60,7 +60,7 @@ class TestPatientServiceSearch(SandboxTest):
         ),
         (
             Actor.SPCA,
-            "stu3/patientServiceSearch/requests/SpcaWithIWT.json",
+            "stu3/patientServiceSearch/requests/SpcMinimal.json",
             "stu3/patientServiceSearch/responses/FetchServiceListWithSingleService.json",
         ),
     ]
@@ -118,7 +118,7 @@ class TestPatientServiceSearch(SandboxTest):
         request_paths = {
             Actor.RCA: "stu3/patientServiceSearch/requests/RcaWithIWT.json",
             Actor.SPC: "stu3/patientServiceSearch/requests/SpcMinimal.json",
-            Actor.SPCA: "stu3/patientServiceSearch/requests/SpcaWithIWT.json",
+            Actor.SPCA: "stu3/patientServiceSearch/requests/SpcMinimal.json",
         }
         return request_paths.get(
             actor, "stu3/patientServiceSearch/requests/RcMinimal.json"

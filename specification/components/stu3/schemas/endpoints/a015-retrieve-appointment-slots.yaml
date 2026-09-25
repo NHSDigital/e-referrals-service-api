@@ -6,10 +6,7 @@ description: |
 
   Service provider clinicians can also use this endpoint, but only to retrieve slots for the purpose of redirecting a referral to another directly bookable service. This is only permitted when all of the following conditions are met:
     - the referral's current holding service is of type `TRIAGE`
-    - the referral is in the `NOT_BOOKED` state
-    - the requested service is of type `APPOINTMENT`
-    - the user has a Legitimate Relationship with the referral
-
+  
   ## Supported security patterns
   - Healthcare worker, user-restricted access
 
@@ -20,11 +17,7 @@ description: |
     - `SERVICE_PROVIDER_CLINICIAN`
     - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
-  If using the `SERVICE_PROVIDER_CLINICIAN` or `SERVICE_PROVIDER_CLINICIAN_ADMIN` role, this endpoint is only usable under the narrow conditions described in the Overview above (referral redirection from a `TRIAGE` holding service, referral in `NOT_BOOKED` state, requested service of type `APPOINTMENT`, and an existing Legitimate Relationship with the referral). Outside of these conditions, calls from these roles will be rejected.
-
   You need to have identified a directly bookable `service` that is on the current referral shortlist. You can do this by using [[HYPERLINK_A005]].
-
-  The `NHSD-eRS-Business-Function` header must be set to a role that is permitted to call this endpoint - `REFERRING_CLINICIAN`, `REFERRING_CLINICIAN_ADMIN`, `SERVICE_PROVIDER_CLINICIAN`, or `SERVICE_PROVIDER_CLINICIAN_ADMIN` are all now accepted, subject to the conditions above for the service provider roles.
 
   ## Use case
 
@@ -35,10 +28,6 @@ description: |
   So that I can offer them to the patient for booking.
 
   As a service provider clinician (`SERVICE_PROVIDER_CLINICIAN`/`SERVICE_PROVIDER_CLINICIAN_ADMIN`)
-
-  I need to retrieve a list of available appointment slots for a service while a referral is held in `TRIAGE` and not yet booked
-
-  So that I can redirect the referral to a suitable directly bookable service and book an appointment via [[HYPERLINK_A016]].
 
   ## Important note
   You need to provide the 'commissioning rule organisation' when calling [[HYPERLINK_A015]] to ensure only suitable slots are returned. You can obtain the 'commissioning rule organisation' from [[HYPERLINK_A005]].
@@ -55,8 +44,6 @@ description: |
     - when the service has no available slots
     - when trying to book an appointment into a service, the slot advertised is no longer available
     - when trying to book an appointment into a service, no response is received within message timeout period (currently 2 minutes)
-
-  Service provider clinicians (`SERVICE_PROVIDER_CLINICIAN`/`SERVICE_PROVIDER_CLINICIAN_ADMIN`) use [[HYPERLINK_A015]] as part of the referral redirection workflow: retrieving slots for a suitable service before booking the redirected referral using [[HYPERLINK_A016]].
 
   ## Known Issues
   This endpoint is using the :Practitioner search parameter. The "schedule.actor" search parameter is incorrectly using the ":Practitioner" modifier. As per the [FHIR standard](https://hl7.org/fhir/R4/) the ":identifier" modifier should be used when searching to indicate that an Identifer is used rather than a literal, relative, internal or absolute reference. See our [problems and fixes](https://digital.nhs.uk/services/e-referral-service/api/updates-and-releases/problems-and-fixes) section for more information.

@@ -29,8 +29,8 @@ description: |
   If using this endpoint for modifying an existing Referral (such as via the [[HYPERLINK_A031]] endpoint for example), you will need to provide the Commissioning Rule Organisation parameter. This ensures that the services returned in the response are valid for use with the Referral. You can obtain the 'Commissioning Rule Organisation' from [[HYPERLINK_A005]].
 
   ## Related endpoints
-  Once you have identified appropriate services for the patient you can create a referral by choosing a shortlist of bookable and/or triage services using [[HYPERLINK_A011]]. You may then subsequently be able to use [[HYPERLINK_A016]] to book an appointment to a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, or refer a patient into a triage service.
-
+  Once you have identified appropriate services for the patient you can create a referral by choosing a shortlist of bookable and/or triage services using [[HYPERLINK_A011]]. You can update an existing shortlist using [[HYPERLINK_A031]]. You may then subsequently be able to use [[HYPERLINK_A016]] to book an appointment to a directly bookable service if an appointment slot is available, defer the booking responsibility to a directly bookable service if no appointment slot is available, or refer a patient into a triage service.
+  
 summary: Patient service search (A010, FHIR STU3)
 operationId: a010-patient-service-search
 tags:

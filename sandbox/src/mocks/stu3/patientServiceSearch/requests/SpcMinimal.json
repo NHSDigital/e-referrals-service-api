@@ -72,6 +72,13 @@
           }
         ]
       }
+    },
+    {
+      "name": "commissioningRuleOrganisation",
+      "valueIdentifier": {
+        "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+        "value": "R69"
+      }
     }
   ]
 }

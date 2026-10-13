@@ -44,8 +44,6 @@ description: |
 
   You need to have found services that meet the referral needs of a patient using [[HYPERLINK_A010]].
   
-  Where a `SERVICE_PROVIDER_CLINICIAN_ADMIN` (SPCA) is acting on behalf of a `SERVICE_PROVIDER_CLINICIAN` (SPC), the 'on behalf of' user ID must be that of an appropriate SPC.
-  
   ## Use case
   As an authenticated user
 

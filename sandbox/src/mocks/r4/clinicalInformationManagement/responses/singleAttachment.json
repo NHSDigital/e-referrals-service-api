@@ -1,0 +1,11 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction-response",
+  "entry": [
+    {
+      "response": {
+        "status": "200 OK"
+      }
+    }
+  ]
+}

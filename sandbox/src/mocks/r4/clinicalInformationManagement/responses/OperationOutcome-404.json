@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2026-10-16T10:15:30.000Z",
+    "profile": [
+      "https://www.hl7.org/fhir/R4/operationoutcome.html"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "not-found",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/http-error-codes",
+            "code": "REC_NOT_FOUND"
+          }
+        ]
+      },
+      "diagnostics": "Resource (d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f) not found."
+    }
+  ]
+}

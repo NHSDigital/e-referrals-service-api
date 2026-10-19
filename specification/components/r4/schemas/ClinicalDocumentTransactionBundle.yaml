@@ -1,0 +1,168 @@
+title: ClinicalDocumentTransactionBundle
+description: |
+  A constrained FHIR R4 transaction Bundle used to associate previously uploaded
+  Binary resources with one referral as provider-side clinical information.
+type: object
+required:
+  - resourceType
+  - type
+  - entry
+properties:
+  resourceType:
+    type: string
+    enum:
+      - Bundle
+  type:
+    type: string
+    enum:
+      - transaction
+  extension:
+    type: array
+    maxItems: 1
+    description: |
+      Optional provider clinical information comment, applying to all
+      DocumentReferences in the request.
+
+      FHIR R4 `Bundle` does not define `extension`; this is a deliberate e-RS
+      deviation from the FHIR R4 specification.
+    items:
+      type: object
+      required:
+        - url
+        - valueString
+      properties:
+        url:
+          type: string
+          enum:
+            - https://fhir.nhs.uk/StructureDefinition/ers-provider-clinical-information-comment
+        valueString:
+          type: string
+          maxLength: 2000
+  entry:
+    type: array
+    minItems: 1
+    description: All entries in a request must identify the same UBRN.
+    items:
+      type: object
+      required:
+        - resource
+        - request
+      properties:
+        fullUrl:
+          type: string
+          format: uri
+          description: |
+            Optional. If supplied, must be an absolute URI; a `urn:uuid:` value
+            must contain a valid UUID; and each `fullUrl` must be unique within
+            the Bundle. Not stored or returned.
+          example: urn:uuid:1359d6a4-50de-48fb-9f1a-270c2ab208f7
+        resource:
+          type: object
+          required:
+            - resourceType
+            - status
+            - type
+            - subject
+            - content
+          properties:
+            resourceType:
+              type: string
+              enum:
+                - DocumentReference
+            status:
+              type: string
+              enum:
+                - current
+            type:
+              type: object
+              required:
+                - coding
+              properties:
+                coding:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: object
+                    required:
+                      - system
+                      - code
+                    properties:
+                      system:
+                        type: string
+                        enum:
+                          - https://fhir.nhs.uk/CodeSystem/ers-attachment-type
+                      code:
+                        type: string
+                        enum:
+                          - PROVIDER
+                      display:
+                        type: string
+            subject:
+              type: object
+              required:
+                - identifier
+              properties:
+                identifier:
+                  type: object
+                  required:
+                    - system
+                    - value
+                  properties:
+                    system:
+                      type: string
+                      enum:
+                        - https://fhir.nhs.uk/Id/UBRN
+                    value:
+                      type: string
+                      pattern: '^[0-9]{12}$'
+                      example: '000000070000'
+            description:
+              type: string
+              maxLength: 200
+            date:
+              type: string
+              description: |
+                Optional. Validated but not stored; it does not set the
+                association time.
+
+                Accepted formats: `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, or
+                `YYYY-MM-DDThh:mm:ss[.fraction]` with a timezone of `Z` or
+                `+hh:mm`/`-hh:mm` (maximum offset 14:00). A dateTime without
+                seconds or without a timezone is rejected with a 400 response.
+
+                FHIR R4 defines `DocumentReference.date` as an `instant`; e-RS
+                also accepts the partial date forms above.
+              example: '2026-10-16T09:30:00Z'
+            content:
+              type: array
+              minItems: 1
+              maxItems: 1
+              items:
+                type: object
+                required:
+                  - attachment
+                properties:
+                  attachment:
+                    type: object
+                    required:
+                      - url
+                    properties:
+                      url:
+                        type: string
+                        pattern: '^Binary/(?:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|att-[0-9]+-[0-9]+)$'
+                        example: Binary/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f
+        request:
+          type: object
+          required:
+            - method
+            - url
+          properties:
+            method:
+              type: string
+              enum:
+                - POST
+            url:
+              type: string
+              enum:
+                - DocumentReference

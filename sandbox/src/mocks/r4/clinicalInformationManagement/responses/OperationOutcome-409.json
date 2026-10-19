@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2026-10-16T10:15:30.000Z",
+    "profile": [
+      "https://www.hl7.org/fhir/R4/operationoutcome.html"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/ers-error-codes",
+            "code": "CONFLICTING_VALUES"
+          }
+        ]
+      },
+      "diagnostics": "Referral is currently locked; retry the request"
+    }
+  ]
+}

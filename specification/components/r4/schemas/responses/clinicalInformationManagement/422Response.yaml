@@ -1,0 +1,21 @@
+description: |
+  Where status code 422 (Unprocessable Entity) is returned then an [NHSDigital-OperationOutcome](https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome) will be included in the body, as detailed below.
+  Check diagnostics property for specific information regarding the error.
+
+  | issue.details.coding.code | issue.code | Coding System                                                      | Description |
+  | ------------------------- | ---------- | ------------------------------------------------------------------ | ----------- |
+  | REC_BAD_REQUEST           | invalid    | [BaRS Error Code](https://fhir.nhs.uk/CodeSystem/http-error-codes) | The request is well-formed but its content or the referral is not eligible. For example: `Bundle.entry` is empty; entries refer to different UBRNs; a DocumentReference does not have `status` `current` or exactly one `PROVIDER` type coding; `description` exceeds 200 characters; the comment exceeds 2,000 characters; a Binary reference is missing or not in the form `Binary/{id}`; the referral is not an appointment request, is not in a state that accepts provider clinical information, or has a booked appointment that is in the past. |
+  | CONFLICTING_VALUES        | invalid    | [eRS Error Code](https://fhir.nhs.uk/CodeSystem/ers-error-codes)   | The request conflicts with existing data. For example: the same uploaded file is referenced more than once; a file is already linked to a referral, including when a successful request is repeated; a file name would duplicate one already in the attachment set; the file was uploaded for a different referral. |
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../NHSDigital-OperationOutcome.yaml'
+    example:
+      $ref: '../../../examples/clinicalInformationManagement/responses/OperationOutcome-422.json'

@@ -40,6 +40,7 @@ info:
       -	retrieve Advice & Guidance (A&G) conversations and send responses
       -	convert Advice & Guidance (A&G) conversations into a referral
       - cancel a referral
+      - add clinical information, as attachments, to a referral
 
     **You cannot use this API to:**
 
@@ -239,7 +240,7 @@ info:
 
     Try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
 
-    The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless.
+    The sandbox will only respond to an input which exactly matches one of the examples provided; it is otherwise stateless. The exception is [Associate provider clinical information (FHIR R4)](#post-/R4), where the sandbox validates the request and returns the matching error response.
 
     ### Integration testing
 
@@ -286,6 +287,7 @@ tags:
   - name: Change appointment
   - name: Manage referral
   - name: Retrieve clinical information
+  - name: FHIR R4 Clinical Information Management API
   - name: Review referral requests
   - name: Review advice and guidance requests
     
@@ -411,6 +413,9 @@ paths:
   /R4/ServiceRequest:
     get:
       $ref: 'components/r4/schemas/endpoints/a041-search-service-request.yaml'
+  /R4:
+    post:
+      $ref: 'components/r4/schemas/endpoints/clinical-information-management.yaml'
 components:
   securitySchemes:
     bearerAuth:

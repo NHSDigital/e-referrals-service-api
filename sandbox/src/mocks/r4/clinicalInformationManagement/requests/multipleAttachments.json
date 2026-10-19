@@ -1,0 +1,70 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:1359d6a4-50de-48fb-9f1a-270c2ab208f7",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/CodeSystem/ers-attachment-type",
+              "code": "PROVIDER"
+            }
+          ]
+        },
+        "subject": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/UBRN",
+            "value": "000000070000"
+          }
+        },
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/d497bbe3-f88b-45f1-b3d4-9c563e4c0f5f"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:29866175-820f-4e65-a891-8404c92ee5a0",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/CodeSystem/ers-attachment-type",
+              "code": "PROVIDER"
+            }
+          ]
+        },
+        "subject": {
+          "identifier": {
+            "system": "https://fhir.nhs.uk/Id/UBRN",
+            "value": "000000070000"
+          }
+        },
+        "content": [
+          {
+            "attachment": {
+              "url": "Binary/1772bc6a-70bc-4ef8-8841-820a65e0c94d"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    }
+  ]
+}

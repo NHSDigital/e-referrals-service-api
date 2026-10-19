@@ -23,7 +23,7 @@ Forwards requests to the real e-RS backend. This is the most policy-heavy part o
 
 ### Request flow (PreFlow on TargetEndpoint)
 
-1. `javascript.IsFhirR4Path` — sets `isFhirR4Path` boolean by matching `/FHIR/R4/` in the path suffix; this flag drives R4-vs-STU3 branching throughout
+1. `javascript.IsFhirR4Path` — sets `isFhirR4Path` boolean by matching `/FHIR/R4` or `/FHIR/R4/...` in the path suffix; this flag drives R4-vs-STU3 branching throughout
 2. `OauthV2.VerifyAccessToken` — validates OAuth2 token; accepted scopes: `app:level3`, `user-nhs-id:aal3`, `user-nhs-id:aal2`
 3. `FlowCallout.ExtendedAttributes` + `FlowCallout.EUOAllowlistVerify` — (user-restricted only, excluding `/FHIR/R4/PractitionerRole`) validates the end-user organisation ODS code against an allowlist
 4. ASID validation — `RaiseFault.MissingAsid` if `app.asid` is empty; then `AssignMessage.PopulateAsidFromApp` + `AssignMessage.SetAsidHeader` copy the ASID onto the request

@@ -1,0 +1,21 @@
+description: The provider attachment associations were created.
+headers:
+  X-Correlation-ID:
+    $ref: '../../headers/response/CorrelationID.yaml'
+  X-Request-ID:
+    $ref: '../../headers/response/RequestID.yaml'
+  Content-Type:
+    $ref: '../../headers/response/ContentTypeFhirJson.yaml'
+content:
+  application/fhir+json:
+    schema:
+      $ref: '../../ClinicalDocumentTransactionResponseBundle.yaml'
+    examples:
+      single-attachment:
+        summary: Successful single-attachment association
+        value:
+          $ref: '../../../examples/clinicalInformationManagement/responses/singleAttachment.json'
+      multiple-attachments:
+        summary: Successful multiple-attachment association
+        value:
+          $ref: '../../../examples/clinicalInformationManagement/responses/multipleAttachments.json'

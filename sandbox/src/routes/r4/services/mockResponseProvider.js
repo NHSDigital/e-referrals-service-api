@@ -1,3 +1,5 @@
+const clinicalInformationManagement = require('./clinicalInformationManagement')
+
 const OBJECT_STORE_FILE_ID = 'd497bbe3-f88b-45f1-b3d4-9c563e4c0f5f'
 const DEFAULT_UPLOAD_FILENAME = 'upload.bin'
 
@@ -110,5 +112,9 @@ module.exports = {
     }
 
     return null
+  },
+
+  getExampleResponseForClinicalInformationManagement: function (request) {
+    return clinicalInformationManagement.getResponse(request.payload)
   }
 }

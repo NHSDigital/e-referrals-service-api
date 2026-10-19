@@ -79,6 +79,9 @@ description: |
     - [Cancel appointment, action later (A022)](#post-/STU3/ReferralRequest/-ubrn-/$ers.cancelAppointmentActionLater)
     - [Record triage outcome (A028)](#post-/STU3/ReferralRequest/-ubrn-/$ers.recordReviewOutcome)
   
+  As a service provider, you can associate the uploaded file with a specific referral using:
+    - [Associate provider clinical information (FHIR R4)](#post-/R4)
+
   You can associate the uploaded file with a specific advice and guidance request using:
     - [Create advice and guidance request (A044)](#post-/STU3/CommunicationRequest/$ers.createAdviceAndGuidance)
     - [Send advice and guidance response (A026)](#post-/STU3/CommunicationRequest/-ubrn-/$ers.sendCommunicationToRequester)

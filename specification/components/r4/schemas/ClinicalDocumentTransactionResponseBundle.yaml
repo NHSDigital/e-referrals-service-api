@@ -1,0 +1,36 @@
+title: ClinicalDocumentTransactionResponseBundle
+description: |
+  A FHIR R4 transaction-response Bundle acknowledging each submitted
+  DocumentReference association. Response entries contain no location.
+type: object
+required:
+  - resourceType
+  - type
+  - entry
+properties:
+  resourceType:
+    type: string
+    enum:
+      - Bundle
+  type:
+    type: string
+    enum:
+      - transaction-response
+  entry:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required:
+        - response
+      properties:
+        response:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              type: string
+              enum:
+                - 200 OK
+          additionalProperties: false

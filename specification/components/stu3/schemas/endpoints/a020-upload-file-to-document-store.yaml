@@ -47,7 +47,7 @@ description: |
 
   ## Important notes
 
-  This endpoint **only** performs the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [[HYPERLINK_A012]].
+  This endpoint **only** performs the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [[HYPERLINK_A012]] or [Associate provider clinical information (FHIR R4)](#post-/R4).
   
   The resulting URL within e-RS for the uploaded file is returned in the 'Location' header of the response.
 
@@ -59,6 +59,7 @@ description: |
     - [[HYPERLINK_A012]]
     - [[HYPERLINK_A022]]
     - [[HYPERLINK_A028]]
+    - [Associate provider clinical information (FHIR R4)](#post-/R4)
 
   You can associate the uploaded file with a specific advice and guidance request using:
     - [[HYPERLINK_A044]]

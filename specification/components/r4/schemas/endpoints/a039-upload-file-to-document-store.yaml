@@ -47,7 +47,7 @@ description: |
   
   ## Important notes
   
-  This endpoint **only** initiates the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [Maintain referral letter (A012)](#post-/STU3/ReferralRequest/-ubrn-/$ers.maintainReferralLetter).
+  This endpoint **only** initiates the file upload and **does not** associate it with a referral. The uploaded file must be explicitly associated with a referral by, for example, using [Maintain referral letter (A012)](#post-/STU3/ReferralRequest/-ubrn-/$ers.maintainReferralLetter) or [Associate provider clinical information (FHIR R4)](#post-/R4).
   
   The file will not immediately be available for download, it must pass a malware scan first. The file can be associated with referrals during this period, but will have an `AvailabilityStatus` of `Pending` until the scan is complete. 
   
@@ -78,8 +78,6 @@ description: |
     - [Maintain referral letter (A012)](#post-/STU3/ReferralRequest/-ubrn-/$ers.maintainReferralLetter)
     - [Cancel appointment, action later (A022)](#post-/STU3/ReferralRequest/-ubrn-/$ers.cancelAppointmentActionLater)
     - [Record triage outcome (A028)](#post-/STU3/ReferralRequest/-ubrn-/$ers.recordReviewOutcome)
-  
-  As a service provider, you can associate the uploaded file with a specific referral using:
     - [Associate provider clinical information (FHIR R4)](#post-/R4)
 
   You can associate the uploaded file with a specific advice and guidance request using:

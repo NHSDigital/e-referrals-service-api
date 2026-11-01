@@ -53,8 +53,8 @@ properties:
           format: uri
           description: |
             Optional. If supplied, must be an absolute URI; a `urn:uuid:` value
-            must contain a valid UUID; and each `fullUrl` must be unique within
-            the Bundle. Not stored or returned.
+            must contain a valid UUID, and must be unique within the Bundle.
+            Not stored or returned.
           example: urn:uuid:1359d6a4-50de-48fb-9f1a-270c2ab208f7
         resource:
           type: object

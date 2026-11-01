@@ -287,7 +287,6 @@ tags:
   - name: Change appointment
   - name: Manage referral
   - name: Retrieve clinical information
-  - name: FHIR R4 Clinical Information Management API
   - name: Review referral requests
   - name: Review advice and guidance requests
     

@@ -3,17 +3,18 @@ security:
 summary: Associate provider clinical information (FHIR R4)
 operationId: associate-provider-clinical-information-r4
 tags:
-  - FHIR R4 Clinical Information Management API
+  - Review referral requests
 description: |
   ## Overview
 
   Use this endpoint to associate one or more previously uploaded files with a
   referral as provider-side clinical information.
 
-  This is a constrained FHIR R4 transaction for this association use case. It
-  does not provide generic FHIR transaction processing and does not create
-  retrievable native `DocumentReference` resources. A successful response
-  acknowledges the associations and does not return DocumentReference IDs.
+  This endpoint uses a constrained FHIR R4 transaction specifically for
+  associating provider clinical information with a referral. It does not provide
+  generic FHIR transaction processing and does not create retrievable native
+  `DocumentReference` resources. A successful response acknowledges the
+  associations and does not return DocumentReference IDs.
 
   Associations are additive and are submitted as a single all-or-nothing
   operation. Each request must refer to one UBRN.
@@ -23,32 +24,13 @@ description: |
 
   ## Pre-requisites
   ### Healthcare worker, user-restricted access
-  You must be an authenticated e-RS user using CIS2.
-
-  You must use one of these e-RS business functions:
-  - `SERVICE_PROVIDER_CLINICIAN` (SPC)
-  - `SERVICE_PROVIDER_CLINICIAN_ADMIN` (SPCA)
+  You must be an authenticated e-RS user and have one of the following e-RS
+  business functions:
+  - `SERVICE_PROVIDER_CLINICIAN`
+  - `SERVICE_PROVIDER_CLINICIAN_ADMIN`
 
   You must supply the `NHSD-End-User-Organisation-ODS` header with the ODS
   code of your organisation.
-
-  Application-restricted access is not supported.
-
-  You must have an active (not passive) legitimate relationship with the
-  referral. The relationship check also considers incomplete onward referrals.
-  The referral must also be eligible for provider clinical information, which
-  means it is one of:
-  - booked, where the latest appointment booking is booked and the appointment
-  start date and time is in the future
-  - requires rebook, unless the latest appointment booking is still booked with
-  a start date and time in the past
-  - not booked, triaged - provider to action, appointment cancelled by
-  provider, or deferred to provider
-
-  All other referrals are rejected with a 422 response, so that clinical
-  information is only added where someone is going to act on it. The referral
-  must be an appointment request. e-RS checks the current referral and
-  appointment details on every request.
 
   When using `SERVICE_PROVIDER_CLINICIAN_ADMIN`, you must supply
   `NHSD-eRS-On-Behalf-Of-User-ID` with the user ID of an appropriate SPC you
@@ -81,47 +63,70 @@ description: |
   ## Related endpoints
 
   - Upload files using [[HYPERLINK_A039]] before associating them with a referral.
-  - Retrieve the referral using `GET /STU3/ReferralRequest/{ubrn}` to check its
-    provider attachments.
+  - Retrieve the referral using [[HYPERLINK_A005]] to check its provider
+    attachments.
 
   ## Important notes
 
-  This endpoint is not idempotent. If a request succeeds and you send it again,
-  e-RS returns a 422 response because the files are already linked to the
-  referral. If a request times out and you do not know whether it succeeded,
-  retrieve the referral with `GET /STU3/ReferralRequest/{ubrn}` and check its provider
-  attachments before resending. The attachments include the file name and
-  description, and the attachment URL contains the Binary ID returned by
-  [[HYPERLINK_A039]]. The comment is not returned.
+  This endpoint is not idempotent. This means that if you resend a successful request, e-RS
+  returns a 422 response because the files are already associated with the
+  referral.
+  
+  If a request times out and you do not know whether it succeeded,
+  retrieve the referral with [[HYPERLINK_A005]] and check its provider
+  attachments before resending. Provider attachments include the file
+  name and description. The attachment URL contains the Binary ID returned by
+  [[HYPERLINK_A039]], which can be used to identify associated files. The
+  provider clinical information comment is not returned.
 
-  Associations are saved together: a failed request does not link any of its
-  files. A 409 response means the referral is being updated by another request;
-  wait briefly and retry the same request.
+  All file associations in a request are processed together. If the request
+  fails, none of the files are associated with the referral.
+  
+  A 409 response means that the referral is being updated by another request. Wait briefly before
+  retrying the same request.
 
-  Eligibility is checked on every request, so a retry can return a different
-  error if the referral has changed in the meantime.
+  Referral eligibility is checked on every request. A retry may return a
+  different error if the referral has changed since the original request.
 
   ## Request constraints
 
-  The request is a FHIR R4 `Bundle` with `type` set to `transaction`. Each entry
-  must contain a `DocumentReference` and a `request` with `method` `POST` and
-  `url` `DocumentReference`. Each DocumentReference must have `status` `current`,
-  the `PROVIDER` attachment classification, a UBRN identifier, and exactly one
-  previously uploaded Binary reference. At least one entry is required. No
-  maximum number of entries is defined for this endpoint.
+  The request is a FHIR R4 `Bundle` with `type` set to `transaction`.
 
-  Each entry may have a `fullUrl`. If supplied, it must be an absolute URI, a
-  `urn:uuid:` value must contain a valid UUID, and each `fullUrl` must be unique
-  within the Bundle. `fullUrl` is not stored or returned in the response.
+  Each Bundle entry must:
+  - contain a `DocumentReference`
+  - use `POST` as the request method, with `DocumentReference` as the requested
+    URL
 
-  Every entry must use the same 12-digit UBRN. The Binary URL is relative and
-  has the form `Binary/{id}`, where `{id}` is the Binary ID returned by
-  [[HYPERLINK_A039]]. Legacy IDs in the form `att-{referralId}-{attachmentId}`
-  are also accepted. Each uploaded file can be referenced only once.
-  The optional DocumentReference `description` is limited to 200 characters.
-  The optional provider clinical information comment is supplied once, as a
-  Bundle-level extension, with a maximum length of 2,000 characters. It applies
-  to all DocumentReferences in the request and is stored as the notes for the
+  Each `DocumentReference` must:
+  - have a `status` of `current`
+  - use the `PROVIDER` attachment classification
+  - include the referral UBRN
+  - reference exactly one previously uploaded Binary
+
+  The Bundle must contain at least one entry. There is no defined maximum
+  number of entries for this endpoint.
+
+  `fullUrl` is optional. If supplied:
+  - it must be an absolute URI
+  - a `urn:uuid:` value must contain a valid UUID
+  - it must be unique within the Bundle
+
+  `fullUrl` is not stored or returned in the response.
+
+  All entries in the Bundle must use the same 12-digit UBRN. Each Binary
+  reference must use the relative URL `Binary/{id}`, where `{id}` is the Binary
+  ID returned by [[HYPERLINK_A039]]. Legacy IDs in the form
+  `att-{referralId}-{attachmentId}` are also accepted. Each uploaded file can
+  only be referenced once in the request.
+
+  The optional DocumentReference `description` can contain up to 200
+  characters.
+
+  You can also include an optional provider clinical information comment of up
+  to 2,000 characters.
+
+  The comment is supplied once at Bundle level. It applies to all
+  `DocumentReference` resources in the request and is stored as notes for the
   provider attachment set.
 
   ## Known issues

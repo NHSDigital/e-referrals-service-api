@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "meta": {
+    "lastUpdated": "2026-10-16T10:15:30.000Z",
+    "profile": [
+      "https://www.hl7.org/fhir/R4/operationoutcome.html"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/CodeSystem/http-error-codes",
+            "code": "REC_BAD_REQUEST"
+          }
+        ]
+      },
+      "diagnostics": "Bundle.type must be transaction"
+    }
+  ]
+}

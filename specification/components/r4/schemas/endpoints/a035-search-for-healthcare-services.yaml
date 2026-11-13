@@ -5,7 +5,8 @@ description: |
   
   A Patient may have 0 to 20 Services associated with a single referral. 
   A service is a place where a referrer can send a patient or obtain clinical advice concerning a specific patient. 
-  You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call. 
+  You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call.
+  To retrieve the service name of a service associated with a single referral use [[HYPERLINK_A005]] instead to ensure the correct service name is retrieved.
 
   ## Supported security patterns
   - Application-restricted, unattended access

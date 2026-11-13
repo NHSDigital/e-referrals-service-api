@@ -7,6 +7,7 @@ description: |
   advice concerning a specific patient. Services have attributes that can be used to understand a services functionality, terms of use, and contact 
   information. 
   You can use this endpoint to obtain the current version and attributes of a single service.
+  To retrieve the service name of a service associated with a single referral use [[HYPERLINK_A005]] instead to ensure the correct service name is retrieved.
 
   ## Supported security patterns
   - Application-restricted, unattended access

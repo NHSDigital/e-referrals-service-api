@@ -14,6 +14,7 @@ At the moment it is not validating example responses for failure scenarios.
 Usage:
 Running 'make publish' will execute this script
 """
+
 import os.path
 from requests.models import Request
 from requests.models import Response
@@ -254,7 +255,7 @@ def absolute_path(request_path, endpoint_path):
 
     path = (
         "specification/components/r4"
-        if endpoint_path.startswith("/R4/")
+        if endpoint_path == "/R4" or endpoint_path.startswith("/R4/")
         else "specification/components/stu3"
     )
     return os.path.join(REPO_ROOT, path, *args)
@@ -341,7 +342,7 @@ def get_response_path(endpoint, http_method, success_code):
 
     example_path = (
         "components/r4/schemas/"
-        if endpoint.startswith("/R4/")
+        if endpoint == "/R4" or endpoint.startswith("/R4/")
         else "components/stu3/schemas/"
     )
 

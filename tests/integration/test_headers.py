@@ -90,6 +90,7 @@ class TestHeaders:
             ("PROVIDER_AUTHORISED_APPLICATION", "/FHIR/R4/", True),
             ("REFERRER_AUTHORISED_APPLICATION", "/FHIR/R4/", True),
             ("AUTHORISED_APPLICATION", "/FHIR/R4/", True),
+            ("AUTHORISED_APPLICATION", "/FHIR/R4", True),
         ],
     )
     async def test_headers_on_echo_target_with_app_restricted_business_function(
@@ -156,6 +157,7 @@ class TestHeaders:
             ("", False),
             ("/FHIR/STU3/", False),
             ("/FHIR/R4/", True),
+            ("/FHIR/R4", True),
         ],
     )
     async def test_headers_on_echo_target_insufficient_ial(
@@ -231,7 +233,7 @@ class TestHeaders:
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
         "endpoint_url,is_fhir_4",
-        [("", False), ("/FHIR/R4/", True), ("/FHIR/STU3/", False)],
+        [("", False), ("/FHIR/R4/", True), ("/FHIR/R4", True), ("/FHIR/STU3/", False)],
     )
     async def test_headers_on_echo_target_insufficient_aal(
         self,
